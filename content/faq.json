@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "question": "¿Qué es AIXtack?",
+    "answer": "AIXtack es una plataforma en español que reúne herramientas de inteligencia artificial, prompts listos para usar, comparativas, tutoriales, guías y noticias del sector, todo en un mismo lugar.",
+    "category": null
+  },
+  {
+    "id": "2",
+    "question": "¿Es gratis usar AIXtack?",
+    "answer": "Sí, todo el contenido de AIXtack (artículos, comparativas, tutoriales y la biblioteca de prompts básica) es gratuito. Algunos prompts marcados como \"Premium\" pueden requerir una suscripción en el futuro.",
+    "category": null
+  },
+  {
+    "id": "3",
+    "question": "¿Cómo elegís qué herramientas incluir en el directorio?",
+    "answer": "Evaluamos cada herramienta según su funcionalidad, facilidad de uso, soporte de español y relación calidad-precio antes de incluirla y valorarla en nuestro directorio.",
+    "category": null
+  },
+  {
+    "id": "4",
+    "question": "¿Qué son los enlaces de afiliados que aparecen en el sitio?",
+    "answer": "Algunos enlaces hacia herramientas de terceros son enlaces de afiliados: si compras a través de ellos podemos recibir una comisión, sin coste adicional para ti. Esto nos ayuda a mantener la plataforma. Más detalles en nuestro aviso de afiliados.",
+    "category": null
+  },
+  {
+    "id": "5",
+    "question": "¿Cómo me doy de baja de la newsletter?",
+    "answer": "Cada email que enviamos incluye un enlace de baja al final. Al hacer clic, tu suscripción se cancela de forma inmediata y no requiere confirmación adicional.",
+    "category": null
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(npm view *)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --use-npm --turbopack --skip-install)",
+      "Read(//c/Users/nicol/OneDrive/Desktop/**)",
+      "Bash(npx --yes create-next-app@latest aixtack-tmp --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --use-npm --turbopack --skip-install)",
+      "Bash(npm install *)",
+      "Bash(npm audit *)",
+      "Bash(npx --yes shadcn@latest init -y -b neutral --force)",
+      "Bash(npx --yes shadcn@latest init --help)",
+      "Bash(npx --yes shadcn@latest init -d -f --no-monorepo)",
+      "Bash(npx --yes shadcn@latest add button card input label badge accordion dialog dropdown-menu navigation-menu select separator tabs avatar sonner textarea sheet skeleton -y -f)",
+      "Bash(npx --yes shadcn@latest add button card input label badge accordion dialog dropdown-menu navigation-menu select separator tabs avatar sonner textarea sheet skeleton -y --overwrite)",
+      "Bash(npx prisma *)",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('./node_modules/next/dist/server/web/spec-extension/unstable-cache.js'\\) \\)\\)\")",
+      "Bash(grep -i \"cache.d.ts$\")",
+      "Bash(mkdir -p \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/api/auth/[...nextauth]\")",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(mkdir -p \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/herramientas-ia/[slug]\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/prompts/[slug]\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/comparativas\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/blog/[slug]\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/noticias\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/tutoriales\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/guias\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/categoria/[slug]\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/etiqueta/[slug]\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/faq\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/contacto\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/buscar\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/privacidad\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/cookies\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/\\(site\\)/aviso-afiliados\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/login\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/admin\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/go/[slug]\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/api/newsletter/subscribe\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/api/newsletter/confirm\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/api/newsletter/unsubscribe\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/api/search\" \"/c/Users/nicol/OneDrive/Desktop/AIXtack/app/api/revalidate\")",
+      "Bash(node -e ' *)",
+      "Bash(xargs grep -l \"seed\")",
+      "Bash(curl -s -m 5 -o /dev/null -w \"%{http_code}\\\\n\" https://picsum.photos/200)",
+      "Bash(npx tsx *)",
+      "Bash(npx tsc *)",
+      "Bash(npx --yes shadcn@latest init -b radix -y -f --no-monorepo)",
+      "Bash(npx --yes shadcn@latest init -b radix -y -f --no-monorepo --reinstall)",
+      "Bash(pkill -f \"shadcn\")",
+      "Bash(xargs grep -n \"openMultiple\\\\|Props\\\\b\")",
+      "Bash(xargs cat)",
+      "Bash(npm run *)",
+      "Bash(docker --version)",
+      "Bash(PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=\"Sí, adelante\" npx prisma migrate reset --force)",
+      "Bash(xargs grep -n \"nativeButton\")",
+      "Bash(PGPASSWORD=postgres psql -h localhost -p 51218 -U postgres -d template1 -c \"\\\\dt\")",
+      "Bash(powershell -NoProfile -Command \"Get-Process -Id 23312 -ErrorAction SilentlyContinue | Select-Object Id,ProcessName,Path,StartTime\")"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "admin",
+    "name": "Ana García",
+    "image": null,
+    "role": "ADMIN",
+    "bio": "Fundadora y editora en jefe de AIXtack. Antes de esto pasó ocho años en producto y datos en startups de Madrid y Ciudad de México, y lleva desde 2023 escribiendo y editando a diario sobre herramientas y modelos de IA para que el ecosistema en español no dependa de traducciones tardías del contenido en inglés."
+  },
+  {
+    "id": "editor",
+    "name": "Carlos Ruiz",
+    "image": null,
+    "role": "EDITOR",
+    "bio": "Editor de contenido en AIXtack, especializado en programación asistida por IA y automatización. Desarrollador de formación, revisa cada tutorial probando personalmente la herramienta antes de publicarlo, y escribe la mayoría de comparativas técnicas del sitio."
+  }
+]

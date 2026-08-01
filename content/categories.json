@@ -1,0 +1,2802 @@
+[
+  {
+    "id": "generacion-de-imagenes",
+    "slug": "generacion-de-imagenes",
+    "name": "Generación de imágenes",
+    "description": "Herramientas de IA para crear y editar imágenes a partir de descripciones de texto, bocetos o fotografías existentes.",
+    "icon": "Image",
+    "order": 1,
+    "parentId": null,
+    "seoTitle": "Generación de imágenes con IA: las mejores herramientas",
+    "seoDescription": "Descubre las mejores herramientas de IA para generar y editar imágenes desde texto: Midjourney, DALL-E 3, Stable Diffusion y más.",
+    "seoKeywords": [
+      "generacion de imagenes con ia",
+      "crear imagenes con ia",
+      "midjourney",
+      "dalle"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Necesito saber diseño para generar imágenes con IA?",
+        "answer": "No, la mayoría de estas herramientas funcionan describiendo lo que quieres en lenguaje natural, sin necesidad de conocimientos previos de diseño."
+      },
+      {
+        "question": "¿Puedo usar comercialmente las imágenes generadas?",
+        "answer": "Depende de la licencia de cada herramienta y plan contratado; revisa siempre los términos de uso comercial antes de publicar el resultado."
+      }
+    ],
+    "conclusion": "La generación de imágenes con IA ha democratizado la creación visual, aunque la herramienta adecuada depende de si priorizas calidad artística, control técnico o coste."
+  },
+  {
+    "id": "escritura",
+    "slug": "escritura",
+    "name": "Escritura y copywriting",
+    "description": "Asistentes de IA para escribir mejor y más rápido: desde corrección gramatical hasta redacción de marketing y copywriting persuasivo.",
+    "icon": "PenLine",
+    "order": 2,
+    "parentId": null,
+    "seoTitle": "Escritura con IA: asistentes para redactar mejor",
+    "seoDescription": "Herramientas de IA para escribir, corregir y mejorar textos: ChatGPT, Grammarly, QuillBot, Jasper y más asistentes de escritura.",
+    "seoKeywords": [
+      "escritura con ia",
+      "asistente de redaccion",
+      "corrector con ia",
+      "copywriting con ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede sustituir a un redactor profesional?",
+        "answer": "Acelera el primer borrador, pero la voz de marca distintiva y el criterio editorial siguen beneficiándose de la revisión de un redactor humano."
+      },
+      {
+        "question": "¿Estas herramientas funcionan bien en español?",
+        "answer": "La mayoría de asistentes generalistas (ChatGPT, Claude) tienen buen soporte de español; herramientas más específicas pueden estar más orientadas al inglés."
+      }
+    ],
+    "conclusion": "Las herramientas de escritura con IA son más útiles como acelerador del primer borrador que como sustituto completo del criterio editorial humano."
+  },
+  {
+    "id": "productividad",
+    "slug": "productividad",
+    "name": "Productividad",
+    "description": "IA para organizar, resumir y automatizar tu día a día: gestión de tareas, notas, reuniones y flujos de trabajo personales.",
+    "icon": "Zap",
+    "order": 3,
+    "parentId": null,
+    "seoTitle": "Productividad con IA: organiza tu trabajo más rápido",
+    "seoDescription": "Herramientas de IA para gestionar tareas, tomar notas, resumir reuniones y automatizar tu flujo de trabajo diario.",
+    "seoKeywords": [
+      "productividad con ia",
+      "organizar tareas con ia",
+      "notion ai",
+      "gestion del tiempo con ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Por dónde empezar si quiero ser más productivo con IA?",
+        "answer": "Empieza por automatizar una sola tarea repetitiva (resumir reuniones o priorizar tareas) antes de añadir más herramientas a tu flujo diario."
+      },
+      {
+        "question": "¿Estas herramientas funcionan en equipo, no solo individualmente?",
+        "answer": "Sí, muchas ofrecen planes de equipo con espacios compartidos, útiles para mantener consistencia en cómo se documentan tareas y decisiones."
+      }
+    ],
+    "conclusion": "La productividad con IA no consiste en usar más herramientas, sino en automatizar bien las pocas tareas que más tiempo te quitan cada semana."
+  },
+  {
+    "id": "programacion",
+    "slug": "programacion",
+    "name": "Programación y código",
+    "description": "Copilotos de IA para escribir, revisar y depurar código: autocompletado, generación de tests y asistentes de programación completos.",
+    "icon": "Code2",
+    "order": 4,
+    "parentId": null,
+    "seoTitle": "Programación con IA: los mejores asistentes de código",
+    "seoDescription": "Herramientas de IA para programar más rápido: GitHub Copilot, Cursor, Replit y otros asistentes de código.",
+    "seoKeywords": [
+      "ia para programar",
+      "asistente de codigo con ia",
+      "github copilot",
+      "cursor ai"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Debo revisar el código generado por IA antes de usarlo?",
+        "answer": "Sí, siempre; aceptar código sin entenderlo puede introducir errores sutiles o vulnerabilidades que solo se detectan después en producción."
+      },
+      {
+        "question": "¿Estas herramientas sustituyen a un desarrollador?",
+        "answer": "No; aceleran tareas repetitivas, pero decisiones de arquitectura y comprensión del negocio siguen requiriendo criterio humano experto."
+      }
+    ],
+    "conclusion": "Los asistentes de código con IA multiplican la velocidad de quien ya entiende los fundamentos de programación, no sustituyen ese conocimiento."
+  },
+  {
+    "id": "audio-y-voz",
+    "slug": "audio-y-voz",
+    "name": "Audio y voz",
+    "description": "Generación y clonación de voz con inteligencia artificial: locución, doblaje, narración y creación de contenido de audio.",
+    "icon": "Mic",
+    "order": 5,
+    "parentId": null,
+    "seoTitle": "Audio y voz con IA: generación y clonación de voz",
+    "seoDescription": "Herramientas de IA para generar voces sintéticas, clonar voz y crear locuciones profesionales: ElevenLabs, Murf AI y más.",
+    "seoKeywords": [
+      "voz con ia",
+      "clonacion de voz",
+      "elevenlabs",
+      "locucion con ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Es legal clonar una voz con IA?",
+        "answer": "Requiere el consentimiento explícito de la persona cuya voz se clona; hacerlo sin permiso plantea problemas legales y éticos serios."
+      },
+      {
+        "question": "¿Qué tan natural suena la voz generada?",
+        "answer": "Las mejores herramientas actuales producen voces muy difíciles de distinguir de una grabación humana real, especialmente en frases cortas y medias."
+      }
+    ],
+    "conclusion": "La generación de voz con IA ya alcanza calidad profesional suficiente para la mayoría de proyectos de contenido, formación y marketing."
+  },
+  {
+    "id": "video",
+    "slug": "video",
+    "name": "Vídeo",
+    "description": "Creación y edición de vídeo asistida por IA: generación desde texto, avatares virtuales y automatización de posproducción.",
+    "icon": "Video",
+    "order": 6,
+    "parentId": null,
+    "seoTitle": "Vídeo con IA: generación y edición asistida",
+    "seoDescription": "Herramientas de IA para generar y editar vídeo: Runway, Pika, Synthesia, Descript y otras plataformas de vídeo generativo.",
+    "seoKeywords": [
+      "video con ia",
+      "generador de video",
+      "runway ml",
+      "editor de video con ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo generar un vídeo completo solo con IA?",
+        "answer": "Ya es posible generar clips cortos completos, aunque para producciones más largas y complejas sigue siendo habitual combinar varias herramientas y edición humana."
+      },
+      {
+        "question": "¿Qué duración tienen los vídeos generados por IA?",
+        "answer": "La mayoría de generadores producen clips de pocos segundos que después se pueden extender o combinar en edición para crear secuencias más largas."
+      }
+    ],
+    "conclusion": "El vídeo generativo con IA avanza muy rápido, pero para producciones profesionales sigue siendo habitual combinarlo con herramientas de edición tradicionales."
+  },
+  {
+    "id": "chatbots-conversacionales",
+    "slug": "chatbots-conversacionales",
+    "name": "Chatbots conversacionales",
+    "description": "Asistentes de IA de propósito general capaces de mantener conversaciones naturales, responder preguntas y ayudar con tareas cotidianas. Incluye tanto modelos de gran tamaño (ChatGPT, Claude, Gemini) como chatbots especializados por dominio.",
+    "icon": "Bot",
+    "order": 10,
+    "parentId": null,
+    "seoTitle": "Chatbots de IA conversacional: los mejores asistentes",
+    "seoDescription": "Compara los mejores chatbots de inteligencia artificial: ChatGPT, Claude, Gemini y alternativas para conversar, investigar y resolver dudas.",
+    "seoKeywords": [
+      "chatbot ia",
+      "asistente conversacional",
+      "chatgpt",
+      "chat ia español"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cuál es la diferencia entre un chatbot de IA y uno tradicional?",
+        "answer": "Un chatbot tradicional sigue árboles de decisión predefinidos, mientras que uno basado en IA generativa entiende lenguaje natural y puede responder a preguntas que no estaban programadas de antemano."
+      },
+      {
+        "question": "¿Los chatbots de IA pueden equivocarse?",
+        "answer": "Sí. Pueden generar respuestas incorrectas con total seguridad (alucinaciones), por lo que conviene verificar datos críticos como cifras, fechas o afirmaciones legales."
+      }
+    ],
+    "conclusion": "Los chatbots conversacionales son la puerta de entrada más habitual a la IA generativa, y elegir el adecuado depende sobre todo del tipo de tareas que quieras resolver a diario."
+  },
+  {
+    "id": "asistentes-de-investigacion",
+    "slug": "asistentes-de-investigacion",
+    "name": "Asistentes de investigación con IA",
+    "description": "Herramientas que buscan, resumen y citan fuentes en tiempo real para acelerar el trabajo de investigación académica, periodística o de mercado, reduciendo el tiempo dedicado a rastrear información dispersa.",
+    "icon": "FileSearch",
+    "order": 11,
+    "parentId": null,
+    "seoTitle": "Asistentes de investigación con IA: busca y resume fuentes",
+    "seoDescription": "Herramientas de IA que investigan en internet, citan fuentes y resumen resultados para ahorrarte horas de búsqueda manual.",
+    "seoKeywords": [
+      "investigación con ia",
+      "buscador ia",
+      "resumen de fuentes",
+      "perplexity"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Estas herramientas citan sus fuentes?",
+        "answer": "Las buenas herramientas de investigación con IA muestran enlaces directos a las fuentes usadas, lo que permite verificar la información original."
+      },
+      {
+        "question": "¿Sustituyen a un investigador humano?",
+        "answer": "No; aceleran la fase de recopilación, pero el análisis crítico y la verificación final siguen requiriendo criterio humano."
+      }
+    ],
+    "conclusion": "Un buen asistente de investigación no reemplaza el pensamiento crítico, pero puede recortar drásticamente el tiempo que dedicas a encontrar información de partida."
+  },
+  {
+    "id": "generacion-de-musica",
+    "slug": "generacion-de-musica",
+    "name": "Generación de música con IA",
+    "description": "Modelos capaces de componer piezas musicales originales, bandas sonoras o pistas instrumentales a partir de una descripción de texto, útiles para creadores de contenido, videojuegos y proyectos audiovisuales.",
+    "icon": "Music",
+    "order": 12,
+    "parentId": null,
+    "seoTitle": "Generación de música con IA: crea canciones desde texto",
+    "seoDescription": "Descubre herramientas de IA para componer música original, bandas sonoras y pistas instrumentales a partir de una simple descripción.",
+    "seoKeywords": [
+      "música con ia",
+      "generador de canciones",
+      "suno ai",
+      "udio"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo usar comercialmente la música generada por IA?",
+        "answer": "Depende de la licencia de cada herramienta: algunas permiten uso comercial en planes de pago y otras solo para uso personal. Revisa siempre los términos antes de publicar."
+      },
+      {
+        "question": "¿La IA puede clonar la voz de un cantante real?",
+        "answer": "Técnicamente sí, pero hacerlo sin consentimiento plantea problemas legales y éticos serios; la mayoría de plataformas serias lo prohíben expresamente."
+      }
+    ],
+    "conclusion": "La generación musical con IA ya permite crear pistas de calidad profesional en minutos, aunque conviene revisar siempre los derechos de uso antes de monetizar el resultado."
+  },
+  {
+    "id": "traduccion-automatica",
+    "slug": "traduccion-automatica",
+    "name": "Traducción automática con IA",
+    "description": "Servicios de traducción que van más allá de la traducción literal, capturando matices de tono y contexto en decenas de idiomas, útiles para documentos, webs y comunicación internacional.",
+    "icon": "Languages",
+    "order": 13,
+    "parentId": null,
+    "seoTitle": "Traducción automática con IA: precisión y contexto real",
+    "seoDescription": "Las mejores herramientas de traducción con inteligencia artificial para traducir documentos, webs y conversaciones con matices de contexto.",
+    "seoKeywords": [
+      "traductor ia",
+      "deepl",
+      "traduccion automatica",
+      "traducir documentos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Es mejor que Google Translate?",
+        "answer": "Los traductores basados en IA generativa suelen capturar mejor el tono y el contexto que los traductores estadísticos clásicos, especialmente en textos largos o técnicos."
+      },
+      {
+        "question": "¿Puedo traducir un documento completo manteniendo el formato?",
+        "answer": "La mayoría de herramientas modernas admiten subir Word, PDF o PowerPoint y devuelven el documento traducido conservando el diseño original."
+      }
+    ],
+    "conclusion": "Para textos profesionales, combinar una traducción automática de calidad con una revisión humana sigue siendo la práctica más fiable."
+  },
+  {
+    "id": "transcripcion-de-audio",
+    "slug": "transcripcion-de-audio",
+    "name": "Transcripción de audio y vídeo",
+    "description": "Herramientas que convierten grabaciones de voz, podcasts o reuniones en texto editable con alta precisión, incluyendo identificación de hablantes y marcas de tiempo.",
+    "icon": "Headphones",
+    "order": 14,
+    "parentId": null,
+    "seoTitle": "Transcripción de audio con IA: de voz a texto en minutos",
+    "seoDescription": "Convierte reuniones, podcasts y entrevistas en texto editable con herramientas de transcripción automática basadas en IA.",
+    "seoKeywords": [
+      "transcripcion ia",
+      "voz a texto",
+      "otter ai",
+      "transcribir reuniones"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Qué precisión tienen estas herramientas?",
+        "answer": "Con audio claro y sin demasiado ruido de fondo, la precisión suele superar el 95% en idiomas ampliamente soportados como el español o el inglés."
+      },
+      {
+        "question": "¿Pueden distinguir entre varias personas hablando?",
+        "answer": "Sí, la mayoría incluye diarización de hablantes, que etiqueta automáticamente quién dice qué en la transcripción final."
+      }
+    ],
+    "conclusion": "La transcripción automática ahorra horas de trabajo manual, aunque conviene revisar nombres propios y términos técnicos antes de usar el texto como definitivo."
+  },
+  {
+    "id": "generacion-de-subtitulos",
+    "slug": "generacion-de-subtitulos",
+    "name": "Generación de subtítulos",
+    "description": "Soluciones que generan y sincronizan subtítulos automáticamente para vídeos, incluyendo traducción a múltiples idiomas, pensadas para creadores que publican en redes sociales y plataformas de streaming.",
+    "icon": "ClipboardList",
+    "order": 15,
+    "parentId": null,
+    "seoTitle": "Generación de subtítulos con IA: sincroniza y traduce vídeos",
+    "seoDescription": "Genera subtítulos automáticos y traducidos para tus vídeos con herramientas de IA pensadas para redes sociales y streaming.",
+    "seoKeywords": [
+      "subtitulos automaticos",
+      "subtitulos ia",
+      "traducir subtitulos",
+      "captions ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Los subtítulos generados quedan bien sincronizados?",
+        "answer": "Sí, la mayoría de herramientas actuales sincronizan con precisión de fotograma y permiten ajustes manuales si algo queda desalineado."
+      },
+      {
+        "question": "¿Puedo personalizar el estilo visual de los subtítulos?",
+        "answer": "La mayoría de plataformas orientadas a redes sociales permiten cambiar tipografía, color y animación para adaptarlos a tu marca."
+      }
+    ],
+    "conclusion": "Añadir subtítulos ya no es un proceso manual: automatizarlo mejora el alcance de tus vídeos, especialmente en plataformas donde se ven sin sonido."
+  },
+  {
+    "id": "doblaje-con-ia",
+    "slug": "doblaje-con-ia",
+    "name": "Doblaje con IA",
+    "description": "Tecnología que traduce y dobla vídeos a otros idiomas conservando el tono y, en algunos casos, la propia voz del hablante original, acelerando la localización de contenido audiovisual.",
+    "icon": "Speaker",
+    "order": 16,
+    "parentId": null,
+    "seoTitle": "Doblaje con IA: localiza tus vídeos a cualquier idioma",
+    "seoDescription": "Herramientas de IA para doblar vídeos automáticamente a otros idiomas, conservando el tono y el ritmo de la voz original.",
+    "seoKeywords": [
+      "doblaje ia",
+      "dubbing ia",
+      "localizar video",
+      "voz clonada"
+    ],
+    "faqItems": [
+      {
+        "question": "¿El doblaje con IA suena natural?",
+        "answer": "La calidad ha mejorado mucho: las mejores herramientas sincronizan labios y entonación de forma convincente, aunque siempre conviene revisar el resultado antes de publicar."
+      },
+      {
+        "question": "¿Necesito el consentimiento de la persona para clonar su voz?",
+        "answer": "Sí, es una buena práctica imprescindible y en muchos países ya es un requisito legal contar con autorización expresa del hablante original."
+      }
+    ],
+    "conclusion": "El doblaje con IA está democratizando la distribución internacional de contenido, reduciendo drásticamente costes que antes solo estaban al alcance de grandes productoras."
+  },
+  {
+    "id": "edicion-de-video-con-ia",
+    "slug": "edicion-de-video-con-ia",
+    "name": "Edición de vídeo con IA",
+    "description": "Editores que automatizan cortes, transiciones, eliminación de silencios y selección de mejores tomas a partir de instrucciones de texto, acelerando la posproducción de vídeo.",
+    "icon": "Clapperboard",
+    "order": 17,
+    "parentId": null,
+    "seoTitle": "Edición de vídeo con IA: corta y monta más rápido",
+    "seoDescription": "Herramientas de IA que automatizan el montaje de vídeo: cortes, eliminación de silencios y selección de mejores tomas.",
+    "seoKeywords": [
+      "edicion de video ia",
+      "editor de video ia",
+      "capcut ia",
+      "montaje automatico"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede reemplazar a un editor de vídeo profesional?",
+        "answer": "Para tareas repetitivas como recortar silencios o generar cortes básicos sí, pero la narrativa y el ritmo creativo siguen beneficiándose de la mano de un editor humano."
+      },
+      {
+        "question": "¿Funcionan bien con vídeos largos?",
+        "answer": "Sí, muchas de estas herramientas están pensadas precisamente para acortar el tiempo de edición en grabaciones largas como podcasts o webinars."
+      }
+    ],
+    "conclusion": "La edición asistida por IA es especialmente útil para creadores que publican con alta frecuencia y necesitan reducir el tiempo de posproducción sin sacrificar calidad."
+  },
+  {
+    "id": "generacion-de-avatares",
+    "slug": "generacion-de-avatares",
+    "name": "Generación de avatares digitales",
+    "description": "Plataformas que crean presentadores virtuales fotorrealistas capaces de narrar guiones en vídeo, usados en formación corporativa, marketing y contenido educativo sin necesidad de grabar cámara.",
+    "icon": "Users",
+    "order": 18,
+    "parentId": null,
+    "seoTitle": "Avatares digitales con IA: presentadores virtuales realistas",
+    "seoDescription": "Crea vídeos con presentadores virtuales fotorrealistas a partir de texto, ideales para formación, marketing y contenido educativo.",
+    "seoKeywords": [
+      "avatar digital ia",
+      "presentador virtual",
+      "synthesia",
+      "heygen"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo crear un avatar con mi propia imagen?",
+        "answer": "Sí, la mayoría de plataformas permiten grabar un vídeo corto de referencia para generar un avatar personalizado que luego narra cualquier guion."
+      },
+      {
+        "question": "¿En qué idiomas pueden hablar estos avatares?",
+        "answer": "Los avatares más avanzados soportan decenas de idiomas con locución natural, incluyendo español de España y variantes latinoamericanas."
+      }
+    ],
+    "conclusion": "Los avatares digitales permiten producir vídeo formativo o corporativo a gran escala sin cámara, equipo de grabación ni actores."
+  },
+  {
+    "id": "generacion-de-logotipos",
+    "slug": "generacion-de-logotipos",
+    "name": "Generación de logotipos con IA",
+    "description": "Herramientas que proponen conceptos de marca e identidad visual a partir de una breve descripción del negocio, útiles para startups y proyectos que necesitan una imagen rápida y profesional.",
+    "icon": "Palette",
+    "order": 19,
+    "parentId": null,
+    "seoTitle": "Generación de logotipos con IA: identidad de marca en minutos",
+    "seoDescription": "Crea propuestas de logotipo e identidad visual para tu negocio con herramientas de IA, sin necesidad de experiencia en diseño.",
+    "seoKeywords": [
+      "logotipo con ia",
+      "generador de logos",
+      "diseño de marca ia",
+      "branding ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Un logo generado por IA es único?",
+        "answer": "Depende de la herramienta: algunas generan combinaciones lo bastante variadas para resultar distintivas, pero siempre conviene comprobar que no colisiona con marcas existentes."
+      },
+      {
+        "question": "¿Puedo registrar como marca un logo hecho con IA?",
+        "answer": "En general sí, aunque las políticas varían por país y oficina de marcas; conviene consultar con un profesional si el registro es crítico para tu negocio."
+      }
+    ],
+    "conclusion": "Para una primera versión de marca o un proyecto con presupuesto ajustado, estas herramientas ofrecen un punto de partida sólido antes de invertir en diseño a medida."
+  },
+  {
+    "id": "diseno-ui-ux-con-ia",
+    "slug": "diseno-ui-ux-con-ia",
+    "name": "Diseño UI/UX con IA",
+    "description": "Asistentes que generan pantallas, componentes y prototipos de interfaz a partir de descripciones o bocetos, acelerando el paso de idea a producto navegable para equipos de producto.",
+    "icon": "Layout",
+    "order": 20,
+    "parentId": null,
+    "seoTitle": "Diseño UI/UX con IA: prototipos y pantallas en minutos",
+    "seoDescription": "Genera pantallas, componentes y prototipos de interfaz con herramientas de IA pensadas para equipos de producto y diseño.",
+    "seoKeywords": [
+      "diseño ui ia",
+      "prototipado ia",
+      "figma ia",
+      "diseño de producto"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Sustituyen estas herramientas a un diseñador UX?",
+        "answer": "Aceleran la fase de prototipado, pero decisiones como arquitectura de información o investigación de usuarios siguen requiriendo criterio de diseño experto."
+      },
+      {
+        "question": "¿El código generado es utilizable en producción?",
+        "answer": "Algunas herramientas exportan código limpio en React o HTML/CSS, aunque casi siempre necesita revisión de un equipo de desarrollo antes de desplegarlo."
+      }
+    ],
+    "conclusion": "Estas herramientas son ideales para validar ideas de producto rápidamente, dejando el pulido final en manos de un equipo de diseño."
+  },
+  {
+    "id": "eliminacion-de-fondo",
+    "slug": "eliminacion-de-fondo",
+    "name": "Eliminación de fondo de imágenes",
+    "description": "Utilidades que recortan el fondo de una fotografía de forma automática y precisa en segundos, muy usadas en ecommerce, marketing y diseño de producto.",
+    "icon": "Scissors",
+    "order": 21,
+    "parentId": null,
+    "seoTitle": "Eliminar fondo de imágenes con IA en segundos",
+    "seoDescription": "Recorta el fondo de tus fotos automáticamente con herramientas de IA, ideales para ecommerce, catálogos y diseño.",
+    "seoKeywords": [
+      "eliminar fondo ia",
+      "quitar fondo foto",
+      "remove bg",
+      "recortar imagen"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Funciona bien con pelo o bordes complejos?",
+        "answer": "Las herramientas actuales manejan sorprendentemente bien detalles finos como cabello o pelaje, aunque imágenes con muy poco contraste pueden requerir un ajuste manual."
+      },
+      {
+        "question": "¿Puedo procesar muchas imágenes a la vez?",
+        "answer": "Sí, la mayoría de estas plataformas ofrecen procesamiento por lotes mediante API o carga masiva para catálogos de producto."
+      }
+    ],
+    "conclusion": "Para tiendas online con catálogos grandes, automatizar el recorte de fondos ahorra horas de trabajo manual de edición fotográfica."
+  },
+  {
+    "id": "mejora-de-resolucion",
+    "slug": "mejora-de-resolucion",
+    "name": "Mejora de resolución (upscaling)",
+    "description": "Algoritmos que aumentan la resolución de imágenes o vídeo antiguo sin perder nitidez, reconstruyendo detalles de forma inteligente para restauración de archivo o impresión en gran formato.",
+    "icon": "Sparkles",
+    "order": 22,
+    "parentId": null,
+    "seoTitle": "Mejora de resolución con IA: upscaling de imágenes y vídeo",
+    "seoDescription": "Aumenta la resolución de fotos y vídeos antiguos con IA, reconstruyendo detalles sin perder nitidez para impresión o archivo.",
+    "seoKeywords": [
+      "upscaling ia",
+      "mejorar resolucion",
+      "topaz gigapixel",
+      "restaurar fotos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cuánto se puede ampliar una imagen sin perder calidad?",
+        "answer": "Los mejores modelos permiten ampliaciones de 2x a 4x manteniendo buena nitidez; más allá de eso, empiezan a aparecer artefactos visibles."
+      },
+      {
+        "question": "¿Funciona también con vídeo?",
+        "answer": "Sí, existen herramientas especializadas en upscaling de vídeo, muy usadas para restaurar material antiguo antes de remasterizarlo."
+      }
+    ],
+    "conclusion": "El upscaling con IA es la solución más práctica para recuperar archivo fotográfico o de vídeo antiguo con calidad aceptable para uso moderno."
+  },
+  {
+    "id": "generacion-de-modelos-3d",
+    "slug": "generacion-de-modelos-3d",
+    "name": "Generación de modelos 3D",
+    "description": "Herramientas que convierten descripciones de texto o imágenes en modelos tridimensionales listos para videojuegos, impresión 3D o realidad aumentada, reduciendo el tiempo de modelado manual.",
+    "icon": "Puzzle",
+    "order": 23,
+    "parentId": null,
+    "seoTitle": "Generación de modelos 3D con IA desde texto o imagen",
+    "seoDescription": "Crea modelos 3D para videojuegos, impresión 3D o realidad aumentada a partir de texto con herramientas de inteligencia artificial.",
+    "seoKeywords": [
+      "modelos 3d ia",
+      "generador 3d",
+      "texto a 3d",
+      "impresion 3d ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Los modelos generados están listos para producción?",
+        "answer": "Suelen necesitar retopología y ajustes manuales antes de integrarse en un motor de videojuego profesional, pero son un excelente punto de partida."
+      },
+      {
+        "question": "¿Puedo imprimirlos en 3D directamente?",
+        "answer": "Muchas herramientas exportan en formatos compatibles con impresión 3D (STL/OBJ), aunque conviene revisar el grosor de las paredes antes de imprimir."
+      }
+    ],
+    "conclusion": "La generación de modelos 3D con IA acelera enormemente la fase de prototipado, aunque el acabado final sigue beneficiándose de retoque manual especializado."
+  },
+  {
+    "id": "generacion-de-presentaciones",
+    "slug": "generacion-de-presentaciones",
+    "name": "Generación de presentaciones",
+    "description": "Aplicaciones que convierten un esquema o guion en una presentación de diapositivas con diseño coherente, ahorrando el tiempo de maquetar cada slide manualmente.",
+    "icon": "Presentation",
+    "order": 24,
+    "parentId": null,
+    "seoTitle": "Generación de presentaciones con IA: slides en minutos",
+    "seoDescription": "Convierte un guion o esquema en una presentación con diseño profesional usando herramientas de IA como Gamma o Tome.",
+    "seoKeywords": [
+      "presentaciones con ia",
+      "gamma app",
+      "generador de slides",
+      "powerpoint ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo editar el diseño después de generarlo?",
+        "answer": "Sí, estas herramientas generan una base editable donde puedes ajustar textos, imágenes y estilos según tu marca."
+      },
+      {
+        "question": "¿Puedo exportar a PowerPoint o Google Slides?",
+        "answer": "La mayoría permite exportar a PDF o PPTX para seguir editando en las herramientas de ofimática tradicionales si lo necesitas."
+      }
+    ],
+    "conclusion": "Generar el primer borrador de una presentación con IA suele ser mucho más rápido que empezar desde una diapositiva en blanco."
+  },
+  {
+    "id": "generacion-de-infografias",
+    "slug": "generacion-de-infografias",
+    "name": "Generación de infografías",
+    "description": "Herramientas que transforman datos o texto en infografías visuales listas para compartir, útiles para equipos de marketing y comunicación que necesitan explicar información compleja de forma visual.",
+    "icon": "PieChart",
+    "order": 25,
+    "parentId": null,
+    "seoTitle": "Generación de infografías con IA a partir de datos",
+    "seoDescription": "Transforma datos y texto en infografías visuales atractivas con herramientas de IA pensadas para marketing y comunicación.",
+    "seoKeywords": [
+      "infografias con ia",
+      "generador de infografias",
+      "visualizacion de datos",
+      "diseño grafico ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Necesito saber diseño gráfico para usarlas?",
+        "answer": "No; estas herramientas aplican principios de diseño automáticamente, aunque conocer conceptos básicos de jerarquía visual ayuda a pulir el resultado."
+      },
+      {
+        "question": "¿Puedo usar mi propia paleta de marca?",
+        "answer": "La mayoría de plataformas permiten definir colores y tipografías corporativas para mantener consistencia con tu identidad visual."
+      }
+    ],
+    "conclusion": "Una buena infografía comunica en segundos lo que un párrafo tarda minutos en explicar, y la IA reduce drásticamente el tiempo de producción."
+  },
+  {
+    "id": "marketing-con-ia",
+    "slug": "marketing-con-ia",
+    "name": "Marketing con IA",
+    "description": "Suite de herramientas que apoyan la estrategia de marketing: desde generación de copys publicitarios hasta análisis predictivo de campañas, pensadas para equipos que buscan escalar sin ampliar plantilla.",
+    "icon": "Megaphone",
+    "order": 26,
+    "parentId": null,
+    "seoTitle": "Marketing con IA: herramientas para escalar tus campañas",
+    "seoDescription": "Descubre herramientas de IA para marketing: generación de anuncios, análisis de campañas y automatización de estrategias.",
+    "seoKeywords": [
+      "marketing con ia",
+      "herramientas de marketing",
+      "publicidad con ia",
+      "estrategia digital ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede diseñar una estrategia de marketing completa?",
+        "answer": "Puede generar ideas y borradores de campaña, pero la estrategia final debe alinearse con objetivos de negocio que solo un equipo humano puede definir con precisión."
+      },
+      {
+        "question": "¿Estas herramientas sirven para pequeños negocios?",
+        "answer": "Sí, muchas están pensadas específicamente para equipos reducidos que necesitan producir más contenido de marketing sin contratar una agencia."
+      }
+    ],
+    "conclusion": "La IA no sustituye la estrategia de marketing, pero multiplica la capacidad de ejecución de un equipo pequeño."
+  },
+  {
+    "id": "seo-con-ia",
+    "slug": "seo-con-ia",
+    "name": "SEO con IA",
+    "description": "Herramientas que analizan palabras clave, intención de búsqueda y contenido de la competencia para ayudar a posicionar páginas web en buscadores de forma más eficiente y basada en datos.",
+    "icon": "Search",
+    "order": 27,
+    "parentId": null,
+    "seoTitle": "SEO con IA: investigación de palabras clave y contenido",
+    "seoDescription": "Herramientas de IA para investigar palabras clave, analizar competencia y optimizar contenido de cara a los buscadores.",
+    "seoKeywords": [
+      "seo con ia",
+      "herramientas seo",
+      "investigacion de palabras clave",
+      "surfer seo"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Google penaliza el contenido creado con ayuda de IA?",
+        "answer": "Google no penaliza el uso de IA en sí, sino el contenido de baja calidad o creado únicamente para manipular rankings, sea generado por IA o por humanos."
+      },
+      {
+        "question": "¿Estas herramientas garantizan el primer puesto en Google?",
+        "answer": "Ninguna herramienta puede garantizarlo: ayudan a tomar mejores decisiones de contenido, pero el posicionamiento depende de muchos factores fuera de su control."
+      }
+    ],
+    "conclusion": "Las herramientas de SEO con IA son un acelerador de investigación, no un atajo mágico: la calidad del contenido final sigue siendo decisiva."
+  },
+  {
+    "id": "email-marketing-con-ia",
+    "slug": "email-marketing-con-ia",
+    "name": "Email marketing con IA",
+    "description": "Plataformas que redactan, segmentan y optimizan campañas de email automáticamente, ajustando asuntos y horarios de envío según el comportamiento histórico de cada suscriptor.",
+    "icon": "Mail",
+    "order": 28,
+    "parentId": null,
+    "seoTitle": "Email marketing con IA: campañas que se optimizan solas",
+    "seoDescription": "Redacta, segmenta y optimiza tus campañas de email marketing con herramientas de inteligencia artificial.",
+    "seoKeywords": [
+      "email marketing ia",
+      "newsletter con ia",
+      "automatizacion de email",
+      "segmentacion ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede escribir todo el email por mí?",
+        "answer": "Puede generar un primer borrador sólido a partir de una breve instrucción, pero revisar el tono de marca antes de enviarlo sigue siendo recomendable."
+      },
+      {
+        "question": "¿Cómo decide la IA el mejor horario de envío?",
+        "answer": "Analiza el historial de aperturas y clics de cada suscriptor para predecir el momento en que es más probable que abra el email."
+      }
+    ],
+    "conclusion": "Automatizar la redacción y el envío de email marketing con IA libera tiempo para centrarse en la estrategia de contenidos y segmentación."
+  },
+  {
+    "id": "generacion-de-anuncios",
+    "slug": "generacion-de-anuncios",
+    "name": "Generación de anuncios publicitarios",
+    "description": "Herramientas que crean variantes de copy e imágenes publicitarias para test A/B a gran escala, adaptando el mensaje automáticamente a cada plataforma y audiencia.",
+    "icon": "Target",
+    "order": 29,
+    "parentId": null,
+    "seoTitle": "Generación de anuncios con IA: copys e imágenes en minutos",
+    "seoDescription": "Crea variantes de anuncios publicitarios con IA para hacer test A/B y adaptar el mensaje a cada plataforma y audiencia.",
+    "seoKeywords": [
+      "anuncios con ia",
+      "copy publicitario ia",
+      "generador de anuncios",
+      "ads con ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo generar anuncios para Meta y Google Ads a la vez?",
+        "answer": "Sí, muchas herramientas adaptan automáticamente formato y longitud de texto según los requisitos de cada plataforma publicitaria."
+      },
+      {
+        "question": "¿Cuántas variantes debería testear por campaña?",
+        "answer": "Empezar con 3 a 5 variantes de copy suele ser suficiente para identificar patrones claros sin dispersar demasiado el presupuesto de test."
+      }
+    ],
+    "conclusion": "Generar múltiples variantes de anuncio con IA facilita hacer testing sistemático, algo que manualmente resultaría demasiado lento para la mayoría de equipos."
+  },
+  {
+    "id": "optimizacion-de-conversion",
+    "slug": "optimizacion-de-conversion",
+    "name": "Optimización de conversión (CRO)",
+    "description": "Herramientas que analizan el comportamiento de los usuarios en una web para sugerir cambios de diseño o copy que aumenten la tasa de conversión, basándose en patrones de datos reales.",
+    "icon": "Filter",
+    "order": 30,
+    "parentId": null,
+    "seoTitle": "Optimización de conversión (CRO) con IA",
+    "seoDescription": "Analiza el comportamiento de tus usuarios y recibe sugerencias de IA para aumentar la tasa de conversión de tu web.",
+    "seoKeywords": [
+      "cro con ia",
+      "optimizacion de conversion",
+      "analisis de comportamiento",
+      "aumentar conversiones"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Necesito mucho tráfico para que estas herramientas funcionen?",
+        "answer": "Cuanto más tráfico tengas, más rápido y fiable será el análisis estadístico, pero incluso sitios pequeños pueden obtener recomendaciones cualitativas útiles."
+      },
+      {
+        "question": "¿Sustituyen a un test A/B manual?",
+        "answer": "Muchas veces las incorporan directamente, automatizando la creación y el análisis estadístico de los experimentos."
+      }
+    ],
+    "conclusion": "El CRO asistido por IA convierte datos de comportamiento en recomendaciones accionables, acortando el ciclo de prueba y error."
+  },
+  {
+    "id": "redes-sociales-con-ia",
+    "slug": "redes-sociales-con-ia",
+    "name": "Gestión de redes sociales con IA",
+    "description": "Herramientas para planificar, generar y programar contenido en redes sociales desde un solo panel, sugiriendo ideas y el mejor horario de publicación según tu audiencia.",
+    "icon": "Smartphone",
+    "order": 31,
+    "parentId": null,
+    "seoTitle": "Gestión de redes sociales con IA: planifica y publica",
+    "seoDescription": "Planifica, genera y programa contenido para redes sociales con herramientas de inteligencia artificial en un solo panel.",
+    "seoKeywords": [
+      "redes sociales con ia",
+      "programar publicaciones",
+      "gestor de redes sociales",
+      "contenido social ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo gestionar varias redes desde una sola herramienta?",
+        "answer": "Sí, la mayoría de estas plataformas centralizan Instagram, X, LinkedIn, TikTok y otras redes en un único calendario editorial."
+      },
+      {
+        "question": "¿La IA sabe adaptar el tono a cada red social?",
+        "answer": "Las herramientas más avanzadas ajustan automáticamente longitud, hashtags y tono según las convenciones de cada plataforma."
+      }
+    ],
+    "conclusion": "Centralizar la gestión de redes sociales con ayuda de IA reduce el tiempo dedicado a tareas operativas y deja más espacio para la estrategia de contenido."
+  },
+  {
+    "id": "generacion-de-newsletters",
+    "slug": "generacion-de-newsletters",
+    "name": "Generación de newsletters",
+    "description": "Asistentes que redactan y maquetan boletines periódicos a partir de tus fuentes habituales (blog, noticias del sector), pensados para equipos que envían newsletters con frecuencia regular.",
+    "icon": "Newspaper",
+    "order": 32,
+    "parentId": null,
+    "seoTitle": "Generación de newsletters con IA a partir de tus fuentes",
+    "seoDescription": "Redacta y maquete newsletters periódicas automáticamente con herramientas de IA a partir de tu blog o fuentes del sector.",
+    "seoKeywords": [
+      "newsletter con ia",
+      "generador de boletines",
+      "redaccion automatica",
+      "email newsletter"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede resumir varias noticias en un solo boletín?",
+        "answer": "Sí, es uno de sus usos más habituales: alimentar la herramienta con varias fuentes y obtener un resumen coherente y bien estructurado."
+      },
+      {
+        "question": "¿Puedo mantener mi propio estilo de escritura?",
+        "answer": "La mayoría de herramientas permiten definir un tono de voz o ejemplos previos para que las nuevas ediciones mantengan coherencia con las anteriores."
+      }
+    ],
+    "conclusion": "Automatizar el primer borrador de una newsletter facilita mantener una cadencia de publicación constante, algo clave para retener suscriptores."
+  },
+  {
+    "id": "atencion-al-cliente-con-ia",
+    "slug": "atencion-al-cliente-con-ia",
+    "name": "Atención al cliente con IA",
+    "description": "Sistemas que resuelven consultas frecuentes de soporte las 24 horas, escalando a un humano solo cuando el caso lo requiere, reduciendo tiempos de espera y coste operativo.",
+    "icon": "MessageSquare",
+    "order": 33,
+    "parentId": null,
+    "seoTitle": "Atención al cliente con IA: soporte 24/7 automatizado",
+    "seoDescription": "Resuelve consultas de soporte las 24 horas con chatbots de IA que escalan a un humano solo cuando es necesario.",
+    "seoKeywords": [
+      "atencion al cliente ia",
+      "soporte con ia",
+      "chatbot de soporte",
+      "helpdesk ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Los clientes notan que hablan con una IA?",
+        "answer": "Depende del diseño de la conversación; las mejores implementaciones son transparentes sobre ello y permiten pasar a un agente humano en cualquier momento."
+      },
+      {
+        "question": "¿Qué tipo de consultas puede resolver sin intervención humana?",
+        "answer": "Las preguntas frecuentes, seguimiento de pedidos y problemas comunes suelen resolverse bien; los casos complejos o sensibles se derivan a un agente."
+      }
+    ],
+    "conclusion": "Automatizar el primer nivel de soporte con IA reduce tiempos de espera sin eliminar la posibilidad de hablar con una persona cuando realmente se necesita."
+  },
+  {
+    "id": "chatbots-de-ventas",
+    "slug": "chatbots-de-ventas",
+    "name": "Chatbots de ventas",
+    "description": "Asistentes conversacionales orientados a cualificar leads, responder objeciones habituales y agendar reuniones comerciales de forma automática dentro de una web o app.",
+    "icon": "Handshake",
+    "order": 34,
+    "parentId": null,
+    "seoTitle": "Chatbots de ventas con IA: cualifica leads automáticamente",
+    "seoDescription": "Cualifica leads, responde objeciones y agenda reuniones comerciales automáticamente con chatbots de ventas basados en IA.",
+    "seoKeywords": [
+      "chatbot de ventas",
+      "cualificacion de leads",
+      "asistente comercial ia",
+      "agendar reuniones ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Pueden cerrar una venta sin intervención humana?",
+        "answer": "En productos de bajo coste y ciclo de venta corto sí es posible; en ventas B2B complejas suelen limitarse a cualificar y agendar la reunión con un comercial."
+      },
+      {
+        "question": "¿Se integran con mi CRM?",
+        "answer": "La mayoría de plataformas ofrecen integraciones nativas con CRMs populares para registrar automáticamente cada conversación como oportunidad."
+      }
+    ],
+    "conclusion": "Un chatbot de ventas bien configurado filtra leads poco cualificados y libera al equipo comercial para centrarse en las oportunidades con más potencial."
+  },
+  {
+    "id": "automatizacion-de-flujos-de-trabajo",
+    "slug": "automatizacion-de-flujos-de-trabajo",
+    "name": "Automatización de flujos de trabajo",
+    "description": "Plataformas que conectan aplicaciones y automatizan tareas repetitivas entre ellas mediante reglas o lenguaje natural, sin necesidad de escribir código.",
+    "icon": "Rocket",
+    "order": 35,
+    "parentId": null,
+    "seoTitle": "Automatización de flujos de trabajo con IA sin código",
+    "seoDescription": "Conecta tus aplicaciones y automatiza tareas repetitivas con herramientas de IA como Zapier o Make, sin escribir código.",
+    "seoKeywords": [
+      "automatizacion con ia",
+      "zapier",
+      "make integromat",
+      "flujos de trabajo sin codigo"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Necesito saber programar para crear automatizaciones?",
+        "answer": "No; estas plataformas usan interfaces visuales o lenguaje natural, pensadas específicamente para usuarios sin conocimientos técnicos."
+      },
+      {
+        "question": "¿Qué tipo de tareas se pueden automatizar?",
+        "answer": "Desde mover datos entre aplicaciones hasta enviar notificaciones, generar informes o sincronizar calendarios de forma completamente automática."
+      }
+    ],
+    "conclusion": "Automatizar tareas repetitivas es una de las formas más rápidas de recuperar horas de trabajo cada semana sin contratar a nadie más."
+  },
+  {
+    "id": "agentes-autonomos-de-ia",
+    "slug": "agentes-autonomos-de-ia",
+    "name": "Agentes autónomos de IA",
+    "description": "Sistemas capaces de planificar y ejecutar tareas de varios pasos de forma independiente, tomando decisiones intermedias sin supervisión constante, aplicados a investigación, codificación y operaciones.",
+    "icon": "Cpu",
+    "order": 36,
+    "parentId": null,
+    "seoTitle": "Agentes autónomos de IA: automatización de tareas complejas",
+    "seoDescription": "Descubre agentes de IA capaces de planificar y ejecutar tareas de varios pasos de forma autónoma, sin supervisión constante.",
+    "seoKeywords": [
+      "agentes de ia",
+      "ia autonoma",
+      "agentes autonomos",
+      "automatizacion avanzada"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Qué diferencia a un agente de un chatbot normal?",
+        "answer": "Un chatbot responde una pregunta cada vez; un agente puede encadenar varias acciones (buscar, analizar, ejecutar) sin que el usuario intervenga en cada paso."
+      },
+      {
+        "question": "¿Son seguros para tareas críticas?",
+        "answer": "Conviene supervisar de cerca a los agentes en tareas con consecuencias importantes (pagos, envío de emails), ya que pueden tomar decisiones inesperadas."
+      }
+    ],
+    "conclusion": "Los agentes autónomos representan la frontera actual de la IA aplicada, pero todavía requieren supervisión humana en tareas de alto riesgo."
+  },
+  {
+    "id": "automatizacion-rpa",
+    "slug": "automatizacion-rpa",
+    "name": "Automatización RPA con IA",
+    "description": "Robots de software que combinan automatización de procesos (RPA) con IA para manejar excepciones y datos no estructurados, ampliando lo que la automatización clásica podía resolver por sí sola.",
+    "icon": "Wrench",
+    "order": 37,
+    "parentId": null,
+    "seoTitle": "Automatización RPA con IA para procesos empresariales",
+    "seoDescription": "Combina automatización de procesos (RPA) con IA para manejar excepciones y datos no estructurados en tareas empresariales repetitivas.",
+    "seoKeywords": [
+      "rpa con ia",
+      "automatizacion robotica de procesos",
+      "rpa empresarial",
+      "automatizacion inteligente"
+    ],
+    "faqItems": [
+      {
+        "question": "¿En qué se diferencia del RPA tradicional?",
+        "answer": "El RPA clásico solo sigue reglas fijas; al añadir IA puede interpretar documentos variables, imágenes o texto libre que antes rompían la automatización."
+      },
+      {
+        "question": "¿Es adecuado para pymes o solo grandes empresas?",
+        "answer": "Existen soluciones escalables tanto para grandes corporaciones como para pymes con procesos administrativos repetitivos de volumen medio."
+      }
+    ],
+    "conclusion": "El RPA potenciado con IA amplía el rango de procesos automatizables más allá de las tareas 100% estructuradas del RPA tradicional."
+  },
+  {
+    "id": "ia-para-recursos-humanos",
+    "slug": "ia-para-recursos-humanos",
+    "name": "IA para recursos humanos",
+    "description": "Herramientas que apoyan procesos de RRHH como onboarding, evaluación de desempeño y análisis de clima laboral, ayudando a equipos de personas a tomar decisiones basadas en datos.",
+    "icon": "Briefcase",
+    "order": 38,
+    "parentId": null,
+    "seoTitle": "IA para recursos humanos: gestión de personas más ágil",
+    "seoDescription": "Herramientas de IA para onboarding, evaluación de desempeño y análisis de clima laboral en equipos de recursos humanos.",
+    "seoKeywords": [
+      "ia recursos humanos",
+      "hr tech",
+      "gestion de personas ia",
+      "evaluacion de desempeño ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede tomar decisiones de contratación por sí sola?",
+        "answer": "No debería: la IA puede apoyar el análisis de datos, pero las decisiones finales de contratación deben mantener supervisión humana para evitar sesgos."
+      },
+      {
+        "question": "¿Estas herramientas ayudan a detectar rotación de personal?",
+        "answer": "Sí, muchas analizan patrones en encuestas de clima y desempeño para identificar señales tempranas de posible fuga de talento."
+      }
+    ],
+    "conclusion": "La IA en RRHH funciona mejor como apoyo analítico para las personas del equipo, nunca como sustituto del criterio humano en decisiones sensibles."
+  },
+  {
+    "id": "reclutamiento-con-ia",
+    "slug": "reclutamiento-con-ia",
+    "name": "Reclutamiento y selección con IA",
+    "description": "Plataformas que filtran currículums, generan preguntas de entrevista y programan procesos de selección automáticamente, acelerando la contratación en equipos con alto volumen de candidatos.",
+    "icon": "Fingerprint",
+    "order": 39,
+    "parentId": null,
+    "seoTitle": "Reclutamiento con IA: filtra candidatos más rápido",
+    "seoDescription": "Filtra currículums, genera preguntas de entrevista y automatiza procesos de selección con herramientas de IA para reclutamiento.",
+    "seoKeywords": [
+      "reclutamiento con ia",
+      "seleccion de personal ia",
+      "ats con ia",
+      "filtrar curriculums"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA descartar candidatos de forma injusta?",
+        "answer": "Es un riesgo real si el modelo hereda sesgos de los datos de entrenamiento; conviene auditar regularmente los criterios de filtrado."
+      },
+      {
+        "question": "¿Sustituye a la entrevista con un reclutador humano?",
+        "answer": "No; automatiza el filtrado inicial, pero la decisión final de contratación debe seguir pasando por personas del equipo."
+      }
+    ],
+    "conclusion": "Estas herramientas son más útiles para reducir el volumen de currículums a revisar que para tomar la decisión final de contratación."
+  },
+  {
+    "id": "generacion-de-curriculums",
+    "slug": "generacion-de-curriculums",
+    "name": "Generación de currículums",
+    "description": "Asistentes que redactan y adaptan un currículum a una oferta de empleo específica, optimizando palabras clave para sistemas de filtrado automático (ATS).",
+    "icon": "FileText",
+    "order": 40,
+    "parentId": null,
+    "seoTitle": "Generación de currículums con IA optimizados para ATS",
+    "seoDescription": "Redacta y adapta tu currículum a cada oferta de empleo con IA, optimizando palabras clave para sistemas de filtrado automático.",
+    "seoKeywords": [
+      "curriculum con ia",
+      "cv con ia",
+      "optimizar cv ats",
+      "generador de curriculum"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Qué es un sistema ATS y por qué importa?",
+        "answer": "Es un software que muchas empresas usan para filtrar currículums automáticamente antes de que los vea un reclutador; adaptar palabras clave mejora tus opciones de pasar ese filtro."
+      },
+      {
+        "question": "¿Debo usar el mismo currículum para todas las ofertas?",
+        "answer": "No es lo ideal: adaptar el currículum a cada oferta específica mejora significativamente la tasa de respuesta frente a un CV genérico."
+      }
+    ],
+    "conclusion": "Adaptar tu currículum con ayuda de IA a cada oferta concreta multiplica tus probabilidades de superar los primeros filtros automáticos."
+  },
+  {
+    "id": "gestion-de-proyectos-con-ia",
+    "slug": "gestion-de-proyectos-con-ia",
+    "name": "IA para gestión de proyectos",
+    "description": "Herramientas que estiman plazos, detectan riesgos de retraso y resumen el estado de un proyecto automáticamente a partir de tareas y comentarios del equipo.",
+    "icon": "LineChart",
+    "order": 41,
+    "parentId": null,
+    "seoTitle": "Gestión de proyectos con IA: estimaciones y alertas",
+    "seoDescription": "Estima plazos, detecta riesgos de retraso y resume el estado de tus proyectos automáticamente con herramientas de IA.",
+    "seoKeywords": [
+      "gestion de proyectos ia",
+      "project management ia",
+      "estimacion de plazos",
+      "seguimiento de proyectos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cómo predice la IA los retrasos en un proyecto?",
+        "answer": "Analiza el ritmo histórico de avance de tareas similares y compara con el progreso actual para estimar la probabilidad de cumplir la fecha límite."
+      },
+      {
+        "question": "¿Se integra con herramientas como Jira o Asana?",
+        "answer": "Sí, la mayoría de estas soluciones ofrecen integraciones nativas con las plataformas de gestión de proyectos más usadas."
+      }
+    ],
+    "conclusion": "Detectar un riesgo de retraso con semanas de antelación permite reaccionar a tiempo, algo que el seguimiento manual rara vez logra con la misma precisión."
+  },
+  {
+    "id": "programacion-de-reuniones",
+    "slug": "programacion-de-reuniones",
+    "name": "Programación de reuniones con IA",
+    "description": "Asistentes que encuentran el mejor hueco disponible entre varios calendarios y agendan reuniones automáticamente, evitando el habitual intercambio de correos para cuadrar horarios.",
+    "icon": "Calendar",
+    "order": 42,
+    "parentId": null,
+    "seoTitle": "Programación de reuniones con IA sin cruce de correos",
+    "seoDescription": "Encuentra el mejor hueco entre calendarios y agenda reuniones automáticamente con asistentes de IA para programación.",
+    "seoKeywords": [
+      "agendar reuniones con ia",
+      "asistente de calendario",
+      "programacion inteligente",
+      "calendly ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cómo evita la IA los conflictos de horario?",
+        "answer": "Analiza en tiempo real la disponibilidad de todos los calendarios implicados y descarta automáticamente los huecos ocupados o con conflictos."
+      },
+      {
+        "question": "¿Puede proteger mi tiempo de concentración (focus time)?",
+        "answer": "Sí, muchas de estas herramientas permiten bloquear franjas horarias como tiempo protegido que no se ofrece para reuniones."
+      }
+    ],
+    "conclusion": "Delegar la coordinación de horarios en un asistente de IA elimina una de las fricciones más habituales del trabajo en equipo."
+  },
+  {
+    "id": "transcripcion-de-reuniones",
+    "slug": "transcripcion-de-reuniones",
+    "name": "Actas y resúmenes de reuniones",
+    "description": "Herramientas que graban, transcriben y resumen automáticamente reuniones de trabajo, extrayendo decisiones y tareas pendientes sin que nadie tenga que tomar notas manualmente.",
+    "icon": "FileSpreadsheet",
+    "order": 43,
+    "parentId": null,
+    "seoTitle": "Actas de reuniones con IA: resúmenes y tareas automáticas",
+    "seoDescription": "Graba, transcribe y resume tus reuniones de trabajo automáticamente, extrayendo decisiones y tareas pendientes con IA.",
+    "seoKeywords": [
+      "actas de reuniones ia",
+      "resumen de reuniones",
+      "fireflies ai",
+      "otter ai reuniones"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA identifica correctamente las tareas asignadas?",
+        "answer": "Los modelos actuales son bastante precisos detectando compromisos explícitos (\"lo haré yo\", \"quedamos en...\"), aunque conviene revisar el resumen final."
+      },
+      {
+        "question": "¿Es seguro grabar reuniones con estas herramientas?",
+        "answer": "Depende de la política de privacidad de cada proveedor; revisa dónde se almacenan las grabaciones antes de usarlas en reuniones sensibles."
+      }
+    ],
+    "conclusion": "Automatizar las actas de reunión asegura que ninguna decisión ni tarea se pierda por no haber tomado notas a tiempo."
+  },
+  {
+    "id": "ia-para-diseno-de-producto",
+    "slug": "ia-para-diseno-de-producto",
+    "name": "IA para diseño de producto",
+    "description": "Herramientas que ayudan a bocetar, iterar y validar conceptos de producto físico o digital, acelerando la fase de exploración antes de invertir en desarrollo completo.",
+    "icon": "PenTool",
+    "order": 44,
+    "parentId": null,
+    "seoTitle": "IA para diseño de producto: itera conceptos más rápido",
+    "seoDescription": "Boceta, itera y valida conceptos de producto físico o digital más rápido con herramientas de inteligencia artificial.",
+    "seoKeywords": [
+      "diseño de producto ia",
+      "prototipado rapido",
+      "innovacion con ia",
+      "conceptos de producto"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Sirve tanto para producto físico como digital?",
+        "answer": "Sí, existen herramientas orientadas a bocetar objetos físicos y otras centradas en interfaces o experiencias digitales."
+      },
+      {
+        "question": "¿Puedo usar estos bocetos para pitch a inversores?",
+        "answer": "Muchos equipos los usan precisamente para eso: comunicar una idea de forma visual y convincente antes de tener un prototipo funcional."
+      }
+    ],
+    "conclusion": "Explorar múltiples direcciones de diseño con IA antes de comprometer recursos de desarrollo reduce el riesgo de invertir en la idea equivocada."
+  },
+  {
+    "id": "wireframes-con-ia",
+    "slug": "wireframes-con-ia",
+    "name": "Generación de wireframes",
+    "description": "Herramientas que convierten una descripción textual en un boceto de baja fidelidad de pantallas de app o web, útil en las primeras fases de definición de producto.",
+    "icon": "Layout",
+    "order": 45,
+    "parentId": null,
+    "seoTitle": "Generación de wireframes con IA desde texto",
+    "seoDescription": "Convierte una descripción textual en wireframes de baja fidelidad para tus pantallas de app o web con IA.",
+    "seoKeywords": [
+      "wireframes con ia",
+      "boceto de pantallas",
+      "diseño de baja fidelidad",
+      "prototipado inicial"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Un wireframe generado por IA sirve para presentar a clientes?",
+        "answer": "Sirve bien para validar estructura y flujo con el equipo interno; para clientes suele ser mejor pulir el diseño visual antes de presentarlo."
+      },
+      {
+        "question": "¿Puedo pasar de wireframe a diseño de alta fidelidad fácilmente?",
+        "answer": "Muchas herramientas de wireframing con IA se integran con Figma u otras suites de diseño para continuar el trabajo sin partir de cero."
+      }
+    ],
+    "conclusion": "Los wireframes generados por IA aceleran la primera conversación sobre estructura de producto, antes de invertir tiempo en el diseño visual definitivo."
+  },
+  {
+    "id": "testing-automatizado-con-ia",
+    "slug": "testing-automatizado-con-ia",
+    "name": "Testing automatizado con IA",
+    "description": "Herramientas que generan y mantienen pruebas automatizadas de software, detectando regresiones visuales y funcionales sin necesidad de escribir cada caso de prueba manualmente.",
+    "icon": "TestTube",
+    "order": 46,
+    "parentId": null,
+    "seoTitle": "Testing automatizado con IA para equipos de desarrollo",
+    "seoDescription": "Genera y mantiene pruebas automatizadas de software con IA, detectando regresiones visuales y funcionales sin esfuerzo manual.",
+    "seoKeywords": [
+      "testing con ia",
+      "qa automatizado",
+      "pruebas de software ia",
+      "testing visual"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Estas herramientas reemplazan a un equipo de QA?",
+        "answer": "Automatizan pruebas repetitivas, pero la definición de criterios de calidad y pruebas exploratorias complejas siguen necesitando criterio humano."
+      },
+      {
+        "question": "¿Detectan cambios visuales no intencionados?",
+        "answer": "Sí, muchas incorporan comparación visual automática (visual regression testing) para detectar cambios de diseño no previstos entre versiones."
+      }
+    ],
+    "conclusion": "El testing asistido por IA reduce el tiempo dedicado a mantener suites de pruebas, un problema habitual en equipos de desarrollo ágil."
+  },
+  {
+    "id": "ia-para-ciberseguridad",
+    "slug": "ia-para-ciberseguridad",
+    "name": "IA para ciberseguridad",
+    "description": "Sistemas que detectan patrones de comportamiento anómalo en redes y aplicaciones para identificar amenazas de seguridad antes de que causen daño, complementando a los equipos de seguridad.",
+    "icon": "ShieldCheck",
+    "order": 47,
+    "parentId": null,
+    "seoTitle": "IA para ciberseguridad: detección de amenazas en tiempo real",
+    "seoDescription": "Detecta patrones de comportamiento anómalo y amenazas de seguridad en tiempo real con herramientas de IA para ciberseguridad.",
+    "seoKeywords": [
+      "ia ciberseguridad",
+      "deteccion de amenazas",
+      "seguridad informatica ia",
+      "analisis de riesgos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede prevenir todos los ciberataques?",
+        "answer": "No existe una solución infalible; la IA mejora la detección temprana de patrones sospechosos, pero forma parte de una estrategia de seguridad más amplia."
+      },
+      {
+        "question": "¿Genera muchas falsas alarmas?",
+        "answer": "Los sistemas más maduros han reducido bastante los falsos positivos, aunque siguen requiriendo ajuste fino según el contexto de cada organización."
+      }
+    ],
+    "conclusion": "La IA en ciberseguridad actúa como una capa adicional de vigilancia, nunca como sustituto de buenas prácticas básicas de seguridad."
+  },
+  {
+    "id": "deteccion-de-fraude",
+    "slug": "deteccion-de-fraude",
+    "name": "Detección de fraude con IA",
+    "description": "Modelos que analizan transacciones en tiempo real para identificar patrones de fraude financiero o de identidad, muy usados en banca, seguros y ecommerce.",
+    "icon": "ShieldCheck",
+    "order": 48,
+    "parentId": null,
+    "seoTitle": "Detección de fraude con IA en tiempo real",
+    "seoDescription": "Analiza transacciones en tiempo real para identificar fraude financiero o de identidad con modelos de inteligencia artificial.",
+    "seoKeywords": [
+      "deteccion de fraude ia",
+      "prevencion de fraude",
+      "fraude financiero ia",
+      "seguridad en pagos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cómo distingue la IA una compra legítima de una fraudulenta?",
+        "answer": "Compara cada transacción con patrones históricos de comportamiento del usuario y de fraudes conocidos, marcando anomalías para revisión."
+      },
+      {
+        "question": "¿Puede bloquear compras legítimas por error?",
+        "answer": "Sí, ocurre ocasionalmente (falso positivo); por eso muchos sistemas incluyen un proceso rápido de verificación manual para el cliente afectado."
+      }
+    ],
+    "conclusion": "La detección de fraude con IA ha reducido significativamente las pérdidas económicas en banca y ecommerce, aunque ningún sistema es 100% infalible."
+  },
+  {
+    "id": "ia-para-legal",
+    "slug": "ia-para-legal",
+    "name": "IA legal",
+    "description": "Herramientas que analizan contratos, generan borradores legales y buscan jurisprudencia relevante, ayudando a despachos y departamentos legales a trabajar con mayor rapidez.",
+    "icon": "Scale",
+    "order": 49,
+    "parentId": null,
+    "seoTitle": "IA legal: análisis de contratos y jurisprudencia",
+    "seoDescription": "Analiza contratos, genera borradores legales y busca jurisprudencia relevante con herramientas de IA para el sector legal.",
+    "seoKeywords": [
+      "ia legal",
+      "contratos con ia",
+      "legaltech",
+      "analisis de contratos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo confiar en un contrato redactado por IA sin revisión?",
+        "answer": "No; siempre debe revisarlo un abogado colegiado antes de firmarse, especialmente en jurisdicciones o cláusulas complejas."
+      },
+      {
+        "question": "¿Estas herramientas conocen la legislación de mi país?",
+        "answer": "Depende de cada proveedor: algunas se especializan en jurisdicciones concretas, así que conviene verificar la cobertura legal antes de confiar en sus resultados."
+      }
+    ],
+    "conclusion": "La IA legal acelera tareas de análisis y redacción, pero la responsabilidad final de cualquier documento legal debe recaer siempre en un profesional colegiado."
+  },
+  {
+    "id": "ia-para-finanzas",
+    "slug": "ia-para-finanzas",
+    "name": "IA para finanzas",
+    "description": "Herramientas que automatizan análisis financiero, previsión de flujo de caja y generación de informes contables, pensadas para equipos de finanzas de pymes y startups.",
+    "icon": "Coins",
+    "order": 50,
+    "parentId": null,
+    "seoTitle": "IA para finanzas: previsión y análisis automatizado",
+    "seoDescription": "Automatiza el análisis financiero, la previsión de flujo de caja y la generación de informes contables con herramientas de IA.",
+    "seoKeywords": [
+      "ia finanzas",
+      "prevision financiera ia",
+      "informes contables ia",
+      "fintech ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA sustituir a un contable?",
+        "answer": "Automatiza tareas de registro y análisis, pero la validación fiscal y las decisiones estratégicas siguen requiriendo un profesional cualificado."
+      },
+      {
+        "question": "¿Estas herramientas se integran con mi software contable actual?",
+        "answer": "La mayoría ofrece integraciones con los ERPs y programas de contabilidad más usados en el mercado hispanohablante."
+      }
+    ],
+    "conclusion": "La IA financiera libera tiempo del equipo contable para tareas de análisis estratégico, en lugar de introducción manual de datos."
+  },
+  {
+    "id": "ia-para-trading",
+    "slug": "ia-para-trading",
+    "name": "IA para trading e inversión",
+    "description": "Modelos que analizan patrones de mercado y generan señales de trading o carteras sugeridas, siempre como apoyo a la decisión y nunca como garantía de resultado.",
+    "icon": "TrendingUp",
+    "order": 51,
+    "parentId": null,
+    "seoTitle": "IA para trading e inversión: análisis de mercado",
+    "seoDescription": "Analiza patrones de mercado y recibe señales de trading o carteras sugeridas con herramientas de inteligencia artificial.",
+    "seoKeywords": [
+      "ia trading",
+      "inversion con ia",
+      "señales de trading",
+      "analisis de mercado ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Estas herramientas garantizan ganancias en bolsa?",
+        "answer": "No; ninguna herramienta de IA puede garantizar rendimiento financiero, y los mercados conllevan riesgo real de pérdida de capital."
+      },
+      {
+        "question": "¿Sustituyen el asesoramiento financiero profesional?",
+        "answer": "No; son herramientas de análisis, no asesoramiento financiero personalizado regulado. Para decisiones importantes conviene consultar a un profesional licenciado."
+      }
+    ],
+    "conclusion": "Las herramientas de IA para trading aportan análisis de datos a gran velocidad, pero la decisión y el riesgo final siguen siendo responsabilidad del inversor."
+  },
+  {
+    "id": "deteccion-de-plagio",
+    "slug": "deteccion-de-plagio",
+    "name": "Detección de plagio e IA en textos",
+    "description": "Herramientas que analizan si un texto fue copiado de otra fuente o generado por un modelo de IA, usadas en educación y publicación de contenido para verificar originalidad.",
+    "icon": "FileSearch",
+    "order": 52,
+    "parentId": null,
+    "seoTitle": "Detección de plagio y de texto generado por IA",
+    "seoDescription": "Analiza si un texto fue copiado o generado por IA con herramientas de detección de plagio pensadas para educación y publicación.",
+    "seoKeywords": [
+      "detector de plagio",
+      "detector de texto ia",
+      "originalidad de contenido",
+      "plagio academico"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Los detectores de texto de IA son 100% fiables?",
+        "answer": "No; pueden generar falsos positivos y falsos negativos, por lo que sus resultados deben interpretarse como una señal, no como una prueba definitiva."
+      },
+      {
+        "question": "¿Se pueden usar en el ámbito académico?",
+        "answer": "Muchas universidades ya los incorporan como parte de su proceso de evaluación, aunque suelen combinarlos con criterio humano antes de tomar decisiones disciplinarias."
+      }
+    ],
+    "conclusion": "Dada su tasa de error, los detectores de plagio o de IA deben usarse como apoyo a la revisión humana, nunca como veredicto automático definitivo."
+  },
+  {
+    "id": "ia-para-educacion",
+    "slug": "ia-para-educacion",
+    "name": "IA para educación",
+    "description": "Plataformas que personalizan el aprendizaje según el ritmo de cada estudiante, generan material didáctico y ofrecen tutoría virtual disponible en cualquier momento.",
+    "icon": "GraduationCap",
+    "order": 53,
+    "parentId": null,
+    "seoTitle": "IA para educación: aprendizaje personalizado y tutoría",
+    "seoDescription": "Personaliza el aprendizaje según el ritmo de cada estudiante con herramientas de IA para tutoría y material didáctico.",
+    "seoKeywords": [
+      "ia educacion",
+      "tutor virtual ia",
+      "aprendizaje personalizado",
+      "edtech ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Un tutor de IA sustituye a un profesor?",
+        "answer": "No; complementa la enseñanza tradicional ofreciendo práctica adicional y refuerzo personalizado, pero no sustituye la guía pedagógica de un docente."
+      },
+      {
+        "question": "¿Es adecuado para todas las edades?",
+        "answer": "Existen herramientas diseñadas específicamente por franja de edad; conviene elegir plataformas pensadas para el nivel educativo correspondiente."
+      }
+    ],
+    "conclusion": "La IA educativa funciona mejor como refuerzo personalizado junto a un docente, no como sustituto de la enseñanza estructurada."
+  },
+  {
+    "id": "generacion-de-examenes",
+    "slug": "generacion-de-examenes",
+    "name": "Generación de exámenes y cuestionarios",
+    "description": "Herramientas que crean preguntas de evaluación a partir de material de estudio, con distintos niveles de dificultad, ahorrando tiempo a docentes en la preparación de exámenes.",
+    "icon": "ClipboardList",
+    "order": 54,
+    "parentId": null,
+    "seoTitle": "Generación de exámenes con IA a partir de tus apuntes",
+    "seoDescription": "Crea preguntas de evaluación con distintos niveles de dificultad a partir de tu material de estudio usando IA.",
+    "seoKeywords": [
+      "generador de examenes",
+      "cuestionarios con ia",
+      "evaluacion automatica",
+      "preguntas de examen ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Las preguntas generadas son de calidad pedagógica?",
+        "answer": "En general sí, aunque conviene que un docente revise la redacción y el nivel de dificultad antes de usarlas en una evaluación real."
+      },
+      {
+        "question": "¿Puedo generar exámenes tipo test y de desarrollo?",
+        "answer": "Sí, la mayoría de herramientas soportan varios formatos: opción múltiple, verdadero/falso, respuesta corta y preguntas de desarrollo."
+      }
+    ],
+    "conclusion": "Generar el primer borrador de un examen con IA ahorra tiempo de preparación que el docente puede dedicar a revisar y ajustar el nivel de dificultad."
+  },
+  {
+    "id": "generacion-de-flashcards",
+    "slug": "generacion-de-flashcards",
+    "name": "Generación de flashcards de estudio",
+    "description": "Aplicaciones que convierten apuntes o libros en tarjetas de repaso con repetición espaciada, optimizando la retención de memoria para exámenes y certificaciones.",
+    "icon": "BookOpen",
+    "order": 55,
+    "parentId": null,
+    "seoTitle": "Generación de flashcards con IA para estudiar mejor",
+    "seoDescription": "Convierte tus apuntes en tarjetas de repaso con repetición espaciada usando herramientas de IA para optimizar tu memoria.",
+    "seoKeywords": [
+      "flashcards con ia",
+      "tarjetas de estudio",
+      "repeticion espaciada",
+      "tecnicas de estudio ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Qué es la repetición espaciada?",
+        "answer": "Es una técnica de estudio que programa el repaso de cada tarjeta justo antes de que la olvides, optimizando el tiempo dedicado a memorizar."
+      },
+      {
+        "question": "¿Puedo generar flashcards a partir de un PDF largo?",
+        "answer": "Sí, muchas herramientas permiten subir documentos completos y extraen automáticamente los conceptos clave en formato de tarjeta."
+      }
+    ],
+    "conclusion": "Automatizar la creación de flashcards permite dedicar el tiempo de estudio a repasar, en lugar de a preparar el propio material."
+  },
+  {
+    "id": "tutores-virtuales",
+    "slug": "tutores-virtuales",
+    "name": "Tutores virtuales con IA",
+    "description": "Asistentes que explican conceptos paso a paso y responden dudas de forma adaptada al nivel del estudiante, disponibles fuera del horario de clase.",
+    "icon": "GraduationCap",
+    "order": 56,
+    "parentId": null,
+    "seoTitle": "Tutores virtuales con IA disponibles 24/7",
+    "seoDescription": "Recibe explicaciones paso a paso adaptadas a tu nivel con tutores virtuales de IA disponibles fuera del horario de clase.",
+    "seoKeywords": [
+      "tutor virtual ia",
+      "clases particulares con ia",
+      "ayuda con deberes ia",
+      "explicaciones ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Pueden ayudar con cualquier asignatura?",
+        "answer": "Los modelos generalistas cubren bien matemáticas, ciencias e idiomas; para materias muy especializadas conviene buscar herramientas específicas."
+      },
+      {
+        "question": "¿Fomentan la dependencia en vez del aprendizaje real?",
+        "answer": "Usados correctamente (pidiendo explicación del proceso, no solo la respuesta final) refuerzan el aprendizaje; usados solo para copiar respuestas, no."
+      }
+    ],
+    "conclusion": "Un tutor virtual funciona mejor cuando se usa para entender el proceso, no solo para obtener la respuesta final de un ejercicio."
+  },
+  {
+    "id": "ia-para-salud",
+    "slug": "ia-para-salud",
+    "name": "IA para salud",
+    "description": "Herramientas que apoyan diagnóstico por imagen, gestión de historiales clínicos y seguimiento remoto de pacientes, siempre bajo supervisión de personal sanitario cualificado.",
+    "icon": "HeartPulse",
+    "order": 57,
+    "parentId": null,
+    "seoTitle": "IA para salud: apoyo clínico y seguimiento de pacientes",
+    "seoDescription": "Herramientas de IA que apoyan diagnóstico por imagen, historiales clínicos y seguimiento remoto de pacientes bajo supervisión médica.",
+    "seoKeywords": [
+      "ia salud",
+      "ia medica",
+      "diagnostico con ia",
+      "healthtech"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede diagnosticar enfermedades por sí sola?",
+        "answer": "No debe hacerlo sin supervisión: actúa como apoyo al diagnóstico, pero la decisión clínica final corresponde siempre a un profesional sanitario."
+      },
+      {
+        "question": "¿Es segura para datos médicos sensibles?",
+        "answer": "Debe cumplir normativas estrictas de protección de datos sanitarios (como el RGPD en Europa); verifica siempre el cumplimiento normativo del proveedor."
+      }
+    ],
+    "conclusion": "La IA en salud es una herramienta de apoyo clínico, nunca un sustituto del criterio y la responsabilidad de un profesional sanitario."
+  },
+  {
+    "id": "ia-para-fitness",
+    "slug": "ia-para-fitness",
+    "name": "IA para fitness y entrenamiento",
+    "description": "Aplicaciones que generan rutinas de entrenamiento personalizadas y ajustan la carga según el progreso registrado, adaptándose a los objetivos y limitaciones de cada persona.",
+    "icon": "Dumbbell",
+    "order": 58,
+    "parentId": null,
+    "seoTitle": "IA para fitness: rutinas de entrenamiento personalizadas",
+    "seoDescription": "Genera rutinas de entrenamiento personalizadas y ajusta la carga según tu progreso con aplicaciones de IA para fitness.",
+    "seoKeywords": [
+      "ia fitness",
+      "entrenamiento personalizado ia",
+      "rutinas con ia",
+      "app de entrenamiento"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede una IA sustituir a un entrenador personal?",
+        "answer": "Para rutinas generales sí puede ser suficiente, pero en caso de lesiones previas o objetivos muy específicos, un entrenador humano certificado sigue siendo recomendable."
+      },
+      {
+        "question": "¿Cómo ajusta la IA la dificultad del entrenamiento?",
+        "answer": "Analiza el progreso registrado en cada sesión (repeticiones, peso, percepción de esfuerzo) para aumentar o reducir la carga automáticamente."
+      }
+    ],
+    "conclusion": "Estas apps son una alternativa accesible al entrenamiento personalizado tradicional, aunque no sustituyen la supervisión profesional en casos de lesión."
+  },
+  {
+    "id": "generacion-de-recetas",
+    "slug": "generacion-de-recetas",
+    "name": "Generación de recetas con IA",
+    "description": "Herramientas que sugieren recetas a partir de los ingredientes que tienes en casa, ajustando cantidades y sustituciones según restricciones alimentarias o alergias.",
+    "icon": "UtensilsCrossed",
+    "order": 59,
+    "parentId": null,
+    "seoTitle": "Generación de recetas con IA según tus ingredientes",
+    "seoDescription": "Genera recetas a partir de los ingredientes que tienes en casa, con ajustes por alergias o restricciones alimentarias.",
+    "seoKeywords": [
+      "recetas con ia",
+      "generador de recetas",
+      "cocinar con ia",
+      "planificador de comidas"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA tener en cuenta alergias alimentarias?",
+        "answer": "Sí, puedes indicar restricciones específicas y la herramienta evitará esos ingredientes, aunque conviene revisar siempre el resultado si la alergia es grave."
+      },
+      {
+        "question": "¿Las recetas generadas son nutricionalmente equilibradas?",
+        "answer": "Muchas herramientas incluyen información nutricional aproximada, pero para dietas médicas específicas es recomendable consultar con un profesional de nutrición."
+      }
+    ],
+    "conclusion": "Generar recetas a partir de lo que ya tienes en la nevera reduce el desperdicio de comida y facilita la planificación semanal."
+  },
+  {
+    "id": "planificacion-de-comidas",
+    "slug": "planificacion-de-comidas",
+    "name": "Planificación de comidas con IA",
+    "description": "Aplicaciones que organizan el menú semanal según objetivos nutricionales y generan automáticamente la lista de la compra correspondiente.",
+    "icon": "UtensilsCrossed",
+    "order": 60,
+    "parentId": null,
+    "seoTitle": "Planificación de comidas con IA y lista de la compra",
+    "seoDescription": "Organiza tu menú semanal según tus objetivos nutricionales y genera la lista de la compra automáticamente con IA.",
+    "seoKeywords": [
+      "planificador de comidas ia",
+      "menu semanal con ia",
+      "lista de la compra automatica",
+      "nutricion con ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo indicar un objetivo calórico específico?",
+        "answer": "Sí, la mayoría de estas apps permiten fijar objetivos de calorías o macronutrientes y ajustan el menú semanal en consecuencia."
+      },
+      {
+        "question": "¿Genera la lista de la compra automáticamente?",
+        "answer": "Es una de sus funciones principales: agrupa los ingredientes de todo el menú semanal en una lista de compra organizada por categorías."
+      }
+    ],
+    "conclusion": "Planificar el menú semanal con IA simplifica tanto la alimentación equilibrada como la organización de la compra doméstica."
+  },
+  {
+    "id": "ia-para-bienes-raices",
+    "slug": "ia-para-bienes-raices",
+    "name": "IA para bienes raíces",
+    "description": "Herramientas que estiman el valor de una propiedad, generan descripciones atractivas de anuncios inmobiliarios y predicen tendencias de precio en una zona determinada.",
+    "icon": "Building2",
+    "order": 61,
+    "parentId": null,
+    "seoTitle": "IA para bienes raíces: tasación y anuncios automáticos",
+    "seoDescription": "Estima el valor de propiedades, genera descripciones de anuncios y predice tendencias de precio con IA inmobiliaria.",
+    "seoKeywords": [
+      "ia inmobiliaria",
+      "tasacion con ia",
+      "proptech",
+      "anuncios inmobiliarios ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Una tasación con IA sustituye a un tasador certificado?",
+        "answer": "Ofrece una estimación orientativa útil, pero las operaciones formales (hipotecas, ventas) suelen requerir una tasación oficial certificada."
+      },
+      {
+        "question": "¿Qué datos usa la IA para estimar el precio?",
+        "answer": "Analiza transacciones comparables recientes en la zona, características de la propiedad y tendencias generales del mercado local."
+      }
+    ],
+    "conclusion": "Las estimaciones de IA son un buen punto de partida para negociar, pero conviene contrastarlas con una tasación profesional en operaciones formales."
+  },
+  {
+    "id": "ia-para-viajes",
+    "slug": "ia-para-viajes",
+    "name": "IA para planificación de viajes",
+    "description": "Asistentes que diseñan itinerarios personalizados según presupuesto, fechas e intereses, combinando vuelos, alojamiento y actividades en una sola conversación.",
+    "icon": "Plane",
+    "order": 62,
+    "parentId": null,
+    "seoTitle": "IA para planificar viajes: itinerarios personalizados",
+    "seoDescription": "Diseña itinerarios de viaje personalizados según tu presupuesto e intereses con asistentes de inteligencia artificial.",
+    "seoKeywords": [
+      "planificador de viajes ia",
+      "itinerario con ia",
+      "asistente de viajes",
+      "organizar viaje ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA reserva los vuelos y hoteles automáticamente?",
+        "answer": "Algunas herramientas se integran con plataformas de reserva, pero lo habitual es que generen el itinerario y tú confirmes cada reserva manualmente."
+      },
+      {
+        "question": "¿Tiene en cuenta restricciones de presupuesto?",
+        "answer": "Sí, puedes indicar un presupuesto máximo y la IA ajustará las sugerencias de alojamiento y actividades en consecuencia."
+      }
+    ],
+    "conclusion": "Un buen asistente de viajes con IA reduce drásticamente las horas dedicadas a comparar opciones dispersas en distintas webs."
+  },
+  {
+    "id": "ia-para-logistica",
+    "slug": "ia-para-logistica",
+    "name": "IA para logística y transporte",
+    "description": "Sistemas que optimizan rutas de entrega, predicen demanda de inventario y reducen tiempos de tránsito, aplicados por empresas de distribución y última milla.",
+    "icon": "Truck",
+    "order": 63,
+    "parentId": null,
+    "seoTitle": "IA para logística: optimización de rutas y demanda",
+    "seoDescription": "Optimiza rutas de entrega, predice demanda de inventario y reduce tiempos de tránsito con herramientas de IA logística.",
+    "seoKeywords": [
+      "ia logistica",
+      "optimizacion de rutas",
+      "gestion de inventario ia",
+      "ultima milla ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cuánto puede reducir la IA los costes de transporte?",
+        "answer": "Depende del punto de partida, pero optimizar rutas de entrega suele generar ahorros significativos en combustible y tiempo de conductor."
+      },
+      {
+        "question": "¿Sirve para empresas pequeñas de reparto?",
+        "answer": "Sí, existen soluciones escalables tanto para grandes flotas como para negocios locales con unos pocos vehículos de reparto."
+      }
+    ],
+    "conclusion": "La optimización logística con IA convierte datos de tráfico y demanda en rutas más eficientes, con impacto directo en costes operativos."
+  },
+  {
+    "id": "ia-para-agricultura",
+    "slug": "ia-para-agricultura",
+    "name": "IA para agricultura",
+    "description": "Tecnología que analiza imágenes satelitales y sensores de campo para optimizar riego, detectar plagas tempranamente y predecir rendimiento de cosecha.",
+    "icon": "Leaf",
+    "order": 64,
+    "parentId": null,
+    "seoTitle": "IA para agricultura: riego, plagas y rendimiento de cultivo",
+    "seoDescription": "Analiza imágenes satelitales y sensores de campo para optimizar riego, detectar plagas y predecir rendimiento de cosecha.",
+    "seoKeywords": [
+      "ia agricultura",
+      "agricultura de precision",
+      "deteccion de plagas ia",
+      "agtech"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Necesito equipos costosos para usar IA en el campo?",
+        "answer": "Existen soluciones basadas solo en imágenes satelitales de acceso más asequible, además de las que requieren sensores IoT instalados en campo."
+      },
+      {
+        "question": "¿Puede la IA predecir con precisión el rendimiento de la cosecha?",
+        "answer": "Ofrece estimaciones bastante fiables combinando datos históricos y condiciones actuales, aunque factores climáticos extremos siguen introduciendo incertidumbre."
+      }
+    ],
+    "conclusion": "La agricultura de precisión basada en IA ayuda a usar mejor recursos limitados como el agua, con beneficio tanto económico como ambiental."
+  },
+  {
+    "id": "ia-para-arquitectura",
+    "slug": "ia-para-arquitectura",
+    "name": "IA para arquitectura",
+    "description": "Herramientas que generan propuestas de diseño arquitectónico y renders fotorrealistas a partir de planos o descripciones, acelerando la fase conceptual de un proyecto.",
+    "icon": "Building2",
+    "order": 65,
+    "parentId": null,
+    "seoTitle": "IA para arquitectura: renders y conceptos de diseño",
+    "seoDescription": "Genera propuestas de diseño arquitectónico y renders fotorrealistas a partir de planos o descripciones con IA.",
+    "seoKeywords": [
+      "ia arquitectura",
+      "renders con ia",
+      "diseño arquitectonico ia",
+      "conceptos de edificio"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Estos diseños cumplen normativa de construcción?",
+        "answer": "No automáticamente; generan propuestas conceptuales que un arquitecto colegiado debe adaptar y validar según la normativa local vigente."
+      },
+      {
+        "question": "¿Puedo generar variantes de un mismo proyecto rápidamente?",
+        "answer": "Sí, es uno de los usos más valorados: explorar múltiples variaciones estéticas o funcionales de un mismo concepto en minutos."
+      }
+    ],
+    "conclusion": "La IA acelera la exploración conceptual en arquitectura, pero el diseño final siempre debe pasar por la validación técnica de un profesional colegiado."
+  },
+  {
+    "id": "mantenimiento-predictivo",
+    "slug": "mantenimiento-predictivo",
+    "name": "Mantenimiento predictivo con IA",
+    "description": "Sistemas industriales que anticipan fallos de maquinaria analizando sensores de vibración, temperatura y consumo, reduciendo paradas no planificadas en planta.",
+    "icon": "Factory",
+    "order": 66,
+    "parentId": null,
+    "seoTitle": "Mantenimiento predictivo con IA en entornos industriales",
+    "seoDescription": "Anticipa fallos de maquinaria industrial analizando sensores en tiempo real con herramientas de mantenimiento predictivo basadas en IA.",
+    "seoKeywords": [
+      "mantenimiento predictivo",
+      "ia industrial",
+      "iot industrial",
+      "prevencion de fallos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Qué diferencia hay con el mantenimiento preventivo tradicional?",
+        "answer": "El preventivo sigue calendarios fijos; el predictivo con IA actúa según el estado real de la máquina, evitando tanto fallos como mantenimientos innecesarios."
+      },
+      {
+        "question": "¿Qué tipo de sensores se necesitan?",
+        "answer": "Habitualmente sensores de vibración, temperatura, presión o consumo eléctrico instalados en los equipos críticos de la planta."
+      }
+    ],
+    "conclusion": "El mantenimiento predictivo reduce tanto los costes de reparación de urgencia como el desgaste innecesario por mantenimientos programados de más."
+  },
+  {
+    "id": "ia-para-control-de-calidad",
+    "slug": "ia-para-control-de-calidad",
+    "name": "IA para control de calidad industrial",
+    "description": "Sistemas de visión artificial que inspeccionan productos en líneas de producción para detectar defectos automáticamente, con mayor velocidad y consistencia que la inspección manual.",
+    "icon": "Factory",
+    "order": 67,
+    "parentId": null,
+    "seoTitle": "Control de calidad industrial con IA y visión artificial",
+    "seoDescription": "Inspecciona productos en líneas de producción y detecta defectos automáticamente con sistemas de visión artificial e IA.",
+    "seoKeywords": [
+      "control de calidad ia",
+      "vision artificial",
+      "inspeccion automatica",
+      "ia industrial calidad"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Es más fiable que la inspección visual humana?",
+        "answer": "Para defectos repetitivos y a alta velocidad, la visión artificial suele ser más consistente que un inspector humano, que se fatiga con el tiempo."
+      },
+      {
+        "question": "¿Necesito reentrenar el sistema si cambio de producto?",
+        "answer": "Sí, normalmente hay que reentrenar o ajustar el modelo con imágenes del nuevo producto para mantener la precisión de detección."
+      }
+    ],
+    "conclusion": "La inspección de calidad con visión artificial mejora la consistencia de detección de defectos frente a la revisión manual tradicional."
+  },
+  {
+    "id": "ia-para-recomendacion-de-productos",
+    "slug": "ia-para-recomendacion-de-productos",
+    "name": "Recomendación de productos con IA",
+    "description": "Motores que sugieren productos personalizados en tiendas online según el comportamiento de navegación y compra, aumentando el ticket medio y la conversión.",
+    "icon": "ShoppingCart",
+    "order": 68,
+    "parentId": null,
+    "seoTitle": "Recomendación de productos con IA para ecommerce",
+    "seoDescription": "Sugiere productos personalizados en tu tienda online según el comportamiento de navegación con motores de recomendación con IA.",
+    "seoKeywords": [
+      "recomendacion de productos ia",
+      "personalizacion ecommerce",
+      "motor de recomendaciones",
+      "cross selling ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cuánto puede aumentar las ventas un motor de recomendación?",
+        "answer": "Los resultados varían por sector, pero es habitual ver incrementos notables en ticket medio cuando las recomendaciones son realmente relevantes."
+      },
+      {
+        "question": "¿Funciona bien con catálogos pequeños?",
+        "answer": "Con catálogos muy reducidos el margen de mejora es menor, ya que hay menos variedad de productos para personalizar recomendaciones."
+      }
+    ],
+    "conclusion": "Un motor de recomendación bien ajustado convierte el historial de navegación en oportunidades reales de venta cruzada."
+  },
+  {
+    "id": "analisis-de-sentimiento",
+    "slug": "analisis-de-sentimiento",
+    "name": "Análisis de sentimiento con IA",
+    "description": "Herramientas que analizan reseñas, comentarios en redes sociales y encuestas para medir automáticamente la percepción de marca y detectar problemas emergentes.",
+    "icon": "MessageSquare",
+    "order": 69,
+    "parentId": null,
+    "seoTitle": "Análisis de sentimiento con IA en redes y reseñas",
+    "seoDescription": "Analiza reseñas, comentarios en redes sociales y encuestas para medir la percepción de marca con IA de análisis de sentimiento.",
+    "seoKeywords": [
+      "analisis de sentimiento",
+      "monitorizacion de marca",
+      "reputacion online ia",
+      "social listening"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede el análisis de sentimiento detectar sarcasmo?",
+        "answer": "Ha mejorado bastante, pero el sarcasmo y la ironía siguen siendo uno de los mayores retos para estos modelos, especialmente en textos cortos."
+      },
+      {
+        "question": "¿En qué idiomas funciona mejor?",
+        "answer": "Los idiomas con más datos de entrenamiento disponibles (inglés, español, entre otros) suelen ofrecer mayor precisión que idiomas minoritarios."
+      }
+    ],
+    "conclusion": "El análisis de sentimiento automatizado permite detectar crisis de reputación de marca mucho antes de que se conviertan en un problema mayor."
+  },
+  {
+    "id": "moderacion-de-contenido",
+    "slug": "moderacion-de-contenido",
+    "name": "Moderación de contenido con IA",
+    "description": "Sistemas que detectan automáticamente contenido inapropiado, spam o desinformación en plataformas con gran volumen de publicaciones de usuarios, apoyando a los equipos de moderación humana.",
+    "icon": "ShieldCheck",
+    "order": 70,
+    "parentId": null,
+    "seoTitle": "Moderación de contenido con IA a gran escala",
+    "seoDescription": "Detecta automáticamente contenido inapropiado, spam o desinformación con herramientas de IA para moderación a gran escala.",
+    "seoKeywords": [
+      "moderacion de contenido ia",
+      "deteccion de spam",
+      "moderacion automatica",
+      "trust and safety"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede moderar contenido sin ningún supervisor humano?",
+        "answer": "No es recomendable en casos límite o ambiguos; la mayoría de plataformas serias combinan IA para el volumen masivo con revisión humana en casos dudosos."
+      },
+      {
+        "question": "¿Puede cometer errores de moderación (falsos positivos)?",
+        "answer": "Sí, es un desafío conocido del sector; por eso suelen existir procesos de apelación para que los usuarios afectados puedan solicitar revisión."
+      }
+    ],
+    "conclusion": "La moderación con IA es indispensable a la escala de las grandes plataformas actuales, pero funciona mejor combinada con supervisión humana en casos límite."
+  },
+  {
+    "id": "ia-para-streaming",
+    "slug": "ia-para-streaming",
+    "name": "IA para streaming y creadores de contenido",
+    "description": "Herramientas que generan miniaturas, títulos optimizados y recortes destacados a partir de transmisiones en directo, ayudando a creadores a maximizar alcance en cada plataforma.",
+    "icon": "Radio",
+    "order": 71,
+    "parentId": null,
+    "seoTitle": "IA para streaming: miniaturas, títulos y clips destacados",
+    "seoDescription": "Genera miniaturas, títulos optimizados y recortes destacados a partir de tus transmisiones en directo con IA para creadores.",
+    "seoKeywords": [
+      "ia para streaming",
+      "clips con ia",
+      "miniaturas con ia",
+      "creador de contenido ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cómo elige la IA los mejores momentos de un directo?",
+        "answer": "Analiza picos de actividad en el chat, cambios de tono en el audio y otros indicadores de interés para identificar los segmentos más destacables."
+      },
+      {
+        "question": "¿Puedo personalizar el estilo de las miniaturas generadas?",
+        "answer": "Sí, la mayoría de herramientas permiten definir plantillas y colores de marca para mantener consistencia visual en todo tu canal."
+      }
+    ],
+    "conclusion": "Automatizar la extracción de clips destacados permite a los creadores centrarse en producir contenido en vivo sin perder horas en la edición posterior."
+  },
+  {
+    "id": "generacion-de-miniaturas",
+    "slug": "generacion-de-miniaturas",
+    "name": "Generación de miniaturas (thumbnails)",
+    "description": "Herramientas especializadas en crear miniaturas atractivas y con alto CTR para vídeos de YouTube y otras plataformas, combinando composición e IA generativa de imágenes.",
+    "icon": "Clapperboard",
+    "order": 72,
+    "parentId": null,
+    "seoTitle": "Generación de miniaturas con IA para YouTube",
+    "seoDescription": "Crea miniaturas atractivas con alto CTR para tus vídeos de YouTube combinando composición e IA generativa de imágenes.",
+    "seoKeywords": [
+      "miniaturas con ia",
+      "thumbnails youtube",
+      "generador de miniaturas",
+      "ctr youtube"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Qué hace que una miniatura tenga buen CTR?",
+        "answer": "Contraste visual claro, rostros con expresión marcada y texto legible en móvil suelen ser los factores que más influyen en el clic."
+      },
+      {
+        "question": "¿Puedo generar varias variantes para hacer test A/B?",
+        "answer": "Sí, y de hecho es una práctica recomendada: probar 2-3 miniaturas distintas para el mismo vídeo y quedarte con la que mejor rendimiento tenga."
+      }
+    ],
+    "conclusion": "Una miniatura optimizada puede duplicar el número de clics de un vídeo, por lo que vale la pena iterar con ayuda de IA antes de publicar."
+  },
+  {
+    "id": "podcast-con-ia",
+    "slug": "podcast-con-ia",
+    "name": "Producción de podcasts con IA",
+    "description": "Herramientas que limpian audio, eliminan muletillas y generan capítulos automáticamente para podcasts, reduciendo el tiempo de edición de cada episodio.",
+    "icon": "Headphones",
+    "order": 73,
+    "parentId": null,
+    "seoTitle": "Producción de podcasts con IA: edición y capítulos automáticos",
+    "seoDescription": "Limpia audio, elimina muletillas y genera capítulos automáticamente para tus episodios de podcast con herramientas de IA.",
+    "seoKeywords": [
+      "podcast con ia",
+      "edicion de podcast",
+      "produccion de audio ia",
+      "descript podcast"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede eliminar silencios y muletillas automáticamente?",
+        "answer": "Sí, es una de las funciones más usadas: detecta y recorta pausas largas, silencios y palabras de relleno como \"eh\" o \"esto...\" de forma automática."
+      },
+      {
+        "question": "¿Genera también las notas del episodio?",
+        "answer": "Muchas herramientas generan automáticamente un resumen, capítulos con marcas de tiempo y hasta sugerencias de título a partir de la transcripción."
+      }
+    ],
+    "conclusion": "Automatizar la limpieza de audio permite a los creadores de podcast publicar con más frecuencia sin sacrificar calidad de producción."
+  },
+  {
+    "id": "generacion-de-cursos-online",
+    "slug": "generacion-de-cursos-online",
+    "name": "Creación de cursos online con IA",
+    "description": "Plataformas que ayudan a estructurar el temario de un curso, generar contenido de apoyo y crear evaluaciones, acelerando la producción de formación online.",
+    "icon": "School",
+    "order": 74,
+    "parentId": null,
+    "seoTitle": "Creación de cursos online con IA: temario y evaluaciones",
+    "seoDescription": "Estructura el temario, genera contenido de apoyo y crea evaluaciones para tu curso online con herramientas de IA.",
+    "seoKeywords": [
+      "crear curso online con ia",
+      "diseño instruccional ia",
+      "formacion online",
+      "elearning ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La IA puede diseñar todo un curso desde cero?",
+        "answer": "Puede generar una estructura sólida y contenido de apoyo, pero la experiencia y el conocimiento del formador siguen siendo clave para un curso de calidad."
+      },
+      {
+        "question": "¿Sirve para cualquier tipo de materia?",
+        "answer": "Funciona especialmente bien en materias con estructura clara (técnica, idiomas, negocio); en temas muy subjetivos requiere más supervisión."
+      }
+    ],
+    "conclusion": "Usar IA para estructurar un curso online acelera la fase de diseño instruccional, dejando más tiempo para pulir la calidad pedagógica del contenido."
+  },
+  {
+    "id": "ia-para-accesibilidad",
+    "slug": "ia-para-accesibilidad",
+    "name": "IA para accesibilidad digital",
+    "description": "Herramientas que generan descripciones alternativas de imágenes, transcripciones y ajustes de interfaz para hacer el contenido digital accesible a personas con discapacidad.",
+    "icon": "Eye",
+    "order": 75,
+    "parentId": null,
+    "seoTitle": "IA para accesibilidad digital: contenido para todos",
+    "seoDescription": "Genera descripciones alternativas de imágenes, transcripciones y ajustes de interfaz para hacer tu contenido más accesible con IA.",
+    "seoKeywords": [
+      "ia accesibilidad",
+      "texto alternativo con ia",
+      "accesibilidad web",
+      "contenido inclusivo"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Qué es un texto alternativo (alt text) y por qué importa?",
+        "answer": "Es una descripción textual de una imagen que permite a los lectores de pantalla explicarla a personas con discapacidad visual; también ayuda al SEO."
+      },
+      {
+        "question": "¿La IA genera descripciones alt precisas automáticamente?",
+        "answer": "En general sí para imágenes sencillas, aunque conviene revisar y ajustar manualmente las descripciones de imágenes con contexto específico importante."
+      }
+    ],
+    "conclusion": "Automatizar la generación de texto alternativo y transcripciones es una forma accesible de empezar a mejorar la accesibilidad de cualquier sitio web."
+  },
+  {
+    "id": "generacion-de-descripciones-alt",
+    "slug": "generacion-de-descripciones-alt",
+    "name": "Generación de descripciones alt de imágenes",
+    "description": "Herramientas especializadas en describir automáticamente el contenido visual de una imagen para fines de accesibilidad y de indexación en buscadores.",
+    "icon": "Eye",
+    "order": 76,
+    "parentId": null,
+    "seoTitle": "Generación de descripciones alt de imágenes con IA",
+    "seoDescription": "Describe automáticamente el contenido visual de tus imágenes para accesibilidad y SEO con herramientas de IA especializadas.",
+    "seoKeywords": [
+      "descripcion alt con ia",
+      "texto alternativo automatico",
+      "seo de imagenes",
+      "accesibilidad de imagenes"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Ayuda el texto alternativo al posicionamiento SEO?",
+        "answer": "Sí, los buscadores usan el atributo alt para entender el contenido de una imagen, lo que puede mejorar su aparición en búsquedas de imágenes."
+      },
+      {
+        "question": "¿Debo revisar las descripciones generadas automáticamente?",
+        "answer": "Es recomendable, sobre todo en imágenes con contexto relevante para la marca o el mensaje, donde una descripción genérica puede quedarse corta."
+      }
+    ],
+    "conclusion": "Automatizar el texto alternativo de imágenes mejora simultáneamente la accesibilidad y el SEO de un sitio con catálogos de imágenes grandes."
+  },
+  {
+    "id": "ia-para-call-centers",
+    "slug": "ia-para-call-centers",
+    "name": "IA para call centers",
+    "description": "Sistemas de voz que atienden llamadas, transcriben conversaciones en tiempo real y sugieren respuestas a los agentes humanos, mejorando tiempos de resolución.",
+    "icon": "Headphones",
+    "order": 77,
+    "parentId": null,
+    "seoTitle": "IA para call centers: atención de voz y asistencia en vivo",
+    "seoDescription": "Atiende llamadas, transcribe conversaciones en tiempo real y sugiere respuestas a los agentes con IA para call centers.",
+    "seoKeywords": [
+      "ia call center",
+      "atencion telefonica con ia",
+      "asistente de voz para agentes",
+      "contact center ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA gestionar una llamada completa sin un agente humano?",
+        "answer": "Para consultas sencillas y estructuradas sí; las llamadas más complejas o emocionalmente sensibles suelen derivarse a un agente humano."
+      },
+      {
+        "question": "¿Cómo ayuda la IA al agente durante la llamada en vivo?",
+        "answer": "Puede transcribir en tiempo real y sugerir respuestas o artículos de la base de conocimiento relevantes según lo que dice el cliente."
+      }
+    ],
+    "conclusion": "La IA en call centers reduce tiempos de resolución al combinar atención automatizada para lo simple con asistencia en vivo para los agentes humanos."
+  },
+  {
+    "id": "ia-para-ventas-b2b",
+    "slug": "ia-para-ventas-b2b",
+    "name": "IA para ventas B2B",
+    "description": "Herramientas que enriquecen datos de contactos, priorizan oportunidades según probabilidad de cierre y automatizan seguimientos comerciales personalizados.",
+    "icon": "Handshake",
+    "order": 78,
+    "parentId": null,
+    "seoTitle": "IA para ventas B2B: prioriza oportunidades reales",
+    "seoDescription": "Enriquece datos de contactos, prioriza oportunidades según probabilidad de cierre y automatiza seguimientos con IA de ventas B2B.",
+    "seoKeywords": [
+      "ia ventas b2b",
+      "sales tech",
+      "priorizacion de leads",
+      "automatizacion comercial"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cómo calcula la IA la probabilidad de cierre de una oportunidad?",
+        "answer": "Analiza patrones históricos de tu propio CRM (interacción, tamaño de empresa, sector) para estimar qué oportunidades se parecen más a ventas cerradas anteriores."
+      },
+      {
+        "question": "¿Sustituye al equipo comercial?",
+        "answer": "No; prioriza y organiza el trabajo comercial, pero la relación y el cierre final de la venta siguen dependiendo del vendedor."
+      }
+    ],
+    "conclusion": "Priorizar oportunidades con IA permite a los equipos de ventas B2B invertir su tiempo donde realmente hay más probabilidad de cerrar un contrato."
+  },
+  {
+    "id": "generacion-de-guiones",
+    "slug": "generacion-de-guiones",
+    "name": "Generación de guiones audiovisuales",
+    "description": "Asistentes que ayudan a estructurar guiones de vídeo, cine o televisión, sugiriendo diálogos, ritmo narrativo y estructura de escenas a partir de una premisa inicial.",
+    "icon": "Feather",
+    "order": 79,
+    "parentId": null,
+    "seoTitle": "Generación de guiones audiovisuales con IA",
+    "seoDescription": "Estructura guiones de vídeo, cine o televisión con ayuda de IA: diálogos, ritmo narrativo y estructura de escenas.",
+    "seoKeywords": [
+      "generador de guiones",
+      "guion con ia",
+      "escritura audiovisual ia",
+      "guion de video"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA escribir un guion completo de calidad profesional?",
+        "answer": "Puede generar una base sólida y coherente, pero el toque creativo final y la voz autoral distintiva siguen beneficiándose de la revisión de un guionista."
+      },
+      {
+        "question": "¿Sirve para guiones de formatos cortos como TikTok?",
+        "answer": "Sí, es uno de los usos más habituales: estructurar guiones de 30-60 segundos con gancho inicial y cierre efectivo para redes sociales."
+      }
+    ],
+    "conclusion": "La IA acelera la fase de estructura y primer borrador de un guion, dejando el pulido creativo final en manos del guionista."
+  },
+  {
+    "id": "generacion-de-comics",
+    "slug": "generacion-de-comics",
+    "name": "Creación de cómics con IA",
+    "description": "Herramientas que combinan generación de imágenes y texto para producir viñetas y páginas de cómic completas a partir de un guion, útiles para creadores independientes.",
+    "icon": "PenTool",
+    "order": 80,
+    "parentId": null,
+    "seoTitle": "Creación de cómics con IA desde un guion",
+    "seoDescription": "Combina generación de imágenes y texto para crear viñetas y páginas de cómic completas a partir de un guion con IA.",
+    "seoKeywords": [
+      "comic con ia",
+      "generador de viñetas",
+      "webcomic con ia",
+      "narrativa grafica ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Mantienen estas herramientas la consistencia de los personajes entre viñetas?",
+        "answer": "Es uno de los mayores retos técnicos actuales; las herramientas más avanzadas permiten fijar referencias de personaje para mejorar la consistencia visual."
+      },
+      {
+        "question": "¿Puedo publicar y vender un cómic hecho con IA?",
+        "answer": "Depende de la licencia de la herramienta usada y de la normativa de derechos de autor de tu país, que sigue evolucionando en este terreno."
+      }
+    ],
+    "conclusion": "Crear cómics con IA es especialmente útil para prototipar una historia antes de invertir en ilustración tradicional a mano."
+  },
+  {
+    "id": "generacion-de-videojuegos",
+    "slug": "generacion-de-videojuegos",
+    "name": "IA para desarrollo de videojuegos",
+    "description": "Herramientas que generan assets gráficos, diálogos de personajes y niveles procedurales para acelerar la producción de videojuegos independientes.",
+    "icon": "Gamepad2",
+    "order": 81,
+    "parentId": null,
+    "seoTitle": "IA para desarrollo de videojuegos: assets y niveles",
+    "seoDescription": "Genera assets gráficos, diálogos de personajes y niveles procedurales para acelerar el desarrollo de tu videojuego con IA.",
+    "seoKeywords": [
+      "ia videojuegos",
+      "desarrollo de juegos con ia",
+      "assets con ia",
+      "generacion procedural"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA generar un videojuego completo?",
+        "answer": "Puede generar componentes individuales (arte, diálogos, niveles), pero la integración, el balanceo de juego y el diseño final siguen requiriendo un equipo de desarrollo."
+      },
+      {
+        "question": "¿Es adecuado para estudios independientes con poco presupuesto?",
+        "answer": "Sí, es precisamente uno de los públicos que más se beneficia: reduce la necesidad de contratar artistas o escritores para cada asset individual."
+      }
+    ],
+    "conclusion": "La IA reduce la barrera de entrada para desarrolladores independientes que antes no podían permitirse un equipo completo de artistas y escritores."
+  },
+  {
+    "id": "ia-para-meteorologia",
+    "slug": "ia-para-meteorologia",
+    "name": "IA para predicción meteorológica",
+    "description": "Modelos que mejoran la precisión de pronósticos a corto plazo analizando patrones atmosféricos con mayor granularidad que los modelos meteorológicos tradicionales.",
+    "icon": "CloudRain",
+    "order": 82,
+    "parentId": null,
+    "seoTitle": "IA para predicción meteorológica de alta precisión",
+    "seoDescription": "Mejora la precisión de los pronósticos a corto plazo analizando patrones atmosféricos con modelos de inteligencia artificial.",
+    "seoKeywords": [
+      "ia meteorologia",
+      "prediccion del tiempo con ia",
+      "pronostico de precision",
+      "modelos climaticos ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Es más precisa la IA que los modelos meteorológicos tradicionales?",
+        "answer": "En pronósticos a muy corto plazo (horas) algunos modelos de IA ya superan a los métodos tradicionales en precisión y velocidad de cálculo."
+      },
+      {
+        "question": "¿Se usa para predecir fenómenos extremos?",
+        "answer": "Sí, es una de las aplicaciones más valiosas: anticipar con más antelación tormentas severas, inundaciones u olas de calor."
+      }
+    ],
+    "conclusion": "La IA está mejorando la velocidad y precisión de los pronósticos a corto plazo, con impacto directo en la gestión de riesgos climáticos."
+  },
+  {
+    "id": "ia-para-conservacion-ambiental",
+    "slug": "ia-para-conservacion-ambiental",
+    "name": "IA para sostenibilidad y medio ambiente",
+    "description": "Herramientas que monitorizan deforestación, biodiversidad y huella de carbono a partir de imágenes satelitales y sensores, apoyando decisiones ambientales basadas en datos.",
+    "icon": "Recycle",
+    "order": 83,
+    "parentId": null,
+    "seoTitle": "IA para sostenibilidad: monitorización ambiental con datos",
+    "seoDescription": "Monitoriza deforestación, biodiversidad y huella de carbono con herramientas de IA basadas en imágenes satelitales y sensores.",
+    "seoKeywords": [
+      "ia sostenibilidad",
+      "ia medio ambiente",
+      "monitorizacion ambiental",
+      "huella de carbono ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cómo detecta la IA la deforestación en tiempo casi real?",
+        "answer": "Compara imágenes satelitales periódicas de una misma zona para identificar cambios de cobertura forestal significativos entre dos fechas."
+      },
+      {
+        "question": "¿Pueden las pymes calcular su huella de carbono con estas herramientas?",
+        "answer": "Sí, existen soluciones pensadas específicamente para pequeñas y medianas empresas que necesitan reportar su impacto ambiental sin un equipo especializado."
+      }
+    ],
+    "conclusion": "La IA aplicada a la sostenibilidad permite tomar decisiones ambientales basadas en datos objetivos, algo especialmente valioso a gran escala geográfica."
+  },
+  {
+    "id": "ia-para-energia",
+    "slug": "ia-para-energia",
+    "name": "IA para gestión energética",
+    "description": "Sistemas que optimizan el consumo eléctrico de edificios e instalaciones industriales, prediciendo demanda y ajustando el uso de energías renovables en tiempo real.",
+    "icon": "Sun",
+    "order": 84,
+    "parentId": null,
+    "seoTitle": "IA para gestión energética: consumo y renovables",
+    "seoDescription": "Optimiza el consumo eléctrico de edificios e instalaciones prediciendo demanda y ajustando el uso de renovables con IA.",
+    "seoKeywords": [
+      "ia energia",
+      "gestion energetica ia",
+      "eficiencia energetica",
+      "energias renovables ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cuánto ahorro energético puede aportar la IA?",
+        "answer": "Depende de la instalación, pero ajustar el consumo según patrones de demanda reales suele generar ahorros notables en factura eléctrica."
+      },
+      {
+        "question": "¿Funciona bien combinando energía solar y de red?",
+        "answer": "Sí, es uno de sus usos más habituales: decidir en tiempo real cuándo usar energía solar almacenada y cuándo recurrir a la red."
+      }
+    ],
+    "conclusion": "La gestión energética con IA convierte datos de consumo en decisiones automáticas que reducen tanto el gasto como el impacto ambiental."
+  },
+  {
+    "id": "ia-para-seguros",
+    "slug": "ia-para-seguros",
+    "name": "IA para seguros",
+    "description": "Herramientas que automatizan la valoración de siniestros, detectan fraude en reclamaciones y personalizan primas según el perfil de riesgo real de cada asegurado.",
+    "icon": "ShieldCheck",
+    "order": 85,
+    "parentId": null,
+    "seoTitle": "IA para seguros: valoración de siniestros y fraude",
+    "seoDescription": "Automatiza la valoración de siniestros, detecta fraude en reclamaciones y personaliza primas con herramientas de IA para seguros.",
+    "seoKeywords": [
+      "ia seguros",
+      "insurtech",
+      "valoracion de siniestros ia",
+      "fraude en seguros"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA aprobar o rechazar un siniestro sin revisión humana?",
+        "answer": "En casos simples y de bajo importe algunas aseguradoras ya lo automatizan completamente; en casos complejos suele intervenir un perito humano."
+      },
+      {
+        "question": "¿Es justo que la IA calcule mi prima de forma personalizada?",
+        "answer": "Es un tema debatido: bien implementado premia a conductores o asegurados de bajo riesgo, pero requiere supervisión regulatoria para evitar discriminación injusta."
+      }
+    ],
+    "conclusion": "La IA en seguros acelera procesos que antes tardaban semanas, aunque los casos de mayor cuantía siguen necesitando supervisión humana especializada."
+  },
+  {
+    "id": "ia-para-comercio-electronico",
+    "slug": "ia-para-comercio-electronico",
+    "name": "IA para ecommerce",
+    "description": "Suite de herramientas que cubre desde generación de descripciones de producto hasta previsión de demanda y atención al cliente automatizada en tiendas online.",
+    "icon": "ShoppingBag",
+    "order": 86,
+    "parentId": null,
+    "seoTitle": "IA para ecommerce: descripciones, demanda y soporte",
+    "seoDescription": "Herramientas de IA para ecommerce: generación de descripciones de producto, previsión de demanda y atención al cliente automatizada.",
+    "seoKeywords": [
+      "ia ecommerce",
+      "tienda online con ia",
+      "descripciones de producto ia",
+      "prevision de demanda"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo generar descripciones para cientos de productos a la vez?",
+        "answer": "Sí, muchas herramientas permiten procesar catálogos completos por lotes a partir de una ficha técnica básica de cada producto."
+      },
+      {
+        "question": "¿Ayuda la IA a decidir cuánto stock comprar?",
+        "answer": "Sí, analizando ventas históricas y estacionalidad puede predecir demanda futura y sugerir niveles de stock óptimos por producto."
+      }
+    ],
+    "conclusion": "Aplicar IA en varios puntos del embudo de ecommerce (contenido, stock, soporte) tiene un efecto acumulativo mayor que aplicarla en un solo punto aislado."
+  },
+  {
+    "id": "generacion-de-manuales-tecnicos",
+    "slug": "generacion-de-manuales-tecnicos",
+    "name": "Generación de manuales técnicos",
+    "description": "Herramientas que documentan procesos, APIs o productos técnicos automáticamente a partir del código o de notas internas, manteniendo la documentación actualizada con menos esfuerzo manual.",
+    "icon": "FileCode",
+    "order": 87,
+    "parentId": null,
+    "seoTitle": "Generación de manuales técnicos con IA",
+    "seoDescription": "Documenta procesos, APIs y productos técnicos automáticamente a partir de código o notas internas con herramientas de IA.",
+    "seoKeywords": [
+      "documentacion tecnica con ia",
+      "generador de manuales",
+      "documentacion de apis ia",
+      "manuales de usuario"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA documentar código automáticamente?",
+        "answer": "Sí, muchas herramientas leen el código fuente y generan documentación de funciones, parámetros y ejemplos de uso de forma automática."
+      },
+      {
+        "question": "¿Se mantiene la documentación actualizada con cada cambio?",
+        "answer": "Las mejores integraciones regeneran la documentación automáticamente cada vez que el código cambia, evitando que quede desactualizada."
+      }
+    ],
+    "conclusion": "Automatizar la documentación técnica resuelve uno de los problemas más habituales en desarrollo de software: la documentación que nunca se actualiza."
+  },
+  {
+    "id": "traduccion-de-documentos-legales",
+    "slug": "traduccion-de-documentos-legales",
+    "name": "Traducción de documentos legales",
+    "description": "Servicios especializados en traducir contratos y documentación legal preservando la terminología jurídica precisa, reduciendo tiempos frente a la traducción jurada tradicional.",
+    "icon": "Scale",
+    "order": 88,
+    "parentId": null,
+    "seoTitle": "Traducción de documentos legales con IA especializada",
+    "seoDescription": "Traduce contratos y documentación legal preservando la terminología jurídica precisa con herramientas de IA especializadas.",
+    "seoKeywords": [
+      "traduccion legal con ia",
+      "traduccion de contratos",
+      "traduccion juridica",
+      "documentos legales ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Una traducción con IA tiene validez legal como traducción jurada?",
+        "answer": "No; para trámites oficiales sigue siendo necesaria una traducción jurada realizada por un traductor certificado, aunque la IA puede acelerar el borrador previo."
+      },
+      {
+        "question": "¿Es fiable la terminología jurídica generada?",
+        "answer": "Las herramientas especializadas en textos legales suelen ser más precisas que un traductor genérico, pero conviene siempre una revisión legal profesional."
+      }
+    ],
+    "conclusion": "La IA acelera el primer borrador de traducción legal, pero los documentos con validez oficial siguen requiriendo certificación profesional humana."
+  },
+  {
+    "id": "generacion-de-podcast-desde-texto",
+    "slug": "generacion-de-podcast-desde-texto",
+    "name": "Generación de pódcast a partir de texto",
+    "description": "Herramientas que convierten artículos o documentos escritos en episodios de audio narrados con voces sintéticas naturales, ideales para republicar contenido en formato podcast.",
+    "icon": "Headphones",
+    "order": 89,
+    "parentId": null,
+    "seoTitle": "Generación de pódcast desde texto con IA",
+    "seoDescription": "Convierte artículos o documentos escritos en episodios de audio con voces sintéticas naturales usando herramientas de IA.",
+    "seoKeywords": [
+      "texto a podcast",
+      "generador de podcast con ia",
+      "voz sintetica podcast",
+      "audio desde texto"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Las voces sintéticas suenan naturales para un podcast?",
+        "answer": "Las mejores herramientas de síntesis de voz actuales son prácticamente indistinguibles de una narración humana en la mayoría de contextos."
+      },
+      {
+        "question": "¿Puedo convertir un artículo largo en varios episodios?",
+        "answer": "Sí, muchas plataformas permiten dividir automáticamente contenido extenso en capítulos o episodios de duración manejable."
+      }
+    ],
+    "conclusion": "Convertir contenido escrito en audio amplía tu audiencia a quienes prefieren escuchar en lugar de leer, con un esfuerzo de producción mínimo."
+  },
+  {
+    "id": "ia-para-contratos",
+    "slug": "ia-para-contratos",
+    "name": "IA para redacción de contratos",
+    "description": "Asistentes que generan borradores de contratos estándar (arrendamiento, prestación de servicios, confidencialidad) a partir de un cuestionario guiado, como punto de partida antes de la revisión legal.",
+    "icon": "FileText",
+    "order": 90,
+    "parentId": null,
+    "seoTitle": "IA para redacción de contratos: borradores guiados",
+    "seoDescription": "Genera borradores de contratos estándar a partir de un cuestionario guiado con IA, como punto de partida antes de la revisión legal.",
+    "seoKeywords": [
+      "redaccion de contratos con ia",
+      "generador de contratos",
+      "plantillas legales ia",
+      "contratos estandar"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo firmar un contrato generado por IA sin revisarlo?",
+        "answer": "No es recomendable; estos borradores son un punto de partida útil, pero un abogado debe revisar las cláusulas antes de firmar cualquier acuerdo vinculante."
+      },
+      {
+        "question": "¿Sirven para cualquier país?",
+        "answer": "La legislación contractual varía mucho entre países, así que conviene verificar que la herramienta contempla la normativa de tu jurisdicción."
+      }
+    ],
+    "conclusion": "Generar un borrador de contrato con IA ahorra tiempo frente a partir de una plantilla genérica, pero nunca sustituye la revisión legal profesional."
+  },
+  {
+    "id": "ia-para-recursos-educativos",
+    "slug": "ia-para-recursos-educativos",
+    "name": "Generación de material didáctico",
+    "description": "Herramientas que crean fichas de trabajo, presentaciones y actividades de clase adaptadas a distintos niveles educativos, ahorrando tiempo de preparación a los docentes.",
+    "icon": "BookOpen",
+    "order": 91,
+    "parentId": null,
+    "seoTitle": "Generación de material didáctico con IA para docentes",
+    "seoDescription": "Crea fichas de trabajo, presentaciones y actividades de clase adaptadas a cada nivel educativo con herramientas de IA.",
+    "seoKeywords": [
+      "material didactico con ia",
+      "recursos educativos ia",
+      "fichas de trabajo",
+      "actividades de clase ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo adaptar el material a alumnos con necesidades educativas especiales?",
+        "answer": "Muchas herramientas permiten ajustar el nivel de dificultad y el formato del material, aunque la adaptación fina sigue requiriendo criterio pedagógico del docente."
+      },
+      {
+        "question": "¿Ahorra tiempo real de preparación de clases?",
+        "answer": "Sí, generar un primer borrador de fichas o actividades suele ser mucho más rápido que crear cada recurso desde cero manualmente."
+      }
+    ],
+    "conclusion": "Automatizar la creación de material didáctico libera tiempo de preparación que los docentes pueden dedicar directamente a sus alumnos."
+  },
+  {
+    "id": "ia-para-recursos-de-marca",
+    "slug": "ia-para-recursos-de-marca",
+    "name": "Generación de plantillas de diseño",
+    "description": "Herramientas que generan plantillas coherentes con la identidad de marca para redes sociales, presentaciones y documentos, manteniendo consistencia visual sin depender de un diseñador para cada pieza.",
+    "icon": "Palette",
+    "order": 92,
+    "parentId": null,
+    "seoTitle": "Generación de plantillas de diseño con IA",
+    "seoDescription": "Genera plantillas de diseño coherentes con tu marca para redes sociales, presentaciones y documentos usando IA.",
+    "seoKeywords": [
+      "plantillas de diseño con ia",
+      "identidad de marca ia",
+      "diseño para redes sociales",
+      "canva ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo mantener mi paleta de colores y tipografía de marca?",
+        "answer": "Sí, la mayoría de herramientas permiten guardar los elementos de marca (colores, fuentes, logo) para aplicarlos automáticamente a cada nueva plantilla."
+      },
+      {
+        "question": "¿Necesito conocimientos de diseño gráfico?",
+        "answer": "No; estas herramientas están pensadas para que cualquier persona del equipo pueda generar piezas visuales consistentes sin formación en diseño."
+      }
+    ],
+    "conclusion": "Mantener consistencia de marca en todas las piezas visuales es mucho más fácil cuando la IA aplica automáticamente tus reglas de diseño."
+  },
+  {
+    "id": "ia-para-arte-digital",
+    "slug": "ia-para-arte-digital",
+    "name": "Arte digital generativo",
+    "description": "Herramientas orientadas a la exploración artística pura: generación de estilos visuales experimentales, texturas y composiciones abstractas para ilustradores y artistas digitales.",
+    "icon": "Palette",
+    "order": 93,
+    "parentId": null,
+    "seoTitle": "Arte digital generativo con IA para artistas",
+    "seoDescription": "Explora estilos visuales experimentales, texturas y composiciones abstractas con herramientas de arte digital generativo.",
+    "seoKeywords": [
+      "arte generativo con ia",
+      "arte digital ia",
+      "ilustracion con ia",
+      "estilos visuales ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿El arte generado por IA se considera arte original?",
+        "answer": "Es un debate abierto en la comunidad artística; muchos consideran que el proceso creativo detrás del prompt y la curación sí aporta autoría original."
+      },
+      {
+        "question": "¿Puedo vender obras creadas con estas herramientas?",
+        "answer": "Depende de la licencia de cada plataforma y de la normativa de derechos de autor de tu país; conviene revisarlo antes de comercializar el resultado."
+      }
+    ],
+    "conclusion": "El arte generativo abre nuevas posibilidades creativas, aunque el debate sobre autoría y derechos sigue evolucionando junto con la tecnología."
+  },
+  {
+    "id": "ia-para-musica-de-fondo",
+    "slug": "ia-para-musica-de-fondo",
+    "name": "Música de fondo libre de derechos",
+    "description": "Generadores especializados en crear pistas instrumentales de fondo sin derechos de autor para vídeos, podcasts y presentaciones, evitando reclamaciones de copyright.",
+    "icon": "Music",
+    "order": 94,
+    "parentId": null,
+    "seoTitle": "Música de fondo libre de derechos generada con IA",
+    "seoDescription": "Crea pistas instrumentales de fondo sin derechos de autor para vídeos y podcasts con generadores de música basados en IA.",
+    "seoKeywords": [
+      "musica libre de derechos ia",
+      "musica de fondo sin copyright",
+      "pistas instrumentales ia",
+      "musica para videos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Es realmente segura esta música frente a reclamaciones de copyright?",
+        "answer": "Al ser generada de forma original por IA y bajo licencia comercial del proveedor, normalmente está libre de reclamaciones de terceros, aunque conviene revisar los términos exactos."
+      },
+      {
+        "question": "¿Puedo ajustar la duración exacta de la pista a mi vídeo?",
+        "answer": "Sí, la mayoría de generadores permiten especificar la duración exacta para que la música encaje perfectamente sin necesidad de recortes manuales."
+      }
+    ],
+    "conclusion": "Generar música de fondo original con IA elimina el riesgo de reclamaciones de copyright que a menudo afecta a creadores que usan música de bancos gratuitos."
+  },
+  {
+    "id": "ia-para-startups",
+    "slug": "ia-para-startups",
+    "name": "IA para validación de startups",
+    "description": "Herramientas que ayudan a analizar mercado, generar modelos de negocio y crear pitch decks para startups en fase temprana, acelerando la validación de una idea de negocio.",
+    "icon": "Rocket",
+    "order": 95,
+    "parentId": null,
+    "seoTitle": "IA para validar y lanzar una startup",
+    "seoDescription": "Analiza mercado, genera modelos de negocio y crea pitch decks para tu startup en fase temprana con herramientas de IA.",
+    "seoKeywords": [
+      "ia para startups",
+      "validacion de negocio con ia",
+      "pitch deck con ia",
+      "modelo de negocio ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA validar si mi idea de negocio funcionará?",
+        "answer": "Puede ayudarte a analizar mercado y competencia rápidamente, pero la validación real solo llega hablando con clientes potenciales reales."
+      },
+      {
+        "question": "¿Sirve para crear el pitch deck para inversores?",
+        "answer": "Sí, es uno de sus usos más habituales: generar una estructura sólida de pitch deck que luego personalizas con tus propios datos y métricas."
+      }
+    ],
+    "conclusion": "La IA acelera la fase de análisis y documentación de una startup, pero la validación definitiva sigue viniendo del mercado real, no de un informe generado."
+  },
+  {
+    "id": "generacion-de-bases-de-datos",
+    "slug": "generacion-de-bases-de-datos",
+    "name": "Generación de esquemas de bases de datos",
+    "description": "Herramientas que diseñan esquemas de base de datos y generan consultas SQL a partir de una descripción en lenguaje natural, útiles para desarrolladores y analistas de datos.",
+    "icon": "Database",
+    "order": 96,
+    "parentId": null,
+    "seoTitle": "Generación de esquemas de bases de datos con IA",
+    "seoDescription": "Diseña esquemas de base de datos y genera consultas SQL a partir de lenguaje natural con herramientas de IA para desarrolladores.",
+    "seoKeywords": [
+      "generador de sql con ia",
+      "esquemas de base de datos",
+      "ia para desarrolladores",
+      "sql con lenguaje natural"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puedo pedir una consulta SQL compleja en español?",
+        "answer": "Sí, estas herramientas traducen instrucciones en lenguaje natural a SQL, aunque conviene revisar la consulta generada antes de ejecutarla en producción."
+      },
+      {
+        "question": "¿Diseñan también las relaciones entre tablas?",
+        "answer": "Las herramientas más completas proponen un esquema relacional completo, incluyendo claves foráneas e índices recomendados según el caso de uso descrito."
+      }
+    ],
+    "conclusion": "Generar el primer esquema de base de datos con IA acelera el arranque de un proyecto, aunque conviene revisión de un desarrollador antes de llevarlo a producción."
+  },
+  {
+    "id": "ia-para-terminal-y-devops",
+    "slug": "ia-para-terminal-y-devops",
+    "name": "IA para terminal y DevOps",
+    "description": "Asistentes que ayudan a escribir comandos de terminal, configurar pipelines de despliegue y depurar errores de infraestructura mediante lenguaje natural.",
+    "icon": "Terminal",
+    "order": 97,
+    "parentId": null,
+    "seoTitle": "IA para terminal y DevOps: comandos y despliegues",
+    "seoDescription": "Escribe comandos de terminal, configura pipelines de despliegue y depura errores de infraestructura con asistentes de IA.",
+    "seoKeywords": [
+      "ia devops",
+      "asistente de terminal ia",
+      "ia para infraestructura",
+      "pipelines con ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Es seguro ejecutar comandos sugeridos por IA directamente?",
+        "answer": "Conviene revisar siempre el comando antes de ejecutarlo, especialmente en entornos de producción, ya que un comando mal interpretado puede tener consecuencias serias."
+      },
+      {
+        "question": "¿Puede la IA depurar errores de infraestructura complejos?",
+        "answer": "Puede sugerir causas probables analizando logs y mensajes de error, aunque la resolución final en sistemas complejos suele requerir experiencia de un ingeniero DevOps."
+      }
+    ],
+    "conclusion": "Un asistente de IA en terminal acelera tareas rutinarias de DevOps, pero los cambios en infraestructura crítica siempre deben revisarse antes de aplicarse."
+  },
+  {
+    "id": "ia-para-control-de-versiones",
+    "slug": "ia-para-control-de-versiones",
+    "name": "IA para control de versiones y code review",
+    "description": "Herramientas que revisan automáticamente cambios de código en busca de errores, vulnerabilidades y desviaciones de estilo antes de fusionar una rama, agilizando el proceso de revisión entre desarrolladores.",
+    "icon": "GitBranch",
+    "order": 98,
+    "parentId": null,
+    "seoTitle": "IA para code review y control de versiones",
+    "seoDescription": "Revisa automáticamente cambios de código en busca de errores y vulnerabilidades antes de fusionar una rama con herramientas de IA.",
+    "seoKeywords": [
+      "code review con ia",
+      "revision de codigo automatica",
+      "ia para git",
+      "control de calidad de codigo"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Sustituye la IA la revisión de un desarrollador senior?",
+        "answer": "Complementa la revisión humana detectando problemas comunes automáticamente, pero decisiones de arquitectura y diseño siguen requiriendo criterio experto."
+      },
+      {
+        "question": "¿Puede detectar vulnerabilidades de seguridad en el código?",
+        "answer": "Sí, muchas herramientas de code review con IA incluyen análisis de seguridad básico, señalando patrones de código conocidos por ser vulnerables."
+      }
+    ],
+    "conclusion": "Automatizar la primera pasada de revisión de código libera tiempo de los desarrolladores senior para centrarse en decisiones de diseño más complejas."
+  },
+  {
+    "id": "ia-para-traduccion-de-codigo",
+    "slug": "ia-para-traduccion-de-codigo",
+    "name": "Traducción de código entre lenguajes",
+    "description": "Herramientas que convierten código de un lenguaje de programación a otro conservando la lógica original, útiles en migraciones de sistemas legados a tecnologías modernas.",
+    "icon": "Code2",
+    "order": 99,
+    "parentId": null,
+    "seoTitle": "Traducción de código entre lenguajes con IA",
+    "seoDescription": "Convierte código de un lenguaje de programación a otro conservando la lógica original con herramientas de IA para migraciones.",
+    "seoKeywords": [
+      "traduccion de codigo con ia",
+      "migracion de codigo legado",
+      "conversor de lenguajes de programacion",
+      "ia para migraciones"
+    ],
+    "faqItems": [
+      {
+        "question": "¿La traducción de código es 100% fiable?",
+        "answer": "No siempre; funciona muy bien en lógica sencilla, pero en sistemas complejos con dependencias específicas del lenguaje original requiere pruebas exhaustivas."
+      },
+      {
+        "question": "¿Sirve para migrar sistemas legados a lenguajes modernos?",
+        "answer": "Sí, es uno de sus casos de uso más valiosos, aunque siempre como punto de partida que debe validarse con pruebas funcionales completas."
+      }
+    ],
+    "conclusion": "La traducción de código con IA acelera migraciones que antes requerían meses de reescritura manual, aunque las pruebas exhaustivas siguen siendo imprescindibles."
+  },
+  {
+    "id": "ia-para-analisis-de-datos",
+    "slug": "ia-para-analisis-de-datos",
+    "name": "Análisis de datos con IA",
+    "description": "Herramientas que permiten hacer preguntas en lenguaje natural sobre un conjunto de datos y reciben gráficos y conclusiones automáticamente, sin necesidad de escribir consultas complejas.",
+    "icon": "BarChart3",
+    "order": 100,
+    "parentId": null,
+    "seoTitle": "Análisis de datos con IA en lenguaje natural",
+    "seoDescription": "Haz preguntas en lenguaje natural sobre tus datos y recibe gráficos y conclusiones automáticamente con herramientas de IA.",
+    "seoKeywords": [
+      "analisis de datos con ia",
+      "business intelligence ia",
+      "preguntas a datos en lenguaje natural",
+      "dashboards con ia"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Necesito saber SQL o Python para analizar mis datos con IA?",
+        "answer": "No; estas herramientas están diseñadas precisamente para que cualquier persona del equipo pueda hacer preguntas en lenguaje natural sin conocimientos técnicos."
+      },
+      {
+        "question": "¿Puedo conectar mi base de datos empresarial directamente?",
+        "answer": "Sí, la mayoría de estas plataformas ofrecen conectores a bases de datos, hojas de cálculo y herramientas de BI ya existentes en tu empresa."
+      }
+    ],
+    "conclusion": "Democratizar el análisis de datos con lenguaje natural permite que más personas del equipo tomen decisiones basadas en datos sin depender siempre de un analista."
+  },
+  {
+    "id": "optimizacion-de-precios",
+    "slug": "optimizacion-de-precios",
+    "name": "Optimización de precios con IA",
+    "description": "Herramientas que ajustan precios de forma dinámica según demanda, competencia e inventario disponible, maximizando ingresos en sectores como retail, hostelería o aerolíneas.",
+    "icon": "Coins",
+    "order": 101,
+    "parentId": null,
+    "seoTitle": "Optimización de precios con IA: pricing dinámico",
+    "seoDescription": "Ajusta precios de forma dinámica según demanda y competencia con herramientas de IA de pricing para retail y ecommerce.",
+    "seoKeywords": [
+      "pricing dinamico con ia",
+      "optimizacion de precios",
+      "revenue management ia",
+      "ia para retail"
+    ],
+    "faqItems": [
+      {
+        "question": "¿El pricing dinámico perjudica al cliente final?",
+        "answer": "Bien implementado busca equilibrio entre demanda y oferta; usado de forma agresiva puede generar rechazo, por lo que muchas empresas fijan límites éticos al ajuste automático."
+      },
+      {
+        "question": "¿En qué sectores se usa más esta tecnología?",
+        "answer": "Aerolíneas, hoteles y ecommerce son los sectores donde el pricing dinámico con IA lleva más tiempo consolidado como práctica habitual."
+      }
+    ],
+    "conclusion": "El pricing dinámico con IA maximiza ingresos ajustando precios en tiempo real, siempre que se implemente con límites éticos claros hacia el cliente."
+  },
+  {
+    "id": "gestion-documental-con-ia",
+    "slug": "gestion-documental-con-ia",
+    "name": "IA para gestión documental",
+    "description": "Sistemas que clasifican, extraen datos y buscan información dentro de grandes volúmenes de documentos (facturas, contratos, formularios) sin necesidad de introducirlos manualmente.",
+    "icon": "FileText",
+    "order": 102,
+    "parentId": null,
+    "seoTitle": "IA para gestión documental: clasifica y extrae datos",
+    "seoDescription": "Clasifica, extrae datos y busca información en grandes volúmenes de documentos automáticamente con herramientas de IA.",
+    "seoKeywords": [
+      "gestion documental con ia",
+      "extraccion de datos ia",
+      "ocr inteligente",
+      "digitalizacion de documentos"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Puede la IA extraer datos de facturas escaneadas en papel?",
+        "answer": "Sí, combinando reconocimiento óptico de caracteres (OCR) con IA puede identificar y extraer campos clave como importes, fechas o proveedores automáticamente."
+      },
+      {
+        "question": "¿Qué precisión tiene la extracción automática de datos?",
+        "answer": "En documentos con formato relativamente estándar la precisión suele ser muy alta; documentos manuscritos o muy irregulares requieren más revisión humana."
+      }
+    ],
+    "conclusion": "Digitalizar la gestión documental con IA reduce drásticamente el trabajo manual de introducir datos de facturas, contratos y formularios."
+  },
+  {
+    "id": "recomendacion-de-contenido",
+    "slug": "recomendacion-de-contenido",
+    "name": "Recomendación de contenido y medios",
+    "description": "Motores que personalizan qué vídeos, artículos o canciones mostrar a cada usuario según su historial de consumo, clave en plataformas de streaming y medios digitales.",
+    "icon": "Tv",
+    "order": 103,
+    "parentId": null,
+    "seoTitle": "Recomendación de contenido con IA para plataformas de medios",
+    "seoDescription": "Personaliza qué vídeos, artículos o canciones recomendar a cada usuario según su historial de consumo con motores de IA.",
+    "seoKeywords": [
+      "recomendacion de contenido ia",
+      "motor de recomendaciones media",
+      "personalizacion de streaming",
+      "algoritmo de recomendacion"
+    ],
+    "faqItems": [
+      {
+        "question": "¿Cómo decide la IA qué contenido recomendar?",
+        "answer": "Combina el historial de consumo propio del usuario con patrones de usuarios similares para predecir qué contenido tiene más probabilidad de interesarle."
+      },
+      {
+        "question": "¿Puede crear una 'burbuja de filtro' que limite la diversidad de contenido?",
+        "answer": "Es un riesgo conocido; por eso muchas plataformas introducen deliberadamente algo de variedad para evitar mostrar siempre el mismo tipo de contenido."
+      }
+    ],
+    "conclusion": "Un buen motor de recomendación equilibra personalización y diversidad, evitando encerrar al usuario en una burbuja de contenido repetitivo."
+  }
+]

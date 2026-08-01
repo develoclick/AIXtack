@@ -1,0 +1,107 @@
+[
+  {
+    "id": "chatgpt",
+    "slug": "chatgpt",
+    "name": "ChatGPT"
+  },
+  {
+    "id": "gratis",
+    "slug": "gratis",
+    "name": "Gratis"
+  },
+  {
+    "id": "premium",
+    "slug": "premium",
+    "name": "Premium"
+  },
+  {
+    "id": "principiantes",
+    "slug": "principiantes",
+    "name": "Principiantes"
+  },
+  {
+    "id": "marketing",
+    "slug": "marketing",
+    "name": "Marketing"
+  },
+  {
+    "id": "desarrollo",
+    "slug": "desarrollo",
+    "name": "Desarrollo"
+  },
+  {
+    "id": "imagenes",
+    "slug": "imagenes",
+    "name": "Imágenes"
+  },
+  {
+    "id": "video",
+    "slug": "video",
+    "name": "Vídeo"
+  },
+  {
+    "id": "audio",
+    "slug": "audio",
+    "name": "Audio"
+  },
+  {
+    "id": "diseño",
+    "slug": "diseño",
+    "name": "Diseño"
+  },
+  {
+    "id": "automatizacion",
+    "slug": "automatizacion",
+    "name": "Automatización"
+  },
+  {
+    "id": "seo",
+    "slug": "seo",
+    "name": "SEO"
+  },
+  {
+    "id": "productividad",
+    "slug": "productividad",
+    "name": "Productividad"
+  },
+  {
+    "id": "escritura",
+    "slug": "escritura",
+    "name": "Escritura"
+  },
+  {
+    "id": "investigacion",
+    "slug": "investigacion",
+    "name": "Investigación"
+  },
+  {
+    "id": "traduccion",
+    "slug": "traduccion",
+    "name": "Traducción"
+  },
+  {
+    "id": "code-review",
+    "slug": "code-review",
+    "name": "Code review"
+  },
+  {
+    "id": "presentaciones",
+    "slug": "presentaciones",
+    "name": "Presentaciones"
+  },
+  {
+    "id": "voz",
+    "slug": "voz",
+    "name": "Voz"
+  },
+  {
+    "id": "musica",
+    "slug": "musica",
+    "name": "Música"
+  },
+  {
+    "id": "avatares",
+    "slug": "avatares",
+    "name": "Avatares"
+  }
+]

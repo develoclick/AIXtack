@@ -1,0 +1,3563 @@
+[
+  {
+    "id": "chatgpt",
+    "slug": "chatgpt",
+    "name": "ChatGPT",
+    "tagline": "El asistente conversacional de OpenAI",
+    "description": "ChatGPT es un modelo conversacional capaz de responder preguntas, redactar textos, resumir documentos y ayudarte a programar. Es una de las herramientas de IA más usadas del mundo, con una versión gratuita y planes de pago con acceso a modelos más potentes.",
+    "logoUrl": "https://picsum.photos/seed/chatgpt-logo/128/128",
+    "websiteUrl": "https://chat.openai.com",
+    "categorySlug": "escritura",
+    "tags": [
+      "chatgpt",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.7,
+    "reviewCount": 1820,
+    "features": [
+      "Conversación en lenguaje natural",
+      "Generación de código",
+      "Análisis de documentos",
+      "Plugins y GPTs personalizados"
+    ],
+    "pros": [
+      "Muy versátil",
+      "Comunidad enorme",
+      "Actualizaciones frecuentes"
+    ],
+    "cons": [
+      "El plan gratuito tiene límites de uso",
+      "Puede generar información incorrecta"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "chatgpt",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "chatgpt",
+      "que es chatgpt",
+      "chatgpt gratis",
+      "openai chatgpt"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿ChatGPT tiene versión gratuita?",
+        "answer": "Sí, con límites de uso y acceso a un modelo algo menos potente que el plan de pago."
+      },
+      {
+        "question": "¿Puedo usarlo para programar?",
+        "answer": "Sí, genera y explica código en decenas de lenguajes, aunque conviene siempre revisar el resultado."
+      }
+    ],
+    "conclusion": "ChatGPT sigue siendo el punto de entrada más habitual a la IA generativa gracias a su versatilidad y enorme ecosistema de integraciones."
+  },
+  {
+    "id": "midjourney",
+    "slug": "midjourney",
+    "name": "Midjourney",
+    "tagline": "Generación de imágenes de altísima calidad artística",
+    "description": "Midjourney genera imágenes fotorrealistas y artísticas a partir de descripciones de texto. Funciona a través de Discord y es una de las herramientas favoritas de diseñadores e ilustradores por la calidad estética de sus resultados.",
+    "logoUrl": "https://picsum.photos/seed/midjourney-logo/128/128",
+    "websiteUrl": "https://www.midjourney.com",
+    "categorySlug": "generacion-de-imagenes",
+    "tags": [
+      "premium"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.8,
+    "reviewCount": 980,
+    "features": [
+      "Generación de imágenes por texto",
+      "Control de estilo avanzado",
+      "Upscaling de resultados"
+    ],
+    "pros": [
+      "Calidad visual excepcional",
+      "Comunidad muy activa"
+    ],
+    "cons": [
+      "Sin plan gratuito",
+      "Curva de aprendizaje inicial"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "midjourney",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "midjourney",
+      "que es midjourney",
+      "midjourney precio",
+      "generador de imagenes midjourney"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito Discord para usar Midjourney?",
+        "answer": "La web app ya permite usarlo sin Discord, aunque la comunidad y muchos tutoriales siguen centrados en el servidor de Discord original."
+      },
+      {
+        "question": "¿Tiene plan gratuito?",
+        "answer": "No, Midjourney requiere suscripción de pago desde el primer uso, sin una capa gratuita permanente."
+      }
+    ],
+    "conclusion": "Para calidad artística con el mínimo esfuerzo de configuración, Midjourney sigue siendo referencia en generación de imágenes."
+  },
+  {
+    "id": "claude",
+    "slug": "claude",
+    "name": "Claude",
+    "tagline": "El asistente de IA de Anthropic, enfocado en seguridad y contexto largo",
+    "description": "Claude es un modelo de lenguaje desarrollado por Anthropic, conocido por su capacidad de manejar documentos extensos, su tono natural y su enfoque en la seguridad. Es ideal para análisis de documentos largos, programación y redacción.",
+    "logoUrl": "https://picsum.photos/seed/claude-logo/128/128",
+    "websiteUrl": "https://claude.ai",
+    "categorySlug": "productividad",
+    "tags": [
+      "gratis",
+      "desarrollo"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 18,
+    "currency": "USD",
+    "rating": 4.8,
+    "reviewCount": 640,
+    "features": [
+      "Ventana de contexto muy amplia",
+      "Análisis de documentos y PDFs",
+      "Generación y revisión de código"
+    ],
+    "pros": [
+      "Respuestas muy matizadas",
+      "Excelente para textos largos"
+    ],
+    "cons": [
+      "Disponibilidad limitada en algunas regiones"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "claude",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "claude ai",
+      "que es claude",
+      "claude anthropic",
+      "claude gratis"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Claude es gratis?",
+        "answer": "Ofrece un plan gratuito con límites de uso; el plan de pago amplía la cuota y da acceso a los modelos más potentes."
+      },
+      {
+        "question": "¿Para qué destaca especialmente Claude?",
+        "answer": "Para analizar documentos muy largos (contratos, informes, bases de código completas) manteniendo coherencia en toda la respuesta."
+      }
+    ],
+    "conclusion": "Si trabajas habitualmente con documentos extensos, Claude suele ofrecer más coherencia que otros asistentes generalistas."
+  },
+  {
+    "id": "github-copilot",
+    "slug": "github-copilot",
+    "name": "GitHub Copilot",
+    "tagline": "Tu copiloto de IA para programar",
+    "description": "GitHub Copilot sugiere líneas y funciones de código completas directamente en tu editor, entrenado con millones de repositorios públicos. Se integra con los editores más populares y acelera notablemente el desarrollo de software.",
+    "logoUrl": "https://picsum.photos/seed/github-copilot-logo/128/128",
+    "websiteUrl": "https://github.com/features/copilot",
+    "categorySlug": "programacion",
+    "tags": [
+      "desarrollo",
+      "premium"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 2100,
+    "features": [
+      "Autocompletado de código con IA",
+      "Chat integrado en el editor",
+      "Soporte para decenas de lenguajes"
+    ],
+    "pros": [
+      "Acelera mucho el desarrollo",
+      "Se integra en el flujo de trabajo habitual"
+    ],
+    "cons": [
+      "Requiere revisión del código generado"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "github-copilot",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "github copilot",
+      "que es copilot",
+      "copilot precio",
+      "copilot para programar"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Con qué editores funciona GitHub Copilot?",
+        "answer": "Se integra con VS Code, JetBrains, Neovim y otros editores populares mediante extensión oficial."
+      },
+      {
+        "question": "¿Es gratis para estudiantes?",
+        "answer": "Sí, GitHub ofrece Copilot gratuito para estudiantes verificados y mantenedores de proyectos open source populares."
+      }
+    ],
+    "conclusion": "GitHub Copilot es la opción de menor fricción si quieres añadir IA a tu editor actual sin cambiar de herramienta."
+  },
+  {
+    "id": "elevenlabs",
+    "slug": "elevenlabs",
+    "name": "ElevenLabs",
+    "tagline": "Voces sintéticas indistinguibles de las humanas",
+    "description": "ElevenLabs permite generar narraciones y clonar voces con un realismo sorprendente, en múltiples idiomas incluyendo español. Muy utilizado para audiolibros, doblaje y contenido para redes sociales.",
+    "logoUrl": "https://picsum.photos/seed/elevenlabs-logo/128/128",
+    "websiteUrl": "https://elevenlabs.io",
+    "categorySlug": "audio-y-voz",
+    "tags": [
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 5,
+    "currency": "USD",
+    "rating": 4.7,
+    "reviewCount": 410,
+    "features": [
+      "Clonación de voz",
+      "Text-to-speech multilenguaje",
+      "API para desarrolladores"
+    ],
+    "pros": [
+      "Calidad de voz muy natural",
+      "Buen soporte de español"
+    ],
+    "cons": [
+      "El plan gratuito tiene minutos limitados"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "elevenlabs",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "elevenlabs",
+      "clonacion de voz ia",
+      "elevenlabs español",
+      "generador de voz ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo clonar mi propia voz?",
+        "answer": "Sí, con tu consentimiento y una muestra de referencia, puedes clonar tu voz para narrar cualquier texto."
+      },
+      {
+        "question": "¿Soporta bien el español?",
+        "answer": "Sí, es una de las herramientas mejor valoradas en naturalidad de voz para español de España y Latinoamérica."
+      }
+    ],
+    "conclusion": "ElevenLabs combina calidad de voz y soporte de español difíciles de igualar entre los generadores de voz actuales."
+  },
+  {
+    "id": "notion-ai",
+    "slug": "notion-ai",
+    "name": "Notion AI",
+    "tagline": "IA integrada en tu espacio de trabajo",
+    "description": "Notion AI añade capacidades de generación y resumen de texto directamente dentro de tus documentos y bases de datos de Notion, ayudando a redactar notas, actas de reuniones y resúmenes sin salir de la app.",
+    "logoUrl": "https://picsum.photos/seed/notion-ai-logo/128/128",
+    "websiteUrl": "https://www.notion.so/product/ai",
+    "categorySlug": "productividad",
+    "tags": [
+      "marketing"
+    ],
+    "pricingModel": "PAID",
+    "pricingFrom": 8,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 320,
+    "features": [
+      "Resumen automático de páginas",
+      "Generación de tareas",
+      "Traducción integrada"
+    ],
+    "pros": [
+      "Se integra en tu flujo de notas existente"
+    ],
+    "cons": [
+      "Requiere ya usar Notion como base"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "notion-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "notion ai",
+      "que es notion ai",
+      "notion ai precio",
+      "ia en notion"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito ya usar Notion para aprovechar Notion AI?",
+        "answer": "Sí, es un complemento sobre tu espacio de trabajo existente en Notion, no funciona como herramienta independiente."
+      },
+      {
+        "question": "¿Cuánto cuesta Notion AI?",
+        "answer": "Se añade como complemento de pago sobre tu plan de Notion existente, con coste adicional por usuario."
+      }
+    ],
+    "conclusion": "Notion AI tiene más sentido si ya usas Notion como base de conocimiento diaria de tu equipo."
+  },
+  {
+    "id": "gemini",
+    "slug": "gemini",
+    "name": "Gemini",
+    "tagline": "El modelo multimodal de Google",
+    "description": "Gemini es la familia de modelos de IA de Google, integrada de forma nativa en Gmail, Docs y el propio buscador. Destaca por su capacidad multimodal (texto, imagen, audio y vídeo en una misma conversación) y por el acceso directo a información actualizada a través de la búsqueda de Google.",
+    "logoUrl": "https://picsum.photos/seed/gemini-logo/128/128",
+    "websiteUrl": "https://gemini.google.com",
+    "categorySlug": "chatbots-conversacionales",
+    "tags": [
+      "chatgpt",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 1240,
+    "features": [
+      "Comprensión multimodal (texto, imagen, audio, vídeo)",
+      "Integración nativa con Google Workspace",
+      "Acceso a información actualizada mediante Google Search",
+      "Generación de imágenes integrada"
+    ],
+    "pros": [
+      "Excelente integración con el ecosistema Google",
+      "Muy buena comprensión de imágenes y documentos"
+    ],
+    "cons": [
+      "El plan gratuito tiene límites de uso más restrictivos que la competencia"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "gemini",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "gemini google",
+      "gemini ia",
+      "chatbot google",
+      "gemini vs chatgpt"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Gemini tiene acceso a internet en tiempo real?",
+        "answer": "Sí, se apoya en el buscador de Google para responder con información actualizada, a diferencia de modelos que solo conocen datos hasta su fecha de entrenamiento."
+      },
+      {
+        "question": "¿Puedo usar Gemini directamente en Gmail o Docs?",
+        "answer": "Sí, Google lo integra como asistente dentro de Workspace para redactar correos, resumir documentos y generar contenido sin salir de la aplicación."
+      }
+    ],
+    "conclusion": "Si ya trabajas dentro del ecosistema Google, Gemini ofrece una integración difícil de igualar por otros asistentes conversacionales."
+  },
+  {
+    "id": "perplexity",
+    "slug": "perplexity",
+    "name": "Perplexity",
+    "tagline": "El buscador conversacional que cita sus fuentes",
+    "description": "Perplexity combina un modelo de lenguaje con búsqueda web en tiempo real, devolviendo respuestas con enlaces directos a las fuentes usadas. Es especialmente útil para investigación rápida, comparativas de producto o cualquier pregunta donde verificar el origen de la información importa.",
+    "logoUrl": "https://picsum.photos/seed/perplexity-logo/128/128",
+    "websiteUrl": "https://www.perplexity.ai",
+    "categorySlug": "asistentes-de-investigacion",
+    "tags": [
+      "investigacion",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.7,
+    "reviewCount": 890,
+    "features": [
+      "Respuestas con citas y enlaces a fuentes originales",
+      "Búsqueda focalizada por tipo de fuente (académica, redes, etc.)",
+      "Modo \"Pro\" con modelos más potentes",
+      "Resúmenes de páginas y PDFs"
+    ],
+    "pros": [
+      "Transparencia total sobre las fuentes usadas",
+      "Muy rápido para investigación puntual"
+    ],
+    "cons": [
+      "El plan gratuito limita el número de búsquedas Pro al día"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "perplexity",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "perplexity ai",
+      "buscador con ia",
+      "perplexity español",
+      "alternativa a google"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿En qué se diferencia Perplexity de un buscador tradicional?",
+        "answer": "En vez de devolver una lista de enlaces, sintetiza una respuesta directa citando las fuentes usadas, ahorrando el paso de abrir varias pestañas."
+      },
+      {
+        "question": "¿Puedo confiar ciegamente en sus respuestas?",
+        "answer": "Siempre conviene revisar las fuentes citadas, especialmente en temas técnicos o sensibles, ya que la síntesis puede simplificar matices importantes."
+      }
+    ],
+    "conclusion": "Para investigación rápida con necesidad de verificar el origen de los datos, Perplexity resulta más práctico que un chatbot generalista sin citas."
+  },
+  {
+    "id": "dalle-3",
+    "slug": "dalle-3",
+    "name": "DALL-E 3",
+    "tagline": "Generación de imágenes integrada en ChatGPT",
+    "description": "DALL-E 3 es el modelo de generación de imágenes de OpenAI, accesible directamente desde ChatGPT Plus. Destaca por seguir instrucciones de texto muy detalladas con notable precisión, incluyendo composición, texto dentro de la imagen y estilos artísticos específicos.",
+    "logoUrl": "https://picsum.photos/seed/dalle-3-logo/128/128",
+    "websiteUrl": "https://openai.com/dall-e-3",
+    "categorySlug": "generacion-de-imagenes",
+    "tags": [
+      "imagenes",
+      "premium"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 1560,
+    "features": [
+      "Generación de imágenes desde texto detallado",
+      "Buena renderización de texto dentro de la imagen",
+      "Integrado directamente en la interfaz de ChatGPT",
+      "Variaciones e iteración conversacional sobre una misma imagen"
+    ],
+    "pros": [
+      "Sigue instrucciones complejas con precisión",
+      "Fácil de usar sin curva de aprendizaje"
+    ],
+    "cons": [
+      "Solo disponible con suscripción a ChatGPT Plus o superior",
+      "Menos control de estilo fino que Midjourney"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "dalle-3",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "dall-e 3",
+      "generador de imagenes openai",
+      "dalle chatgpt",
+      "crear imagenes con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito una cuenta separada de DALL-E 3?",
+        "answer": "No, se accede directamente desde tu cuenta de ChatGPT Plus, Team o Enterprise sin necesidad de una suscripción adicional independiente."
+      },
+      {
+        "question": "¿Puedo pedir cambios sobre una imagen ya generada?",
+        "answer": "Sí, puedes pedir ajustes en lenguaje natural (\"cambia el fondo a azul\") y el modelo genera una nueva versión manteniendo el resto de la composición."
+      }
+    ],
+    "conclusion": "Para quien ya usa ChatGPT a diario, DALL-E 3 es la forma más cómoda de generar imágenes sin cambiar de herramienta."
+  },
+  {
+    "id": "stable-diffusion",
+    "slug": "stable-diffusion",
+    "name": "Stable Diffusion",
+    "tagline": "El modelo de imágenes de código abierto más usado",
+    "description": "Stable Diffusion es un modelo de generación de imágenes de código abierto que se puede ejecutar en tu propio hardware o a través de decenas de servicios en la nube. Su naturaleza abierta ha dado lugar a un enorme ecosistema de modelos ajustados (fine-tunes) para estilos muy específicos.",
+    "logoUrl": "https://picsum.photos/seed/stable-diffusion-logo/128/128",
+    "websiteUrl": "https://stability.ai",
+    "categorySlug": "generacion-de-imagenes",
+    "tags": [
+      "imagenes",
+      "gratis",
+      "desarrollo"
+    ],
+    "pricingModel": "FREE",
+    "pricingFrom": null,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 2100,
+    "features": [
+      "Modelo de código abierto ejecutable localmente",
+      "Enorme ecosistema de modelos y extensiones de la comunidad",
+      "Control fino mediante ControlNet y LoRA",
+      "Sin censura estricta de contenido en instalaciones propias"
+    ],
+    "pros": [
+      "Gratuito si lo ejecutas en tu propio hardware",
+      "Máximo control técnico sobre el resultado"
+    ],
+    "cons": [
+      "Requiere una GPU potente para buen rendimiento local",
+      "Curva de aprendizaje más pronunciada que herramientas cerradas"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "stable-diffusion",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "stable diffusion",
+      "generador de imagenes gratis",
+      "ia de codigo abierto",
+      "controlnet"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito saber programar para usar Stable Diffusion?",
+        "answer": "Para uso básico existen interfaces gráficas sencillas; para aprovechar todo su potencial (ControlNet, LoRA) sí ayuda tener algo de familiaridad técnica."
+      },
+      {
+        "question": "¿Puedo usarlo sin conexión a internet?",
+        "answer": "Sí, una vez instalado localmente puede funcionar completamente sin conexión, lo que también permite total privacidad sobre las imágenes generadas."
+      }
+    ],
+    "conclusion": "Stable Diffusion es la mejor opción para quien busca control técnico total y no le importa invertir tiempo en configuración."
+  },
+  {
+    "id": "leonardo-ai",
+    "slug": "leonardo-ai",
+    "name": "Leonardo AI",
+    "tagline": "Generación de imágenes orientada a videojuegos y producto",
+    "description": "Leonardo AI ofrece generación de imágenes con modelos entrenados específicamente para assets de videojuegos, ilustración y diseño de producto, además de herramientas de edición como reescalado y variaciones consistentes de un mismo personaje.",
+    "logoUrl": "https://picsum.photos/seed/leonardo-ai-logo/128/128",
+    "websiteUrl": "https://leonardo.ai",
+    "categorySlug": "generacion-de-imagenes",
+    "tags": [
+      "imagenes",
+      "diseño"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 12,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 670,
+    "features": [
+      "Modelos especializados por estilo (videojuegos, producto, ilustración)",
+      "Consistencia de personaje entre generaciones",
+      "Editor de canvas integrado",
+      "Generación de texturas para modelos 3D"
+    ],
+    "pros": [
+      "Buen equilibrio entre calidad y facilidad de uso",
+      "Plan gratuito generoso para empezar"
+    ],
+    "cons": [
+      "Menos conocido que Midjourney, comunidad más pequeña"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "leonardo-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "leonardo ai",
+      "generador de imagenes para videojuegos",
+      "assets con ia",
+      "leonardo ai español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Es adecuado para assets de videojuegos?",
+        "answer": "Sí, es uno de sus puntos fuertes: cuenta con modelos entrenados específicamente para generar texturas, personajes e iconografía de videojuegos."
+      },
+      {
+        "question": "¿Puedo generar variaciones del mismo personaje?",
+        "answer": "Sí, su función de consistencia de personaje permite generar el mismo personaje en distintas poses o situaciones manteniendo su apariencia."
+      }
+    ],
+    "conclusion": "Para estudios pequeños de videojuegos o diseño de producto, Leonardo AI ofrece un punto de partida más especializado que las herramientas generalistas."
+  },
+  {
+    "id": "adobe-firefly",
+    "slug": "adobe-firefly",
+    "name": "Adobe Firefly",
+    "tagline": "IA generativa integrada en Photoshop e Illustrator",
+    "description": "Adobe Firefly es el motor de IA generativa integrado directamente en Photoshop, Illustrator y Express. Su relleno generativo permite extender imágenes o eliminar objetos de forma coherente con el resto de la composición, y está entrenado solo con contenido con licencia para uso comercial seguro.",
+    "logoUrl": "https://picsum.photos/seed/adobe-firefly-logo/128/128",
+    "websiteUrl": "https://www.adobe.com/products/firefly.html",
+    "categorySlug": "generacion-de-imagenes",
+    "tags": [
+      "imagenes",
+      "diseño",
+      "premium"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 980,
+    "features": [
+      "Relleno generativo integrado en Photoshop",
+      "Entrenado con contenido con licencia comercial",
+      "Generación de vectores en Illustrator",
+      "Efectos de texto generativos"
+    ],
+    "pros": [
+      "Seguro para uso comercial por su origen de datos con licencia",
+      "Integración perfecta con Creative Cloud"
+    ],
+    "cons": [
+      "Requiere suscripción a Creative Cloud para aprovechar todo su potencial"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "adobe-firefly",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "adobe firefly",
+      "relleno generativo photoshop",
+      "ia adobe",
+      "generador de imagenes comercial"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Por qué Firefly se considera más seguro para uso comercial?",
+        "answer": "Adobe afirma haberlo entrenado únicamente con imágenes de Adobe Stock con licencia, contenido de dominio público y material con permiso explícito, reduciendo el riesgo de disputas de copyright."
+      },
+      {
+        "question": "¿Necesito Photoshop para usar Firefly?",
+        "answer": "No necesariamente; también está disponible como web app independiente y dentro de Adobe Express, aunque su integración más potente está en Photoshop e Illustrator."
+      }
+    ],
+    "conclusion": "Para equipos que ya trabajan en el ecosistema Adobe, Firefly añade generación de IA sin salir de sus herramientas habituales y con mayor tranquilidad legal."
+  },
+  {
+    "id": "ideogram",
+    "slug": "ideogram",
+    "name": "Ideogram",
+    "tagline": "El generador de imágenes que mejor escribe texto",
+    "description": "Ideogram se ha especializado en resolver uno de los mayores retos de la generación de imágenes: renderizar texto legible y bien compuesto dentro de la imagen, lo que lo hace especialmente útil para logotipos, carteles y diseños con tipografía.",
+    "logoUrl": "https://picsum.photos/seed/ideogram-logo/128/128",
+    "websiteUrl": "https://ideogram.ai",
+    "categorySlug": "generacion-de-imagenes",
+    "tags": [
+      "imagenes",
+      "gratis",
+      "diseño"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 8,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 520,
+    "features": [
+      "Renderizado de texto preciso dentro de la imagen",
+      "Buen manejo de composición tipográfica",
+      "Plan gratuito con generaciones diarias",
+      "Estilos predefinidos para pósters y branding"
+    ],
+    "pros": [
+      "El mejor manejo de texto legible del mercado",
+      "Plan gratuito funcional sin necesidad de pago"
+    ],
+    "cons": [
+      "Menor variedad de estilos artísticos que Midjourney"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "ideogram",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "ideogram ai",
+      "generador de imagenes con texto",
+      "carteles con ia",
+      "ideogram español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Por qué es importante que un generador de imágenes escriba bien texto?",
+        "answer": "La mayoría de modelos generan texto distorsionado o ilegible; Ideogram resuelve esto, lo que lo hace ideal para carteles, logotipos o memes con texto integrado."
+      },
+      {
+        "question": "¿Tiene plan gratuito real?",
+        "answer": "Sí, ofrece un número diario de generaciones gratuitas sin necesidad de tarjeta de crédito, algo poco habitual en generadores de imágenes de calidad similar."
+      }
+    ],
+    "conclusion": "Si tu proyecto necesita texto integrado en la imagen (carteles, logos, memes), Ideogram suele dar mejores resultados que generadores más generalistas."
+  },
+  {
+    "id": "runway",
+    "slug": "runway",
+    "name": "Runway",
+    "tagline": "Generación y edición de vídeo con IA de nivel profesional",
+    "description": "Runway ofrece un conjunto de herramientas de IA para generar clips de vídeo desde texto o imagen, además de funciones de edición avanzadas como eliminación de fondo, seguimiento de movimiento y efectos visuales, usado por estudios de cine y creadores independientes por igual.",
+    "logoUrl": "https://picsum.photos/seed/runway-logo/128/128",
+    "websiteUrl": "https://runwayml.com",
+    "categorySlug": "video",
+    "tags": [
+      "video",
+      "premium"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 15,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 740,
+    "features": [
+      "Generación de vídeo desde texto o imagen (Gen-3)",
+      "Eliminación de fondo verde sin croma",
+      "Herramientas de edición con IA (motion tracking, inpainting de vídeo)",
+      "Extensión y variación de clips existentes"
+    ],
+    "pros": [
+      "Calidad de vídeo generado líder del sector",
+      "Conjunto de herramientas muy completo"
+    ],
+    "cons": [
+      "Los planes con más créditos de generación resultan caros para uso intensivo"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "runway",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "runway ml",
+      "generador de video con ia",
+      "runway gen 3",
+      "edicion de video ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Qué duración pueden tener los vídeos generados?",
+        "answer": "Los clips suelen generarse en segmentos cortos (unos segundos) que después se pueden extender o combinar en edición para crear secuencias más largas."
+      },
+      {
+        "question": "¿Runway se usa en producciones profesionales reales?",
+        "answer": "Sí, ha sido usado en cine y publicidad para efectos visuales y prototipado rápido de escenas antes de la producción final."
+      }
+    ],
+    "conclusion": "Runway es de las opciones más completas para creadores que buscan generación y edición de vídeo con IA en un mismo lugar, con calidad de nivel profesional."
+  },
+  {
+    "id": "pika",
+    "slug": "pika",
+    "name": "Pika",
+    "tagline": "Generación de vídeo accesible desde texto o imagen",
+    "description": "Pika permite generar clips de vídeo cortos a partir de una descripción de texto o una imagen de referencia, con una interfaz sencilla pensada para creadores que buscan resultados rápidos sin curva de aprendizaje técnica.",
+    "logoUrl": "https://picsum.photos/seed/pika-logo/128/128",
+    "websiteUrl": "https://pika.art",
+    "categorySlug": "video",
+    "tags": [
+      "video",
+      "principiantes"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 410,
+    "features": [
+      "Generación de vídeo desde texto o imagen",
+      "Efectos de cámara predefinidos (zoom, paneo)",
+      "Edición conversacional de clips generados",
+      "Comunidad activa en Discord para inspiración"
+    ],
+    "pros": [
+      "Interfaz sencilla y accesible para principiantes",
+      "Buena relación calidad-precio"
+    ],
+    "cons": [
+      "Calidad algo por debajo de Runway en escenas complejas"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "pika",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "pika art",
+      "generador de video desde imagen",
+      "pika labs",
+      "animar imagen con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Es más fácil de usar que Runway?",
+        "answer": "Sí, Pika prioriza la simplicidad de uso frente a la profundidad de herramientas de edición, lo que la hace más accesible para principiantes."
+      },
+      {
+        "question": "¿Puedo animar una imagen estática que ya tengo?",
+        "answer": "Sí, es una de sus funciones más usadas: subir una imagen y generar movimiento de cámara o animación a partir de ella."
+      }
+    ],
+    "conclusion": "Para quien empieza a experimentar con vídeo generativo sin necesidad de herramientas profesionales complejas, Pika es un buen punto de entrada."
+  },
+  {
+    "id": "synthesia",
+    "slug": "synthesia",
+    "name": "Synthesia",
+    "tagline": "Vídeos con presentadores virtuales para empresas",
+    "description": "Synthesia genera vídeos con avatares humanos fotorrealistas que narran un guion de texto en más de 140 idiomas, ampliamente usado en formación corporativa, comunicación interna y marketing sin necesidad de cámara ni estudio de grabación.",
+    "logoUrl": "https://picsum.photos/seed/synthesia-logo/128/128",
+    "websiteUrl": "https://www.synthesia.io",
+    "categorySlug": "generacion-de-avatares",
+    "tags": [
+      "video",
+      "productividad",
+      "premium"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 29,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 830,
+    "features": [
+      "Más de 140 avatares predefinidos y soporte para avatar personalizado",
+      "Locución en más de 140 idiomas",
+      "Plantillas de vídeo corporativo listas para usar",
+      "Edición de guion tipo documento de texto"
+    ],
+    "pros": [
+      "Muy usado y validado en entornos corporativos",
+      "Amplia variedad de idiomas y acentos"
+    ],
+    "cons": [
+      "Orientado a empresas, precio elevado para uso personal"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "synthesia",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "synthesia ai",
+      "avatar virtual para video",
+      "video corporativo con ia",
+      "presentador virtual ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo crear un avatar con mi propia cara?",
+        "answer": "Sí, los planes empresariales permiten grabar un vídeo de referencia corto para generar un avatar personalizado que luego narra cualquier guion."
+      },
+      {
+        "question": "¿Para qué se usa más habitualmente Synthesia?",
+        "answer": "Formación corporativa, vídeos de onboarding y comunicación interna son sus casos de uso más comunes, al evitar regrabar cada vez que cambia el contenido."
+      }
+    ],
+    "conclusion": "Para producir vídeo formativo corporativo a gran escala y en múltiples idiomas, Synthesia es de las opciones más consolidadas del mercado."
+  },
+  {
+    "id": "heygen",
+    "slug": "heygen",
+    "name": "HeyGen",
+    "tagline": "Avatares de IA con clonación de voz y vídeo",
+    "description": "HeyGen genera vídeos con avatares realistas y permite clonar tu propia voz y apariencia para crear contenido en varios idiomas manteniendo tu identidad visual, muy usado por creadores de contenido y equipos de marketing.",
+    "logoUrl": "https://picsum.photos/seed/heygen-logo/128/128",
+    "websiteUrl": "https://www.heygen.com",
+    "categorySlug": "generacion-de-avatares",
+    "tags": [
+      "video",
+      "voz"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 24,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 690,
+    "features": [
+      "Clonación de avatar y voz personalizados",
+      "Traducción de vídeo manteniendo la voz del hablante original",
+      "Plantillas para redes sociales y marketing",
+      "API para generación de vídeo a gran escala"
+    ],
+    "pros": [
+      "Buena calidad de clonación de voz y labios",
+      "Plan gratuito para probar antes de pagar"
+    ],
+    "cons": [
+      "Los planes de mayor volumen tienen un coste considerable"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "heygen",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "heygen ai",
+      "clonar voz y video",
+      "avatar con ia",
+      "traducir video con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿HeyGen puede traducir un vídeo manteniendo mi propia voz?",
+        "answer": "Sí, es una de sus funciones más valoradas: traduce el audio a otro idioma conservando el tono y timbre de la voz original del hablante."
+      },
+      {
+        "question": "¿Necesito experiencia en edición de vídeo?",
+        "answer": "No, la interfaz está pensada para generar vídeos completos escribiendo un guion, sin necesidad de conocimientos previos de edición."
+      }
+    ],
+    "conclusion": "HeyGen destaca especialmente en localización de vídeo a otros idiomas conservando la identidad vocal del creador original."
+  },
+  {
+    "id": "descript",
+    "slug": "descript",
+    "name": "Descript",
+    "tagline": "Edita vídeo y audio editando el texto de la transcripción",
+    "description": "Descript transcribe automáticamente tu grabación y te permite editar el vídeo o audio simplemente borrando o moviendo texto, como si editaras un documento de Word. Incluye eliminación de muletillas, clonación de voz para corregir errores y overdub.",
+    "logoUrl": "https://picsum.photos/seed/descript-logo/128/128",
+    "websiteUrl": "https://www.descript.com",
+    "categorySlug": "edicion-de-video-con-ia",
+    "tags": [
+      "video",
+      "audio",
+      "productividad"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 12,
+    "currency": "USD",
+    "rating": 4.7,
+    "reviewCount": 1020,
+    "features": [
+      "Edición de vídeo/audio mediante edición de texto",
+      "Eliminación automática de muletillas y silencios",
+      "Overdub: corregir palabras con tu propia voz clonada",
+      "Subtítulos automáticos exportables"
+    ],
+    "pros": [
+      "Curva de aprendizaje muy baja gracias a la edición por texto",
+      "Excelente para podcasts y vídeos hablados"
+    ],
+    "cons": [
+      "Menos adecuado para edición cinematográfica con muchos efectos visuales"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "descript",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "descript app",
+      "editar video con texto",
+      "overdub descript",
+      "editor de podcast con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Cómo funciona la edición por texto?",
+        "answer": "Descript transcribe tu grabación; al borrar una palabra o frase en el texto, el vídeo o audio correspondiente se recorta automáticamente en el mismo punto."
+      },
+      {
+        "question": "¿Qué es la función Overdub?",
+        "answer": "Permite generar tu propia voz clonada (con tu consentimiento) para corregir una palabra mal dicha sin tener que regrabar toda la toma."
+      }
+    ],
+    "conclusion": "Para creadores de podcasts y vídeo hablado, Descript reduce drásticamente el tiempo de edición frente a un editor de vídeo tradicional."
+  },
+  {
+    "id": "otter-ai",
+    "slug": "otter-ai",
+    "name": "Otter.ai",
+    "tagline": "Transcripción y resumen de reuniones en tiempo real",
+    "description": "Otter.ai se conecta a videollamadas de Zoom, Meet o Teams para transcribir la conversación en tiempo real, identificar a cada hablante y generar automáticamente un resumen con los puntos clave y tareas pendientes al finalizar.",
+    "logoUrl": "https://picsum.photos/seed/otter-ai-logo/128/128",
+    "websiteUrl": "https://otter.ai",
+    "categorySlug": "transcripcion-de-audio",
+    "tags": [
+      "productividad",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 1340,
+    "features": [
+      "Transcripción en tiempo real durante la llamada",
+      "Identificación automática de hablantes",
+      "Resumen automático con puntos clave",
+      "Integración directa con Zoom, Google Meet y Microsoft Teams"
+    ],
+    "pros": [
+      "Muy fácil de configurar con las plataformas de videollamada habituales",
+      "Plan gratuito con minutos mensuales suficientes para uso ligero"
+    ],
+    "cons": [
+      "La precisión baja algo con acentos muy marcados o audio de baja calidad"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "otter-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "otter ai",
+      "transcribir reuniones automaticamente",
+      "resumen de reuniones ia",
+      "otter ai español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Otter se une automáticamente a mis reuniones?",
+        "answer": "Sí, puedes configurarlo para que se una automáticamente a las reuniones de tu calendario en las plataformas compatibles y empiece a transcribir sin intervención manual."
+      },
+      {
+        "question": "¿Genera también las tareas pendientes de la reunión?",
+        "answer": "Sí, su resumen automático suele identificar compromisos y tareas mencionadas explícitamente durante la conversación."
+      }
+    ],
+    "conclusion": "Otter.ai es una de las herramientas más consolidadas para nunca más tener que tomar notas manuales durante una reunión de trabajo."
+  },
+  {
+    "id": "fireflies-ai",
+    "slug": "fireflies-ai",
+    "name": "Fireflies.ai",
+    "tagline": "Actas de reunión automáticas con búsqueda por tema",
+    "description": "Fireflies.ai graba, transcribe y resume reuniones de trabajo, y además permite buscar dentro del histórico de todas tus reuniones por tema o palabra clave, útil para equipos que necesitan recuperar decisiones pasadas rápidamente.",
+    "logoUrl": "https://picsum.photos/seed/fireflies-ai-logo/128/128",
+    "websiteUrl": "https://fireflies.ai",
+    "categorySlug": "transcripcion-de-reuniones",
+    "tags": [
+      "productividad",
+      "marketing"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 780,
+    "features": [
+      "Grabación y transcripción automática de videollamadas",
+      "Búsqueda por tema en todo tu historial de reuniones",
+      "Resumen con decisiones y tareas asignadas",
+      "Integración con CRMs para registrar conversaciones de venta"
+    ],
+    "pros": [
+      "Búsqueda potente en histórico de reuniones",
+      "Buenas integraciones con herramientas de ventas"
+    ],
+    "cons": [
+      "La interfaz puede resultar algo recargada para usuarios nuevos"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "fireflies-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "fireflies ai",
+      "actas de reunion automaticas",
+      "transcripcion de llamadas de venta",
+      "fireflies español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo buscar qué se dijo sobre un tema en reuniones de hace meses?",
+        "answer": "Sí, es una de sus funciones más valoradas: buscar por palabra clave en todo tu historial de reuniones transcritas, no solo en la más reciente."
+      },
+      {
+        "question": "¿Se integra con mi CRM de ventas?",
+        "answer": "Sí, ofrece integraciones nativas con CRMs populares para registrar automáticamente cada llamada comercial como actividad en la oportunidad correspondiente."
+      }
+    ],
+    "conclusion": "Para equipos comerciales que necesitan recuperar contexto de conversaciones pasadas, la búsqueda histórica de Fireflies es especialmente valiosa."
+  },
+  {
+    "id": "jasper",
+    "slug": "jasper",
+    "name": "Jasper",
+    "tagline": "IA de escritura orientada a equipos de marketing",
+    "description": "Jasper es una plataforma de escritura con IA pensada para equipos de marketing de empresa, con plantillas específicas por tipo de contenido, memoria de la voz de marca y flujos de aprobación colaborativos para mantener consistencia entre varios redactores.",
+    "logoUrl": "https://picsum.photos/seed/jasper-logo/128/128",
+    "websiteUrl": "https://www.jasper.ai",
+    "categorySlug": "escritura",
+    "tags": [
+      "marketing",
+      "escritura",
+      "premium"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 49,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 1150,
+    "features": [
+      "Memoria de voz de marca consistente entre redactores",
+      "Más de 50 plantillas de contenido de marketing",
+      "Flujos de aprobación y colaboración en equipo",
+      "Integración con SEO Surfer y otras herramientas de marketing"
+    ],
+    "pros": [
+      "Pensado específicamente para equipos, no solo individuos",
+      "Buena consistencia de tono de marca"
+    ],
+    "cons": [
+      "Precio elevado frente a alternativas generalistas como ChatGPT"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "jasper",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "jasper ai",
+      "jasper vs chatgpt",
+      "ia para marketing de contenidos",
+      "jasper español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Por qué elegir Jasper en vez de ChatGPT para marketing?",
+        "answer": "Jasper añade funciones específicas de equipo: memoria de marca compartida, flujos de aprobación y plantillas optimizadas para marketing que ChatGPT no ofrece de forma nativa."
+      },
+      {
+        "question": "¿Vale la pena para un freelance individual?",
+        "answer": "Para uso individual sencillo puede resultar caro comparado con alternativas más generales; su valor se nota más en equipos de varias personas."
+      }
+    ],
+    "conclusion": "Jasper tiene más sentido para equipos de marketing con varios redactores que necesitan mantener consistencia de marca, que para uso individual ocasional."
+  },
+  {
+    "id": "copy-ai",
+    "slug": "copy-ai",
+    "name": "Copy.ai",
+    "tagline": "Automatización de contenido de marketing y ventas",
+    "description": "Copy.ai combina generación de copy publicitario con flujos de trabajo automatizados (workflows) que encadenan varios pasos de marketing y ventas, desde investigación de producto hasta redacción de secuencias completas de email.",
+    "logoUrl": "https://picsum.photos/seed/copy-ai-logo/128/128",
+    "websiteUrl": "https://www.copy.ai",
+    "categorySlug": "marketing-con-ia",
+    "tags": [
+      "marketing",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 36,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 940,
+    "features": [
+      "Workflows automatizados de varios pasos",
+      "Plantillas para anuncios, emails y redes sociales",
+      "Chat de IA con contexto de tu marca",
+      "Colaboración en equipo con comentarios"
+    ],
+    "pros": [
+      "Los workflows automatizan tareas repetitivas de varios pasos",
+      "Plan gratuito útil para probar"
+    ],
+    "cons": [
+      "Los workflows más avanzados requieren cierta curva de configuración inicial"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "copy-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "copy ai",
+      "workflows de marketing con ia",
+      "copy ai español",
+      "automatizacion de copy"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Qué es un 'workflow' en Copy.ai?",
+        "answer": "Es una secuencia automatizada de pasos de IA encadenados: por ejemplo, investigar un producto, generar ángulos de venta y redactar el copy final, todo en una sola ejecución."
+      },
+      {
+        "question": "¿Sirve también para equipos de ventas, no solo marketing?",
+        "answer": "Sí, incluye plantillas específicas para prospección de ventas, seguimiento de leads y personalización de mensajes comerciales."
+      }
+    ],
+    "conclusion": "La fuerza de Copy.ai está en automatizar secuencias completas de tareas de marketing, no solo generar textos sueltos."
+  },
+  {
+    "id": "grammarly",
+    "slug": "grammarly",
+    "name": "Grammarly",
+    "tagline": "Corrección gramatical y de estilo con IA",
+    "description": "Grammarly revisa gramática, ortografía, tono y claridad en tiempo real mientras escribes en cualquier aplicación, desde el navegador hasta procesadores de texto, siendo una de las herramientas de escritura asistida más extendidas del mundo.",
+    "logoUrl": "https://picsum.photos/seed/grammarly-logo/128/128",
+    "websiteUrl": "https://www.grammarly.com",
+    "categorySlug": "escritura",
+    "tags": [
+      "escritura",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 12,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 3200,
+    "features": [
+      "Corrección gramatical y ortográfica en tiempo real",
+      "Sugerencias de tono y claridad",
+      "Funciona en la mayoría de aplicaciones web y de escritorio",
+      "Detector de plagio en el plan premium"
+    ],
+    "pros": [
+      "Extensión ligera que funciona en casi cualquier web",
+      "Excelente para no nativos del inglés"
+    ],
+    "cons": [
+      "Las funciones de reescritura con IA generativa son más limitadas que herramientas especializadas"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "grammarly",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "grammarly",
+      "corrector gramatical ingles",
+      "grammarly español",
+      "revisor de texto con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Grammarly funciona en español?",
+        "answer": "Grammarly está enfocado principalmente en inglés; para corrección avanzada en español conviene complementarlo con herramientas específicas de ese idioma."
+      },
+      {
+        "question": "¿Es solo un corrector o también genera texto?",
+        "answer": "Además de corrección incluye funciones de reescritura y generación asistida, aunque su punto fuerte histórico sigue siendo la corrección gramatical y de estilo."
+      }
+    ],
+    "conclusion": "Para escritura en inglés, Grammarly sigue siendo una de las herramientas más fiables para pulir gramática y tono antes de publicar cualquier texto."
+  },
+  {
+    "id": "quillbot",
+    "slug": "quillbot",
+    "name": "QuillBot",
+    "tagline": "Parafraseo y resumen de textos con IA",
+    "description": "QuillBot reescribe frases y párrafos manteniendo el significado original pero variando la redacción, además de ofrecer resumen automático y corrector gramatical, muy usado por estudiantes y redactores para mejorar la fluidez de un texto.",
+    "logoUrl": "https://picsum.photos/seed/quillbot-logo/128/128",
+    "websiteUrl": "https://quillbot.com",
+    "categorySlug": "escritura",
+    "tags": [
+      "escritura",
+      "principiantes",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 1780,
+    "features": [
+      "Parafraseo con distintos modos (fluido, formal, creativo)",
+      "Resumen automático de textos largos",
+      "Corrector gramatical integrado",
+      "Comprobador de citas y plagio"
+    ],
+    "pros": [
+      "Muy útil para estudiantes que necesitan reformular texto",
+      "Interfaz simple y directa"
+    ],
+    "cons": [
+      "El uso excesivo de parafraseo puede generar texto poco natural si no se revisa"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "quillbot",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "quillbot",
+      "parafrasear texto con ia",
+      "quillbot español",
+      "resumidor de textos"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Es aceptable académicamente usar QuillBot para parafrasear?",
+        "answer": "Depende de la política de cada institución educativa; usarlo para entender mejor un texto es distinto a presentarlo como trabajo propio sin citar la fuente original."
+      },
+      {
+        "question": "¿Puede resumir un artículo académico largo?",
+        "answer": "Sí, su función de resumen está pensada precisamente para condensar textos extensos como papers o informes en los puntos clave."
+      }
+    ],
+    "conclusion": "QuillBot es más útil como herramienta de apoyo para mejorar redacción propia que como atajo para evitar escribir un trabajo original."
+  },
+  {
+    "id": "canva-magic-studio",
+    "slug": "canva-magic-studio",
+    "name": "Canva Magic Studio",
+    "tagline": "IA generativa integrada en el editor de diseño más usado",
+    "description": "Magic Studio reúne las funciones de IA de Canva: generación de imágenes, eliminación de fondo, redimensionado automático de diseños y un editor de texto con IA, todo integrado en el mismo editor visual que ya usan millones de equipos de marketing.",
+    "logoUrl": "https://picsum.photos/seed/canva-magic-studio-logo/128/128",
+    "websiteUrl": "https://www.canva.com/magic-studio",
+    "categorySlug": "ia-para-recursos-de-marca",
+    "tags": [
+      "diseño",
+      "gratis",
+      "marketing"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 13,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 2450,
+    "features": [
+      "Generación de imágenes integrada en el editor",
+      "Redimensionado automático de un diseño a múltiples formatos",
+      "Eliminador de fondo con un clic",
+      "Editor de texto (Magic Write) para copys"
+    ],
+    "pros": [
+      "No requiere salir del editor de diseño para usar IA",
+      "Muy accesible para usuarios sin experiencia de diseño"
+    ],
+    "cons": [
+      "Menos control fino que herramientas especializadas en cada función individual"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "canva-magic-studio",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "canva magic studio",
+      "canva ia",
+      "magic write canva",
+      "diseño con ia canva"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito plan Pro para usar Magic Studio?",
+        "answer": "Algunas funciones básicas están disponibles gratis con límites de uso; el acceso completo requiere el plan Canva Pro."
+      },
+      {
+        "question": "¿Puedo adaptar un diseño a distintos tamaños automáticamente?",
+        "answer": "Sí, el redimensionado mágico ajusta automáticamente un mismo diseño a formatos de Instagram, historias, presentaciones u otros tamaños comunes."
+      }
+    ],
+    "conclusion": "Para equipos que ya usan Canva a diario, Magic Studio añade IA generativa sin fricción, sin necesidad de aprender una herramienta nueva."
+  },
+  {
+    "id": "suno",
+    "slug": "suno",
+    "name": "Suno",
+    "tagline": "Composición de canciones completas desde texto",
+    "description": "Suno genera canciones completas (letra, melodía, voz e instrumentación) a partir de una descripción de género y temática, permitiendo a cualquier persona sin formación musical crear una pista original en minutos.",
+    "logoUrl": "https://picsum.photos/seed/suno-logo/128/128",
+    "websiteUrl": "https://suno.com",
+    "categorySlug": "generacion-de-musica",
+    "tags": [
+      "musica",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 610,
+    "features": [
+      "Generación de canción completa con voz e instrumentación",
+      "Amplia variedad de géneros musicales",
+      "Posibilidad de escribir tu propia letra o dejar que la IA la genere",
+      "Extensión de pistas existentes"
+    ],
+    "pros": [
+      "Resultado sorprendentemente completo para ser generado en minutos",
+      "Fácil de usar sin conocimientos musicales"
+    ],
+    "cons": [
+      "Los derechos de uso comercial dependen estrictamente del plan contratado"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "suno",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "suno ai",
+      "generador de canciones con ia",
+      "crear musica con ia",
+      "suno español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito saber tocar un instrumento para usar Suno?",
+        "answer": "No, solo necesitas describir el género, tema y estilo deseado; la IA se encarga de generar melodía, letra e instrumentación completa."
+      },
+      {
+        "question": "¿Puedo escribir mi propia letra y que la IA la cante?",
+        "answer": "Sí, puedes aportar tu propia letra y dejar que el modelo genere la melodía y la interpretación vocal sobre ese texto."
+      }
+    ],
+    "conclusion": "Suno ha democratizado la creación musical hasta el punto de que cualquiera puede tener una canción original en pocos minutos, aunque los derechos de uso deben revisarse con atención."
+  },
+  {
+    "id": "murf-ai",
+    "slug": "murf-ai",
+    "name": "Murf AI",
+    "tagline": "Voces sintéticas para vídeos y presentaciones corporativas",
+    "description": "Murf AI genera locuciones profesionales en decenas de idiomas y acentos, con control fino de énfasis, pausas y velocidad, muy usado para vídeos corporativos, e-learning y contenido de voz en off sin necesidad de contratar un locutor.",
+    "logoUrl": "https://picsum.photos/seed/murf-ai-logo/128/128",
+    "websiteUrl": "https://murf.ai",
+    "categorySlug": "audio-y-voz",
+    "tags": [
+      "voz",
+      "productividad"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 19,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 590,
+    "features": [
+      "Más de 120 voces en distintos idiomas y acentos",
+      "Control de énfasis, pausas y velocidad de locución",
+      "Sincronización con vídeo y diapositivas",
+      "Clonación de voz personalizada en planes empresariales"
+    ],
+    "pros": [
+      "Buena relación calidad-precio para voz en off corporativa",
+      "Editor visual sencillo de usar"
+    ],
+    "cons": [
+      "Las voces, aunque naturales, aún se distinguen de una grabación humana en frases muy largas"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "murf-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "murf ai",
+      "voz en off con ia",
+      "locucion con ia",
+      "murf ai español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Murf AI sirve para vídeos de e-learning?",
+        "answer": "Sí, es uno de sus usos principales: generar locuciones consistentes para cursos online sin depender de la disponibilidad de un locutor humano."
+      },
+      {
+        "question": "¿Puedo sincronizar la voz con mis diapositivas?",
+        "answer": "Sí, permite importar presentaciones y sincronizar automáticamente la locución generada con cada diapositiva."
+      }
+    ],
+    "conclusion": "Murf AI es una alternativa sólida y económica a contratar locución profesional para contenido corporativo y formativo recurrente."
+  },
+  {
+    "id": "cursor",
+    "slug": "cursor",
+    "name": "Cursor",
+    "tagline": "Editor de código construido alrededor de la IA",
+    "description": "Cursor es un editor de código (fork de VS Code) diseñado desde cero para trabajar con IA como parte central del flujo, permitiendo editar archivos completos mediante instrucciones en lenguaje natural y mantener contexto de todo el proyecto en cada sugerencia.",
+    "logoUrl": "https://picsum.photos/seed/cursor-logo/128/128",
+    "websiteUrl": "https://www.cursor.com",
+    "categorySlug": "programacion",
+    "tags": [
+      "desarrollo",
+      "premium"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.8,
+    "reviewCount": 1290,
+    "features": [
+      "Edición de múltiples archivos mediante instrucciones en lenguaje natural",
+      "Contexto de todo el proyecto en cada sugerencia",
+      "Compatible con extensiones de VS Code",
+      "Chat integrado con acceso al código del repositorio"
+    ],
+    "pros": [
+      "Muy potente para refactorizaciones grandes",
+      "Compatibilidad casi total con el ecosistema VS Code"
+    ],
+    "cons": [
+      "Requiere algo de adaptación si vienes de un editor muy distinto"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "cursor",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "cursor ide",
+      "cursor ai editor",
+      "cursor vs copilot",
+      "editor de codigo con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Cursor sustituye a GitHub Copilot?",
+        "answer": "Ambos coexisten en el mercado; Cursor está construido pensando en la IA desde el editor mismo, con más capacidad de edición multi-archivo que el autocompletado de Copilot."
+      },
+      {
+        "question": "¿Puedo migrar mis extensiones de VS Code?",
+        "answer": "Sí, al ser un fork de VS Code, la mayoría de extensiones y configuraciones se importan sin problema."
+      }
+    ],
+    "conclusion": "Para desarrolladores que quieren la IA integrada en el núcleo del editor (no solo como autocompletado), Cursor es de las opciones más completas actualmente."
+  },
+  {
+    "id": "replit",
+    "slug": "replit",
+    "name": "Replit",
+    "tagline": "Entorno de desarrollo en la nube con IA integrada",
+    "description": "Replit combina un entorno de desarrollo completo en el navegador con un agente de IA (Replit Agent) capaz de construir aplicaciones funcionales completas a partir de una descripción, ideal para prototipar rápido sin configurar entorno local.",
+    "logoUrl": "https://picsum.photos/seed/replit-logo/128/128",
+    "websiteUrl": "https://replit.com",
+    "categorySlug": "programacion",
+    "tags": [
+      "desarrollo",
+      "principiantes",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 1470,
+    "features": [
+      "Entorno de desarrollo completo en el navegador",
+      "Agente de IA que construye apps completas desde una descripción",
+      "Despliegue integrado sin configuración adicional",
+      "Colaboración en tiempo real como en un documento compartido"
+    ],
+    "pros": [
+      "No requiere instalar nada localmente",
+      "Muy accesible para quien empieza a programar"
+    ],
+    "cons": [
+      "El rendimiento puede ser algo menor que un entorno local para proyectos muy grandes"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "replit",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "replit",
+      "replit agent",
+      "ide en la nube",
+      "aprender a programar con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo desplegar una app directamente desde Replit?",
+        "answer": "Sí, incluye despliegue integrado sin necesidad de configurar servidores externos, lo que facilita mucho lanzar un prototipo funcional."
+      },
+      {
+        "question": "¿Es adecuado para aprender a programar desde cero?",
+        "answer": "Sí, al no requerir instalación ni configuración previa, es una de las formas más accesibles de empezar a programar en cualquier dispositivo."
+      }
+    ],
+    "conclusion": "Replit es especialmente útil para prototipar ideas rápido o para quien está aprendiendo a programar sin querer lidiar con configuración de entorno."
+  },
+  {
+    "id": "tabnine",
+    "slug": "tabnine",
+    "name": "Tabnine",
+    "tagline": "Autocompletado de código centrado en privacidad",
+    "description": "Tabnine ofrece autocompletado de código con IA con especial énfasis en la privacidad: permite ejecutar modelos localmente o en infraestructura propia de la empresa, sin enviar código a servidores externos, algo valorado en entornos con requisitos de seguridad estrictos.",
+    "logoUrl": "https://picsum.photos/seed/tabnine-logo/128/128",
+    "websiteUrl": "https://www.tabnine.com",
+    "categorySlug": "programacion",
+    "tags": [
+      "desarrollo",
+      "premium"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 9,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 720,
+    "features": [
+      "Opción de ejecución local o en infraestructura privada",
+      "Autocompletado de código en decenas de lenguajes",
+      "No entrena modelos con el código privado del cliente",
+      "Integración con los IDEs más populares"
+    ],
+    "pros": [
+      "Fuerte enfoque en privacidad y cumplimiento normativo",
+      "Buena opción para empresas con código sensible"
+    ],
+    "cons": [
+      "La calidad de sugerencias puede ser algo inferior a Copilot o Cursor en tareas complejas"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "tabnine",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "tabnine",
+      "autocompletado de codigo privado",
+      "ia para codigo empresarial",
+      "tabnine vs copilot"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Por qué elegir Tabnine por motivos de privacidad?",
+        "answer": "Ofrece despliegue local o en la nube privada de la empresa, evitando que el código fuente salga de la infraestructura propia, algo crítico en sectores regulados."
+      },
+      {
+        "question": "¿Funciona sin conexión a internet?",
+        "answer": "En su modalidad de ejecución local sí puede funcionar completamente offline, dependiendo del modelo elegido y del hardware disponible."
+      }
+    ],
+    "conclusion": "Para empresas con requisitos estrictos de privacidad de código, Tabnine ofrece garantías que otros asistentes de codificación no priorizan de la misma forma."
+  },
+  {
+    "id": "v0-vercel",
+    "slug": "v0-vercel",
+    "name": "v0 de Vercel",
+    "tagline": "Genera interfaces React listas para producción desde texto",
+    "description": "v0 genera componentes de interfaz en React y Tailwind CSS a partir de una descripción de texto o una imagen de referencia, produciendo código limpio y editable pensado para integrarse directamente en proyectos Next.js reales.",
+    "logoUrl": "https://picsum.photos/seed/v0-vercel-logo/128/128",
+    "websiteUrl": "https://v0.dev",
+    "categorySlug": "diseno-ui-ux-con-ia",
+    "tags": [
+      "desarrollo",
+      "diseño"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 480,
+    "features": [
+      "Generación de componentes React y Tailwind desde texto",
+      "Iteración conversacional sobre el diseño generado",
+      "Exportación de código limpio a proyectos reales",
+      "Integración nativa con el ecosistema Next.js"
+    ],
+    "pros": [
+      "El código generado es directamente utilizable en producción",
+      "Muy alineado con las convenciones modernas de React"
+    ],
+    "cons": [
+      "Pensado específicamente para el stack React/Next.js, menos útil fuera de él"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "v0-vercel",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "v0 vercel",
+      "generador de interfaces react",
+      "v0 dev",
+      "ui con ia para nextjs"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿El código generado sirve para producción real?",
+        "answer": "Sí, a diferencia de muchos generadores de UI, v0 produce código React/Tailwind limpio pensado para integrarse directamente en un proyecto real, no solo como maqueta visual."
+      },
+      {
+        "question": "¿Funciona con otros frameworks además de React?",
+        "answer": "Está optimizado específicamente para React y el ecosistema Next.js; para otros frameworks existen herramientas más generalistas."
+      }
+    ],
+    "conclusion": "Para equipos que ya trabajan en React y Next.js, v0 acorta significativamente el paso de idea de interfaz a componente funcional en el código real."
+  },
+  {
+    "id": "gamma",
+    "slug": "gamma",
+    "name": "Gamma",
+    "tagline": "Presentaciones con diseño automático a partir de un guion",
+    "description": "Gamma convierte un esquema de texto en una presentación completa con diseño coherente, eligiendo automáticamente disposición de imágenes, gráficos y jerarquía visual, y permite seguir editando cada diapositiva como un documento flexible.",
+    "logoUrl": "https://picsum.photos/seed/gamma-logo/128/128",
+    "websiteUrl": "https://gamma.app",
+    "categorySlug": "generacion-de-presentaciones",
+    "tags": [
+      "presentaciones",
+      "productividad",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 860,
+    "features": [
+      "Generación de presentación completa desde un guion de texto",
+      "Diseño automático de cada diapositiva",
+      "Edición flexible tipo documento, no solo diapositivas fijas",
+      "Exportación a PDF y PowerPoint"
+    ],
+    "pros": [
+      "El diseño automático suele quedar profesional sin esfuerzo",
+      "Rápido para generar un primer borrador completo"
+    ],
+    "cons": [
+      "Menos control de diseño pixel-perfect que PowerPoint tradicional"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "gamma",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "gamma app",
+      "presentaciones con ia",
+      "gamma ai español",
+      "generador de slides"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo editar el diseño después de generarlo?",
+        "answer": "Sí, cada elemento es editable: puedes cambiar imágenes, reordenar secciones y ajustar el estilo visual sin perder la coherencia general."
+      },
+      {
+        "question": "¿Puedo exportar a PowerPoint para seguir editando allí?",
+        "answer": "Sí, Gamma permite exportar la presentación a formato PDF o PPTX si necesitas seguir trabajando en herramientas de ofimática tradicionales."
+      }
+    ],
+    "conclusion": "Gamma es ideal para generar el primer borrador completo de una presentación en minutos, especialmente cuando el diseño manual consume demasiado tiempo."
+  },
+  {
+    "id": "zapier",
+    "slug": "zapier",
+    "name": "Zapier",
+    "tagline": "Conecta aplicaciones y automatiza tareas sin código",
+    "description": "Zapier conecta miles de aplicaciones entre sí mediante automatizaciones (Zaps) que se activan cuando ocurre un evento en una app y ejecutan una acción en otra, ahora potenciado con IA para crear automatizaciones a partir de una descripción en lenguaje natural.",
+    "logoUrl": "https://picsum.photos/seed/zapier-logo/128/128",
+    "websiteUrl": "https://zapier.com",
+    "categorySlug": "automatizacion-de-flujos-de-trabajo",
+    "tags": [
+      "automatizacion",
+      "productividad"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 2870,
+    "features": [
+      "Conexión con miles de aplicaciones sin código",
+      "Creación de automatizaciones (Zaps) mediante lenguaje natural",
+      "Pasos condicionales y filtros avanzados",
+      "Plantillas prediseñadas por caso de uso"
+    ],
+    "pros": [
+      "El catálogo de integraciones más amplio del mercado",
+      "Curva de aprendizaje baja para automatizaciones simples"
+    ],
+    "cons": [
+      "El coste escala rápido con el volumen de tareas automatizadas"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "zapier",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "zapier",
+      "automatizacion sin codigo",
+      "zapier español",
+      "conectar aplicaciones con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito saber programar para usar Zapier?",
+        "answer": "No, está diseñado específicamente para que usuarios sin conocimientos técnicos puedan crear automatizaciones mediante una interfaz visual sencilla."
+      },
+      {
+        "question": "¿Con cuántas aplicaciones se puede conectar?",
+        "answer": "Zapier ofrece integraciones con miles de aplicaciones, desde herramientas de ofimática hasta CRMs, redes sociales y bases de datos."
+      }
+    ],
+    "conclusion": "Zapier sigue siendo la referencia en automatización sin código gracias a su enorme catálogo de integraciones, aunque conviene vigilar el coste según el volumen de uso."
+  },
+  {
+    "id": "make",
+    "slug": "make",
+    "name": "Make",
+    "tagline": "Automatización visual con flujos complejos",
+    "description": "Make (antes Integromat) ofrece un editor visual de automatizaciones tipo diagrama de flujo, permitiendo construir procesos más complejos que Zapier con lógica condicional avanzada, a menudo a un coste menor para volúmenes altos de uso.",
+    "logoUrl": "https://picsum.photos/seed/make-logo/128/128",
+    "websiteUrl": "https://www.make.com",
+    "categorySlug": "automatizacion-de-flujos-de-trabajo",
+    "tags": [
+      "automatizacion",
+      "desarrollo"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 9,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 980,
+    "features": [
+      "Editor visual de flujos tipo diagrama",
+      "Lógica condicional y bucles avanzados",
+      "Cientos de integraciones con aplicaciones populares",
+      "Mejor coste por operación en volúmenes altos frente a alternativas"
+    ],
+    "pros": [
+      "Más potente para flujos complejos que Zapier",
+      "Buena relación coste-beneficio a mayor escala"
+    ],
+    "cons": [
+      "La curva de aprendizaje inicial es algo mayor que en herramientas más simples"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "make",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "make automation",
+      "integromat",
+      "make vs zapier",
+      "automatizacion visual con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿En qué se diferencia Make de Zapier?",
+        "answer": "Make ofrece un editor visual más potente para lógica condicional compleja y suele resultar más económico en volúmenes altos, aunque requiere algo más de aprendizaje inicial."
+      },
+      {
+        "question": "¿Puedo ver visualmente todo el flujo de datos?",
+        "answer": "Sí, su editor tipo diagrama de flujo permite visualizar cada paso y el recorrido de los datos de forma mucho más clara que una lista lineal de pasos."
+      }
+    ],
+    "conclusion": "Para automatizaciones complejas con lógica condicional avanzada, Make suele ofrecer más potencia y mejor coste por operación que alternativas más simples."
+  },
+  {
+    "id": "character-ai",
+    "slug": "character-ai",
+    "name": "Character.AI",
+    "tagline": "Conversaciones con personajes de IA personalizados",
+    "description": "Character.AI permite crear y conversar con personajes de IA con personalidades definidas, desde asistentes de práctica de idiomas hasta compañeros de rol creativo, con una comunidad muy activa de creadores de personajes personalizados.",
+    "logoUrl": "https://picsum.photos/seed/character-ai-logo/128/128",
+    "websiteUrl": "https://character.ai",
+    "categorySlug": "chatbots-conversacionales",
+    "tags": [
+      "gratis",
+      "principiantes"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.2,
+    "reviewCount": 1890,
+    "features": [
+      "Creación de personajes de IA con personalidad definida",
+      "Comunidad de personajes creados por otros usuarios",
+      "Práctica conversacional de idiomas con personajes temáticos",
+      "Historial de conversación persistente por personaje"
+    ],
+    "pros": [
+      "Enorme comunidad y variedad de personajes disponibles",
+      "Útil para practicar conversación en otro idioma de forma amena"
+    ],
+    "cons": [
+      "No está pensado para tareas productivas serias como ChatGPT o Claude"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "character-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "character ai",
+      "chatbot de personajes",
+      "character ai español",
+      "practicar idiomas con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Character.AI sirve para tareas de trabajo?",
+        "answer": "No es su enfoque principal; está orientado a entretenimiento, práctica conversacional y rol creativo más que a productividad o tareas profesionales."
+      },
+      {
+        "question": "¿Puedo crear mi propio personaje personalizado?",
+        "answer": "Sí, puedes definir la personalidad, el tono y el contexto de un personaje propio y compartirlo con la comunidad si lo deseas."
+      }
+    ],
+    "conclusion": "Character.AI ocupa un nicho distinto al de los asistentes generalistas: entretenimiento y práctica conversacional más que productividad profesional."
+  },
+  {
+    "id": "deepl",
+    "slug": "deepl",
+    "name": "DeepL",
+    "tagline": "Traducción con la mejor calidad de matiz y contexto",
+    "description": "DeepL es ampliamente reconocido por producir traducciones con un nivel de naturalidad y matiz superior al de traductores estadísticos clásicos, con soporte para más de 30 idiomas y su propio editor de escritura asistida, DeepL Write.",
+    "logoUrl": "https://picsum.photos/seed/deepl-logo/128/128",
+    "websiteUrl": "https://www.deepl.com",
+    "categorySlug": "traduccion-automatica",
+    "tags": [
+      "traduccion",
+      "gratis",
+      "escritura"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 9,
+    "currency": "USD",
+    "rating": 4.7,
+    "reviewCount": 2640,
+    "features": [
+      "Traducción de alta calidad en más de 30 idiomas",
+      "Traducción de documentos completos conservando formato",
+      "DeepL Write para mejorar redacción en el propio idioma",
+      "Glosarios personalizados para terminología específica"
+    ],
+    "pros": [
+      "Calidad de traducción superior en la mayoría de comparativas independientes",
+      "Interfaz simple y rápida"
+    ],
+    "cons": [
+      "Menos idiomas soportados que Google Translate"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "deepl",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "deepl",
+      "traductor deepl",
+      "deepl write",
+      "mejor traductor con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Por qué DeepL suele considerarse mejor que Google Translate?",
+        "answer": "Sus modelos capturan mejor matices de contexto y naturalidad en el idioma destino, especialmente en pares de idiomas europeos, según múltiples comparativas independientes."
+      },
+      {
+        "question": "¿Puedo crear un glosario de términos específicos de mi empresa?",
+        "answer": "Sí, los planes de pago permiten definir un glosario personalizado para que ciertos términos se traduzcan siempre de una forma específica y consistente."
+      }
+    ],
+    "conclusion": "Para traducción de textos donde el matiz y la naturalidad importan, DeepL suele ser la opción preferida frente a traductores más genéricos."
+  },
+  {
+    "id": "windsurf",
+    "slug": "windsurf",
+    "name": "Windsurf",
+    "tagline": "El editor agéntico de Codeium para programar con IA",
+    "description": "Windsurf (antes Codeium) es un editor de código construido alrededor de un \"flujo agéntico\": la IA puede planificar y ejecutar cambios de varios pasos por sí misma, no solo sugerir autocompletado. Está pensado para desarrolladores que quieren delegar tareas completas, no solo líneas sueltas de código.",
+    "logoUrl": "https://picsum.photos/seed/windsurf-logo/128/128",
+    "websiteUrl": "https://windsurf.com",
+    "categorySlug": "programacion",
+    "tags": [
+      "desarrollo"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 15,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 540,
+    "features": [
+      "Flujo agéntico multi-paso",
+      "Contexto de todo el repositorio",
+      "Autocompletado y chat integrados",
+      "Compatible con extensiones de VS Code"
+    ],
+    "pros": [
+      "Buen equilibrio entre automatización y control",
+      "Plan gratuito funcional para uso individual"
+    ],
+    "cons": [
+      "El modo agéntico requiere supervisión en cambios grandes"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "windsurf",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "windsurf editor",
+      "windsurf ia",
+      "codeium windsurf",
+      "editor agéntico de codigo"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Qué es un 'flujo agéntico' en programación?",
+        "answer": "Es la capacidad de la IA de planificar y ejecutar varios pasos de un cambio de código de forma encadenada, en vez de sugerir solo una línea cada vez."
+      },
+      {
+        "question": "¿Es gratis usar Windsurf?",
+        "answer": "Ofrece un plan gratuito con funciones limitadas; el plan de pago amplía la cuota de uso del modo agéntico."
+      }
+    ],
+    "conclusion": "Windsurf destaca cuando quieres delegar tareas de varios pasos a la IA, no solo recibir sugerencias línea a línea."
+  },
+  {
+    "id": "codeium",
+    "slug": "codeium",
+    "name": "Codeium",
+    "tagline": "Autocompletado de código gratuito para equipos e individuos",
+    "description": "Codeium ofrece autocompletado de código con IA con un generoso plan gratuito para uso individual, además de opciones empresariales con despliegue privado. Es una alternativa directa a GitHub Copilot centrada en accesibilidad de precio.",
+    "logoUrl": "https://picsum.photos/seed/codeium-logo/128/128",
+    "websiteUrl": "https://codeium.com",
+    "categorySlug": "programacion",
+    "tags": [
+      "desarrollo",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 15,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 890,
+    "features": [
+      "Autocompletado en decenas de lenguajes",
+      "Plan individual gratuito ilimitado",
+      "Chat de código integrado",
+      "Despliegue privado para empresas"
+    ],
+    "pros": [
+      "Plan gratuito muy generoso para uso individual",
+      "Buen soporte de lenguajes menos comunes"
+    ],
+    "cons": [
+      "Calidad de sugerencias algo por debajo de Copilot en tareas muy complejas"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "codeium",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "codeium",
+      "codeium gratis",
+      "alternativa a copilot gratis",
+      "autocompletado de codigo gratis"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Es realmente gratis para siempre?",
+        "answer": "El plan individual gratuito no tiene fecha de expiración anunciada, a diferencia de pruebas gratuitas temporales de otras herramientas."
+      },
+      {
+        "question": "¿Puedo usarlo en mi empresa con código privado?",
+        "answer": "Sí, ofrece planes empresariales con opción de despliegue en infraestructura privada para proteger código sensible."
+      }
+    ],
+    "conclusion": "Para desarrolladores individuales con presupuesto limitado, Codeium ofrece una de las mejores relaciones calidad-precio del mercado."
+  },
+  {
+    "id": "amazon-q-developer",
+    "slug": "amazon-q-developer",
+    "name": "Amazon Q Developer",
+    "tagline": "El asistente de código de AWS para desarrolladores en la nube",
+    "description": "Amazon Q Developer (antes CodeWhisperer) es el asistente de código de AWS, con especial fortaleza en tareas relacionadas con servicios de Amazon Web Services: generación de infraestructura, migración de código y revisión de seguridad orientada a la nube.",
+    "logoUrl": "https://picsum.photos/seed/amazon-q-developer-logo/128/128",
+    "websiteUrl": "https://aws.amazon.com/q/developer/",
+    "categorySlug": "programacion",
+    "tags": [
+      "desarrollo"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 19,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 460,
+    "features": [
+      "Autocompletado de código con contexto de AWS",
+      "Revisión de seguridad orientada a la nube",
+      "Asistencia en migraciones de código legado",
+      "Integración nativa con servicios de AWS"
+    ],
+    "pros": [
+      "Muy útil si tu stack ya está en AWS",
+      "Plan gratuito individual disponible"
+    ],
+    "cons": [
+      "Menos versátil que Copilot fuera del ecosistema AWS"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "amazon-q-developer",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "amazon q developer",
+      "codewhisperer",
+      "ia de aws para codigo",
+      "asistente de codigo amazon"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Tiene sentido usarlo si no trabajo con AWS?",
+        "answer": "Sigue funcionando como asistente de código general, pero su mayor valor diferencial está en tareas específicas del ecosistema AWS."
+      },
+      {
+        "question": "¿Es gratis para desarrolladores individuales?",
+        "answer": "Sí, ofrece un nivel gratuito para uso individual con límites de uso mensual."
+      }
+    ],
+    "conclusion": "Amazon Q Developer tiene más sentido cuanto más dependa tu stack de servicios de AWS."
+  },
+  {
+    "id": "sourcegraph-cody",
+    "slug": "sourcegraph-cody",
+    "name": "Sourcegraph Cody",
+    "tagline": "Asistente de código con contexto de bases de código enormes",
+    "description": "Cody, de Sourcegraph, está diseñado para entender bases de código muy grandes y complejas, típicas de empresas con miles de repositorios, ofreciendo respuestas y sugerencias que tienen en cuenta ese contexto extenso de forma más profunda que herramientas orientadas a proyectos individuales.",
+    "logoUrl": "https://picsum.photos/seed/sourcegraph-cody-logo/128/128",
+    "websiteUrl": "https://sourcegraph.com/cody",
+    "categorySlug": "programacion",
+    "tags": [
+      "desarrollo"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 9,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 310,
+    "features": [
+      "Comprensión de bases de código muy grandes",
+      "Búsqueda semántica de código",
+      "Chat con contexto de múltiples repositorios",
+      "Integración con editores populares"
+    ],
+    "pros": [
+      "Excelente para organizaciones con muchos repositorios",
+      "Búsqueda de código muy potente"
+    ],
+    "cons": [
+      "Su valor diferencial es menor en proyectos pequeños"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "sourcegraph-cody",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "sourcegraph cody",
+      "cody ia",
+      "asistente de codigo empresarial",
+      "busqueda de codigo con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Para qué tipo de empresa tiene más sentido Cody?",
+        "answer": "Para organizaciones con múltiples repositorios y bases de código grandes, donde entender relaciones entre distintos proyectos es un reto real."
+      },
+      {
+        "question": "¿Sirve para un proyecto personal pequeño?",
+        "answer": "Funciona, pero su ventaja diferencial de contexto a gran escala se aprovecha mejor en organizaciones con bases de código extensas."
+      }
+    ],
+    "conclusion": "Cody destaca en escenarios empresariales con múltiples repositorios, más que en proyectos individuales pequeños."
+  },
+  {
+    "id": "devin-ai",
+    "slug": "devin-ai",
+    "name": "Devin AI",
+    "tagline": "Un ingeniero de software autónomo impulsado por IA",
+    "description": "Devin se presenta como un \"ingeniero de software autónomo\" capaz de planificar, escribir, probar y depurar código de forma independiente para tareas completas, no solo fragmentos, representando una de las apuestas más ambiciosas de agentes de IA aplicados a desarrollo de software.",
+    "logoUrl": "https://picsum.photos/seed/devin-ai-logo/128/128",
+    "websiteUrl": "https://devin.ai",
+    "categorySlug": "agentes-autonomos-de-ia",
+    "tags": [
+      "desarrollo",
+      "premium"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.1,
+    "reviewCount": 180,
+    "features": [
+      "Planificación autónoma de tareas de desarrollo",
+      "Escritura y ejecución de tests propia",
+      "Depuración iterativa sin intervención constante",
+      "Informe de progreso durante la ejecución"
+    ],
+    "pros": [
+      "Capacidad de trabajar en tareas completas sin supervisión constante"
+    ],
+    "cons": [
+      "Todavía requiere revisión humana cuidadosa del resultado final",
+      "Precio elevado frente a asistentes de autocompletado tradicionales"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "devin-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "devin ai",
+      "ingeniero de software con ia",
+      "agente autonomo de codigo",
+      "devin ai opinion"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Devin puede reemplazar a un desarrollador junior?",
+        "answer": "Puede completar tareas acotadas de forma autónoma, pero la supervisión y revisión de un desarrollador experimentado sigue siendo necesaria antes de llevar cambios a producción."
+      },
+      {
+        "question": "¿Qué tipo de tareas maneja mejor?",
+        "answer": "Tareas bien definidas y acotadas (implementar una función específica, corregir un bug concreto) suelen dar mejores resultados que proyectos completos ambiguos."
+      }
+    ],
+    "conclusion": "Los agentes de codificación autónomos como Devin muestran el futuro de la asistencia de IA en desarrollo, aunque aún requieren supervisión cercana en 2026."
+  },
+  {
+    "id": "lovable",
+    "slug": "lovable",
+    "name": "Lovable",
+    "tagline": "Construye aplicaciones web completas describiendo la idea",
+    "description": "Lovable genera aplicaciones web full-stack funcionales a partir de una descripción en lenguaje natural, incluyendo frontend, backend y base de datos conectada, pensado para fundadores no técnicos que quieren validar un producto rápidamente.",
+    "logoUrl": "https://picsum.photos/seed/lovable-logo/128/128",
+    "websiteUrl": "https://lovable.dev",
+    "categorySlug": "diseno-ui-ux-con-ia",
+    "tags": [
+      "desarrollo",
+      "diseño"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 620,
+    "features": [
+      "Generación de aplicaciones full-stack desde texto",
+      "Base de datos conectada automáticamente",
+      "Edición conversacional de la app generada",
+      "Despliegue integrado con un clic"
+    ],
+    "pros": [
+      "Permite a no desarrolladores lanzar un producto funcional",
+      "Iteración muy rápida sobre la app generada"
+    ],
+    "cons": [
+      "Para lógica de negocio muy compleja sigue requiriendo apoyo técnico"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "lovable",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "lovable dev",
+      "crear app sin codigo con ia",
+      "generador de aplicaciones con ia",
+      "lovable ai"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito saber programar para usar Lovable?",
+        "answer": "No, está diseñado específicamente para que personas sin experiencia técnica puedan construir un producto funcional describiendo la idea en lenguaje natural."
+      },
+      {
+        "question": "¿La app generada está lista para muchos usuarios reales?",
+        "answer": "Sirve muy bien para validar una idea o un MVP; para escalar a mucho tráfico suele requerir revisión técnica adicional de un desarrollador."
+      }
+    ],
+    "conclusion": "Lovable reduce drásticamente el tiempo y coste de validar una idea de producto antes de invertir en un equipo de desarrollo completo."
+  },
+  {
+    "id": "bolt-new",
+    "slug": "bolt-new",
+    "name": "Bolt.new",
+    "tagline": "Genera y ejecuta proyectos web completos en el navegador",
+    "description": "Bolt.new de StackBlitz permite generar, editar y ejecutar aplicaciones web completas directamente en el navegador a partir de una descripción de texto, con un entorno de desarrollo instantáneo sin necesidad de instalación local.",
+    "logoUrl": "https://picsum.photos/seed/bolt-new-logo/128/128",
+    "websiteUrl": "https://bolt.new",
+    "categorySlug": "diseno-ui-ux-con-ia",
+    "tags": [
+      "desarrollo"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 510,
+    "features": [
+      "Generación de proyectos web completos desde texto",
+      "Entorno de ejecución instantáneo en el navegador",
+      "Edición conversacional del código generado",
+      "Exportación del proyecto completo"
+    ],
+    "pros": [
+      "No requiere instalación ni configuración local",
+      "Muy rápido para prototipar ideas"
+    ],
+    "cons": [
+      "Los créditos de generación se consumen rápido en proyectos complejos"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "bolt-new",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "bolt.new",
+      "stackblitz bolt",
+      "generador de apps web con ia",
+      "crear web con ia sin instalar nada"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito instalar algo en mi ordenador?",
+        "answer": "No, todo el entorno de desarrollo y ejecución funciona directamente en el navegador, sin instalación local necesaria."
+      },
+      {
+        "question": "¿Puedo exportar el código generado?",
+        "answer": "Sí, puedes descargar o conectar el proyecto generado a un repositorio de código para seguir trabajando fuera de la plataforma."
+      }
+    ],
+    "conclusion": "Bolt.new es especialmente útil para prototipar rápido sin la fricción de configurar un entorno de desarrollo local."
+  },
+  {
+    "id": "framer-ai",
+    "slug": "framer-ai",
+    "name": "Framer AI",
+    "tagline": "Diseña y publica sitios web completos con IA",
+    "description": "Framer AI genera sitios web completos y con diseño profesional a partir de una descripción de negocio, combinando generación con un editor visual avanzado para ajustar cada detalle sin necesidad de código.",
+    "logoUrl": "https://picsum.photos/seed/framer-ai-logo/128/128",
+    "websiteUrl": "https://www.framer.com/ai",
+    "categorySlug": "diseno-ui-ux-con-ia",
+    "tags": [
+      "diseño"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 15,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 720,
+    "features": [
+      "Generación de sitio web completo desde texto",
+      "Editor visual de arrastrar y soltar",
+      "Animaciones e interacciones avanzadas",
+      "Publicación con un clic y dominio propio"
+    ],
+    "pros": [
+      "Resultado con diseño muy pulido de fábrica",
+      "Editor visual potente para personalizar después"
+    ],
+    "cons": [
+      "La curva de aprendizaje del editor avanzado es mayor que en constructores más simples"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "framer-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "framer ai",
+      "crear web con ia",
+      "framer paginas web",
+      "generador de sitios web con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo personalizar el sitio generado sin saber código?",
+        "answer": "Sí, el editor visual de Framer permite ajustar prácticamente cualquier elemento sin necesidad de escribir código."
+      },
+      {
+        "question": "¿Sirve para sitios con muchas páginas?",
+        "answer": "Sí, escala bien para sitios corporativos completos, no solo landing pages sencillas."
+      }
+    ],
+    "conclusion": "Framer AI combina generación rápida con un editor visual lo bastante potente para sitios web profesionales completos."
+  },
+  {
+    "id": "krisp",
+    "slug": "krisp",
+    "name": "Krisp",
+    "tagline": "Cancelación de ruido con IA para llamadas y reuniones",
+    "description": "Krisp elimina ruido de fondo, eco y voces de otras personas en tiempo real durante videollamadas, funcionando como una capa de audio inteligente compatible con cualquier plataforma de videoconferencia sin configuración adicional.",
+    "logoUrl": "https://picsum.photos/seed/krisp-logo/128/128",
+    "websiteUrl": "https://krisp.ai",
+    "categorySlug": "ia-para-call-centers",
+    "tags": [
+      "productividad",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 8,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 1450,
+    "features": [
+      "Cancelación de ruido de fondo en tiempo real",
+      "Eliminación de eco",
+      "Compatible con cualquier app de videollamada",
+      "Transcripción y resumen de reuniones"
+    ],
+    "pros": [
+      "Funciona con cualquier plataforma de videollamada sin configuración especial",
+      "Mejora notable de calidad de audio percibida"
+    ],
+    "cons": [
+      "El plan gratuito tiene minutos limitados al mes"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "krisp",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "krisp ai",
+      "cancelacion de ruido con ia",
+      "mejorar audio de llamadas",
+      "krisp reuniones"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Krisp funciona con Zoom, Meet y Teams por igual?",
+        "answer": "Sí, al operar a nivel de sistema en tu micrófono, funciona con cualquier aplicación de videollamada sin integración específica."
+      },
+      {
+        "question": "¿Elimina también el ruido de la otra persona en la llamada?",
+        "answer": "Sí, puede filtrar tanto tu propio ruido de fondo como el de las personas con las que hablas en la llamada."
+      }
+    ],
+    "conclusion": "Krisp es una de las formas más sencillas de mejorar drásticamente la calidad de audio percibida en llamadas de trabajo remoto."
+  },
+  {
+    "id": "gong",
+    "slug": "gong",
+    "name": "Gong",
+    "tagline": "Inteligencia de ingresos a partir del análisis de llamadas de venta",
+    "description": "Gong analiza llamadas y reuniones de venta grabadas para identificar patrones que correlacionan con el cierre exitoso de negocios, ofreciendo a equipos comerciales datos objetivos sobre qué comportamientos realmente funcionan.",
+    "logoUrl": "https://picsum.photos/seed/gong-logo/128/128",
+    "websiteUrl": "https://www.gong.io",
+    "categorySlug": "ia-para-ventas-b2b",
+    "tags": [
+      "marketing"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": null,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 890,
+    "features": [
+      "Análisis de llamadas de venta grabadas",
+      "Identificación de patrones de éxito comercial",
+      "Alertas de riesgo en oportunidades activas",
+      "Coaching basado en datos reales de conversación"
+    ],
+    "pros": [
+      "Datos objetivos sobre qué funciona realmente en ventas",
+      "Muy valorado por equipos comerciales grandes"
+    ],
+    "cons": [
+      "Orientado a empresas medianas y grandes, precio no público"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "gong",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "gong io",
+      "analisis de llamadas de venta",
+      "revenue intelligence",
+      "gong para ventas"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Gong sustituye la formación tradicional de ventas?",
+        "answer": "La complementa aportando datos objetivos de conversaciones reales, en lugar de basarse solo en percepciones subjetivas de los managers."
+      },
+      {
+        "question": "¿Es adecuado para un equipo de ventas pequeño?",
+        "answer": "Su coste y complejidad están más orientados a equipos comerciales medianos o grandes con volumen suficiente de llamadas para analizar."
+      }
+    ],
+    "conclusion": "Gong convierte el análisis de llamadas de venta en datos accionables, algo especialmente valioso en equipos comerciales de tamaño considerable."
+  },
+  {
+    "id": "clay",
+    "slug": "clay",
+    "name": "Clay",
+    "tagline": "Enriquecimiento de datos de contactos para prospección",
+    "description": "Clay combina docenas de fuentes de datos para enriquecer automáticamente información de contactos y empresas, permitiendo a equipos de ventas y marketing personalizar prospección a gran escala con datos actualizados y precisos.",
+    "logoUrl": "https://picsum.photos/seed/clay-logo/128/128",
+    "websiteUrl": "https://www.clay.com",
+    "categorySlug": "ia-para-ventas-b2b",
+    "tags": [
+      "marketing",
+      "premium"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 149,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 340,
+    "features": [
+      "Enriquecimiento de datos desde docenas de fuentes",
+      "Automatización de investigación de prospectos",
+      "Generación de mensajes personalizados a escala",
+      "Integración con CRMs y herramientas de outreach"
+    ],
+    "pros": [
+      "Combina muchas fuentes de datos en un solo flujo",
+      "Muy potente para prospección personalizada a escala"
+    ],
+    "cons": [
+      "Precio elevado para equipos pequeños",
+      "Curva de aprendizaje inicial notable"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "clay",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "clay com",
+      "enriquecimiento de datos con ia",
+      "clay para ventas",
+      "prospeccion con datos enriquecidos"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Qué significa 'enriquecer' datos de contacto?",
+        "answer": "Significa completar automáticamente información faltante de un contacto o empresa (cargo, tamaño, tecnología usada) a partir de fuentes públicas y de pago."
+      },
+      {
+        "question": "¿Es adecuado para equipos pequeños?",
+        "answer": "Su precio y complejidad lo hacen más adecuado para equipos de ventas con volumen de prospección considerable."
+      }
+    ],
+    "conclusion": "Clay destaca en prospección de ventas a escala donde la personalización basada en datos reales marca una diferencia real en la tasa de respuesta."
+  },
+  {
+    "id": "hubspot-breeze",
+    "slug": "hubspot-breeze",
+    "name": "HubSpot Breeze",
+    "tagline": "IA integrada en el CRM de HubSpot",
+    "description": "Breeze es el conjunto de funciones de IA integradas en HubSpot, cubriendo generación de contenido, resumen de interacciones con clientes y agentes que automatizan tareas de marketing, ventas y servicio dentro del propio CRM.",
+    "logoUrl": "https://picsum.photos/seed/hubspot-breeze-logo/128/128",
+    "websiteUrl": "https://www.hubspot.com/artificial-intelligence",
+    "categorySlug": "marketing-con-ia",
+    "tags": [
+      "marketing"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": null,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 610,
+    "features": [
+      "Resumen automático de interacciones con clientes",
+      "Generación de contenido de marketing integrada",
+      "Agentes de IA para tareas de servicio al cliente",
+      "Puntuación predictiva de leads"
+    ],
+    "pros": [
+      "Se integra sin fricción si ya usas HubSpot como CRM",
+      "Cubre marketing, ventas y servicio en un mismo lugar"
+    ],
+    "cons": [
+      "Solo aporta valor completo si ya usas el ecosistema HubSpot"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "hubspot-breeze",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "hubspot breeze",
+      "hubspot ia",
+      "ia en hubspot crm",
+      "breeze copilot hubspot"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito ser cliente de HubSpot para usar Breeze?",
+        "answer": "Sí, Breeze son funciones de IA integradas dentro del propio CRM de HubSpot, no una herramienta independiente."
+      },
+      {
+        "question": "¿Qué tareas automatiza Breeze en el día a día?",
+        "answer": "Resumen de conversaciones con clientes, redacción de contenido de marketing y puntuación automática de la calidad de los leads, entre otras."
+      }
+    ],
+    "conclusion": "Si ya usas HubSpot como CRM, Breeze añade capacidades de IA sin necesidad de integrar herramientas externas adicionales."
+  },
+  {
+    "id": "writesonic",
+    "slug": "writesonic",
+    "name": "Writesonic",
+    "tagline": "Generación de contenido SEO y marketing a escala",
+    "description": "Writesonic combina redacción de artículos largos optimizados para SEO con generación de anuncios y contenido de marketing, incluyendo un asistente que investiga palabras clave antes de redactar el contenido final.",
+    "logoUrl": "https://picsum.photos/seed/writesonic-logo/128/128",
+    "websiteUrl": "https://writesonic.com",
+    "categorySlug": "seo-con-ia",
+    "tags": [
+      "seo",
+      "escritura"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 19,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 780,
+    "features": [
+      "Generación de artículos largos con investigación SEO integrada",
+      "Plantillas de anuncios y contenido de marketing",
+      "Chatbot de IA personalizable para atención al cliente",
+      "Detector de contenido generado por IA"
+    ],
+    "pros": [
+      "Buen equilibrio entre SEO y redacción de marketing",
+      "Plan gratuito para probar antes de pagar"
+    ],
+    "cons": [
+      "La calidad de redacción requiere revisión editorial en textos largos"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "writesonic",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "writesonic",
+      "generador de contenido seo con ia",
+      "writesonic español",
+      "redaccion seo con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Writesonic investiga palabras clave automáticamente?",
+        "answer": "Sí, incluye un flujo de investigación de palabras clave antes de generar el contenido, a diferencia de generadores que solo redactan sin ese paso previo."
+      },
+      {
+        "question": "¿El contenido generado posiciona bien en Google?",
+        "answer": "Ayuda a estructurar contenido optimizado, pero el posicionamiento final depende de muchos factores adicionales como autoridad de dominio y calidad editorial."
+      }
+    ],
+    "conclusion": "Writesonic es útil como acelerador del primer borrador de contenido SEO, pero la revisión editorial sigue siendo necesaria antes de publicar."
+  },
+  {
+    "id": "rytr",
+    "slug": "rytr",
+    "name": "Rytr",
+    "tagline": "Generación de contenido de marketing económica y rápida",
+    "description": "Rytr ofrece generación de textos de marketing (anuncios, emails, descripciones) a un precio significativamente más bajo que la mayoría de competidores, con plantillas específicas por caso de uso y varios tonos de voz predefinidos.",
+    "logoUrl": "https://picsum.photos/seed/rytr-logo/128/128",
+    "websiteUrl": "https://rytr.me",
+    "categorySlug": "escritura",
+    "tags": [
+      "escritura",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 9,
+    "currency": "USD",
+    "rating": 4.2,
+    "reviewCount": 620,
+    "features": [
+      "Más de 40 plantillas de contenido de marketing",
+      "Múltiples tonos de voz predefinidos",
+      "Plan gratuito con límite mensual de caracteres",
+      "Corrector de plagio integrado"
+    ],
+    "pros": [
+      "Uno de los precios más bajos del mercado",
+      "Plan gratuito funcional para uso ocasional"
+    ],
+    "cons": [
+      "Calidad de redacción algo por debajo de herramientas premium como Jasper"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "rytr",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "rytr ai",
+      "rytr español",
+      "generador de contenido barato con ia",
+      "alternativa economica a jasper"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Rytr es más barato que Jasper o Copy.ai?",
+        "answer": "Sí, sus planes de pago suelen tener un precio de entrada notablemente más bajo que competidores orientados a equipos de marketing de empresa."
+      },
+      {
+        "question": "¿Tiene plan gratuito?",
+        "answer": "Sí, ofrece un plan gratuito con un límite mensual de caracteres generados, suficiente para uso ocasional."
+      }
+    ],
+    "conclusion": "Rytr es una opción sólida para quien busca generación de contenido de marketing básica sin el precio de las herramientas más premium."
+  },
+  {
+    "id": "surfer-seo",
+    "slug": "surfer-seo",
+    "name": "Surfer SEO",
+    "tagline": "Optimización de contenido basada en análisis de la competencia",
+    "description": "Surfer SEO analiza los primeros resultados de Google para una palabra clave y genera una guía de optimización de contenido (longitud, términos relacionados, estructura) que ayuda a alinear tu artículo con lo que ya funciona en ese nicho.",
+    "logoUrl": "https://picsum.photos/seed/surfer-seo-logo/128/128",
+    "websiteUrl": "https://surferseo.com",
+    "categorySlug": "seo-con-ia",
+    "tags": [
+      "seo",
+      "premium"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 69,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 920,
+    "features": [
+      "Análisis de contenido de los primeros resultados de Google",
+      "Guía de optimización con términos relacionados",
+      "Editor de contenido con puntuación en tiempo real",
+      "Auditoría de contenido existente"
+    ],
+    "pros": [
+      "Basado en datos reales de qué está posicionando actualmente",
+      "Editor con feedback en tiempo real mientras escribes"
+    ],
+    "cons": [
+      "Precio elevado para blogs pequeños o individuales"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "surfer-seo",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "surfer seo",
+      "optimizacion de contenido seo",
+      "surfer seo español",
+      "editor de contenido seo con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Surfer SEO garantiza posicionar en el top de Google?",
+        "answer": "No, ninguna herramienta puede garantizarlo; ayuda a alinear tu contenido con patrones de las páginas que ya posicionan bien, pero el resultado depende de más factores."
+      },
+      {
+        "question": "¿Sirve para auditar contenido ya publicado?",
+        "answer": "Sí, incluye una función de auditoría que analiza artículos existentes y sugiere mejoras para aumentar su relevancia SEO."
+      }
+    ],
+    "conclusion": "Surfer SEO es más útil como guía basada en datos que como garantía de resultados; la calidad editorial sigue siendo decisiva."
+  },
+  {
+    "id": "frase-io",
+    "slug": "frase-io",
+    "name": "Frase",
+    "tagline": "Investigación y redacción SEO en un mismo flujo",
+    "description": "Frase combina investigación de la competencia, generación de esquemas de contenido y redacción asistida por IA en un solo flujo de trabajo, pensado para equipos de contenido que producen artículos SEO de forma recurrente.",
+    "logoUrl": "https://picsum.photos/seed/frase-io-logo/128/128",
+    "websiteUrl": "https://www.frase.io",
+    "categorySlug": "seo-con-ia",
+    "tags": [
+      "seo"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 15,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 480,
+    "features": [
+      "Análisis automático de la competencia por palabra clave",
+      "Generación de esquemas de contenido",
+      "Redacción asistida con IA",
+      "Preguntas frecuentes extraídas automáticamente"
+    ],
+    "pros": [
+      "Flujo completo de investigación a redacción en una sola herramienta",
+      "Precio de entrada más accesible que otras suites de SEO"
+    ],
+    "cons": [
+      "La interfaz puede resultar algo menos pulida que competidores premium"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "frase-io",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "frase io",
+      "investigacion de contenido seo con ia",
+      "frase seo español",
+      "generador de esquemas de contenido"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Frase reemplaza la necesidad de un redactor SEO?",
+        "answer": "Acelera investigación y estructura, pero la calidad final del contenido sigue beneficiándose de la revisión de un redactor con criterio editorial."
+      },
+      {
+        "question": "¿Extrae preguntas frecuentes automáticamente?",
+        "answer": "Sí, analiza qué preguntas relacionadas aparecen en los resultados de búsqueda para sugerir una sección de FAQ relevante."
+      }
+    ],
+    "conclusion": "Frase resulta especialmente útil para equipos de contenido que necesitan un flujo completo de investigación a redacción sin usar varias herramientas separadas."
+  },
+  {
+    "id": "photoroom",
+    "slug": "photoroom",
+    "name": "Photoroom",
+    "tagline": "Edición de fotos de producto con IA en el móvil",
+    "description": "Photoroom elimina fondos, genera fondos nuevos con IA y retoca fotos de producto directamente desde el móvil, muy usado por vendedores de ecommerce y marketplaces que necesitan fotos profesionales sin estudio fotográfico.",
+    "logoUrl": "https://picsum.photos/seed/photoroom-logo/128/128",
+    "websiteUrl": "https://www.photoroom.com",
+    "categorySlug": "eliminacion-de-fondo",
+    "tags": [
+      "imagenes",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 1680,
+    "features": [
+      "Eliminación de fondo con un toque",
+      "Generación de fondos nuevos con IA",
+      "Plantillas para fichas de producto",
+      "App móvil pensada para vendedores de ecommerce"
+    ],
+    "pros": [
+      "Muy rápido y pensado para uso desde el móvil",
+      "Plan gratuito con marca de agua funcional para probar"
+    ],
+    "cons": [
+      "Las funciones avanzadas requieren suscripción de pago"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "photoroom",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "photoroom",
+      "quitar fondo foto movil",
+      "fotos de producto con ia",
+      "photoroom ecommerce"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Photoroom funciona bien en el móvil?",
+        "answer": "Sí, está diseñado principalmente como app móvil, pensada para vendedores que fotografían producto con su propio teléfono."
+      },
+      {
+        "question": "¿Puedo generar fondos personalizados con IA?",
+        "answer": "Sí, además de eliminar el fondo original puedes generar un fondo nuevo descrito por texto para tu foto de producto."
+      }
+    ],
+    "conclusion": "Photoroom es una de las formas más rápidas de conseguir fotos de producto de aspecto profesional sin estudio fotográfico ni edición compleja."
+  },
+  {
+    "id": "topaz-photo-ai",
+    "slug": "topaz-photo-ai",
+    "name": "Topaz Photo AI",
+    "tagline": "Mejora de resolución y nitidez de fotografías con IA",
+    "description": "Topaz Photo AI aumenta la resolución, corrige el enfoque y reduce el ruido de fotografías automáticamente, muy usado por fotógrafos profesionales para recuperar detalle en imágenes de baja calidad o ampliar fotos para impresión de gran formato.",
+    "logoUrl": "https://picsum.photos/seed/topaz-photo-ai-logo/128/128",
+    "websiteUrl": "https://www.topazlabs.com/topaz-photo-ai",
+    "categorySlug": "mejora-de-resolucion",
+    "tags": [
+      "imagenes",
+      "premium"
+    ],
+    "pricingModel": "PAID",
+    "pricingFrom": 199,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 720,
+    "features": [
+      "Aumento de resolución (upscaling) hasta 6x",
+      "Corrección automática de enfoque",
+      "Reducción de ruido en fotos de baja luz",
+      "Procesamiento por lotes de múltiples imágenes"
+    ],
+    "pros": [
+      "Resultados muy superiores a herramientas de upscaling genéricas",
+      "Procesamiento por lotes para grandes volúmenes de fotos"
+    ],
+    "cons": [
+      "Pago único elevado comparado con suscripciones mensuales de otras herramientas"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "topaz-photo-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "topaz photo ai",
+      "mejorar resolucion de fotos",
+      "topaz labs upscaling",
+      "restaurar fotos antiguas con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Vale la pena para fotografía amateur?",
+        "answer": "Su coste tiene más sentido para fotógrafos profesionales o semiprofesionales que necesitan recuperar detalle en volúmenes grandes de fotos con regularidad."
+      },
+      {
+        "question": "¿Funciona con fotos muy antiguas de baja calidad?",
+        "answer": "Sí, es uno de sus casos de uso más valorados: recuperar detalle en fotografías antiguas escaneadas de baja resolución."
+      }
+    ],
+    "conclusion": "Topaz Photo AI es la referencia para fotógrafos profesionales que necesitan recuperar calidad en imágenes de baja resolución o ruido excesivo."
+  },
+  {
+    "id": "clipdrop",
+    "slug": "clipdrop",
+    "name": "Clipdrop",
+    "tagline": "Suite de edición de imágenes con IA de Stability AI",
+    "description": "Clipdrop reúne varias herramientas de edición de imágenes con IA en una sola app: eliminación de fondo, upscaling, relighting y generación de imágenes, pensado como caja de herramientas rápida para creadores y diseñadores.",
+    "logoUrl": "https://picsum.photos/seed/clipdrop-logo/128/128",
+    "websiteUrl": "https://clipdrop.co",
+    "categorySlug": "generacion-de-imagenes",
+    "tags": [
+      "imagenes"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 12,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 590,
+    "features": [
+      "Eliminación de fondo",
+      "Upscaling de imágenes",
+      "Reiluminación (relighting) de fotos",
+      "Generación de imágenes desde texto"
+    ],
+    "pros": [
+      "Varias herramientas útiles en una sola app",
+      "Buen plan gratuito para probar cada función"
+    ],
+    "cons": [
+      "Cada herramienta individual puede ser menos potente que una especializada"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "clipdrop",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "clipdrop",
+      "clipdrop stability ai",
+      "herramientas de edicion de imagen con ia",
+      "relighting con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Qué es la función de 'relighting'?",
+        "answer": "Permite cambiar la iluminación de una foto ya tomada, simulando distintas fuentes de luz sin necesidad de volver a fotografiar la escena."
+      },
+      {
+        "question": "¿Necesito varias suscripciones para acceder a todas las herramientas?",
+        "answer": "No, una sola cuenta de Clipdrop da acceso a todas sus herramientas de edición incluidas en el plan contratado."
+      }
+    ],
+    "conclusion": "Clipdrop es una buena opción si prefieres una sola app con varias herramientas de edición básicas en vez de suscribirte a varias especializadas."
+  },
+  {
+    "id": "recraft",
+    "slug": "recraft",
+    "name": "Recraft",
+    "tagline": "Generación de imágenes vectoriales y assets de marca con IA",
+    "description": "Recraft se especializa en generar imágenes vectoriales, iconos y elementos de diseño de marca consistentes entre sí, un caso de uso donde otros generadores de imágenes rasterizadas (Midjourney, DALL-E) no ofrecen buenos resultados.",
+    "logoUrl": "https://picsum.photos/seed/recraft-logo/128/128",
+    "websiteUrl": "https://www.recraft.ai",
+    "categorySlug": "generacion-de-imagenes",
+    "tags": [
+      "imagenes",
+      "diseño"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 380,
+    "features": [
+      "Generación de gráficos vectoriales (SVG)",
+      "Iconos y elementos de UI consistentes",
+      "Estilo de marca reutilizable entre generaciones",
+      "Exportación directa a formato vectorial editable"
+    ],
+    "pros": [
+      "Único enfoque especializado en vectores entre generadores populares",
+      "Buena consistencia de estilo entre elementos de una misma marca"
+    ],
+    "cons": [
+      "Menos conocido, comunidad más pequeña que Midjourney o DALL-E"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "recraft",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "recraft ai",
+      "generador de vectores con ia",
+      "iconos con ia",
+      "recraft svg"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Por qué elegir Recraft en vez de Midjourney para iconos?",
+        "answer": "Recraft genera archivos vectoriales editables (SVG), mientras que Midjourney genera imágenes rasterizadas que no se pueden escalar sin pérdida de calidad."
+      },
+      {
+        "question": "¿Puedo mantener consistencia visual entre varios iconos?",
+        "answer": "Sí, es una de sus funciones más valoradas: generar un set de iconos o gráficos que comparten el mismo estilo visual de forma coherente."
+      }
+    ],
+    "conclusion": "Para necesidades de diseño vectorial (iconos, elementos de marca), Recraft cubre un hueco que los generadores de imagen rasterizada no resuelven bien."
+  },
+  {
+    "id": "pictory",
+    "slug": "pictory",
+    "name": "Pictory",
+    "tagline": "Convierte artículos y guiones de texto en vídeo automáticamente",
+    "description": "Pictory transforma contenido de texto (artículos de blog, guiones) en vídeos con clips de stock, subtítulos y voz en off generados automáticamente, pensado para creadores que quieren repurponer contenido escrito en formato de vídeo sin grabar nada.",
+    "logoUrl": "https://picsum.photos/seed/pictory-logo/128/128",
+    "websiteUrl": "https://pictory.ai",
+    "categorySlug": "video",
+    "tags": [
+      "video"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 19,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 640,
+    "features": [
+      "Conversión de texto a vídeo automática",
+      "Biblioteca de clips de stock integrada",
+      "Subtítulos y voz en off automáticos",
+      "Resumen automático de vídeos largos"
+    ],
+    "pros": [
+      "Muy útil para repurponer contenido de blog en vídeo",
+      "No requiere grabar ni editar manualmente"
+    ],
+    "cons": [
+      "El resultado depende mucho de la calidad de los clips de stock disponibles"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "pictory",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "pictory ai",
+      "texto a video con ia",
+      "convertir articulo en video",
+      "pictory español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Necesito grabar algo para usar Pictory?",
+        "answer": "No, genera el vídeo completo a partir de tu texto usando clips de stock, subtítulos y voz en off generados automáticamente."
+      },
+      {
+        "question": "¿Puedo usar mi propio guion en vez de un artículo existente?",
+        "answer": "Sí, puedes partir de un artículo de blog existente o escribir un guion nuevo directamente en la plataforma."
+      }
+    ],
+    "conclusion": "Pictory es una forma eficiente de darle una segunda vida en vídeo a contenido escrito que ya tienes publicado."
+  },
+  {
+    "id": "invideo-ai",
+    "slug": "invideo-ai",
+    "name": "InVideo AI",
+    "tagline": "Genera vídeos completos a partir de una idea de texto",
+    "description": "InVideo AI escribe el guion, selecciona clips visuales, añade voz en off y música, generando un vídeo completo a partir de una simple descripción del tema, con plantillas orientadas a marketing, redes sociales y contenido educativo.",
+    "logoUrl": "https://picsum.photos/seed/invideo-ai-logo/128/128",
+    "websiteUrl": "https://invideo.io/ai",
+    "categorySlug": "video",
+    "tags": [
+      "video",
+      "marketing"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 20,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 710,
+    "features": [
+      "Generación de guion, visuales y voz en off desde una idea",
+      "Plantillas por tipo de vídeo (marketing, educativo, redes sociales)",
+      "Edición posterior con herramientas manuales",
+      "Biblioteca de música y efectos"
+    ],
+    "pros": [
+      "Todo el proceso creativo en una sola herramienta",
+      "Buenas plantillas de partida por objetivo"
+    ],
+    "cons": [
+      "El resultado inicial suele requerir ajustes manuales para pulir el resultado"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "invideo-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "invideo ai",
+      "generador de video con ia",
+      "invideo español",
+      "texto a video marketing"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo editar el vídeo generado manualmente después?",
+        "answer": "Sí, InVideo incluye un editor manual completo para ajustar cualquier elemento del vídeo generado automáticamente."
+      },
+      {
+        "question": "¿Sirve para vídeos de marketing y no solo contenido personal?",
+        "answer": "Sí, incluye plantillas específicas orientadas a anuncios, presentación de producto y otros formatos de marketing."
+      }
+    ],
+    "conclusion": "InVideo AI cubre todo el proceso de creación de vídeo desde una idea de texto, ideal para quien necesita producir contenido de vídeo con regularidad sin equipo de producción."
+  },
+  {
+    "id": "capcut",
+    "slug": "capcut",
+    "name": "CapCut",
+    "tagline": "Edición de vídeo móvil con funciones de IA para redes sociales",
+    "description": "CapCut combina un editor de vídeo móvil intuitivo con funciones de IA como eliminación de fondo, subtítulos automáticos y plantillas virales, siendo una de las herramientas más usadas por creadores de contenido para TikTok, Reels y Shorts.",
+    "logoUrl": "https://picsum.photos/seed/capcut-logo/128/128",
+    "websiteUrl": "https://www.capcut.com",
+    "categorySlug": "edicion-de-video-con-ia",
+    "tags": [
+      "video",
+      "gratis"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 8,
+    "currency": "USD",
+    "rating": 4.6,
+    "reviewCount": 3200,
+    "features": [
+      "Edición de vídeo móvil intuitiva",
+      "Subtítulos automáticos con reconocimiento de voz",
+      "Eliminación de fondo sin croma",
+      "Plantillas de efectos virales de tendencia"
+    ],
+    "pros": [
+      "Gratis con funciones muy completas incluso sin pagar",
+      "Muy popular entre creadores de contenido para móvil"
+    ],
+    "cons": [
+      "Algunas plantillas y efectos premium requieren suscripción"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "capcut",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "capcut",
+      "editor de video tiktok",
+      "capcut ia",
+      "editar reels con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿CapCut es realmente gratis?",
+        "answer": "Sí, la mayoría de funciones esenciales de edición están disponibles gratis; el plan de pago desbloquea efectos y plantillas adicionales."
+      },
+      {
+        "question": "¿Es mejor para móvil o para escritorio?",
+        "answer": "Nació como app móvil y sigue siendo su punto fuerte, aunque también ofrece una versión de escritorio con funciones similares."
+      }
+    ],
+    "conclusion": "CapCut se ha convertido en el editor de referencia para creadores de contenido corto en móvil, gracias a su combinación de gratuidad y funciones de IA útiles."
+  },
+  {
+    "id": "opus-clip",
+    "slug": "opus-clip",
+    "name": "Opus Clip",
+    "tagline": "Extrae los mejores clips virales de vídeos largos automáticamente",
+    "description": "Opus Clip analiza un vídeo largo (podcast, stream, entrevista) y extrae automáticamente los fragmentos con mayor potencial viral, añadiendo subtítulos y recomponiendo el encuadre para formato vertical, listo para publicar en redes sociales.",
+    "logoUrl": "https://picsum.photos/seed/opus-clip-logo/128/128",
+    "websiteUrl": "https://www.opus.pro",
+    "categorySlug": "generacion-de-miniaturas",
+    "tags": [
+      "video",
+      "marketing"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 15,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 560,
+    "features": [
+      "Detección automática de momentos con potencial viral",
+      "Recomposición a formato vertical para redes sociales",
+      "Subtítulos automáticos estilizados",
+      "Puntuación de potencial viral por clip"
+    ],
+    "pros": [
+      "Ahorra horas de edición manual para extraer clips destacados",
+      "Puntuación que ayuda a priorizar qué publicar primero"
+    ],
+    "cons": [
+      "La detección de \"momentos virales\" no siempre acierta con el criterio editorial del creador"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "opus-clip",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "opus clip",
+      "generador de clips virales con ia",
+      "clips de podcast para redes",
+      "opus pro español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Cómo decide Opus Clip qué momento es viral?",
+        "answer": "Analiza patrones de energía, ritmo de habla y estructura narrativa del vídeo original para identificar fragmentos con mayor potencial de enganchar a la audiencia."
+      },
+      {
+        "question": "¿Sirve para cualquier tipo de vídeo largo?",
+        "answer": "Funciona especialmente bien con podcasts, streams y entrevistas donde hay conversación continua de la que extraer momentos destacados."
+      }
+    ],
+    "conclusion": "Opus Clip es especialmente valioso para creadores que ya producen contenido largo y quieren multiplicar su alcance en redes sociales sin editar manualmente cada clip."
+  },
+  {
+    "id": "wondercraft",
+    "slug": "wondercraft",
+    "name": "Wondercraft",
+    "tagline": "Producción de podcasts completos con voces de IA",
+    "description": "Wondercraft permite crear episodios de podcast completos combinando guion generado por IA, voces sintéticas realistas y música de fondo, pensado para empresas y creadores que quieren lanzar un podcast sin equipo de grabación.",
+    "logoUrl": "https://picsum.photos/seed/wondercraft-logo/128/128",
+    "websiteUrl": "https://www.wondercraft.ai",
+    "categorySlug": "podcast-con-ia",
+    "tags": [
+      "audio",
+      "productividad"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 24,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 210,
+    "features": [
+      "Generación de guion de podcast con IA",
+      "Voces sintéticas realistas para narración",
+      "Música de fondo y efectos integrados",
+      "Publicación directa a plataformas de podcast"
+    ],
+    "pros": [
+      "Permite lanzar un podcast sin grabar ni editar audio manualmente",
+      "Bueno para podcasts corporativos recurrentes"
+    ],
+    "cons": [
+      "La naturalidad de la voz, aunque buena, se nota distinta a un locutor humano en episodios muy largos"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "wondercraft",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "wondercraft ai",
+      "crear podcast con ia",
+      "podcast con voces sinteticas",
+      "wondercraft español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo usar mi propia voz clonada en vez de una voz genérica?",
+        "answer": "Sí, muchos planes permiten clonar tu propia voz (con consentimiento) para mantener consistencia de marca personal en el podcast."
+      },
+      {
+        "question": "¿Sirve para podcasts corporativos internos?",
+        "answer": "Sí, es un caso de uso habitual: empresas que producen contenido de audio interno recurrente sin necesidad de un estudio de grabación."
+      }
+    ],
+    "conclusion": "Wondercraft reduce la barrera de entrada para lanzar un podcast recurrente, especialmente en contextos corporativos donde la grabación tradicional es poco práctica."
+  },
+  {
+    "id": "webflow-ai",
+    "slug": "webflow-ai",
+    "name": "Webflow AI",
+    "tagline": "Generación de sitios web profesionales con control visual total",
+    "description": "Webflow AI añade generación de secciones y contenido con IA al editor visual de Webflow, una plataforma que combina diseño sin código con control de nivel casi profesional sobre HTML y CSS generado, popular entre agencias y diseñadores.",
+    "logoUrl": "https://picsum.photos/seed/webflow-ai-logo/128/128",
+    "websiteUrl": "https://webflow.com",
+    "categorySlug": "diseno-ui-ux-con-ia",
+    "tags": [
+      "diseño"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 14,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 980,
+    "features": [
+      "Generación de secciones de página con IA",
+      "Editor visual con control de código real",
+      "Sistema de gestión de contenido (CMS) integrado",
+      "Hosting y publicación integrados"
+    ],
+    "pros": [
+      "Control de diseño casi tan preciso como codificar a mano",
+      "Muy usado profesionalmente por agencias de diseño"
+    ],
+    "cons": [
+      "Curva de aprendizaje más pronunciada que constructores web más simples"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "webflow-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "webflow ai",
+      "webflow generador de secciones",
+      "crear web profesional sin codigo",
+      "webflow español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Webflow es mejor que WordPress para sitios de marca?",
+        "answer": "Para diseño visual muy cuidado y control preciso, muchos diseñadores prefieren Webflow; WordPress sigue siendo más flexible en plugins y ecosistema."
+      },
+      {
+        "question": "¿Necesito saber CSS para usar Webflow?",
+        "answer": "No es obligatorio gracias al editor visual, aunque conocer conceptos de CSS ayuda mucho a aprovechar todo su potencial de personalización."
+      }
+    ],
+    "conclusion": "Webflow AI acelera la creación de secciones dentro de una plataforma que ya ofrecía el control de diseño más preciso entre los constructores web sin código."
+  },
+  {
+    "id": "durable",
+    "slug": "durable",
+    "name": "Durable",
+    "tagline": "Genera un sitio web de negocio completo en menos de un minuto",
+    "description": "Durable genera un sitio web completo con textos, imágenes y estructura de páginas a partir del nombre y sector de tu negocio en cuestión de segundos, pensado para pequeños negocios que necesitan presencia online rápida sin presupuesto de diseño.",
+    "logoUrl": "https://picsum.photos/seed/durable-logo/128/128",
+    "websiteUrl": "https://durable.co",
+    "categorySlug": "diseno-ui-ux-con-ia",
+    "tags": [
+      "diseño",
+      "marketing"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 12,
+    "currency": "USD",
+    "rating": 4.2,
+    "reviewCount": 430,
+    "features": [
+      "Generación de sitio web completo en segundos",
+      "Textos e imágenes generados automáticamente",
+      "CRM básico y facturación integrados",
+      "Chatbot de atención al cliente incluido"
+    ],
+    "pros": [
+      "Extremadamente rápido para tener presencia online básica",
+      "Incluye herramientas de negocio además del sitio web"
+    ],
+    "cons": [
+      "Personalización de diseño más limitada que constructores más flexibles"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "durable",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "durable co",
+      "crear pagina web en un minuto",
+      "generador de web para negocios",
+      "durable ai español"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿En cuánto tiempo tengo mi web lista?",
+        "answer": "El sitio inicial se genera en menos de un minuto a partir del nombre y sector de tu negocio, aunque conviene revisar y ajustar el contenido después."
+      },
+      {
+        "question": "¿Incluye herramientas más allá del sitio web?",
+        "answer": "Sí, incluye funciones básicas de CRM, facturación y un chatbot de atención al cliente pensadas para pequeños negocios."
+      }
+    ],
+    "conclusion": "Durable prioriza velocidad de lanzamiento sobre personalización profunda, ideal para negocios que necesitan presencia online básica de inmediato."
+  },
+  {
+    "id": "beautiful-ai",
+    "slug": "beautiful-ai",
+    "name": "Beautiful.ai",
+    "tagline": "Presentaciones con diseño que se adapta automáticamente",
+    "description": "Beautiful.ai ajusta automáticamente el diseño de cada diapositiva mientras añades o quitas contenido, garantizando que la presentación mantenga proporciones y jerarquía visual correctas sin que tengas que maquetar manualmente cada elemento.",
+    "logoUrl": "https://picsum.photos/seed/beautiful-ai-logo/128/128",
+    "websiteUrl": "https://www.beautiful.ai",
+    "categorySlug": "generacion-de-presentaciones",
+    "tags": [
+      "presentaciones"
+    ],
+    "pricingModel": "SUBSCRIPTION",
+    "pricingFrom": 12,
+    "currency": "USD",
+    "rating": 4.4,
+    "reviewCount": 540,
+    "features": [
+      "Diseño de diapositivas que se auto-ajusta al contenido",
+      "Plantillas de marca reutilizables",
+      "Colaboración en tiempo real en equipo",
+      "Análisis de visualizaciones de la presentación compartida"
+    ],
+    "pros": [
+      "Casi imposible generar una diapositiva mal maquetada",
+      "Bueno para equipos que comparten plantilla de marca"
+    ],
+    "cons": [
+      "Menos flexible para diseños muy creativos o poco convencionales"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "beautiful-ai",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "beautiful ai presentaciones",
+      "presentaciones que se autoajustan",
+      "beautiful ai español",
+      "diseño automatico de slides"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Cómo evita Beautiful.ai que la diapositiva se vea desordenada?",
+        "answer": "Su motor de diseño reajusta automáticamente el tamaño y posición de los elementos cada vez que añades o eliminas contenido de una diapositiva."
+      },
+      {
+        "question": "¿Puedo ver quién ha visto mi presentación compartida?",
+        "answer": "Sí, incluye analíticas básicas de visualización cuando compartes la presentación mediante enlace."
+      }
+    ],
+    "conclusion": "Beautiful.ai es ideal para equipos que priorizan consistencia visual automática sobre control de diseño milimétrico y creativo."
+  },
+  {
+    "id": "tome",
+    "slug": "tome",
+    "name": "Tome",
+    "tagline": "Narrativas visuales generadas con IA para presentaciones y pitch decks",
+    "description": "Tome genera presentaciones con un enfoque narrativo, ideal para pitch decks de startups e historias de producto, combinando texto, imágenes generadas y estructura de storytelling en un formato más dinámico que una diapositiva tradicional.",
+    "logoUrl": "https://picsum.photos/seed/tome-logo/128/128",
+    "websiteUrl": "https://tome.app",
+    "categorySlug": "generacion-de-presentaciones",
+    "tags": [
+      "presentaciones",
+      "diseño"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 10,
+    "currency": "USD",
+    "rating": 4.3,
+    "reviewCount": 390,
+    "features": [
+      "Generación de narrativa visual completa desde un prompt",
+      "Imágenes generadas por IA integradas",
+      "Formato dinámico distinto a diapositivas tradicionales",
+      "Colaboración y comentarios en equipo"
+    ],
+    "pros": [
+      "Formato narrativo distintivo, útil para pitch decks",
+      "Buena integración de imágenes generadas por IA"
+    ],
+    "cons": [
+      "El formato no tradicional puede no encajar en todos los contextos corporativos"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "tome",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "tome app presentaciones",
+      "pitch deck con ia",
+      "tome ai español",
+      "narrativa visual con ia"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Tome es adecuado para presentaciones corporativas tradicionales?",
+        "answer": "Su formato narrativo dinámico encaja mejor en pitch decks y storytelling de producto que en informes corporativos muy formales."
+      },
+      {
+        "question": "¿Puedo exportar a PowerPoint?",
+        "answer": "Ofrece opciones de exportación, aunque el formato narrativo original se aprovecha mejor compartiendo el enlace interactivo directamente."
+      }
+    ],
+    "conclusion": "Tome encaja especialmente bien en pitch decks de startups donde la narrativa visual importa tanto como el contenido en sí."
+  },
+  {
+    "id": "remove-bg",
+    "slug": "remove-bg",
+    "name": "remove.bg",
+    "tagline": "El pionero de la eliminación de fondo de imágenes con IA",
+    "description": "remove.bg fue una de las primeras herramientas en popularizar la eliminación automática de fondos con IA, y sigue siendo una referencia por su precisión, su API sencilla para desarrolladores y su integración directa con herramientas de diseño como Photoshop y Canva.",
+    "logoUrl": "https://picsum.photos/seed/remove-bg-logo/128/128",
+    "websiteUrl": "https://www.remove.bg",
+    "categorySlug": "eliminacion-de-fondo",
+    "tags": [
+      "imagenes",
+      "gratis",
+      "desarrollo"
+    ],
+    "pricingModel": "FREEMIUM",
+    "pricingFrom": 9,
+    "currency": "USD",
+    "rating": 4.5,
+    "reviewCount": 1240,
+    "features": [
+      "Eliminación de fondo con un clic",
+      "API para integraciones de desarrolladores",
+      "Plugins para Photoshop y otras herramientas de diseño",
+      "Procesamiento por lotes de múltiples imágenes"
+    ],
+    "pros": [
+      "Precisión de recorte muy consistente",
+      "API sencilla de integrar en otros productos"
+    ],
+    "cons": [
+      "El plan gratuito genera imágenes en baja resolución"
+    ],
+    "screenshots": [],
+    "affiliateSlug": "remove-bg",
+    "seoTitle": null,
+    "seoDescription": null,
+    "seoKeywords": [
+      "remove bg",
+      "quitar fondo de imagen",
+      "remove.bg api",
+      "eliminar fondo foto online"
+    ],
+    "ogImage": null,
+    "faqItems": [
+      {
+        "question": "¿Puedo integrar remove.bg en mi propia aplicación?",
+        "answer": "Sí, ofrece una API bien documentada pensada específicamente para que desarrolladores integren la eliminación de fondo en sus propios productos."
+      },
+      {
+        "question": "¿Qué resolución tienen las imágenes del plan gratuito?",
+        "answer": "El plan gratuito limita la resolución de salida; para imágenes en alta resolución es necesario un plan de pago o créditos."
+      }
+    ],
+    "conclusion": "remove.bg sigue siendo una referencia fiable para eliminación de fondo, especialmente para desarrolladores que necesitan integrarlo vía API."
+  }
+]
