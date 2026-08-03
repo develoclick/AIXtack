@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   description:
     "La plataforma en español para descubrir herramientas de IA, prompts, tutoriales, comparativas y noticias del sector.",
   applicationName: siteName,
+  verification: {
+    google: "B3ClaGnGqP20qsHVIDjZGAi4T6DsIOG1BmrL1Kv9NUQ",
+  },
   alternates: {
     types: { "application/rss+xml": [{ url: "/feed.xml", title: `${siteName} — Feed RSS` }] },
   },
