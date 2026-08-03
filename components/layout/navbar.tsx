@@ -41,7 +41,7 @@ export function Navbar() {
           : "border-b border-transparent"
       )}
     >
-      <div className="mx-auto flex h-[4.5rem]  items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[4.5rem] items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5 font-semibold tracking-tight">
           <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-foreground to-foreground/70 text-background shadow-soft">
             <Sparkles className="size-4" />
@@ -78,18 +78,27 @@ export function Navbar() {
           <SearchCommand />
         </div>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2 ml-auto">
           <ThemeToggle />
           <Link
             href="/herramientas-ia"
-            className={buttonVariants({ size: "sm", className: "hidden sm:inline-flex shadow-soft" })}
+            className={buttonVariants({
+              size: "sm",
+              className: "hidden sm:inline-flex shadow-soft"
+            })}
           >
             Explorar
           </Link>
 
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
-              className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "lg:hidden")}
+              className={cn(
+                buttonVariants({
+                  variant: "ghost",
+                  size: "icon"
+                }),
+                "lg:hidden ml-1"
+              )}
             >
               <Menu className="size-5" />
               <span className="sr-only">Abrir menú</span>
