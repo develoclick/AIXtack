@@ -6,8 +6,7 @@ import { listCategories } from "@/lib/content/categories";
 import { listProfessions } from "@/lib/content/professions";
 import tagsJson from "@/content/tags.json";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aixtack.site";
 /**
  * Sitemap único: válido mientras el sitio se mantenga por debajo de ~50.000
  * URLs (límite del protocolo de sitemaps). Al superarlo, sustituir por
