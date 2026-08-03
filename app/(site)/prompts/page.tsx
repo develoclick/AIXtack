@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight, Briefcase } from "lucide-react";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { PromptGrid } from "@/components/prompts/prompt-grid";
 import { Pagination } from "@/components/shared/pagination";
@@ -51,6 +53,29 @@ export default async function PromptsPage({ searchParams }: PageProps) {
         title="Prompts de IA"
         description="Prompts probados y listos para copiar, con el modelo de IA recomendado para cada uno."
       />
+
+      <Link
+        href="/prompts/profesiones"
+        className="group mt-8 flex flex-col items-start justify-between gap-4 overflow-hidden rounded-2xl border bg-card p-6 shadow-soft transition-all hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-soft-lg sm:flex-row sm:items-center"
+      >
+        <div className="flex items-center gap-4">
+          <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-muted text-brand">
+            <Briefcase className="size-5" />
+          </span>
+          <div>
+            <p className="font-semibold tracking-tight group-hover:text-brand">
+              Prompts de IA por profesión
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Explora prompts especializados para programadores, marketing, abogados y 11 profesiones más.
+            </p>
+          </div>
+        </div>
+        <span className="flex shrink-0 items-center gap-1.5 text-sm font-medium text-brand">
+          Explorar
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+        </span>
+      </Link>
 
       <div className="mt-8">
         <TopBannerAd slotId="1000000030" />

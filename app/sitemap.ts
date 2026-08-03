@@ -3,6 +3,7 @@ import { listPublishedPosts } from "@/lib/content/posts";
 import { listPublishedTools } from "@/lib/content/tools";
 import { listPublishedPrompts } from "@/lib/content/prompts";
 import { listCategories } from "@/lib/content/categories";
+import { listProfessions } from "@/lib/content/professions";
 import tagsJson from "@/content/tags.json";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -13,11 +14,12 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
  * `generateSitemaps()` + shards por tipo de contenido.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [{ items: posts }, { items: tools }, { items: prompts }, categories] = await Promise.all([
+  const [{ items: posts }, { items: tools }, { items: prompts }, categories, professions] = await Promise.all([
     listPublishedPosts({ pageSize: 1000 }),
     listPublishedTools({ pageSize: 1000 }),
     listPublishedPrompts({ pageSize: 1000 }),
     listCategories(),
+    listProfessions(),
   ]);
   const tags = tagsJson as { slug: string }[];
 
@@ -25,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/`, changeFrequency: "daily", priority: 1 },
     { url: `${siteUrl}/herramientas-ia`, changeFrequency: "daily", priority: 0.9 },
     { url: `${siteUrl}/prompts`, changeFrequency: "daily", priority: 0.9 },
+    { url: `${siteUrl}/prompts/profesiones`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${siteUrl}/comparativas`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${siteUrl}/noticias`, changeFrequency: "hourly", priority: 0.8 },
     { url: `${siteUrl}/tutoriales`, changeFrequency: "weekly", priority: 0.8 },
@@ -62,6 +65,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${siteUrl}/categoria/${category.slug}`,
       changeFrequency: "weekly" as const,
       priority: 0.6,
+    })),
+    ...professions.map((profession) => ({
+      url: `${siteUrl}/prompts/profesiones/${profession.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
     })),
     ...tags.map((tag) => ({
       url: `${siteUrl}/etiqueta/${tag.slug}`,

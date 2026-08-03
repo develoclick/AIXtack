@@ -1,4 +1,4 @@
-import type { CategorySummary, PostDetail, PromptDetail, ToolDetail } from "@/lib/types";
+import type { CategorySummary, PostDetail, PromptDetail, ProfessionSummary, ToolDetail } from "@/lib/types";
 import { toDate } from "@/lib/utils/format";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -105,6 +105,29 @@ export function promptCreativeWorkJsonLd(prompt: PromptDetail) {
     about: prompt.useCase ?? undefined,
     keywords: prompt.targetModels.join(", ") || undefined,
     mainEntityOfPage: `${siteUrl}/prompts/${prompt.slug}`,
+  };
+}
+
+export function professionsItemListJsonLd(professions: ProfessionSummary[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: professions.map((profession, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: profession.name,
+      url: `${siteUrl}/prompts/profesiones/${profession.slug}`,
+    })),
+  };
+}
+
+export function professionCollectionPageJsonLd(profession: ProfessionSummary) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: profession.seoTitle,
+    description: profession.seoDescription,
+    url: `${siteUrl}/prompts/profesiones/${profession.slug}`,
   };
 }
 

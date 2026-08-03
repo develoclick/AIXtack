@@ -156,3 +156,26 @@ export interface SearchResultItem {
 }
 
 export type NewsletterSource = "footer" | "post-cta" | "home" | "other";
+
+export interface ProfessionSummary {
+  id: string;
+  slug: string;
+  name: string;
+  icon: string;
+  description: string;
+  seoTitle: string;
+  seoDescription: string;
+  promptCount: number;
+}
+
+export interface ProfessionPrompt {
+  id: string;
+  professionSlug: string;
+  title: string;
+  description: string;
+  content: string;
+  tools: string[];
+  category: string;
+  difficulty: string;
+  premium: boolean;
+}

@@ -41,7 +41,7 @@ export function Navbar() {
           : "border-b border-transparent"
       )}
     >
-      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[4.5rem]  items-center gap-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5 font-semibold tracking-tight">
           <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-foreground to-foreground/70 text-background shadow-soft">
             <Sparkles className="size-4" />
