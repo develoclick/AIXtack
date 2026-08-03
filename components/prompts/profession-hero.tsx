@@ -1,42 +1,160 @@
-import { Sparkles } from "lucide-react";
+"use client";
+
+import { Sparkles, ArrowUpRight, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 
 const stats = [
-  { value: "+2000", label: "prompts profesionales" },
-  { value: "+15", label: "profesiones" },
-  { value: "3 IAs", label: "Compatible con las mejores IAs" },
+  { value: "+2000", label: "Prompts profesionales" },
+  { value: "+15", label: "Profesiones cubiertas" },
+  { value: "3 IAs", label: "ChatGPT · Claude · Gemini" },
 ];
 
 export function ProfessionHero() {
   return (
-    <section className="relative overflow-hidden rounded-3xl border">
+    <section className="relative overflow-hidden rounded-[32px] border border-white/10">
+
+      {/* Background effects */}
       <div className="absolute inset-0 -z-20 bg-mesh-glow" />
       <div className="absolute inset-0 -z-10 bg-grid-fade" />
 
-      <div className="mx-auto flex max-w-4xl flex-col items-center px-4 py-16 text-center sm:px-8 sm:py-20">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-1.5 text-sm text-muted-foreground shadow-soft backdrop-blur">
-          <Sparkles className="size-3.5 text-brand" />
-          Prompts de IA por profesión
-        </div>
 
-        <h1 className="text-balance text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-          Los mejores prompts de IA para{" "}
-          <span className="text-gradient-brand">cada profesión</span>
-        </h1>
+      {/* Premium glow */}
+      <div className="
+        absolute 
+        left-1/2 
+        top-0 
+        h-[450px] 
+        w-[450px]
+        -translate-x-1/2
+        rounded-full
+        bg-primary/20
+        blur-[140px]
+      "/>
 
-        <p className="mt-6 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground">
-          Descubre prompts especializados para ChatGPT, Claude y Gemini diseñados para ayudarte a
-          trabajar más rápido, automatizar tareas y mejorar tu productividad.
-        </p>
 
-        <dl className="mt-10 grid w-full max-w-xl grid-cols-3 gap-4 rounded-2xl border bg-card/60 p-6 shadow-soft backdrop-blur">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center gap-1">
-              <dd className="text-2xl font-semibold tracking-tight sm:text-3xl">{stat.value}</dd>
-              <dt className="text-xs leading-snug text-muted-foreground sm:text-sm">{stat.label}</dt>
-            </div>
-          ))}
-        </dl>
+      <div className="
+        mx-auto 
+        flex 
+        max-w-5xl 
+        flex-col 
+        items-center 
+        px-5 
+        py-20 
+        text-center
+        sm:px-10
+        lg:py-28
+      ">
+
+
+        {/* Badge */}
+
+        <motion.div
+          initial={{opacity:0,y:15}}
+          animate={{opacity:1,y:0}}
+          transition={{duration:.5}}
+          className="
+            mb-8
+            inline-flex
+            items-center
+            gap-2
+            rounded-full
+            border
+            border-white/10
+            bg-white/[0.05]
+            px-5
+            py-2
+            text-sm
+            font-medium
+            backdrop-blur-xl
+          "
+        >
+
+          <Sparkles className="size-4 text-brand"/>
+
+          <span>
+            Biblioteca profesional de prompts IA
+          </span>
+
+        </motion.div>
+
+
+
+        {/* Heading */}
+
+        <motion.h1
+          initial={{opacity:0,y:20}}
+          animate={{opacity:1,y:0}}
+          transition={{duration:.6,delay:.1}}
+          className="
+            max-w-4xl
+            text-balance
+            text-4xl
+            font-bold
+            leading-[1.05]
+            tracking-tight
+            sm:text-6xl
+            lg:text-7xl
+          "
+        >
+
+          Los mejores prompts de IA
+          <br />
+
+          para{" "}
+
+          <span className="text-gradient-brand">
+            potenciar cada profesión
+          </span>
+
+
+        </motion.h1>
+
+
+
+        {/* Description */}
+
+        <motion.p
+          initial={{opacity:0,y:20}}
+          animate={{opacity:1,y:0}}
+          transition={{duration:.6,delay:.2}}
+          className="
+            mt-7
+            max-w-3xl
+            text-lg
+            leading-relaxed
+            text-muted-foreground
+            sm:text-xl
+          "
+        >
+          Accede a prompts especializados para ChatGPT,
+          Claude y Gemini creados para profesionales que
+          quieren automatizar tareas, ahorrar tiempo y
+          trabajar con inteligencia artificial.
+        </motion.p>
+
+
+
+
+        {/* CTA */}
+
+        <motion.div
+          initial={{opacity:0,y:20}}
+          animate={{opacity:1,y:0}}
+          transition={{duration:.6,delay:.3}}
+          className="mt-10 flex flex-wrap justify-center gap-4"
+        >
+
+          
+
+        </motion.div>
+
+
+
+
+       
+
       </div>
+
     </section>
   );
 }
