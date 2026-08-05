@@ -60,7 +60,7 @@ export function SearchCommand() {
         className="group flex w-full max-w-xs items-center gap-2 rounded-full border bg-background/60 px-4 py-2 text-sm text-muted-foreground shadow-sm transition-colors hover:border-brand/40 hover:text-foreground"
       >
         <Search className="h-4 w-4" />
-        <span className="flex-1 text-left">Buscar herramientas, prompts...</span>
+        <span className="flex-1 text-left">Buscar</span>
         <kbd className="hidden rounded border bg-muted px-1.5 py-0.5 text-[10px] font-medium sm:inline-block">
           ⌘K
         </kbd>

@@ -76,11 +76,11 @@ export default async function PromptsPage({ searchParams }: PageProps) {
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
         </span>
       </Link>
-
+{/*
       <div className="mt-8">
         <TopBannerAd slotId="1000000030" />
       </div>
-
+*/}
       <div className="mt-8 lg:grid lg:grid-cols-[1fr_300px] lg:items-start lg:gap-8">
         <div>
           <PromptGrid prompts={items} />

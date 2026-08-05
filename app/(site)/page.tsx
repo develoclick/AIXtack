@@ -36,9 +36,11 @@ export default async function HomePage() {
     <>
       <Hero />
 
-      <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
-        <TopBannerAd slotId="1000000002" />
-      </section>
+{/* 
+<section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
+  <TopBannerAd slotId="1000000002" />
+</section> 
+*/}
 
       <section className="relative overflow-hidden bg-muted/20 py-16 sm:py-20">
         <div aria-hidden className="absolute inset-0 -z-10 bg-grid-fade opacity-50" />

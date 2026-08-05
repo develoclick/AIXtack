@@ -43,11 +43,11 @@ export async function PostTypeListing({
       />
 
       <SectionHeading eyebrow={eyebrow} title={title} description={description} />
-
+{/*
       <div className="mt-8">
         <TopBannerAd slotId={topBannerSlotId} />
       </div>
-
+*/}
       <div className="mt-8">
         <PostGrid posts={items} />
       </div>

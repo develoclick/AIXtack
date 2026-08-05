@@ -70,11 +70,11 @@ export default async function CategoryPage({ params }: PageProps) {
       <Breadcrumbs items={breadcrumbItems} />
 
       <SectionHeading eyebrow="Categoría" title={category.name} description={category.description ?? undefined} />
-
+{/*
       <div className="mt-8">
         <TopBannerAd slotId="1000000040" />
       </div>
-
+*/}
       {tools.items.length > 0 && (
         <section className="mt-14">
           <h2 className="text-xl font-semibold tracking-tight">Herramientas</h2>

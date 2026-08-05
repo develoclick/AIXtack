@@ -79,7 +79,7 @@ export function Hero() {
 
           <h1
             className="text-balance text-[2.75rem] font-medium leading-[1.06] tracking-tight sm:text-6xl lg:text-[4.5rem]"
-            style={{ fontFamily: "'Fraunces', ui-serif, Georgia, serif" }}
+            
           >
             La Inteligencia
             <br />
@@ -137,7 +137,7 @@ export function Hero() {
                 className={`group ${card.rotate} rounded-2xl border border-black/5 bg-[#ffffff] p-5 text-[#15131F] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out hover:translate-y-0 hover:rotate-0`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] tracking-[0.14em] text-[#15131F]/40">
+                  <span className="text-[10px] tracking-[0.14em] text-[#15131F]/40">
                     {card.id}
                   </span>
                   <span
@@ -149,11 +149,11 @@ export function Hero() {
                 </div>
                 <p
                   className="mt-5 text-[1.05rem] font-medium leading-snug"
-                  style={{ fontFamily: "'Fraunces', ui-serif, Georgia, serif" }}
+                  
                 >
                   {card.title}
                 </p>
-                <p className="mt-1 font-mono text-[11px] text-[#15131F]/45">
+                <p className="mt-1 text-[11px] text-[#15131F]/45">
                   {card.meta}
                 </p>
               </div>

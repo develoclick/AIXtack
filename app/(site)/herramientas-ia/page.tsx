@@ -71,11 +71,11 @@ export default async function ToolsPage({ searchParams }: PageProps) {
         title="Herramientas de IA"
         description="Explora, compara y encuentra la herramienta de inteligencia artificial ideal para tu caso de uso."
       />
-
+{/*
       <div className="mt-8">
         <TopBannerAd slotId="1000000020" />
       </div>
-
+*/}
       <div className="mt-8 lg:grid lg:grid-cols-[1fr_300px] lg:items-start lg:gap-8">
         <div>
           <ToolFilters categories={categories} />
