@@ -91,10 +91,11 @@ export default async function PromptsPage({ searchParams }: PageProps) {
             </div>
           )}
         </div>
-
+{/*
         <aside className="hidden lg:block">
           <SidebarAd slotId="1000000032" />
         </aside>
+        */}
       </div>
 
       <Pagination page={page} totalPages={totalPages} basePath="/prompts" />

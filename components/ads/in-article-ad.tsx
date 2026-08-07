@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
  */
 export function InArticleAd({ slotId, className }: { slotId: string; className?: string }) {
   return (
+    
     <AdSlot
       slotId={slotId}
       format="fluid"
