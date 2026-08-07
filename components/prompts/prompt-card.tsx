@@ -9,11 +9,7 @@ export function PromptCard({ prompt }: { prompt: PromptSummary }) {
       href={`/prompts/${prompt.slug}`}
       className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-soft-lg"
     >
-      <Quote
-        aria-hidden
-        className="absolute -right-2 -top-2 size-16 -rotate-6 text-brand-muted transition-transform duration-300 group-hover:scale-110"
-      />
-
+    
       <div className="relative flex items-start justify-between gap-2">
         <h3 className="font-semibold tracking-tight group-hover:text-brand">{prompt.title}</h3>
         {prompt.isPremium && (
