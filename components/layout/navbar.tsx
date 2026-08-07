@@ -51,7 +51,7 @@ export function Navbar() {
     >
       <div
         className={cn(
-          "mx-auto flex h-16 max-w-7xl items-center justify-between",
+          " w-full flex h-16  items-center justify-between",
           "rounded-2xl border",
           "bg-background/75 backdrop-blur-2xl",
           "transition-all duration-500",
