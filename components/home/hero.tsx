@@ -1,164 +1,199 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
+  Search,
   ArrowRight,
-  Image as ImageIcon,
+  ImageIcon,
   PenLine,
   Code2,
   AudioLines,
+  Sparkles,
+  TrendingUp,
+  Layers,
 } from "lucide-react";
 
-// Fichas del "catálogo" — cada una representa una categoría real del
-// directorio. Los números no son un ranking, son el índice de archivo:
-// refuerzan la idea de que hay cientos de entradas revisadas a mano.
-const catalogCards = [
+// Siluetas abstractas locales en Base64 para evitar errores de dominios en Next.js
+const SILHOUETTE_IMAGE =
+  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233062ef' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z'/><path d='M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z'/></svg>";
+
+const CATEGORIES = [
   {
-    id: "IA · 014",
-    title: "Generación de imágenes",
-    meta: "62 herramientas",
+    id: "cat-01",
+    title: "Generación de Imágenes",
+    count: "62 herramientas",
     icon: ImageIcon,
-    accent: "#8C6FF6",
-    rotate: "-rotate-[6deg]",
+    href: "/categoria/imagenes",
+    badge: "Más buscado",
+    silhouette: SILHOUETTE_IMAGE,
   },
   {
-    id: "IA · 027",
-    title: "Escritura y copy",
-    meta: "94 herramientas",
+    id: "cat-02",
+    title: "Escritura y Copywriting",
+    count: "94 herramientas",
     icon: PenLine,
-    accent: "#34D399",
-    rotate: "rotate-[3deg]",
+    href: "/categoria/escritura",
+    badge: "Alto RPM",
+    silhouette: SILHOUETTE_IMAGE,
   },
   {
-    id: "IA · 041",
-    title: "Código y desarrollo",
-    meta: "58 herramientas",
+    id: "cat-03",
+    title: "Código y Programación",
+    count: "58 herramientas",
     icon: Code2,
-    accent: "#FF6B4A",
-    rotate: "-rotate-[2deg]",
+    href: "/categoria/codigo",
+    badge: "Top CTR",
+    silhouette: SILHOUETTE_IMAGE,
   },
   {
-    id: "IA · 058",
-    title: "Voz y audio",
-    meta: "31 herramientas",
+    id: "cat-04",
+    title: "Voz y Sintetización",
+    count: "31 herramientas",
     icon: AudioLines,
-    accent: "#8C6FF6",
-    rotate: "rotate-[5deg]",
+    href: "/categoria/audio",
+    badge: "Tendencia",
+    silhouette: SILHOUETTE_IMAGE,
   },
 ];
 
 export function Hero() {
+  const [query, setQuery] = useState("");
+
   return (
-    <section className="relative overflow-hidden bg-[#0a0a0a] text-[#F5EFE1]">
-      {/* Resplandor ambiental + grano de papel, muy sutil */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-20"
-        style={{
-          background:
-            "radial-gradient(60% 50% at 18% 20%, rgba(140,111,246,0.20), transparent 60%), radial-gradient(45% 40% at 85% 75%, rgba(52,211,153,0.14), transparent 60%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.05]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-        }}
-      />
+    <section className="relative overflow-hidden bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 transition-colors duration-300 isolate">
+      
+      {/* 1. GRADIENTES DE FONDO MULTICAPA & GLOWS */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        {/* Glow Superior Central (#3062ef) */}
+        <div className="absolute left-1/2 -top-40 -translate-x-1/2 h-[500px] w-[800px] sm:w-[1100px] rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#3062ef]/30 via-[#3062ef]/10 to-transparent blur-[120px] dark:from-[#3062ef]/25 dark:via-[#3062ef]/05 dark:to-transparent" />
+        
+        {/* Glow Secundario Inferior */}
+        <div className="absolute -right-20 bottom-0 h-[400px] w-[500px] rounded-full bg-gradient-to-br from-emerald-500/15 via-[#3062ef]/10 to-transparent blur-[100px] dark:from-emerald-500/10 dark:via-[#3062ef]/05" />
 
-      <div className="mx-auto grid max-w-7xl gap-16 px-4 py-24 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-36 lg:px-8">
-        {/* Columna editorial */}
-        <div className="flex flex-col items-start text-left">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#F5EFE1]/60 backdrop-blur">
-            <span className="relative flex size-1.5">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#34D399] opacity-75" />
-              <span className="relative inline-flex size-1.5 rounded-full bg-[#34D399]" />
-            </span>
-            Catálogo vivo · actualizado hoy
-          </div>
+        {/* Patrón de Puntos de Fondo CSS Seguro */}
+        <div className="absolute inset-0 bg-[radial-gradient(#3062ef_1px,transparent_1px)] [background-size:24px_24px] opacity-10 dark:opacity-15 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+      </div>
 
-          <h1
-            className="text-balance text-[2.75rem] font-medium leading-[1.06] tracking-tight sm:text-6xl lg:text-[4.5rem]"
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        
+
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+          
+          {/* Columna Izquierda: Información Principal */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
             
-          >
-            La Inteligencia
-            <br />
-            Artificial,{" "}
-            <span
-              className="italic"
-              style={{
-                background:
-                  "#3062ef",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              ordenada
-            </span>{" "}
-            para ti
-          </h1>
+            {/* Pill Indicator */}
+            <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#3062ef]/30 bg-gradient-to-r from-[#3062ef]/10 via-[#3062ef]/05 to-transparent dark:from-[#3062ef]/20 dark:via-[#3062ef]/10 px-4 py-1.5 text-xs font-semibold text-[#3062ef] dark:text-[#5c84f5] backdrop-blur-md shadow-sm">
+              <Sparkles className="size-3.5 text-[#3062ef] dark:text-[#5c84f5] shrink-0 animate-pulse" />
+              <span>Directorio verificado · Actualizado diariamente</span>
+            </div>
 
-          <p className="mt-7 max-w-lg text-balance text-lg leading-relaxed text-[#F5EFE1]/65">
-            Herramientas, prompts y tutoriales de IA revisados uno por uno y
-            explicados en español claro. Nada de jerga, nada de relleno —
-            solo lo que sirve.
-          </p>
+            {/* Titular con Gradiente Dinámico */}
+            <h1 className="text-balance text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl text-slate-900 dark:text-white leading-[1.08]">
+              Descubre las mejores{" "}
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-[#3062ef] via-blue-500 to-emerald-500 dark:from-[#5c84f5] dark:via-blue-400 dark:to-emerald-400 bg-clip-text text-transparent">
+                  Herramientas de IA
+                </span>
+                <span className="absolute left-0 bottom-1 -z-10 h-3 w-full bg-[#3062ef]/15 dark:bg-[#3062ef]/25 blur-sm rounded-full" />
+              </span>
+            </h1>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/herramientas-ia"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#3062ef] px-7 py-3.5 text-sm font-semibold text-[#15131F]  transition-transform duration-200 hover:-translate-y-0.5"
+            <p className="mt-5 text-balance text-base sm:text-lg text-slate-600 dark:text-zinc-400 max-w-xl leading-relaxed">
+              Catálogo Curado en español. Filtra plataformas probadas, analiza sus precios, consulta casos de uso y encuentra alternativas potentes en segundos.
+            </p>
+
+            {/* Buscador Integrado */}
+            <form 
+              onSubmit={(e) => e.preventDefault()} 
+              className="mt-8 w-full max-w-lg relative group"
             >
-              Explorar el catálogo
-              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              href="/prompts"
-              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.02] px-7 py-3.5 text-sm font-semibold text-[#F5EFE1] backdrop-blur transition-colors duration-200 hover:bg-white/[0.06]"
-            >
-              Ver prompts listos
-            </Link>
+              <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-[#3062ef] to-emerald-500 opacity-20 blur group-hover:opacity-40 transition duration-300" />
+              
+              <div className="relative flex items-center gap-2 rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 p-2 shadow-xl shadow-slate-200/50 dark:shadow-none backdrop-blur-xl">
+                <Search className="ml-3 size-5 text-slate-400 dark:text-zinc-500 shrink-0" />
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Busca por función: 'Generar video', 'Prompts'..."
+                  className="w-full bg-transparent text-sm text-slate-900 dark:text-zinc-100 placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-[#3062ef] to-[#254edb] hover:from-[#254edb] hover:to-[#1d3fbc] px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-[#3062ef]/30 transition-all duration-200 shrink-0 active:scale-95"
+                >
+                  <span>Explorar</span>
+                  <ArrowRight className="size-3.5" />
+                </button>
+              </div>
+            </form>
+
+            {/* Badges de Confianza */}
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500 dark:text-zinc-400 font-medium">
+              <span className="flex items-center gap-1.5">
+                <TrendingUp className="size-4 text-emerald-600 dark:text-emerald-400" />
+                +500 IAs clasificadas
+              </span>
+              <span className="hidden sm:inline text-slate-300 dark:text-zinc-700">•</span>
+              <span className="flex items-center gap-1.5">
+                <Layers className="size-4 text-[#3062ef] dark:text-[#5c84f5]" />
+                20 Categorías reales
+              </span>
+            </div>
           </div>
 
-          <p className="mt-8 font-mono text-xs tracking-wide text-[#F5EFE1]/40">
-            512 herramientas revisadas · leído por lectores en 18 países de
-            habla hispana
-          </p>
-        </div>
-
-        {/* Columna visual: fichero de catálogo, no un panel de stats */}
-        <div className="relative mx-auto grid w-full max-w-sm grid-cols-2 gap-5 py-6 lg:mx-0 lg:max-w-none">
-          {catalogCards.map((card) => {
-            const Icon = card.icon;
-            return (
-              <div
-                key={card.id}
-                className={`group ${card.rotate} rounded-2xl border border-black/5 bg-[#ffffff] p-5 text-[#15131F] shadow-[0_20px_40px_-16px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out hover:translate-y-0 hover:rotate-0`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] tracking-[0.14em] text-[#15131F]/40">
-                    {card.id}
-                  </span>
-                  <span
-                    className="flex size-7 items-center justify-center rounded-full"
-                    style={{ backgroundColor: `${card.accent}1F` }}
-                  >
-                    <Icon className="size-3.5" style={{ color: card.accent }} />
-                  </span>
-                </div>
-                <p
-                  className="mt-5 text-[1.05rem] font-medium leading-snug"
-                  
+          {/* Columna Derecha: Tarjetas con Siluetas */}
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {CATEGORIES.map((cat) => {
+              const Icon = cat.icon;
+              return (
+                <Link
+                  key={cat.id}
+                  href={cat.href}
+                  className="group relative overflow-hidden flex flex-col justify-between rounded-2xl border border-slate-200/80 dark:border-zinc-800/80 bg-white/70 dark:bg-zinc-900/50 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-[#3062ef]/50 dark:hover:border-[#3062ef]/50 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-2xl hover:shadow-[#3062ef]/15"
                 >
-                  {card.title}
-                </p>
-                <p className="mt-1 text-[11px] text-[#15131F]/45">
-                  {card.meta}
-                </p>
-              </div>
-            );
-          })}
+                  {/* Silueta Opaca Integrada */}
+                  <div className="pointer-events-none absolute -right-4 -bottom-4 size-28 opacity-10 dark:opacity-20 transition-all duration-500 group-hover:opacity-30 group-hover:scale-110 group-hover:-rotate-6">
+                    <Image
+                      src={cat.silhouette}
+                      alt="Silueta decorativa"
+                      fill
+                      unoptimized
+                      sizes="112px"
+                      className="object-contain"
+                    />
+                  </div>
+
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#3062ef]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between">
+                      <div className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#3062ef]/15 to-[#3062ef]/5 dark:from-[#3062ef]/25 dark:to-[#3062ef]/10 border border-[#3062ef]/20 dark:border-[#3062ef]/30 text-[#3062ef] dark:text-[#5c84f5] group-hover:bg-[#3062ef] group-hover:text-white dark:group-hover:bg-[#3062ef] dark:group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <Icon className="size-5 transition-transform duration-300 group-hover:scale-110" />
+                      </div>
+                      
+                      <span className="rounded-full bg-slate-100/80 dark:bg-zinc-800/80 border border-slate-200/60 dark:border-zinc-700/60 px-2.5 py-0.5 text-[10px] font-bold text-slate-600 dark:text-zinc-300 backdrop-blur-sm">
+                        {cat.badge}
+                      </span>
+                    </div>
+
+                    <h2 className="mt-4 text-base font-bold text-slate-900 dark:text-zinc-100 group-hover:text-[#3062ef] dark:group-hover:text-[#5c84f5] transition-colors">
+                      {cat.title}
+                    </h2>
+                  </div>
+
+                  <div className="relative z-10 mt-6 flex items-center justify-between text-xs font-medium text-slate-500 dark:text-zinc-400">
+                    <span>{cat.count}</span>
+                    <ArrowRight className="size-4 text-slate-400 dark:text-zinc-600 transition-transform duration-300 group-hover:translate-x-1.5 group-hover:text-[#3062ef] dark:group-hover:text-[#5c84f5]" />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
         </div>
       </div>
     </section>
