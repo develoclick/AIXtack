@@ -103,15 +103,13 @@ export default async function HomePage() {
         </ScrollReveal>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-        <MultiplexAd slotId="1000000003" />
-      </section>
-
+    
+{/*
       <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
         <ScrollReveal>
           <NewsletterCta />
         </ScrollReveal>
-      </section>
+      </section>*/}
     </>
   );
 }

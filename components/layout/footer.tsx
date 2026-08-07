@@ -24,40 +24,8 @@ export function Footer() {
               La plataforma en español para descubrir herramientas de inteligencia artificial,
               prompts, comparativas y las últimas noticias del sector.
             </p>
-            <div className="mt-7 rounded-2xl border bg-card/60 p-4 shadow-soft">
-              <p className="mb-2.5 text-sm font-medium">Únete a la newsletter</p>
-              <NewsletterForm source="footer" compact />
-            </div>
-            <div className="mt-6 flex gap-2 text-muted-foreground">
-              <Link
-                href="#"
-                aria-label="X (Twitter)"
-                className="flex size-9 items-center justify-center rounded-full border transition-colors hover:border-brand/40 hover:text-brand"
-              >
-                <XIcon className="size-4" />
-              </Link>
-              <Link
-                href="#"
-                aria-label="GitHub"
-                className="flex size-9 items-center justify-center rounded-full border transition-colors hover:border-brand/40 hover:text-brand"
-              >
-                <GitHubIcon className="size-4" />
-              </Link>
-              <Link
-                href="#"
-                aria-label="LinkedIn"
-                className="flex size-9 items-center justify-center rounded-full border transition-colors hover:border-brand/40 hover:text-brand"
-              >
-                <LinkedInIcon className="size-4" />
-              </Link>
-              <Link
-                href="/feed.xml"
-                aria-label="Feed RSS"
-                className="flex size-9 items-center justify-center rounded-full border transition-colors hover:border-brand/40 hover:text-brand"
-              >
-                <Rss className="size-4" />
-              </Link>
-            </div>
+            
+            
           </div>
 
           {footerNav.map((group) => (
@@ -83,7 +51,6 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t pt-8 text-xs text-muted-foreground sm:flex-row">
           <p>© {year} AIXtack. Todos los derechos reservados.</p>
-          <p>Hecho con Next.js, en español.</p>
         </div>
       </div>
     </footer>
