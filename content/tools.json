@@ -5,7 +5,7 @@
     "name": "ChatGPT",
     "tagline": "El asistente conversacional de OpenAI",
     "description": "ChatGPT es el asistente conversacional de OpenAI y, para muchos usuarios, la puerta de entrada a la inteligencia artificial generativa. Permite mantener conversaciones en lenguaje natural para redactar textos, resolver dudas, programar, analizar documentos o generar imágenes, todo desde una misma interfaz de chat que ha marcado el estándar del sector desde su lanzamiento en 2022.\n\nSirve tanto a usuarios particulares que quieren resolver dudas cotidianas o mejorar un correo electrónico, como a profesionales que lo integran en su flujo de trabajo diario para programar, investigar o producir borradores de contenido. Los planes de pago (Plus, Pro y los orientados a equipos) añaden acceso a los modelos más avanzados de OpenAI, generación de imágenes con DALL-E, análisis de datos, navegación web y la posibilidad de crear GPTs personalizados para tareas repetitivas.\n\nLo que diferencia a ChatGPT de otros chatbots no es solo la calidad de sus respuestas, sino el tamaño de su ecosistema: una tienda de GPTs personalizados creados por la comunidad, una API ampliamente adoptada por desarrolladores externos y aplicaciones móvil y de escritorio pulidas que facilitan usarlo en cualquier contexto. Para quien busca una herramienta generalista capaz de adaptarse a casi cualquier tarea de texto o código sin una curva de aprendizaje pronunciada, sigue siendo el punto de referencia frente al que se comparan el resto de asistentes.",
-    "logoUrl": "/images/tools/chatgpt.svg",
+    "logoUrl": "/images/tools/chatgpt.jpg",
     "websiteUrl": "https://chat.openai.com",
     "categorySlug": "escritura",
     "tags": [
@@ -339,7 +339,7 @@
     "name": "ElevenLabs",
     "tagline": "Voces sintéticas indistinguibles de las humanas",
     "description": "ElevenLabs es una de las plataformas de referencia en generación de voz sintética, capaz de producir narraciones con una naturalidad muy próxima a una grabación humana en múltiples idiomas, incluido un español con acentos regionales bien logrados. Ofrece tanto voces prediseñadas como clonación de voz a partir de una muestra de audio.\n\nSe usa ampliamente en producción de audiolibros, doblaje de vídeo, locución para pódcasts y contenido de redes sociales, así como en aplicaciones que necesitan texto a voz mediante su API. Escritores, creadores de contenido, estudios de doblaje y desarrolladores que integran voz en sus propias apps son su público principal.\n\nFrente a alternativas como Murf AI o Play.ht, ElevenLabs destaca por la calidad de entonación y la naturalidad en frases largas, además de su función de doblaje automático que traduce y sincroniza voz entre idiomas conservando el tono del hablante original. Su editor de proyectos permite trabajar con guiones completos, no solo frases sueltas.",
-    "logoUrl": "/images/tools/elevenlabs.svg",
+    "logoUrl": "/images/tools/elevenlabs.jpg",
     "websiteUrl": "https://elevenlabs.io",
     "categorySlug": "audio-y-voz",
     "tags": [
@@ -578,7 +578,7 @@
     "name": "Perplexity",
     "tagline": "El buscador conversacional que cita sus fuentes",
     "description": "Perplexity combina un modelo de lenguaje con búsqueda web en tiempo real, devolviendo respuestas sintetizadas con enlaces directos a las fuentes usadas en lugar de una lista de resultados que hay que abrir uno a uno. Funciona como motor de búsqueda conversacional más que como chatbot generalista.\n\nEstá dirigido a estudiantes, investigadores, periodistas y cualquier profesional que necesite investigación rápida y verificable: comparativas de producto, resúmenes de un tema técnico o respuestas a preguntas donde importa poder rastrear el origen exacto de la información. Su modo Pro permite elegir el modelo subyacente y ejecutar búsquedas más profundas con más fuentes consultadas.\n\nFrente a Google o a un chatbot como ChatGPT sin navegación, la diferencia de Perplexity es la transparencia: cada afirmación relevante en su respuesta enlaza a la fuente concreta de la que procede, lo que reduce, aunque no elimina, el riesgo de aceptar información inventada sin poder contrastarla.",
-    "logoUrl": "/images/tools/perplexity.svg",
+    "logoUrl": "/images/tools/perplexity.jpg",
     "websiteUrl": "https://www.perplexity.ai",
     "categorySlug": "asistentes-de-investigacion",
     "tags": [
@@ -2108,7 +2108,7 @@
     "name": "Cursor",
     "tagline": "Editor de código construido alrededor de la IA",
     "description": "Cursor es un editor de código (fork de VS Code) diseñado desde cero para trabajar con IA como parte central del flujo, permitiendo editar archivos completos mediante instrucciones en lenguaje natural y mantener contexto de todo el proyecto en cada sugerencia.\n\nEstá dirigido a desarrolladores profesionales y equipos que ya usan VS Code y quieren llevar la IA más allá del autocompletado línea a línea, hacia edición de varios archivos guiada por instrucciones en lenguaje natural sobre todo el contexto del proyecto.\n\nFrente a GitHub Copilot, que se integra como extensión dentro de tu editor habitual, Cursor reconstruye el editor completo alrededor de la IA, lo que le permite ofrecer funciones más profundas como refactorizaciones de varios archivos simultáneas, un chat con acceso directo al código del repositorio completo y un modo agéntico capaz de ejecutar tareas de varios pasos de forma semiautónoma.",
-    "logoUrl": "/images/tools/cursor.svg",
+    "logoUrl": "/images/tools/cursor.png",
     "websiteUrl": "https://www.cursor.com",
     "categorySlug": "programacion",
     "tags": [
