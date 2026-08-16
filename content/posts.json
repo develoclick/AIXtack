@@ -329,7 +329,7 @@
       "marketing"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
+    "coverImageUrl": "/images/illustrations/comparisons.svg.png",
     "coverImageAlt": "Comparativa entre Notion AI y ChatGPT para tomar notas",
     "authorId": "admin",
     "readingTimeMin": 3,
