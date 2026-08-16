@@ -168,9 +168,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
         </section>
       )}
 
-      <div className="mt-12">
-        <InArticleAd slotId="1000000005" />
-      </div>
+
 
       {tool.conclusion && (
         <section className="mt-12 rounded-2xl border bg-muted/30 p-6 sm:p-8">

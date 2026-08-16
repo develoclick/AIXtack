@@ -111,9 +111,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <ArticleBody html={post.content} />
       </div>
 
-      <div className="mt-10">
-        <InArticleAd slotId="1000000004" />
-      </div>
+
 
       {post.tags.length > 0 && (
         <div className="mt-10 flex flex-wrap gap-2 border-t pt-6">

@@ -99,7 +99,7 @@
       "gratis"
     ],
     "featured": true,
-    "coverImageUrl": "/images/tools/chatgpt.svg",
+    "coverImageUrl": "/images/tools/chatgpt.jpg",
     "coverImageAlt": "Icono de ChatGPT, la guía para principiantes",
     "authorId": "editor",
     "readingTimeMin": 4,
@@ -375,7 +375,7 @@
       "premium"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/elevenlabs.svg",
+    "coverImageUrl": "/images/tools/elevenlabs.jpg",
     "coverImageAlt": "Icono de ElevenLabs y su clonación de voz realista",
     "authorId": "editor",
     "readingTimeMin": 3,
@@ -1575,7 +1575,7 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/perplexity.svg",
+    "coverImageUrl": "/images/tools/perplexity.jpg",
     "coverImageAlt": "Icono de Perplexity para investigar cualquier tema",
     "authorId": "editor",
     "readingTimeMin": 3,
@@ -2004,7 +2004,7 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/cursor.svg",
+    "coverImageUrl": "/images/tools/cursor.png",
     "coverImageAlt": "Icono de Cursor para empezar a programar con IA",
     "authorId": "admin",
     "readingTimeMin": 3,

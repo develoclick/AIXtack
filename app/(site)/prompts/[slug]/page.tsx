@@ -100,9 +100,7 @@ export default async function PromptDetailPage({ params }: PageProps) {
         </div>
       )}
 
-      <div className="mt-10">
-        <InArticleAd slotId="1000000006" />
-      </div>
+
 
       {prompt.conclusion && (
         <section className="mt-10 rounded-2xl border bg-muted/30 p-6 sm:p-8">

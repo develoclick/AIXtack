@@ -35,7 +35,7 @@ const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
  * InArticleAd, SidebarAd, FooterAd, MultiplexAd) envuelven este bloque con
  * el formato correcto para cada posición.
  */
-export function AdSlot({ slotId, className, minHeight = 250, format = "auto", layout, label = "Publicidad" }: AdSlotProps) {
+export function AdSlot({ slotId, className, minHeight = 250, format = "auto", layout, label = "" }: AdSlotProps) {
   const { ads } = useConsent();
   const { ref, isVisible } = useAdVisibility<HTMLDivElement>();
   const shouldRender = Boolean(clientId) && ads === "granted" && isVisible;
@@ -54,7 +54,7 @@ export function AdSlot({ slotId, className, minHeight = 250, format = "auto", la
   return (
     <div ref={ref} className={cn("w-full", className)}>
       {label && (
-        <p className="mb-1.5 text-center text-[10px] font-medium uppercase tracking-wider text-muted-foreground/70">
+        <p className="mb-1.5 text-center text-[10px] font-medium uppercase tracking-wider text-muted-foreground/70 bg-black">
           {label}
         </p>
       )}
