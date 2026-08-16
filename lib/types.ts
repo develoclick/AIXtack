@@ -64,6 +64,7 @@ export interface PostSummary {
   featured: boolean;
   readingTimeMin: number | null;
   publishedAt: Date | null;
+  updatedAt?: string | Date | null;
 }
 
 export interface PostDetail extends PostSummary {

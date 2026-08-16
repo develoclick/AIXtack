@@ -7,11 +7,14 @@ import { listProfessions } from "@/lib/content/professions";
 import tagsJson from "@/content/tags.json";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://guiapromptsia.com";
-/**
- * Sitemap único: válido mientras el sitio se mantenga por debajo de ~50.000
- * URLs (límite del protocolo de sitemaps). Al superarlo, sustituir por
- * `generateSitemaps()` + shards por tipo de contenido.
- */
+
+// Helper con 'any' para aceptar cualquier interfaz/tipo sin requerir firma de índice
+function getSafeDate(item: any): Date | undefined {
+  const rawDate = item?.updatedAt || item?.publishedAt || item?.createdAt || item?.date;
+  if (!rawDate) return undefined;
+  return rawDate instanceof Date ? rawDate : new Date(rawDate);
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [{ items: posts }, { items: tools }, { items: prompts }, categories, professions] = await Promise.all([
     listPublishedPosts({ pageSize: 1000 }),
@@ -47,16 +50,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticEntries,
     ...posts.map((post) => ({
       url: `${siteUrl}/blog/${post.slug}`,
+      lastModified: getSafeDate(post),
       changeFrequency: "weekly" as const,
       priority: 0.7,
     })),
     ...tools.map((tool) => ({
       url: `${siteUrl}/herramientas-ia/${tool.slug}`,
+      lastModified: getSafeDate(tool),
       changeFrequency: "weekly" as const,
       priority: 0.7,
     })),
     ...prompts.map((prompt) => ({
       url: `${siteUrl}/prompts/${prompt.slug}`,
+      lastModified: getSafeDate(prompt),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
