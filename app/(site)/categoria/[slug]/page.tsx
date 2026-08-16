@@ -14,6 +14,7 @@ import { listPublishedTools } from "@/lib/content/tools";
 import { listPublishedPrompts } from "@/lib/content/prompts";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbJsonLd, categoryCollectionPageJsonLd, faqPageJsonLd } from "@/lib/seo/json-ld";
+import { flagshipCategoryImages } from "@/lib/images";
 import categoriesJson from "@/content/categories.json";
 import type { Metadata } from "next";
 
@@ -69,7 +70,12 @@ export default async function CategoryPage({ params }: PageProps) {
 
       <Breadcrumbs items={breadcrumbItems} />
 
-      <SectionHeading eyebrow="Categoría" title={category.name} description={category.description ?? undefined} />
+      <SectionHeading
+        eyebrow="Categoría"
+        title={category.name}
+        description={category.description ?? undefined}
+        image={flagshipCategoryImages[category.slug]}
+      />
 {/*
       <div className="mt-8">
         <TopBannerAd slotId="1000000040" />

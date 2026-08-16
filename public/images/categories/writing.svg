@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="title-writing">
+  <title id="title-writing">Escritura y copywriting con IA</title>
+  <defs>
+    <linearGradient id="bg-writing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EEF2FF"/>
+      <stop offset="100%" stop-color="#E0D9FB"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#bg-writing)"/>
+  <rect x="56" y="42" width="88" height="116" rx="10" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="7"/>
+  <line x1="72" y1="70" x2="128" y2="70" stroke="#8B7FD1" stroke-width="6" stroke-linecap="round"/>
+  <line x1="72" y1="90" x2="128" y2="90" stroke="#8B7FD1" stroke-width="6" stroke-linecap="round"/>
+  <line x1="72" y1="110" x2="110" y2="110" stroke="#8B7FD1" stroke-width="6" stroke-linecap="round"/>
+  <path d="M120 128 L150 98 L164 112 L134 142 L116 146 Z" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M150 44 L156 58 L170 64 L156 70 L150 84 L144 70 L130 64 L144 58 Z" fill="#FBBF24"/>
+</svg>

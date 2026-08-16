@@ -5,7 +5,7 @@
     "name": "Programadores",
     "icon": "Code2",
     "order": 1,
-    "description": "Optimiza tu código, encuentra errores, diseña arquitecturas y mejora tus proyectos usando IA.",
+    "description": "Optimiza tu código, encuentra errores, diseña arquitecturas y mejora tus proyectos usando IA. Estos prompts están pensados para el flujo real de trabajo de un desarrollador: revisión de código, depuración, documentación técnica y diseño de sistemas, con ChatGPT, Claude, Gemini y Cursor.",
     "seoTitle": "Prompts de IA para programadores",
     "seoDescription": "Descubre los mejores prompts de IA para programadores. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -15,7 +15,7 @@
     "name": "Marketing Digital",
     "icon": "Megaphone",
     "order": 2,
-    "description": "Crea estrategias SEO, copywriting persuasivo y campañas que convierten con ayuda de IA.",
+    "description": "Crea estrategias SEO, copywriting persuasivo y campañas que convierten con ayuda de IA. Desde calendarios de contenido hasta análisis de competencia, estos prompts cubren todo el ciclo de marketing digital que necesita un equipo o freelance para trabajar más rápido sin perder calidad.",
     "seoTitle": "Prompts de IA para marketing digital",
     "seoDescription": "Descubre los mejores prompts de IA para marketing digital. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -25,7 +25,7 @@
     "name": "Diseñadores gráficos",
     "icon": "Palette",
     "order": 3,
-    "description": "Genera conceptos visuales, sistemas de marca y presentaciones de diseño más rápido con IA.",
+    "description": "Genera conceptos visuales, sistemas de marca y presentaciones de diseño más rápido con IA. Ideal para acelerar el brainstorming inicial, justificar decisiones de diseño ante clientes y documentar sistemas visuales de forma profesional.",
     "seoTitle": "Prompts de IA para diseñadores gráficos",
     "seoDescription": "Descubre los mejores prompts de IA para diseñadores gráficos. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -35,7 +35,7 @@
     "name": "Abogados",
     "icon": "Scale",
     "order": 4,
-    "description": "Analiza contratos, investiga jurisprudencia y redacta documentos legales con mayor rapidez.",
+    "description": "Analiza contratos, investiga jurisprudencia y redacta documentos legales con mayor rapidez. Estos prompts están enfocados en tareas de apoyo documental y administrativo —nunca sustituyen el criterio jurídico profesional— para agilizar el trabajo diario de un despacho o abogado independiente.",
     "seoTitle": "Prompts de IA para abogados",
     "seoDescription": "Descubre los mejores prompts de IA para abogados. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -45,7 +45,7 @@
     "name": "Médicos",
     "icon": "Stethoscope",
     "order": 5,
-    "description": "Resume literatura médica, prepara material educativo para pacientes y organiza información clínica.",
+    "description": "Resume literatura médica, prepara material educativo para pacientes y organiza información clínica. Diseñados como apoyo documental y administrativo para reducir carga burocrática, nunca como sustituto del juicio clínico ni para diagnóstico.",
     "seoTitle": "Prompts de IA para médicos",
     "seoDescription": "Descubre los mejores prompts de IA para médicos. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -55,7 +55,7 @@
     "name": "Ingenieros",
     "icon": "Cog",
     "order": 6,
-    "description": "Agiliza cálculos, informes técnicos y análisis de proyectos de ingeniería con ayuda de IA.",
+    "description": "Agiliza cálculos, informes técnicos y análisis de proyectos de ingeniería con ayuda de IA. Útiles para documentar procesos, estructurar memorias técnicas y acelerar tareas repetitivas sin comprometer el rigor técnico que exige cada disciplina.",
     "seoTitle": "Prompts de IA para ingenieros",
     "seoDescription": "Descubre los mejores prompts de IA para ingenieros. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -65,7 +65,7 @@
     "name": "Arquitectos",
     "icon": "Building2",
     "order": 7,
-    "description": "Desarrolla conceptos de diseño, memorias descriptivas y presentaciones de proyecto con IA.",
+    "description": "Desarrolla conceptos de diseño, memorias descriptivas y presentaciones de proyecto con IA. Pensados para acompañar cada fase del proyecto: desde la conceptualización inicial hasta la comunicación con clientes y equipos multidisciplinares.",
     "seoTitle": "Prompts de IA para arquitectos",
     "seoDescription": "Descubre los mejores prompts de IA para arquitectos. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -75,7 +75,7 @@
     "name": "Profesores",
     "icon": "GraduationCap",
     "order": 8,
-    "description": "Diseña clases, evaluaciones y material educativo adaptado a tus estudiantes con IA.",
+    "description": "Diseña clases, evaluaciones y material educativo adaptado a tus estudiantes con IA. Cubren desde la planificación de unidades didácticas hasta la creación de rúbricas y comunicación con familias, ahorrando horas de preparación cada semana.",
     "seoTitle": "Prompts de IA para profesores",
     "seoDescription": "Descubre los mejores prompts de IA para profesores. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -85,7 +85,7 @@
     "name": "Contadores",
     "icon": "Calculator",
     "order": 9,
-    "description": "Automatiza reportes, análisis financieros y procesos de auditoría con inteligencia artificial.",
+    "description": "Automatiza reportes, análisis financieros y procesos de auditoría con inteligencia artificial. Diseñados para reducir el trabajo manual repetitivo de la contabilidad y dejar más tiempo para el análisis estratégico que realmente aporta valor al cliente.",
     "seoTitle": "Prompts de IA para contadores",
     "seoDescription": "Descubre los mejores prompts de IA para contadores. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -95,7 +95,7 @@
     "name": "Emprendedores",
     "icon": "Rocket",
     "order": 10,
-    "description": "Valida ideas de negocio, construye tu plan y define estrategias de crecimiento con IA.",
+    "description": "Valida ideas de negocio, construye tu plan y define estrategias de crecimiento con IA. Desde el primer pitch hasta la estrategia de captación de clientes, estos prompts acompañan las decisiones críticas de los primeros meses de un negocio.",
     "seoTitle": "Prompts de IA para emprendedores",
     "seoDescription": "Descubre los mejores prompts de IA para emprendedores. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -105,7 +105,7 @@
     "name": "Ventas",
     "icon": "TrendingUp",
     "order": 11,
-    "description": "Prospecta clientes, redacta emails comerciales y mejora tus guiones de venta con IA.",
+    "description": "Prospecta clientes, redacta emails comerciales y mejora tus guiones de venta con IA. Cubren todo el embudo comercial: desde la primera toma de contacto hasta el manejo de objeciones y el cierre, adaptados a distintos sectores.",
     "seoTitle": "Prompts de IA para ventas",
     "seoDescription": "Descubre los mejores prompts de IA para ventas. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -115,7 +115,7 @@
     "name": "Recursos Humanos",
     "icon": "Users",
     "order": 12,
-    "description": "Agiliza selección de personal, entrevistas y descripciones de puesto con inteligencia artificial.",
+    "description": "Agiliza selección de personal, entrevistas y descripciones de puesto con inteligencia artificial. Diseñados para acompañar todo el ciclo de vida del empleado: reclutamiento, onboarding, evaluación de desempeño y comunicación interna.",
     "seoTitle": "Prompts de IA para Recursos Humanos",
     "seoDescription": "Descubre los mejores prompts de IA para Recursos Humanos. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -125,7 +125,7 @@
     "name": "Creadores de contenido",
     "icon": "Video",
     "order": 13,
-    "description": "Genera guiones, ideas virales y calendarios de contenido para YouTube, TikTok y redes sociales.",
+    "description": "Genera guiones, ideas virales y calendarios de contenido para YouTube, TikTok y redes sociales. Pensados para creadores que necesitan producir contenido de forma constante sin sacrificar calidad ni originalidad en cada publicación.",
     "seoTitle": "Prompts de IA para creadores de contenido",
     "seoDescription": "Descubre los mejores prompts de IA para creadores de contenido. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   },
@@ -135,7 +135,7 @@
     "name": "Estudiantes",
     "icon": "BookOpen",
     "order": 14,
-    "description": "Organiza resúmenes, investiga con criterio y prepárate para exámenes con ayuda de IA.",
+    "description": "Organiza resúmenes, investiga con criterio y prepárate para exámenes con ayuda de IA. Diseñados como apoyo al aprendizaje activo —para entender mejor, no para sustituir el trabajo propio— desde secundaria hasta estudios universitarios.",
     "seoTitle": "Prompts de IA para estudiantes",
     "seoDescription": "Descubre los mejores prompts de IA para estudiantes. Optimiza tu trabajo con ChatGPT, Claude y Gemini."
   }

@@ -2,7 +2,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildMetadata({
   title: "Política editorial",
-  description: "Cómo investigamos, redactamos y revisamos el contenido de AIXtack.",
+  description: "Cómo investigamos, redactamos y revisamos el contenido de Guía Prompts IA.",
   path: "/politica-editorial",
 });
 
@@ -11,7 +11,7 @@ export default function EditorialPolicyPage() {
     <div className="prose prose-neutral dark:prose-invert mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <h1>Política editorial</h1>
       <p>
-        Esta página explica cómo se produce el contenido de AIXtack: de dónde sale, quién lo
+        Esta página explica cómo se produce el contenido de Guía Prompts IA: de dónde sale, quién lo
         revisa y qué estándares sigue antes de publicarse.
       </p>
 
@@ -45,7 +45,7 @@ export default function EditorialPolicyPage() {
       <p>
         Si encuentras un error factual, un precio desactualizado o una función que ya no existe,
         escríbenos a{" "}
-        <a href="mailto:contacto@aixtack.com">contacto@aixtack.com</a> o desde el{" "}
+        <a href="mailto:contacto@guiapromptsia.com">contacto@guiapromptsia.com</a> o desde el{" "}
         <a href="/contacto">formulario de contacto</a>. Corregimos los errores confirmados lo antes
         posible y, en cambios relevantes, indicamos la fecha de la última actualización del
         artículo.

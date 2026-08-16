@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="title-lovable">
+  <title id="title-lovable">Lovable: construye aplicaciones web completas describiendo la idea</title>
+  <defs>
+    <linearGradient id="bg-lovable" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EEF2FF"/>
+      <stop offset="100%" stop-color="#E0D9FB"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#bg-lovable)"/>
+
+  <rect x="30" y="70" width="56" height="46" rx="14" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="6"/>
+  <path d="M44 118 L44 130 L56 118 Z" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M58 92 C58 86 50 86 50 92 C50 98 58 102 58 106 C58 102 66 98 66 92 C66 86 58 86 58 92 Z" fill="#8B7FD1"/>
+  <path d="M100 86 L108 92 L100 98" fill="none" stroke="#4C3AA8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="112" y="66" width="58" height="60" rx="6" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="6"/>
+  <line x1="120" y1="82" x2="150" y2="82" stroke="#8B7FD1" stroke-width="5" stroke-linecap="round"/>
+  <rect x="120" y="92" width="42" height="24" rx="4" fill="#E5E0FB" stroke="#8B7FD1" stroke-width="3"/>
+  <path d="M150 40 L156 54 L170 60 L156 66 L150 80 L144 66 L130 60 L144 54 Z" fill="#FBBF24"/>
+</svg>

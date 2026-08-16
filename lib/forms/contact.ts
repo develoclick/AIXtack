@@ -33,7 +33,7 @@ export async function submitContactAction(
   if (!endpoint) {
     return {
       status: "error",
-      message: "El formulario no está activo todavía. Escríbenos directamente a contacto@aixtack.com.",
+      message: "El formulario no está activo todavía. Escríbenos directamente a contacto@guiapromptsia.com.",
     };
   }
 

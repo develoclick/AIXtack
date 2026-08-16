@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import * as Icons from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -7,6 +8,7 @@ import { ProfessionPromptExplorer } from "@/components/prompts/profession-prompt
 import { getProfessionBySlug, listProfessionPrompts, listProfessions } from "@/lib/content/professions";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbJsonLd, professionCollectionPageJsonLd } from "@/lib/seo/json-ld";
+import { professionImages } from "@/lib/images";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -42,6 +44,7 @@ export default async function ProfessionPage({ params }: PageProps) {
 
   const prompts = await listProfessionPrompts(profession.slug);
   const Icon = resolveIcon(profession.icon);
+  const illustration = professionImages[profession.slug];
 
   const breadcrumbItems = [
     { name: "Prompts", path: "/prompts" },
@@ -67,9 +70,13 @@ export default async function ProfessionPage({ params }: PageProps) {
       <Breadcrumbs items={breadcrumbItems} />
 
       <div className="flex items-center gap-4">
-        <span className="flex size-14 items-center justify-center rounded-2xl bg-brand-muted text-brand">
-          <Icon className="size-7" />
-        </span>
+        {illustration ? (
+          <Image src={illustration.src} alt="" width={112} height={112} className="size-14 shrink-0 sm:size-16" />
+        ) : (
+          <span className="flex size-14 items-center justify-center rounded-2xl bg-brand-muted text-brand">
+            <Icon className="size-7" />
+          </span>
+        )}
         <SectionHeading
           eyebrow={`${profession.promptCount} prompts`}
           title={`Prompts de IA para ${profession.name}`}

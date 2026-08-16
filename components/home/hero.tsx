@@ -15,19 +15,15 @@ import {
   Layers,
 } from "lucide-react";
 
-// Siluetas abstractas locales en Base64 para evitar errores de dominios en Next.js
-const SILHOUETTE_IMAGE =
-  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233062ef' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z'/><path d='M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z'/></svg>";
-
 const CATEGORIES = [
   {
     id: "cat-01",
     title: "Generación de Imágenes",
     count: "62 herramientas",
     icon: ImageIcon,
-    href: "/categoria/imagenes",
+    href: "/categoria/generacion-de-imagenes",
     badge: "Más buscado",
-    silhouette: SILHOUETTE_IMAGE,
+    silhouette: "/images/categories/image-generation.svg",
   },
   {
     id: "cat-02",
@@ -36,25 +32,25 @@ const CATEGORIES = [
     icon: PenLine,
     href: "/categoria/escritura",
     badge: "Alto RPM",
-    silhouette: SILHOUETTE_IMAGE,
+    silhouette: "/images/categories/writing.svg",
   },
   {
     id: "cat-03",
     title: "Código y Programación",
     count: "58 herramientas",
     icon: Code2,
-    href: "/categoria/codigo",
+    href: "/categoria/programacion",
     badge: "Top CTR",
-    silhouette: SILHOUETTE_IMAGE,
+    silhouette: "/images/categories/programming.svg",
   },
   {
     id: "cat-04",
     title: "Voz y Sintetización",
     count: "31 herramientas",
     icon: AudioLines,
-    href: "/categoria/audio",
+    href: "/categoria/audio-y-voz",
     badge: "Tendencia",
-    silhouette: SILHOUETTE_IMAGE,
+    silhouette: "/images/categories/audio-voice.svg",
   },
 ];
 

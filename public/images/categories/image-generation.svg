@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="title-imggen">
+  <title id="title-imggen">Generación de imágenes con IA</title>
+  <defs>
+    <linearGradient id="bg-imggen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EEF2FF"/>
+      <stop offset="100%" stop-color="#E0D9FB"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#bg-imggen)"/>
+  <rect x="46" y="58" width="108" height="84" rx="12" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="7"/>
+  <circle cx="72" cy="84" r="9" fill="#4C3AA8"/>
+  <path d="M46 128 L82 96 L106 116 L128 92 L154 128" fill="none" stroke="#8B7FD1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M150 44 L156 58 L170 64 L156 70 L150 84 L144 70 L130 64 L144 58 Z" fill="#FBBF24"/>
+  <circle cx="52" cy="150" r="5" fill="#FBBF24"/>
+</svg>

@@ -12,6 +12,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { CopyPromptButton } from "@/components/prompts/copy-prompt-button";
+import { ArticleBody } from "@/components/content/article-body";
 import type { ProfessionPrompt } from "@/lib/types";
 
 const difficultyVariant: Record<string, "secondary" | "outline" | "default"> = {
@@ -78,6 +79,12 @@ export function ProfessionPromptCard({ prompt }: { prompt: ProfessionPrompt }) {
             {prompt.content}
           </pre>
         </div>
+
+        {prompt.article && (
+          <div className="border-t pt-4">
+            <ArticleBody html={prompt.article} />
+          </div>
+        )}
 
         <div className="flex flex-wrap gap-1.5">
           {prompt.tools.map((tool) => (

@@ -9,10 +9,12 @@ interface RedirectEntry {
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "picsum.photos" },
-      { protocol: "https", hostname: "fastly.picsum.photos" },
-    ],
+    // Todas las ilustraciones SVG son propias y estáticas (public/images/),
+    // sin contenido de terceros ni scripts embebidos — seguro habilitar la
+    // optimización de SVG con la CSP restrictiva que recomienda Next.js.
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async redirects() {
     // Redirecciones para URLs legadas o slugs renombrados: se editan

@@ -174,6 +174,7 @@ export interface ProfessionPrompt {
   title: string;
   description: string;
   content: string;
+  article: string | null;
   tools: string[];
   category: string;
   difficulty: string;

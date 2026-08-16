@@ -69,7 +69,7 @@ export function SearchCommand() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-xl gap-0 overflow-hidden p-0">
           <DialogHeader className="border-b px-4 py-3">
-            <DialogTitle className="sr-only">Buscar en AIXtack</DialogTitle>
+            <DialogTitle className="sr-only">Buscar en Guía Prompts IA</DialogTitle>
             <div className="flex items-center gap-2">
               <Search className="h-4 w-4 text-muted-foreground" />
               <Input

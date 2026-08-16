@@ -30,6 +30,7 @@ export default async function GuiasPage({ searchParams }: PageProps) {
       page={page}
       topBannerSlotId="1000000014"
       multiplexSlotId="1000000015"
+      image={{ src: "/images/tutorials/guides.svg", alt: "Guías completas de inteligencia artificial" }}
     />
   );
 }

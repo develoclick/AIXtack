@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import * as Icons from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { flagshipCategoryImages } from "@/lib/images";
 import type { CategorySummary } from "@/lib/types";
 
 function resolveIcon(icon: string | null) {
@@ -17,6 +19,7 @@ export function FeaturedCategories({ categories }: { categories: CategorySummary
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 lg:grid-rows-2 lg:gap-5">
       {items.map((category, index) => {
         const Icon = resolveIcon(category.icon);
+        const illustration = flagshipCategoryImages[category.slug];
         const featured = index === 0;
 
         return (
@@ -30,22 +33,37 @@ export function FeaturedCategories({ categories }: { categories: CategorySummary
                 : "items-center gap-4 text-center sm:items-start sm:text-left"
             )}
           >
-            <div
-              aria-hidden
-              className={cn(
-                "absolute -right-6 -top-6 rounded-full bg-brand-muted/60 transition-transform duration-500 group-hover:scale-110",
-                featured ? "size-32" : "size-20"
-              )}
-            />
+            {!illustration && (
+              <div
+                aria-hidden
+                className={cn(
+                  "absolute -right-6 -top-6 rounded-full bg-brand-muted/60 transition-transform duration-500 group-hover:scale-110",
+                  featured ? "size-32" : "size-20"
+                )}
+              />
+            )}
 
-            <span
-              className={cn(
-                "relative z-10 flex items-center justify-center rounded-xl bg-brand-muted text-brand",
-                featured ? "size-14" : "size-11 mx-auto sm:mx-0"
-              )}
-            >
-              <Icon className={featured ? "size-7" : "size-5"} />
-            </span>
+            {illustration ? (
+              <Image
+                src={illustration.src}
+                alt=""
+                width={112}
+                height={112}
+                className={cn(
+                  "relative z-10 transition-transform duration-500 group-hover:scale-105",
+                  featured ? "size-24" : "size-14 mx-auto sm:mx-0"
+                )}
+              />
+            ) : (
+              <span
+                className={cn(
+                  "relative z-10 flex items-center justify-center rounded-xl bg-brand-muted text-brand",
+                  featured ? "size-14" : "size-11 mx-auto sm:mx-0"
+                )}
+              >
+                <Icon className={featured ? "size-7" : "size-5"} />
+              </span>
+            )}
 
             <div className="relative z-10 flex w-full items-end justify-between gap-2">
               <span className={cn("font-medium group-hover:text-brand", featured ? "text-2xl font-semibold tracking-tight" : "text-sm")}>

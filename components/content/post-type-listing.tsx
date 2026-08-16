@@ -16,6 +16,7 @@ export async function PostTypeListing({
   page,
   topBannerSlotId,
   multiplexSlotId,
+  image,
 }: {
   type: PostType;
   basePath: string;
@@ -25,6 +26,7 @@ export async function PostTypeListing({
   page: number;
   topBannerSlotId: string;
   multiplexSlotId: string;
+  image?: { src: string; alt: string };
 }) {
   const { items, totalPages } = await listPublishedPosts({ type, page, pageSize: 12 });
 
@@ -42,7 +44,7 @@ export async function PostTypeListing({
         }}
       />
 
-      <SectionHeading eyebrow={eyebrow} title={title} description={description} />
+      <SectionHeading eyebrow={eyebrow} title={title} description={description} image={image} />
 {/*
       <div className="mt-8">
         <TopBannerAd slotId={topBannerSlotId} />

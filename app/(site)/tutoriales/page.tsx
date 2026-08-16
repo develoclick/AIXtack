@@ -30,6 +30,7 @@ export default async function TutorialesPage({ searchParams }: PageProps) {
       page={page}
       topBannerSlotId="1000000012"
       multiplexSlotId="1000000013"
+      image={{ src: "/images/tutorials/tutorials.svg", alt: "Tutoriales paso a paso de IA" }}
     />
   );
 }

@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <AvatarFallback>{post.author.name?.charAt(0) ?? "A"}</AvatarFallback>
         </Avatar>
         <div className="text-sm">
-          <p className="font-medium">{post.author.name ?? "Equipo AIXtack"}</p>
+          <p className="font-medium">{post.author.name ?? "Equipo Guía Prompts IA"}</p>
           <p className="text-muted-foreground">
             {formatDate(post.publishedAt)}
             {post.readingTimeMin ? ` · ${post.readingTimeMin} min de lectura` : ""}

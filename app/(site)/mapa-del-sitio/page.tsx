@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildMetadata({
   title: "Mapa del sitio",
-  description: "Todas las secciones y categorías de AIXtack en un solo lugar.",
+  description: "Todas las secciones y categorías de Guía Prompts IA en un solo lugar.",
   path: "/mapa-del-sitio",
 });
 
@@ -56,7 +56,7 @@ export default async function SitemapPage() {
       <SectionHeading
         eyebrow="Navegación"
         title="Mapa del sitio"
-        description="Todas las páginas y categorías de AIXtack organizadas en un solo lugar."
+        description="Todas las páginas y categorías de Guía Prompts IA organizadas en un solo lugar."
       />
 
       <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3">

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="title-opus-clip">
+  <title id="title-opus-clip">Opus Clip: extrae los mejores clips virales de videos largos</title>
+  <defs>
+    <linearGradient id="bg-opus-clip" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EEF2FF"/>
+      <stop offset="100%" stop-color="#E0D9FB"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#bg-opus-clip)"/>
+
+  <rect x="30" y="88" width="140" height="24" rx="6" fill="#FFFFFF" stroke="#8B7FD1" stroke-width="5"/>
+  <line x1="70" y1="88" x2="70" y2="112" stroke="#4C3AA8" stroke-width="4" stroke-dasharray="3 4"/>
+  <line x1="110" y1="88" x2="110" y2="112" stroke="#4C3AA8" stroke-width="4" stroke-dasharray="3 4"/>
+  <line x1="140" y1="88" x2="140" y2="112" stroke="#4C3AA8" stroke-width="4" stroke-dasharray="3 4"/>
+  <rect x="52" y="126" width="34" height="30" rx="5" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="6"/>
+  <path d="M64 134 L78 141 L64 148 Z" fill="#8B7FD1"/>
+  <rect x="114" y="126" width="34" height="30" rx="5" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="6"/>
+  <path d="M126 134 L140 141 L126 148 Z" fill="#8B7FD1"/>
+  <path d="M150 40 L156 54 L170 60 L156 66 L150 80 L144 66 L130 60 L144 54 Z" fill="#FBBF24"/>
+</svg>

@@ -71,7 +71,7 @@ export function Navbar() {
 
           <div className="flex flex-col leading-none">
             <span className="text-xl font-bold tracking-tight">
-              AIXtack
+              Guía Prompts IA
             </span>
 
             <span className="text-[11px] text-muted-foreground">

@@ -18,7 +18,7 @@ import { listPublishedPrompts } from "@/lib/content/prompts";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildMetadata({
-  title: "AIXtack — Herramientas, prompts y noticias de Inteligencia Artificial en español",
+  title: "Guía Prompts IA — Herramientas, prompts y noticias de Inteligencia Artificial en español",
   description:
     "Descubre las mejores herramientas de IA, una biblioteca de prompts, comparativas, tutoriales, guías y noticias — todo en español.",
   path: "/",

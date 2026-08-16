@@ -70,6 +70,7 @@ export default async function ToolsPage({ searchParams }: PageProps) {
         eyebrow="Directorio"
         title="Herramientas de IA"
         description="Explora, compara y encuentra la herramienta de inteligencia artificial ideal para tu caso de uso."
+        image={{ src: "/images/tools/ai-tools-directory.svg", alt: "Directorio de herramientas de IA" }}
       />
 {/*
       <div className="mt-8">

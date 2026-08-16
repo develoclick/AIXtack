@@ -1,8 +1,8 @@
 import type { CategorySummary, PostDetail, PromptDetail, ProfessionSummary, ToolDetail } from "@/lib/types";
 import { toDate } from "@/lib/utils/format";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "AIXtack";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 
 export function organizationJsonLd() {
   return {
@@ -11,6 +11,8 @@ export function organizationJsonLd() {
     name: siteName,
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
+    description:
+      "Guía Prompts IA es la plataforma en español para descubrir herramientas de inteligencia artificial, prompts profesionales por sector y contenido educativo sobre IA.",
   };
 }
 

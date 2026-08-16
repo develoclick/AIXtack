@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Rss, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { footerNav } from "@/lib/nav-config";
 import { NewsletterForm } from "@/components/newsletter/newsletter-form";
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons/social-icons";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -18,14 +17,12 @@ export function Footer() {
               <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-foreground to-foreground/70 text-background shadow-soft">
                 <Sparkles className="size-4" />
               </span>
-              <span className="text-lg">AIXtack</span>
+              <span className="text-lg">Guía Prompts IA</span>
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
               La plataforma en español para descubrir herramientas de inteligencia artificial,
               prompts, comparativas y las últimas noticias del sector.
             </p>
-            
-            
           </div>
 
           {footerNav.map((group) => (
@@ -50,7 +47,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t pt-8 text-xs text-muted-foreground sm:flex-row">
-          <p>© {year} AIXtack. Todos los derechos reservados.</p>
+          <p>© {year} Guía Prompts IA. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

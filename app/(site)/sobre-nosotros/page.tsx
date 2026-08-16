@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildMetadata({
   title: "Sobre nosotros",
-  description: "Qué es AIXtack, a quién ayuda y cómo se sostiene el proyecto.",
+  description: "Qué es Guía Prompts IA, a quién ayuda y cómo se sostiene el proyecto.",
   path: "/sobre-nosotros",
 });
 
@@ -13,15 +13,15 @@ export default function AboutPage() {
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <SectionHeading
         eyebrow="Quiénes somos"
-        title="Sobre AIXtack"
+        title="Sobre Guía Prompts IA"
         description="La plataforma en español para entender y aprovechar la inteligencia artificial."
       />
 
       <div className="prose prose-neutral dark:prose-invert mt-10">
-        <h2>Por qué existe AIXtack</h2>
+        <h2>Por qué existe Guía Prompts IA</h2>
         <p>
           La mayoría de contenido de calidad sobre IA se publica primero en inglés, y llega tarde
-          —o traducido de forma literal— al público hispanohablante. AIXtack nació para cerrar esa
+          —o traducido de forma literal— al público hispanohablante. Guía Prompts IA nació para cerrar esa
           brecha: un sitio en español, pensado desde cero para lectores de España y
           Latinoamérica, con un directorio de herramientas, una biblioteca de prompts, tutoriales
           paso a paso y comparativas honestas.
@@ -55,9 +55,9 @@ export default function AboutPage() {
           trabajamos en nuestra <Link href="/politica-editorial">política editorial</Link>.
         </p>
 
-        <h2>Cómo se sostiene AIXtack</h2>
+        <h2>Cómo se sostiene Guía Prompts IA</h2>
         <p>
-          El acceso a AIXtack es gratuito. El proyecto se financia con publicidad (Google AdSense)
+          El acceso a Guía Prompts IA es gratuito. El proyecto se financia con publicidad (Google AdSense)
           y con enlaces de afiliados hacia algunas de las herramientas que recomendamos —puedes leer
           los detalles en nuestro <Link href="/aviso-afiliados">aviso de afiliados</Link>. Ninguna
           relación comercial cambia lo que recomendamos ni cómo lo valoramos.

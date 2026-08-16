@@ -7,7 +7,7 @@ import { faqPageJsonLd } from "@/lib/seo/json-ld";
 
 export const metadata = buildMetadata({
   title: "Preguntas frecuentes",
-  description: "Resolvemos las dudas más habituales sobre AIXtack, nuestras herramientas y contenidos.",
+  description: "Resolvemos las dudas más habituales sobre Guía Prompts IA, nuestras herramientas y contenidos.",
   path: "/faq",
 });
 
@@ -26,7 +26,7 @@ export default async function FaqPage() {
       <SectionHeading
         eyebrow="Ayuda"
         title="Preguntas frecuentes"
-        description="Todo lo que necesitas saber sobre AIXtack."
+        description="Todo lo que necesitas saber sobre Guía Prompts IA."
         align="center"
       />
 

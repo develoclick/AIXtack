@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="title-tutorials">
+  <title id="title-tutorials">Tutoriales paso a paso de IA</title>
+  <defs>
+    <linearGradient id="bg-tutorials" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EEF2FF"/>
+      <stop offset="100%" stop-color="#E0D9FB"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#bg-tutorials)"/>
+  <circle cx="90" cy="90" r="46" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="7"/>
+  <path d="M78 72 L108 90 L78 108 Z" fill="#4C3AA8"/>
+  <circle cx="146" cy="60" r="14" fill="#8B7FD1"/>
+  <text x="146" y="65" font-family="sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+  <circle cx="150" cy="112" r="12" fill="#E5E0FB" stroke="#8B7FD1" stroke-width="4"/>
+  <text x="150" y="117" font-family="sans-serif" font-size="13" font-weight="700" fill="#4C3AA8" text-anchor="middle">2</text>
+  <circle cx="128" cy="148" r="10" fill="#E5E0FB" stroke="#8B7FD1" stroke-width="4"/>
+  <text x="128" y="152" font-family="sans-serif" font-size="11" font-weight="700" fill="#4C3AA8" text-anchor="middle">3</text>
+  <path d="M150 40 L156 54 L170 60 L156 66 L150 80 L144 66 L130 60 L144 54 Z" fill="#FBBF24"/>
+</svg>

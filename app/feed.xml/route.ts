@@ -1,8 +1,8 @@
 import { listPublishedPosts } from "@/lib/content/posts";
 import { toDate } from "@/lib/utils/format";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "AIXtack";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 
 function escapeXml(value: string) {
   return value

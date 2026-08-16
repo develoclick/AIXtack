@@ -47,7 +47,7 @@ export function PostCard({
           </>
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-muted to-brand-muted text-sm text-muted-foreground">
-            AIXtack
+            Guía Prompts IA
           </div>
         )}
         <Badge className="absolute left-3 top-3 shadow-soft" variant="secondary">

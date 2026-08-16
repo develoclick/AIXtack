@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getToolBySlug } from "@/lib/content/tools";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
 
 /**
  * Enlace de afiliado cloaqueado: resuelve el slug contra el contenido
@@ -19,7 +19,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
   }
 
   const url = new URL(tool.websiteUrl);
-  url.searchParams.set("utm_source", "aixtack");
+  url.searchParams.set("utm_source", "guiapromptsia");
   url.searchParams.set("utm_medium", "affiliate");
 
   return NextResponse.redirect(url.toString(), { status: 302 });

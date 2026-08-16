@@ -30,6 +30,7 @@ export default async function ComparativasPage({ searchParams }: PageProps) {
       page={page}
       topBannerSlotId="1000000010"
       multiplexSlotId="1000000011"
+      image={{ src: "/images/illustrations/comparisons.svg", alt: "Comparativas de herramientas de IA" }}
     />
   );
 }

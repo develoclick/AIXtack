@@ -2,7 +2,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildMetadata({
   title: "Política de privacidad",
-  description: "Cómo tratamos tus datos personales en AIXtack.",
+  description: "Cómo tratamos tus datos personales en Guía Prompts IA.",
   path: "/privacidad",
 });
 
@@ -11,16 +11,16 @@ export default function PrivacyPage() {
     <div className="prose prose-neutral dark:prose-invert mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <h1>Política de privacidad</h1>
       <p>
-        En AIXtack respetamos tu privacidad. Esta página explica qué datos recogemos, con qué
+        En Guía Prompts IA respetamos tu privacidad. Esta página explica qué datos recogemos, con qué
         finalidad, y qué papel tienen los proveedores de publicidad como Google en ese
         tratamiento.
       </p>
 
       <h2>Responsable del tratamiento</h2>
       <p>
-        AIXtack es el responsable del tratamiento de los datos recogidos a través de este sitio.
+        Guía Prompts IA es el responsable del tratamiento de los datos recogidos a través de este sitio.
         Para cualquier consulta sobre esta política, puedes escribirnos a{" "}
-        <a href="mailto:contacto@aixtack.com">contacto@aixtack.com</a>.
+        <a href="mailto:contacto@guiapromptsia.com">contacto@guiapromptsia.com</a>.
       </p>
 
       <h2>Datos que recogemos</h2>
@@ -35,10 +35,18 @@ export default function PrivacyPage() {
 
       <h2>Cookies y publicidad de Google</h2>
       <p>
-        Usamos Google AdSense para mostrar anuncios. Google, como proveedor externo, utiliza
-        cookies (incluida la cookie DART, entre otras) para mostrar anuncios basados en tus visitas
-        anteriores a este sitio o a otros sitios en internet. El uso de estas cookies permite a
-        Google y a sus socios publicitarios mostrar anuncios relevantes según tu navegación.
+        Usamos Google AdSense para mostrar anuncios en guiapromptsia.com. Google y sus proveedores
+        de tecnología publicitaria, incluido DoubleClick (la plataforma de anuncios de Google), son
+        proveedores externos que utilizan cookies —como la cookie DART de DoubleClick, entre
+        otras— para mostrar anuncios basados en tus visitas anteriores a este sitio o a otros
+        sitios en internet. El uso de estas cookies permite a Google, a DoubleClick y a sus socios
+        publicitarios mostrar anuncios relevantes según tu navegación.
+      </p>
+      <p>
+        Estos terceros pueden recopilar datos técnicos (dirección IP aproximada, tipo de
+        dispositivo, navegador, páginas visitadas) para medir el rendimiento de los anuncios y
+        evitar mostrarte el mismo anuncio repetidamente. Guía Prompts IA no vende estos datos ni
+        los combina con información que te identifique directamente.
       </p>
       <p>
         Puedes inhabilitar el uso de la cookie de publicidad de Google visitando la{" "}
@@ -65,7 +73,7 @@ export default function PrivacyPage() {
 
       <h2>Menores de edad</h2>
       <p>
-        AIXtack no está dirigido a menores de 16 años y no recogemos conscientemente datos
+        Guía Prompts IA no está dirigido a menores de 16 años y no recogemos conscientemente datos
         personales de menores de esa edad. Si crees que un menor nos ha proporcionado datos
         personales, contáctanos para eliminarlos.
       </p>
@@ -81,7 +89,7 @@ export default function PrivacyPage() {
       <p>
         Puedes solicitar el acceso, rectificación, portabilidad o eliminación de tus datos, así
         como oponerte a su tratamiento, escribiéndonos a{" "}
-        <a href="mailto:contacto@aixtack.com">contacto@aixtack.com</a>. Responderemos en el plazo
+        <a href="mailto:contacto@guiapromptsia.com">contacto@guiapromptsia.com</a>. Responderemos en el plazo
         que establece la normativa de protección de datos aplicable.
       </p>
 

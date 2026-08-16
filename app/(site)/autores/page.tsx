@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildMetadata({
   title: "Autores",
-  description: "Conoce al equipo editorial detrás del contenido de AIXtack.",
+  description: "Conoce al equipo editorial detrás del contenido de Guía Prompts IA.",
   path: "/autores",
 });
 
@@ -22,7 +22,7 @@ export default async function AuthorsPage() {
       <SectionHeading
         eyebrow="Equipo"
         title="Autores"
-        description="Las personas que investigan, prueban y redactan cada herramienta, comparativa y guía publicada en AIXtack."
+        description="Las personas que investigan, prueban y redactan cada herramienta, comparativa y guía publicada en Guía Prompts IA."
       />
 
       <div className="mt-12 flex flex-col gap-10">
@@ -38,7 +38,7 @@ export default async function AuthorsPage() {
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{author.bio}</p>
               <p className="mt-3 text-xs text-muted-foreground">
                 {author.publishedPostCount}{" "}
-                {author.publishedPostCount === 1 ? "publicación" : "publicaciones"} en AIXtack
+                {author.publishedPostCount === 1 ? "publicación" : "publicaciones"} en Guía Prompts IA
               </p>
             </div>
           </div>

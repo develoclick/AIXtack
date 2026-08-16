@@ -30,6 +30,7 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
       page={page}
       topBannerSlotId="1000000016"
       multiplexSlotId="1000000017"
+      image={{ src: "/images/blog/news.svg", alt: "Noticias de inteligencia artificial" }}
     />
   );
 }

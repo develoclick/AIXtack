@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "AIXtack";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 
 export interface BuildMetadataInput {
   title: string;

@@ -9,7 +9,7 @@ import type { SearchResultItem } from "@/lib/types";
 
 export const metadata = buildMetadata({
   title: "Buscar",
-  description: "Busca herramientas de IA, prompts y artículos en AIXtack.",
+  description: "Busca herramientas de IA, prompts y artículos en Guía Prompts IA.",
   path: "/buscar",
   noIndex: true,
 });
@@ -37,7 +37,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-semibold tracking-tight">Buscar en AIXtack</h1>
+      <h1 className="text-3xl font-semibold tracking-tight">Buscar en Guía Prompts IA</h1>
 
       <form method="get" className="mt-8 flex gap-2">
         <div className="relative flex-1">

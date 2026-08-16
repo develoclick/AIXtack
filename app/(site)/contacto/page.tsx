@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildMetadata({
   title: "Contacto",
-  description: "Ponte en contacto con el equipo de AIXtack para dudas, colaboraciones o soporte.",
+  description: "Ponte en contacto con el equipo de Guía Prompts IA para dudas, colaboraciones o soporte.",
   path: "/contacto",
 });
 
@@ -26,7 +26,7 @@ export default function ContactPage() {
             </span>
             <div>
               <p className="font-medium">Email</p>
-              <p className="text-sm text-muted-foreground">contacto@aixtack.com</p>
+              <p className="text-sm text-muted-foreground">contacto@guiapromptsia.com</p>
             </div>
           </div>
           <div className="flex items-start gap-3">

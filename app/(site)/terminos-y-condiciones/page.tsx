@@ -2,7 +2,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildMetadata({
   title: "Términos y condiciones",
-  description: "Condiciones de uso del sitio web AIXtack.",
+  description: "Condiciones de uso del sitio web Guía Prompts IA.",
   path: "/terminos-y-condiciones",
 });
 
@@ -11,20 +11,20 @@ export default function TermsPage() {
     <div className="prose prose-neutral dark:prose-invert mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <h1>Términos y condiciones</h1>
       <p>
-        Al acceder y utilizar AIXtack aceptas los términos descritos en esta página. Si no estás
+        Al acceder y utilizar Guía Prompts IA aceptas los términos descritos en esta página. Si no estás
         de acuerdo con alguno de ellos, te pedimos que no utilices el sitio.
       </p>
 
       <h2>1. Descripción del servicio</h2>
       <p>
-        AIXtack es un sitio de contenido editorial en español sobre inteligencia artificial:
+        Guía Prompts IA es un sitio de contenido editorial en español sobre inteligencia artificial:
         directorio de herramientas, biblioteca de prompts, comparativas, tutoriales, guías y
         noticias. El acceso al contenido es gratuito; algunas funciones (como guardar favoritos o
         comentar) pueden requerir una cuenta.
       </p>
 
       <h2>2. Uso permitido</h2>
-      <p>Al usar AIXtack te comprometes a no:</p>
+      <p>Al usar Guía Prompts IA te comprometes a no:</p>
       <ul>
         <li>Extraer contenido de forma masiva y automatizada (scraping) sin autorización previa.</li>
         <li>Intentar vulnerar la seguridad del sitio o acceder a áreas restringidas sin permiso.</li>
@@ -37,12 +37,12 @@ export default function TermsPage() {
         Si creas una cuenta, eres responsable de mantener la confidencialidad de tus credenciales y
         de toda la actividad que ocurra bajo tu cuenta. Puedes solicitar la eliminación de tu
         cuenta y tus datos en cualquier momento escribiéndonos a{" "}
-        <a href="mailto:contacto@aixtack.com">contacto@aixtack.com</a>.
+        <a href="mailto:contacto@guiapromptsia.com">contacto@guiapromptsia.com</a>.
       </p>
 
       <h2>4. Propiedad intelectual</h2>
       <p>
-        Los textos, gráficos y el diseño de AIXtack son propiedad del sitio o de sus licenciantes,
+        Los textos, gráficos y el diseño de Guía Prompts IA son propiedad del sitio o de sus licenciantes,
         salvo que se indique lo contrario. Los nombres, logos y marcas de terceros mencionados
         (herramientas de IA analizadas, marcas comparadas) pertenecen a sus respectivos dueños y se
         usan únicamente con fines informativos y de análisis.
@@ -50,7 +50,7 @@ export default function TermsPage() {
 
       <h2>5. Enlaces a terceros y afiliados</h2>
       <p>
-        AIXtack incluye enlaces hacia sitios de terceros, incluyendo enlaces de afiliados (ver
+        Guía Prompts IA incluye enlaces hacia sitios de terceros, incluyendo enlaces de afiliados (ver
         nuestro <a href="/aviso-afiliados">aviso de afiliados</a>). No controlamos el contenido de
         esos sitios externos ni nos hacemos responsables de sus políticas, precios o disponibilidad,
         que pueden cambiar sin previo aviso por parte del proveedor.
@@ -58,9 +58,9 @@ export default function TermsPage() {
 
       <h2>6. Exención de responsabilidad</h2>
       <p>
-        El contenido de AIXtack se ofrece con fines informativos. Aunque revisamos la información
+        El contenido de Guía Prompts IA se ofrece con fines informativos. Aunque revisamos la información
         antes de publicarla (ver nuestra <a href="/politica-editorial">política editorial</a>), no
-        garantizamos que esté siempre libre de errores o completamente actualizada. AIXtack no se
+        garantizamos que esté siempre libre de errores o completamente actualizada. Guía Prompts IA no se
         hace responsable de decisiones tomadas exclusivamente en base a este contenido; verifica
         siempre los datos críticos (precios, condiciones de uso) en la fuente oficial de cada
         herramienta.
@@ -90,7 +90,7 @@ export default function TermsPage() {
       <h2>10. Contacto</h2>
       <p>
         Para cualquier duda sobre estos términos, escríbenos a{" "}
-        <a href="mailto:contacto@aixtack.com">contacto@aixtack.com</a> o desde nuestra{" "}
+        <a href="mailto:contacto@guiapromptsia.com">contacto@guiapromptsia.com</a> o desde nuestra{" "}
         <a href="/contacto">página de contacto</a>.
       </p>
     </div>

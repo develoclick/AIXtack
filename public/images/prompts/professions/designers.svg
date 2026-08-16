@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="title-designers">
+  <title id="title-designers">Prompts de IA para diseñadores gráficos</title>
+  <defs>
+    <linearGradient id="bg-designers" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EEF2FF"/>
+      <stop offset="100%" stop-color="#E0D9FB"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="url(#bg-designers)"/>
+  <path d="M100 46 C132 46 158 68 158 96 C158 114 146 120 132 120 C124 120 122 128 128 134 C132 138 128 146 118 146 C82 146 44 122 44 92 C44 66 68 46 100 46 Z" fill="#FFFFFF" stroke="#4C3AA8" stroke-width="7" stroke-linejoin="round"/>
+  <circle cx="72" cy="86" r="8" fill="#8B7FD1"/>
+  <circle cx="98" cy="70" r="8" fill="#4C3AA8"/>
+  <circle cx="126" cy="86" r="8" fill="#FBBF24"/>
+  <circle cx="80" cy="112" r="8" fill="#4C3AA8"/>
+</svg>

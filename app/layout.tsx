@@ -13,8 +13,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
 });
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "AIXtack";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

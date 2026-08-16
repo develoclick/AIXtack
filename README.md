@@ -1,4 +1,4 @@
-# AIXtack
+# Guía Prompts IA
 
 Plataforma de Inteligencia Artificial en español: herramientas, prompts, comparativas, tutoriales, guías y noticias.
 

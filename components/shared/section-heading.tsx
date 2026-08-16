@@ -1,20 +1,19 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-export function SectionHeading({
+function HeadingText({
   eyebrow,
   title,
   description,
-  align = "left",
-  className,
+  align,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
-  align?: "left" | "center";
-  className?: string;
+  align: "left" | "center";
 }) {
   return (
-    <div className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}>
+    <>
       {eyebrow && (
         <span
           className={cn(
@@ -39,6 +38,46 @@ export function SectionHeading({
           {description}
         </p>
       )}
+    </>
+  );
+}
+
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  align = "left",
+  className,
+  image,
+}: {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+  className?: string;
+  /** Ilustración contextual opcional — solo se usa en secciones donde aporta valor real. */
+  image?: { src: string; alt: string };
+}) {
+  if (!image) {
+    return (
+      <div className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}>
+        <HeadingText eyebrow={eyebrow} title={title} description={description} align={align} />
+      </div>
+    );
+  }
+
+  return (
+    <div className={cn("flex flex-col-reverse items-center gap-8 sm:flex-row sm:justify-between", className)}>
+      <div className={cn("flex flex-col gap-4", align === "center" && "items-center text-center")}>
+        <HeadingText eyebrow={eyebrow} title={title} description={description} align={align} />
+      </div>
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={112}
+        height={112}
+        className="size-24 shrink-0 sm:size-28"
+      />
     </div>
   );
 }
