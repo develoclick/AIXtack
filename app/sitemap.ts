@@ -8,78 +8,91 @@ import tagsJson from "@/content/tags.json";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://guiapromptsia.com";
 
-// Helper con 'any' para aceptar cualquier interfaz/tipo sin requerir firma de índice
-function getSafeDate(item: any): Date | undefined {
+// Helper robusto para procesar fechas de modificación válidas
+function getSafeDate(item: any): Date {
   const rawDate = item?.updatedAt || item?.publishedAt || item?.createdAt || item?.date;
-  if (!rawDate) return undefined;
-  return rawDate instanceof Date ? rawDate : new Date(rawDate);
+  if (!rawDate) return new Date();
+  const parsed = rawDate instanceof Date ? rawDate : new Date(rawDate);
+  return isNaN(parsed.getTime()) ? new Date() : parsed;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [{ items: posts }, { items: tools }, { items: prompts }, categories, professions] = await Promise.all([
-    listPublishedPosts({ pageSize: 1000 }),
-    listPublishedTools({ pageSize: 1000 }),
-    listPublishedPrompts({ pageSize: 1000 }),
-    listCategories(),
-    listProfessions(),
-  ]);
-  const tags = tagsJson as { slug: string }[];
+  const [{ items: posts }, { items: tools }, { items: prompts }, categories, professions] =
+    await Promise.all([
+      listPublishedPosts({ pageSize: 5000 }),
+      listPublishedTools({ pageSize: 5000 }),
+      listPublishedPrompts({ pageSize: 5000 }),
+      listCategories(),
+      listProfessions(),
+    ]);
 
+  const tags = tagsJson as { slug: string; updatedAt?: string }[];
+  const now = new Date();
+
+  // 1. URLs estáticas principales
   const staticEntries: MetadataRoute.Sitemap = [
-    { url: `${siteUrl}/`, changeFrequency: "daily", priority: 1 },
-    { url: `${siteUrl}/herramientas-ia`, changeFrequency: "daily", priority: 0.9 },
-    { url: `${siteUrl}/prompts`, changeFrequency: "daily", priority: 0.9 },
-    { url: `${siteUrl}/prompts/profesiones`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${siteUrl}/comparativas`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${siteUrl}/noticias`, changeFrequency: "daily", priority: 0.8 },
-    { url: `${siteUrl}/tutoriales`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${siteUrl}/guias`, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${siteUrl}/faq`, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${siteUrl}/contacto`, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${siteUrl}/sobre-nosotros`, changeFrequency: "yearly", priority: 0.4 },
-    { url: `${siteUrl}/autores`, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${siteUrl}/politica-editorial`, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${siteUrl}/mapa-del-sitio`, changeFrequency: "monthly", priority: 0.3 },
-    { url: `${siteUrl}/terminos-y-condiciones`, changeFrequency: "yearly", priority: 0.2 },
-    { url: `${siteUrl}/privacidad`, changeFrequency: "yearly", priority: 0.2 },
-    { url: `${siteUrl}/cookies`, changeFrequency: "yearly", priority: 0.2 },
-    { url: `${siteUrl}/aviso-afiliados`, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${siteUrl}/`, lastModified: now },
+    { url: `${siteUrl}/herramientas-ia`, lastModified: now },
+    { url: `${siteUrl}/prompts`, lastModified: now },
+    { url: `${siteUrl}/prompts/profesiones`, lastModified: now },
+    { url: `${siteUrl}/comparativas`, lastModified: now },
+    { url: `${siteUrl}/noticias`, lastModified: now },
+    { url: `${siteUrl}/tutoriales`, lastModified: now },
+    { url: `${siteUrl}/guias`, lastModified: now },
+    { url: `${siteUrl}/faq`, lastModified: now },
+    { url: `${siteUrl}/contacto`, lastModified: now },
+    { url: `${siteUrl}/sobre-nosotros`, lastModified: now },
+    { url: `${siteUrl}/autores`, lastModified: now },
+    { url: `${siteUrl}/politica-editorial`, lastModified: now },
+    { url: `${siteUrl}/terminos-y-condiciones`, lastModified: now },
+    { url: `${siteUrl}/privacidad`, lastModified: now },
+    { url: `${siteUrl}/cookies`, lastModified: now },
+    { url: `${siteUrl}/aviso-afiliados`, lastModified: now },
   ];
+
+  // 2. Artículos del Blog
+  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${siteUrl}/blog/${post.slug}`,
+    lastModified: getSafeDate(post),
+  }));
+
+  // 3. Fichas de Herramientas IA
+  const toolEntries: MetadataRoute.Sitemap = tools.map((tool) => ({
+    url: `${siteUrl}/herramientas-ia/${tool.slug}`,
+    lastModified: getSafeDate(tool),
+  }));
+
+  // 4. Prompts por detalle
+  const promptEntries: MetadataRoute.Sitemap = prompts.map((prompt) => ({
+    url: `${siteUrl}/prompts/${prompt.slug}`,
+    lastModified: getSafeDate(prompt),
+  }));
+
+  // 5. Categorías
+  const categoryEntries: MetadataRoute.Sitemap = categories.map((category) => ({
+    url: `${siteUrl}/categoria/${category.slug}`,
+    lastModified: getSafeDate(category),
+  }));
+
+  // 6. Profesiones
+  const professionEntries: MetadataRoute.Sitemap = professions.map((profession) => ({
+    url: `${siteUrl}/prompts/profesiones/${profession.slug}`,
+    lastModified: getSafeDate(profession),
+  }));
+
+  // 7. Etiquetas / Tags
+  const tagEntries: MetadataRoute.Sitemap = tags.map((tag) => ({
+    url: `${siteUrl}/etiqueta/${tag.slug}`,
+    lastModified: getSafeDate(tag),
+  }));
 
   return [
     ...staticEntries,
-    ...posts.map((post) => ({
-      url: `${siteUrl}/blog/${post.slug}`,
-      lastModified: getSafeDate(post),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    })),
-    ...tools.map((tool) => ({
-      url: `${siteUrl}/herramientas-ia/${tool.slug}`,
-      lastModified: getSafeDate(tool),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    })),
-    ...prompts.map((prompt) => ({
-      url: `${siteUrl}/prompts/${prompt.slug}`,
-      lastModified: getSafeDate(prompt),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-    ...categories.map((category) => ({
-      url: `${siteUrl}/categoria/${category.slug}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.6,
-    })),
-    ...professions.map((profession) => ({
-      url: `${siteUrl}/prompts/profesiones/${profession.slug}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    })),
-    ...tags.map((tag) => ({
-      url: `${siteUrl}/etiqueta/${tag.slug}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.4,
-    })),
+    ...postEntries,
+    ...toolEntries,
+    ...promptEntries,
+    ...categoryEntries,
+    ...professionEntries,
+    ...tagEntries,
   ];
 }
