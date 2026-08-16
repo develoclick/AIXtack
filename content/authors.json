@@ -1,16 +1,16 @@
 [
   {
     "id": "admin",
-    "name": "Ana García",
+    "name": "DeveloClick",
     "image": null,
     "role": "ADMIN",
-    "bio": "Fundadora y editora en jefe de Guía Prompts IA. Antes de esto pasó ocho años en producto y datos en startups de Madrid y Ciudad de México, y lleva desde 2023 escribiendo y editando a diario sobre herramientas y modelos de IA para que el ecosistema en español no dependa de traducciones tardías del contenido en inglés."
+    "bio": "DeveloClick es la empresa responsable de Guía Prompts IA y de la gestión editorial de sus contenidos."
   },
   {
     "id": "editor",
-    "name": "Carlos Ruiz",
+    "name": "DeveloClick",
     "image": null,
     "role": "EDITOR",
-    "bio": "Editor de contenido en Guía Prompts IA, especializado en programación asistida por IA y automatización. Desarrollador de formación, revisa cada tutorial probando personalmente la herramienta antes de publicarlo, y escribe la mayoría de comparativas técnicas del sitio."
+    "bio": "El equipo editorial de DeveloClick crea, revisa y actualiza contenidos sobre inteligencia artificial, herramientas, prompts, automatización y tecnología."
   }
 ]
