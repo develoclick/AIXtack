@@ -29,10 +29,10 @@ export function ProfessionCard({ profession }: { profession: ProfessionSummary }
       {illustration ? (
         <Image
           src={illustration.src}
-          alt=""
+          alt={illustration.alt}
           width={112}
           height={112}
-          className="relative z-10 size-16 transition-transform duration-500 group-hover:scale-105"
+          className="relative z-10 size-16 rounded-xl object-cover shadow-soft transition-transform duration-500 group-hover:scale-105"
         />
       ) : (
         <span className="relative z-10 flex size-12 items-center justify-center rounded-xl bg-brand-muted text-brand">

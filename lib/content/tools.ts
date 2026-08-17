@@ -1,7 +1,7 @@
 import toolsJson from "@/content/tools.json";
 import categoriesJson from "@/content/categories.json";
 import tagsJson from "@/content/tags.json";
-import type { PaginatedResult, ToolDetail, ToolSummary, TaxonomyRef } from "@/lib/types";
+import type { ImageCredit, PaginatedResult, ToolDetail, ToolSummary, TaxonomyRef } from "@/lib/types";
 
 interface ToolRaw {
   id: string;
@@ -10,6 +10,7 @@ interface ToolRaw {
   tagline: string | null;
   description: string;
   logoUrl: string | null;
+  logoCredit?: ImageCredit | null;
   websiteUrl: string;
   categorySlug: string;
   tags: string[];
@@ -51,6 +52,7 @@ function toSummary(tool: ToolRaw): ToolSummary {
     name: tool.name,
     tagline: tool.tagline,
     logoUrl: tool.logoUrl,
+    logoCredit: tool.logoCredit ?? null,
     pricingModel: tool.pricingModel,
     pricingFrom: tool.pricingFrom,
     currency: tool.currency,

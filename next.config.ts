@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      // Fotos reales de Unsplash usadas como imagen principal de las cards
+      // (hotlinking directo a su CDN, tal como exige su licencia/API).
+      { protocol: "https", hostname: "images.unsplash.com" },
+    ],
   },
   async redirects() {
     // Redirecciones para URLs legadas o slugs renombrados: se editan

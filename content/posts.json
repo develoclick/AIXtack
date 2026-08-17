@@ -11,8 +11,8 @@
       "chatgpt"
     ],
     "featured": true,
-    "coverImageUrl": "/images/blog/chatgpt-memory-update.svg",
-    "coverImageAlt": "Ilustración de ChatGPT con un icono de memoria actualizada",
+    "coverImageUrl": "https://images.unsplash.com/photo-1737644467636-6b0053476bb2?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Robot blanco frente a un fondo oscuro, representando a ChatGPT",
     "authorId": "editor",
     "readingTimeMin": 4,
     "publishedAt": "2026-08-01T15:21:57.645Z",
@@ -43,7 +43,12 @@
         "question": "¿Esto elimina por completo las alucinaciones del modelo?",
         "answer": "No. Reduce su frecuencia estadística, pero sigue siendo necesario verificar información crítica con fuentes primarias, especialmente en contextos legales, médicos o financieros."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Mariia Shalabaieva",
+      "photographerUrl": "https://unsplash.com/es/@maria_shalabaieva",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-robot-blanco-esta-de-pie-frente-a-un-fondo-negro-CjWsslYVnPI"
+    }
   },
   {
     "id": "google-presenta-nuevo-modelo-de-generacion-de-video",
@@ -55,8 +60,8 @@
     "categorySlug": "video",
     "tags": [],
     "featured": false,
-    "coverImageUrl": "/images/blog/google-video-model.svg",
-    "coverImageAlt": "Ilustración de un nuevo modelo de IA de Google para generar vídeo",
+    "coverImageUrl": "https://images.unsplash.com/photo-1684369175833-4b445ad6bfb5?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Robot blanco con ojos azules junto a un portátil, representando la IA de Google",
     "authorId": "admin",
     "readingTimeMin": 4,
     "publishedAt": "2026-08-01T03:21:57.645Z",
@@ -83,7 +88,12 @@
         "question": "¿Compite directamente con Sora de OpenAI?",
         "answer": "Sí, ambos modelos apuntan al mismo segmento de generación de vídeo de alta calidad a partir de texto o imagen, aunque con diferencias en duración, coherencia y disponibilidad."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Alex Knight",
+      "photographerUrl": "https://unsplash.com/es/@agk42",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-robot-blanco-con-ojos-azules-y-una-computadora-portatil--0xMiYQmk8g"
+    }
   },
   {
     "id": "como-usar-chatgpt-para-principiantes",
@@ -99,8 +109,8 @@
       "gratis"
     ],
     "featured": true,
-    "coverImageUrl": "/images/tools/chatgpt.jpg",
-    "coverImageAlt": "Icono de ChatGPT, la guía para principiantes",
+    "coverImageUrl": "https://images.unsplash.com/photo-1737644467636-6b0053476bb2?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de ChatGPT, la guía para principiantes",
     "authorId": "editor",
     "readingTimeMin": 4,
     "publishedAt": "2026-07-31T15:21:57.645Z",
@@ -131,7 +141,12 @@
         "question": "¿ChatGPT puede equivocarse en sus respuestas?",
         "answer": "Sí, puede generar información incorrecta con apariencia convincente (alucinaciones), por lo que conviene verificar datos críticos con fuentes externas."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Mariia Shalabaieva",
+      "photographerUrl": "https://unsplash.com/es/@maria_shalabaieva",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-robot-blanco-esta-de-pie-frente-a-un-fondo-negro-CjWsslYVnPI"
+    }
   },
   {
     "id": "tutorial-midjourney-primeros-pasos",
@@ -145,8 +160,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/midjourney.svg",
-    "coverImageAlt": "Icono de Midjourney para crear tu primera imagen con IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1620121684840-edffcfc4b878?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Midjourney para crear tu primera imagen con IA",
     "authorId": "admin",
     "readingTimeMin": 4,
     "publishedAt": "2026-07-31T03:21:57.645Z",
@@ -177,7 +192,12 @@
         "question": "¿Puedo usar las imágenes generadas con fines comerciales?",
         "answer": "Sí, en los planes de pago se incluye licencia de uso comercial, aunque conviene revisar los términos actualizados según el plan contratado."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Alex Shuper",
+      "photographerUrl": "https://unsplash.com/es/@alexshuperart",
+      "photoPageUrl": "https://unsplash.com/es/fotos/pintura-abstracta-roja-amarilla-y-rosa-RAZU_R66vUc"
+    }
   },
   {
     "id": "guia-completa-prompt-engineering",
@@ -191,8 +211,8 @@
       "principiantes"
     ],
     "featured": true,
-    "coverImageUrl": "/images/blog/prompt-engineering.svg",
-    "coverImageAlt": "Ilustración de una guía completa de prompt engineering",
+    "coverImageUrl": "https://images.unsplash.com/photo-1602016736566-7ed6a58894bd?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Persona escribiendo instrucciones en su portátil para un modelo de IA",
     "authorId": "editor",
     "readingTimeMin": 4,
     "publishedAt": "2026-07-30T15:21:57.645Z",
@@ -223,7 +243,12 @@
         "question": "¿Necesito conocimientos técnicos para aplicar estas técnicas?",
         "answer": "No, todas las técnicas descritas se aplican escribiendo instrucciones en lenguaje natural, sin necesidad de programación."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Kaitlyn Baker",
+      "photographerUrl": "https://unsplash.com/es/@kaitlynbaker",
+      "photoPageUrl": "https://unsplash.com/es/fotos/mujer-con-camisa-azul-de-manga-larga-usando-macbook-pro-9yCYGgPe5Kg"
+    }
   },
   {
     "id": "guia-ia-para-pequenas-empresas",
@@ -237,8 +262,8 @@
       "marketing"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/small-business-ai.svg",
-    "coverImageAlt": "Ilustración de IA aplicada a pequeñas empresas",
+    "coverImageUrl": "https://images.unsplash.com/photo-1753351052363-53ce102830eb?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Dueña de un pequeño negocio sonriendo de pie en su local",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-30T03:21:57.645Z",
@@ -269,7 +294,12 @@
         "question": "¿Es seguro usar IA con datos de mis clientes?",
         "answer": "Depende del proveedor; conviene revisar su política de privacidad y cumplimiento normativo antes de introducir información sensible de clientes en cualquier herramienta."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Centre for Ageing Better",
+      "photographerUrl": "https://unsplash.com/es/@ageing_better",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-mujer-sonriente-esta-de-pie-en-su-cafeteria-QGg-vsPYbu8"
+    }
   },
   {
     "id": "chatgpt-vs-claude-cual-elegir",
@@ -283,8 +313,8 @@
       "chatgpt"
     ],
     "featured": true,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre ChatGPT y Claude",
+    "coverImageUrl": "https://images.unsplash.com/photo-1783099994473-8be2b5d14e00?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Sendero de tierra serpenteante entre montañas, representando un camino a elegir",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-29T15:21:57.645Z",
@@ -315,7 +345,12 @@
         "question": "¿Cuál protege mejor mis datos?",
         "answer": "Ambas compañías permiten desactivar el uso de tus conversaciones para entrenamiento desde la configuración de la cuenta; conviene revisar las políticas actualizadas antes de compartir información sensible."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Daniel Dan",
+      "photographerUrl": "https://unsplash.com/es/@outsideclick",
+      "photoPageUrl": "https://unsplash.com/es/fotos/sendero-de-tierra-serpenteante-a-traves-de-un-valle-montanoso-verde-l8av2ZQTCvk"
+    }
   },
   {
     "id": "notion-ai-vs-chatgpt-para-notas",
@@ -329,8 +364,8 @@
       "marketing"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg.png",
-    "coverImageAlt": "Comparativa entre Notion AI y ChatGPT para tomar notas",
+    "coverImageUrl": "https://images.unsplash.com/photo-1716840646010-e5622fd6683d?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Primer plano de un papel con flechas señalando direcciones distintas",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-29T03:21:57.645Z",
@@ -361,7 +396,12 @@
         "question": "¿Cuál conviene para un equipo que ya usa Notion a diario?",
         "answer": "Notion AI suele justificar su coste adicional en ese caso, al evitar fricciones de cambiar de aplicación y mantener un historial de ediciones centralizado."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Annie Spratt",
+      "photographerUrl": "https://unsplash.com/es/@anniespratt",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-primer-plano-de-un-pedazo-de-papel-con-flechas-GYpv7oh1G_A"
+    }
   },
   {
     "id": "analisis-elevenlabs-clonacion-de-voz",
@@ -375,8 +415,8 @@
       "premium"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/elevenlabs.jpg",
-    "coverImageAlt": "Icono de ElevenLabs y su clonación de voz realista",
+    "coverImageUrl": "https://images.unsplash.com/photo-1724185773486-0b39642e607e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de ElevenLabs y su clonación de voz realista",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-28T15:21:57.645Z",
@@ -407,7 +447,12 @@
         "question": "¿Es adecuado para doblaje profesional de proyectos largos?",
         "answer": "Funciona bien para proyectos de tamaño medio; en textos muy largos conviene dividir el contenido en fragmentos para mantener tiempos de generación razonables."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "A. C.",
+      "photographerUrl": "https://unsplash.com/es/@3tnik",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-onda-sonora-colorida-sobre-un-fondo-negro--TfwQjOWEp8"
+    }
   },
   {
     "id": "el-futuro-de-los-agentes-de-ia",
@@ -419,8 +464,8 @@
     "categorySlug": "productividad",
     "tags": [],
     "featured": false,
-    "coverImageUrl": "/images/blog/ai-agents.svg",
-    "coverImageAlt": "Ilustración del futuro de los agentes autónomos de IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Placa de circuito con la forma de un cerebro, simbolizando los agentes autónomos de IA",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-28T03:21:57.645Z",
@@ -447,7 +492,12 @@
         "question": "¿Qué tipo de herramientas puede usar un agente?",
         "answer": "Puede llamar a APIs externas, ejecutar código, navegar por páginas web o consultar bases de datos, evaluando si el resultado es suficiente para avanzar en la tarea."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Growtika",
+      "photographerUrl": "https://unsplash.com/es/@growtika",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-placa-de-circuito-de-computadora-con-un-cerebro-en-ella-_0iV9LmPDn0"
+    }
   },
   {
     "id": "ia-y-derechos-de-autor-lo-que-debes-saber",
@@ -459,8 +509,8 @@
     "categorySlug": "escritura",
     "tags": [],
     "featured": false,
-    "coverImageUrl": "/images/blog/responsible-ai.svg",
-    "coverImageAlt": "Ilustración de un escudo y documento sobre derechos de autor e IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Candado rojo sobre un teclado, representando la protección de los derechos de autor",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-27T15:21:57.645Z",
@@ -491,7 +541,12 @@
         "question": "¿Qué riesgo tengo si mi prompt menciona el estilo de un artista concreto?",
         "answer": "Aumenta el riesgo de generar contenido demasiado similar a obras protegidas existentes; evitar referencias directas a artistas concretos reduce ese riesgo en proyectos comerciales."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Mike Hindle",
+      "photographerUrl": "https://unsplash.com/es/@mikehindle",
+      "photoPageUrl": "https://unsplash.com/es/fotos/candado-rojo-en-teclado-de-computadora-negro-mT7lXZPjk7U"
+    }
   },
   {
     "id": "github-copilot-analisis-2026",
@@ -505,8 +560,8 @@
       "desarrollo"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/github-copilot.svg",
-    "coverImageAlt": "Icono de GitHub Copilot, análisis 2026",
+    "coverImageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de GitHub Copilot, análisis 2026",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-27T03:21:57.645Z",
@@ -537,7 +592,12 @@
         "question": "¿Es gratuito para algún tipo de usuario?",
         "answer": "Sí, ofrece acceso gratuito para estudiantes verificados y para mantenedores de proyectos open source populares."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/lineas-de-codigos-html-4hbJ-eymZ1o"
+    }
   },
   {
     "id": "midjourney-vs-dalle-3",
@@ -551,8 +611,8 @@
       "imagenes"
     ],
     "featured": true,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Midjourney y DALL-E 3",
+    "coverImageUrl": "https://images.unsplash.com/photo-1630917937606-bf5b60331d69?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Bloques de madera sobre una superficie blanca representando opciones a comparar",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-26T15:21:57.645Z",
@@ -583,7 +643,12 @@
         "question": "¿Cuál mantiene mejor la consistencia de un personaje entre varias imágenes?",
         "answer": "Midjourney ofrece funciones de referencia de personaje y estilo más maduras, lo que facilita mantener consistencia visual en proyectos con varias ilustraciones relacionadas."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Point Normal",
+      "photographerUrl": "https://unsplash.com/es/@normals",
+      "photoPageUrl": "https://unsplash.com/es/fotos/bloques-de-madera-marron-sobre-superficie-blanca-T7IX_a80tSw"
+    }
   },
   {
     "id": "midjourney-vs-stable-diffusion",
@@ -598,8 +663,8 @@
       "desarrollo"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Midjourney y Stable Diffusion",
+    "coverImageUrl": "https://images.unsplash.com/photo-1558379376-93de99e58857?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Campo dividido entre hierba verde y hierba marrón, simbolizando dos opciones contrastantes",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-26T03:21:57.645Z",
@@ -630,7 +695,12 @@
         "question": "¿Puedo entrenar mi propio modelo con Stable Diffusion?",
         "answer": "Sí, mediante técnicas como LoRA es posible entrenar un modelo ajustado para un estilo o personaje específico usando tus propias imágenes de referencia."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Shubham Dhage",
+      "photographerUrl": "https://unsplash.com/es/@theshubhamdhage",
+      "photoPageUrl": "https://unsplash.com/es/fotos/campo-de-hierba-verde-y-campo-de-hierba-marron-ALOM25lYQnk"
+    }
   },
   {
     "id": "github-copilot-vs-cursor",
@@ -644,8 +714,8 @@
       "desarrollo"
     ],
     "featured": true,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre GitHub Copilot y Cursor",
+    "coverImageUrl": "https://images.unsplash.com/photo-1509479021642-a7a159506b91?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Dos tarjetas colocadas una junto a otra sobre una mesa de madera",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-25T15:21:57.645Z",
@@ -676,7 +746,12 @@
         "question": "¿Cursor entiende todo mi proyecto o solo el archivo abierto?",
         "answer": "Cursor indexa el proyecto completo para responder con contexto de todos los archivos relacionados, no solo el archivo activo en ese momento."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Hartono Creative Studio",
+      "photographerUrl": "https://unsplash.com/es/@hartonocreativestudio",
+      "photoPageUrl": "https://unsplash.com/es/fotos/dos-tarjetas-con-letras-sobre-superficie-de-madera-XUZ74NezsMI"
+    }
   },
   {
     "id": "elevenlabs-vs-murf-ai",
@@ -691,8 +766,8 @@
       "audio"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre ElevenLabs y Murf AI",
+    "coverImageUrl": "https://images.unsplash.com/photo-1724120932030-d8210a77deed?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Persona de pie frente a signos de interrogación, representando la duda entre dos opciones",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-25T03:21:57.645Z",
@@ -723,7 +798,12 @@
         "question": "¿Cuál incluye un editor de vídeo integrado?",
         "answer": "Murf AI incluye un editor visual tipo línea de tiempo pensado para producir vídeos completos con voz, música e imágenes sin salir de la plataforma."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Kate Branch",
+      "photographerUrl": "https://unsplash.com/es/@katebranch",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-persona-de-pie-frente-a-un-grupo-de-signos-de-interrogacion-XP-YDJetZ4Q"
+    }
   },
   {
     "id": "claude-vs-gemini",
@@ -737,8 +817,8 @@
       "chatgpt"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Claude y Gemini",
+    "coverImageUrl": "https://images.unsplash.com/photo-1429743305873-d4065c15f93e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Dos caminos que se bifurcan entre árboles en un bosque",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-24T15:21:57.645Z",
@@ -769,7 +849,12 @@
         "question": "¿Cuál accede a información más actualizada de internet?",
         "answer": "Gemini tiene ventaja aquí gracias a su integración con la búsqueda de Google en tiempo real; Claude depende más de extensiones y conectores específicos para acceder a información actualizada."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "T",
+      "photographerUrl": "https://unsplash.com/es/@tanyabarrow",
+      "photoPageUrl": "https://unsplash.com/es/fotos/dos-caminos-entre-arboles-u0vgcIOQG08"
+    }
   },
   {
     "id": "jasper-vs-copy-ai",
@@ -784,8 +869,8 @@
       "escritura"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Jasper y Copy.ai",
+    "coverImageUrl": "https://images.unsplash.com/photo-1779636458742-85d455da770c?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Bifurcación en un camino pavimentado rodeado de árboles",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-24T03:21:57.645Z",
@@ -816,7 +901,12 @@
         "question": "¿Qué es un 'workflow' en Copy.ai?",
         "answer": "Es una automatización de varios pasos que encadena investigación, generación de ángulos y redacción final en una sola ejecución, sin coordinar herramientas separadas manualmente."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Kristaps Grundsteins",
+      "photographerUrl": "https://unsplash.com/es/@grundsteins",
+      "photoPageUrl": "https://unsplash.com/es/fotos/bifurcacion-en-un-camino-pavimentado-rodeado-de-arboles-B7BBgEf1urE"
+    }
   },
   {
     "id": "runway-vs-pika",
@@ -830,8 +920,8 @@
       "video"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Runway y Pika",
+    "coverImageUrl": "https://images.unsplash.com/photo-1617086286780-6e48d94cfa25?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Señalización de madera indicando direcciones distintas junto a un cuerpo de agua",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-23T15:21:57.645Z",
@@ -862,7 +952,12 @@
         "question": "¿Cuál tiene más herramientas de edición integradas?",
         "answer": "Runway ofrece un conjunto más amplio: eliminación de fondo, seguimiento de movimiento e inpainting de vídeo, mientras Pika se centra más en la generación en sí."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Grant Durr",
+      "photographerUrl": "https://unsplash.com/es/@grant_durr",
+      "photoPageUrl": "https://unsplash.com/es/fotos/senalizacion-de-madera-blanca-y-negra-cerca-del-cuerpo-de-agua-durante-el-dia-GW6vYUxMhtQ"
+    }
   },
   {
     "id": "synthesia-vs-heygen",
@@ -877,8 +972,8 @@
       "avatares"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Synthesia y HeyGen",
+    "coverImageUrl": "https://images.unsplash.com/photo-1588412079929-790b9f593d8e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Piezas de ajedrez blancas y negras enfrentadas sobre el tablero",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-23T03:21:57.645Z",
@@ -909,7 +1004,12 @@
         "question": "¿HeyGen puede traducir un vídeo manteniendo la voz del presentador original?",
         "answer": "Sí, esa es una de sus funciones más valoradas: traduce el vídeo a otro idioma conservando el tono y timbre de la voz original del hablante."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Randy Fath",
+      "photographerUrl": "https://unsplash.com/es/@randyfath",
+      "photoPageUrl": "https://unsplash.com/es/fotos/piezas-de-ajedrez-blancas-y-negras-bUM4weg0RSI"
+    }
   },
   {
     "id": "zapier-vs-make",
@@ -923,8 +1023,8 @@
       "automatizacion"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Zapier y Make",
+    "coverImageUrl": "https://images.unsplash.com/photo-1580541832626-2a7131ee809f?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Pieza de ajedrez negra en primer plano sobre el tablero",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-22T15:21:57.645Z",
@@ -955,7 +1055,12 @@
         "question": "¿Cuál facilita más depurar un error en una automatización?",
         "answer": "Make ofrece un historial visual más detallado de cada ejecución, mostrando exactamente qué datos pasaron por cada módulo, lo que facilita identificar dónde falló el proceso."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Hassan Pasha",
+      "photographerUrl": "https://unsplash.com/es/@hpzworkz",
+      "photoPageUrl": "https://unsplash.com/es/fotos/pieza-de-ajedrez-negra-en-tablero-de-ajedrez-nEbMedmVwgw"
+    }
   },
   {
     "id": "perplexity-vs-buscador-tradicional",
@@ -969,8 +1074,8 @@
       "investigacion"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Perplexity y un buscador tradicional",
+    "coverImageUrl": "https://images.unsplash.com/photo-1536743939714-23ec5ac2dbae?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Tablero de ajedrez blanco con sus piezas dispuestas para la partida",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-22T03:21:57.645Z",
@@ -1001,7 +1106,12 @@
         "question": "¿Debo confiar siempre en la síntesis que da Perplexity?",
         "answer": "No de forma ciega; conviene revisar las fuentes citadas para temas importantes, ya que la síntesis automática puede introducir simplificaciones o perder matices relevantes."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Hassan Pasha",
+      "photographerUrl": "https://unsplash.com/es/@hpzworkz",
+      "photoPageUrl": "https://unsplash.com/es/fotos/white-chess-game-set-CNBRg1K9QvQ"
+    }
   },
   {
     "id": "grammarly-vs-quillbot",
@@ -1016,8 +1126,8 @@
       "gratis"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Grammarly y QuillBot",
+    "coverImageUrl": "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de enfoque selectivo de piezas de ajedrez comparando estrategias",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-21T15:21:57.645Z",
@@ -1048,7 +1158,12 @@
         "question": "¿Cuál es mejor para resumir un documento largo?",
         "answer": "QuillBot está pensado específicamente para esa tarea, con un resumidor que condensa textos extensos en puntos clave de forma directa."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Ahmed",
+      "photographerUrl": "https://unsplash.com/es/@mutecevvil",
+      "photoPageUrl": "https://unsplash.com/es/fotos/fotografia-de-enfoque-selectivo-de-piezas-de-ajedrez-G1yhU1Ej-9A"
+    }
   },
   {
     "id": "cursor-vs-windsurf",
@@ -1062,8 +1177,8 @@
       "desarrollo"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Cursor y Windsurf",
+    "coverImageUrl": "https://images.unsplash.com/photo-1528819622765-d6bcf132f793?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Piezas de ajedrez a bordo representando dos estrategias distintas",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-21T03:21:57.645Z",
@@ -1094,7 +1209,12 @@
         "question": "¿Alguno de los dos tiene plan gratuito?",
         "answer": "Ambos ofrecen un número limitado de solicitudes avanzadas gratuitas al mes antes de requerir una suscripción de pago."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Ahmed",
+      "photographerUrl": "https://unsplash.com/es/@mutecevvil",
+      "photoPageUrl": "https://unsplash.com/es/fotos/piezas-de-ajedrez-a-bordo-nAjil1z3eLk"
+    }
   },
   {
     "id": "codeium-vs-github-copilot",
@@ -1109,8 +1229,8 @@
       "gratis"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Codeium y GitHub Copilot",
+    "coverImageUrl": "https://images.unsplash.com/photo-1612012060851-20f943c02d3d?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Báscula de precisión usada para comparar y sopesar opciones",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-20T15:21:57.645Z",
@@ -1141,7 +1261,12 @@
         "question": "¿Cuál conviene para un desarrollador independiente con presupuesto ajustado?",
         "answer": "Codeium suele ofrecer la mejor relación funcionalidad-precio para ese perfil, gracias a su plan gratuito sin las limitaciones que tiene Copilot fuera de estudiantes y open source."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Wesley Tingey",
+      "photographerUrl": "https://unsplash.com/es/@wesleyphotography",
+      "photoPageUrl": "https://unsplash.com/es/fotos/bascula-marron-y-beige-98MbUldcDJY"
+    }
   },
   {
     "id": "canva-magic-studio-vs-adobe-firefly",
@@ -1155,8 +1280,8 @@
       "diseño"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Canva Magic Studio y Adobe Firefly",
+    "coverImageUrl": "https://images.unsplash.com/photo-1682616514979-88d6426f4745?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Balanza sopesando dos opciones sobre una mesa",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-20T03:21:57.645Z",
@@ -1187,7 +1312,12 @@
         "question": "¿Alguna de las dos tiene plan gratuito?",
         "answer": "Canva ofrece un plan gratuito con funciones limitadas de Magic Studio; Firefly generalmente requiere una suscripción de Adobe Creative Cloud o un plan independiente de pago."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Allison Saeng",
+      "photographerUrl": "https://unsplash.com/es/@allisonsaeng",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-balanza-con-un-cuenco-encima-i0OUCubcdMU"
+    }
   },
   {
     "id": "capcut-vs-descript",
@@ -1201,8 +1331,8 @@
       "video"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre CapCut y Descript",
+    "coverImageUrl": "https://images.unsplash.com/photo-1783099994473-8be2b5d14e00?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Sendero de tierra serpenteante entre montañas, representando un camino a elegir",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-19T15:21:57.645Z",
@@ -1233,7 +1363,12 @@
         "question": "¿Qué es Overdub en Descript?",
         "answer": "Es una función de clonación de voz que permite corregir errores de locución generando audio corregido con tu propia voz sintética, sin regrabar toda la sección."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Daniel Dan",
+      "photographerUrl": "https://unsplash.com/es/@outsideclick",
+      "photoPageUrl": "https://unsplash.com/es/fotos/sendero-de-tierra-serpenteante-a-traves-de-un-valle-montanoso-verde-l8av2ZQTCvk"
+    }
   },
   {
     "id": "framer-ai-vs-webflow-ai",
@@ -1247,8 +1382,8 @@
       "diseño"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Framer AI y Webflow AI",
+    "coverImageUrl": "https://images.unsplash.com/photo-1716840646010-e5622fd6683d?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Primer plano de un papel con flechas señalando direcciones distintas",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-19T03:21:57.645Z",
@@ -1279,7 +1414,12 @@
         "question": "¿Cuál es mejor para un portfolio o landing page sencilla?",
         "answer": "Framer AI suele ser más rápido para ese tipo de proyecto gracias a su generación inicial desde texto y su curva de aprendizaje más suave."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Annie Spratt",
+      "photographerUrl": "https://unsplash.com/es/@anniespratt",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-primer-plano-de-un-pedazo-de-papel-con-flechas-GYpv7oh1G_A"
+    }
   },
   {
     "id": "lovable-vs-bolt-new",
@@ -1293,8 +1433,8 @@
       "desarrollo"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Lovable y Bolt.new",
+    "coverImageUrl": "https://images.unsplash.com/photo-1630917937606-bf5b60331d69?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Bloques de madera sobre una superficie blanca representando opciones a comparar",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-18T15:21:57.645Z",
@@ -1325,7 +1465,12 @@
         "question": "¿Cuál itera más rápido visualmente?",
         "answer": "Bolt.new, al ejecutarse completamente en el navegador mediante WebContainers, ofrece una de las velocidades de iteración visual más rápidas del mercado."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Point Normal",
+      "photographerUrl": "https://unsplash.com/es/@normals",
+      "photoPageUrl": "https://unsplash.com/es/fotos/bloques-de-madera-marron-sobre-superficie-blanca-T7IX_a80tSw"
+    }
   },
   {
     "id": "writesonic-vs-rytr",
@@ -1340,8 +1485,8 @@
       "gratis"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Writesonic y Rytr",
+    "coverImageUrl": "https://images.unsplash.com/photo-1558379376-93de99e58857?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Campo dividido entre hierba verde y hierba marrón, simbolizando dos opciones contrastantes",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-18T03:21:57.645Z",
@@ -1372,7 +1517,12 @@
         "question": "¿Cuál conviene para artículos de blog largos?",
         "answer": "Writesonic, gracias a su editor orientado a contenido de largo formato y sus funciones de análisis de competencia SEO integradas."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Shubham Dhage",
+      "photographerUrl": "https://unsplash.com/es/@theshubhamdhage",
+      "photoPageUrl": "https://unsplash.com/es/fotos/campo-de-hierba-verde-y-campo-de-hierba-marron-ALOM25lYQnk"
+    }
   },
   {
     "id": "surfer-seo-vs-frase",
@@ -1386,8 +1536,8 @@
       "seo"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Surfer SEO y Frase",
+    "coverImageUrl": "https://images.unsplash.com/photo-1509479021642-a7a159506b91?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Dos tarjetas colocadas una junto a otra sobre una mesa de madera",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-17T15:21:57.645Z",
@@ -1418,7 +1568,12 @@
         "question": "¿Puedo generar el artículo completo con IA dentro de estas herramientas?",
         "answer": "Sí, ambas incluyen generación de contenido con IA integrada en su editor, alineada con las recomendaciones de optimización detectadas."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Hartono Creative Studio",
+      "photographerUrl": "https://unsplash.com/es/@hartonocreativestudio",
+      "photoPageUrl": "https://unsplash.com/es/fotos/dos-tarjetas-con-letras-sobre-superficie-de-madera-XUZ74NezsMI"
+    }
   },
   {
     "id": "photoroom-vs-remove-bg",
@@ -1432,8 +1587,8 @@
       "imagenes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Photoroom y remove.bg",
+    "coverImageUrl": "https://images.unsplash.com/photo-1724120932030-d8210a77deed?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Persona de pie frente a signos de interrogación, representando la duda entre dos opciones",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-17T03:21:57.645Z",
@@ -1464,7 +1619,12 @@
         "question": "¿Ofrecen ambas una API para desarrolladores?",
         "answer": "Sí, ambas ofrecen API con precios por volumen de imágenes procesadas, útil para integrar la eliminación de fondo en flujos de trabajo automatizados."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Kate Branch",
+      "photographerUrl": "https://unsplash.com/es/@katebranch",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-persona-de-pie-frente-a-un-grupo-de-signos-de-interrogacion-XP-YDJetZ4Q"
+    }
   },
   {
     "id": "pictory-vs-invideo-ai",
@@ -1479,8 +1639,8 @@
       "marketing"
     ],
     "featured": false,
-    "coverImageUrl": "/images/illustrations/comparisons.svg",
-    "coverImageAlt": "Comparativa entre Pictory y InVideo AI",
+    "coverImageUrl": "https://images.unsplash.com/photo-1429743305873-d4065c15f93e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Dos caminos que se bifurcan entre árboles en un bosque",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-16T15:21:57.645Z",
@@ -1511,7 +1671,12 @@
         "question": "¿El vídeo generado incluye marca de agua?",
         "answer": "En los planes gratuitos de ambas suele incluir marca de agua; los planes de pago desbloquean exportación sin marca de agua."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "T",
+      "photographerUrl": "https://unsplash.com/es/@tanyabarrow",
+      "photoPageUrl": "https://unsplash.com/es/fotos/dos-caminos-entre-arboles-u0vgcIOQG08"
+    }
   },
   {
     "id": "como-usar-gemini-paso-a-paso",
@@ -1527,8 +1692,8 @@
       "gratis"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/gemini.svg",
-    "coverImageAlt": "Icono de Gemini de Google, guía paso a paso",
+    "coverImageUrl": "https://images.unsplash.com/photo-1684369175833-4b445ad6bfb5?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Gemini de Google, guía paso a paso",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-16T03:21:57.645Z",
@@ -1559,7 +1724,12 @@
         "question": "¿Puedo usar Gemini en el móvil?",
         "answer": "Sí, existe una app oficial para Android e iOS, además de estar integrado como asistente en algunos dispositivos Android recientes."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Alex Knight",
+      "photographerUrl": "https://unsplash.com/es/@agk42",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-robot-blanco-con-ojos-azules-y-una-computadora-portatil--0xMiYQmk8g"
+    }
   },
   {
     "id": "como-usar-perplexity-para-investigar",
@@ -1575,8 +1745,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/perplexity.jpg",
-    "coverImageAlt": "Icono de Perplexity para investigar cualquier tema",
+    "coverImageUrl": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Perplexity para investigar cualquier tema",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-15T15:21:57.645Z",
@@ -1607,7 +1777,12 @@
         "question": "¿Puedo guardar mis investigaciones para retomarlas después?",
         "answer": "Sí, Perplexity permite organizar conversaciones relacionadas en colecciones temáticas para proyectos de investigación más largos."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Zetong Li",
+      "photographerUrl": "https://unsplash.com/es/@zetong",
+      "photoPageUrl": "https://unsplash.com/es/fotos/titulos-variados-de-libros-apilados-en-las-estanterias-NIJuEQw0RKg"
+    }
   },
   {
     "id": "como-generar-imagenes-con-dalle-3",
@@ -1622,8 +1797,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/dalle-3.svg",
-    "coverImageAlt": "Icono de DALL-E 3 para generar imágenes desde ChatGPT",
+    "coverImageUrl": "https://images.unsplash.com/photo-1643388019656-34a8006477c3?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de DALL-E 3 para generar imágenes desde ChatGPT",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-15T03:21:57.645Z",
@@ -1654,7 +1829,12 @@
         "question": "¿DALL-E 3 puede generar texto legible dentro de la imagen?",
         "answer": "Su fiabilidad en este aspecto es limitada; para carteles o logotipos con texto integrado, herramientas especializadas como Ideogram suelen dar mejores resultados."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Richard Horvath",
+      "photographerUrl": "https://unsplash.com/es/@ricvath",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-imagen-abstracta-de-lineas-y-formas-en-rosa-azul-y-purpura-K3Sn3FtkCUA"
+    }
   },
   {
     "id": "como-usar-stable-diffusion-localmente",
@@ -1670,8 +1850,8 @@
       "gratis"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/stable-diffusion.svg",
-    "coverImageAlt": "Icono de Stable Diffusion instalado en un ordenador local",
+    "coverImageUrl": "https://images.unsplash.com/photo-1643388019606-9173b24bcafb?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Stable Diffusion instalado en un ordenador local",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-14T15:21:57.645Z",
@@ -1702,7 +1882,12 @@
         "question": "¿Qué es ControlNet?",
         "answer": "Es una extensión que permite controlar la composición exacta de la imagen a partir de una pose o boceto de referencia, dando mucho más control que el texto solo."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Anna Vaschenko",
+      "photographerUrl": "https://unsplash.com/es/@annaholograma",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-fondo-abstracto-colorido-con-lineas-y-puntos-nQeXsy_KDXE"
+    }
   },
   {
     "id": "como-generar-videos-con-runway",
@@ -1717,8 +1902,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/runway.svg",
-    "coverImageAlt": "Icono de Runway para generar tu primer vídeo con IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Runway para generar tu primer vídeo con IA",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-14T03:21:57.645Z",
@@ -1749,7 +1934,12 @@
         "question": "¿Qué tipo de movimiento produce mejores resultados?",
         "answer": "Movimientos relativamente sencillos como zoom o paneo suave suelen dar resultados más coherentes que movimientos de cámara complejos con muchos elementos interactuando."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/clap-board-roadside-jakob-and-ryan-CiUR8zISX60"
+    }
   },
   {
     "id": "como-crear-avatar-con-synthesia",
@@ -1765,8 +1955,8 @@
       "productividad"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/synthesia.svg",
-    "coverImageAlt": "Icono de Synthesia para crear vídeos con avatar",
+    "coverImageUrl": "https://images.unsplash.com/photo-1742805382153-bb4be26d6031?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Synthesia para crear vídeos con avatar",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-13T15:21:57.645Z",
@@ -1797,7 +1987,12 @@
         "question": "¿Existe un plan gratuito permanente?",
         "answer": "No, Synthesia ofrece una prueba inicial limitada en lugar de un plan gratuito permanente, orientándose más a planes de pago desde el inicio."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Jesus Loves Austin",
+      "photographerUrl": "https://unsplash.com/es/@jesuslovesaustin",
+      "photoPageUrl": "https://unsplash.com/es/fotos/se-trata-de-un-estudio-de-noticias-moderno-y-profesional-JxzV1k-sfCU"
+    }
   },
   {
     "id": "como-editar-podcast-con-descript",
@@ -1813,8 +2008,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/descript.svg",
-    "coverImageAlt": "Icono de Descript para editar podcast desde el texto",
+    "coverImageUrl": "https://images.unsplash.com/photo-1551302175-952301267d19?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Descript para editar podcast desde el texto",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-13T03:21:57.645Z",
@@ -1845,7 +2040,12 @@
         "question": "¿Puedo eliminar muletillas de toda la grabación de una vez?",
         "answer": "Sí, Descript incluye una función que detecta y elimina automáticamente muletillas comunes repetidas a lo largo de toda la grabación con un solo clic."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/monitor-que-muestra-cuadros-de-dialogo-PzkeY0i98io"
+    }
   },
   {
     "id": "como-transcribir-reuniones-con-otter",
@@ -1861,8 +2061,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/otter-ai.svg",
-    "coverImageAlt": "Icono de Otter.ai para transcribir reuniones automáticamente",
+    "coverImageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Otter.ai para transcribir reuniones automáticamente",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-12T15:21:57.645Z",
@@ -1893,7 +2093,12 @@
         "question": "¿Existe un plan gratuito de Otter.ai?",
         "answer": "Sí, ofrece un plan gratuito con minutos de transcripción limitados al mes, suficiente para uso ocasional antes de considerar un plan de pago."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Scott Graham",
+      "photographerUrl": "https://unsplash.com/es/@amstram",
+      "photoPageUrl": "https://unsplash.com/es/fotos/woman-in-teal-t-shirt-sitting-beside-woman-in-suit-jacket-JaoVGh5aJ3E"
+    }
   },
   {
     "id": "como-usar-canva-magic-studio",
@@ -1909,8 +2114,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/canva-magic-studio.svg",
-    "coverImageAlt": "Icono de Magic Studio de Canva para diseñar más rápido",
+    "coverImageUrl": "https://images.unsplash.com/photo-1648134859211-4a1b57575f4e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Magic Studio de Canva para diseñar más rápido",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-12T03:21:57.645Z",
@@ -1941,7 +2146,12 @@
         "question": "¿Qué es Magic Write?",
         "answer": "Es la función de generación de texto integrada en Canva que redacta copys de marketing, descripciones o titulares a partir de una breve instrucción."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-pagina-web-con-las-palabras-design-workflows-en-ella-IMuwMQV92zA"
+    }
   },
   {
     "id": "como-crear-cancion-con-suno",
@@ -1957,8 +2167,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/suno.svg",
-    "coverImageAlt": "Icono de Suno para crear tu primera canción con IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1618609377864-68609b857e90?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Suno para crear tu primera canción con IA",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-11T15:21:57.645Z",
@@ -1989,7 +2199,12 @@
         "question": "¿Hay un límite de canciones gratuitas al mes?",
         "answer": "Sí, el plan gratuito permite generar un número limitado de canciones mensuales, suficiente para experimentar antes de decidir si necesitas más capacidad."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Caught In Joy",
+      "photographerUrl": "https://unsplash.com/es/@caught_in_joy",
+      "photoPageUrl": "https://unsplash.com/es/fotos/mezclador-de-audio-negro-y-verde-F2h_WbKnX4o"
+    }
   },
   {
     "id": "como-usar-cursor-para-programar",
@@ -2004,8 +2219,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/cursor.png",
-    "coverImageAlt": "Icono de Cursor para empezar a programar con IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Cursor para empezar a programar con IA",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-11T03:21:57.645Z",
@@ -2036,7 +2251,12 @@
         "question": "¿Es gratuito usar Cursor?",
         "answer": "Ofrece un número limitado de solicitudes avanzadas gratuitas al mes antes de requerir una suscripción de pago para uso más intensivo."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Florian Olivo",
+      "photographerUrl": "https://unsplash.com/es/@florianolv",
+      "photoPageUrl": "https://unsplash.com/es/fotos/monitor-showing-java-programming-OqtafYT5kTw"
+    }
   },
   {
     "id": "como-automatizar-tareas-con-zapier",
@@ -2052,8 +2272,8 @@
       "gratis"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/zapier.svg",
-    "coverImageAlt": "Icono de Zapier para crear tu primera automatización",
+    "coverImageUrl": "https://images.unsplash.com/photo-1683322499436-f4383dd59f5a?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Zapier para crear tu primera automatización",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-10T15:21:57.645Z",
@@ -2084,7 +2304,12 @@
         "question": "¿El plan gratuito es suficiente para empezar?",
         "answer": "Sí, permite crear automatizaciones simples de un solo paso, adecuado para entender el funcionamiento básico antes de necesitar planes de pago."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-monton-de-cables-azules-conectados-entre-si-PSpf_XgOM5w"
+    }
   },
   {
     "id": "como-traducir-documentos-con-deepl",
@@ -2100,8 +2325,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/deepl.svg",
-    "coverImageAlt": "Icono de DeepL para traducir un documento completo",
+    "coverImageUrl": "https://images.unsplash.com/photo-1543165796-5426273eaab3?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de DeepL para traducir un documento completo",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-10T03:21:57.645Z",
@@ -2132,7 +2357,12 @@
         "question": "¿Cuántos idiomas soporta DeepL?",
         "answer": "Más de 30 idiomas, incluyendo distintas variantes regionales de algunos idiomas donde existen diferencias relevantes de vocabulario."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Andrej Lišakov",
+      "photographerUrl": "https://unsplash.com/es/@lishakov",
+      "photoPageUrl": "https://unsplash.com/es/fotos/diccionario-abierto-U3Ptj3jafX8"
+    }
   },
   {
     "id": "como-generar-interfaces-con-v0",
@@ -2148,8 +2378,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/v0-vercel.svg",
-    "coverImageAlt": "Icono de v0 de Vercel para generar tu primera interfaz",
+    "coverImageUrl": "https://images.unsplash.com/photo-1634084462412-b54873c0a56d?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de v0 de Vercel para generar tu primera interfaz",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-09T15:21:57.645Z",
@@ -2180,7 +2410,12 @@
         "question": "¿Es gratuito usar v0?",
         "answer": "Ofrece un plan gratuito con un número limitado de generaciones mensuales, suficiente para evaluar la herramienta antes de considerar un plan de pago."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/es/@silverkblack",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-pantalla-de-computadora-con-las-palabras-la-forma-moderna-de-construir-para-la-web-OX1TXahR7Ng"
+    }
   },
   {
     "id": "como-crear-presentaciones-con-gamma",
@@ -2196,8 +2431,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/gamma.svg",
-    "coverImageAlt": "Icono de Gamma para crear una presentación completa",
+    "coverImageUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Gamma para crear una presentación completa",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-09T03:21:57.645Z",
@@ -2228,7 +2463,12 @@
         "question": "¿Puedo editar el diseño generado manualmente?",
         "answer": "Sí, puedes hacer clic en cualquier elemento para editarlo directamente, regenerarlo con una nueva instrucción o reemplazarlo por contenido propio."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/man-standing-in-front-of-people-sitting-beside-table-with-laptop-computers-gMsnXqILjp4"
+    }
   },
   {
     "id": "como-usar-windsurf-para-programar",
@@ -2243,8 +2483,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/windsurf.svg",
-    "coverImageAlt": "Icono de Windsurf para empezar a programar con IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1619410283995-43d9134e7656?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Windsurf para empezar a programar con IA",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-08T15:21:57.645Z",
@@ -2275,7 +2515,12 @@
         "question": "¿Para qué tipo de tareas conviene más usar Cascade?",
         "answer": "Para tareas bien delimitadas y repetitivas donde el patrón ya está establecido en el proyecto; para decisiones de arquitectura críticas conviene mantener más supervisión manual."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Behnam Norouzi",
+      "photographerUrl": "https://unsplash.com/es/@behy_studio",
+      "photoPageUrl": "https://unsplash.com/es/fotos/editor-de-codigo-mostrando-codigo-fuente-de-react-mZnx9429i94"
+    }
   },
   {
     "id": "como-crear-app-con-lovable",
@@ -2290,8 +2535,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/lovable.svg",
-    "coverImageAlt": "Icono de Lovable para crear tu primera aplicación con IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1786861462704-fe456f621179?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Lovable para crear tu primera aplicación con IA",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-08T03:21:57.645Z",
@@ -2322,7 +2567,12 @@
         "question": "¿Es adecuado para una aplicación con mucho tráfico?",
         "answer": "Para un producto mínimo viable o validación inicial funciona bien; para aplicaciones con requisitos de escala muy altos conviene evolucionar el código con un equipo de desarrollo dedicado."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Team Nocoloco",
+      "photographerUrl": "https://unsplash.com/es/@teamnocoloco",
+      "photoPageUrl": "https://unsplash.com/es/fotos/portatil-mostrando-sitio-web-con-icono-3d-v3QjBgAKjTY"
+    }
   },
   {
     "id": "como-usar-bolt-new",
@@ -2337,8 +2587,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/bolt-new.svg",
-    "coverImageAlt": "Icono de Bolt.new para generar un proyecto web",
+    "coverImageUrl": "https://images.unsplash.com/photo-1680016661694-1cd3faf31c3a?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Bolt.new para generar un proyecto web",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-07T15:21:57.645Z",
@@ -2369,7 +2619,12 @@
         "question": "¿Es gratuito usar Bolt.new?",
         "answer": "Ofrece un plan gratuito con generaciones limitadas; el uso más intensivo requiere una suscripción de pago según el volumen de proyectos."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Egor Komarov",
+      "photographerUrl": "https://unsplash.com/es/@egorkomarov",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-computadora-portatil-sentada-encima-de-una-mesa-FvpVY7TpwNY"
+    }
   },
   {
     "id": "como-usar-framer-ai-crear-web",
@@ -2384,8 +2639,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/framer-ai.svg",
-    "coverImageAlt": "Icono de Framer AI para crear un sitio web",
+    "coverImageUrl": "https://images.unsplash.com/photo-1642132652860-603f4e3c19b7?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Framer AI para crear un sitio web",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-07T03:21:57.645Z",
@@ -2416,7 +2671,12 @@
         "question": "¿El plan gratuito permite publicar el sitio?",
         "answer": "Sí, el plan gratuito permite crear y publicar un sitio con funciones básicas, aunque con limitaciones de dominio propio y número de páginas."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Alex Shuper",
+      "photographerUrl": "https://unsplash.com/es/@alexshuperart",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-persona-sentada-en-el-suelo-usando-una-computadora-portatil-Yt9wUh3ZB3Q"
+    }
   },
   {
     "id": "como-usar-krisp-cancelacion-ruido",
@@ -2432,8 +2692,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/krisp.svg",
-    "coverImageAlt": "Icono de Krisp para eliminar el ruido en llamadas",
+    "coverImageUrl": "https://images.unsplash.com/photo-1766066014237-00645c74e9c6?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Krisp para eliminar el ruido en llamadas",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-06T15:21:57.645Z",
@@ -2464,7 +2724,12 @@
         "question": "¿Requiere hardware especial?",
         "answer": "No, funciona completamente por software creando un dispositivo de audio virtual, sin necesidad de micrófonos o auriculares especializados."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Charanjeet Dhiman",
+      "photographerUrl": "https://unsplash.com/es/@charanjeet_dhiman",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-mujer-sonriente-con-auriculares-frente-a-un-ordenador-wnpf3Q5pkXA"
+    }
   },
   {
     "id": "como-usar-writesonic-contenido-seo",
@@ -2480,8 +2745,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/writesonic.svg",
-    "coverImageAlt": "Icono de Writesonic para generar un artículo SEO",
+    "coverImageUrl": "https://images.unsplash.com/photo-1516387938699-a93567ec168e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Writesonic para generar un artículo SEO",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-06T03:21:57.645Z",
@@ -2512,7 +2777,12 @@
         "question": "¿Es gratuito para empezar?",
         "answer": "Ofrece un plan gratuito con una cantidad limitada de palabras generadas al mes, suficiente para evaluar la herramienta antes de pagar."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Christin Hume",
+      "photographerUrl": "https://unsplash.com/es/@christinhumephoto",
+      "photoPageUrl": "https://unsplash.com/es/fotos/person-typing-on-silver-macbook-kUqqaRjJuw0"
+    }
   },
   {
     "id": "como-usar-surfer-seo-optimizar-contenido",
@@ -2527,8 +2797,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/surfer-seo.svg",
-    "coverImageAlt": "Icono de Surfer SEO para optimizar un artículo",
+    "coverImageUrl": "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Surfer SEO para optimizar un artículo",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-05T15:21:57.645Z",
@@ -2559,7 +2829,12 @@
         "question": "¿Qué son los 'términos relacionados' que sugiere?",
         "answer": "Son palabras y frases relacionadas semánticamente con tu palabra clave principal que ayudan a que el contenido cubra el tema con mayor profundidad."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Stephen Phillips - Hostreviews.co.uk",
+      "photographerUrl": "https://unsplash.com/es/@hostreviews",
+      "photoPageUrl": "https://unsplash.com/es/fotos/grafico-bursatil-mostrado-en-la-pantalla-del-portatil-IrRbSND5EUc"
+    }
   },
   {
     "id": "como-usar-photoroom-fotos-producto",
@@ -2575,8 +2850,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/photoroom.svg",
-    "coverImageAlt": "Icono de Photoroom para editar fotos de producto",
+    "coverImageUrl": "https://images.unsplash.com/photo-1647427854253-b92bb40c9330?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Photoroom para editar fotos de producto",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-05T03:21:57.645Z",
@@ -2607,7 +2882,12 @@
         "question": "¿Es gratuito usar Photoroom?",
         "answer": "Ofrece un número limitado de usos gratuitos; el plan de pago desbloquea procesamiento ilimitado y exportación en mayor resolución."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "KOBU Agency",
+      "photographerUrl": "https://unsplash.com/es/@kobuagency",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-estudio-fotografico-con-un-fondo-rosa-y-una-silla-amarilla-uekNxBHpUU8"
+    }
   },
   {
     "id": "como-editar-video-con-capcut",
@@ -2623,8 +2903,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/capcut.svg",
-    "coverImageAlt": "Icono de CapCut para editar tu primer vídeo",
+    "coverImageUrl": "https://images.unsplash.com/photo-1603516875773-9a4c1861d5ed?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de CapCut para editar tu primer vídeo",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-04T15:21:57.645Z",
@@ -2655,7 +2935,12 @@
         "question": "¿Puedo usar plantillas prediseñadas?",
         "answer": "Sí, CapCut ofrece plantillas donde solo necesitas sustituir tus propios clips dentro de una estructura de edición ya creada por otros usuarios."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Philip Oroni",
+      "photographerUrl": "https://unsplash.com/es/@philipsfuture",
+      "photoPageUrl": "https://unsplash.com/es/fotos/televisor-de-pantalla-plana-negro-encendido-visualizacion-del-juego-7BcHkouw6Uc"
+    }
   },
   {
     "id": "como-usar-opus-clip",
@@ -2671,8 +2956,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/opus-clip.svg",
-    "coverImageAlt": "Icono de Opus Clip para extraer clips virales de un vídeo largo",
+    "coverImageUrl": "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Opus Clip para extraer clips virales de un vídeo largo",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-04T03:21:57.645Z",
@@ -2703,7 +2988,12 @@
         "question": "¿Es gratuito usar Opus Clip?",
         "answer": "Ofrece un plan gratuito con minutos de procesamiento limitados al mes, suficiente para evaluar la herramienta antes de pagar por más capacidad."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Jakob Owens",
+      "photographerUrl": "https://unsplash.com/es/@jakobowens1",
+      "photoPageUrl": "https://unsplash.com/es/fotos/turned-on-imac-and-apple-magic-keyboard-and-mouse-on-table-mQxttWjHFjA"
+    }
   },
   {
     "id": "como-crear-podcast-con-wondercraft",
@@ -2719,8 +3009,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/wondercraft.svg",
-    "coverImageAlt": "Icono de Wondercraft para crear un episodio de podcast",
+    "coverImageUrl": "https://images.unsplash.com/photo-1581547848545-a75a2634ba23?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Wondercraft para crear un episodio de podcast",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-03T15:21:57.645Z",
@@ -2751,7 +3041,12 @@
         "question": "¿Debo indicar que uso voces de IA en mi podcast?",
         "answer": "No es obligatorio legalmente en la mayoría de casos, pero muchos creadores optan por la transparencia informando a su audiencia como buena práctica."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Will Francis - AI & Marketing",
+      "photographerUrl": "https://unsplash.com/es/@willfrancis",
+      "photoPageUrl": "https://unsplash.com/es/fotos/persona-que-sostiene-el-microfono-en-el-soporte-del-microfono-waxDxYM2XI4"
+    }
   },
   {
     "id": "como-usar-beautiful-ai",
@@ -2766,8 +3061,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/beautiful-ai.svg",
-    "coverImageAlt": "Icono de Beautiful.ai para crear una presentación",
+    "coverImageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Beautiful.ai para crear una presentación",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-03T03:21:57.645Z",
@@ -2798,7 +3093,12 @@
         "question": "¿Tengo control total sobre el diseño como en PowerPoint?",
         "answer": "No exactamente; el sistema corrige constantemente la disposición para mantener consistencia visual, a cambio de algo menos de libertad creativa total."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Memento Media",
+      "photographerUrl": "https://unsplash.com/es/@heymemento",
+      "photoPageUrl": "https://unsplash.com/es/fotos/hombre-de-pie-frente-a-un-grupo-de-hombres-rxpThOwuVgE"
+    }
   },
   {
     "id": "como-crear-web-negocio-con-durable",
@@ -2814,8 +3114,8 @@
       "gratis"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/durable.svg",
-    "coverImageAlt": "Icono de Durable para crear la web de tu negocio en un minuto",
+    "coverImageUrl": "https://images.unsplash.com/photo-1758598303946-385680e4eabd?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Durable para crear la web de tu negocio en un minuto",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-02T15:21:57.645Z",
@@ -2846,7 +3146,12 @@
         "question": "¿Es adecuado para una tienda online compleja?",
         "answer": "Para negocios con necesidades avanzadas de comercio electrónico puede quedarse corto; está pensado principalmente para presencia web básica de negocios locales."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Mockup Free",
+      "photographerUrl": "https://unsplash.com/es/@mockupfreenet",
+      "photoPageUrl": "https://unsplash.com/es/fotos/mano-sosteniendo-un-telefono-inteligente-con-una-pantalla-verde-Fn9knMAITSk"
+    }
   },
   {
     "id": "como-usar-clay-enriquecer-datos",
@@ -2861,8 +3166,8 @@
       "premium"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/clay.svg",
-    "coverImageAlt": "Icono de Clay para enriquecer datos de prospección",
+    "coverImageUrl": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Clay para enriquecer datos de prospección",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-02T03:21:57.645Z",
@@ -2893,7 +3198,12 @@
         "question": "¿Puede generar mensajes de prospección personalizados?",
         "answer": "Sí, usando los datos enriquecidos como contexto para generar mensajes personalizados a escala, más efectivos que un mensaje genérico enviado a toda la lista."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/encendio-la-pantalla-de-monitoreo-qwtCeJ5cLYs"
+    }
   },
   {
     "id": "como-usar-hubspot-breeze",
@@ -2908,8 +3218,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/tools/hubspot-breeze.svg",
-    "coverImageAlt": "Icono de Breeze, la IA de HubSpot para tu CRM",
+    "coverImageUrl": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Fotografía de Breeze, la IA de HubSpot para tu CRM",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-01T15:21:57.645Z",
@@ -2940,7 +3250,12 @@
         "question": "¿Todas las funciones de Breeze están incluidas en cualquier plan?",
         "answer": "No, algunas funciones avanzadas requieren determinados niveles de suscripción dentro del ecosistema de HubSpot."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Myriam Jessier",
+      "photographerUrl": "https://unsplash.com/es/@mjessier",
+      "photoPageUrl": "https://unsplash.com/es/fotos/captura-de-pantalla-del-monitor-shr_Xn8S8QU"
+    }
   },
   {
     "id": "guia-de-ia-generativa-para-principiantes",
@@ -2955,8 +3270,8 @@
       "gratis"
     ],
     "featured": true,
-    "coverImageUrl": "/images/blog/generative-ai-basics.svg",
-    "coverImageAlt": "Ilustración introductoria de IA generativa para principiantes",
+    "coverImageUrl": "https://images.unsplash.com/photo-1753513291124-4f615bf1f6de?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Ilustración de un cerebro sobre un procesador representando la inteligencia artificial generativa",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-07-01T03:21:57.645Z",
@@ -2987,7 +3302,12 @@
         "question": "¿Es necesario pagar para probar la IA generativa?",
         "answer": "No, la mayoría de herramientas principales ofrecen un plan gratuito funcional suficiente para familiarizarse antes de considerar una suscripción de pago."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Sumaid pal Singh Bakshi",
+      "photographerUrl": "https://unsplash.com/es/@sumaidsingh",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-cerebro-sobre-la-cpu-representa-la-inteligencia-artificial-sv2SuTA-9ug"
+    }
   },
   {
     "id": "guia-de-automatizacion-de-marketing-con-ia",
@@ -3001,8 +3321,8 @@
       "marketing"
     ],
     "featured": false,
-    "coverImageUrl": "/images/prompts/professions/marketing.svg",
-    "coverImageAlt": "Ilustración de automatización de marketing con IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1675352161865-27816c76141a?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Primer plano de un teléfono con iconos de redes sociales y marketing",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-30T15:21:57.645Z",
@@ -3033,7 +3353,12 @@
         "question": "¿Qué es la puntuación predictiva de leads?",
         "answer": "Es un sistema que asigna una probabilidad de conversión a cada lead basándose en comportamiento histórico, ayudando a priorizar el esfuerzo comercial hacia los contactos más prometedores."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Aman Pal",
+      "photographerUrl": "https://unsplash.com/es/@paman0744",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-primer-plano-de-un-telefono-celular-con-iconos-de-redes-sociales-a_lBsEZZjWc"
+    }
   },
   {
     "id": "guia-de-seo-en-la-era-de-la-ia",
@@ -3047,8 +3372,8 @@
       "seo"
     ],
     "featured": true,
-    "coverImageUrl": "/images/blog/seo-ai.svg",
-    "coverImageAlt": "Ilustración de SEO en la era de la IA generativa",
+    "coverImageUrl": "https://images.unsplash.com/photo-1625296276703-3fbc924f07b5?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Pantalla de computadora mostrando datos y métricas de posicionamiento SEO",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-30T03:21:57.645Z",
@@ -3079,7 +3404,12 @@
         "question": "¿El SEO técnico sigue siendo importante?",
         "answer": "Sí, velocidad de carga y estructura de datos semánticos siguen siendo relevantes tanto para posicionamiento tradicional como para que los sistemas de IA extraigan bien la información."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "1981 Digital",
+      "photographerUrl": "https://unsplash.com/es/@1981digital",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-pantalla-de-computadora-con-un-monton-de-datos-VxLhYXuLQN8"
+    }
   },
   {
     "id": "guia-de-etica-y-uso-responsable-de-la-ia",
@@ -3093,8 +3423,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/responsible-ai.svg",
-    "coverImageAlt": "Ilustración de ética y uso responsable de la IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1614064548237-096f735f344f?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Candado sobre un portátil con rastros de luz, representando el uso responsable de la tecnología",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-29T15:21:57.645Z",
@@ -3125,7 +3455,12 @@
         "question": "¿Es necesario un documento formal de políticas de uso de IA en mi equipo?",
         "answer": "Es muy recomendable, ya que da un marco de referencia claro y evita decisiones inconsistentes entre distintas personas que usan las mismas herramientas."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "FlyD",
+      "photographerUrl": "https://unsplash.com/es/@flyd2069",
+      "photoPageUrl": "https://unsplash.com/es/fotos/candado-en-el-portatil-con-rastros-de-luz-C5pXRFEjq3w"
+    }
   },
   {
     "id": "guia-de-ia-para-equipos-de-ventas",
@@ -3139,8 +3474,8 @@
       "marketing"
     ],
     "featured": false,
-    "coverImageUrl": "/images/prompts/professions/sales.svg",
-    "coverImageAlt": "Ilustración de IA aplicada a equipos de ventas",
+    "coverImageUrl": "https://images.unsplash.com/photo-1758691736097-7f735ac5f118?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Hombre presentando datos de ventas en una pantalla a su equipo",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-29T03:21:57.645Z",
@@ -3171,7 +3506,12 @@
         "question": "¿Es fiable la previsión de ventas generada por IA?",
         "answer": "Suele ser más ajustada que estimaciones manuales tradicionales, pero conviene combinarla con el criterio del equipo comercial que conoce matices que el modelo no captura."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/es/@silverkblack",
+      "photoPageUrl": "https://unsplash.com/es/fotos/hombre-presentando-datos-en-una-pantalla-grande-a-sus-colegas-eb5nX6G1sk0"
+    }
   },
   {
     "id": "guia-de-privacidad-y-datos-con-ia",
@@ -3185,8 +3525,8 @@
       "desarrollo"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/responsible-ai.svg",
-    "coverImageAlt": "Ilustración de privacidad y protección de datos al usar IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1751448555253-f39c06e29d82?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Panel de configuración de seguridad y privacidad de datos",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-28T15:21:57.645Z",
@@ -3217,7 +3557,12 @@
         "question": "¿Puedo eliminar mis conversaciones guardadas?",
         "answer": "La mayoría de herramientas principales permiten eliminar el historial de conversaciones y, en algunos casos, solicitar la eliminación completa de los datos de tu cuenta."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Privecstasy",
+      "photographerUrl": "https://unsplash.com/es/@privecstasy",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-panel-de-seguridad-y-privacidad-con-su-estado--nBClEqKKVM"
+    }
   },
   {
     "id": "guia-de-ia-para-creadores-de-contenido",
@@ -3232,8 +3577,8 @@
       "marketing"
     ],
     "featured": false,
-    "coverImageUrl": "/images/prompts/professions/content-creators.svg",
-    "coverImageAlt": "Ilustración de IA para creadores de contenido",
+    "coverImageUrl": "https://images.unsplash.com/photo-1695408247109-3bf125ad0538?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Creadora de contenido grabándose a sí misma para sus redes sociales",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-28T03:21:57.645Z",
@@ -3264,7 +3609,12 @@
         "question": "¿Qué es el repurposing de contenido?",
         "answer": "Es convertir un mismo contenido original en varios formatos distintos (vídeo, artículo, hilo de redes sociales) para multiplicar su alcance sin duplicar el esfuerzo de creación."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-mujer-tomandose-una-foto-de-si-misma-en-una-cocina-RAH1ipSQh24"
+    }
   },
   {
     "id": "guia-de-implementacion-de-ia-en-pymes",
@@ -3279,8 +3629,8 @@
       "desarrollo"
     ],
     "featured": true,
-    "coverImageUrl": "/images/blog/small-business-ai.svg",
-    "coverImageAlt": "Ilustración de implementación de IA en una pyme",
+    "coverImageUrl": "https://images.unsplash.com/photo-1753164597612-5e71b83fda91?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Propietaria de una pyme trabajando en su portátil mientras habla por teléfono",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-27T15:21:57.645Z",
@@ -3311,7 +3661,12 @@
         "question": "¿Cuál es el error más común al implementar IA en una pyme?",
         "answer": "Comprar herramientas por moda sin haber identificado antes un problema concreto que resolver, lo que dificulta medir si la inversión realmente compensa."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/disenadora-de-moda-al-telefono-trabajando-en-una-computadora-portatil-kk4J92iaSBk"
+    }
   },
   {
     "id": "guia-de-modelos-de-lenguaje-como-funcionan",
@@ -3326,8 +3681,8 @@
       "desarrollo"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/language-models.svg",
-    "coverImageAlt": "Ilustración de una red neuronal representando modelos de lenguaje",
+    "coverImageUrl": "https://images.unsplash.com/photo-1674027444484-cf52149ea050?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Representación abstracta de una red neuronal en forma de bola de conexiones",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-27T03:21:57.645Z",
@@ -3358,7 +3713,12 @@
         "question": "¿Por qué solo unas pocas empresas pueden entrenar estos modelos?",
         "answer": "Porque el entrenamiento requiere recursos computacionales masivos y cantidades enormes de datos, algo que solo un número reducido de organizaciones puede costear actualmente."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Alina Grubnyak",
+      "photographerUrl": "https://unsplash.com/es/@alinnnaaaa",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-imagen-generada-por-computadora-de-una-bola-de-cuerda-P5mCQ4KACbM"
+    }
   },
   {
     "id": "guia-de-ia-para-desarrolladores",
@@ -3372,8 +3732,8 @@
       "desarrollo"
     ],
     "featured": false,
-    "coverImageUrl": "/images/categories/programming.svg",
-    "coverImageAlt": "Ilustración de IA para desarrolladores de software",
+    "coverImageUrl": "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Desarrollador sentado frente a varios monitores con código",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-26T15:21:57.645Z",
@@ -3404,7 +3764,12 @@
         "question": "¿La IA sustituye la revisión de código humana?",
         "answer": "No, la complementa detectando patrones problemáticos rápidamente, pero no sustituye el criterio de un revisor experimentado en decisiones de arquitectura."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Mohammad Rahmani",
+      "photographerUrl": "https://unsplash.com/es/@afgprogrammer",
+      "photoPageUrl": "https://unsplash.com/es/fotos/personas-sentadas-en-una-silla-frente-al-monitor-de-la-computadora-Fa9b57hffnM"
+    }
   },
   {
     "id": "guia-de-prompt-engineering",
@@ -3420,8 +3785,8 @@
       "chatgpt"
     ],
     "featured": true,
-    "coverImageUrl": "/images/blog/prompt-engineering.svg",
-    "coverImageAlt": "Ilustración de cómo escribir mejores instrucciones para la IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1487611459768-bd414656ea10?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Persona escribiendo instrucciones de IA en su portátil",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-26T03:21:57.645Z",
@@ -3452,7 +3817,12 @@
         "question": "¿Debo reescribir todo el prompt si el resultado no es perfecto?",
         "answer": "No, es más eficiente pedir ajustes concretos sobre la respuesta ya generada, aprovechando que el modelo mantiene el contexto de la conversación."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Burst",
+      "photographerUrl": "https://unsplash.com/es/@burst",
+      "photoPageUrl": "https://unsplash.com/es/fotos/person-using-laptop-computer-beside-aloe-vera-tMI2_-r5Nfo"
+    }
   },
   {
     "id": "guia-de-ia-para-recursos-humanos",
@@ -3467,8 +3837,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/prompts/professions/human-resources.svg",
-    "coverImageAlt": "Ilustración de IA para equipos de recursos humanos",
+    "coverImageUrl": "https://images.unsplash.com/photo-1698047682091-782b1e5c6536?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Dos profesionales de recursos humanos estrechándose la mano en una entrevista",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-25T15:21:57.645Z",
@@ -3499,7 +3869,12 @@
         "question": "¿Existen regulaciones sobre el uso de IA en contratación?",
         "answer": "Sí, cada vez más jurisdicciones exigen poder explicar y auditar cómo un sistema de IA llegó a una recomendación de contratación o promoción."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Toa Heftiba",
+      "photographerUrl": "https://unsplash.com/es/@heftiba",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-mujer-estrechando-la-mano-de-otra-mujer-sentada-en-una-mesa-IESB4iFVuzA"
+    }
   },
   {
     "id": "guia-de-ia-para-atencion-al-cliente",
@@ -3514,8 +3889,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/customer-service-ai.svg",
-    "coverImageAlt": "Ilustración de IA aplicada a la atención al cliente",
+    "coverImageUrl": "https://images.unsplash.com/photo-1714079761488-e0c9b9ac4138?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Agente de atención al cliente con auriculares trabajando frente a su portátil",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-25T03:21:57.645Z",
@@ -3546,7 +3921,12 @@
         "question": "¿Cuándo no conviene usar automatización en atención al cliente?",
         "answer": "En quejas graves o situaciones emocionalmente delicadas, donde insistir en un flujo automatizado puede empeorar la percepción del cliente sobre la empresa."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Charanjeet Dhiman",
+      "photographerUrl": "https://unsplash.com/es/@charanjeet_dhiman",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-hombre-con-auriculares-sentado-frente-a-una-computadora-portatil-LSOIjuBiIuQ"
+    }
   },
   {
     "id": "guia-de-propiedad-intelectual-y-ia",
@@ -3560,8 +3940,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/responsible-ai.svg",
-    "coverImageAlt": "Ilustración de propiedad intelectual y derechos de autor con IA generativa",
+    "coverImageUrl": "https://images.unsplash.com/photo-1654588831193-0285dab84d5a?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Teclado de computadora con un candado, representando la propiedad intelectual",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-24T15:21:57.645Z",
@@ -3592,7 +3972,12 @@
         "question": "¿Debería consultar a un abogado antes de un uso comercial importante?",
         "answer": "Para proyectos de alto valor comercial es recomendable, dado lo cambiante del marco legal actual sobre propiedad intelectual y contenido generado con IA."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-teclado-de-computadora-con-un-candado-encima-2T4l02ZYj-k"
+    }
   },
   {
     "id": "guia-de-ia-para-redes-sociales",
@@ -3608,8 +3993,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/prompts/professions/marketing.svg",
-    "coverImageAlt": "Ilustración de IA para gestionar redes sociales",
+    "coverImageUrl": "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Señalización de iconos de redes sociales de colores variados",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-24T03:21:57.645Z",
@@ -3640,7 +4025,12 @@
         "question": "¿La IA puede ayudarme a identificar tendencias antes que mis competidores?",
         "answer": "Sí, puede detectar temas emergentes en tu sector antes de que se saturen, dando una ventaja de tiempo en la reacción a esas tendencias."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Adem AY",
+      "photographerUrl": "https://unsplash.com/es/@ademay",
+      "photoPageUrl": "https://unsplash.com/es/fotos/senalizacion-de-redes-sociales-de-colores-variados-CNbRsQj8mHQ"
+    }
   },
   {
     "id": "guia-de-seguridad-y-ia",
@@ -3655,8 +4045,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/responsible-ai.svg",
-    "coverImageAlt": "Ilustración de seguridad y buenas prácticas al usar IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1654588836793-c6babf14d254?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Candado sobre una placa de circuito representando la seguridad informática",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-23T15:21:57.645Z",
@@ -3687,7 +4077,12 @@
         "question": "¿Debería usar herramientas de IA gratuitas para trabajo sensible?",
         "answer": "No se recomienda; los planes empresariales suelen ofrecer garantías contractuales de privacidad que los planes gratuitos generalmente no incluyen."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Rostislav Uzunov",
+      "photographerUrl": "https://unsplash.com/es/@rostislavuznv",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-candado-en-la-parte-superior-de-una-placa-de-circuito-fzPusoj22AY"
+    }
   },
   {
     "id": "guia-de-ia-para-educacion",
@@ -3702,8 +4097,8 @@
       "gratis"
     ],
     "featured": false,
-    "coverImageUrl": "/images/prompts/professions/teachers.svg",
-    "coverImageAlt": "Ilustración de IA para docentes y educadores",
+    "coverImageUrl": "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Alumnos en el aula mientras el profesor presenta con apoyo tecnológico",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-23T03:21:57.645Z",
@@ -3734,7 +4129,12 @@
         "question": "¿Deberían los profesores recibir formación antes de usar IA en clase?",
         "answer": "Sí, es recomendable que entiendan las capacidades y limitaciones reales de estas herramientas para poder guiar a sus estudiantes con un criterio pedagógico claro."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/alumnos-en-el-aula-con-el-profesor-presentando-zFSo6bnZJTw"
+    }
   },
   {
     "id": "guia-para-elegir-el-mejor-modelo-de-ia",
@@ -3749,8 +4149,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/language-models.svg",
-    "coverImageAlt": "Ilustración de una red neuronal para elegir el mejor modelo de IA",
+    "coverImageUrl": "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Imagen abstracta de una esfera de puntos y líneas representando distintos modelos de IA",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-22T15:21:57.645Z",
@@ -3781,7 +4181,12 @@
         "question": "¿Vale la pena pagar por un plan de pago desde el principio?",
         "answer": "No necesariamente; el plan gratuito suele ser suficiente para uso ocasional, y conviene identificar primero un caso de uso recurrente que justifique la inversión mensual."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-imagen-abstracta-de-una-esfera-con-puntos-y-lineas-nGoCBxiaRO0"
+    }
   },
   {
     "id": "guia-de-ia-para-finanzas-personales",
@@ -3796,8 +4201,8 @@
       "productividad"
     ],
     "featured": false,
-    "coverImageUrl": "/images/blog/personal-finance-ai.svg",
-    "coverImageAlt": "Ilustración de IA para organizar las finanzas personales",
+    "coverImageUrl": "https://images.unsplash.com/photo-1769776400201-6b99211a4f4f?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Hucha y calculadora representando la organización de las finanzas personales",
     "authorId": "admin",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-22T03:21:57.645Z",
@@ -3828,7 +4233,12 @@
         "question": "¿Por dónde debería empezar si quiero usar IA para mis finanzas?",
         "answer": "Por una aplicación de categorización automática de gastos durante uno o dos meses, para entender tus patrones actuales antes de herramientas más sofisticadas."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Mehdi Mirzaie",
+      "photographerUrl": "https://unsplash.com/es/@mirzaie",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-hucha-y-una-calculadora-sobre-fondo-naranja-kGHieYrMa38"
+    }
   },
   {
     "id": "guia-de-ia-para-emprendedores",
@@ -3844,8 +4254,8 @@
       "principiantes"
     ],
     "featured": false,
-    "coverImageUrl": "/images/prompts/professions/entrepreneurs.svg",
-    "coverImageAlt": "Ilustración de IA para emprendedores que lanzan un negocio",
+    "coverImageUrl": "https://images.unsplash.com/photo-1758876202714-567dad9c5b41?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageAlt": "Emprendedora sonriendo con los brazos cruzados en su oficina",
     "authorId": "editor",
     "readingTimeMin": 3,
     "publishedAt": "2026-06-21T15:21:57.645Z",
@@ -3876,6 +4286,11 @@
         "question": "¿Cuándo debería dejar de depender tanto de herramientas de IA?",
         "answer": "A medida que el negocio crece y genera ingresos consistentes, invertir en personal especializado y herramientas más robustas suele aportar más valor que mantener todo automatizado con IA genérica."
       }
-    ]
+    ],
+    "coverImageCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/mujer-joven-sonriendo-con-los-brazos-cruzados-en-la-oficina-ErSE2pWsjnY"
+    }
   }
 ]

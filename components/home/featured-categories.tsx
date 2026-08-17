@@ -46,11 +46,11 @@ export function FeaturedCategories({ categories }: { categories: CategorySummary
             {illustration ? (
               <Image
                 src={illustration.src}
-                alt=""
+                alt={illustration.alt}
                 width={112}
                 height={112}
                 className={cn(
-                  "relative z-10 transition-transform duration-500 group-hover:scale-105",
+                  "relative z-10 rounded-xl object-cover shadow-soft transition-transform duration-500 group-hover:scale-105",
                   featured ? "size-24" : "size-14 mx-auto sm:mx-0"
                 )}
               />

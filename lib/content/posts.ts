@@ -2,7 +2,7 @@ import postsJson from "@/content/posts.json";
 import categoriesJson from "@/content/categories.json";
 import tagsJson from "@/content/tags.json";
 import authorsJson from "@/content/authors.json";
-import type { Author, PaginatedResult, PostDetail, PostSummary, PostType, TaxonomyRef } from "@/lib/types";
+import type { Author, ImageCredit, PaginatedResult, PostDetail, PostSummary, PostType, TaxonomyRef } from "@/lib/types";
 
 interface PostRaw {
   id: string;
@@ -16,6 +16,7 @@ interface PostRaw {
   featured: boolean;
   coverImageUrl: string | null;
   coverImageAlt: string | null;
+  coverImageCredit?: ImageCredit | null;
   authorId: string;
   readingTimeMin: number | null;
   publishedAt: string;
@@ -54,6 +55,7 @@ function toSummary(post: PostRaw): PostSummary {
     excerpt: post.excerpt,
     coverImageUrl: post.coverImageUrl,
     coverImageAlt: post.coverImageAlt,
+    coverImageCredit: post.coverImageCredit ?? null,
     author: resolveAuthor(post.authorId),
     categories: resolveCategories(post.categorySlug),
     tags: resolveTags(post.tags),

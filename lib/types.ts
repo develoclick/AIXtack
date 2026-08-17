@@ -39,6 +39,13 @@ export interface InlineFaqEntry {
   answer: string;
 }
 
+/** Atribución obligatoria para fotos hotlinked desde Unsplash. */
+export interface ImageCredit {
+  photographerName: string;
+  photographerUrl: string;
+  photoPageUrl: string;
+}
+
 export interface CategorySummary extends TaxonomyRef {
   description: string | null;
   icon: string | null;
@@ -58,6 +65,7 @@ export interface PostSummary {
   excerpt: string | null;
   coverImageUrl: string | null;
   coverImageAlt: string | null;
+  coverImageCredit: ImageCredit | null;
   author: Author;
   categories: TaxonomyRef[];
   tags: TaxonomyRef[];
@@ -84,6 +92,7 @@ export interface ToolSummary {
   name: string;
   tagline: string | null;
   logoUrl: string | null;
+  logoCredit: ImageCredit | null;
   pricingModel: PricingModel;
   pricingFrom: number | null;
   currency: string;

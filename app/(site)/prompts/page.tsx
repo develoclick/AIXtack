@@ -85,11 +85,7 @@ export default async function PromptsPage({ searchParams }: PageProps) {
         <div>
           <PromptGrid prompts={items} />
 
-          {page === 1 && items.length > 0 && (
-            <div className="mt-10">
-              <MultiplexAd slotId="1000000031" />
-            </div>
-          )}
+         
         </div>
 {/*
         <aside className="hidden lg:block">

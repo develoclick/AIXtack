@@ -104,12 +104,7 @@ export default async function HomePage() {
       </section>
 
     
-{/*
-      <section className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-        <ScrollReveal>
-          <NewsletterCta />
-        </ScrollReveal>
-      </section>*/}
+
     </>
   );
 }

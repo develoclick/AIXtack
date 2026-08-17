@@ -8,6 +8,7 @@ import { PostGrid } from "@/components/content/post-grid";
 import { InArticleAd } from "@/components/ads/in-article-ad";
 import { FaqAccordion } from "@/components/faq/faq-accordion";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { PhotoCredit } from "@/components/shared/photo-credit";
 import { getPostBySlug, getRelatedPosts } from "@/lib/content/posts";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/lib/seo/json-ld";
@@ -106,6 +107,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           />
         </div>
       )}
+      <PhotoCredit credit={post.coverImageCredit} />
 
       <div className="mt-10">
         <ArticleBody html={post.content} />

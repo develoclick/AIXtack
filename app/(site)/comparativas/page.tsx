@@ -30,7 +30,15 @@ export default async function ComparativasPage({ searchParams }: PageProps) {
       page={page}
       topBannerSlotId="1000000010"
       multiplexSlotId="1000000011"
-      image={{ src: "/images/illustrations/comparisons.svg", alt: "Comparativas de herramientas de IA" }}
+      image={{
+        src: "https://images.unsplash.com/photo-1668976056517-2a3c241de1c6?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+        alt: "Comparativas de herramientas de IA",
+        credit: {
+          photographerName: "Javier Allegue Barros",
+          photographerUrl: "https://unsplash.com/es/@soymeraki",
+          photoPageUrl: "https://unsplash.com/es/fotos/un-poste-de-senalizacion-con-diferentes-senales-de-trafico-75EcEMrXgtg",
+        },
+      }}
     />
   );
 }

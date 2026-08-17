@@ -30,7 +30,15 @@ export default async function GuiasPage({ searchParams }: PageProps) {
       page={page}
       topBannerSlotId="1000000014"
       multiplexSlotId="1000000015"
-      image={{ src: "/images/tutorials/guides.svg", alt: "Guías completas de inteligencia artificial" }}
+      image={{
+        src: "https://images.unsplash.com/photo-1517770413964-df8ca61194a6?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+        alt: "Guías completas de inteligencia artificial",
+        credit: {
+          photographerName: "Clay Banks",
+          photographerUrl: "https://unsplash.com/es/@claybanks",
+          photoPageUrl: "https://unsplash.com/es/fotos/fotografia-bokeh-de-open-book-0FRJ2SCuY4k",
+        },
+      }}
     />
   );
 }

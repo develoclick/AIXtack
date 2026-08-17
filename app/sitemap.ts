@@ -48,6 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/privacidad`, lastModified: now },
     { url: `${siteUrl}/cookies`, lastModified: now },
     { url: `${siteUrl}/aviso-afiliados`, lastModified: now },
+    { url: `${siteUrl}/creditos-de-imagenes`, lastModified: now },
   ];
 
   // 2. Artículos del Blog

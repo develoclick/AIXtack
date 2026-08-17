@@ -9,6 +9,7 @@ import { getProfessionBySlug, listProfessionPrompts, listProfessions } from "@/l
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbJsonLd, professionCollectionPageJsonLd } from "@/lib/seo/json-ld";
 import { professionImages } from "@/lib/images";
+import { PhotoCredit } from "@/components/shared/photo-credit";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -71,7 +72,16 @@ export default async function ProfessionPage({ params }: PageProps) {
 
       <div className="flex items-center gap-4">
         {illustration ? (
-          <Image src={illustration.src} alt="" width={112} height={112} className="size-14 shrink-0 sm:size-16" />
+          <div className="shrink-0">
+            <Image
+              src={illustration.src}
+              alt={illustration.alt}
+              width={112}
+              height={112}
+              className="size-14 rounded-2xl object-cover shadow-soft sm:size-16"
+            />
+            <PhotoCredit credit={illustration.credit} className="mt-1 max-w-16 text-center text-[9px] leading-tight text-muted-foreground" />
+          </div>
         ) : (
           <span className="flex size-14 items-center justify-center rounded-2xl bg-brand-muted text-brand">
             <Icon className="size-7" />

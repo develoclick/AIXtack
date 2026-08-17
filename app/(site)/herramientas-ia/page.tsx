@@ -70,7 +70,15 @@ export default async function ToolsPage({ searchParams }: PageProps) {
         eyebrow="Directorio"
         title="Herramientas de IA"
         description="Explora, compara y encuentra la herramienta de inteligencia artificial ideal para tu caso de uso."
-        image={{ src: "/images/tools/ai-tools-directory.svg", alt: "Directorio de herramientas de IA" }}
+        image={{
+          src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+          alt: "Directorio de herramientas de IA",
+          credit: {
+            photographerName: "Getty Images",
+            photographerUrl: "https://unsplash.com/es/@gettyimages",
+            photoPageUrl: "https://unsplash.com/es/fotos/graficos-de-analisis-de-rendimiento-en-la-pantalla-de-un-portatil-JKUTrJ4vK00",
+          },
+        }}
       />
 {/*
       <div className="mt-8">
@@ -85,11 +93,7 @@ export default async function ToolsPage({ searchParams }: PageProps) {
             <ToolGrid tools={items} />
           </div>
 
-          {page === 1 && items.length > 0 && (
-            <div className="mt-10">
-              <MultiplexAd slotId="1000000021" />
-            </div>
-          )}
+          
         </div>
 
         <aside className="hidden lg:block">

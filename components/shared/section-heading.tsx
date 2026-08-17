@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { PhotoCredit } from "@/components/shared/photo-credit";
+import type { ImageAsset } from "@/lib/images";
 
 function HeadingText({
   eyebrow,
@@ -55,8 +57,8 @@ export function SectionHeading({
   description?: string;
   align?: "left" | "center";
   className?: string;
-  /** Ilustración contextual opcional — solo se usa en secciones donde aporta valor real. */
-  image?: { src: string; alt: string };
+  /** Imagen contextual opcional — solo se usa en secciones donde aporta valor real. */
+  image?: ImageAsset;
 }) {
   if (!image) {
     return (
@@ -71,13 +73,16 @@ export function SectionHeading({
       <div className={cn("flex flex-col gap-4", align === "center" && "items-center text-center")}>
         <HeadingText eyebrow={eyebrow} title={title} description={description} align={align} />
       </div>
-      <Image
-        src={image.src}
-        alt={image.alt}
-        width={112}
-        height={112}
-        className="size-24 shrink-0 sm:size-28"
-      />
+      <div className="shrink-0">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={112}
+          height={112}
+          className="size-24 rounded-2xl object-cover shadow-soft sm:size-28"
+        />
+        <PhotoCredit credit={image.credit} className="mt-2 text-center text-[11px] text-muted-foreground" />
+      </div>
     </div>
   );
 }

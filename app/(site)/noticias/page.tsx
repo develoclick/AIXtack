@@ -30,7 +30,15 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
       page={page}
       topBannerSlotId="1000000016"
       multiplexSlotId="1000000017"
-      image={{ src: "/images/blog/news.svg", alt: "Noticias de inteligencia artificial" }}
+      image={{
+        src: "https://images.unsplash.com/photo-1579532536935-619928decd08?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+        alt: "Noticias de inteligencia artificial",
+        credit: {
+          photographerName: "Roman Kraft",
+          photographerUrl: "https://unsplash.com/es/@iamromankraft",
+          photoPageUrl: "https://unsplash.com/es/fotos/una-pila-de-periodicos-sentados-encima-de-una-mesa-de-madera-hWJsOnaWTqs",
+        },
+      }}
     />
   );
 }

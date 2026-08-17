@@ -9,6 +9,7 @@ import Link from "next/link";
 import { CategoryBadge } from "@/components/shared/category-badge";
 import { FaqAccordion } from "@/components/faq/faq-accordion";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
+import { PhotoCredit } from "@/components/shared/photo-credit";
 import { InArticleAd } from "@/components/ads/in-article-ad";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { getToolBySlug, getRelatedTools } from "@/lib/content/tools";
@@ -97,6 +98,7 @@ export default async function ToolDetailPage({ params }: PageProps) {
           </div>
           <AffiliateCta affiliateSlug={tool.affiliateSlug} websiteUrl={tool.websiteUrl} />
         </div>
+        <PhotoCredit credit={tool.logoCredit} className="relative mt-4 text-xs text-muted-foreground" />
       </div>
 
       {tool.affiliateSlug && (

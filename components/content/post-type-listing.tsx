@@ -6,6 +6,7 @@ import { MultiplexAd } from "@/components/ads/multiplex-ad";
 import { listPublishedPosts } from "@/lib/content/posts";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import type { PostType } from "@/lib/types";
+import type { ImageAsset } from "@/lib/images";
 
 export async function PostTypeListing({
   type,
@@ -26,7 +27,7 @@ export async function PostTypeListing({
   page: number;
   topBannerSlotId: string;
   multiplexSlotId: string;
-  image?: { src: string; alt: string };
+  image?: ImageAsset;
 }) {
   const { items, totalPages } = await listPublishedPosts({ type, page, pageSize: 12 });
 
@@ -45,11 +46,7 @@ export async function PostTypeListing({
       />
 
       <SectionHeading eyebrow={eyebrow} title={title} description={description} image={image} />
-{/*
-      <div className="mt-8">
-        <TopBannerAd slotId={topBannerSlotId} />
-      </div>
-*/}
+
       <div className="mt-8">
         <PostGrid posts={items} />
       </div>
@@ -58,7 +55,6 @@ export async function PostTypeListing({
           repetido sin aportar valor nuevo al usuario. */}
       {page === 1 && items.length > 0 && (
         <div className="mt-10">
-          <MultiplexAd slotId={multiplexSlotId} />
         </div>
       )}
 

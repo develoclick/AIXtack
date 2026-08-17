@@ -5,7 +5,12 @@
     "name": "ChatGPT",
     "tagline": "El asistente conversacional de OpenAI",
     "description": "ChatGPT es el asistente conversacional de OpenAI y, para muchos usuarios, la puerta de entrada a la inteligencia artificial generativa. Permite mantener conversaciones en lenguaje natural para redactar textos, resolver dudas, programar, analizar documentos o generar imágenes, todo desde una misma interfaz de chat que ha marcado el estándar del sector desde su lanzamiento en 2022.\n\nSirve tanto a usuarios particulares que quieren resolver dudas cotidianas o mejorar un correo electrónico, como a profesionales que lo integran en su flujo de trabajo diario para programar, investigar o producir borradores de contenido. Los planes de pago (Plus, Pro y los orientados a equipos) añaden acceso a los modelos más avanzados de OpenAI, generación de imágenes con DALL-E, análisis de datos, navegación web y la posibilidad de crear GPTs personalizados para tareas repetitivas.\n\nLo que diferencia a ChatGPT de otros chatbots no es solo la calidad de sus respuestas, sino el tamaño de su ecosistema: una tienda de GPTs personalizados creados por la comunidad, una API ampliamente adoptada por desarrolladores externos y aplicaciones móvil y de escritorio pulidas que facilitan usarlo en cualquier contexto. Para quien busca una herramienta generalista capaz de adaptarse a casi cualquier tarea de texto o código sin una curva de aprendizaje pronunciada, sigue siendo el punto de referencia frente al que se comparan el resto de asistentes.",
-    "logoUrl": "/images/tools/chatgpt.jpg",
+    "logoUrl": "https://images.unsplash.com/photo-1737644467636-6b0053476bb2?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Mariia Shalabaieva",
+      "photographerUrl": "https://unsplash.com/es/@maria_shalabaieva",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-robot-blanco-esta-de-pie-frente-a-un-fondo-negro-CjWsslYVnPI"
+    },
     "websiteUrl": "https://chat.openai.com",
     "categorySlug": "escritura",
     "tags": [
@@ -93,7 +98,12 @@
     "name": "Midjourney",
     "tagline": "Generación de imágenes de altísima calidad artística",
     "description": "Midjourney es el generador de imágenes con IA más reconocido por su calidad artística y fotorrealista, capaz de producir composiciones que muchos diseñadores e ilustradores usan directamente como referencia o pieza final. Funciona introduciendo un prompt de texto que describe la escena, el estilo y la composición deseada, y el modelo devuelve varias variaciones entre las que elegir, escalar o refinar.\n\nEstá pensado para diseñadores gráficos, ilustradores, creadores de contenido y estudios creativos que priorizan la estética por encima del control técnico exhaustivo sobre cada píxel. Se integra en el flujo de trabajo como fuente de inspiración visual, generación de conceptos rápidos o incluso arte final para portadas, carteles y campañas de marketing.\n\nA diferencia de DALL-E o Stable Diffusion, Midjourney no prioriza la fidelidad literal al prompt sino un acabado visual distintivo y reconocible, con una estética propia que ha influido en gran parte de la cultura visual de la IA generativa. Su curva de aprendizaje está más en dominar el lenguaje de prompts y parámetros (--ar, --stylize, --chaos) que en manejar una interfaz compleja, y desde hace tiempo cuenta con una web app propia además del histórico bot de Discord.",
-    "logoUrl": "/images/tools/midjourney.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1620121684840-edffcfc4b878?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Alex Shuper",
+      "photographerUrl": "https://unsplash.com/es/@alexshuperart",
+      "photoPageUrl": "https://unsplash.com/es/fotos/pintura-abstracta-roja-amarilla-y-rosa-RAZU_R66vUc"
+    },
     "websiteUrl": "https://www.midjourney.com",
     "categorySlug": "generacion-de-imagenes",
     "tags": [
@@ -173,7 +183,12 @@
     "name": "Claude",
     "tagline": "El asistente de IA de Anthropic, enfocado en seguridad y contexto largo",
     "description": "Claude es el asistente de IA desarrollado por Anthropic, reconocido por su capacidad para trabajar con documentos muy extensos, su tono de escritura natural y matizado, y un enfoque declarado en la seguridad y el comportamiento responsable del modelo. Está disponible como aplicación web, de escritorio y móvil, y también como API para desarrolladores que integran sus modelos en productos propios.\n\nEs especialmente útil para quienes trabajan con documentos largos, como contratos, informes, papers académicos o bases de código completas, gracias a una ventana de contexto que le permite mantener coherencia incluso analizando cientos de páginas en una sola conversación. También destaca en tareas de programación, donde Claude Code (su herramienta de terminal) se ha convertido en una opción muy popular entre desarrolladores para tareas de varios pasos.\n\nFrente a ChatGPT o Gemini, Claude se diferencia por priorizar respuestas más reflexivas y menos propensas a la adulación excesiva, además de un manejo especialmente cuidadoso de instrucciones complejas y matices éticos. La familia de modelos (Haiku, Sonnet y Opus) permite elegir entre velocidad y coste o máxima capacidad de razonamiento según la tarea.",
-    "logoUrl": "/images/tools/claude.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Gabriele Malaspina",
+      "photographerUrl": "https://unsplash.com/es/@gabrielemalaspina",
+      "photoPageUrl": "https://unsplash.com/es/fotos/robot-blanco-cerca-de-la-pared-marron-2EJCSULRwC8"
+    },
     "websiteUrl": "https://claude.ai",
     "categorySlug": "productividad",
     "tags": [
@@ -258,7 +273,12 @@
     "name": "GitHub Copilot",
     "tagline": "Tu copiloto de IA para programar",
     "description": "GitHub Copilot es el asistente de programación con IA de GitHub (Microsoft/OpenAI), integrado directamente en editores como VS Code, Visual Studio, JetBrains y Neovim. Sugiere líneas y funciones completas de código mientras escribes, entrenado sobre patrones de millones de repositorios públicos y privados con licencia.\n\nEstá pensado para desarrolladores de cualquier nivel que quieran acelerar tareas repetitivas de código: generar boilerplate, escribir tests, documentar funciones o traducir lógica entre lenguajes. Copilot Chat añade una interfaz conversacional dentro del propio editor para pedir explicaciones, refactorizaciones o depuración sin salir del contexto de trabajo.\n\nFrente a Cursor o Windsurf, que reconstruyen el editor entero alrededor de la IA, Copilot apuesta por integrarse como extensión dentro del editor que ya usas, lo que reduce la fricción de adopción para equipos que no quieren cambiar de herramienta. Su respaldo de GitHub y Microsoft también facilita su adopción en entornos empresariales con revisiones de seguridad ya establecidas.",
-    "logoUrl": "/images/tools/github-copilot.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/lineas-de-codigos-html-4hbJ-eymZ1o"
+    },
     "websiteUrl": "https://github.com/features/copilot",
     "categorySlug": "programacion",
     "tags": [
@@ -339,7 +359,12 @@
     "name": "ElevenLabs",
     "tagline": "Voces sintéticas indistinguibles de las humanas",
     "description": "ElevenLabs es una de las plataformas de referencia en generación de voz sintética, capaz de producir narraciones con una naturalidad muy próxima a una grabación humana en múltiples idiomas, incluido un español con acentos regionales bien logrados. Ofrece tanto voces prediseñadas como clonación de voz a partir de una muestra de audio.\n\nSe usa ampliamente en producción de audiolibros, doblaje de vídeo, locución para pódcasts y contenido de redes sociales, así como en aplicaciones que necesitan texto a voz mediante su API. Escritores, creadores de contenido, estudios de doblaje y desarrolladores que integran voz en sus propias apps son su público principal.\n\nFrente a alternativas como Murf AI o Play.ht, ElevenLabs destaca por la calidad de entonación y la naturalidad en frases largas, además de su función de doblaje automático que traduce y sincroniza voz entre idiomas conservando el tono del hablante original. Su editor de proyectos permite trabajar con guiones completos, no solo frases sueltas.",
-    "logoUrl": "/images/tools/elevenlabs.jpg",
+    "logoUrl": "https://images.unsplash.com/photo-1724185773486-0b39642e607e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "A. C.",
+      "photographerUrl": "https://unsplash.com/es/@3tnik",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-onda-sonora-colorida-sobre-un-fondo-negro--TfwQjOWEp8"
+    },
     "websiteUrl": "https://elevenlabs.io",
     "categorySlug": "audio-y-voz",
     "tags": [
@@ -419,7 +444,12 @@
     "name": "Notion AI",
     "tagline": "IA integrada en tu espacio de trabajo",
     "description": "Notion AI añade generación y resumen de texto directamente dentro del espacio de trabajo de Notion, la aplicación de notas y bases de datos todo-en-uno usada por equipos y particulares para organizar documentación, proyectos y conocimiento interno. En vez de ser una herramienta independiente, funciona como una capa de IA sobre el contenido que ya tienes.\n\nEstá pensado para quienes ya gestionan su trabajo diario en Notion y quieren redactar actas de reuniones, resumir páginas largas, generar tareas a partir de notas o traducir contenido sin cambiar de aplicación. Equipos de producto, marketing y operaciones que centralizan su documentación en Notion son su público natural.\n\nSu diferencia frente a asistentes generalistas como ChatGPT no está en la potencia del modelo subyacente, sino en el contexto: Notion AI entiende la estructura de tus bases de datos y páginas existentes, lo que le permite generar contenido y tareas coherentes con el resto de tu espacio de trabajo sin copiar y pegar información entre herramientas.",
-    "logoUrl": "/images/tools/notion-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Olivie Strauss",
+      "photographerUrl": "https://unsplash.com/es/@olivie_strauss",
+      "photoPageUrl": "https://unsplash.com/es/fotos/macbook-pro-white-ceramic-mugand-black-smartphone-on-table-cckf4TsHAuw"
+    },
     "websiteUrl": "https://www.notion.so/product/ai",
     "categorySlug": "productividad",
     "tags": [
@@ -497,7 +527,12 @@
     "name": "Gemini",
     "tagline": "El modelo multimodal de Google",
     "description": "Gemini es la familia de modelos de inteligencia artificial de Google, integrada de forma nativa en Gmail, Docs, Sheets y el propio buscador, además de estar disponible como app independiente de chat. Su rasgo distintivo es la multimodalidad real: puede procesar y razonar sobre texto, imágenes, audio y vídeo dentro de una misma conversación.\n\nEstá pensado tanto para usuarios particulares que ya viven dentro del ecosistema de Google Workspace como para desarrolladores que integran sus modelos mediante la API de Google AI Studio o Vertex AI. Resulta especialmente útil para resumir correos, analizar hojas de cálculo complejas o generar contenido directamente en Docs sin cambiar de aplicación.\n\nFrente a ChatGPT o Claude, la ventaja diferencial de Gemini es doble: su integración nativa con Workspace, que ahorra el paso de copiar y pegar entre aplicaciones, y su conexión directa con el buscador de Google, que le permite responder con información actualizada en tiempo real en lugar de depender solo del conocimiento con el que fue entrenado.",
-    "logoUrl": "/images/tools/gemini.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1684369175833-4b445ad6bfb5?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Alex Knight",
+      "photographerUrl": "https://unsplash.com/es/@agk42",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-robot-blanco-con-ojos-azules-y-una-computadora-portatil--0xMiYQmk8g"
+    },
     "websiteUrl": "https://gemini.google.com",
     "categorySlug": "chatbots-conversacionales",
     "tags": [
@@ -578,7 +613,12 @@
     "name": "Perplexity",
     "tagline": "El buscador conversacional que cita sus fuentes",
     "description": "Perplexity combina un modelo de lenguaje con búsqueda web en tiempo real, devolviendo respuestas sintetizadas con enlaces directos a las fuentes usadas en lugar de una lista de resultados que hay que abrir uno a uno. Funciona como motor de búsqueda conversacional más que como chatbot generalista.\n\nEstá dirigido a estudiantes, investigadores, periodistas y cualquier profesional que necesite investigación rápida y verificable: comparativas de producto, resúmenes de un tema técnico o respuestas a preguntas donde importa poder rastrear el origen exacto de la información. Su modo Pro permite elegir el modelo subyacente y ejecutar búsquedas más profundas con más fuentes consultadas.\n\nFrente a Google o a un chatbot como ChatGPT sin navegación, la diferencia de Perplexity es la transparencia: cada afirmación relevante en su respuesta enlaza a la fuente concreta de la que procede, lo que reduce, aunque no elimina, el riesgo de aceptar información inventada sin poder contrastarla.",
-    "logoUrl": "/images/tools/perplexity.jpg",
+    "logoUrl": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Zetong Li",
+      "photographerUrl": "https://unsplash.com/es/@zetong",
+      "photoPageUrl": "https://unsplash.com/es/fotos/titulos-variados-de-libros-apilados-en-las-estanterias-NIJuEQw0RKg"
+    },
     "websiteUrl": "https://www.perplexity.ai",
     "categorySlug": "asistentes-de-investigacion",
     "tags": [
@@ -658,7 +698,12 @@
     "name": "DALL-E 3",
     "tagline": "Generación de imágenes integrada en ChatGPT",
     "description": "DALL-E 3 es el modelo de generación de imágenes de OpenAI, accesible directamente desde ChatGPT Plus, Team y Enterprise, así como mediante la API de OpenAI. Su punto fuerte es seguir instrucciones de texto muy detalladas con notable precisión, incluyendo composición específica, número de elementos y texto legible dentro de la imagen.\n\nEstá pensado para usuarios de ChatGPT que necesitan generar una imagen puntual sin salir de la conversación: ilustraciones para un artículo, mockups conceptuales, imágenes para presentaciones o memes personalizados. Al integrarse en el chat, permite iterar sobre la imagen generada simplemente pidiendo cambios en lenguaje natural.\n\nFrente a Midjourney, que prioriza un acabado artístico distintivo, DALL-E 3 prioriza la fidelidad literal a la instrucción del usuario, lo que lo hace más predecible para tareas donde importa reproducir exactamente lo que se pide, aunque con un resultado estético algo menos elaborado en promedio.",
-    "logoUrl": "/images/tools/dalle-3.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1643388019656-34a8006477c3?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Richard Horvath",
+      "photographerUrl": "https://unsplash.com/es/@ricvath",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-imagen-abstracta-de-lineas-y-formas-en-rosa-azul-y-purpura-K3Sn3FtkCUA"
+    },
     "websiteUrl": "https://openai.com/dall-e-3",
     "categorySlug": "generacion-de-imagenes",
     "tags": [
@@ -737,7 +782,12 @@
     "name": "Stable Diffusion",
     "tagline": "El modelo de imágenes de código abierto más usado",
     "description": "Stable Diffusion es un modelo de generación de imágenes de código abierto desarrollado originalmente por Stability AI, que se puede ejecutar en hardware propio, en servicios cloud especializados o a través de interfaces como Automatic1111 o ComfyUI. Su naturaleza abierta ha generado un ecosistema enorme de modelos derivados (fine-tunes) para estilos muy específicos.\n\nEstá dirigido a usuarios con conocimientos técnicos, artistas digitales que buscan control total y desarrolladores que necesitan integrar generación de imágenes en sus propios productos sin depender de una API cerrada. También es la base sobre la que se construyen muchas herramientas comerciales de generación de imágenes.\n\nA diferencia de Midjourney o DALL-E, que son servicios cerrados de pago, Stable Diffusion puede ejecutarse gratis en tu propio ordenador si dispones de una GPU adecuada, lo que da control total sobre el modelo, sin límites de generación, sin censura de contenido en instalaciones propias y con privacidad completa sobre las imágenes generadas.",
-    "logoUrl": "/images/tools/stable-diffusion.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1643388019606-9173b24bcafb?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Anna Vaschenko",
+      "photographerUrl": "https://unsplash.com/es/@annaholograma",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-fondo-abstracto-colorido-con-lineas-y-puntos-nQeXsy_KDXE"
+    },
     "websiteUrl": "https://stability.ai",
     "categorySlug": "generacion-de-imagenes",
     "tags": [
@@ -817,7 +867,12 @@
     "name": "Leonardo AI",
     "tagline": "Generación de imágenes orientada a videojuegos y producto",
     "description": "Leonardo AI es una plataforma de generación de imágenes con IA que nació enfocada en assets de videojuegos y ha evolucionado hacia una herramienta más generalista de diseño, con modelos propios entrenados para estilos concretos (ilustración, producto, texturas) y un editor de canvas integrado para retocar resultados sin salir de la plataforma.\n\nEstá dirigida a diseñadores de videojuegos indie, estudios pequeños, ilustradores y diseñadores de producto que necesitan generar arte conceptual, texturas o iconografía consistente sin la curva de aprendizaje de Stable Diffusion en local. También ofrece una API para integrarlo en pipelines de producción propios.\n\nFrente a Midjourney, Leonardo AI ofrece más control estructurado mediante modelos preentrenados por caso de uso y una función de consistencia de personaje que facilita generar el mismo personaje en múltiples poses, algo especialmente valioso para producción de videojuegos donde se necesita coherencia visual entre assets.",
-    "logoUrl": "/images/tools/leonardo-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1643388019517-cc10ed310a97?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Anna Vaschenko",
+      "photographerUrl": "https://unsplash.com/es/@annaholograma",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-imagen-abstracta-de-un-fondo-purpura-y-azul-8PZYqeSXJ7A"
+    },
     "websiteUrl": "https://leonardo.ai",
     "categorySlug": "generacion-de-imagenes",
     "tags": [
@@ -895,7 +950,12 @@
     "name": "Adobe Firefly",
     "tagline": "IA generativa integrada en Photoshop e Illustrator",
     "description": "Adobe Firefly es el motor de IA generativa integrado directamente en Photoshop, Illustrator, Premiere y Adobe Express, así como disponible como web app independiente. Su función más conocida, el relleno generativo, permite extender imágenes, eliminar objetos o añadir elementos de forma coherente con la iluminación y perspectiva del resto de la composición.\n\nEstá pensado principalmente para diseñadores gráficos, equipos de marketing y creadores que ya trabajan dentro del ecosistema Adobe Creative Cloud y quieren incorporar generación de IA sin salir de sus herramientas habituales ni arriesgarse a problemas de derechos de autor sobre el material generado.\n\nLo que más diferencia a Firefly de Midjourney o DALL-E es el origen de sus datos de entrenamiento: Adobe declara haberlo entrenado solo con contenido de Adobe Stock con licencia, obras de dominio público y material con permiso explícito, lo que reduce el riesgo legal de usar el resultado en proyectos comerciales, un factor decisivo para muchas empresas y agencias.\n\nAdemás de imágenes, Firefly genera vectores en Illustrator, efectos de texto generativos, plantillas de diseño en Adobe Express y transiciones de vídeo en Premiere, ampliando su alcance más allá de la generación pura de imágenes hacia todo el flujo creativo de Adobe.",
-    "logoUrl": "/images/tools/adobe-firefly.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1771793920409-4d0aec8935a5?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Woliul Hasan",
+      "photographerUrl": "https://unsplash.com/es/@shotbywoliul",
+      "photoPageUrl": "https://unsplash.com/es/fotos/patron-fractal-abstracto-verde-y-azul-sobre-fondo-blanco-GVfNnhEFG_E"
+    },
     "websiteUrl": "https://www.adobe.com/products/firefly.html",
     "categorySlug": "generacion-de-imagenes",
     "tags": [
@@ -971,7 +1031,12 @@
     "name": "Ideogram",
     "tagline": "El generador de imágenes que mejor escribe texto",
     "description": "Ideogram se ha especializado en resolver uno de los mayores retos de la generación de imágenes: renderizar texto legible y bien compuesto dentro de la imagen, lo que lo hace especialmente útil para logotipos, carteles y diseños con tipografía.\n\nEstá dirigido a diseñadores gráficos, equipos de marketing y creadores que necesitan carteles, logotipos, miniaturas de vídeo o cualquier pieza visual donde el texto forma parte central del diseño, un terreno donde generadores como Midjourney o DALL-E fallan con frecuencia al distorsionar letras.\n\nSu plan gratuito, poco habitual en generadores de imagen de calidad comparable, permite generar un número diario de imágenes sin necesidad de introducir una tarjeta de crédito, lo que facilita mucho probar la herramienta a fondo antes de decidir si vale la pena pagar por más generaciones o resolución superior.\n\nFrente a la competencia, Ideogram no solo renderiza texto legible sino que respeta razonablemente bien la tipografía, el kerning y la composición general alrededor del texto, resultando en piezas que muchas veces se pueden usar casi directamente en un cartel o una miniatura sin retoque adicional.",
-    "logoUrl": "/images/tools/ideogram.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1786192442781-bd3c12291c6c?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Anna Vaschenko",
+      "photographerUrl": "https://unsplash.com/es/@annaholograma",
+      "photoPageUrl": "https://unsplash.com/es/fotos/paisaje-abstracto-de-bloques-de-colores-1u33eF9c2LE"
+    },
     "websiteUrl": "https://ideogram.ai",
     "categorySlug": "generacion-de-imagenes",
     "tags": [
@@ -1046,7 +1111,12 @@
     "name": "Runway",
     "tagline": "Generación y edición de vídeo con IA de nivel profesional",
     "description": "Runway ofrece un conjunto de herramientas de IA para generar clips de vídeo desde texto o imagen, además de funciones de edición avanzadas como eliminación de fondo, seguimiento de movimiento y efectos visuales, usado por estudios de cine y creadores independientes por igual.\n\nEstá dirigido tanto a estudios de cine y publicidad que usan sus herramientas para efectos visuales y prototipado rápido de escenas, como a creadores de contenido independientes que generan clips cortos para redes sociales sin necesidad de cámara ni equipo de rodaje.\n\nRunway se diferencia de generadores de vídeo más sencillos como Pika por la profundidad de su conjunto de herramientas de edición: no solo genera vídeo desde cero, sino que ofrece motion tracking, inpainting de vídeo (eliminar o sustituir elementos en movimiento) y control de cámara virtual sobre el clip generado, funciones más cercanas a un flujo de posproducción profesional.",
-    "logoUrl": "/images/tools/runway.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/clap-board-roadside-jakob-and-ryan-CiUR8zISX60"
+    },
     "websiteUrl": "https://runwayml.com",
     "categorySlug": "video",
     "tags": [
@@ -1120,7 +1190,12 @@
     "name": "Pika",
     "tagline": "Generación de vídeo accesible desde texto o imagen",
     "description": "Pika permite generar clips de vídeo cortos a partir de una descripción de texto o una imagen de referencia, con una interfaz sencilla pensada para creadores que buscan resultados rápidos sin curva de aprendizaje técnica.\n\nPika está dirigida a creadores de contenido individuales, gestores de redes sociales y cualquiera que quiera experimentar con vídeo generativo sin las herramientas de posproducción profesional, y su curva de aprendizaje, que ofrece Runway. Su interfaz prioriza la velocidad: describir una escena o subir una imagen y obtener un clip animado en minutos.\n\nFrente a Runway, Pika sacrifica profundidad de edición por accesibilidad: sus efectos de cámara predefinidos y su edición conversacional de clips hacen que el resultado sea más inmediato, aunque con menos control fino sobre el resultado final para escenas complejas.",
-    "logoUrl": "/images/tools/pika.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Jakob Owens",
+      "photographerUrl": "https://unsplash.com/es/@jakobowens1",
+      "photoPageUrl": "https://unsplash.com/es/fotos/monitor-de-pantalla-plana-yk9VXp4W5-Q"
+    },
     "websiteUrl": "https://pika.art",
     "categorySlug": "video",
     "tags": [
@@ -1193,7 +1268,12 @@
     "name": "Synthesia",
     "tagline": "Vídeos con presentadores virtuales para empresas",
     "description": "Synthesia genera vídeos con avatares humanos fotorrealistas que narran un guion de texto en más de 140 idiomas, ampliamente usado en formación corporativa, comunicación interna y marketing sin necesidad de cámara ni estudio de grabación.\n\nEstá dirigido principalmente a equipos de formación corporativa, comunicación interna y marketing de empresas medianas y grandes que necesitan producir vídeo con presentador de forma recurrente, sin depender de la disponibilidad de un actor ni de un estudio de grabación cada vez que cambia el contenido.\n\nFrente a HeyGen, que pone más énfasis en clonar la identidad del propio usuario, Synthesia se ha consolidado sobre todo en el segmento corporativo gracias a su catálogo de avatares profesionales, sus plantillas orientadas a formación y sus garantías de cumplimiento normativo (SOC 2, RGPD) que buscan las empresas grandes antes de adoptar una herramienta de este tipo.",
-    "logoUrl": "/images/tools/synthesia.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1742805382153-bb4be26d6031?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Jesus Loves Austin",
+      "photographerUrl": "https://unsplash.com/es/@jesuslovesaustin",
+      "photoPageUrl": "https://unsplash.com/es/fotos/se-trata-de-un-estudio-de-noticias-moderno-y-profesional-JxzV1k-sfCU"
+    },
     "websiteUrl": "https://www.synthesia.io",
     "categorySlug": "generacion-de-avatares",
     "tags": [
@@ -1268,7 +1348,12 @@
     "name": "HeyGen",
     "tagline": "Avatares de IA con clonación de voz y vídeo",
     "description": "HeyGen genera vídeos con avatares realistas y permite clonar tu propia voz y apariencia para crear contenido en varios idiomas manteniendo tu identidad visual, muy usado por creadores de contenido y equipos de marketing.\n\nEstá dirigido a creadores de contenido, agencias de marketing y equipos que necesitan producir vídeo en varios idiomas manteniendo la identidad visual y vocal de una persona real, algo especialmente útil para creadores personales que quieren escalar su presencia sin grabar cada versión en cada idioma.\n\nFrente a Synthesia, más orientado al vídeo corporativo genérico con avatares de catálogo, HeyGen ha construido su diferenciación en torno a la clonación de la identidad propia del usuario: avatar, voz y hasta movimiento labial sincronizado, lo que lo hace popular entre creadores de YouTube y agencias que gestionan contenido para clientes con rostro propio.",
-    "logoUrl": "/images/tools/heygen.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1651465531201-7e430660fd82?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-habitacion-con-camara-y-equipo-qhamVJdrkRs"
+    },
     "websiteUrl": "https://www.heygen.com",
     "categorySlug": "generacion-de-avatares",
     "tags": [
@@ -1342,7 +1427,12 @@
     "name": "Descript",
     "tagline": "Edita vídeo y audio editando el texto de la transcripción",
     "description": "Descript transcribe automáticamente tu grabación y te permite editar el vídeo o audio simplemente borrando o moviendo texto, como si editaras un documento de Word. Incluye eliminación de muletillas, clonación de voz para corregir errores y overdub.\n\nEstá dirigido a creadores de pódcasts, YouTubers, equipos de marketing que producen vídeo hablado y cualquier profesional que grabe contenido de audio o vídeo con regularidad y quiera reducir drásticamente el tiempo de edición manual en un editor de línea de tiempo tradicional.\n\nFrente a un editor de vídeo clásico como Premiere o Final Cut, la propuesta de Descript es radical: en vez de manipular fotogramas y clips en una línea de tiempo, editas borrando o moviendo palabras en un documento de texto, y el corte de audio o vídeo correspondiente se aplica automáticamente.",
-    "logoUrl": "/images/tools/descript.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1551302175-952301267d19?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/monitor-que-muestra-cuadros-de-dialogo-PzkeY0i98io"
+    },
     "websiteUrl": "https://www.descript.com",
     "categorySlug": "edicion-de-video-con-ia",
     "tags": [
@@ -1413,7 +1503,12 @@
     "name": "Otter.ai",
     "tagline": "Transcripción y resumen de reuniones en tiempo real",
     "description": "Otter.ai se conecta a videollamadas de Zoom, Meet o Teams para transcribir la conversación en tiempo real, identificar a cada hablante y generar automáticamente un resumen con los puntos clave y tareas pendientes al finalizar.\n\nEstá dirigido a profesionales que pasan gran parte de su semana en reuniones, como consultores, equipos de ventas, periodistas o estudiantes, y quieren un registro fiable y buscable de cada conversación sin tener que dividir su atención entre escuchar y tomar notas manualmente.\n\nFrente a herramientas de transcripción genéricas, la propuesta de Otter está en la integración fluida con las plataformas de videollamada más usadas y en convertir automáticamente la transcripción en un resumen accionable con tareas identificadas, reduciendo el trabajo posterior a la reunión.",
-    "logoUrl": "/images/tools/otter-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Scott Graham",
+      "photographerUrl": "https://unsplash.com/es/@amstram",
+      "photoPageUrl": "https://unsplash.com/es/fotos/woman-in-teal-t-shirt-sitting-beside-woman-in-suit-jacket-JaoVGh5aJ3E"
+    },
     "websiteUrl": "https://otter.ai",
     "categorySlug": "transcripcion-de-audio",
     "tags": [
@@ -1483,7 +1578,12 @@
     "name": "Fireflies.ai",
     "tagline": "Actas de reunión automáticas con búsqueda por tema",
     "description": "Fireflies.ai graba, transcribe y resume reuniones de trabajo, y además permite buscar dentro del histórico de todas tus reuniones por tema o palabra clave, útil para equipos que necesitan recuperar decisiones pasadas rápidamente.\n\nEstá dirigido especialmente a equipos comerciales y de éxito de cliente que necesitan recuperar contexto de conversaciones pasadas con rapidez, algo que una simple transcripción aislada no resuelve bien cuando el histórico crece a cientos de llamadas.\n\nFrente a Otter, que pone más énfasis en la experiencia individual de la reunión, Fireflies apuesta por la búsqueda y el análisis agregado sobre todo el histórico, además de integraciones más profundas con CRMs orientadas a equipos de ventas.",
-    "logoUrl": "/images/tools/fireflies-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Olivie Strauss",
+      "photographerUrl": "https://unsplash.com/es/@olivie_strauss",
+      "photoPageUrl": "https://unsplash.com/es/fotos/persona-sosteniendo-el-lapiz-cerca-de-la-computadora-portatil-5fNmWej4tAA"
+    },
     "websiteUrl": "https://fireflies.ai",
     "categorySlug": "transcripcion-de-reuniones",
     "tags": [
@@ -1553,7 +1653,12 @@
     "name": "Jasper",
     "tagline": "IA de escritura orientada a equipos de marketing",
     "description": "Jasper es una plataforma de escritura con IA pensada específicamente para equipos de marketing de empresa, no para usuarios individuales ocasionales. Combina generación de texto con memoria de la voz de marca, plantillas específicas por tipo de contenido y flujos de aprobación colaborativos que permiten a varios redactores trabajar bajo un mismo estándar de tono y estilo.\n\nEstá dirigido a departamentos de marketing, agencias y equipos de contenido que necesitan producir grandes volúmenes de copy (anuncios, emails, landing pages, publicaciones de blog) manteniendo consistencia entre distintos redactores y campañas, algo que un asistente generalista como ChatGPT no resuelve de forma nativa sin configuración adicional.\n\nJasper se apoya en varios modelos de lenguaje subyacentes combinados con su propia capa de contexto de marca, lo que le permite generar contenido más consistente con guías de estilo previamente definidas que un chatbot genérico usado sin ese contexto memorizado.\n\nFrente a Copy.ai o Rytr, Jasper se posiciona en el segmento premium: su precio es notablemente más alto, pero a cambio ofrece funciones de gobernanza de marca, gestión de campañas y colaboración en equipo pensadas para organizaciones con varios redactores trabajando en paralelo, no solo generación de texto suelta.",
-    "logoUrl": "/images/tools/jasper.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/person-using-macbook-pro-npxXWgQ33ZQ"
+    },
     "websiteUrl": "https://www.jasper.ai",
     "categorySlug": "escritura",
     "tags": [
@@ -1636,7 +1741,12 @@
     "name": "Copy.ai",
     "tagline": "Automatización de contenido de marketing y ventas",
     "description": "Copy.ai combina generación de copy publicitario con flujos de trabajo automatizados (workflows) que encadenan varios pasos de marketing y ventas, desde investigación de producto hasta redacción de secuencias completas de email, en lugar de limitarse a generar textos sueltos bajo demanda.\n\nEstá dirigido a equipos de marketing y ventas de startups y pymes que necesitan automatizar tareas repetitivas de generación de contenido: investigar un competidor, generar ángulos de venta, redactar una secuencia de emails de prospección o crear variantes de un anuncio, todo encadenado en un solo flujo reutilizable.\n\nSu diferencia frente a un generador de texto simple está precisamente en los workflows: en vez de escribir un prompt cada vez que necesitas un texto, configuras una secuencia de pasos una sola vez y la reutilizas con distintos inputs, lo que la acerca más a una herramienta de automatización de marketing que a un asistente de redacción puntual.\n\nFrente a Jasper, Copy.ai resulta más accesible en precio de entrada y pone el foco en la automatización de procesos completos más que en la gobernanza de marca entre varios redactores, lo que la hace especialmente atractiva para equipos pequeños con procesos ya bien definidos que quieren escalar sin contratar más personal.",
-    "logoUrl": "/images/tools/copy-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1499914485622-a88fac536970?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Glenn Carstens-Peters",
+      "photographerUrl": "https://unsplash.com/es/@glenncarstenspeters",
+      "photoPageUrl": "https://unsplash.com/es/fotos/persona-que-usa-macbook-hBuwVLcYTnA"
+    },
     "websiteUrl": "https://www.copy.ai",
     "categorySlug": "marketing-con-ia",
     "tags": [
@@ -1716,7 +1826,12 @@
     "name": "Grammarly",
     "tagline": "Corrección gramatical y de estilo con IA",
     "description": "Grammarly revisa gramática, ortografía, tono y claridad en tiempo real mientras escribes en cualquier aplicación, desde el navegador hasta procesadores de texto, siendo una de las herramientas de escritura asistida más extendidas del mundo, con cientos de millones de usuarios activos.\n\nEstá dirigido a cualquiera que escriba en inglés con regularidad: estudiantes, profesionales no nativos, redactores y equipos que necesitan mantener un estándar de calidad de escritura consistente en correos, documentos e informes, sin depender de un revisor humano para cada texto.\n\nFunciona como una extensión que se superpone a la aplicación donde estés escribiendo (Gmail, Google Docs, LinkedIn, Word) y subraya errores y sugerencias de mejora en tiempo real, en lugar de requerir copiar y pegar el texto en una herramienta aparte, lo que reduce la fricción de revisión.\n\nGrammarly ha ido añadiendo funciones de IA generativa (reescritura, generación de borradores) sobre su base histórica de corrección, pero su punto fuerte diferencial sigue siendo la corrección gramatical y de estilo en inglés, un terreno donde lleva más de una década perfeccionando su modelo frente a competidores más recientes centrados en generación pura de texto.",
-    "logoUrl": "/images/tools/grammarly.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Christin Hume",
+      "photographerUrl": "https://unsplash.com/es/@christinhumephoto",
+      "photoPageUrl": "https://unsplash.com/es/fotos/person-using-laptop-computer-Hcfwew744z4"
+    },
     "websiteUrl": "https://www.grammarly.com",
     "categorySlug": "escritura",
     "tags": [
@@ -1797,7 +1912,12 @@
     "name": "QuillBot",
     "tagline": "Parafraseo y resumen de textos con IA",
     "description": "QuillBot reescribe frases y párrafos manteniendo el significado original pero variando la redacción, además de ofrecer resumen automático y corrector gramatical, muy usado por estudiantes y redactores para mejorar la fluidez de un texto ya escrito.\n\nEstá dirigido principalmente a estudiantes que necesitan reformular texto para trabajos académicos, redactores que quieren variar el estilo de un borrador y cualquier persona que escriba en un segundo idioma y necesite ayuda para sonar más natural sin perder el significado original de sus ideas.\n\nA diferencia de un generador de texto desde cero como ChatGPT, QuillBot parte siempre de un texto ya existente: su función central es transformar, no crear, lo que lo convierte en un complemento más que en un sustituto de la redacción propia. Sus distintos modos (fluido, formal, creativo, académico) permiten ajustar el resultado según el contexto de uso.\n\nSu función de resumen automático complementa bien el parafraseo, condensando artículos o papers largos en los puntos clave, mientras que el corrector gramatical integrado y el comprobador de citas completan un conjunto de herramientas pensado específicamente para el ciclo de trabajo académico de lectura, síntesis y redacción.",
-    "logoUrl": "/images/tools/quillbot.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Christin Hume",
+      "photographerUrl": "https://unsplash.com/es/@christinhumephoto",
+      "photoPageUrl": "https://unsplash.com/es/fotos/persona-sentada-frente-a-la-computadora-portatil-mfB1B1s4sMc"
+    },
     "websiteUrl": "https://quillbot.com",
     "categorySlug": "escritura",
     "tags": [
@@ -1873,7 +1993,12 @@
     "name": "Canva Magic Studio",
     "tagline": "IA generativa integrada en el editor de diseño más usado",
     "description": "Magic Studio reúne las funciones de IA de Canva: generación de imágenes, eliminación de fondo, redimensionado automático de diseños y un editor de texto con IA, todo integrado en el mismo editor visual que ya usan millones de equipos de marketing, pequeños negocios y creadores individuales en todo el mundo.\n\nEstá dirigido a usuarios que ya diseñan en Canva y quieren incorporar generación de IA sin aprender una herramienta nueva ni exportar e importar archivos entre plataformas distintas: redes sociales, presentaciones, materiales de marketing y documentos se benefician todos de las mismas funciones de IA dentro de un único editor.\n\nFrente a herramientas especializadas como Midjourney para imágenes o Grammarly para texto, Magic Studio no pretende ser la mejor en cada función individual, sino ofrecer un conjunto suficientemente bueno de todas ellas dentro del contexto donde el usuario ya está trabajando, lo que reduce drásticamente el número de herramientas distintas necesarias para producir una pieza de marketing completa.\n\nSu función de redimensionado mágico es especialmente valorada por equipos de marketing que necesitan adaptar un mismo diseño a decenas de formatos distintos (Instagram, LinkedIn, presentaciones, impresión) sin rehacer manualmente la composición para cada uno.",
-    "logoUrl": "/images/tools/canva-magic-studio.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1648134859211-4a1b57575f4e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-pagina-web-con-las-palabras-design-workflows-en-ella-IMuwMQV92zA"
+    },
     "websiteUrl": "https://www.canva.com/magic-studio",
     "categorySlug": "ia-para-recursos-de-marca",
     "tags": [
@@ -1954,7 +2079,12 @@
     "name": "Suno",
     "tagline": "Composición de canciones completas desde texto",
     "description": "Suno genera canciones completas (letra, melodía, voz e instrumentación) a partir de una descripción de género y temática, permitiendo a cualquier persona sin formación musical crear una pista original en minutos, algo impensable hace pocos años fuera de un estudio de producción musical.\n\nEstá dirigido a creadores de contenido que necesitan música original para vídeos sin pagar licencias de terceros, aficionados que quieren experimentar con composición sin saber tocar un instrumento, y también músicos profesionales que lo usan como herramienta de ideación rápida antes de producir una versión definitiva.\n\nSu funcionamiento es sorprendentemente simple: describes el género, el tema y el estado de ánimo deseado, o aportas tu propia letra, y el modelo genera una canción completa con voz cantada, no solo instrumental, lo que la diferencia de herramientas de generación musical anteriores centradas solo en pistas de fondo.\n\nLos derechos de uso comercial de las canciones generadas dependen estrictamente del plan contratado: el plan gratuito no suele incluir licencia comercial plena, mientras que los planes de pago sí otorgan derechos más amplios, un aspecto que conviene revisar cuidadosamente antes de monetizar contenido que incluya música generada con Suno.",
-    "logoUrl": "/images/tools/suno.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1618609377864-68609b857e90?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Caught In Joy",
+      "photographerUrl": "https://unsplash.com/es/@caught_in_joy",
+      "photoPageUrl": "https://unsplash.com/es/fotos/mezclador-de-audio-negro-y-verde-F2h_WbKnX4o"
+    },
     "websiteUrl": "https://suno.com",
     "categorySlug": "generacion-de-musica",
     "tags": [
@@ -2033,7 +2163,12 @@
     "name": "Murf AI",
     "tagline": "Voces sintéticas para vídeos y presentaciones corporativas",
     "description": "Murf AI genera locuciones profesionales en decenas de idiomas y acentos, con control fino de énfasis, pausas y velocidad, muy usado para vídeos corporativos, e-learning y contenido de voz en off sin necesidad de contratar un locutor.\n\nEstá dirigido a equipos de formación, marketing y producción de vídeo corporativo que necesitan generar locuciones de forma recurrente y económica, sin la logística de reservar estudio y locutor cada vez que cambia un guion o se actualiza un curso online.\n\nSu editor visual permite sincronizar la locución generada directamente con diapositivas o vídeo, ajustando el ritmo de cada frase para que encaje con el material visual, una función especialmente valorada en producción de contenido de e-learning donde el guion cambia con frecuencia.\n\nFrente a ElevenLabs, que prioriza la naturalidad y expresividad emocional de la voz, Murf AI se posiciona más como herramienta de producción estructurada: menos orientada a creatividad expresiva y más a locución clara, profesional y consistente para contenido informativo y corporativo.",
-    "logoUrl": "/images/tools/murf-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1507676385008-e7fb562d11f8?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Jumping Jax",
+      "photographerUrl": "https://unsplash.com/es/@jumpingjax",
+      "photoPageUrl": "https://unsplash.com/es/fotos/fotografia-de-microfono-de-escenario-con-poca-luz-dtqlaz4HyHw"
+    },
     "websiteUrl": "https://murf.ai",
     "categorySlug": "audio-y-voz",
     "tags": [
@@ -2108,7 +2243,12 @@
     "name": "Cursor",
     "tagline": "Editor de código construido alrededor de la IA",
     "description": "Cursor es un editor de código (fork de VS Code) diseñado desde cero para trabajar con IA como parte central del flujo, permitiendo editar archivos completos mediante instrucciones en lenguaje natural y mantener contexto de todo el proyecto en cada sugerencia.\n\nEstá dirigido a desarrolladores profesionales y equipos que ya usan VS Code y quieren llevar la IA más allá del autocompletado línea a línea, hacia edición de varios archivos guiada por instrucciones en lenguaje natural sobre todo el contexto del proyecto.\n\nFrente a GitHub Copilot, que se integra como extensión dentro de tu editor habitual, Cursor reconstruye el editor completo alrededor de la IA, lo que le permite ofrecer funciones más profundas como refactorizaciones de varios archivos simultáneas, un chat con acceso directo al código del repositorio completo y un modo agéntico capaz de ejecutar tareas de varios pasos de forma semiautónoma.",
-    "logoUrl": "/images/tools/cursor.png",
+    "logoUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Florian Olivo",
+      "photographerUrl": "https://unsplash.com/es/@florianolv",
+      "photoPageUrl": "https://unsplash.com/es/fotos/monitor-showing-java-programming-OqtafYT5kTw"
+    },
     "websiteUrl": "https://www.cursor.com",
     "categorySlug": "programacion",
     "tags": [
@@ -2183,7 +2323,12 @@
     "name": "Replit",
     "tagline": "Entorno de desarrollo en la nube con IA integrada",
     "description": "Replit combina un entorno de desarrollo completo en el navegador con un agente de IA (Replit Agent) capaz de construir aplicaciones funcionales completas a partir de una descripción, ideal para prototipar rápido sin configurar entorno local.\n\nEstá dirigido a quienes empiezan a programar, a educadores que enseñan código en el aula y a fundadores no técnicos que quieren validar una idea de producto rápidamente, gracias a que elimina por completo la fricción de instalar y configurar un entorno de desarrollo local.\n\nReplit Agent, su función más reciente, va un paso más allá del autocompletado: puede planificar, escribir y ejecutar código de una aplicación completa a partir de una descripción, preguntando al usuario decisiones clave durante el proceso en lugar de generar todo de una vez sin supervisión.",
-    "logoUrl": "/images/tools/replit.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Ilya Pavlov",
+      "photographerUrl": "https://unsplash.com/es/@ilyapavlov",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-pantalla-de-computadora-con-un-monton-de-codigo-ieic5Tq8YMk"
+    },
     "websiteUrl": "https://replit.com",
     "categorySlug": "programacion",
     "tags": [
@@ -2258,7 +2403,12 @@
     "name": "Tabnine",
     "tagline": "Autocompletado de código centrado en privacidad",
     "description": "Tabnine ofrece autocompletado de código con IA con especial énfasis en la privacidad: permite ejecutar modelos localmente o en infraestructura propia de la empresa, sin enviar código a servidores externos, algo valorado en entornos con requisitos de seguridad estrictos.\n\nEstá dirigido principalmente a empresas de sectores regulados (banca, salud, defensa) y equipos con políticas estrictas de seguridad del código, donde enviar código fuente a un servidor externo de un tercero no es una opción aceptable, algo que la mayoría de asistentes de código en la nube no resuelven.\n\nFrente a GitHub Copilot o Cursor, que dependen de enviar contexto del código a servidores en la nube del proveedor, Tabnine ofrece la posibilidad de ejecutar el modelo completamente en la infraestructura del propio cliente, garantizando que ninguna línea de código sale de los límites de la organización.",
-    "logoUrl": "/images/tools/tabnine.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Chris Ried",
+      "photographerUrl": "https://unsplash.com/es/@cdr6934",
+      "photoPageUrl": "https://unsplash.com/es/fotos/pantalla-del-portatil-mostrando-codigo-colorido-8qEB0fTe9Vw"
+    },
     "websiteUrl": "https://www.tabnine.com",
     "categorySlug": "programacion",
     "tags": [
@@ -2328,7 +2478,12 @@
     "name": "v0 de Vercel",
     "tagline": "Genera interfaces React listas para producción desde texto",
     "description": "v0 genera componentes de interfaz en React y Tailwind CSS a partir de una descripción de texto o una imagen de referencia, produciendo código limpio y editable pensado para integrarse directamente en proyectos Next.js reales.\n\nEstá dirigido a desarrolladores y equipos de producto que ya trabajan con React y Next.js y necesitan acelerar la fase de construcción de interfaces: en vez de partir de una plantilla genérica o maquetar desde cero, describen el componente deseado y reciben código funcional que pueden seguir editando conversacionalmente.\n\nA diferencia de generadores de UI orientados a diseñadores sin código como Framer, v0 está pensado explícitamente para el flujo de trabajo de un desarrollador: el resultado es código fuente real, versionable en Git, no una plataforma cerrada donde el diseño vive fuera del propio repositorio del proyecto.\n\nAl ser un producto de Vercel, la empresa detrás de Next.js, v0 sigue de cerca las convenciones y patrones recomendados del framework, lo que reduce la fricción de adaptar el código generado a un proyecto que ya sigue esas mismas convenciones.",
-    "logoUrl": "/images/tools/v0-vercel.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1634084462412-b54873c0a56d?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/es/@silverkblack",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-pantalla-de-computadora-con-las-palabras-la-forma-moderna-de-construir-para-la-web-OX1TXahR7Ng"
+    },
     "websiteUrl": "https://v0.dev",
     "categorySlug": "diseno-ui-ux-con-ia",
     "tags": [
@@ -2407,7 +2562,12 @@
     "name": "Gamma",
     "tagline": "Presentaciones con diseño automático a partir de un guion",
     "description": "Gamma convierte un esquema de texto en una presentación completa con diseño coherente, eligiendo automáticamente disposición de imágenes, gráficos y jerarquía visual, y permite seguir editando cada diapositiva como un documento flexible.\n\nEstá dirigida a profesionales que necesitan producir presentaciones con frecuencia sin dedicar horas a la maquetación manual: equipos comerciales preparando propuestas, consultores generando informes visuales o cualquiera que necesite un primer borrador de presentación con buen aspecto en minutos.\n\nA diferencia de PowerPoint o Google Slides, donde el usuario controla manualmente la posición de cada elemento, Gamma funciona más como un documento adaptable: el contenido se reorganiza automáticamente para mantener una composición equilibrada, lo que acelera mucho la primera versión a cambio de algo de control granular sobre el diseño final.\n\nAdemás de presentaciones, Gamma también genera documentos y páginas web sencillas a partir del mismo tipo de esquema de texto, ampliando su utilidad más allá del formato tradicional de diapositivas hacia cualquier pieza de comunicación visual estructurada.",
-    "logoUrl": "/images/tools/gamma.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/man-standing-in-front-of-people-sitting-beside-table-with-laptop-computers-gMsnXqILjp4"
+    },
     "websiteUrl": "https://gamma.app",
     "categorySlug": "generacion-de-presentaciones",
     "tags": [
@@ -2486,7 +2646,12 @@
     "name": "Zapier",
     "tagline": "Conecta aplicaciones y automatiza tareas sin código",
     "description": "Zapier conecta miles de aplicaciones entre sí mediante automatizaciones (Zaps) que se activan cuando ocurre un evento en una app y ejecutan una acción en otra, ahora potenciado con IA para crear automatizaciones a partir de una descripción en lenguaje natural.\n\nEstá dirigido a pequeños negocios, equipos de operaciones y cualquier profesional sin conocimientos de programación que necesite automatizar tareas repetitivas entre aplicaciones: guardar adjuntos de email en Drive, crear tareas en un gestor de proyectos a partir de un formulario, o sincronizar datos entre un CRM y una hoja de cálculo.\n\nSu catálogo de miles de integraciones es su principal ventaja competitiva: prácticamente cualquier aplicación de software empresarial popular tiene una integración ya construida en Zapier, lo que reduce el trabajo a configurar la lógica del flujo en lugar de programar conectores desde cero.\n\nFrente a Make, que ofrece más potencia para lógica compleja mediante un editor visual tipo diagrama, Zapier prioriza la simplicidad: sus automatizaciones son más lineales y fáciles de configurar, a costa de menos flexibilidad en flujos con muchas ramificaciones condicionales.",
-    "logoUrl": "/images/tools/zapier.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1683322499436-f4383dd59f5a?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-monton-de-cables-azules-conectados-entre-si-PSpf_XgOM5w"
+    },
     "websiteUrl": "https://zapier.com",
     "categorySlug": "automatizacion-de-flujos-de-trabajo",
     "tags": [
@@ -2564,7 +2729,12 @@
     "name": "Make",
     "tagline": "Automatización visual con flujos complejos",
     "description": "Make (antes Integromat) ofrece un editor visual de automatizaciones tipo diagrama de flujo, permitiendo construir procesos más complejos que Zapier con lógica condicional avanzada, a menudo a un coste menor para volúmenes altos de uso.\n\nEstá dirigido a equipos técnicos y operaciones que necesitan automatizaciones con ramificaciones, bucles y lógica condicional que Zapier resuelve con más dificultad en su modelo más lineal, así como a quienes buscan optimizar el coste por operación en automatizaciones de alto volumen.\n\nSu editor visual muestra todo el recorrido de los datos como un diagrama de nodos conectados, lo que facilita entender de un vistazo flujos complejos con múltiples ramas y condiciones, algo que en una lista lineal de pasos resulta mucho más difícil de visualizar y depurar.\n\nFrente a Zapier, Make requiere algo más de curva de aprendizaje inicial, pero a cambio ofrece más control granular sobre cada paso del flujo y, en volúmenes altos de operaciones mensuales, suele salir más económico por la forma en que factura el consumo.",
-    "logoUrl": "/images/tools/make.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1682559736721-c2e77ff4c650?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Jordan Harrison",
+      "photographerUrl": "https://unsplash.com/es/@jouwdan",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-monton-de-cables-que-estan-conectados-a-un-servidor-T-IN5o3kxyA"
+    },
     "websiteUrl": "https://www.make.com",
     "categorySlug": "automatizacion-de-flujos-de-trabajo",
     "tags": [
@@ -2642,7 +2812,12 @@
     "name": "Character.AI",
     "tagline": "Conversaciones con personajes de IA personalizados",
     "description": "Character.AI permite crear y conversar con personajes de IA con personalidades definidas, desde asistentes de práctica de idiomas hasta compañeros de rol creativo, con una comunidad muy activa de creadores de personajes personalizados.\n\nEstá dirigido principalmente a un público joven interesado en entretenimiento conversacional, escritura creativa colaborativa y práctica de idiomas de forma amena, más que a profesionales buscando productividad, un terreno donde ChatGPT o Claude dominan claramente.\n\nSu función central es la creación de personajes: cualquier usuario puede definir la personalidad, el tono, el contexto y hasta la forma de hablar de un personaje propio, y compartirlo públicamente para que otros usuarios también puedan conversar con él, generando un catálogo enorme de personajes de todo tipo creado por la propia comunidad.\n\nA diferencia de un asistente generalista, las conversaciones en Character.AI mantienen la personalidad del personaje de forma consistente a lo largo de la conversación, priorizando la inmersión narrativa y el entretenimiento sobre la precisión factual o la utilidad práctica de las respuestas.",
-    "logoUrl": "/images/tools/character-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1684369175809-f9642140a1bd?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Mohamed Nohassi",
+      "photographerUrl": "https://unsplash.com/es/@coopery",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-grupo-de-robots-blancos-sentados-encima-de-computadoras-portatiles-2iUrK025cec"
+    },
     "websiteUrl": "https://character.ai",
     "categorySlug": "chatbots-conversacionales",
     "tags": [
@@ -2719,7 +2894,12 @@
     "name": "DeepL",
     "tagline": "Traducción con la mejor calidad de matiz y contexto",
     "description": "DeepL es ampliamente reconocido por producir traducciones con un nivel de naturalidad y matiz superior al de traductores estadísticos clásicos, con soporte para más de 30 idiomas y su propio editor de escritura asistida, DeepL Write.\n\nEstá dirigido a profesionales que traducen documentos con regularidad (legal, técnico, marketing), estudiantes y cualquiera que necesite una traducción que suene natural en el idioma destino, no solo gramaticalmente correcta, un matiz donde DeepL suele superar a alternativas más genéricas.\n\nSu motor de traducción se apoya en redes neuronales entrenadas específicamente para capturar matices de contexto y tono, lo que resulta especialmente notable en pares de idiomas europeos, donde múltiples comparativas independientes lo sitúan por delante de Google Translate en calidad percibida por hablantes nativos.\n\nAdemás de traducción, DeepL Write ofrece un editor de mejora de redacción en el propio idioma del usuario, similar en concepto a Grammarly pero centrado en varios idiomas más allá del inglés, ampliando su utilidad más allá de la traducción pura hacia la escritura asistida general.",
-    "logoUrl": "/images/tools/deepl.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1543165796-5426273eaab3?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Andrej Lišakov",
+      "photographerUrl": "https://unsplash.com/es/@lishakov",
+      "photoPageUrl": "https://unsplash.com/es/fotos/diccionario-abierto-U3Ptj3jafX8"
+    },
     "websiteUrl": "https://www.deepl.com",
     "categorySlug": "traduccion-automatica",
     "tags": [
@@ -2794,7 +2974,12 @@
     "name": "Windsurf",
     "tagline": "El editor agéntico de Codeium para programar con IA",
     "description": "Windsurf (antes Codeium) es un editor de código construido alrededor de un flujo agéntico: la IA puede planificar y ejecutar cambios de varios pasos por sí misma, no solo sugerir autocompletado. Está pensado para desarrolladores que quieren delegar tareas completas, no solo líneas sueltas de código.\n\nEstá dirigido a desarrolladores individuales y equipos que buscan una alternativa a Cursor con un enfoque propio de flujo agéntico (Cascade), capaz de mantener contexto de todo el repositorio mientras ejecuta cambios de varios pasos con supervisión del usuario en cada etapa relevante.\n\nAl proceder de Codeium, que ya tenía un fuerte producto de autocompletado gratuito, Windsurf hereda una base sólida de calidad de sugerencias y la extiende con capacidades agénticas más profundas, compitiendo directamente en el mismo segmento que Cursor de editores rediseñados alrededor de la IA.",
-    "logoUrl": "/images/tools/windsurf.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1619410283995-43d9134e7656?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Behnam Norouzi",
+      "photographerUrl": "https://unsplash.com/es/@behy_studio",
+      "photoPageUrl": "https://unsplash.com/es/fotos/editor-de-codigo-mostrando-codigo-fuente-de-react-mZnx9429i94"
+    },
     "websiteUrl": "https://windsurf.com",
     "categorySlug": "programacion",
     "tags": [
@@ -2863,7 +3048,12 @@
     "name": "Codeium",
     "tagline": "Autocompletado de código gratuito para equipos e individuos",
     "description": "Codeium ofrece autocompletado de código con IA con un generoso plan gratuito para uso individual, además de opciones empresariales con despliegue privado. Es una alternativa directa a GitHub Copilot centrada en accesibilidad de precio.\n\nEstá dirigido a desarrolladores individuales, estudiantes y pequeños equipos con presupuesto limitado que buscan una alternativa de calidad comparable a Copilot sin el coste de una suscripción mensual, así como a empresas que valoran la opción de despliegue privado sin pagar el precio premium de otras soluciones.\n\nSu plan individual gratuito, sin límite de tiempo anunciado, lo distingue de la mayoría de competidores que solo ofrecen pruebas gratuitas temporales, lo que lo convierte en una opción habitual para desarrolladores que empiezan a explorar asistentes de código con IA sin comprometerse económicamente.",
-    "logoUrl": "/images/tools/codeium.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Mohammad Rahmani",
+      "photographerUrl": "https://unsplash.com/es/@afgprogrammer",
+      "photoPageUrl": "https://unsplash.com/es/fotos/computadora-portatil-negra-encendida-sobre-la-mesa-vpOeXr5wmR4"
+    },
     "websiteUrl": "https://codeium.com",
     "categorySlug": "programacion",
     "tags": [
@@ -2933,7 +3123,12 @@
     "name": "Amazon Q Developer",
     "tagline": "El asistente de código de AWS para desarrolladores en la nube",
     "description": "Amazon Q Developer (antes CodeWhisperer) es el asistente de código de AWS, con especial fortaleza en tareas relacionadas con servicios de Amazon Web Services: generación de infraestructura, migración de código y revisión de seguridad orientada a la nube.\n\nEstá dirigido a desarrolladores y equipos de infraestructura que ya construyen sobre AWS y necesitan un asistente que entienda específicamente los servicios, SDKs y patrones de esa nube, algo que asistentes de código generalistas no cubren con el mismo nivel de detalle.\n\nSu función de migración asistida es particularmente valorada en empresas con aplicaciones legadas: puede analizar código antiguo, por ejemplo aplicaciones Java en versiones desactualizadas, y proponer cambios estructurados para modernizarlo, una tarea que manualmente consumiría semanas de trabajo de ingeniería.\n\nFrente a GitHub Copilot, Amazon Q Developer no compite en versatilidad general, sino en profundidad específica sobre el ecosistema AWS, incluyendo revisión de configuraciones de seguridad y buenas prácticas de arquitectura cloud propias de Amazon.",
-    "logoUrl": "/images/tools/amazon-q-developer.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1607706189992-eae578626c86?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Juanjo Jaramillo",
+      "photographerUrl": "https://unsplash.com/es/@juanjodev02",
+      "photoPageUrl": "https://unsplash.com/es/fotos/monitor-de-computadora-de-pantalla-plana-negro-oXlXu2qukGE"
+    },
     "websiteUrl": "https://aws.amazon.com/q/developer/",
     "categorySlug": "programacion",
     "tags": [
@@ -3002,7 +3197,12 @@
     "name": "Sourcegraph Cody",
     "tagline": "Asistente de código con contexto de bases de código enormes",
     "description": "Cody, de Sourcegraph, está diseñado para entender bases de código muy grandes y complejas, típicas de empresas con miles de repositorios, ofreciendo respuestas y sugerencias que tienen en cuenta ese contexto extenso de forma más profunda que herramientas orientadas a proyectos individuales.\n\nEstá dirigido a organizaciones de ingeniería medianas y grandes donde el código está repartido entre docenas o cientos de repositorios, y donde entender cómo se relacionan entre sí distintos servicios y módulos es un reto diario que un asistente centrado en un solo proyecto no resuelve.\n\nSe apoya en la infraestructura de búsqueda de código de Sourcegraph, su producto original, lo que le permite indexar y buscar semánticamente sobre bases de código completas antes de generar una respuesta, en lugar de depender solo del archivo abierto en el editor en ese momento.\n\nFrente a Copilot o Cursor, más orientados a un proyecto o repositorio individual, Cody se diferencia por su capacidad de razonar sobre relaciones entre múltiples repositorios, útil para entender dependencias, encontrar dónde se usa una función concreta en toda la organización o preparar documentación de arquitectura.",
-    "logoUrl": "/images/tools/sourcegraph-cody.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "James Harrison",
+      "photographerUrl": "https://unsplash.com/es/@jstrippa",
+      "photoPageUrl": "https://unsplash.com/es/fotos/teclado-de-computadora-negro-DuHKoV44prg"
+    },
     "websiteUrl": "https://sourcegraph.com/cody",
     "categorySlug": "programacion",
     "tags": [
@@ -3071,7 +3271,12 @@
     "name": "Devin AI",
     "tagline": "Un ingeniero de software autónomo impulsado por IA",
     "description": "Devin se presenta como un ingeniero de software autónomo capaz de planificar, escribir, probar y depurar código de forma independiente para tareas completas, no solo fragmentos, representando una de las apuestas más ambiciosas de agentes de IA aplicados a desarrollo de software.\n\nEstá dirigido a equipos de ingeniería que quieren experimentar con delegar tareas de desarrollo acotadas (implementar una función, corregir un bug documentado, actualizar una dependencia) a un agente que trabaja de forma semiautónoma, reportando su progreso en lugar de requerir supervisión línea a línea como un asistente de autocompletado tradicional.\n\nA diferencia de Cursor o Copilot, que asisten a un desarrollador humano que sigue llevando el control de cada cambio, Devin funciona más como un colaborador independiente al que se le asigna una tarea completa y que trabaja en un entorno propio, con su propio navegador, terminal y editor, hasta producir un resultado que después un humano revisa antes de fusionar.\n\nSu enfoque agéntico plantea tanto el mayor potencial como el mayor riesgo de la categoría: cuando funciona bien, ahorra horas de trabajo en tareas bien definidas; cuando falla, puede generar cambios extensos que requieren una revisión cuidadosa antes de confiar en ellos, por lo que su adopción sigue siendo más experimental que la de asistentes de autocompletado consolidados.",
-    "logoUrl": "/images/tools/devin-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1655393001768-d946c97d6fd1?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Aideal Hwa",
+      "photographerUrl": "https://unsplash.com/es/@aideal",
+      "photoPageUrl": "https://unsplash.com/es/fotos/brazo-robotico-blanco-en-la-sala-de-exposicion-kE0JmtbvXxM"
+    },
     "websiteUrl": "https://devin.ai",
     "categorySlug": "agentes-autonomos-de-ia",
     "tags": [
@@ -3150,7 +3355,12 @@
     "name": "Lovable",
     "tagline": "Construye aplicaciones web completas describiendo la idea",
     "description": "Lovable genera aplicaciones web full-stack funcionales a partir de una descripción en lenguaje natural, incluyendo frontend, backend y base de datos conectada, pensado para fundadores no técnicos que quieren validar un producto rápidamente.\n\nEstá dirigido a emprendedores, diseñadores de producto y equipos pequeños sin desarrollador dedicado que necesitan pasar de una idea a un prototipo funcional, con autenticación, base de datos y lógica de negocio básica, sin contratar un equipo de desarrollo desde el primer día.\n\nA diferencia de generadores de interfaz como v0, que producen componentes visuales, Lovable construye la aplicación completa incluyendo la capa de datos y lógica de backend, conectando automáticamente servicios como autenticación de usuarios o base de datos sin que el usuario tenga que configurar infraestructura por separado.\n\nSu edición conversacional permite iterar sobre la aplicación generada pidiendo cambios en lenguaje natural, similar a cómo se edita con un asistente de chat, lo que reduce la barrera de entrada para no desarrolladores a cambio de menos control técnico fino sobre la arquitectura subyacente del producto.",
-    "logoUrl": "/images/tools/lovable.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1786861462704-fe456f621179?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Team Nocoloco",
+      "photographerUrl": "https://unsplash.com/es/@teamnocoloco",
+      "photoPageUrl": "https://unsplash.com/es/fotos/portatil-mostrando-sitio-web-con-icono-3d-v3QjBgAKjTY"
+    },
     "websiteUrl": "https://lovable.dev",
     "categorySlug": "diseno-ui-ux-con-ia",
     "tags": [
@@ -3229,7 +3439,12 @@
     "name": "Bolt.new",
     "tagline": "Genera y ejecuta proyectos web completos en el navegador",
     "description": "Bolt.new de StackBlitz permite generar, editar y ejecutar aplicaciones web completas directamente en el navegador a partir de una descripción de texto, con un entorno de desarrollo instantáneo sin necesidad de instalación local.\n\nEstá dirigido a desarrolladores y creadores que quieren prototipar rápidamente una aplicación web funcional sin configurar un entorno local, aprovechando la tecnología de WebContainers de StackBlitz que permite ejecutar Node.js completo directamente dentro del navegador.\n\nA diferencia de otras herramientas de generación de aplicaciones que dependen de un backend en la nube para ejecutar el código, Bolt.new ejecuta la aplicación generada directamente en el navegador del usuario mediante contenedores virtuales, lo que hace que el ciclo de edición y previsualización sea prácticamente instantáneo.\n\nFrente a Lovable, más enfocado en no desarrolladores con conexión automática a Supabase, Bolt.new resulta algo más técnico y flexible, apto para desarrolladores que quieren un punto de partida rápido pero conservan más control directo sobre el código y las dependencias del proyecto generado.",
-    "logoUrl": "/images/tools/bolt-new.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1680016661694-1cd3faf31c3a?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Egor Komarov",
+      "photographerUrl": "https://unsplash.com/es/@egorkomarov",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-computadora-portatil-sentada-encima-de-una-mesa-FvpVY7TpwNY"
+    },
     "websiteUrl": "https://bolt.new",
     "categorySlug": "diseno-ui-ux-con-ia",
     "tags": [
@@ -3306,7 +3521,12 @@
     "name": "Framer AI",
     "tagline": "Diseña y publica sitios web completos con IA",
     "description": "Framer AI genera sitios web completos y con diseño profesional a partir de una descripción de negocio, combinando generación con un editor visual avanzado para ajustar cada detalle sin necesidad de código.\n\nEstá dirigido a diseñadores, startups y equipos de marketing que necesitan un sitio web con diseño cuidado y animaciones modernas, sin depender de un desarrollador para cada ajuste, pero sin sacrificar el nivel de personalización visual que sí ofrecen plataformas más simples como Durable.\n\nA diferencia de constructores web básicos, Framer nació como herramienta de diseño de interfaces antes de añadir generación con IA, lo que se nota en la calidad y sofisticación de las animaciones e interacciones disponibles, un terreno donde compite más con Webflow que con generadores web genéricos.\n\nSu función de generación por IA acelera la fase inicial de creación del sitio, pero el verdadero valor de Framer para muchos usuarios sigue estando en su editor visual: control preciso sobre tipografía, espaciado, animaciones y responsive design sin tener que escribir CSS.",
-    "logoUrl": "/images/tools/framer-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1642132652860-603f4e3c19b7?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Alex Shuper",
+      "photographerUrl": "https://unsplash.com/es/@alexshuperart",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-persona-sentada-en-el-suelo-usando-una-computadora-portatil-Yt9wUh3ZB3Q"
+    },
     "websiteUrl": "https://www.framer.com/ai",
     "categorySlug": "diseno-ui-ux-con-ia",
     "tags": [
@@ -3383,7 +3603,12 @@
     "name": "Krisp",
     "tagline": "Cancelación de ruido con IA para llamadas y reuniones",
     "description": "Krisp elimina ruido de fondo, eco y voces de otras personas en tiempo real durante videollamadas, funcionando como una capa de audio inteligente compatible con cualquier plataforma de videoconferencia sin configuración adicional.\n\nEstá dirigido a profesionales que trabajan en remoto desde entornos no siempre silenciosos, como casa compartida, cafeterías o espacios de coworking, y necesitan que su audio suene profesional en videollamadas sin invertir en equipamiento de audio especializado ni depender de que su entorno esté en silencio absoluto.\n\nFunciona a nivel de sistema operativo, interceptando el audio del micrófono antes de que llegue a cualquier aplicación de videollamada, lo que significa que no requiere integración específica con Zoom, Meet o Teams: simplemente selecciona el micrófono virtual de Krisp como fuente de audio en la app que estés usando.\n\nSu función de resumen y transcripción de reuniones, añadida más recientemente, complementa la función original de cancelación de ruido, aunque en este terreno compite con herramientas más especializadas como Otter.ai o Fireflies, cuyo enfoque principal está precisamente en esa función.",
-    "logoUrl": "/images/tools/krisp.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1766066014237-00645c74e9c6?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Charanjeet Dhiman",
+      "photographerUrl": "https://unsplash.com/es/@charanjeet_dhiman",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-mujer-sonriente-con-auriculares-frente-a-un-ordenador-wnpf3Q5pkXA"
+    },
     "websiteUrl": "https://krisp.ai",
     "categorySlug": "ia-para-call-centers",
     "tags": [
@@ -3453,7 +3678,12 @@
     "name": "Gong",
     "tagline": "Inteligencia de ingresos a partir del análisis de llamadas de venta",
     "description": "Gong analiza llamadas y reuniones de venta grabadas para identificar patrones que correlacionan con el cierre exitoso de negocios, ofreciendo a equipos comerciales datos objetivos sobre qué comportamientos realmente funcionan, en lugar de depender solo de la intuición de un manager de ventas.\n\nEstá dirigido a equipos de ventas B2B medianos y grandes con volumen suficiente de llamadas grabadas como para que el análisis agregado tenga sentido estadístico: identificar qué frases, ratios de conversación o momentos de la llamada correlacionan realmente con oportunidades ganadas frente a perdidas.\n\nSu plataforma va más allá de la simple transcripción: aplica análisis de patrones sobre miles de llamadas históricas para generar recomendaciones de coaching basadas en datos reales del propio equipo, no en mejores prácticas genéricas de un manual de ventas, lo que muchos equipos comerciales consideran mucho más accionable.\n\nAl integrarse con el CRM, Gong también permite a los gestores de ventas correlacionar directamente el contenido de las conversaciones con el resultado final de cada oportunidad, cerrando el círculo entre lo que se dice en una llamada y si esa oportunidad terminó ganándose o perdiéndose.",
-    "logoUrl": "/images/tools/gong.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/graficos-de-analisis-de-rendimiento-en-la-pantalla-de-un-portatil-JKUTrJ4vK00"
+    },
     "websiteUrl": "https://www.gong.io",
     "categorySlug": "ia-para-ventas-b2b",
     "tags": [
@@ -3522,7 +3752,12 @@
     "name": "Clay",
     "tagline": "Enriquecimiento de datos de contactos para prospección",
     "description": "Clay combina docenas de fuentes de datos para enriquecer automáticamente información de contactos y empresas, permitiendo a equipos de ventas y marketing personalizar prospección a gran escala con datos actualizados y precisos.\n\nEstá dirigido a equipos de ventas B2B y growth que necesitan investigar y personalizar el contacto con cientos o miles de prospectos, una tarea que manualmente sería inviable pero que Clay automatiza combinando fuentes de datos como LinkedIn, webs corporativas, bases de datos de contacto y noticias en un solo flujo.\n\nSu diferenciador principal es la flexibilidad: en vez de depender de una única fuente de datos como muchas herramientas de enriquecimiento tradicionales, Clay orquesta docenas de proveedores distintos y permite construir lógica condicional sobre qué fuente usar según el tipo de dato que falte, maximizando la tasa de datos encontrados por contacto.\n\nAdemás de enriquecer datos, Clay puede generar directamente mensajes de prospección personalizados usando IA a partir de la información recopilada sobre cada contacto, cerrando el círculo entre investigación y redacción del primer contacto comercial.",
-    "logoUrl": "/images/tools/clay.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Getty Images",
+      "photographerUrl": "https://unsplash.com/es/@gettyimages",
+      "photoPageUrl": "https://unsplash.com/es/fotos/encendio-la-pantalla-de-monitoreo-qwtCeJ5cLYs"
+    },
     "websiteUrl": "https://www.clay.com",
     "categorySlug": "ia-para-ventas-b2b",
     "tags": [
@@ -3592,7 +3827,12 @@
     "name": "HubSpot Breeze",
     "tagline": "IA integrada en el CRM de HubSpot",
     "description": "Breeze es el conjunto de funciones de IA integradas en HubSpot, cubriendo generación de contenido, resumen de interacciones con clientes y agentes que automatizan tareas de marketing, ventas y servicio dentro del propio CRM.\n\nEstá dirigido a empresas que ya usan HubSpot como CRM central de marketing, ventas y atención al cliente, y quieren incorporar capacidades de IA sin salir de esa plataforma ni integrar herramientas externas que dupliquen datos entre sistemas distintos.\n\nA diferencia de una herramienta de IA independiente, Breeze tiene acceso directo a todo el historial de interacciones de un contacto dentro del CRM, incluyendo emails, llamadas, tickets de soporte y visitas a la web, lo que le permite generar resúmenes y recomendaciones con contexto mucho más completo que un asistente externo que solo ve el texto que se le pega manualmente.\n\nSus agentes de IA, la parte más reciente de Breeze, pueden ejecutar tareas de forma semiautónoma dentro de flujos de marketing, ventas o servicio al cliente, como calificar leads entrantes o responder consultas de soporte de primer nivel, extendiendo el uso de IA más allá de la generación de contenido hacia la automatización de procesos completos del CRM.",
-    "logoUrl": "/images/tools/hubspot-breeze.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Myriam Jessier",
+      "photographerUrl": "https://unsplash.com/es/@mjessier",
+      "photoPageUrl": "https://unsplash.com/es/fotos/captura-de-pantalla-del-monitor-shr_Xn8S8QU"
+    },
     "websiteUrl": "https://www.hubspot.com/artificial-intelligence",
     "categorySlug": "marketing-con-ia",
     "tags": [
@@ -3661,7 +3901,12 @@
     "name": "Writesonic",
     "tagline": "Generación de contenido SEO y marketing a escala",
     "description": "Writesonic combina redacción de artículos largos optimizados para SEO con generación de anuncios y contenido de marketing, incluyendo un asistente que investiga palabras clave antes de redactar el contenido final.\n\nEstá dirigido a equipos de contenido y agencias SEO que necesitan producir artículos de blog optimizados a volumen, sin sacrificar por completo la investigación previa de palabras clave y competencia que normalmente requeriría usar una herramienta de SEO por separado.\n\nSu flujo integrado de investigación y redacción lo diferencia de un generador de texto genérico: antes de escribir, analiza qué términos relacionados y preguntas aparecen en los resultados de búsqueda para el tema, y usa esa información para estructurar el artículo generado, en lugar de limitarse a expandir un titular sin contexto de lo que ya posiciona bien.\n\nAdemás de artículos, Writesonic incluye generación de anuncios, un chatbot personalizable para atención al cliente y un detector de contenido generado por IA, ampliando su utilidad hacia varios frentes de marketing digital más allá del blog corporativo.",
-    "logoUrl": "/images/tools/writesonic.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1516387938699-a93567ec168e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Christin Hume",
+      "photographerUrl": "https://unsplash.com/es/@christinhumephoto",
+      "photoPageUrl": "https://unsplash.com/es/fotos/person-typing-on-silver-macbook-kUqqaRjJuw0"
+    },
     "websiteUrl": "https://writesonic.com",
     "categorySlug": "seo-con-ia",
     "tags": [
@@ -3731,7 +3976,12 @@
     "name": "Rytr",
     "tagline": "Generación de contenido de marketing económica y rápida",
     "description": "Rytr ofrece generación de textos de marketing (anuncios, emails, descripciones) a un precio significativamente más bajo que la mayoría de competidores, con plantillas específicas por caso de uso y varios tonos de voz predefinidos.\n\nEstá dirigido a freelancers, pequeños negocios y creadores de contenido con presupuesto ajustado que necesitan generar textos de marketing ocasionales sin pagar el precio de herramientas premium como Jasper, priorizando la accesibilidad económica sobre funciones avanzadas de gobernanza de marca.\n\nSu catálogo de más de 40 plantillas cubre los casos de uso más habituales de un pequeño negocio: descripciones de producto, anuncios de redes sociales, correos de seguimiento, publicaciones de blog cortas, sin la complejidad de configuración de herramientas orientadas a equipos grandes.\n\nAunque su calidad de redacción no alcanza el nivel de las herramientas premium en tareas creativas complejas, para textos de marketing cortos y directos Rytr cumple sobradamente su función a una fracción del coste, lo que lo convierte en una opción habitual para quien recién empieza a incorporar IA en su flujo de marketing.",
-    "logoUrl": "/images/tools/rytr.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1508780709619-79562169bc64?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "A. C.",
+      "photographerUrl": "https://unsplash.com/es/@3tnik",
+      "photoPageUrl": "https://unsplash.com/es/fotos/persona-que-usa-la-computadora-portatil-vZJdYl5JVXY"
+    },
     "websiteUrl": "https://rytr.me",
     "categorySlug": "escritura",
     "tags": [
@@ -3801,7 +4051,12 @@
     "name": "Surfer SEO",
     "tagline": "Optimización de contenido basada en análisis de la competencia",
     "description": "Surfer SEO analiza los primeros resultados de Google para una palabra clave y genera una guía de optimización de contenido (longitud, términos relacionados, estructura) que ayuda a alinear tu artículo con lo que ya funciona en ese nicho.\n\nEstá dirigido a redactores SEO, agencias de contenido y equipos de marketing que producen artículos de blog con el objetivo explícito de posicionar en buscadores, y necesitan datos concretos sobre qué patrones de contenido correlacionan con buen rendimiento en los resultados de búsqueda para un término específico.\n\nSu editor de contenido en tiempo real es su función más usada: mientras redactas, va mostrando una puntuación que sube o baja según cuántos de los términos relacionados relevantes vas incluyendo, lo que convierte la optimización SEO en un proceso mucho más visual y guiado que revisar una lista de recomendaciones aparte.\n\nFrente a Frase, que integra más investigación de competencia y generación de esquemas en un flujo más amplio, Surfer SEO se centra específicamente en la optimización del contenido ya redactado o en curso, siendo habitual usarlo en combinación con otras herramientas de investigación de palabras clave como Ahrefs o Semrush.",
-    "logoUrl": "/images/tools/surfer-seo.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Stephen Phillips - Hostreviews.co.uk",
+      "photographerUrl": "https://unsplash.com/es/@hostreviews",
+      "photoPageUrl": "https://unsplash.com/es/fotos/grafico-bursatil-mostrado-en-la-pantalla-del-portatil-IrRbSND5EUc"
+    },
     "websiteUrl": "https://surferseo.com",
     "categorySlug": "seo-con-ia",
     "tags": [
@@ -3871,7 +4126,12 @@
     "name": "Frase",
     "tagline": "Investigación y redacción SEO en un mismo flujo",
     "description": "Frase combina investigación de la competencia, generación de esquemas de contenido y redacción asistida por IA en un solo flujo de trabajo, pensado para equipos de contenido que producen artículos SEO de forma recurrente.\n\nEstá dirigido a equipos de contenido y redactores freelance que necesitan pasar de una palabra clave a un artículo completo sin saltar entre varias herramientas distintas: investigación de competencia, estructura del artículo, redacción y optimización final del contenido.\n\nSu análisis automático de la competencia identifica qué preguntas, subtemas y estructura usan los artículos que ya posicionan bien para una palabra clave, generando un esquema de contenido que sirve de punto de partida antes de empezar a redactar, ahorrando la fase manual de leer varios artículos de la competencia uno por uno.\n\nFrente a Surfer SEO, más centrado en la optimización del texto ya escrito, Frase pone más énfasis en las fases iniciales de investigación y estructuración, lo que lo hace especialmente útil para quien parte de cero en un tema y necesita entender rápido qué cubrir antes de redactar.",
-    "logoUrl": "/images/tools/frase-io.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Isaac Smith",
+      "photographerUrl": "https://unsplash.com/es/@isaacmsmith",
+      "photoPageUrl": "https://unsplash.com/es/fotos/una-pantalla-de-computadora-con-un-monton-de-datos-bMWHu8wU1Vk"
+    },
     "websiteUrl": "https://www.frase.io",
     "categorySlug": "seo-con-ia",
     "tags": [
@@ -3940,7 +4200,12 @@
     "name": "Photoroom",
     "tagline": "Edición de fotos de producto con IA en el móvil",
     "description": "Photoroom elimina fondos, genera fondos nuevos con IA y retoca fotos de producto directamente desde el móvil, muy usado por vendedores de ecommerce y marketplaces que necesitan fotos profesionales sin estudio fotográfico.\n\nEstá dirigido a vendedores de marketplaces (Amazon, eBay, Vinted, Wallapop), pequeños ecommerce y creadores de contenido que necesitan producir fotos de producto de aspecto profesional a partir de fotos tomadas con el propio móvil, sin presupuesto para un estudio fotográfico ni un fotógrafo dedicado.\n\nSu enfoque mobile-first la diferencia de herramientas de escritorio como Clipdrop: todo el flujo, desde tomar la foto hasta eliminar el fondo y aplicar una plantilla de ficha de producto, ocurre dentro de la misma app, sin necesidad de transferir archivos entre dispositivos.\n\nAdemás de eliminar fondos, Photoroom puede generar un fondo completamente nuevo con IA a partir de una descripción, ajustar sombras e iluminación para que el producto se integre de forma coherente con el nuevo fondo, y aplicar plantillas de composición pensadas específicamente para fichas de producto de marketplaces populares.",
-    "logoUrl": "/images/tools/photoroom.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1647427854253-b92bb40c9330?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "KOBU Agency",
+      "photographerUrl": "https://unsplash.com/es/@kobuagency",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-estudio-fotografico-con-un-fondo-rosa-y-una-silla-amarilla-uekNxBHpUU8"
+    },
     "websiteUrl": "https://www.photoroom.com",
     "categorySlug": "eliminacion-de-fondo",
     "tags": [
@@ -4010,7 +4275,12 @@
     "name": "Topaz Photo AI",
     "tagline": "Mejora de resolución y nitidez de fotografías con IA",
     "description": "Topaz Photo AI aumenta la resolución, corrige el enfoque y reduce el ruido de fotografías automáticamente, muy usado por fotógrafos profesionales para recuperar detalle en imágenes de baja calidad o ampliar fotos para impresión de gran formato.\n\nEstá dirigido a fotógrafos profesionales y semiprofesionales, estudios de restauración de fotografía antigua y cualquiera que necesite recuperar calidad en imágenes que, por su origen (escaneo antiguo, cámara de móvil, baja luz), no cumplen los estándares de resolución o nitidez necesarios para impresión de gran formato o uso profesional.\n\nA diferencia de un upscaling genérico basado en interpolación simple, Topaz Photo AI usa modelos entrenados específicamente para reconstruir detalle plausible en la imagen ampliada, lo que produce resultados notablemente superiores en fotografías con poco detalle original, aunque sin poder inventar información que la imagen original simplemente no contenía.\n\nSu función de procesamiento por lotes permite aplicar el mismo tratamiento de mejora a cientos de fotos de una sesión completa, un caso de uso habitual para fotógrafos de eventos o bodas que necesitan entregar un volumen alto de imágenes en poco tiempo.",
-    "logoUrl": "/images/tools/topaz-photo-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1495707902641-75cac588d2e9?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Jefferson Sees",
+      "photographerUrl": "https://unsplash.com/es/@jeffersonsees",
+      "photoPageUrl": "https://unsplash.com/es/fotos/camara-canon-dslr-sobre-mesa-de-madera-marron-durante-el-dia-gGgoDJRD2WM"
+    },
     "websiteUrl": "https://www.topazlabs.com/topaz-photo-ai",
     "categorySlug": "mejora-de-resolucion",
     "tags": [
@@ -4080,7 +4350,12 @@
     "name": "Clipdrop",
     "tagline": "Suite de edición de imágenes con IA de Stability AI",
     "description": "Clipdrop reúne varias herramientas de edición de imágenes con IA en una sola app: eliminación de fondo, upscaling, relighting y generación de imágenes, pensado como caja de herramientas rápida para creadores y diseñadores.\n\nEstá dirigido a diseñadores, creadores de contenido y cualquiera que necesite resolver tareas de edición de imagen puntuales y variadas (quitar un fondo, mejorar resolución, cambiar la iluminación de una foto) sin suscribirse a varias herramientas especializadas distintas para cada tarea individual.\n\nAl ser un producto de Stability AI, la empresa detrás de Stable Diffusion, Clipdrop incorpora los modelos de generación de imágenes de la compañía directamente en su suite, además de las herramientas de edición más tradicionales, ofreciendo generación y edición en el mismo lugar.\n\nSu enfoque de caja de herramientas de edición de imagen resulta especialmente útil para quien necesita resolver tareas ocasionales de distinto tipo sin justificar una suscripción especializada para cada una, aunque quien necesite profundidad máxima en una función concreta probablemente encuentre herramientas dedicadas más potentes en esa tarea específica.",
-    "logoUrl": "/images/tools/clipdrop.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1773983239989-7d835f83346b?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Logan Voss",
+      "photographerUrl": "https://unsplash.com/es/@loganvoss",
+      "photoPageUrl": "https://unsplash.com/es/fotos/lineas-onduladas-vibrantes-de-varios-colores-DH4J3jqzqxw"
+    },
     "websiteUrl": "https://clipdrop.co",
     "categorySlug": "generacion-de-imagenes",
     "tags": [
@@ -4149,7 +4424,12 @@
     "name": "Recraft",
     "tagline": "Generación de imágenes vectoriales y assets de marca con IA",
     "description": "Recraft se especializa en generar imágenes vectoriales, iconos y elementos de diseño de marca consistentes entre sí, un caso de uso donde otros generadores de imágenes rasterizadas (Midjourney, DALL-E) no ofrecen buenos resultados.\n\nEstá dirigido a diseñadores gráficos y equipos de marca que necesitan sets completos de iconos, ilustraciones vectoriales o elementos de identidad visual que compartan un mismo estilo consistente, algo que generadores de imagen rasterizada resuelven mal porque cada generación es visualmente independiente de la anterior.\n\nLa diferencia técnica clave es el formato de salida: mientras Midjourney o DALL-E generan siempre imágenes rasterizadas, píxeles fijos que pierden calidad al escalar, Recraft puede generar directamente en formato vectorial SVG, editable en herramientas como Illustrator o Figma sin pérdida de calidad a cualquier tamaño.\n\nSu función de mantenimiento de estilo entre generaciones es especialmente valorada por equipos de marca: definir un estilo visual una vez y luego generar decenas de iconos o ilustraciones adicionales que mantienen esa misma coherencia, algo mucho más difícil de lograr con prompts sueltos en otros generadores.",
-    "logoUrl": "/images/tools/recraft.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1773982674582-f0ac8ba02a13?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Mohamed Taher Sebri",
+      "photographerUrl": "https://unsplash.com/es/@mattsebri",
+      "photoPageUrl": "https://unsplash.com/es/fotos/lineas-abstractas-onduladas-y-coloridas-con-textura-de-ruido-N3x0eqq2EsY"
+    },
     "websiteUrl": "https://www.recraft.ai",
     "categorySlug": "generacion-de-imagenes",
     "tags": [
@@ -4219,7 +4499,12 @@
     "name": "Pictory",
     "tagline": "Convierte artículos y guiones de texto en vídeo automáticamente",
     "description": "Pictory transforma contenido de texto (artículos de blog, guiones) en vídeos con clips de stock, subtítulos y voz en off generados automáticamente, pensado para creadores que quieren repurponer contenido escrito en formato de vídeo sin grabar nada.\n\nEstá dirigido a creadores de contenido, equipos de marketing de contenidos y blogueros que ya tienen un volumen de artículos publicados y quieren darles una segunda vida en formato vídeo para YouTube o redes sociales, sin invertir en producción audiovisual desde cero.\n\nSu función central de conversión de texto a vídeo analiza el artículo o guion de entrada, selecciona automáticamente clips de una biblioteca de stock relacionados con cada sección del contenido, y genera subtítulos y voz en off sincronizados, produciendo un primer borrador de vídeo completo en minutos.\n\nAdemás de generar vídeo desde texto, Pictory también puede resumir vídeos largos existentes en clips cortos destacados, una función más cercana a la de Opus Clip, ampliando su utilidad hacia la reutilización de contenido audiovisual ya grabado, no solo la conversión desde texto.",
-    "logoUrl": "/images/tools/pictory.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Sanjeev Nagaraj",
+      "photographerUrl": "https://unsplash.com/es/@_sanjeev_ngrj_",
+      "photoPageUrl": "https://unsplash.com/es/fotos/persona-sosteniendo-una-claqueta-Hn3S90f6aak"
+    },
     "websiteUrl": "https://pictory.ai",
     "categorySlug": "video",
     "tags": [
@@ -4288,7 +4573,12 @@
     "name": "InVideo AI",
     "tagline": "Genera vídeos completos a partir de una idea de texto",
     "description": "InVideo AI escribe el guion, selecciona clips visuales, añade voz en off y música, generando un vídeo completo a partir de una simple descripción del tema, con plantillas orientadas a marketing, redes sociales y contenido educativo.\n\nEstá dirigido a equipos de marketing, creadores de contenido y educadores que necesitan producir vídeo con regularidad y quieren automatizar todo el proceso creativo, desde la idea inicial hasta un primer borrador de vídeo completo, sin depender de un editor de vídeo dedicado para cada pieza.\n\nA diferencia de Pictory, más centrado en convertir texto existente en vídeo, InVideo AI genera el guion desde cero a partir de una simple idea o tema, cubriendo así todo el proceso creativo de principio a fin, incluyendo la redacción del guion que en otras herramientas quedaría a cargo del usuario.\n\nSu editor manual posterior, heredado de la plataforma InVideo original de edición de vídeo tradicional, permite pulir el resultado generado automáticamente con más profundidad que herramientas puramente automáticas, combinando así generación rápida con capacidad de ajuste manual detallado.",
-    "logoUrl": "/images/tools/invideo-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1607112812619-182cb1c7bb61?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Skye Studios",
+      "photographerUrl": "https://unsplash.com/es/@skyestudios",
+      "photoPageUrl": "https://unsplash.com/es/fotos/televisor-de-pantalla-plana-negro-encendido-visualizacion-del-juego-B4f_Kx5jvpg"
+    },
     "websiteUrl": "https://invideo.io/ai",
     "categorySlug": "video",
     "tags": [
@@ -4358,7 +4648,12 @@
     "name": "CapCut",
     "tagline": "Edición de vídeo móvil con funciones de IA para redes sociales",
     "description": "CapCut combina un editor de vídeo móvil intuitivo con funciones de IA como eliminación de fondo, subtítulos automáticos y plantillas virales, siendo una de las herramientas más usadas por creadores de contenido para TikTok, Reels y Shorts.\n\nEstá dirigido a creadores de contenido de vídeo corto, desde principiantes hasta creadores profesionales, que producen contenido para TikTok, Instagram Reels o YouTube Shorts con regularidad y necesitan un editor rápido y accesible directamente desde el móvil, sin la curva de aprendizaje de un editor de escritorio profesional.\n\nAl ser propiedad de ByteDance, la empresa detrás de TikTok, CapCut está especialmente afinado para las tendencias y formatos que funcionan en esa plataforma, con plantillas de efectos que replican tendencias virales del momento y una integración de exportación pensada específicamente para publicación directa en redes sociales verticales.\n\nSu versión gratuita, notablemente completa comparada con otros editores móviles, incluye la mayoría de funciones esenciales de edición, subtítulos automáticos con reconocimiento de voz y eliminación de fondo sin croma, dejando las funciones premium más para efectos y plantillas exclusivas que para capacidades básicas de edición.",
-    "logoUrl": "/images/tools/capcut.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1603516875773-9a4c1861d5ed?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Philip Oroni",
+      "photographerUrl": "https://unsplash.com/es/@philipsfuture",
+      "photoPageUrl": "https://unsplash.com/es/fotos/televisor-de-pantalla-plana-negro-encendido-visualizacion-del-juego-7BcHkouw6Uc"
+    },
     "websiteUrl": "https://www.capcut.com",
     "categorySlug": "edicion-de-video-con-ia",
     "tags": [
@@ -4428,7 +4723,12 @@
     "name": "Opus Clip",
     "tagline": "Extrae los mejores clips virales de vídeos largos automáticamente",
     "description": "Opus Clip analiza un vídeo largo (podcast, stream, entrevista) y extrae automáticamente los fragmentos con mayor potencial viral, añadiendo subtítulos y recomponiendo el encuadre para formato vertical, listo para publicar en redes sociales.\n\nEstá dirigido a creadores de podcasts, streamers y cualquier productor de contenido largo que quiera multiplicar su alcance publicando clips cortos en TikTok, Reels o Shorts, sin dedicar horas a revisar manualmente horas de grabación buscando los mejores momentos.\n\nSu algoritmo de puntuación de potencial viral analiza patrones de energía, ritmo de habla y estructura narrativa del vídeo original para identificar los fragmentos con mayor probabilidad de enganchar a una audiencia, ordenando los clips resultantes por esa puntuación para que el creador priorice qué publicar primero.\n\nFrente a editar manualmente cada clip, Opus Clip automatiza tanto la selección del fragmento como el recorte al formato vertical y la generación de subtítulos estilizados, dejando al creador principalmente la tarea de revisar y aprobar los clips antes de publicarlos, en lugar de producirlos desde cero.",
-    "logoUrl": "/images/tools/opus-clip.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Jakob Owens",
+      "photographerUrl": "https://unsplash.com/es/@jakobowens1",
+      "photoPageUrl": "https://unsplash.com/es/fotos/turned-on-imac-and-apple-magic-keyboard-and-mouse-on-table-mQxttWjHFjA"
+    },
     "websiteUrl": "https://www.opus.pro",
     "categorySlug": "generacion-de-miniaturas",
     "tags": [
@@ -4498,7 +4798,12 @@
     "name": "Wondercraft",
     "tagline": "Producción de podcasts completos con voces de IA",
     "description": "Wondercraft permite crear episodios de podcast completos combinando guion generado por IA, voces sintéticas realistas y música de fondo, pensado para empresas y creadores que quieren lanzar un podcast sin equipo de grabación.\n\nEstá dirigido principalmente a empresas que quieren producir contenido de audio recurrente, como pódcasts corporativos, resúmenes de noticias del sector o contenido de comunicación interna, sin la logística de coordinar grabaciones con locutores o presentadores humanos cada semana.\n\nSu flujo de trabajo cubre todo el proceso: desde generar o pulir el guion con IA, hasta seleccionar voces sintéticas para uno o varios presentadores virtuales, añadir música e intros de marca y publicar directamente a plataformas de distribución de pódcast, reduciendo la producción de un episodio a un proceso mayormente de texto.\n\nFrente a Descript, que se centra en editar grabaciones ya existentes con voz humana real, Wondercraft está pensado para producir contenido de audio completamente sintético desde cero, lo que resulta especialmente útil para contenido recurrente donde la disponibilidad de un presentador humano sería el principal cuello de botella.",
-    "logoUrl": "/images/tools/wondercraft.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1581547848545-a75a2634ba23?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Will Francis - AI & Marketing",
+      "photographerUrl": "https://unsplash.com/es/@willfrancis",
+      "photoPageUrl": "https://unsplash.com/es/fotos/persona-que-sostiene-el-microfono-en-el-soporte-del-microfono-waxDxYM2XI4"
+    },
     "websiteUrl": "https://www.wondercraft.ai",
     "categorySlug": "podcast-con-ia",
     "tags": [
@@ -4568,7 +4873,12 @@
     "name": "Webflow AI",
     "tagline": "Generación de sitios web profesionales con control visual total",
     "description": "Webflow AI añade generación de secciones y contenido con IA al editor visual de Webflow, una plataforma que combina diseño sin código con control de nivel casi profesional sobre HTML y CSS generado, popular entre agencias y diseñadores.\n\nEstá dirigido a diseñadores y agencias que necesitan control de diseño muy preciso, similar al de codificar a mano, sin depender de un desarrollador para cada ajuste, y que valoran que el código generado por la plataforma sea limpio y eficiente, algo que muchos constructores web más simples no garantizan.\n\nSu función de generación con IA acelera la creación inicial de secciones de página a partir de una descripción, pero el verdadero diferencial de Webflow frente a constructores como Wix o Squarespace sigue siendo su editor visual: control granular sobre cada propiedad CSS, breakpoints responsive personalizados y un sistema de gestión de contenido (CMS) flexible pensado para sitios con estructura de datos compleja.\n\nFrente a Framer, que compite en el mismo segmento de diseño avanzado sin código, Webflow lleva más tiempo en el mercado y cuenta con un ecosistema más maduro de plantillas, agencias certificadas y documentación, aunque ambas plataformas se solapan cada vez más en funcionalidad.",
-    "logoUrl": "/images/tools/webflow-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1720962158883-b0f2021fb51e?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Team Nocoloco",
+      "photographerUrl": "https://unsplash.com/es/@teamnocoloco",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-primer-plano-de-un-telefono-celular-sobre-una-mesa-1E1Ey_meI30"
+    },
     "websiteUrl": "https://webflow.com",
     "categorySlug": "diseno-ui-ux-con-ia",
     "tags": [
@@ -4637,7 +4947,12 @@
     "name": "Durable",
     "tagline": "Genera un sitio web de negocio completo en menos de un minuto",
     "description": "Durable genera un sitio web completo con textos, imágenes y estructura de páginas a partir del nombre y sector de tu negocio en cuestión de segundos, pensado para pequeños negocios que necesitan presencia online rápida sin presupuesto de diseño.\n\nEstá dirigido a autónomos, pequeños negocios locales y emprendedores que necesitan una web funcional lo antes posible, como una peluquería, un fontanero o un pequeño comercio, y no tienen presupuesto ni tiempo para contratar diseño web o aprender a usar un constructor más complejo.\n\nA diferencia de Webflow o Framer, que priorizan control de diseño avanzado a cambio de mayor curva de aprendizaje, Durable apuesta radicalmente por la velocidad: genera un sitio completo con contenido de marcador de posición razonablemente relevante en menos de un minuto, dejando la personalización posterior como algo opcional más que necesario.\n\nSu conjunto de herramientas de negocio más allá del sitio web, como CRM básico, facturación y chatbot de atención al cliente, responde a una necesidad real de pequeños negocios que buscan una solución todo en uno económica, en lugar de contratar herramientas separadas para cada función administrativa.",
-    "logoUrl": "/images/tools/durable.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1758598303946-385680e4eabd?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Mockup Free",
+      "photographerUrl": "https://unsplash.com/es/@mockupfreenet",
+      "photoPageUrl": "https://unsplash.com/es/fotos/mano-sosteniendo-un-telefono-inteligente-con-una-pantalla-verde-Fn9knMAITSk"
+    },
     "websiteUrl": "https://durable.co",
     "categorySlug": "diseno-ui-ux-con-ia",
     "tags": [
@@ -4707,7 +5022,12 @@
     "name": "Beautiful.ai",
     "tagline": "Presentaciones con diseño que se adapta automáticamente",
     "description": "Beautiful.ai ajusta automáticamente el diseño de cada diapositiva mientras añades o quitas contenido, garantizando que la presentación mantenga proporciones y jerarquía visual correctas sin que tengas que maquetar manualmente cada elemento.\n\nEstá dirigido a profesionales que preparan presentaciones con regularidad pero no tienen formación en diseño, y que valoran la garantía de que el resultado nunca se vea mal proporcionado o desordenado, un problema habitual al usar PowerPoint o Google Slides sin experiencia de maquetación.\n\nSu motor de diseño inteligente funciona de forma distinta a Gamma: en vez de generar la presentación completa desde un guion de texto, Beautiful.ai se centra en reajustar automáticamente el layout de cada diapositiva individual a medida que el usuario añade, elimina o reordena elementos, actuando más como un asistente de maquetación en tiempo real que como un generador desde cero.\n\nSu función de plantillas de marca reutilizables la hace especialmente útil para equipos que producen presentaciones con cierta regularidad y necesitan mantener consistencia visual (colores, tipografía, logo) entre distintos documentos sin depender de que cada persona recuerde aplicar manualmente esos elementos.",
-    "logoUrl": "/images/tools/beautiful-ai.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Memento Media",
+      "photographerUrl": "https://unsplash.com/es/@heymemento",
+      "photoPageUrl": "https://unsplash.com/es/fotos/hombre-de-pie-frente-a-un-grupo-de-hombres-rxpThOwuVgE"
+    },
     "websiteUrl": "https://www.beautiful.ai",
     "categorySlug": "generacion-de-presentaciones",
     "tags": [
@@ -4776,7 +5096,12 @@
     "name": "Tome",
     "tagline": "Narrativas visuales generadas con IA para presentaciones y pitch decks",
     "description": "Tome genera presentaciones con un enfoque narrativo, ideal para pitch decks de startups e historias de producto, combinando texto, imágenes generadas y estructura de storytelling en un formato más dinámico que una diapositiva tradicional.\n\nEstá dirigida a fundadores de startups, equipos de producto y cualquiera que necesite comunicar una narrativa convincente, como un pitch de inversión o la historia de un producto, más que una presentación de datos tradicional con muchas diapositivas de viñetas.\n\nSu formato se aleja deliberadamente de la diapositiva tradicional: en vez de páginas fijas con contenido estático, Tome estructura el contenido como una narrativa continua con transiciones fluidas entre secciones, generando imágenes con IA integradas que refuerzan visualmente cada parte de la historia sin que el usuario tenga que buscarlas por separado.\n\nFrente a Gamma o Beautiful.ai, más orientados a presentaciones corporativas convencionales, Tome apuesta por un formato distintivo que funciona especialmente bien cuando se comparte como enlace interactivo en lugar de proyectarse en una sala de reuniones tradicional, un matiz importante a la hora de elegir la herramienta según el contexto de uso.",
-    "logoUrl": "/images/tools/tome.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "Austin Distel",
+      "photographerUrl": "https://unsplash.com/es/@austindistel",
+      "photoPageUrl": "https://unsplash.com/es/fotos/tres-hombres-sentados-mientras-usan-computadoras-portatiles-y-miran-a-un-hombre-junto-a-la-pizarra-wD1LRb9OeEo"
+    },
     "websiteUrl": "https://tome.app",
     "categorySlug": "generacion-de-presentaciones",
     "tags": [
@@ -4846,7 +5171,12 @@
     "name": "remove.bg",
     "tagline": "El pionero de la eliminación de fondo de imágenes con IA",
     "description": "remove.bg fue una de las primeras herramientas en popularizar la eliminación automática de fondos con IA, y sigue siendo una referencia por su precisión, su API sencilla para desarrolladores y su integración directa con herramientas de diseño como Photoshop y Canva.\n\nEstá dirigido tanto a usuarios ocasionales que necesitan eliminar el fondo de una foto puntual, para un currículum o un producto en marketplace, como a desarrolladores que necesitan integrar eliminación de fondo automática dentro de sus propias aplicaciones mediante API, un caso de uso donde remove.bg lleva años consolidado.\n\nSu precisión de recorte, especialmente en fotos de personas y productos con bordes bien definidos, sigue siendo una referencia de calidad en el sector, aunque herramientas más recientes como Photoroom o Clipdrop han igualado o superado esa precisión en muchos casos, añadiendo además funciones de generación de fondos que remove.bg no prioriza.\n\nSu enfoque permanece deliberadamente centrado: hacer una sola cosa, eliminar fondos, de la forma más precisa y fácil de integrar posible, en lugar de expandirse hacia una suite completa de edición de imagen como han hecho varios de sus competidores más recientes.",
-    "logoUrl": "/images/tools/remove-bg.svg",
+    "logoUrl": "https://images.unsplash.com/photo-1648740678671-c37d78567ea8?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "logoCredit": {
+      "photographerName": "KOBU Agency",
+      "photographerUrl": "https://unsplash.com/es/@kobuagency",
+      "photoPageUrl": "https://unsplash.com/es/fotos/un-estudio-fotografico-con-una-luz-y-un-tripode-O8AtzoQcnY4"
+    },
     "websiteUrl": "https://www.remove.bg",
     "categorySlug": "eliminacion-de-fondo",
     "tags": [

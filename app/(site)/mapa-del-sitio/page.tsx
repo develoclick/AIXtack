@@ -32,6 +32,7 @@ const legalSections = [
   { label: "Política de cookies", href: "/cookies" },
   { label: "Términos y condiciones", href: "/terminos-y-condiciones" },
   { label: "Aviso de afiliados", href: "/aviso-afiliados" },
+  { label: "Créditos de imágenes", href: "/creditos-de-imagenes" },
 ];
 
 function LinkList({ items }: { items: { label: string; href: string }[] }) {
