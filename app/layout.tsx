@@ -7,14 +7,18 @@ import { ConsentProvider } from "@/providers/consent-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { AdsenseLoader } from "@/components/ads/adsense-loader";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
-
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
 });
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
+
+const siteName =
+  process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,36 +33,64 @@ export const metadata: Metadata = {
     google: "B3ClaGnGqP20qsHVIDjZGAi4T6DsIOG1BmrL1Kv9NUQ",
   },
   alternates: {
-    types: { "application/rss+xml": [{ url: "/feed.xml", title: `${siteName} — Feed RSS` }] },
+    types: {
+      "application/rss+xml": [
+        {
+          url: "/feed.xml",
+          title: `${siteName} — Feed RSS`,
+        },
+      ],
+    },
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="es"
       suppressHydrationWarning
-      // 2. Corregido el llamado a la fuente instanciada y eliminada la duplicidad
       className={`${plusJakartaSans.variable} h-full antialiased`}
     >
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd()),
+          }}
         />
+
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd()),
+          }}
         />
       </head>
+
       <body className="min-h-full flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <ConsentProvider>
             {children}
-            <Toaster richColors position="bottom-right" />
+
+            <Toaster
+              richColors
+              position="bottom-right"
+            />
+
             <AdsenseLoader />
           </ConsentProvider>
         </ThemeProvider>
+
+        <GoogleAnalytics gaId="G-H25PR3Y1LL" />
       </body>
     </html>
   );
