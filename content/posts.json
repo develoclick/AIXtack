@@ -766,7 +766,7 @@
       "audio"
     ],
     "featured": false,
-    "coverImageUrl": "https://images.unsplash.com/photo-1724120932030-d8210a77deed?w=1200&q=80&fm=jpg&fit=crop&auto=format",
+    "coverImageUrl": "/images/tools/eleven vs lab.png",
     "coverImageAlt": "Persona de pie frente a signos de interrogación, representando la duda entre dos opciones",
     "authorId": "admin",
     "readingTimeMin": 3,
@@ -800,7 +800,7 @@
       }
     ],
     "coverImageCredit": {
-      "photographerName": "Kate Branch",
+      "photographerName": "Generada por IA",
       "photographerUrl": "https://unsplash.com/es/@katebranch",
       "photoPageUrl": "https://unsplash.com/es/fotos/una-persona-de-pie-frente-a-un-grupo-de-signos-de-interrogacion-XP-YDJetZ4Q"
     }

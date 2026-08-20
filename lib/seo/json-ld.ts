@@ -133,6 +133,20 @@ export function professionCollectionPageJsonLd(profession: ProfessionSummary) {
   };
 }
 
+export function alternativesItemListJsonLd(tool: ToolDetail, alternatives: { name: string; slug: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `Alternativas a ${tool.name}`,
+    itemListElement: alternatives.map((alt, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: alt.name,
+      url: `${siteUrl}/herramientas-ia/${alt.slug}`,
+    })),
+  };
+}
+
 export function categoryCollectionPageJsonLd(category: CategorySummary) {
   return {
     "@context": "https://schema.org",

@@ -18,6 +18,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: "Contenido",
     links: [
       { label: "Herramientas IA", href: "/herramientas-ia" },
+      { label: "Alternativas", href: "/alternativas" },
       { label: "Prompts", href: "/prompts" },
       { label: "Comparativas", href: "/comparativas" },
       { label: "Noticias", href: "/noticias" },

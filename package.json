@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "submit:sitemap": "node scripts/ping-sitemap.mjs",
+    "submit:indexing": "node scripts/submit-to-indexing-api.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

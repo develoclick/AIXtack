@@ -208,7 +208,15 @@ export default async function ToolDetailPage({ params }: PageProps) {
           Descubre más herramientas en{" "}
           <Link href={`/categoria/${tool.category.slug}`} className="text-brand underline underline-offset-2">
             {tool.category.name}
-          </Link>{" "}
+          </Link>
+          {relatedTools.length > 0 && (
+            <>
+              , consulta{" "}
+              <Link href={`/alternativas/${tool.slug}`} className="text-brand underline underline-offset-2">
+                alternativas a {tool.name}
+              </Link>
+            </>
+          )}{" "}
           o compara opciones en{" "}
           <Link href="/comparativas" className="text-brand underline underline-offset-2">
             nuestras comparativas

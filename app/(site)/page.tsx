@@ -13,7 +13,7 @@ import { TopBannerAd } from "@/components/ads/top-banner-ad";
 import { MultiplexAd } from "@/components/ads/multiplex-ad";
 import { listCategories } from "@/lib/content/categories";
 import { listPublishedPosts } from "@/lib/content/posts";
-import { listPublishedTools } from "@/lib/content/tools";
+import { listPublishedTools, getToolCatalogStats } from "@/lib/content/tools";
 import { listPublishedPrompts } from "@/lib/content/prompts";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -25,16 +25,17 @@ export const metadata = buildMetadata({
 });
 
 export default async function HomePage() {
-  const [categories, latestPosts, tools, prompts] = await Promise.all([
+  const [categories, latestPosts, tools, prompts, toolStats] = await Promise.all([
     listCategories(),
     listPublishedPosts({ pageSize: 6 }),
     listPublishedTools({ pageSize: 6 }),
     listPublishedPrompts({ pageSize: 6 }),
+    getToolCatalogStats(),
   ]);
 
   return (
     <>
-      <Hero />
+      <Hero totalTools={toolStats.total} totalCategories={categories.length} toolsByCategory={toolStats.byCategory} />
 
 {/* 
 <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">

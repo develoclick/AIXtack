@@ -37,6 +37,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# credenciales de la Indexing API (nunca subir a git)
+google-service-account.json
+
+# registro local de URLs ya notificadas a la Indexing API
+.indexing-cache.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts

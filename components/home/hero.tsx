@@ -19,7 +19,7 @@ const CATEGORIES = [
   {
     id: "cat-01",
     title: "Generación de Imágenes",
-    count: "62 herramientas",
+    slug: "generacion-de-imagenes",
     icon: ImageIcon,
     href: "/categoria/generacion-de-imagenes",
     badge: "Más buscado",
@@ -28,7 +28,7 @@ const CATEGORIES = [
   {
     id: "cat-02",
     title: "Escritura y Copywriting",
-    count: "94 herramientas",
+    slug: "escritura",
     icon: PenLine,
     href: "/categoria/escritura",
     badge: "Alto RPM",
@@ -37,7 +37,7 @@ const CATEGORIES = [
   {
     id: "cat-03",
     title: "Código y Programación",
-    count: "58 herramientas",
+    slug: "programacion",
     icon: Code2,
     href: "/categoria/programacion",
     badge: "Top CTR",
@@ -46,7 +46,7 @@ const CATEGORIES = [
   {
     id: "cat-04",
     title: "Voz y Sintetización",
-    count: "31 herramientas",
+    slug: "audio-y-voz",
     icon: AudioLines,
     href: "/categoria/audio-y-voz",
     badge: "Tendencia",
@@ -54,7 +54,15 @@ const CATEGORIES = [
   },
 ];
 
-export function Hero() {
+export function Hero({
+  totalTools,
+  totalCategories,
+  toolsByCategory,
+}: {
+  totalTools: number;
+  totalCategories: number;
+  toolsByCategory: Record<string, number>;
+}) {
   const [query, setQuery] = useState("");
 
   return (
@@ -131,12 +139,12 @@ export function Hero() {
             <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500 dark:text-zinc-400 font-medium">
               <span className="flex items-center gap-1.5">
                 <TrendingUp className="size-4 text-emerald-600 dark:text-emerald-400" />
-                +500 IAs clasificadas
+                {totalTools}+ IAs clasificadas
               </span>
               <span className="hidden sm:inline text-slate-300 dark:text-zinc-700">•</span>
               <span className="flex items-center gap-1.5">
                 <Layers className="size-4 text-[#3062ef] dark:text-[#5c84f5]" />
-                20 Categorías reales
+                {totalCategories} categorías
               </span>
             </div>
           </div>
@@ -182,7 +190,7 @@ export function Hero() {
                   </div>
 
                   <div className="relative z-10 mt-6 flex items-center justify-between text-xs font-medium text-slate-500 dark:text-zinc-400">
-                    <span>{cat.count}</span>
+                    <span>{toolsByCategory[cat.slug] ?? 0} herramientas</span>
                     <ArrowRight className="size-4 text-slate-400 dark:text-zinc-600 transition-transform duration-300 group-hover:translate-x-1.5 group-hover:text-[#3062ef] dark:group-hover:text-[#5c84f5]" />
                   </div>
                 </Link>

@@ -11,6 +11,7 @@ export const metadata = buildMetadata({
 
 const mainSections = [
   { label: "Herramientas de IA", href: "/herramientas-ia" },
+  { label: "Alternativas", href: "/alternativas" },
   { label: "Prompts", href: "/prompts" },
   { label: "Comparativas", href: "/comparativas" },
   { label: "Tutoriales", href: "/tutoriales" },

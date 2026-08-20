@@ -140,3 +140,16 @@ export async function getRelatedTools(tool: ToolDetail, limit = 3): Promise<Tool
   const { items } = await listPublishedTools({ categorySlug: tool.category.slug, pageSize: limit + 1 });
   return items.filter((item) => item.id !== tool.id).slice(0, limit);
 }
+
+/**
+ * Conteos reales del catálogo, para no mostrar cifras de marketing
+ * inventadas en la portada (p. ej. "62 herramientas" en una categoría que
+ * en realidad tiene 8).
+ */
+export async function getToolCatalogStats(): Promise<{ total: number; byCategory: Record<string, number> }> {
+  const byCategory: Record<string, number> = {};
+  tools.forEach((tool) => {
+    byCategory[tool.categorySlug] = (byCategory[tool.categorySlug] ?? 0) + 1;
+  });
+  return { total: tools.length, byCategory };
+}

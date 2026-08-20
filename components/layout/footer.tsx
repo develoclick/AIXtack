@@ -14,9 +14,6 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[2fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
-              <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-foreground to-foreground/70 text-background shadow-soft">
-                <Sparkles className="size-4" />
-              </span>
               <span className="text-lg">Guía Prompts IA</span>
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
