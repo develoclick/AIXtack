@@ -24,12 +24,21 @@ export default function PrivacyPage() {
       </p>
 
       <h2>Datos que recogemos</h2>
+      <p>
+        Guía Prompts IA no tiene cuentas de usuario ni formularios que envíen datos a nuestros
+        servidores: el sitio se navega sin registro y el contacto se hace por email directo
+        (mailto), que se gestiona íntegramente en tu propio cliente de correo. Los únicos datos que
+        procesamos son:
+      </p>
       <ul>
-        <li>Email, si te suscribes a la newsletter o nos contactas por el formulario.</li>
-        <li>Datos de cuenta si te registras (nombre, email, foto de perfil).</li>
         <li>
           Datos de navegación (páginas vistas, dispositivo, ubicación aproximada) recogidos con
           fines analíticos y publicitarios, solo con tu consentimiento previo.
+        </li>
+        <li>
+          El contenido de los emails que nos envíes voluntariamente a contacto@guiapromptsia.com,
+          que quedan en nuestra bandeja de correo como cualquier email recibido, no en una base de
+          datos del sitio.
         </li>
       </ul>
 
@@ -80,9 +89,10 @@ export default function PrivacyPage() {
 
       <h2>Conservación de datos</h2>
       <p>
-        Conservamos los datos de tu cuenta mientras esté activa, y los datos de contacto o
-        newsletter hasta que solicites su eliminación o te des de baja. Los datos analíticos
-        agregados se conservan de forma anonimizada.
+        Al no existir cuentas ni formularios propios, no conservamos una base de datos de
+        contactos: los emails que nos envíes quedan en nuestra bandeja de correo hasta que decidas
+        pedirnos que los eliminemos. Los datos analíticos agregados se conservan de forma
+        anonimizada.
       </p>
 
       <h2>Tus derechos</h2>

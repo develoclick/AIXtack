@@ -1,13 +1,7 @@
 "use client";
 
-import { Sparkles, ArrowUpRight, Zap } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-
-const stats = [
-  { value: "+2000", label: "Prompts profesionales" },
-  { value: "+15", label: "Profesiones cubiertas" },
-  { value: "3 IAs", label: "ChatGPT · Claude · Gemini" },
-];
 
 export function ProfessionHero() {
   return (
@@ -131,27 +125,6 @@ export function ProfessionHero() {
           quieren automatizar tareas, ahorrar tiempo y
           trabajar con inteligencia artificial.
         </motion.p>
-
-
-
-
-        {/* CTA */}
-
-        <motion.div
-          initial={{opacity:0,y:20}}
-          animate={{opacity:1,y:0}}
-          transition={{duration:.6,delay:.3}}
-          className="mt-10 flex flex-wrap justify-center gap-4"
-        >
-
-          
-
-        </motion.div>
-
-
-
-
-       
 
       </div>
 

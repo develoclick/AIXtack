@@ -1,8 +1,6 @@
 import { SectionHeading } from "@/components/shared/section-heading";
 import { PostGrid } from "@/components/content/post-grid";
 import { Pagination } from "@/components/shared/pagination";
-import { TopBannerAd } from "@/components/ads/top-banner-ad";
-import { MultiplexAd } from "@/components/ads/multiplex-ad";
 import { listPublishedPosts } from "@/lib/content/posts";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import type { PostType } from "@/lib/types";
@@ -15,8 +13,6 @@ export async function PostTypeListing({
   title,
   description,
   page,
-  topBannerSlotId,
-  multiplexSlotId,
   image,
 }: {
   type: PostType;
@@ -25,8 +21,6 @@ export async function PostTypeListing({
   title: string;
   description: string;
   page: number;
-  topBannerSlotId: string;
-  multiplexSlotId: string;
   image?: ImageAsset;
 }) {
   const { items, totalPages } = await listPublishedPosts({ type, page, pageSize: 12 });
@@ -50,13 +44,6 @@ export async function PostTypeListing({
       <div className="mt-8">
         <PostGrid posts={items} />
       </div>
-
-      {/* Solo en la primera página: en páginas siguientes el bloque quedaría
-          repetido sin aportar valor nuevo al usuario. */}
-      {page === 1 && items.length > 0 && (
-        <div className="mt-10">
-        </div>
-      )}
 
       <Pagination page={page} totalPages={totalPages} basePath={basePath} />
     </div>

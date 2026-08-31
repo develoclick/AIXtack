@@ -6,7 +6,6 @@ import { CategoryBadge } from "@/components/shared/category-badge";
 import { ArticleBody } from "@/components/content/article-body";
 import { FaqAccordion } from "@/components/faq/faq-accordion";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
-import { InArticleAd } from "@/components/ads/in-article-ad";
 import { PromptGrid } from "@/components/prompts/prompt-grid";
 import { getPromptBySlug, getRelatedPrompts } from "@/lib/content/prompts";
 import { buildMetadata } from "@/lib/seo/metadata";

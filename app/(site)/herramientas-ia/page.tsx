@@ -2,9 +2,7 @@ import { SectionHeading } from "@/components/shared/section-heading";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { ToolFilters } from "@/components/tools/tool-filters";
 import { Pagination } from "@/components/shared/pagination";
-import { TopBannerAd } from "@/components/ads/top-banner-ad";
 import { SidebarAd } from "@/components/ads/sidebar-ad";
-import { MultiplexAd } from "@/components/ads/multiplex-ad";
 import { listPublishedTools, type ListToolsOptions } from "@/lib/content/tools";
 import { listCategories } from "@/lib/content/categories";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -29,9 +27,13 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     description:
       "Directorio de herramientas de IA en español: generación de imágenes, escritura, productividad, código, audio y mucho más.",
     path,
-    // Las páginas de resultados de búsqueda libre son contenido transitorio
-    // y no aportan valor propio para indexar de forma independiente.
-    noIndex: Boolean(params.q),
+    // Noindex para dos variantes que no deben competir en el índice con una
+    // página ya existente y más completa: la búsqueda libre (?q=, contenido
+    // transitorio) y el filtro por categoría (?categoria=, que solapa con la
+    // página canónica de esa categoría en /categoria/[slug]). El filtro y el
+    // buscador siguen funcionando igual para el usuario — solo se excluye la
+    // URL resultante del índice, no la funcionalidad.
+    noIndex: Boolean(params.q) || Boolean(params.categoria),
   });
 }
 
@@ -80,11 +82,7 @@ export default async function ToolsPage({ searchParams }: PageProps) {
           },
         }}
       />
-{/*
-      <div className="mt-8">
-        <TopBannerAd slotId="1000000020" />
-      </div>
-*/}
+
       <div className="mt-8 lg:grid lg:grid-cols-[1fr_300px] lg:items-start lg:gap-8">
         <div>
           <ToolFilters categories={categories} />

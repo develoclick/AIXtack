@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ConsentBanner } from "@/components/consent/consent-banner";
-import { FooterAd } from "@/components/ads/footer-ad";
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -17,7 +16,6 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
       <main id="main-content" className="flex-1">
         {children}
       </main>
-      <FooterAd slotId="1000000001" />
       <Footer />
       <ConsentBanner />
     </div>

@@ -38,7 +38,7 @@ export default function AffiliateDisclosurePage() {
         Los ingresos por afiliación, junto con la publicidad de Google AdSense, son la forma en que
         sostenemos Guía Prompts IA como un proyecto gratuito y sin muros de pago para el lector. Sin
         estos ingresos no podríamos mantener actualizado el directorio de herramientas ni seguir
-        publicando contenido nuevo cada semana.
+        produciendo contenido nuevo.
       </p>
 
       <h2>Dudas</h2>

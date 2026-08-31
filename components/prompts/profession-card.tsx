@@ -5,13 +5,22 @@ import { ArrowUpRight } from "lucide-react";
 import { professionImages } from "@/lib/images";
 import type { ProfessionSummary } from "@/lib/types";
 
-function resolveIcon(icon: string) {
+/**
+ * Componente propio (no una variable `Icon` calculada dentro del render de
+ * ProfessionCard) para elegir un icono de lucide-react a partir de un
+ * nombre — evita el aviso de react-hooks/static-components por "crear
+ * componentes durante el render" que dispara asignar el resultado de un
+ * lookup dinámico a una variable capitalizada en el cuerpo del componente
+ * padre. Solo se usa como red de seguridad para una profesión futura sin
+ * foto propia todavía; hoy las 14 profesiones existentes siempre tienen
+ * `illustration`, así que esta rama no se ejecuta en producción.
+ */
+function ProfessionIconFallback({ icon, className }: { icon: string; className?: string }) {
   const Icon = icon in Icons ? (Icons as unknown as Record<string, Icons.LucideIcon>)[icon] : Icons.Sparkles;
-  return Icon ?? Icons.Sparkles;
+  return <Icon className={className} />;
 }
 
 export function ProfessionCard({ profession }: { profession: ProfessionSummary }) {
-  const Icon = resolveIcon(profession.icon);
   const illustration = professionImages[profession.slug];
 
   return (
@@ -36,7 +45,7 @@ export function ProfessionCard({ profession }: { profession: ProfessionSummary }
         />
       ) : (
         <span className="relative z-10 flex size-12 items-center justify-center rounded-xl bg-brand-muted text-brand">
-          <Icon className="size-6" />
+          <ProfessionIconFallback icon={profession.icon} className="size-6" />
         </span>
       )}
 

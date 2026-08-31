@@ -28,8 +28,6 @@ export default async function ComparativasPage({ searchParams }: PageProps) {
       title="Comparativas de IA"
       description="Ayudamos a elegir: comparativas objetivas entre las principales herramientas de inteligencia artificial."
       page={page}
-      topBannerSlotId="1000000010"
-      multiplexSlotId="1000000011"
       image={{
         src: "https://images.unsplash.com/photo-1668976056517-2a3c241de1c6?w=1200&q=80&fm=jpg&fit=crop&auto=format",
         alt: "Comparativas de herramientas de IA",

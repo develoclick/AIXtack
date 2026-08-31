@@ -5,7 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ArticleBody } from "@/components/content/article-body";
 import { CategoryBadge } from "@/components/shared/category-badge";
 import { PostGrid } from "@/components/content/post-grid";
-import { InArticleAd } from "@/components/ads/in-article-ad";
 import { FaqAccordion } from "@/components/faq/faq-accordion";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { PhotoCredit } from "@/components/shared/photo-credit";

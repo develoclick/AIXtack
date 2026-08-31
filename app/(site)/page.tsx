@@ -2,15 +2,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Hero } from "@/components/home/hero";
 import { FeaturedCategories } from "@/components/home/featured-categories";
-import { NewsletterCta } from "@/components/home/newsletter-cta";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ScrollReveal } from "@/components/shared/scroll-reveal";
 import { PostGrid } from "@/components/content/post-grid";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { PromptGrid } from "@/components/prompts/prompt-grid";
 import { buttonVariants } from "@/components/ui/button";
-import { TopBannerAd } from "@/components/ads/top-banner-ad";
-import { MultiplexAd } from "@/components/ads/multiplex-ad";
 import { listCategories } from "@/lib/content/categories";
 import { listPublishedPosts } from "@/lib/content/posts";
 import { listPublishedTools, getToolCatalogStats } from "@/lib/content/tools";
@@ -36,12 +33,6 @@ export default async function HomePage() {
   return (
     <>
       <Hero totalTools={toolStats.total} totalCategories={categories.length} toolsByCategory={toolStats.byCategory} />
-
-{/* 
-<section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
-  <TopBannerAd slotId="1000000002" />
-</section> 
-*/}
 
       <section className="relative overflow-hidden bg-muted/20 py-16 sm:py-20">
         <div aria-hidden className="absolute inset-0 -z-10 bg-grid-fade opacity-50" />

@@ -10,7 +10,6 @@ import { CategoryBadge } from "@/components/shared/category-badge";
 import { FaqAccordion } from "@/components/faq/faq-accordion";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { PhotoCredit } from "@/components/shared/photo-credit";
-import { InArticleAd } from "@/components/ads/in-article-ad";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { getToolBySlug, getRelatedTools } from "@/lib/content/tools";
 import { buildMetadata } from "@/lib/seo/metadata";

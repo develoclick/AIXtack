@@ -4,13 +4,15 @@ import { listPublishedTools } from "@/lib/content/tools";
 import { listPublishedPrompts } from "@/lib/content/prompts";
 import { listCategories } from "@/lib/content/categories";
 import { listProfessions } from "@/lib/content/professions";
-import tagsJson from "@/content/tags.json";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://guiapromptsia.com";
 
-// Helper robusto para procesar fechas de modificación válidas
-function getSafeDate(item: any): Date {
-  const rawDate = item?.updatedAt || item?.publishedAt || item?.createdAt || item?.date;
+// Helper robusto para procesar fechas de modificación válidas — acepta
+// cualquiera de los tipos de contenido (posts, tools, prompts, categorías,
+// profesiones), que no comparten un campo de fecha común.
+function getSafeDate(item: unknown): Date {
+  const record = item as Record<string, string | Date | null | undefined> | null | undefined;
+  const rawDate = record?.updatedAt ?? record?.publishedAt ?? record?.createdAt ?? record?.date;
   if (!rawDate) return new Date();
   const parsed = rawDate instanceof Date ? rawDate : new Date(rawDate);
   return isNaN(parsed.getTime()) ? new Date() : parsed;
@@ -26,7 +28,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       listProfessions(),
     ]);
 
-  const tags = tagsJson as { slug: string; updatedAt?: string }[];
   const now = new Date();
 
   // 1. URLs estáticas principales
@@ -92,15 +93,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // 7. Etiquetas / Tags
-  const tagEntries: MetadataRoute.Sitemap = tags.map((tag) => ({
-    url: `${siteUrl}/etiqueta/${tag.slug}`,
-    lastModified: getSafeDate(tag),
-    changeFrequency: "weekly",
-    priority: 0.4,
-  }));
+  // Las páginas de /etiqueta/[slug] son noindex (filtro de navegación sin
+  // contenido propio, ver app/(site)/etiqueta/[slug]/page.tsx) — no se listan
+  // aquí para no contradecir esa señal ante Google.
 
-  // 8. Alternativas (herramientas con al menos un competidor real en su categoría)
+  // 7. Alternativas (herramientas con al menos un competidor real en su categoría)
   const toolsByCategory = new Map<string, number>();
   tools.forEach((tool) => {
     const slug = tool.category?.slug;
@@ -122,7 +119,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...promptEntries,
     ...categoryEntries,
     ...professionEntries,
-    ...tagEntries,
     ...alternativeEntries,
   ];
 }

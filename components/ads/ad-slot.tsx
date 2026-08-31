@@ -32,8 +32,8 @@ const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
  * cargue. No renderiza nada si no hay NEXT_PUBLIC_ADSENSE_CLIENT_ID
  * configurado — así el proyecto queda listo para AdSense sin mostrar
  * anuncios reales todavía. Los componentes con nombre (TopBannerAd,
- * InArticleAd, SidebarAd, FooterAd, MultiplexAd) envuelven este bloque con
- * el formato correcto para cada posición.
+ * InArticleAd, SidebarAd, MultiplexAd) envuelven este bloque con el formato
+ * correcto para cada posición.
  */
 export function AdSlot({ slotId, className, minHeight = 250, format = "auto", layout, label = "" }: AdSlotProps) {
   const { ads } = useConsent();

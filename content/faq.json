@@ -25,8 +25,62 @@
   },
   {
     "id": "5",
-    "question": "¿Cómo me doy de baja de la newsletter?",
-    "answer": "Cada email que enviamos incluye un enlace de baja al final. Al hacer clic, tu suscripción se cancela de forma inmediata y no requiere confirmación adicional.",
+    "question": "¿Necesito crear una cuenta para usar el sitio?",
+    "answer": "No. Puedes explorar el directorio de herramientas, leer artículos y copiar cualquier prompt sin registrarte. No hay cuentas de usuario ni proceso de inicio de sesión en Guía Prompts IA.",
+    "category": null
+  },
+  {
+    "id": "6",
+    "question": "¿Cómo copio un prompt para usarlo en ChatGPT, Claude o Gemini?",
+    "answer": "Cada prompt tiene un botón \"Copiar prompt\" que lo pasa directamente a tu portapapeles. Solo tienes que pegarlo en el chat de la herramienta de IA que estés usando y sustituir los textos entre corchetes por tus propios datos.",
+    "category": null
+  },
+  {
+    "id": "7",
+    "question": "¿Qué significa el sello \"Premium\" en algunos prompts?",
+    "answer": "Marca los prompts que en el futuro podrían formar parte de un plan de pago. Por ahora puedes verlos y consultarlos con normalidad; el marcado es solo una preparación para una posible función de suscripción, que todavía no está activa.",
+    "category": null
+  },
+  {
+    "id": "8",
+    "question": "¿Con qué modelos de IA funcionan los prompts de la biblioteca?",
+    "answer": "Cada prompt indica con qué modelos lo hemos probado (normalmente ChatGPT, Claude y/o Gemini). La mayoría funciona igual de bien en cualquiera de los tres, pero señalamos el modelo recomendado cuando hay diferencias reales de resultado.",
+    "category": null
+  },
+  {
+    "id": "9",
+    "question": "¿Qué diferencia hay entre las categorías y los \"Prompts por profesión\"?",
+    "answer": "Las categorías organizan las herramientas y prompts por función (generación de imágenes, escritura, programación...). \"Prompts por profesión\" es una sección aparte que agrupa prompts según el rol de quien los usa (programador, abogado, profesor...), sin importar la función concreta de cada uno.",
+    "category": null
+  },
+  {
+    "id": "10",
+    "question": "¿Cómo funcionan las páginas de \"Alternativas a...\"?",
+    "answer": "Cada página de alternativas compara una herramienta con las demás opciones reales de su misma categoría, ordenadas por valoración, para que puedas decidir si existe una opción mejor valorada o más económica antes de suscribirte a una herramienta de pago.",
+    "category": null
+  },
+  {
+    "id": "11",
+    "question": "¿Las valoraciones de las herramientas están influidas por los acuerdos de afiliación?",
+    "answer": "No. La puntuación y el análisis de cada herramienta se basan en su funcionalidad real, tenga o no un programa de afiliados con nosotros. Puedes leer el proceso completo en nuestra política editorial.",
+    "category": null
+  },
+  {
+    "id": "12",
+    "question": "¿Guía Prompts IA está afiliado a OpenAI, Google o Anthropic?",
+    "answer": "No. Analizamos, comparamos y enlazamos a herramientas como ChatGPT, Gemini o Claude de forma independiente. Las marcas y nombres de producto pertenecen a sus respectivas empresas; no representamos ni hablamos en nombre de ninguna de ellas.",
+    "category": null
+  },
+  {
+    "id": "13",
+    "question": "¿Con qué frecuencia se actualiza el contenido?",
+    "answer": "Revisamos periódicamente el contenido más visitado (precios, funciones nuevas, herramientas descontinuadas) para mantenerlo al día, aunque no seguimos un calendario fijo de publicación. Si detectas un dato desactualizado, puedes avisarnos desde la página de contacto.",
+    "category": null
+  },
+  {
+    "id": "14",
+    "question": "¿Puedo sugerir una herramienta que no está en el directorio?",
+    "answer": "Sí. Escríbenos desde la página de contacto con el nombre de la herramienta y para qué sirve; la evaluamos con los mismos criterios que el resto del directorio antes de decidir si la incluimos.",
     "category": null
   }
 ]

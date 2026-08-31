@@ -82,7 +82,7 @@ export function Navbar() {
 
         {/* Desktop Navigation */}
 
-        <nav className="ml-8 hidden flex-1 items-center justify-center gap-2 lg:flex">
+        <nav className="ml-8 hidden flex-1 items-center justify-center gap-2 xl:flex">
           {primaryNav.map((link) => {
             const active = pathname.startsWith(link.href);
 
@@ -113,7 +113,7 @@ export function Navbar() {
 
         {/* Search */}
 
-        <div className="hidden flex-1 justify-end lg:flex lg:max-w-[340px]">
+        <div className="hidden flex-1 justify-end xl:flex xl:max-w-[340px]">
           <SearchCommand />
         </div>
 
@@ -122,16 +122,18 @@ export function Navbar() {
         <div className="ml-4 flex items-center gap-2">
           <ThemeToggle />
 
-          <Link
-            href="/herramientas-ia"
-            className={buttonVariants({
-              size: "sm",
-              className:
-                "hidden sm:inline-flex rounded-xl px-5 font-semibold shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl",
-            })}
-          >
-            Explorar
-          </Link>
+          <div className="hidden sm:block">
+            <Link
+              href="/herramientas-ia"
+              className={buttonVariants({
+                size: "sm",
+                className:
+                  "rounded-xl px-5 font-semibold shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl",
+              })}
+            >
+              Explorar
+            </Link>
+          </div>
 
           {/* Mobile */}
 
@@ -145,7 +147,7 @@ export function Navbar() {
                   variant: "ghost",
                   size: "icon",
                 }),
-                "lg:hidden rounded-xl"
+                "xl:hidden rounded-xl"
               )}
             >
               <Menu className="size-5" />

@@ -28,8 +28,6 @@ export default async function TutorialesPage({ searchParams }: PageProps) {
       title="Tutoriales de IA"
       description="Guías paso a paso para sacarle el máximo partido a la inteligencia artificial."
       page={page}
-      topBannerSlotId="1000000012"
-      multiplexSlotId="1000000013"
       image={{
         src: "https://images.unsplash.com/photo-1759984782106-4b56d0aa05b8?w=1200&q=80&fm=jpg&fit=crop&auto=format",
         alt: "Tutoriales paso a paso de IA",

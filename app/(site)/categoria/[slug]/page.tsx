@@ -7,7 +7,6 @@ import { PromptGrid } from "@/components/prompts/prompt-grid";
 import { FaqAccordion } from "@/components/faq/faq-accordion";
 import { EmptyState } from "@/components/shared/empty-state";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
-import { TopBannerAd } from "@/components/ads/top-banner-ad";
 import { getCategoryBySlug } from "@/lib/content/categories";
 import { listPublishedPosts } from "@/lib/content/posts";
 import { listPublishedTools } from "@/lib/content/tools";
@@ -76,11 +75,7 @@ export default async function CategoryPage({ params }: PageProps) {
         description={category.description ?? undefined}
         image={flagshipCategoryImages[category.slug]}
       />
-{/*
-      <div className="mt-8">
-        <TopBannerAd slotId="1000000040" />
-      </div>
-*/}
+
       {tools.items.length > 0 && (
         <section className="mt-14">
           <h2 className="text-xl font-semibold tracking-tight">Herramientas</h2>

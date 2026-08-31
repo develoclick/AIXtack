@@ -91,7 +91,7 @@ export function Hero({
             {/* Pill Indicator */}
             <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#3062ef]/30 bg-gradient-to-r from-[#3062ef]/10 via-[#3062ef]/05 to-transparent dark:from-[#3062ef]/20 dark:via-[#3062ef]/10 px-4 py-1.5 text-xs font-semibold text-[#3062ef] dark:text-[#5c84f5] backdrop-blur-md shadow-sm">
               <Sparkles className="size-3.5 text-[#3062ef] dark:text-[#5c84f5] shrink-0 animate-pulse" />
-              <span>Directorio verificado · Actualizado diariamente</span>
+              <span>Directorio curado en español</span>
             </div>
 
             {/* Titular con Gradiente Dinámico */}

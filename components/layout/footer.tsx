@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
 import { footerNav } from "@/lib/nav-config";
-import { NewsletterForm } from "@/components/newsletter/newsletter-form";
 
 export function Footer() {
   const year = new Date().getFullYear();

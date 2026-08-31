@@ -28,8 +28,6 @@ export default async function NoticiasPage({ searchParams }: PageProps) {
       title="Noticias de IA"
       description="Mantente al día con lo último en inteligencia artificial."
       page={page}
-      topBannerSlotId="1000000016"
-      multiplexSlotId="1000000017"
       image={{
         src: "https://images.unsplash.com/photo-1579532536935-619928decd08?w=1200&q=80&fm=jpg&fit=crop&auto=format",
         alt: "Noticias de inteligencia artificial",

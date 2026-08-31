@@ -19,8 +19,8 @@ export default function TermsPage() {
       <p>
         Guía Prompts IA es un sitio de contenido editorial en español sobre inteligencia artificial:
         directorio de herramientas, biblioteca de prompts, comparativas, tutoriales, guías y
-        noticias. El acceso al contenido es gratuito; algunas funciones (como guardar favoritos o
-        comentar) pueden requerir una cuenta.
+        noticias. El acceso al contenido es gratuito, no requiere registro y no existen cuentas de
+        usuario en el sitio.
       </p>
 
       <h2>2. Uso permitido</h2>
@@ -28,19 +28,10 @@ export default function TermsPage() {
       <ul>
         <li>Extraer contenido de forma masiva y automatizada (scraping) sin autorización previa.</li>
         <li>Intentar vulnerar la seguridad del sitio o acceder a áreas restringidas sin permiso.</li>
-        <li>Publicar comentarios difamatorios, spam, o contenido que infrinja derechos de terceros.</li>
-        <li>Suplantar la identidad de otra persona o entidad al registrarte o comentar.</li>
+        <li>Reproducir o redistribuir el contenido del sitio como propio sin autorización.</li>
       </ul>
 
-      <h2>3. Cuentas de usuario</h2>
-      <p>
-        Si creas una cuenta, eres responsable de mantener la confidencialidad de tus credenciales y
-        de toda la actividad que ocurra bajo tu cuenta. Puedes solicitar la eliminación de tu
-        cuenta y tus datos en cualquier momento escribiéndonos a{" "}
-        <a href="mailto:contacto@guiapromptsia.com">contacto@guiapromptsia.com</a>.
-      </p>
-
-      <h2>4. Propiedad intelectual</h2>
+      <h2>3. Propiedad intelectual</h2>
       <p>
         Los textos, gráficos y el diseño de Guía Prompts IA son propiedad del sitio o de sus licenciantes,
         salvo que se indique lo contrario. Los nombres, logos y marcas de terceros mencionados
@@ -48,7 +39,7 @@ export default function TermsPage() {
         usan únicamente con fines informativos y de análisis.
       </p>
 
-      <h2>5. Enlaces a terceros y afiliados</h2>
+      <h2>4. Enlaces a terceros y afiliados</h2>
       <p>
         Guía Prompts IA incluye enlaces hacia sitios de terceros, incluyendo enlaces de afiliados (ver
         nuestro <a href="/aviso-afiliados">aviso de afiliados</a>). No controlamos el contenido de
@@ -56,7 +47,7 @@ export default function TermsPage() {
         que pueden cambiar sin previo aviso por parte del proveedor.
       </p>
 
-      <h2>6. Exención de responsabilidad</h2>
+      <h2>5. Exención de responsabilidad</h2>
       <p>
         El contenido de Guía Prompts IA se ofrece con fines informativos. Aunque revisamos la información
         antes de publicarla (ver nuestra <a href="/politica-editorial">política editorial</a>), no
@@ -66,28 +57,28 @@ export default function TermsPage() {
         herramienta.
       </p>
 
-      <h2>7. Publicidad</h2>
+      <h2>6. Publicidad</h2>
       <p>
         Este sitio muestra anuncios de Google AdSense y de sus redes publicitarias asociadas. Más
         información sobre el uso de cookies publicitarias en nuestra{" "}
         <a href="/cookies">política de cookies</a>.
       </p>
 
-      <h2>8. Cambios en estos términos</h2>
+      <h2>7. Cambios en estos términos</h2>
       <p>
         Podemos actualizar estos términos en cualquier momento para reflejar cambios legales o del
         servicio. Los cambios entran en vigor al publicarse en esta página; el uso continuado del
         sitio después de una actualización implica su aceptación.
       </p>
 
-      <h2>9. Ley aplicable</h2>
+      <h2>8. Ley aplicable</h2>
       <p>
         Estos términos se rigen por la legislación aplicable en materia de protección de datos y
         comercio electrónico de la Unión Europea y España, sin perjuicio de la normativa local que
         pueda aplicar según tu país de residencia.
       </p>
 
-      <h2>10. Contacto</h2>
+      <h2>9. Contacto</h2>
       <p>
         Para cualquier duda sobre estos términos, escríbenos a{" "}
         <a href="mailto:contacto@guiapromptsia.com">contacto@guiapromptsia.com</a> o desde nuestra{" "}

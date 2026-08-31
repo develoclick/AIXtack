@@ -3,9 +3,6 @@ import { ArrowRight, Briefcase } from "lucide-react";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { PromptGrid } from "@/components/prompts/prompt-grid";
 import { Pagination } from "@/components/shared/pagination";
-import { TopBannerAd } from "@/components/ads/top-banner-ad";
-import { SidebarAd } from "@/components/ads/sidebar-ad";
-import { MultiplexAd } from "@/components/ads/multiplex-ad";
 import { listPublishedPrompts } from "@/lib/content/prompts";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
@@ -76,22 +73,9 @@ export default async function PromptsPage({ searchParams }: PageProps) {
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
         </span>
       </Link>
-{/*
-      <div className="mt-8">
-        <TopBannerAd slotId="1000000030" />
-      </div>
-*/}
-      <div className="mt-8 lg:grid lg:grid-cols-[1fr_300px] lg:items-start lg:gap-8">
-        <div>
-          <PromptGrid prompts={items} />
 
-         
-        </div>
-{/*
-        <aside className="hidden lg:block">
-          <SidebarAd slotId="1000000032" />
-        </aside>
-        */}
+      <div className="mt-8">
+        <PromptGrid prompts={items} />
       </div>
 
       <Pagination page={page} totalPages={totalPages} basePath="/prompts" />

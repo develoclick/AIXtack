@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Lock, Quote } from "lucide-react";
+import { Lock } from "lucide-react";
 import type { PromptSummary } from "@/lib/types";
 
 export function PromptCard({ prompt }: { prompt: PromptSummary }) {
@@ -9,7 +9,6 @@ export function PromptCard({ prompt }: { prompt: PromptSummary }) {
       href={`/prompts/${prompt.slug}`}
       className="group relative flex flex-col gap-3 overflow-hidden rounded-2xl border bg-card p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-soft-lg"
     >
-    
       <div className="relative flex items-start justify-between gap-2">
         <h3 className="font-semibold tracking-tight group-hover:text-brand">{prompt.title}</h3>
         {prompt.isPremium && (

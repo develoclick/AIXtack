@@ -32,6 +32,13 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     title: page > 1 ? `#${tag.name} — Página ${page}` : `#${tag.name}`,
     description: `Publicaciones etiquetadas con ${tag.name}.`,
     path,
+    // Las páginas de etiquetas son un filtro de navegación (agrupan posts que
+    // ya viven en /blog, /categoria, etc.), no contenido propio: sin texto
+    // original y con algunas etiquetas de 1-2 posts, indexarlas es el patrón
+    // de "thin/auto-generated content" que penalizan tanto Google como la
+    // revisión de calidad de AdSense. Se mantienen funcionales para
+    // navegación interna, solo se excluyen del índice.
+    noIndex: true,
   });
 }
 

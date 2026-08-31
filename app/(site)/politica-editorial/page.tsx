@@ -46,9 +46,8 @@ export default function EditorialPolicyPage() {
         Si encuentras un error factual, un precio desactualizado o una función que ya no existe,
         escríbenos a{" "}
         <a href="mailto:contacto@guiapromptsia.com">contacto@guiapromptsia.com</a> o desde el{" "}
-        <a href="/contacto">formulario de contacto</a>. Corregimos los errores confirmados lo antes
-        posible y, en cambios relevantes, indicamos la fecha de la última actualización del
-        artículo.
+        <a href="/contacto">página de contacto</a>. Corregimos los errores confirmados lo antes
+        posible.
       </p>
 
       <h2>Actualización de contenido</h2>

@@ -21,9 +21,15 @@ export async function generateStaticParams() {
   return professions.map((profession) => ({ profesion: profession.slug }));
 }
 
-function resolveIcon(icon: string) {
+/**
+ * Componente propio en vez de una variable `Icon` calculada dentro del
+ * render de la página — evita el error de react-hooks/static-components.
+ * Solo actúa como red de seguridad para una profesión sin foto propia
+ * todavía; hoy las 14 profesiones existentes siempre tienen `illustration`.
+ */
+function ProfessionIconFallback({ icon, className }: { icon: string; className?: string }) {
   const Icon = icon in Icons ? (Icons as unknown as Record<string, Icons.LucideIcon>)[icon] : Icons.Sparkles;
-  return Icon ?? Icons.Sparkles;
+  return <Icon className={className} />;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -44,7 +50,6 @@ export default async function ProfessionPage({ params }: PageProps) {
   if (!profession) notFound();
 
   const prompts = await listProfessionPrompts(profession.slug);
-  const Icon = resolveIcon(profession.icon);
   const illustration = professionImages[profession.slug];
 
   const breadcrumbItems = [
@@ -84,7 +89,7 @@ export default async function ProfessionPage({ params }: PageProps) {
           </div>
         ) : (
           <span className="flex size-14 items-center justify-center rounded-2xl bg-brand-muted text-brand">
-            <Icon className="size-7" />
+            <ProfessionIconFallback icon={profession.icon} className="size-7" />
           </span>
         )}
         <SectionHeading

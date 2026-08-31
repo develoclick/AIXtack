@@ -28,8 +28,6 @@ export default async function GuiasPage({ searchParams }: PageProps) {
       title="Guías de IA"
       description="Contenido completo y detallado sobre los grandes temas de la inteligencia artificial."
       page={page}
-      topBannerSlotId="1000000014"
-      multiplexSlotId="1000000015"
       image={{
         src: "https://images.unsplash.com/photo-1517770413964-df8ca61194a6?w=1200&q=80&fm=jpg&fit=crop&auto=format",
         alt: "Guías completas de inteligencia artificial",

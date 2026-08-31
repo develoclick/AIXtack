@@ -165,8 +165,6 @@ export interface SearchResultItem {
   href: string;
 }
 
-export type NewsletterSource = "footer" | "post-cta" | "home" | "other";
-
 export interface ProfessionSummary {
   id: string;
   slug: string;
