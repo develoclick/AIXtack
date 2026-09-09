@@ -3,6 +3,7 @@ import categoriesJson from "@/content/categories.json";
 import tagsJson from "@/content/tags.json";
 import authorsJson from "@/content/authors.json";
 import type { Author, ImageCredit, PaginatedResult, PostDetail, PostSummary, PostType, TaxonomyRef } from "@/lib/types";
+import { calculateReadingTime } from "@/lib/utils/format";
 
 interface PostRaw {
   id: string;
@@ -18,7 +19,6 @@ interface PostRaw {
   coverImageAlt: string | null;
   coverImageCredit?: ImageCredit | null;
   authorId: string;
-  readingTimeMin: number | null;
   publishedAt: string;
   seoTitle: string | null;
   seoDescription: string | null;
@@ -60,7 +60,7 @@ function toSummary(post: PostRaw): PostSummary {
     categories: resolveCategories(post.categorySlug),
     tags: resolveTags(post.tags),
     featured: post.featured,
-    readingTimeMin: post.readingTimeMin,
+    readingTimeMin: calculateReadingTime(post.content),
     publishedAt: new Date(post.publishedAt),
   };
 }

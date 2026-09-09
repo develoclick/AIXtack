@@ -20,3 +20,15 @@ export function formatCurrency(amount: number, currency = "USD"): string {
 export function pluralize(count: number, singular: string, plural: string): string {
   return count === 1 ? singular : plural;
 }
+
+const WORDS_PER_MINUTE = 200;
+
+/** Minutos de lectura estimados a partir del recuento real de palabras del HTML del artículo. */
+export function calculateReadingTime(html: string): number {
+  const wordCount = html
+    .replace(/<[^>]+>/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+}
