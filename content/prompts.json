@@ -842,7 +842,7 @@
     "description": "Convierte una pregunta en lenguaje natural sobre tus datos en una consulta SQL lista para ejecutar. Especialmente útil para perfiles no técnicos que necesitan responder preguntas de negocio sin depender siempre del equipo de datos.",
     "content": "Actúa como analista de datos experto en SQL. Dado el siguiente esquema de tablas: [PEGA EL ESQUEMA, ej. nombres de tabla, columnas y tipos de dato], escribe una consulta SQL para el motor [POSTGRESQL/MYSQL/SQL SERVER] que responda a esta pregunta: [TU PREGUNTA EN LENGUAJE NATURAL]. Explica brevemente qué hace cada parte de la consulta (JOIN, WHERE, GROUP BY) y advierte si la consulta podría ser lenta en tablas muy grandes.",
     "useCase": "Análisis de datos",
-    "categorySlug": "ia-para-analisis-de-datos",
+    "categorySlug": "programacion",
     "tags": [
       "desarrollo"
     ],
@@ -1008,7 +1008,7 @@
     "description": "Plantilla de prompt para explorar conceptos de logotipo minimalista con IA generativa de imágenes, pensada como punto de partida creativo antes de pasar el diseño final a un profesional o vectorizarlo.",
     "content": "minimalist logo design for a [TIPO DE NEGOCIO] called [NOMBRE], simple geometric shapes, flat vector style, [COLOR PRINCIPAL] color palette, clean lines, white background, no text, icon only, professional branding, modern and timeless aesthetic --style raw --v 6",
     "useCase": "Diseño de marca",
-    "categorySlug": "generacion-de-logotipos",
+    "categorySlug": "generacion-de-imagenes",
     "tags": [
       "imagenes",
       "diseño"
@@ -1400,7 +1400,7 @@
     "description": "Redacta una oferta de empleo atractiva y clara que refleje la cultura real de la empresa, separando explícitamente requisitos imprescindibles de deseables para no filtrar candidatos cualificados por una lista de exigencias excesiva.",
     "content": "Actúa como especialista en employer branding y reclutamiento. Escribe una oferta de empleo para el puesto de [PUESTO] en una empresa de [SECTOR/TAMAÑO]. Incluye: resumen del rol en 2 frases que transmita el impacto real del puesto, responsabilidades principales (5-6 puntos concretos, no genéricos), requisitos imprescindibles vs deseables (claramente diferenciados en dos listas separadas), rango salarial si se va a publicar, y qué ofrece la empresa (más allá del salario). Tono: [FORMAL / CERCANO / DIRECTO].",
     "useCase": "Reclutamiento",
-    "categorySlug": "reclutamiento-con-ia",
+    "categorySlug": "ia-para-recursos-humanos",
     "tags": [
       "marketing",
       "gratis"
@@ -1456,7 +1456,7 @@
     "description": "Genera preguntas de entrevista estructuradas por competencia para evaluar a un candidato de forma objetiva, indicando qué se busca evaluar con cada pregunta para que quien entrevista escuche con un criterio claro.",
     "content": "Actúa como experto en selección de personal con experiencia diseñando procesos de entrevista estructurados. Genera 10 preguntas de entrevista para el puesto de [PUESTO], organizadas en 3 bloques: experiencia técnica, resolución de problemas (preguntas situacionales tipo STAR) y encaje cultural. Para cada pregunta, indica brevemente qué competencia se busca evaluar y qué respuesta débil vs. fuerte podría sonar, para ayudar a interpretar mejor la respuesta del candidato durante la entrevista.",
     "useCase": "Selección de personal",
-    "categorySlug": "reclutamiento-con-ia",
+    "categorySlug": "ia-para-recursos-humanos",
     "tags": [
       "marketing"
     ],
@@ -1678,7 +1678,7 @@
     "description": "Genera un cuestionario de repaso con distintos tipos de pregunta a partir de tus apuntes de estudio, con las respuestas separadas al final para poder usarlo como auto-examen real antes de revisar las soluciones.",
     "content": "Actúa como profesor experto en evaluación educativa. A partir del siguiente material de estudio, genera un cuestionario de repaso con 10 preguntas: 5 de opción múltiple (con 4 opciones cada una), 3 de verdadero/falso, y 2 de respuesta corta. Varía el nivel de dificultad entre preguntas de recuerdo directo y preguntas que requieran aplicar el concepto. Incluye las respuestas correctas al final, separadas del cuestionario, con una breve explicación de por qué es correcta cada una. Material:\n\n[PEGA AQUÍ TUS APUNTES]",
     "useCase": "Estudio y repaso",
-    "categorySlug": "generacion-de-examenes",
+    "categorySlug": "ia-para-educacion",
     "tags": [
       "principiantes",
       "gratis"
@@ -1958,7 +1958,7 @@
     "description": "Genera una rutina de entrenamiento semanal adaptada a tu nivel, objetivo y días disponibles, ajustada específicamente al equipo real que tienes acceso para que sea aplicable desde el primer día.",
     "content": "Actúa como entrenador personal certificado con experiencia en periodización de entrenamiento. Diseña un plan de entrenamiento semanal para alguien con nivel [PRINCIPIANTE/INTERMEDIO/AVANZADO], objetivo de [FUERZA/PÉRDIDA DE GRASA/RESISTENCIA/GANANCIA MUSCULAR], disponible [N] días a la semana y acceso a [GIMNASIO COMPLETO / SOLO PESO CORPORAL / EQUIPO BÁSICO EN CASA]. Incluye ejercicios, series, repeticiones, tiempo de descanso entre series, y días de descanso activo. Menciona cualquier lesión o limitación previa a tener en cuenta: [LESIONES SI APLICA].",
     "useCase": "Entrenamiento físico",
-    "categorySlug": "ia-para-fitness",
+    "categorySlug": "productividad",
     "tags": [
       "principiantes",
       "gratis"
@@ -2014,7 +2014,7 @@
     "description": "Diseña un itinerario de viaje día por día según destino, presupuesto y estilo de viaje, incluyendo una alternativa para días de lluvia que evita que el plan se rompa ante el primer imprevisto.",
     "content": "Actúa como agente de viajes experto con conocimiento local del destino. Diseña un itinerario de [N] días para [DESTINO], con un presupuesto [BAJO/MEDIO/ALTO] y estilo de viaje [AVENTURA/RELAX/CULTURAL/FAMILIAR]. Para cada día indica: actividad principal con horario aproximado, una alternativa concreta si llueve o el plan A no es viable, y una recomendación de comida típica de la zona cerca de esa actividad. Viajo con: [SOLO/PAREJA/FAMILIA CON NIÑOS DE X AÑOS/GRUPO DE AMIGOS].",
     "useCase": "Planificación de viajes",
-    "categorySlug": "ia-para-viajes",
+    "categorySlug": "productividad",
     "tags": [
       "principiantes",
       "gratis"
@@ -2071,7 +2071,7 @@
     "description": "Genera un menú semanal equilibrado con lista de la compra a partir de tus preferencias alimentarias, pensado como guía orientativa general y no como prescripción médica o nutricional individualizada.",
     "content": "Actúa como nutricionista orientado a hábitos sostenibles. Diseña un menú semanal (desayuno, comida y cena) equilibrado para una persona con objetivo [MANTENIMIENTO/DÉFICIT/SUPERÁVIT CALÓRICO] y estas preferencias/restricciones: [EJ. VEGETARIANO, SIN LACTOSA, ETC.]. Reutiliza ingredientes base entre varias recetas para reducir el desperdicio y el coste total. Al final, genera la lista de la compra completa agrupada por categorías (frutas y verduras, proteínas, despensa, etc.) con cantidades aproximadas para la semana.",
     "useCase": "Nutrición y planificación",
-    "categorySlug": "planificacion-de-comidas",
+    "categorySlug": "productividad",
     "tags": [
       "principiantes",
       "gratis"
@@ -2296,7 +2296,7 @@
     "description": "Genera un calendario editorial mensual de redes sociales con temas, formatos y objetivo de cada publicación, asignando un propósito explícito a cada contenido para evitar publicar sin ningún criterio claro.",
     "content": "Actúa como estratega de redes sociales con experiencia en planificación editorial. Genera un calendario de contenido para [RED SOCIAL] durante 4 semanas, para una marca de [SECTOR]. Para cada semana, propón 3 publicaciones con: tema concreto, formato (reel/carrusel/imagen única/texto), objetivo (awareness/engagement/conversión), y el mejor momento estimado para publicar según el hábito de esa audiencia. Varía los formatos y objetivos para no repetir siempre el mismo tipo de contenido ni vender en cada publicación.",
     "useCase": "Marketing de contenidos",
-    "categorySlug": "redes-sociales-con-ia",
+    "categorySlug": "marketing-con-ia",
     "tags": [
       "marketing",
       "gratis"
@@ -2353,7 +2353,7 @@
     "description": "Estructura un guion publicitario de formato ultra corto pensado para redes sociales, asignando segundos concretos a cada bloque para forzar la disciplina de comunicar un solo mensaje claro sin desperdiciar tiempo.",
     "content": "Actúa como creativo publicitario especializado en formatos cortos para redes sociales. Escribe el guion de un anuncio en vídeo de 15 segundos para [PRODUCTO/SERVICIO], dirigido a [PÚBLICO OBJETIVO]. Estructura: problema en 3 segundos, presentación de la solución (producto) en 5 segundos, beneficio clave en 4 segundos, llamada a la acción en 3 segundos. Indica también qué debería mostrarse en pantalla en cada momento y qué texto superpuesto ayudaría a entender el mensaje sin sonido.",
     "useCase": "Publicidad en redes sociales",
-    "categorySlug": "generacion-de-anuncios",
+    "categorySlug": "marketing-con-ia",
     "tags": [
       "marketing",
       "video"
@@ -2409,7 +2409,7 @@
     "description": "Genera múltiples variantes de asunto de email con distintos ángulos psicológicos para testear cuál funciona mejor, comparando enfoques genuinamente distintos en vez de simples sinónimos de la misma idea.",
     "content": "Actúa como especialista en email marketing con experiencia en optimización de tasa de apertura. Genera 8 variantes de asunto de email para una campaña sobre [TEMA DEL EMAIL], dirigida a [PÚBLICO OBJETIVO], usando ángulos genuinamente distintos: curiosidad, urgencia, beneficio directo, pregunta, número o dato concreto, y personalización. Cada asunto debe tener máximo 50 caracteres para verse completo en móvil. Indica también qué ángulo esperarías que funcione mejor para esta audiencia y por qué.",
     "useCase": "Email marketing",
-    "categorySlug": "email-marketing-con-ia",
+    "categorySlug": "marketing-con-ia",
     "tags": [
       "marketing",
       "gratis"
@@ -2971,7 +2971,7 @@
     "description": "Convierte notas de una llamada comercial en un resumen estructurado listo para registrar en el CRM, registrando objeciones explícitamente para que cualquier compañero pueda continuar la conversación sin perder contexto.",
     "content": "Actúa como representante de ventas experimentado en documentación de CRM. Convierte las siguientes notas de una llamada de ventas en un resumen para el CRM: [PEGA TUS NOTAS]. Estructura: contexto del cliente (empresa, cargo, tamaño si se mencionó), necesidades detectadas, objeciones mencionadas (aunque parezcan menores), próximos pasos acordados con fecha, y probabilidad de cierre estimada (baja/media/alta) con una justificación de una frase.",
     "useCase": "Documentación comercial",
-    "categorySlug": "transcripcion-de-reuniones",
+    "categorySlug": "audio-y-voz",
     "tags": [
       "marketing"
     ],
@@ -3417,7 +3417,7 @@
     "description": "Redacta una respuesta pública equilibrada ante una polémica o crítica masiva en redes sociales, priorizando mostrar que la marca está escuchando por encima de resolver todo el problema en el primer mensaje.",
     "content": "Actúa como especialista en gestión de crisis en redes sociales. Mi marca está recibiendo críticas en redes sociales por: [DESCRIBE LA SITUACIÓN]. Redacta una respuesta pública corta (máximo 280 caracteres) que reconozca la preocupación, evite sonar defensiva, y anuncie que se está trabajando en una solución o aclaración más detallada. Sugiere también si conviene fijar (pin) esta respuesta en el perfil mientras se resuelve la situación.",
     "useCase": "Gestión de reputación online",
-    "categorySlug": "redes-sociales-con-ia",
+    "categorySlug": "marketing-con-ia",
     "tags": [
       "marketing",
       "gratis"
@@ -4088,7 +4088,7 @@
     "description": "Redacta la descripción de venta de un curso online destacando la transformación que ofrece al estudiante, incluyendo explícitamente para quién no es el curso para filtrar mejor a los estudiantes correctos.",
     "content": "Actúa como copywriter de infoproductos con experiencia en páginas de venta que convierten. Escribe la descripción de venta de un curso online sobre [TEMA], dirigido a [PÚBLICO OBJETIVO]. Estructura: transformación concreta que logrará el estudiante (no solo lo que aprenderá), 5 puntos de lo que cubrirá el curso, para quién es este curso (perfil específico), para quién NO es este curso (siendo honesto sobre las limitaciones), y una llamada a la acción final clara.",
     "useCase": "Venta de infoproductos",
-    "categorySlug": "ia-para-recursos-educativos",
+    "categorySlug": "productividad",
     "tags": [
       "marketing",
       "gratis"
@@ -4368,7 +4368,7 @@
     "description": "Extrae patrones y temas recurrentes de un conjunto de reseñas de clientes, agregando decenas de opiniones a la vez para identificar qué problema se repite con más frecuencia en vez de reaccionar solo a la última queja recibida.",
     "content": "Actúa como analista de experiencia de cliente con experiencia en análisis cualitativo de feedback. Analiza las siguientes reseñas de clientes: [PEGA LAS RESEÑAS]. Identifica: 3 temas positivos recurrentes con ejemplos representativos, 3 temas negativos recurrentes con ejemplos representativos, la frecuencia aproximada de cada tema (cuántas reseñas lo mencionan), y una recomendación de acción prioritaria basada en el problema más mencionado y de mayor impacto en la satisfacción.",
     "useCase": "Análisis de feedback",
-    "categorySlug": "analisis-de-sentimiento",
+    "categorySlug": "marketing-con-ia",
     "tags": [
       "marketing",
       "gratis"
@@ -4647,7 +4647,7 @@
     "description": "Genera una rúbrica de evaluación clara con criterios y niveles de desempeño bien definidos, describiendo específicamente qué caracteriza cada nivel para que dos evaluadores distintos lleguen a calificaciones similares.",
     "content": "Actúa como docente con experiencia en evaluación educativa basada en criterios. Genera una rúbrica de evaluación para [TIPO DE TRABAJO/PROYECTO], con 4 criterios de evaluación relevantes y específicos de esa tarea, y 4 niveles de desempeño para cada uno (excelente, adecuado, en desarrollo, insuficiente), describiendo con precisión y de forma observable qué caracteriza cada nivel, evitando descripciones vagas como bueno o regular sin más detalle.",
     "useCase": "Evaluación educativa",
-    "categorySlug": "generacion-de-examenes",
+    "categorySlug": "ia-para-educacion",
     "tags": [
       "principiantes",
       "gratis"
@@ -4703,7 +4703,7 @@
     "description": "Redacta una carta de presentación personalizada que conecte tu experiencia con los requisitos del puesto, lo que aumenta notablemente las probabilidades de destacar frente a otros candidatos que envían cartas plantilla genéricas.",
     "content": "Actúa como asesor de carrera con experiencia en procesos de selección. Redacta una carta de presentación para la oferta de [PUESTO] en [EMPRESA], conectando mi experiencia en [TU EXPERIENCIA RELEVANTE] con estos requisitos específicos del puesto: [REQUISITOS DE LA OFERTA]. Máximo 300 palabras, tono profesional pero cercano, evitando frases genéricas y clichés (soy una persona proactiva y comprometida sin ningún ejemplo concreto que lo respalde).",
     "useCase": "Búsqueda de empleo",
-    "categorySlug": "generacion-de-curriculums",
+    "categorySlug": "productividad",
     "tags": [
       "principiantes",
       "gratis"
@@ -4759,7 +4759,7 @@
     "description": "Prepara respuestas sólidas a las preguntas de entrevista más habituales para tu perfil profesional usando la estructura STAR, el estándar implícito que la mayoría de entrevistadores buscan aunque no lo mencionen.",
     "content": "Actúa como coach de entrevistas de trabajo con experiencia en procesos de selección competitivos. Voy a entrevistarme para el puesto de [PUESTO] con esta experiencia: [TU EXPERIENCIA RELEVANTE]. Prepara respuestas usando la estructura STAR (Situación, Tarea, Acción, Resultado) para estas preguntas habituales: cuéntame de ti, tu mayor logro profesional, un reto que superaste, por qué quieres este puesto, y una debilidad real (no un disfraz de fortaleza). Cada respuesta debe basarse en experiencia real que yo aporte, no inventada.",
     "useCase": "Preparación de entrevistas",
-    "categorySlug": "reclutamiento-con-ia",
+    "categorySlug": "ia-para-recursos-humanos",
     "tags": [
       "principiantes",
       "gratis"
@@ -5207,7 +5207,7 @@
     "description": "Consolida feedback disperso de usuarios (encuestas, tickets, redes) en temas priorizados de producto, combinando múltiples fuentes para evitar el sesgo de sobrerreaccionar a quejas ruidosas mientras se ignoran patrones más silenciosos.",
     "content": "Actúa como product manager con experiencia en síntesis de feedback de usuarios. Consolida el siguiente feedback de usuarios de distintas fuentes: [PEGA FEEDBACK DE ENCUESTAS, TICKETS, REDES SOCIALES]. Agrupa en temas recurrentes, indica la frecuencia aproximada de cada tema y de qué fuente proviene principalmente, distingue entre bugs/errores y solicitudes de nuevas funciones, y sugiere una priorización para el roadmap de producto basada en frecuencia e impacto estimado, no solo en el canal más visible.",
     "useCase": "Gestión de producto",
-    "categorySlug": "analisis-de-sentimiento",
+    "categorySlug": "marketing-con-ia",
     "tags": [
       "desarrollo",
       "premium"
@@ -5263,7 +5263,7 @@
     "description": "Diseña un experimento A/B completo con hipótesis, variantes y criterio de éxito claro, definiendo la hipótesis antes de lanzar el test para distinguir la experimentación rigurosa de simplemente probar cosas al azar.",
     "content": "Actúa como especialista en CRO (optimización de conversión) con experiencia en experimentación estadística. Diseña un test A/B para [ELEMENTO A TESTEAR, ej. botón de compra, titular de landing]. Incluye: hipótesis clara de por qué esperas que la variante funcione mejor (basada en un principio de comportamiento del usuario, no solo intuición), descripción precisa de la variante B, métrica principal de éxito y una métrica secundaria de control, y tamaño de muestra mínimo estimado antes de sacar conclusiones estadísticamente válidas.",
     "useCase": "Optimización de conversión",
-    "categorySlug": "optimizacion-de-conversion",
+    "categorySlug": "marketing-con-ia",
     "tags": [
       "marketing",
       "premium"
@@ -5319,7 +5319,7 @@
     "description": "Estructura un guion de atención telefónica profesional para la recepción de llamadas de una empresa, preparando frases específicas de derivación que dan consistencia a la experiencia del cliente sin importar quién conteste.",
     "content": "Actúa como especialista en atención al cliente con experiencia en guiones de recepción telefónica. Redacta un guion de atención telefónica para la recepción de [NOMBRE DE LA EMPRESA], que cubra: saludo inicial claro y profesional, preguntas para identificar el motivo de la llamada, cómo derivar la llamada según el motivo (ventas, soporte, otro departamento), qué decir si la persona indicada no está disponible, y una frase de cierre profesional. Tono: [FORMAL/CERCANO] según la marca.",
     "useCase": "Atención telefónica",
-    "categorySlug": "ia-para-call-centers",
+    "categorySlug": "atencion-al-cliente-con-ia",
     "tags": [
       "marketing",
       "gratis"
@@ -5486,7 +5486,7 @@
     "description": "Genera una checklist de mantenimiento preventivo periódico para equipos o maquinaria, incluyendo la señal de alerta de cada punto de revisión para distinguir entre desgaste normal y un problema que requiere atención inmediata.",
     "content": "Actúa como técnico de mantenimiento industrial con experiencia en programas de mantenimiento preventivo. Genera una checklist de mantenimiento preventivo [MENSUAL/TRIMESTRAL] para [TIPO DE EQUIPO/MAQUINARIA], indicando para cada punto: componente a revisar, qué comprobar específicamente y cómo (visual, medición, prueba de funcionamiento), la señal de alerta que indicaría necesidad de mantenimiento correctivo urgente, y una nota de si esa revisión requiere detener el equipo o puede hacerse en funcionamiento.",
     "useCase": "Mantenimiento industrial",
-    "categorySlug": "mantenimiento-predictivo",
+    "categorySlug": "productividad",
     "tags": [
       "premium"
     ],

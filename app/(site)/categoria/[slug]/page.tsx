@@ -25,6 +25,11 @@ export function generateStaticParams() {
   return (categoriesJson as { slug: string }[]).map((category) => ({ slug: category.slug }));
 }
 
+// Todas las categorías válidas se conocen en build time desde categories.json.
+// Sin esto, un slug inexistente se renderiza on-demand y Next.js lo cachea
+// como página estática con status 200 aunque el componente llame notFound().
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const category = await getCategoryBySlug(slug);

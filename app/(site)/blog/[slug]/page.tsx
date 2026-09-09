@@ -24,6 +24,11 @@ export function generateStaticParams() {
   return (postsJson as { slug: string }[]).map((post) => ({ slug: post.slug }));
 }
 
+// Todos los posts válidos se conocen en build time desde posts.json. Sin
+// esto, un slug inexistente se renderiza on-demand y Next.js lo cachea como
+// página estática con status 200 aunque el componente llame notFound().
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);

@@ -1510,7 +1510,7 @@
       "photoPageUrl": "https://unsplash.com/es/fotos/woman-in-teal-t-shirt-sitting-beside-woman-in-suit-jacket-JaoVGh5aJ3E"
     },
     "websiteUrl": "https://otter.ai",
-    "categorySlug": "transcripcion-de-audio",
+    "categorySlug": "audio-y-voz",
     "tags": [
       "productividad",
       "gratis"
@@ -1585,7 +1585,7 @@
       "photoPageUrl": "https://unsplash.com/es/fotos/persona-sosteniendo-el-lapiz-cerca-de-la-computadora-portatil-5fNmWej4tAA"
     },
     "websiteUrl": "https://fireflies.ai",
-    "categorySlug": "transcripcion-de-reuniones",
+    "categorySlug": "audio-y-voz",
     "tags": [
       "productividad",
       "marketing"
@@ -2086,7 +2086,7 @@
       "photoPageUrl": "https://unsplash.com/es/fotos/mezclador-de-audio-negro-y-verde-F2h_WbKnX4o"
     },
     "websiteUrl": "https://suno.com",
-    "categorySlug": "generacion-de-musica",
+    "categorySlug": "audio-y-voz",
     "tags": [
       "musica",
       "gratis"
@@ -3278,7 +3278,7 @@
       "photoPageUrl": "https://unsplash.com/es/fotos/brazo-robotico-blanco-en-la-sala-de-exposicion-kE0JmtbvXxM"
     },
     "websiteUrl": "https://devin.ai",
-    "categorySlug": "agentes-autonomos-de-ia",
+    "categorySlug": "programacion",
     "tags": [
       "desarrollo",
       "premium"
@@ -3610,7 +3610,7 @@
       "photoPageUrl": "https://unsplash.com/es/fotos/una-mujer-sonriente-con-auriculares-frente-a-un-ordenador-wnpf3Q5pkXA"
     },
     "websiteUrl": "https://krisp.ai",
-    "categorySlug": "ia-para-call-centers",
+    "categorySlug": "atencion-al-cliente-con-ia",
     "tags": [
       "productividad",
       "gratis"
@@ -4282,7 +4282,7 @@
       "photoPageUrl": "https://unsplash.com/es/fotos/camara-canon-dslr-sobre-mesa-de-madera-marron-durante-el-dia-gGgoDJRD2WM"
     },
     "websiteUrl": "https://www.topazlabs.com/topaz-photo-ai",
-    "categorySlug": "mejora-de-resolucion",
+    "categorySlug": "generacion-de-imagenes",
     "tags": [
       "imagenes",
       "premium"
@@ -4730,7 +4730,7 @@
       "photoPageUrl": "https://unsplash.com/es/fotos/turned-on-imac-and-apple-magic-keyboard-and-mouse-on-table-mQxttWjHFjA"
     },
     "websiteUrl": "https://www.opus.pro",
-    "categorySlug": "generacion-de-miniaturas",
+    "categorySlug": "video",
     "tags": [
       "video",
       "marketing"

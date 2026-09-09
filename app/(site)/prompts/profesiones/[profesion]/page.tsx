@@ -21,6 +21,11 @@ export async function generateStaticParams() {
   return professions.map((profession) => ({ profesion: profession.slug }));
 }
 
+// Todas las profesiones válidas se conocen en build time. Sin esto, un slug
+// inexistente se renderiza on-demand y Next.js lo cachea como página
+// estática con status 200 aunque el componente llame notFound().
+export const dynamicParams = false;
+
 /**
  * Componente propio en vez de una variable `Icon` calculada dentro del
  * render de la página — evita el error de react-hooks/static-components.

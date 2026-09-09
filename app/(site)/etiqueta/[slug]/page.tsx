@@ -19,6 +19,11 @@ export function generateStaticParams() {
   return (tagsJson as { slug: string }[]).map((tag) => ({ slug: tag.slug }));
 }
 
+// Todas las etiquetas válidas se conocen en build time desde tags.json. Sin
+// esto, un slug inexistente se renderiza on-demand y Next.js lo cachea como
+// página estática con status 200 aunque el componente llame notFound().
+export const dynamicParams = false;
+
 export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const { page: pageParam } = await searchParams;

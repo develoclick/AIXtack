@@ -26,6 +26,11 @@ export function generateStaticParams() {
   return (toolsJson as { slug: string }[]).map((tool) => ({ slug: tool.slug }));
 }
 
+// Todas las herramientas válidas se conocen en build time desde tools.json.
+// Sin esto, un slug inexistente se renderiza on-demand y Next.js lo cachea
+// como página estática con status 200 aunque el componente llame notFound().
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const tool = await getToolBySlug(slug);

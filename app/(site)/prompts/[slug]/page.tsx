@@ -21,6 +21,11 @@ export function generateStaticParams() {
   return (promptsJson as { slug: string }[]).map((prompt) => ({ slug: prompt.slug }));
 }
 
+// Todos los prompts válidos se conocen en build time desde prompts.json.
+// Sin esto, un slug inexistente se renderiza on-demand y Next.js lo cachea
+// como página estática con status 200 aunque el componente llame notFound().
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const prompt = await getPromptBySlug(slug);

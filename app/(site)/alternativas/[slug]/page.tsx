@@ -33,6 +33,11 @@ export function generateStaticParams() {
   return tools.filter((t) => (countByCategory.get(t.categorySlug) ?? 0) > 1).map((t) => ({ slug: t.slug }));
 }
 
+// El universo de slugs válidos se conoce en build time. Sin esto, un slug
+// fuera de esa lista se renderiza on-demand y Next.js lo cachea como página
+// estática con status 200 aunque el componente llame notFound().
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const tool = await getToolBySlug(slug);
