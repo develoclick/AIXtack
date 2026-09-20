@@ -20,9 +20,13 @@ export function ConsentBanner() {
         >
           <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-2xl border bg-card/95 p-5 shadow-2xl backdrop-blur sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-muted-foreground">
-              Usamos cookies propias y de terceros para analizar el tráfico y mostrar publicidad
-              relevante. Puedes leer más en nuestra{" "}
-              <Link href="/privacidad" className="underline underline-offset-2 hover:text-foreground">
+              Usamos cookies para medir el tráfico del sitio y, más adelante, mostrar publicidad. Solo se
+              activan si aceptas. Más información en la{" "}
+              <Link href="/politica-de-cookies" className="underline underline-offset-2 hover:text-foreground">
+                política de cookies
+              </Link>{" "}
+              y la{" "}
+              <Link href="/politica-de-privacidad" className="underline underline-offset-2 hover:text-foreground">
                 política de privacidad
               </Link>
               .

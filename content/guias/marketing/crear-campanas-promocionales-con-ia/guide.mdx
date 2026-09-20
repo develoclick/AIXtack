@@ -1,0 +1,213 @@
+import data from "./data";
+
+<GuideSection id="problema" title="Piezas bien escritas que no dicen lo mismo" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, basta con que sepas qué promoción lanzas: el resto se explica al usarlo.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+Si aún no tienes la promoción, empieza por [Crear promociones y ofertas para tu negocio con IA](/marketing/guias/crear-promociones-con-ia).
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: una tienda de ropa con una liquidación de dos semanas" part="Entender el problema">
+
+Seguiremos a un solo negocio, inventado y así indicado en su tarjeta, de principio a fin.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Cuatro ideas para que la campaña diga lo mismo en todas partes" part="Preparar">
+
+<Callout variant="simple">
+
+Piensa en la ficha como en la receta de la casa: cada plato sale de ella y no del recuerdo de quien cocina ese día.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+Cada pieza se puede afinar con su guía: [el anuncio](/marketing/guias/crear-anuncios-con-ia), [el afiche](/marketing/guias/crear-afiches-con-ia) y [las publicaciones](/marketing/guias/crear-publicaciones-para-redes-sociales-con-ia). Aquí solo se comprueba que todas coincidan.
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se pide normalmente, y por qué no coincide" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Antes de abrir la IA: tus cuatro cosas" part="Preparar">
+
+<DataPreparation data={data.dataPreparation} />
+
+<GuideImage slot={data.images.datos} />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: seis pasos, con la IA en cinco" part="Hacer">
+
+Al terminar cada paso, márcalo: el avance se conserva únicamente en este navegador.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="entrevista" title="Paso 1: escribir tu ficha de campaña" part="Hacer">
+
+La ficha tiene una fila por dato; su última columna, «Aparece en», dice qué piezas lo llevan. Copia la tabla y cámbiala por tu promoción.
+
+<ComparisonTable table={data.comparisons.ficha} eyebrow="Plantilla para copiar" />
+
+Si te faltan datos, deja que la IA te entreviste. Un <Term id="prompt">prompt</Term> es lo que le escribes para pedirle algo, y los huecos entre llaves, como `{{NEGOCIO}}`, son <Term id="variable">variables</Term> que rellenas con lo tuyo.
+
+<PromptCard prompt={data.prompts.ficha} proof={data.images.prueba1} evidence={data.evidence} />
+
+<GuideImage slot={data.images.ficha} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Paso 2: pedir las piezas" part="Hacer">
+
+Cada pieza sale para un <Term id="canal">canal</Term> y un público: el anuncio, para un <Term id="publico-frio">público frío</Term> que no conoce la tienda; el mensaje, para clientes que ya escribieron. Por eso el prompt recibe también el momento y el público de cada pieza.
+
+<PromptCard prompt={data.prompts.piezas} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Hacer">
+
+Antes de leer el análisis, prueba tú: junto a cada texto, busca en la ficha cada dato que lleva.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.primerResultado} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 3: contrastar cada pieza con la ficha" part="Evaluar y mejorar">
+
+La matriz tiene una fila por dato y una columna por pieza; cada celda dice si coincide, si falla o si ese dato no debe aparecer ahí. Esta es la del primer resultado.
+
+<ComparisonTable table={data.comparisons.matriz} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.matriz} />
+
+Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que se usa igual con todas las piezas.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<Rubric data={data.rubric} />
+
+Si prefieres una primera pasada de la IA, este prompt rellena la matriz, señala cada diferencia y puntúa con los mismos cinco criterios.
+
+<PromptCard prompt={data.prompts.contraste} proof={data.images.prueba3} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 4: corregir solo lo señalado" part="Evaluar y mejorar">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.ajuste} proof={data.images.prueba4} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="Las piezas después del ajuste" part="Evaluar y mejorar">
+
+<ResultBlock data={data.improvedResult} />
+
+<GuideImage slot={data.images.final} />
+
+</GuideSection>
+
+<GuideSection id="medicion" title="Paso 5: decidir cómo medirás, antes de lanzar" part="Medir">
+
+Sin un plan, una campaña termina en una impresión: «creo que vendió más». Antes de lanzar, escribe qué vas a contar, con qué lo vas a comparar y qué harás según el resultado. Lo último ya está en tu ficha, en «Qué decidiré al cerrar».
+
+Un <Term id="indicador">indicador</Term> es una cifra que sale de un registro, no de la memoria. Elige pocos.
+
+Para compararlo usa una <Term id="linea-de-base">línea de base</Term>: un período anterior de la misma duración. Compara por día abierto y no por total: con un día menos, un período parece peor sin serlo. Anota también lo distinto de esos días, como un cierre o otra promoción.
+
+<Callout variant="simple">
+
+Medir antes es como fijar la meta antes de correr: si la mueves después de ver el tiempo, ya no mide nada.
+
+</Callout>
+
+La palabra clave cuenta solo a quien la dice, así que es una señal y no un total. Y con dos semanas y un solo local, ninguna cifra permite afirmar que la campaña causó el cambio: el plan sirve para decidir con más información.
+
+<ComparisonTable table={data.comparisons.medicion} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.medicion} />
+
+Este prompt arma el plan a partir de tu ficha y de lo que puedes contar.
+
+<PromptCard prompt={data.prompts.medicion} proof={data.images.prueba5} evidence={data.evidence} />
+
+Para leer las cifras con más cuidado al cerrar, sigue con [Analizar ventas con IA](/analisis/guias/analizar-ventas-con-ia).
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que rompen una campaña" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Paso 6: lo que verificas tú antes de publicar" part="Verificar y aplicar">
+
+Un <Term id="dato-personal">dato personal</Term>, una fecha o una condición mal copiada son fáciles de pasar por alto. Esta lista es solo tuya.
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de lanzar: registrar y decidir" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Para decidir qué día sale cada pieza según tu tiempo, sigue con [Crear un calendario de contenido con IA](/marketing/guias/calendario-de-contenido-con-ia).
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>

@@ -1,13 +1,12 @@
 import type { MetadataRoute } from "next";
-
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
+import { siteName, siteTagline } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${siteName} — Herramientas, prompts y noticias de IA en español`,
+    name: `${siteName} — ${siteTagline}`,
     short_name: siteName,
     description:
-      "Directorio de herramientas de inteligencia artificial, biblioteca de prompts y contenido en español.",
+      "Guías paso a paso para resolver con inteligencia artificial tareas reales de microempresas y emprendedores.",
     start_url: "/",
     display: "standalone",
     background_color: "#0a0a0a",

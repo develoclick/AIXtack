@@ -1,8 +1,12 @@
-import type { CategorySummary, PostDetail, PromptDetail, ProfessionSummary, ToolDetail } from "@/lib/types";
-import { toDate } from "@/lib/utils/format";
+import { getAuthor } from "@/content/autores";
+import { getCategory } from "@/content/categorias";
+import { guidePath } from "@/lib/guides/constants";
+import { heroImageOf } from "@/lib/guides/images";
+import { mediaExists } from "@/lib/guides/media";
+import type { Guide, GuideSummary } from "@/lib/guides/types";
+import { siteName, siteTagline, siteUrl } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
+const absolute = (path: string) => new URL(path, siteUrl).toString();
 
 export function organizationJsonLd() {
   return {
@@ -10,9 +14,8 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: siteName,
     url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
-    description:
-      "Guía Prompts IA es la plataforma en español para descubrir herramientas de inteligencia artificial, prompts profesionales por sector y contenido educativo sobre IA.",
+    logo: absolute("/logo.png"),
+    description: `${siteName}: ${siteTagline.toLowerCase()}. Guías paso a paso para resolver tareas reales de un pequeño negocio con inteligencia artificial.`,
   };
 }
 
@@ -22,11 +25,7 @@ export function websiteJsonLd() {
     "@type": "WebSite",
     name: siteName,
     url: siteUrl,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteUrl}/buscar?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
+    inLanguage: "es",
   };
 }
 
@@ -38,121 +37,76 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: new URL(item.path, siteUrl).toString(),
+      item: absolute(item.path),
     })),
   };
 }
 
-export function articleJsonLd(post: PostDetail) {
+/** URL absoluta de la imagen hero de la guía, solo si el archivo existe en public/. */
+export function guideHeroUrl(guide: Guide): string | undefined {
+  const image = heroImageOf(guide.data);
+  return image && mediaExists(image.src) ? absolute(image.src) : undefined;
+}
+
+export function guideArticleJsonLd(guide: Guide) {
+  const author = getAuthor(guide.data.metadata.author);
+  const category = getCategory(guide.category);
+  const image = guideHeroUrl(guide);
+
   return {
     "@context": "https://schema.org",
-    "@type": post.type === "NEWS" ? "NewsArticle" : "Article",
-    headline: post.title,
-    description: post.seoDescription ?? post.excerpt ?? undefined,
-    image: post.ogImage ?? post.coverImageUrl ?? undefined,
-    datePublished: post.publishedAt ? toDate(post.publishedAt).toISOString() : undefined,
-    author: { "@type": "Person", name: post.author.name ?? siteName },
-    publisher: {
-      "@type": "Organization",
-      name: siteName,
-      logo: { "@type": "ImageObject", url: `${siteUrl}/logo.png` },
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    inLanguage: "es",
+    articleSection: category?.name,
+    image,
+    datePublished: guide.publishedAt ?? undefined,
+    dateModified: guide.updatedAt,
+    author: author ? { "@type": author.type, name: author.name } : undefined,
+    publisher: { "@type": "Organization", name: siteName, logo: { "@type": "ImageObject", url: absolute("/logo.png") } },
+    mainEntityOfPage: absolute(guidePath(guide)),
+  };
+}
+
+/**
+ * VideoObject SOLO con un video real y publicado: id de YouTube, fecha de subida y miniatura
+ * existente. Sin video real devuelve null (los datos estructurados deben coincidir con lo visible).
+ */
+export function guideVideoJsonLd(guide: Guide) {
+  const video = guide.data.video;
+  if (!video || video.status !== "published" || !video.youtubeId || !video.uploadDate || !video.thumbnail) return null;
+  if (!mediaExists(video.thumbnail.src)) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: absolute(video.thumbnail.src),
+    uploadDate: video.uploadDate,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${video.youtubeId}`,
+    inLanguage: "es",
+  };
+}
+
+/** Página de listado (hub de categoría o biblioteca) con las guías que contiene. */
+export function collectionPageJsonLd(input: { name: string; description: string; path: string; guides: GuideSummary[] }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: input.name,
+    description: input.description,
+    url: absolute(input.path),
+    inLanguage: "es",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: input.guides.map((guide, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: guide.title,
+        url: absolute(guidePath(guide)),
+      })),
     },
-    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
-  };
-}
-
-export function softwareApplicationJsonLd(tool: ToolDetail) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: tool.name,
-    description: tool.seoDescription ?? tool.description,
-    applicationCategory: tool.category?.name ?? "AI Application",
-    offers: tool.pricingFrom
-      ? {
-          "@type": "Offer",
-          price: tool.pricingFrom,
-          priceCurrency: tool.currency,
-        }
-      : undefined,
-    aggregateRating:
-      tool.reviewCount > 0
-        ? {
-            "@type": "AggregateRating",
-            ratingValue: tool.rating,
-            reviewCount: tool.reviewCount,
-          }
-        : undefined,
-  };
-}
-
-export function faqPageJsonLd(items: { question: string; answer: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
-    })),
-  };
-}
-
-export function promptCreativeWorkJsonLd(prompt: PromptDetail) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: prompt.title,
-    description: prompt.seoDescription ?? prompt.description ?? undefined,
-    about: prompt.useCase ?? undefined,
-    keywords: prompt.targetModels.join(", ") || undefined,
-    mainEntityOfPage: `${siteUrl}/prompts/${prompt.slug}`,
-  };
-}
-
-export function professionsItemListJsonLd(professions: ProfessionSummary[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: professions.map((profession, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: profession.name,
-      url: `${siteUrl}/prompts/profesiones/${profession.slug}`,
-    })),
-  };
-}
-
-export function professionCollectionPageJsonLd(profession: ProfessionSummary) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: profession.seoTitle,
-    description: profession.seoDescription,
-    url: `${siteUrl}/prompts/profesiones/${profession.slug}`,
-  };
-}
-
-export function alternativesItemListJsonLd(tool: ToolDetail, alternatives: { name: string; slug: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: `Alternativas a ${tool.name}`,
-    itemListElement: alternatives.map((alt, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: alt.name,
-      url: `${siteUrl}/herramientas-ia/${alt.slug}`,
-    })),
-  };
-}
-
-export function categoryCollectionPageJsonLd(category: CategorySummary) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: category.seoTitle ?? category.name,
-    description: category.seoDescription ?? category.description ?? undefined,
-    url: `${siteUrl}/categoria/${category.slug}`,
   };
 }

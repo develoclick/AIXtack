@@ -1,0 +1,203 @@
+import data from "./data";
+
+<GuideSection id="problema" title="Tienes una idea de promoción, pero no sabes si te deja ganancia" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+No hace falta experiencia previa: cada término se explica al usarlo, y un <Term id="asistente-ia">asistente de IA</Term> es solo un programa con el que conversas por escrito.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: Café Mirador y sus mañanas vacías" part="Entender el problema">
+
+El negocio es inventado, como indica su tarjeta: sus cifras sirven para practicar las cuentas.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Tres cuentas que haces tú" part="Preparar">
+
+Para saber si una promoción te conviene necesitas conocer tu <Term id="margen">margen</Term>. Estas tres cuentas son la base del método.
+
+<Callout variant="calculos" title="La hoja calcula, la IA propone, tú decides">
+
+Cada cifra que decida algo sale de tu hoja de cálculo. Lo que la IA calcule es una propuesta que se contrasta antes de usarla.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se pide normalmente, y qué falla" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Antes de abrir la IA: los datos que necesitas" part="Preparar">
+
+<DataPreparation data={data.dataPreparation} />
+
+<GuideImage slot={data.images.datos} />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: seis pasos, con la IA en cuatro" part="Hacer">
+
+Marca cada paso al terminarlo; el avance se guarda solo en este navegador.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="hoja" title="Paso 2: armar tu hoja de cálculo" part="Hacer">
+
+Una <Term id="hoja-de-calculo">hoja de cálculo</Term> hará las tres cuentas cada vez que cambies un precio. Constrúyela con este prompt, que solo recibe la descripción de tus columnas, o copia la calculadora que viene después. Un <Term id="prompt">prompt</Term> es el mensaje que le escribes a la IA; los huecos entre llaves, como `{{COLUMNAS}}`, son <Term id="variable">variables</Term> que rellenas con tus datos.
+
+<Callout variant="simple">
+
+Un prompt es como el encargo que le das a un empleado nuevo: cuanto más claro, menos tiene que adivinar.
+
+</Callout>
+
+<PromptCard prompt={data.prompts.formulas} proof={data.images.prueba1} evidence={data.evidence} />
+
+<ComparisonTable table={data.comparisons.hoja} eyebrow="Ejemplo generado" />
+
+Con «Copiar como tabla» pegas esta calculadora en la celda A1 de una hoja nueva y ya calcula: cambia los números por los tuyos.
+
+<ComparisonTable table={data.comparisons.calculadora} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.hoja} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Paso 3: pedir cuatro promociones distintas" part="Hacer">
+
+Este prompt pide ideas, no cifras: los cálculos los haces tú en la hoja.
+
+<PromptCard prompt={data.prompts.alternativas} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Hacer">
+
+Fíjate en lo que no hay: ninguna cifra y dos datos pendientes.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.alternativas} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 4: pedir las cuentas y contrastarlas con tu hoja" part="Contrastar y decidir">
+
+Pide las cifras con este prompt y reproduce la tabla en tu hoja: así sabrás si la IA se equivocó.
+
+<PromptCard prompt={data.prompts.cuentas} proof={data.images.prueba3} evidence={data.evidence} />
+
+<ComparisonTable table={data.comparisons.cuentasIA} eyebrow="Ejemplo generado" />
+
+Una <Term id="rubrica">rúbrica</Term> es una lista de criterios con puntaje que se aplica siempre igual.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.cuentas} />
+
+<Rubric data={data.rubric} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 5: decidir con tus cifras" part="Contrastar y decidir">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.decision} proof={data.images.prueba4} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="La recomendación con tus cifras" part="Contrastar y decidir">
+
+<ResultBlock data={data.improvedResult} />
+
+<GuideImage slot={data.images.decision} />
+
+</GuideSection>
+
+<GuideSection id="ejemplos" title="Tres negocios, las mismas tres cuentas" part="Comparar y ampliar">
+
+El método no cambia; cambia la canasta. Los negocios siguientes son ficticios.
+
+<ExamplesSection examples={data.examples} />
+
+</GuideSection>
+
+<GuideSection id="comparativa" title="Qué tipo de promoción elegir según tu objetivo" part="Comparar y ampliar">
+
+<ComparisonTable table={data.comparisons.tipos} />
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que te hacen perder dinero con una promoción" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Antes de lanzar: lo que verificas tú" part="Verificar y aplicar">
+
+Un <Term id="dato-inventado">dato inventado</Term> o una cuenta mal hecha se ven igual de seguros que una correcta.
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de lanzar: medir y aprender" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no hace" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Cuando la oferta esté decidida, [Crear anuncios para tu negocio con IA](/marketing/guias/crear-anuncios-con-ia) enseña a comunicarla, y [Crear afiches con IA](/marketing/guias/crear-afiches-con-ia), a llevarla a un cartel.
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas frecuentes" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>

@@ -1,25 +1,27 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { PhotoCredit } from "@/components/shared/photo-credit";
-import type { ImageAsset } from "@/lib/images";
 
-function HeadingText({
+export function SectionHeading({
   eyebrow,
   title,
   description,
-  align,
+  align = "left",
+  as: Tag = "h2",
+  className,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
-  align: "left" | "center";
+  align?: "left" | "center";
+  /** Nivel del encabezado: h1 en páginas cuyo título principal es este bloque. */
+  as?: "h1" | "h2";
+  className?: string;
 }) {
   return (
-    <>
+    <div className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}>
       {eyebrow && (
         <span
           className={cn(
-            "inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-brand",
+            "inline-flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-brand",
             align === "center" && "justify-center"
           )}
         >
@@ -27,9 +29,9 @@ function HeadingText({
           {eyebrow}
         </span>
       )}
-      <h2 className="text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem]">
+      <Tag className="text-display-md text-balance">
         {title}
-      </h2>
+      </Tag>
       {description && (
         <p
           className={cn(
@@ -40,49 +42,6 @@ function HeadingText({
           {description}
         </p>
       )}
-    </>
-  );
-}
-
-export function SectionHeading({
-  eyebrow,
-  title,
-  description,
-  align = "left",
-  className,
-  image,
-}: {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  align?: "left" | "center";
-  className?: string;
-  /** Imagen contextual opcional — solo se usa en secciones donde aporta valor real. */
-  image?: ImageAsset;
-}) {
-  if (!image) {
-    return (
-      <div className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}>
-        <HeadingText eyebrow={eyebrow} title={title} description={description} align={align} />
-      </div>
-    );
-  }
-
-  return (
-    <div className={cn("flex flex-col-reverse items-center gap-8 sm:flex-row sm:justify-between", className)}>
-      <div className={cn("flex flex-col gap-4", align === "center" && "items-center text-center")}>
-        <HeadingText eyebrow={eyebrow} title={title} description={description} align={align} />
-      </div>
-      <div className="shrink-0">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={112}
-          height={112}
-          className="size-24 rounded-2xl object-cover shadow-soft sm:size-28"
-        />
-        <PhotoCredit credit={image.credit} className="mt-2 text-center text-[11px] text-muted-foreground" />
-      </div>
     </div>
   );
 }

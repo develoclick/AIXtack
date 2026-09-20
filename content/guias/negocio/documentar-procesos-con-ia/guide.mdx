@@ -1,0 +1,210 @@
+import data from "./data";
+
+<GuideSection id="problema" title="Lo sabes hacer, pero solo tú, y no está escrito en ningún sitio" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, te basta con la tarea y un documento donde guardarla: cada término se explica al aparecer.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar, y para quién es esta guía" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: una tienda online y un ayudante que empieza el lunes" part="Entender el problema">
+
+Seguiremos a un negocio inventado, como indica su tarjeta. Sus pedidos, herramientas y respuestas también lo son.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Cuatro ideas para escribir un proceso que otra persona pueda seguir" part="Preparar">
+
+<Callout variant="simple">
+
+Un <Term id="procedimiento">procedimiento</Term> no es un resumen de lo que haces: es lo que otra persona necesita para hacerlo igual que tú sin preguntarte. Si tiene que preguntar, falta algo por escribir.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se suele pedir, y por qué sale un manual que nadie usa" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+<ComparisonTable table={data.comparisons.ingenuo} eyebrow="Ejemplo ilustrativo" />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Paso 1: elegir un proceso y recorrerlo una vez" part="Preparar">
+
+Empieza por definir el proceso en una ficha, para acotarlo: dónde empieza y dónde termina. El <Term id="disparador">disparador</Term>, lo que lo pone en marcha, es el primer dato.
+
+<ComparisonTable table={data.comparisons.ficha} eyebrow="Plantilla para copiar" />
+
+<DataPreparation data={data.dataPreparation} />
+
+El recorrido es lo que más se salta. Elige un caso real, hazlo como siempre y anota lo que haces sin corregirte. Las notas saldrán cortas: lo que haces sin pensar no queda anotado.
+
+<ComparisonTable table={data.comparisons.recorrido} eyebrow="Ejemplo ilustrativo" />
+
+<GuideImage slot={data.images.recorrido} />
+
+Cuida lo que compartes con la IA. Las notas describen pasos, no personas: di «el cliente» y no pegues nunca contraseñas. Un <Term id="dato-personal">dato personal</Term> no hace falta para documentar un proceso.
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: siete pasos, con la IA en cuatro" part="Preparar">
+
+Marca cada paso cuando lo completes: el avance se guarda solo en este navegador.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="entrevista" title="Paso 2: que la IA te entreviste" part="Extraer el proceso">
+
+Un <Term id="prompt">prompt</Term> es lo que le escribes a la IA para pedirle algo, y lo que va entre llaves, como `{{PROCESO}}`, es una <Term id="variable">variable</Term>: la rellenas con tus datos. Este prompt no escribe nada: pregunta, una cosa cada vez y sin proponerte pasos, para que aparezca lo que haces sin pensar.
+
+<PromptCard prompt={data.prompts.entrevista} proof={data.images.prueba1} evidence={data.evidence} />
+
+Así puede verse el resultado de la entrevista con Lucía. Lo que no sabe queda marcado como pendiente.
+
+<ComparisonTable table={data.comparisons.respuestas} eyebrow="Ejemplo generado" />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Paso 3: pedir el procedimiento con tus respuestas" part="Extraer el proceso">
+
+Con la tabla de la entrevista pegada, este prompt ordena lo que dijiste y no aporta nada suyo. Cada paso lleva un lugar, una señal y, si corresponde, una <Term id="excepcion">excepción</Term>.
+
+<PromptCard prompt={data.prompts.procedimiento} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Extraer el proceso">
+
+Léelo con las respuestas de la entrevista al lado: cada paso sale de una de ellas.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.primerResultado} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 4: contrastar cada paso con lo que dijiste" part="Contrastar y corregir">
+
+Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que se usa igual con cada procedimiento. Contrastar es buscar, para cada paso, lo que respondiste y leer si el paso dice lo mismo o menos. Aquí se puntúa el ejemplo.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.contraste} />
+
+<Rubric data={data.rubric} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 4, segunda vuelta: corregir solo lo señalado" part="Contrastar y corregir">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.ajuste} proof={data.images.prueba3} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="El procedimiento después del ajuste" part="Contrastar y corregir">
+
+<ResultBlock data={data.improvedResult} />
+
+Con estos tres cambios, el procedimiento dice lo mismo que la entrevista. Todavía no está probado.
+
+</GuideSection>
+
+<GuideSection id="adaptacion" title="Paso 5: la versión para quien empieza" part="Probar con otra persona">
+
+Para la prueba conviene una hoja corta que se pueda seguir con las manos ocupadas. Este prompt la prepara sin cambiar ningún paso: si cambiara alguno, la prueba comprobaría otra cosa.
+
+<PromptCard prompt={data.prompts.checklist} proof={data.images.prueba4} evidence={data.evidence} />
+
+<ComparisonTable table={data.comparisons.checklist} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.checklist} />
+
+</GuideSection>
+
+<GuideSection id="medicion" title="Paso 6: probarlo con otra persona" part="Probar con otra persona">
+
+Esta parte la haces tú. Entrega la hoja corta a alguien que no conozca la tarea, con acceso a lo que necesita, y observa. Ocho reglas evitan que la prueba te engañe:
+
+1. Elige a alguien que de verdad no sepa hacer la tarea.
+2. Dale solo la versión para quien empieza, no el procedimiento ni tus notas.
+3. No le expliques nada. Si pregunta, anota la pregunta y no la respondas.
+4. Anota dónde duda, dónde se equivoca y cuánto se detiene.
+5. No lo interrumpas salvo que vaya a hacer algo irreversible, como enviar algo al cliente.
+6. Al terminar, comprueba el resultado con la señal de «Terminé cuando».
+7. Corrige el procedimiento donde se trabó, no a la persona.
+8. Antes de empezar, decide qué te haría repetir la prueba (por ejemplo, que se trabe en varios pasos) y no lo cambies después.
+
+<ComparisonTable table={data.comparisons.prueba} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.registro} />
+
+Cuando termine, cada fila con «no» o con una duda es un cambio: un paso que faltaba, una señal poco clara o una excepción sin escribir. Puedes reutilizar el prompt de ajuste del paso 4, con lo observado como problemas detectados. El paso 7 es guardar la versión corregida, con su fecha, a la vista de todos.
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que dejan un procedimiento inservible" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Lo que verificas tú antes de darlo por bueno" part="Verificar y aplicar">
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de la primera prueba: mantenerlo vivo" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Si además tienes una lista de cosas por hacer, [Organizar las tareas de tu negocio con IA](/negocio/guias/organizar-tareas-del-negocio-con-ia) te ayuda a decidir cuáles documentar primero. Y para las consultas que llegan por mensaje, [Responder consultas de clientes con IA](/clientes/guias/responder-consultas-de-clientes-con-ia) usa una base escrita parecida.
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>

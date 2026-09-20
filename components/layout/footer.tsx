@@ -1,48 +1,52 @@
 import Link from "next/link";
 import { footerNav } from "@/lib/nav-config";
+import { siteName, siteTagline } from "@/lib/site";
+import { AuroraRibbon } from "@/components/visual/aurora-ribbon";
 
+/** Pie de página: franja de tinta con el nombre del sitio en grande, columnas de navegación y línea legal. */
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t bg-muted/20">
-      <div aria-hidden className="absolute inset-0 -z-10 bg-grid-fade opacity-60" />
+    <footer className="dark relative isolate overflow-hidden bg-ink text-foreground">
+      <AuroraRibbon soft className="-bottom-40 left-[-10%] -z-10 h-[26rem] w-[120%]" />
+      <div aria-hidden className="bg-lines-dark absolute inset-0 -z-10 opacity-60" />
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+      <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6 lg:px-8 lg:pt-20">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
-            <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
-              <span className="text-lg">Guía Prompts IA</span>
+            <Link href="/" className="text-xl font-semibold tracking-tight">
+              {siteName}
             </Link>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-              La plataforma en español para descubrir herramientas de inteligencia artificial,
-              prompts, comparativas y las últimas noticias del sector.
+            <p className="mt-4 text-sm leading-relaxed text-foreground/70">
+              {siteTagline}: guías paso a paso para resolver con inteligencia artificial las tareas reales de tu negocio.
             </p>
           </div>
 
           {footerNav.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                {group.title}
-              </h3>
+            <nav key={group.title} aria-label={group.title}>
+              <h2 className="font-mono text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-brand">{group.title}</h2>
               <ul className="mt-5 flex flex-col gap-3">
                 {group.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="group inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      <span className="transition-transform group-hover:translate-x-0.5">{link.label}</span>
+                    <Link href={link.href} className="link-draw text-sm text-foreground/70 transition-colors hover:text-foreground">
+                      {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t pt-8 text-xs text-muted-foreground sm:flex-row">
-          <p>© {year} Guía Prompts IA. Todos los derechos reservados.</p>
+        <p aria-hidden className="numeral-soft mt-14 select-none overflow-hidden whitespace-nowrap text-[clamp(3rem,13vw,10.5rem)] tracking-[-0.05em]">
+          {siteName}
+        </p>
+
+        <div className="mt-6 border-t border-white/10 pt-6 text-xs text-foreground/60">
+          <p>
+            © {year} {siteName}. Todos los derechos reservados.
+          </p>
         </div>
       </div>
     </footer>

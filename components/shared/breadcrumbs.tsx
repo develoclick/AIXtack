@@ -21,7 +21,7 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
           return (
-            <li key={item.path} className="flex items-center gap-1.5">
+            <li key={item.path} className="flex min-w-0 max-w-full items-center gap-1.5">
               {isLast ? (
                 <span className="truncate font-medium text-foreground" aria-current="page">
                   {item.name}

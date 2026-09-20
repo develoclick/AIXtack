@@ -1,46 +1,39 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ConsentProvider } from "@/providers/consent-provider";
-import { Toaster } from "@/components/ui/sonner";
 import { AdsenseLoader } from "@/components/ads/adsense-loader";
+import { AnalyticsLoader } from "@/components/analytics/analytics-loader";
+import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { siteName, siteTagline, siteUrl } from "@/lib/site";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
+// Metropolis (paquete @fontsource/metropolis, licencia Unlicense): se sirve desde nuestro dominio, sin pedir nada a Google.
+const metropolis = localFont({
+  variable: "--font-metropolis",
+  display: "swap",
+  src: [
+    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-700-normal.woff2", weight: "700", style: "normal" },
+    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-800-normal.woff2", weight: "800", style: "normal" },
+  ],
 });
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
-
-const siteName =
-  process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} — Inteligencia Artificial en español`,
+    default: `${siteName} — ${siteTagline}`,
     template: `%s · ${siteName}`,
   },
   description:
-    "La plataforma en español para descubrir herramientas de IA, prompts, tutoriales, comparativas y noticias del sector.",
+    "Guías paso a paso para resolver con inteligencia artificial tareas reales de tu negocio: anuncios, promociones, clientes, precios, análisis y organización.",
   applicationName: siteName,
   verification: {
     google: "B3ClaGnGqP20qsHVIDjZGAi4T6DsIOG1BmrL1Kv9NUQ",
-  },
-  alternates: {
-    types: {
-      "application/rss+xml": [
-        {
-          url: "/feed.xml",
-          title: `${siteName} — Feed RSS`,
-        },
-      ],
-    },
   },
 };
 
@@ -59,47 +52,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="es"
-      suppressHydrationWarning
-      className={`${plusJakartaSans.variable} h-full antialiased`}
-    >
+    <html lang="es" suppressHydrationWarning className={`${metropolis.variable} h-full antialiased`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd()),
-          }}
-        />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteJsonLd()),
-          }}
-        />
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
       </head>
 
       <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ConsentProvider>
             {children}
 
-            <Toaster
-              richColors
-              position="bottom-right"
-            />
-
             <AdsenseLoader />
+            <AnalyticsLoader />
           </ConsentProvider>
         </ThemeProvider>
-
-        <GoogleAnalytics gaId="G-H25PR3Y1LL" />
       </body>
     </html>
   );

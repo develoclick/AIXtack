@@ -1,0 +1,197 @@
+import data from "./data";
+
+<GuideSection id="problema" title="Crees saber cómo son tus competidores, pero no sabes de dónde lo sabes" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, te basta con acceso a las webs y redes de tus competidores: cada término se explica al aparecer. Un <Term id="dato-inventado">dato inventado</Term> es el riesgo principal de esta guía.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: un gimnasio de barrio y tres vecinos" part="Entender el problema">
+
+Seguiremos a un negocio inventado, como indica su tarjeta. Los tres gimnasios que investiga también lo son: no describen ningún negocio real.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Cuatro ideas para investigar sin engañarte" part="Preparar">
+
+<Callout variant="simple">
+
+Una <Term id="evidencia">evidencia</Term> es un dato con su fuente y su fecha de consulta. Con eso puedes volver a abrir la fuente y comprobarlo; sin eso, solo tienes una impresión.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se suele pedir, y por qué inventa" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+<ComparisonTable table={data.comparisons.ingenuo} eyebrow="Ejemplo ilustrativo" />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Paso 1: la decisión, los negocios y los tipos de dato" part="Preparar">
+
+Escribe primero qué vas a decidir y con qué negocios te comparan tus clientes. Después reúne lo que ya sabes de ti mismo: tu negocio va en la misma ficha que los demás.
+
+<Callout variant="fuentes">
+
+Los datos sobre tus competidores los aportas tú, con su fuente y su fecha. La IA no aporta ninguno: solo los ordena, los revisa y propone hipótesis, y lo que ella «recuerde» de esos negocios queda fuera.
+
+</Callout>
+
+<DataPreparation data={data.dataPreparation} />
+
+No todos los datos pesan lo mismo. Esta guía usa cinco tipos y cada fila de la ficha lleva el suyo.
+
+<ComparisonTable table={data.comparisons.tipos} eyebrow="Plantilla para copiar" />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: siete pasos, con la IA en cuatro" part="Preparar">
+
+Tacha cada paso al terminarlo: tu avance no sale de este navegador.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="entrevista" title="Pasos 2 y 3: el plan y la ficha de evidencia" part="Planificar y reunir">
+
+Un <Term id="prompt">prompt</Term> es lo que le escribes a la IA para pedirle algo, y lo que va entre llaves, como `{{NEGOCIO}}`, es una <Term id="variable">variable</Term>: la rellenas con tus datos. Este primero recibe solo tu decisión y los nombres de tus competidores, sin ningún dato de ellos.
+
+<PromptCard prompt={data.prompts.plan} proof={data.images.prueba1} evidence={data.evidence} />
+
+Así puede verse el plan para el caso. Cada aspecto dice también lo que la investigación no podrá decirte.
+
+<ComparisonTable table={data.comparisons.plan} eyebrow="Ejemplo generado" />
+
+Con el plan en la mano, recorre las fuentes públicas tú mismo y anota cada dato en la ficha: qué viste, dónde, cuándo y de qué tipo es. Esta es la ficha del caso.
+
+<ComparisonTable table={data.comparisons.ficha} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.ficha} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Pasos 4 y 5: revisar la ficha y pedir la comparación" part="Revisar y comparar">
+
+Antes de comparar, se revisa la ficha. Este prompt señala las filas que no sostienen lo que parecen; no añade ni corrige datos.
+
+<PromptCard prompt={data.prompts.revision} proof={data.images.prueba2} evidence={data.evidence} />
+
+<ComparisonTable table={data.comparisons.revision} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.revision} />
+
+Con esas correcciones hechas (la fecha de la fila E09 y el tipo de la fila E12), la ficha está lista. El siguiente prompt compara usando solo esa ficha.
+
+<PromptCard prompt={data.prompts.sintesis} proof={data.images.prueba3} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Revisar y comparar">
+
+Léelo con la ficha al lado: cada dato tiene un id, y cada id se puede buscar en la ficha.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.primerResultado} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 6: contrastar la comparación con tu ficha" part="Contrastar y corregir">
+
+Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que se usa igual con cada análisis. Contrastar es buscar, para cada frase, la fila de la ficha que la respalda y leer si dice lo mismo o algo más fuerte. Aquí se puntúa el ejemplo.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.contraste} />
+
+<Rubric data={data.rubric} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 6, segunda vuelta: corregir solo lo señalado" part="Contrastar y corregir">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.ajuste} proof={data.images.prueba4} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="Las tres hipótesis después del ajuste" part="Contrastar y corregir">
+
+<ResultBlock data={data.improvedResult} />
+
+<GuideImage slot={data.images.final} />
+
+Ahora queda el paso 7. Las hipótesis son <Term id="diferenciacion">diferenciación</Term> posible, no probada: comprobarlas con tus clientes es lo que dice si Cima de verdad se diferencia.
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que hacen una investigación poco fiable" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Paso 7: lo que verificas tú antes de decidir" part="Verificar y aplicar">
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de la primera comparación: mantener la ficha" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Si además quieres mirar tus propias cifras, sigue con [Analizar tus ventas con IA sin tomar hipótesis por hechos](/analisis/guias/analizar-ventas-con-ia). Y cuando tengas claro en qué te diferencias, [Crear anuncios con IA](/marketing/guias/crear-anuncios-con-ia) te ayuda a comunicarlo.
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>

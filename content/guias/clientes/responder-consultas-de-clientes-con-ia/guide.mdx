@@ -1,0 +1,195 @@
+import data from "./data";
+
+<GuideSection id="problema" title="Las mismas preguntas, todos los días" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, te basta con saber qué ofrece tu negocio y a qué precio: el resto se explica al usarlo.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: un taller con una sola línea de WhatsApp" part="Entender el problema">
+
+Seguiremos a un solo negocio, inventado y así indicado en su tarjeta: sus precios, sus políticas y sus conversaciones sirven para enseñar el método.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Cuatro ideas para responder sin prometer de más" part="Preparar">
+
+<Callout variant="simple">
+
+Piensa en la base como en el cuaderno de instrucciones que le dejarías a quien atiende el teléfono su primer día: si algo no está ahí, se pregunta.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se suele pedir, y por qué es un riesgo" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Antes de abrir la IA: tus cuatro cosas" part="Preparar">
+
+Quita de los mensajes todo <Term id="dato-personal">dato personal</Term> antes de usarlos. Si ya armaste la ficha de la guía [Crear descripciones de productos con IA](/ventas/guias/crear-descripciones-de-productos-con-ia), la idea es la misma: una fuente de hechos propia.
+
+<DataPreparation data={data.dataPreparation} />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: siete pasos, con la IA en cinco" part="Preparar">
+
+Pon una marca en cada paso cuando lo termines; el avance se queda en este navegador y en ningún otro sitio.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="entrevista" title="Paso 2: escribir tu base de respuestas" part="Redactar">
+
+La base tiene una fila por consulta frecuente y tres columnas: lo que respondes, lo que cambia cada día y cuándo <Term id="escalar">escalas</Term> a una persona. Un <Term id="prompt">prompt</Term> es lo que le escribes a la IA para pedirle algo, y lo que va entre llaves, como `{{NEGOCIO}}`, es una <Term id="variable">variable</Term>: la rellenas con tus datos.
+
+<PromptCard prompt={data.prompts.base} proof={data.images.prueba1} evidence={data.evidence} />
+
+Así queda la base del taller. Se copia como tabla a una hoja.
+
+<ComparisonTable table={data.comparisons.base} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.base} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Paso 3: pedir el borrador" part="Redactar">
+
+Este prompt recibe tu base, los datos de hoy y la consulta, y devuelve un borrador con cuatro partes. Puedes dejar la conversación abierta y mandar consultas nuevas, actualizando solo los datos de hoy.
+
+<PromptCard prompt={data.prompts.borrador} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Redactar">
+
+Léelo primero como lo leería el cliente y después como quien tiene que responder por él, con la base al lado.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.primerResultado} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 4: contrastar con tu base" part="Evaluar y mejorar">
+
+Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que se usa igual con todos los borradores. Aquí se puntúa el del ejemplo.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.revision} />
+
+<Rubric data={data.rubric} />
+
+Si prefieres una primera pasada de la IA, este prompt compara cada dato con tu base y puntúa con los mismos cinco criterios.
+
+<PromptCard prompt={data.prompts.revision} proof={data.images.prueba3} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 5: corregir solo lo señalado" part="Evaluar y mejorar">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.ajuste} proof={data.images.prueba4} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="El borrador después del ajuste" part="Evaluar y mejorar">
+
+<ResultBlock data={data.improvedResult} />
+
+<GuideImage slot={data.images.final} />
+
+</GuideSection>
+
+<GuideSection id="adaptacion" title="Paso 6: llevarlo a otro canal" part="Adaptar y decidir">
+
+Un <Term id="canal">canal</Term> es el lugar por donde respondes. Un mismo mensaje pide otra forma en WhatsApp, en redes o en correo, pero los hechos no cambian.
+
+<PromptCard prompt={data.prompts.canal} proof={data.images.prueba5} evidence={data.evidence} />
+
+<ComparisonTable table={data.comparisons.correo} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.correo} />
+
+</GuideSection>
+
+<GuideSection id="comparativa" title="Qué prepara la IA y qué atiende una persona" part="Adaptar y decidir">
+
+Antes de pegar una consulta en el prompt, decide a qué tipo pertenece. La tabla se copia a una hoja.
+
+<ComparisonTable table={data.comparisons.tipos} eyebrow="Plantilla para copiar" />
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que cuestan clientes" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Paso 7: lo que verificas tú antes de enviar" part="Verificar y aplicar">
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de enviar: mantener la base viva" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Cuando el cliente pida un precio a medida, sigue con [Crear cotizaciones y propuestas con IA](/ventas/guias/crear-cotizaciones-y-propuestas-con-ia).
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>

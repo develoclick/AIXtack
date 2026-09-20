@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
+import { siteName, siteUrl } from "@/lib/site";
 
 export interface BuildMetadataInput {
   title: string;
@@ -10,42 +8,22 @@ export interface BuildMetadataInput {
   image?: string;
   type?: "website" | "article";
   noIndex?: boolean;
-  keywords?: string[];
-}
-
-export interface BuildListingMetadataInput {
-  title: string;
-  description: string;
-  path: string;
-  page: number;
-}
-
-/**
- * Para listados paginados sin filtros adicionales: cada página se indexa
- * con su propia canonical (Google dejó de usar rel=next/prev en 2019),
- * añadiendo el número de página al título a partir de la página 2.
- */
-export function buildListingMetadata(input: BuildListingMetadataInput): Metadata {
-  const path = input.page > 1 ? `${input.path}?page=${input.page}` : input.path;
-  return buildMetadata({
-    title: input.page > 1 ? `${input.title} — Página ${input.page}` : input.title,
-    description: input.description,
-    path,
-  });
+  /** Usa el título tal cual, sin el sufijo " · Guía Prompts IA" (solo la home). */
+  absoluteTitle?: boolean;
+  /** Solo para type "article": fechas reales y autoría. */
+  article?: { publishedTime?: string; modifiedTime: string; authors: string[] };
 }
 
 export function buildMetadata(input: BuildMetadataInput): Metadata {
   const url = new URL(input.path, siteUrl).toString();
   const image = input.image ?? `${siteUrl}/og-default.png`;
+  const type = input.type ?? "website";
 
   return {
-    title: input.title,
+    title: input.absoluteTitle ? { absolute: input.title } : input.title,
     description: input.description,
-    keywords: input.keywords?.length ? input.keywords : undefined,
     alternates: { canonical: url },
-    robots: input.noIndex
-      ? { index: false, follow: false }
-      : { index: true, follow: true },
+    robots: input.noIndex ? { index: false, follow: false } : { index: true, follow: true },
     openGraph: {
       title: input.title,
       description: input.description,
@@ -53,7 +31,14 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
       siteName,
       images: [{ url: image }],
       locale: "es_ES",
-      type: input.type ?? "website",
+      ...(type === "article" && input.article
+        ? {
+            type: "article" as const,
+            publishedTime: input.article.publishedTime,
+            modifiedTime: input.article.modifiedTime,
+            authors: input.article.authors,
+          }
+        : { type: "website" as const }),
     },
     twitter: {
       card: "summary_large_image",

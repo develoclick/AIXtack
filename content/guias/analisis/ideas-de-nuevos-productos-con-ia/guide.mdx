@@ -1,0 +1,221 @@
+import data from "./data";
+
+<GuideSection id="problema" title="Tienes ideas, pero ninguna viene con una prueba de que alguien la comprará" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, te basta con la lista de lo que tus clientes te piden: cada término se explica al aparecer.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: una panadería de barrio que quiere ofrecer algo nuevo" part="Entender el problema">
+
+Seguiremos a un negocio inventado, como indica su tarjeta. Sus clientes y lo que dicen también lo son: no describen a nadie real.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Cuatro ideas para pasar de la idea a la prueba" part="Preparar">
+
+<Callout variant="simple">
+
+Una <Term id="hipotesis">hipótesis</Term> es una idea que todavía no está comprobada. Si escribes «los clientes comprarían esto» como un hecho, dejas de buscar la respuesta; si la escribes como algo por comprobar, sabes qué hacer.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se suele pedir, y por qué sale una lista que no sirve" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+<ComparisonTable table={data.comparisons.ingenuo} eyebrow="Ejemplo ilustrativo" />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Paso 1: lo que dicen tus clientes y lo que puedes hacer" part="Preparar">
+
+Empieza por escribir qué vas a decidir. Después reúne, sin la IA, lo que tus clientes dijeron y lo que puedes hacer con lo que tienes.
+
+<Callout variant="fuentes">
+
+Todo lo que la IA sepa sobre demanda, tendencias o precios de otros negocios queda fuera de este trabajo. Los datos salen de tu ficha, y lo que no esté en ella se comprueba con una prueba, no con una respuesta escrita.
+
+</Callout>
+
+<DataPreparation data={data.dataPreparation} />
+
+La ficha guarda las palabras de tus clientes tal como las dijeron, con un id para citarlas, las veces y dónde las oíste. Interpretar viene después.
+
+<ComparisonTable table={data.comparisons.problemas} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.ficha} />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: siete pasos, con la IA en cuatro" part="Preparar">
+
+Al terminar un paso, márcalo: la marca vive solo en este navegador y nadie más la ve.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Paso 2: pedir hipótesis de producto a partir de la ficha" part="Generar hipótesis">
+
+Un <Term id="prompt">prompt</Term> es lo que le escribes a la IA para pedirle algo, y lo que va entre llaves, como `{{NEGOCIO}}`, es una <Term id="variable">variable</Term>: la rellenas con tus datos. Este prompt no pide «ideas» a secas: pide hipótesis que nazcan de tu ficha, y le prohíbe usar lo que sepa del mercado.
+
+<PromptCard prompt={data.prompts.ideas} proof={data.images.prueba1} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Generar hipótesis">
+
+Léelo con la ficha al lado: cada idea cita ids que puedes buscar en ella, y cada supuesto dice qué tendría que ser cierto.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.primerResultado} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 3: contrastar cada idea con tu ficha y con lo que puedes hacer" part="Contrastar y corregir">
+
+Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que se usa igual con cada lista. Contrastar es leer cada idea con la ficha y tu capacidad al lado: ¿esto lo dijeron mis clientes?, ¿lo puedo hacer?, ¿qué tendría que pasar? Aquí se puntúa el ejemplo.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.contraste} />
+
+<Rubric data={data.rubric} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 3, segunda vuelta: corregir solo lo señalado" part="Contrastar y corregir">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.ajuste} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="Las ideas después del ajuste" part="Contrastar y corregir">
+
+<ResultBlock data={data.improvedResult} />
+
+Con la tabla corregida, I3 cambió de fondo: ya no depende de producir sin gluten en una cocina no preparada, sino de revender pan de un proveedor que sí lo esté. Sigue siendo una hipótesis.
+
+</GuideSection>
+
+<GuideSection id="comparativa" title="Paso 4: puntuar las ideas con los mismos criterios" part="Elegir qué probar">
+
+Con seis ideas es fácil quedarse con la que más entusiasma. La matriz obliga a mirar las mismas cinco cosas en todas.
+
+<ComparisonTable table={data.comparisons.matriz} eyebrow="Plantilla para copiar" />
+
+El siguiente prompt aplica esa matriz a tus ideas. Fíjate en lo que no hace: no suma, no ordena y no dice cuál probar.
+
+<PromptCard prompt={data.prompts.filtro} proof={data.images.prueba3} evidence={data.evidence} />
+
+Así puede verse la puntuación de las ideas del caso.
+
+<ComparisonTable table={data.comparisons.puntuacion} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.matriz} />
+
+Cada puntuación tiene detrás un id de la ficha o una parte de tu capacidad, y por eso se puede discutir. El «Margen» es 1 en todas: la ficha no tiene costos, y la matriz manda usar 1 cuando falta un dato.
+
+Ahora decides tú. La dueña no elige la idea que más suma, sino I3: es la única que responde a P01 y su primera prueba no cuesta nada. Es su criterio y podría haber sido otro: quien no quiera tocar nada de salud puede empezar por I2. La matriz ordena la discusión; no la reemplaza.
+
+</GuideSection>
+
+<GuideSection id="medicion" title="Pasos 5 a 7: probar en el mundo real y decidir con lo ocurrido" part="Validar en el mundo real">
+
+<Callout variant="simple">
+
+La <Term id="validacion">validación</Term> es comprobar con personas reales que alguien quiere lo que imaginaste. Ni una tabla ni una IA pueden hacerlo por ti: lo hacen las respuestas de personas que no tienen por qué darte la razón.
+
+</Callout>
+
+Antes de abrir la IA, escribe qué resultado te haría seguir, cuál te haría parar y cuánto tiempo y dinero puedes gastar. Después pide el plan: el prompt no acepta umbrales que no sean tuyos.
+
+<PromptCard prompt={data.prompts.validacion} proof={data.images.prueba4} evidence={data.evidence} />
+
+Así puede verse el plan para la idea I3, con los criterios que fijó la dueña.
+
+<ComparisonTable table={data.comparisons.plan} eyebrow="Ejemplo generado" />
+
+Los pasos van de menos a más compromiso: se conversa, se comprueba si se puede cumplir, se abre una lista de espera y, solo al final, un primer encargo. Una <Term id="preventa">preventa</Term> puede probar demanda, pero cobrar algo que quizá no puedas entregar convierte una prueba en una deuda con tus clientes.
+
+<GuideImage slot={data.images.plan} />
+
+Anota cada resultado junto al criterio fijado antes. Esta plantilla está vacía a propósito: la prueba del caso no se ha realizado y no se inventan resultados.
+
+<ComparisonTable table={data.comparisons.registro} eyebrow="Plantilla para copiar" />
+
+Cuando termines, compara sin cambiar la vara. Si se cumplió el criterio de éxito, el siguiente paso es una prueba algo más grande, no una inversión completa. Si se cumplió a medias, cambia una sola cosa y repite una vez. Si llegaste al criterio de parada, para: descartar una idea con una prueba de tres semanas es un buen resultado.
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que hacen una prueba poco útil" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Lo que verificas tú antes de invertir" part="Verificar y aplicar">
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de la primera prueba: convertirla en una rutina" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Si tu idea pasa la prueba, el paso que sigue es el precio: [Definir precios y márgenes con IA](/ventas/guias/definir-precios-y-margenes-con-ia). Para saber qué dicen tus clientes de lo que ya vendes, está [Analizar opiniones de clientes con IA](/clientes/guias/analizar-opiniones-de-clientes-con-ia), y para ver qué ofrecen otros negocios parecidos, [Investigar competidores con IA](/analisis/guias/investigar-competidores-con-ia).
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>

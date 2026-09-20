@@ -1,36 +1,15 @@
 import type { NextConfig } from "next";
-import redirectsData from "./content/redirects.json";
-
-interface RedirectEntry {
-  fromPath: string;
-  toPath: string;
-  statusCode?: number;
-}
+import createMDX from "@next/mdx";
+import { activeRedirects } from "./lib/guides/redirects";
 
 const nextConfig: NextConfig = {
-  images: {
-    // Todas las ilustraciones SVG son propias y estáticas (public/images/),
-    // sin contenido de terceros ni scripts embebidos — seguro habilitar la
-    // optimización de SVG con la CSP restrictiva que recomienda Next.js.
-    dangerouslyAllowSVG: true,
-    contentDispositionType: "attachment",
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    remotePatterns: [
-      // Fotos reales de Unsplash usadas como imagen principal de las cards
-      // (hotlinking directo a su CDN, tal como exige su licencia/API).
-      { protocol: "https", hostname: "images.unsplash.com" },
-    ],
-  },
   async redirects() {
-    // Redirecciones para URLs legadas o slugs renombrados: se editan
-    // directamente en content/redirects.json (sin base de datos ni panel
-    // de administración) y se aplican en cada build.
-    return (redirectsData as RedirectEntry[]).map((redirect) => ({
-      source: redirect.fromPath,
-      destination: redirect.toPath,
-      permanent: (redirect.statusCode ?? 301) === 301,
-    }));
+    // 301 decididas URL por URL en content/redirects.ts. Las que apuntan a una guía solo
+    // se activan cuando esa guía está publicada; mientras tanto la URL antigua responde 410.
+    return activeRedirects();
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);

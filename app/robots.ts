@@ -1,16 +1,11 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
-
+// Sin Disallow: las URLs retiradas responden 410 y Google solo puede confirmar que
+// desaparecieron si puede rastrearlas, así que no se bloquean aquí.
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/go/", "/buscar"],
-      },
-    ],
+    rules: { userAgent: "*", allow: "/" },
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

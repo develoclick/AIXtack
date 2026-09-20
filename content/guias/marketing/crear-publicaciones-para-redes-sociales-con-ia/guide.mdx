@@ -1,0 +1,203 @@
+import data from "./data";
+
+<GuideSection id="problema" title="Por qué las publicaciones con IA suenan a cualquiera" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, no necesitas saber nada: cada término se explica la primera vez y todos están en el glosario final.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: una peluquería con dos días flojos" part="Entender el problema">
+
+Seguiremos un solo negocio, inventado y así indicado en su tarjeta: sus datos, textos y respuestas de la IA enseñan el método, no son resultados reales.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Siete decisiones que la IA no puede tomar por ti" part="Preparar">
+
+Un <Term id="brief">brief</Term> reúne esas decisiones en una hoja. El <Term id="formato">formato</Term> es la forma de la publicación, y la <Term id="llamada-a-la-accion">llamada a la acción</Term>, lo que le pides hacer a quien la lee.
+
+<Callout variant="simple">
+
+Un brief es como la nota que le dejas a quien te cubre en el local: qué hacer, para quién y qué no tocar.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se pide normalmente, y qué falla" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Antes de abrir la IA: tus datos y tu brief" part="Preparar">
+
+<DataPreparation data={data.dataPreparation} />
+
+La plantilla siguiente es el recurso central: los mismos siete campos. Con «Copiar como tabla» la pegas en una hoja de cálculo y la completas ahí.
+
+<ComparisonTable table={data.comparisons.brief} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.brief} />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: seis pasos, con la IA en cinco" part="Hacer">
+
+Primero tus datos, después la IA, al final tu criterio. Marca cada paso al terminarlo; el avance se guarda solo en este navegador.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="entrevista" title="Paso 2: que la IA te ayude a completar el brief" part="Hacer">
+
+Un <Term id="prompt">prompt</Term> es el mensaje que le escribes a la IA. Los huecos entre llaves, como `{{NEGOCIO}}`, son <Term id="variable">variables</Term>: escribes tus datos en el constructor y el texto se completa solo.
+
+<Callout variant="simple">
+
+Un prompt es como el encargo que le das a un empleado nuevo: si solo dices «haz publicaciones», tendrá que adivinar. Aquí, en lugar de encargarle un texto, le pides que te pregunte a ti.
+
+</Callout>
+
+<PromptCard prompt={data.prompts.brief} proof={data.images.prueba1} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Paso 3: pedir tres opciones de publicación" part="Hacer">
+
+Para cada opción le pide un <Term id="gancho">gancho</Term>, el texto, la acción, los datos que usó y lo que supuso: ese rastro te permite revisarla rápido. Necesita además tu <Term id="voz-de-marca">voz de marca</Term>: dos o tres frases tuyas, tal como las escribes.
+
+<PromptCard prompt={data.prompts.publicacion} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Evaluar y mejorar">
+
+Léela con el brief al lado y pregúntate, en cada opción, qué dato usó y cuál dejó fuera.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.tresOpciones} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 4: puntuar las opciones con una rúbrica" part="Evaluar y mejorar">
+
+Una <Term id="rubrica">rúbrica</Term> es una lista de criterios con puntaje que se aplica siempre igual, para no decidir «a ojo».
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.rubrica} />
+
+<Rubric data={data.rubric} />
+
+Si prefieres una primera pasada de la IA, este prompt usa los mismos seis criterios y te devuelve la lista de lo que debes comprobar.
+
+<PromptCard prompt={data.prompts.revision} proof={data.images.prueba3} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 5: ajustar el tono sin tocar los datos" part="Evaluar y mejorar">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.tono} proof={data.images.prueba4} evidence={data.evidence} />
+
+<GuideImage slot={data.images.tono} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="La publicación después del ajuste" part="Evaluar y mejorar">
+
+<ResultBlock data={data.improvedResult} />
+
+</GuideSection>
+
+<GuideSection id="adaptacion" title="Paso 6: llevarla a cada formato" part="Adaptar">
+
+Con la publicación final aprobada, este prompt la adapta a los formatos que necesites; el ejemplo usa dos.
+
+<PromptCard prompt={data.prompts.formatos} proof={data.images.prueba5} evidence={data.evidence} />
+
+<ComparisonTable table={data.comparisons.versiones} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.formatos} />
+
+</GuideSection>
+
+<GuideSection id="antes-despues" title="El mismo negocio, sin brief y con brief" part="Adaptar">
+
+<BeforeAfter data={data.beforeAfter} />
+
+<GuideImage slot={data.images.antesDespues} />
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que vuelven genérica la publicación" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Antes de publicar: lo que verificas tú" part="Verificar y aplicar">
+
+El riesgo principal es el <Term id="dato-inventado">dato inventado</Term>: la IA lo escribe con seguridad y solo tú lo comprobarás contra lo que decidiste.
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de publicar: cómo sostenerlo cada semana" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Si te faltan ideas, empieza por [Ideas de contenido para tu negocio con IA](/marketing/guias/ideas-de-contenido-para-tu-negocio-con-ia). Si el mensaje va en un afiche, mira [Crear afiches con IA](/marketing/guias/crear-afiches-con-ia).
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>

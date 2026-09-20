@@ -1,0 +1,209 @@
+import data from "./data";
+
+<GuideSection id="problema" title="Tienes las ventas, pero no sabes qué preguntarles" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, te basta con tus ventas y una hoja de cálculo: cada término se explica al aparecer.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: tres meses de ventas y una caída en septiembre" part="Entender el problema">
+
+Seguiremos a un negocio inventado, como indica su tarjeta. Sus ventas y sucesos sirven para practicar las cuentas.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Cuatro ideas que evitan la mayoría de los errores" part="Preparar">
+
+<Callout variant="simple">
+
+Una <Term id="hipotesis">hipótesis</Term> es una explicación posible; una causa es una explicación comprobada. La IA propone lo primero. Lo segundo lo confirmas tú con tus datos.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se suele pedir, y por qué la respuesta engaña" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+<ComparisonTable table={data.comparisons.ingenuo} eyebrow="Ejemplo ilustrativo" />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Pasos 1 y 2: la decisión, las preguntas y una tabla limpia" part="Preparar">
+
+Todo empieza en tu hoja. Un <Term id="dato-personal">dato personal</Term> no hace falta para analizar ventas: si tus registros lo incluyen, quítalo antes de nada.
+
+<DataPreparation data={data.dataPreparation} />
+
+Si no sabes qué preguntarle a tu tabla, parte de estas. Cada una dice qué cuenta hacer y qué no podrá responderte.
+
+<ComparisonTable table={data.comparisons.preguntas} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.datos} />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: siete pasos, con la IA en tres" part="Preparar">
+
+Puedes ir tachando cada paso; ese avance solo queda guardado en este navegador.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="hoja" title="Pasos 3 y 4: armar la hoja y comprobar que cuadra" part="Armar la hoja">
+
+La hoja de ventas tiene una fila por venta; la de resumen las suma por producto y por mes con fórmulas. Las compras y los días abiertos los anotas tú desde tu registro.
+
+<ComparisonTable table={data.comparisons.plantilla} eyebrow="Plantilla para copiar" />
+
+Un <Term id="prompt">prompt</Term> es lo que le escribes a la IA para pedirle algo, y lo que va entre llaves, como `{{PROGRAMA}}`, es una <Term id="variable">variable</Term>: la rellenas con tus datos. Este prompt recibe solo la descripción de tus hojas y columnas, sin ninguna venta.
+
+<PromptCard prompt={data.prompts.formulas} proof={data.images.prueba1} evidence={data.evidence} />
+
+Si prefieres no usar la IA, estas son las fórmulas. La última columna sirve para probarlas antes de usar tus ventas.
+
+<ComparisonTable table={data.comparisons.hoja} eyebrow="Ejemplo generado" />
+
+<Callout variant="calculos">
+
+El último paso es el <Term id="total-de-control">total de control</Term>: el total por producto menos la suma de los totales por mes debe dar 0. Si no, hay un error que conviene encontrar antes de pedir ninguna lectura.
+
+</Callout>
+
+Así queda el resumen de Verde Hogar. Incluye las compras y el <Term id="ticket-promedio">ticket promedio</Term>, y es lo que se le da a la IA.
+
+<ComparisonTable table={data.comparisons.resumen} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.resumen} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Paso 5: pedir la lectura de tu resumen" part="Leer con la IA">
+
+Este prompt recibe tu resumen, lo que pasó en cada mes y lo que quieres entender, y devuelve hipótesis con alternativas y cómo comprobarlas.
+
+<PromptCard prompt={data.prompts.principal} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Leer con la IA">
+
+Léelo con el resumen al lado: cada frase se puede contrastar con una celda de tu hoja.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.primerResultado} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 6: contrastar la lectura con tu hoja" part="Contrastar y corregir">
+
+Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que se usa igual con cada análisis. Con cifras, hay dos revisiones: comparar cada número con tu hoja y separar los hechos de las suposiciones.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.comprobacion} />
+
+<Rubric data={data.rubric} />
+
+Si quieres una primera pasada de la IA, este prompt lista cada cifra con su origen. Es una ayuda: la comprobación es tuya.
+
+<PromptCard prompt={data.prompts.auditoria} proof={data.images.prueba3} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 6, segunda vuelta: corregir con datos que calculas tú" part="Contrastar y corregir">
+
+<IterationBlock data={data.iteration} />
+
+Estos son los datos nuevos de Verde Hogar: la comparación justa (filas 11 a 13 de su hoja) y las unidades de dos productos.
+
+<ComparisonTable table={data.comparisons.diaAbierto} eyebrow="Ejemplo generado" />
+
+<PromptCard prompt={data.prompts.ajuste} proof={data.images.prueba4} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="Hipótesis con forma de comprobarlas" part="Contrastar y corregir">
+
+<ResultBlock data={data.improvedResult} />
+
+<GuideImage slot={data.images.hipotesis} />
+
+</GuideSection>
+
+<GuideSection id="comparativa" title="Cuándo no se puede afirmar" part="Verificar y aplicar">
+
+Estas situaciones son frecuentes y en todas los datos dicen menos de lo que parece.
+
+<ComparisonTable table={data.comparisons.limites} eyebrow="Plantilla para copiar" />
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que llevan a decisiones equivocadas" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Paso 7: lo que verificas tú antes de decidir" part="Verificar y aplicar">
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de la primera lectura: repetir con orden" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Si tu decisión es repetir una oferta, sigue con [Crear promociones con IA](/marketing/guias/crear-promociones-con-ia). Si es cambiar precios, [Definir precios y márgenes con IA](/ventas/guias/definir-precios-y-margenes-con-ia) te ayuda con los costos.
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>

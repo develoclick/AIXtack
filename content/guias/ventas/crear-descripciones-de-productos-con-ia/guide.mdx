@@ -1,0 +1,207 @@
+import data from "./data";
+
+<GuideSection id="problema" title="La IA no sabe de qué está hecho tu producto" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, te basta con conocer tu producto: el resto se explica al usarlo.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: una vela de la que nadie sabe cuánto dura" part="Entender el problema">
+
+Seguiremos un solo producto, inventado y así indicado en su tarjeta, de principio a fin.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Cuatro ideas para describir sin inventar" part="Preparar">
+
+<Callout variant="simple">
+
+Piensa en la ficha como en la etiqueta de un frasco: quien lee la descripción debe poder señalar de qué fila sale cada dato.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se suele pedir, y por qué sale mal" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Antes de abrir la IA: lo que llevas a la entrevista" part="Preparar">
+
+<DataPreparation data={data.dataPreparation} />
+
+<GuideImage slot={data.images.datos} />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: siete pasos, con la IA en cinco" part="Hacer">
+
+Ve marcando los pasos que completes: tu progreso queda guardado solo aquí, en tu navegador.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="entrevista" title="Paso 2: escribir tu ficha con ayuda de la IA" part="Hacer">
+
+La ficha tiene una fila por dato. «Verificado» es un dato cuyo origen puedes señalar; «Sin confirmar», uno que crees pero no puedes comprobar aún, y no va a la descripción. Copia la tabla y cámbiala por tu producto.
+
+<ComparisonTable table={data.comparisons.ficha} eyebrow="Plantilla para copiar" />
+
+Si te faltan datos, deja que la IA te entreviste. Un <Term id="prompt">prompt</Term> es lo que le escribes para pedirle algo, y los huecos entre llaves, como `{{PRODUCTO}}`, son <Term id="variable">variables</Term> que rellenas con lo tuyo.
+
+<PromptCard prompt={data.prompts.ficha} proof={data.images.prueba1} evidence={data.evidence} />
+
+<GuideImage slot={data.images.ficha} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Paso 3: pedir las dos versiones" part="Hacer">
+
+Este prompt recibe la ficha, tu público, tu canal y tu tono, y devuelve una versión corta, una larga y la lista de lo que faltó. Trabaja un producto por conversación, para que no se mezclen datos.
+
+<PromptCard prompt={data.prompts.redaccion} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Hacer">
+
+Léela primero como un cliente y después como quien tiene que sostener cada frase, con la ficha al lado.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.primerResultado} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 4: auditar frase por frase" part="Evaluar y mejorar">
+
+Un <Term id="dato-inventado">dato inventado</Term> se nota cuando es absurdo. Lo difícil es el que suena razonable, o el dato correcto con otro alcance. Por eso se compara cada frase con la ficha y se puntúa con una <Term id="rubrica">rúbrica</Term>, una tabla de criterios que se usa igual siempre.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.auditoria} />
+
+<Rubric data={data.rubric} />
+
+Si prefieres una primera pasada de la IA, este prompt marca las frases con problema y puntúa con los mismos cinco criterios.
+
+<PromptCard prompt={data.prompts.auditoria} proof={data.images.prueba3} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 5: corregir solo lo señalado" part="Evaluar y mejorar">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.ajuste} proof={data.images.prueba4} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="Las dos versiones después del ajuste" part="Evaluar y mejorar">
+
+<ResultBlock data={data.improvedResult} />
+
+<GuideImage slot={data.images.final} />
+
+</GuideSection>
+
+<GuideSection id="adaptacion" title="Paso 6: adaptar a otro canal" part="Adaptar y decidir">
+
+Un <Term id="canal">canal</Term> es el lugar donde publicas. Cambian el orden, el largo y las normas; los hechos, no. Los límites los pegas tú desde la documentación oficial del canal, porque cambian con el tiempo.
+
+<PromptCard prompt={data.prompts.canal} proof={data.images.prueba5} evidence={data.evidence} />
+
+<ComparisonTable table={data.comparisons.adaptada} eyebrow="Ejemplo generado" />
+
+</GuideSection>
+
+<GuideSection id="comparativa" title="Cómo decidir si una frase puede publicarse" part="Adaptar y decidir">
+
+Cuando dudes de una frase, la pregunta útil no es «¿suena bien?» sino «¿qué tipo de afirmación es y qué respaldo pide?».
+
+<ComparisonTable table={data.comparisons.afirmaciones} eyebrow="Plantilla para copiar" />
+
+<WarningBox title="Salud, seguridad y normas">
+
+Esta guía ayuda a organizar los datos, no a validar declaraciones reguladas. Para alimentos, cosmética, juguetes o aparatos eléctricos, consulta a un profesional y a la autoridad de tu país.
+
+</WarningBox>
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que hacen perder credibilidad" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+Si lo que quieres es lanzar una oferta y no describir un producto, mira [Crear promociones y ofertas con IA](/marketing/guias/crear-promociones-con-ia).
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Paso 7: lo que verificas tú antes de publicar" part="Verificar y aplicar">
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de publicar: mantener la ficha al día" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Para anunciar el producto con la misma ficha, sigue con [Crear anuncios para tu negocio con IA](/marketing/guias/crear-anuncios-con-ia).
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>
+
+<GuideSection id="fuentes" title="Fuentes y verificación" part="Referencia">
+
+<SourcesSection data={data.sources} />
+
+</GuideSection>

@@ -1,23 +1,60 @@
-import { NextResponse, type NextRequest } from "next/server";
-import tagsJson from "@/content/tags.json";
+import { NextResponse } from "next/server";
 
-const validTagSlugs = new Set((tagsJson as { slug: string }[]).map((tag) => tag.slug));
-
-// /etiqueta/[slug] usa searchParams (paginación), lo que fuerza un render
-// dinámico con streaming: si el slug no existe, notFound() no puede fijar el
-// status HTTP a 404 porque las cabeceras ya se enviaron como 200 (ver
-// node_modules/next/dist/docs/.../loading.md, sección "Status Codes").
-// Se valida aquí, antes del streaming, para devolver un 404 real.
+/**
+ * Modelo anterior del sitio (directorio de herramientas, prompts sueltos, blog,
+ * categorías, alternativas, comparativas, noticias, tutoriales, etiquetas y afiliados).
+ * Esas URLs ya no existen y no tienen un equivalente: responden 410 (Gone) para que
+ * Google las retire del índice más rápido que con un 404. Las que SÍ tienen una guía
+ * equivalente se redirigen antes con 301 (content/redirects.ts → next.config.ts), y como
+ * las redirecciones de next.config se evalúan antes que este proxy, esas nunca llegan aquí.
+ *
+ * `matcher` debe ser una lista literal (Next la analiza en el build). Ninguna entrada
+ * puede coincidir con una ruta vigente: scripts/validate-guides.ts lo comprueba.
+ */
 export const config = {
-  matcher: "/etiqueta/:slug",
+  matcher: [
+    "/herramientas-ia/:path*",
+    "/prompts/:path*",
+    "/blog/:path*",
+    "/categoria/:path*",
+    "/alternativas/:path*",
+    "/comparativas/:path*",
+    "/noticias/:path*",
+    "/tutoriales/:path*",
+    "/etiqueta/:path*",
+    "/go/:path*",
+    "/buscar/:path*",
+    "/faq/:path*",
+    "/aviso-afiliados/:path*",
+    "/creditos-de-imagenes/:path*",
+    "/mapa-del-sitio/:path*",
+    "/feed.xml",
+  ],
 };
 
-export function proxy(request: NextRequest) {
-  const slug = request.nextUrl.pathname.replace(/^\/etiqueta\//, "");
-  if (!validTagSlugs.has(slug)) {
-    return new NextResponse(
-      "<!doctype html><meta name=\"robots\" content=\"noindex\"><title>Página no encontrada</title><p>Página no encontrada. <a href=\"/\">Volver al inicio</a>.",
-      { status: 404, headers: { "content-type": "text/html; charset=utf-8" } }
-    );
-  }
+const BODY = `<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Contenido retirado</title>
+<style>body{font-family:system-ui,sans-serif;max-width:32rem;margin:15vh auto;padding:0 1.25rem;line-height:1.6;color:#111}a{color:#2563eb}</style>
+</head>
+<body>
+<h1>Este contenido ya no existe</h1>
+<p>Esta página formaba parte de una versión anterior del sitio y fue retirada de forma definitiva.</p>
+<p><a href="/guias">Ver las guías prácticas de IA para tu negocio</a> · <a href="/">Ir al inicio</a></p>
+</body>
+</html>`;
+
+export function proxy() {
+  return new NextResponse(BODY, {
+    status: 410,
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "x-robots-tag": "noindex",
+      "cache-control": "public, max-age=3600",
+    },
+  });
 }

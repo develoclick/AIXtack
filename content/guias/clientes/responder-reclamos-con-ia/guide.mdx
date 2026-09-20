@@ -1,0 +1,205 @@
+import data from "./data";
+
+<GuideSection id="problema" title="El mensaje llega enojado y tú también" part="Entender el problema">
+
+<QuickFacts data={data.quickFacts} />
+
+<ProblemSection data={data.problem} />
+
+Un <Term id="reclamo">reclamo</Term> no es una consulta: hay algo que ya salió mal y una petición detrás. Si nunca usaste un <Term id="asistente-ia">asistente de IA</Term>, te basta con el mensaje del cliente y tus registros del pedido: cada término se explica al aparecer.
+
+</GuideSection>
+
+<GuideSection id="resultado-esperado" title="Qué tendrás al terminar" part="Entender el problema">
+
+<OutcomeSection data={data.outcome} />
+
+</GuideSection>
+
+<GuideSection id="para-quien" title="Para quién es esta guía, y para quién todavía no" part="Entender el problema">
+
+<AudienceSection data={data.audience} />
+
+</GuideSection>
+
+<GuideSection id="caso-practico" title="El caso: una vela que llegó tarde a un cumpleaños" part="Entender el problema">
+
+Seguiremos a un negocio inventado, como indica su tarjeta. El reclamo, la reseña y la decisión de la dueña también lo son: sirven para practicar el método.
+
+<CaseStudy data={data.caseStudy} />
+
+</GuideSection>
+
+<GuideSection id="marco" title="Cuatro ideas para responder sin empeorar el reclamo" part="Preparar">
+
+<Callout variant="simple">
+
+Un reclamo tiene tres capas: lo que pasó, lo que el cliente cree que pasó y lo que siente. Solo la primera se comprueba con tus registros; las otras dos se escuchan.
+
+</Callout>
+
+<FrameworkSection data={data.framework} />
+
+</GuideSection>
+
+<GuideSection id="antes" title="Cómo se suele pedir, y por qué te compromete" part="Preparar">
+
+<BeforeSection data={data.before} />
+
+<ComparisonTable table={data.comparisons.ingenuo} eyebrow="Ejemplo ilustrativo" />
+
+</GuideSection>
+
+<GuideSection id="datos" title="Pasos 1 y 2: la pausa y tus hechos" part="Preparar">
+
+La pausa no es dejar al cliente esperando: es no enviar lo primero que se te ocurre. Escribe esa respuesta en un documento aparte, léela cuando se te pase el enojo y guárdala como está. Luego dile al cliente, si hace falta, cuándo le responderás. Es lo único que se envía antes de tener los hechos.
+
+Después reúne los hechos. Los <Term id="dato-personal">datos personales</Term> son la información que identifica al cliente. Quítalos del reclamo antes de compartirlo con una herramienta y escribe «el cliente».
+
+<DataPreparation data={data.dataPreparation} />
+
+Así queda el registro del caso, con fecha, hora y fuente en cada línea. Lo que no puedas respaldar con una fuente no entra.
+
+<ComparisonTable table={data.comparisons.registro} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.registro} />
+
+</GuideSection>
+
+<GuideSection id="metodo" title="El método: ocho pasos, con la IA en cuatro" part="Preparar">
+
+Cada paso se puede marcar al terminarlo. La marca solo se guarda en este navegador.
+
+<StepSection data={data.method} checkable guide={data.metadata.slug} />
+
+</GuideSection>
+
+<GuideSection id="entrevista" title="Paso 3: ordenar el reclamo en una ficha" part="Ordenar el reclamo">
+
+Un <Term id="prompt">prompt</Term> es lo que le escribes a la IA para pedirle algo, y lo que va entre llaves, como `{{NEGOCIO}}`, es una <Term id="variable">variable</Term>: la rellenas con tus datos. Este prompt no redacta nada: solo separa cada afirmación del cliente y le pone un estado según tus registros.
+
+<PromptCard prompt={data.prompts.ficha} proof={data.images.prueba1} evidence={data.evidence} />
+
+Así queda la ficha del caso. Se copia como tabla.
+
+<ComparisonTable table={data.comparisons.ficha} eyebrow="Ejemplo generado" />
+
+<ComparisonTable table={data.comparisons.fichaExtra} eyebrow="Ejemplo generado" />
+
+Si algún punto habla de lesiones, denuncias o abogados, el prompt lo aparta en «Para una persona»: es <Term id="escalar">escalar</Term> ese reclamo en lugar de responderlo con un borrador.
+
+<GuideImage slot={data.images.ficha} />
+
+</GuideSection>
+
+<GuideSection id="prompt" title="Pasos 4 y 5: decidir tú y pedir la respuesta privada" part="Decidir y redactar">
+
+Con la ficha delante decides qué ofreces. Una <Term id="compensacion">compensación</Term> es lo que ofreces para reparar la molestia; la eliges tú, según lo que puedas cumplir. Escríbela en esta tarjeta antes de pedir ningún texto: en cada oferta van su condición y su plazo.
+
+<ComparisonTable table={data.comparisons.tarjeta} eyebrow="Plantilla para copiar" />
+
+<GuideImage slot={data.images.tarjeta} />
+
+Este prompt recibe la ficha y la tarjeta y devuelve un solo borrador, con una tabla que dice de dónde sale cada frase.
+
+<PromptCard prompt={data.prompts.privada} proof={data.images.prueba2} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Decidir y redactar">
+
+Léelo como lo leería el cliente y después como quien tiene que sostener cada frase, con la ficha y la tarjeta al lado.
+
+<ResultBlock data={data.firstResult} />
+
+<GuideImage slot={data.images.primerResultado} />
+
+</GuideSection>
+
+<GuideSection id="analisis" title="Paso 6: contrastar con tu ficha y tu tarjeta" part="Evaluar y mejorar">
+
+Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que se usa igual con cada respuesta. Contrastar es buscar, para cada frase del borrador, su fila en la ficha o su campo en la tarjeta; una frase sin origen es la primera que revisas. Aquí se puntúa el borrador del ejemplo.
+
+<ResultAnalysis data={data.analysis} rubric={data.rubric} />
+
+<GuideImage slot={data.images.contraste} />
+
+<Rubric data={data.rubric} />
+
+</GuideSection>
+
+<GuideSection id="iteracion" title="Paso 6, segunda vuelta: corregir solo lo señalado" part="Evaluar y mejorar">
+
+<IterationBlock data={data.iteration} />
+
+<PromptCard prompt={data.prompts.ajuste} proof={data.images.prueba3} evidence={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="resultado-final" title="La respuesta después del ajuste" part="Evaluar y mejorar">
+
+<ResultBlock data={data.improvedResult} />
+
+<GuideImage slot={data.images.final} />
+
+</GuideSection>
+
+<GuideSection id="adaptacion" title="Paso 7: la respuesta pública a la reseña" part="Responder en público">
+
+La reseña la leen personas que no conocen el caso, y lo que escribas queda a la vista. Por eso la respuesta pública es más corta que la privada y no repite ningún dato: reconoce solo lo que decidiste reconocer y lleva la conversación al canal privado.
+
+<PromptCard prompt={data.prompts.publica} proof={data.images.prueba4} evidence={data.evidence} />
+
+Así puede verse la respuesta del caso.
+
+<ComparisonTable table={data.comparisons.publica} eyebrow="Ejemplo generado" />
+
+<GuideImage slot={data.images.publica} />
+
+</GuideSection>
+
+<GuideSection id="errores" title="Errores que empeoran un reclamo" part="Verificar y aplicar">
+
+<CommonMistakes items={data.mistakes} />
+
+</GuideSection>
+
+<GuideSection id="verificacion" title="Paso 8: lo que verificas tú antes de enviar" part="Verificar y aplicar">
+
+<HumanVerification data={data.verification} />
+
+</GuideSection>
+
+<GuideSection id="aplicacion" title="Después de enviar: cumplir, registrar y mejorar" part="Verificar y aplicar">
+
+<ApplicationSteps data={data.application} />
+
+</GuideSection>
+
+<GuideSection id="limitaciones" title="Lo que este método no resuelve" part="Verificar y aplicar">
+
+<Limitations data={data.limitations} />
+
+Cuando los reclamos se repitan, [Analizar opiniones de clientes con IA](/clientes/guias/analizar-opiniones-de-clientes-con-ia) te ayuda a ver los patrones. Y para las dudas frecuentes que no son reclamos, [Responder consultas de clientes con IA](/clientes/guias/responder-consultas-de-clientes-con-ia) cubre ese caso.
+
+</GuideSection>
+
+<GuideSection id="conclusion" title="Lo que te llevas" part="Referencia">
+
+<Conclusion data={data.conclusion} />
+
+<EvidenceBlock data={data.evidence} />
+
+</GuideSection>
+
+<GuideSection id="glosario" title="Glosario de esta guía" part="Referencia">
+
+<GlossarySection ids={data.glossary} />
+
+</GuideSection>
+
+<GuideSection id="faq" title="Preguntas que surgen al aplicarlo" part="Referencia">
+
+<FAQ items={data.faq} />
+
+</GuideSection>
