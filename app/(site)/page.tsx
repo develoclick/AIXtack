@@ -271,9 +271,9 @@ export default async function HomePage() {
 
         {guides.length > 0 ? (
           <>
-            <div className="mt-12 grid gap-5 lg:grid-cols-12">
+            <div className="mt-12 grid gap-5 lg:grid-cols-12" >
               {featured && (
-                <Reveal className="lg:col-span-7">
+                <Reveal className="lg:col-span-7 h-fit" >
                   <GuideCard guide={featured} variant="feature" />
                 </Reveal>
               )}

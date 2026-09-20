@@ -70,6 +70,7 @@ export function GuideCard({
           <span aria-hidden className="glow-brand absolute -right-24 -top-24 -z-10 size-[26rem] opacity-70 transition-transform duration-700 group-hover:scale-110 motion-reduce:transition-none" />
           <span aria-hidden className="glow-cool absolute -bottom-32 -left-16 -z-10 size-[22rem] opacity-60" />
           {hero && (
+            
             <span className="relative m-3 block aspect-video shrink-0 overflow-hidden rounded-[1.4rem] ring-1 ring-white/10 @3xl:aspect-auto @3xl:min-h-72 @3xl:w-[46%]">
               <Image
                 src={hero}

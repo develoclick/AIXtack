@@ -86,10 +86,6 @@ export function ImageBlock({ image, className, sizes: sizesProp, loading = "lazy
       {picture}
       {(image.caption || image.credit || image.illustration) && (
         <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-2.5 gap-y-1 text-sm leading-snug text-muted-foreground">
-          {image.illustration && (
-            <span className="rounded-full border px-2 py-0.5 font-mono text-[0.65rem] font-medium uppercase tracking-[0.12em] text-muted-foreground">Ilustración</span>
-          )}
-          {image.caption}
           {image.credit && <span className="ml-1 opacity-80">· {image.credit}</span>}
         </figcaption>
       )}

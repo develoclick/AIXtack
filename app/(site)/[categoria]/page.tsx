@@ -81,7 +81,7 @@ export default async function CategoryHubPage({ params }: PageProps) {
           height={1200}
           speed={0.07}
           sizes="(min-width: 1280px) 26rem, 22rem"
-          className="absolute bottom-10 right-[6%] z-10 w-[20rem] xl:w-[26rem]"
+          className="absolute bottom-10 right-[6%] z-10 w-[20rem] xl:w-[40rem]"
           purpose={`Objeto 3D del área ${category.name} (ver docs/rediseno/PLAN.md).`}
         />
 
@@ -144,7 +144,7 @@ export default async function CategoryHubPage({ params }: PageProps) {
           <>
             <div className="mt-12 grid gap-5 lg:grid-cols-12">
               {featured && (
-                <Reveal className={second ? "lg:col-span-7" : "lg:col-span-12"}>
+                <Reveal className={second ? "lg:col-span-7 h-fit" : "lg:col-span-12 h-fit"}>
                   <GuideCard guide={featured} showCategory={false} variant="feature" />
                 </Reveal>
               )}
