@@ -1,0 +1,11 @@
+# Finales de linea: siempre LF en el repositorio y en el disco (evita los avisos LF/CRLF en Windows).
+* text=auto eol=lf
+
+# Binarios: nunca convertir.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
