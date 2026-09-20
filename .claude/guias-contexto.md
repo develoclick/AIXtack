@@ -26,7 +26,7 @@ Creado: 2026-09-19 · Diagnóstico y políticas consultados: 2026-09-18/19. Últ
 - Ejemplos generados = aplicar literalmente el prompt; defectos del primer resultado solo los que el prompt no puede impedir; toda atribución «el prompt pide…» debe existir en una línea.
 
 ## Imágenes (2026-09-20)
-- Las 20 guías ya tienen `hero.webp` y sus esquemas explicativos (IA, sin texto legible); solo faltan las `prueba-prompt-0N.webp` (capturas reales del autor). Los esquemas se rotulan «Ilustración» y su alt lo dice; para una captura real usa `real: true` en el slot. No los describas como capturas en `caption`/`alt`.
+- Todas las imágenes de las guías son ESPACIOS con marcador (también en producción; `NEXT_PUBLIC_HIDE_IMAGE_SLOTS=true` los oculta). El autor las irá subiendo con el nombre exacto del manifiesto. No añadas imágenes a `public/images/guias/<cat>/<slug>/`; las retiradas están respaldadas en `Descargas/Promt IA/imagenes-guias-retiradas/`. Las imágenes del sitio (`public/images/site/`) no se tocan.
 
 ## Políticas (resumen, consultadas 2026-09-18)
 - AdSense (support.google.com/adsense/answer/48182, act. 4-ago-2026): prácticas prohibidas (clics artificiales, engaño, etiquetado de anuncios); no trata calidad ni IA. Nadie garantiza aprobación.

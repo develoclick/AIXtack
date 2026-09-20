@@ -101,8 +101,6 @@ export interface ImageRef {
   priority?: boolean;
   /** Qué debe mostrar exactamente (solo se ve en el marcador de desarrollo). */
   purpose?: string;
-  /** Esquema o ilustración (no una captura real): se rotula «Ilustración», su alt lo dice y no se puede ampliar. */
-  illustration?: boolean;
 }
 
 export type GuideType =
@@ -136,8 +134,6 @@ export interface ImageSlot {
   zoom?: boolean;
   /** Si la imagen es la prueba real de un prompt: la clave del prompt (`prompts.<clave>`). */
   promptId?: string;
-  /** `true` si el archivo es una captura o foto real. Por defecto se trata como ilustración esquemática y se rotula como tal. */
-  real?: boolean;
   /** Ruta pública (la construye guideSlots()). */
   src: string;
 }

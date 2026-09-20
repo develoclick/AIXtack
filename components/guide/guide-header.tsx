@@ -6,13 +6,11 @@ import { getAuthor } from "@/content/autores";
 import { getCategory } from "@/content/categorias";
 import { guidePath } from "@/lib/guides/constants";
 import { heroImageOf } from "@/lib/guides/images";
-import { mediaExists } from "@/lib/guides/media";
+import { mediaExists, showGuideImageSlots } from "@/lib/guides/media";
 import type { Guide } from "@/lib/guides/types";
 import { formatDate } from "@/lib/utils/format";
 import { ImageBlock } from "./image-block";
 import { ui } from "./ui";
-
-const isDev = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_SHOW_IMAGE_SLOTS === "true";
 
 /**
  * Cabecera de la guía: ruta de navegación, categoría, H1, subtítulo, ficha (autoría, fecha,
@@ -30,7 +28,7 @@ export function GuideHeader({ guide }: { guide: Guide }) {
   const hasVideoSection = guide.sections.some((section) => section.id === "video");
   const firstSection = guide.sections[0]?.id;
   const hero = heroImageOf(data);
-  const showHero = Boolean(hero) && (isDev || mediaExists(hero!.src));
+  const showHero = Boolean(hero) && (showGuideImageSlots || mediaExists(hero!.src));
 
   return (
     <header className="not-prose relative isolate border-b">

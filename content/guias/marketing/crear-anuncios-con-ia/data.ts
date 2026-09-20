@@ -103,7 +103,7 @@ export default defineGuide({
       description:
         "A la izquierda, la ficha del anuncio completa (caso ficticio de una ferretería). A la derecha, el anuncio final en una tarjeta con imagen y texto. Unir con una línea las condiciones de la ficha con la frase del anuncio que las contiene. Sin logotipos reales ni datos de personas.",
       alt: "Una ficha de anuncio completa de una ferretería y, a su lado, el anuncio final con una línea que une las condiciones de la ficha con su frase.",
-      caption: "Cada frase del anuncio se apoya en la ficha.",
+      caption: "",
     }),
     ficha: slot("ficha-completa.webp", {
       section: "datos",

@@ -1,6 +1,6 @@
 import type { EvidenceData, GuidePrompt, ImageSlot } from "@/lib/guides/model";
 import { slotToImage } from "@/lib/guides/images";
-import { mediaExists, showImageMarkers } from "@/lib/guides/media";
+import { mediaExists, showGuideImageSlots } from "@/lib/guides/media";
 import { formatDate } from "@/lib/utils/format";
 import { ImageBlock } from "./image-block";
 import { Inline } from "./rich-text";
@@ -15,7 +15,7 @@ import { PromptWorkbench } from "./prompt-workbench";
 function PromptProof({ slot, evidence, promptId }: { slot?: ImageSlot; evidence?: EvidenceData; promptId: string }) {
   if (!slot) return null;
   const exists = mediaExists(slot.src);
-  if (!exists && !showImageMarkers) return null;
+  if (!exists && !showGuideImageSlots) return null;
   const test = evidence?.pruebas?.find((item) => item.promptId === promptId);
 
   return (

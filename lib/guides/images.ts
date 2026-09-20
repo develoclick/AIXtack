@@ -35,18 +35,7 @@ export function guideSlots(category: string, slug: string) {
 
 /** Un slot del manifiesto como imagen renderizable (con su propósito para el marcador de desarrollo). */
 export function slotToImage(slot: ImageSlot): ImageRef {
-  // Las pruebas reales del autor (prueba-prompt-0N) y los slots con `real: true` son capturas; el resto son esquemas.
-  const illustration = !slot.real && !slot.promptId && !slot.file.startsWith("prueba-prompt-");
-  return {
-    src: slot.src,
-    alt: slot.alt,
-    caption: slot.caption,
-    aspectRatio: slot.ratio,
-    // Un esquema no tiene detalle que ampliar: la lupa prometería algo que no hay.
-    zoom: illustration ? false : slot.zoom,
-    purpose: slot.description ?? slot.purpose,
-    illustration,
-  };
+  return { src: slot.src, alt: slot.alt, caption: slot.caption, aspectRatio: slot.ratio, zoom: slot.zoom, purpose: slot.description ?? slot.purpose };
 }
 
 /** Imagen de cabecera de una guía: el slot `hero` del manifiesto o, en guías anteriores, `hero.image`. */

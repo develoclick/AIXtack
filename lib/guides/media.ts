@@ -41,5 +41,11 @@ export function listGuideImageFiles(category: string, slug: string): string[] {
   return fs.readdirSync(dir).filter((file) => !file.startsWith("."));
 }
 
-/** Marcadores de imágenes que faltan: en desarrollo o en una previsualización con NEXT_PUBLIC_SHOW_IMAGE_SLOTS=true. */
+/**
+ * Espacios de imagen de las GUÍAS: se muestran siempre (también en producción) mientras falte el archivo,
+ * con su nombre, proporción y descripción. Para ocultarlos en producción: NEXT_PUBLIC_HIDE_IMAGE_SLOTS=true.
+ */
+export const showGuideImageSlots = process.env.NEXT_PUBLIC_HIDE_IMAGE_SLOTS !== "true";
+
+/** Marcadores de imágenes que faltan del SITIO (portada, áreas…): en desarrollo o con NEXT_PUBLIC_SHOW_IMAGE_SLOTS=true. */
 export const showImageMarkers = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_SHOW_IMAGE_SLOTS === "true";

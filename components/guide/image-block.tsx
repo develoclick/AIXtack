@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 import type { AspectRatio, ImageRef } from "@/lib/guides/model";
-import { mediaExists } from "@/lib/guides/media";
+import { mediaExists, showGuideImageSlots } from "@/lib/guides/media";
 import { cn } from "@/lib/utils";
 import { ZoomableImage } from "./zoomable-image";
 
@@ -14,8 +14,6 @@ const ASPECT_CLASS: Record<AspectRatio, string> = {
   "3/4": "aspect-[3/4]",
 };
 
-// Marcadores de imágenes que faltan: en desarrollo o en una previsualización con NEXT_PUBLIC_SHOW_IMAGE_SLOTS=true.
-const isDev = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_SHOW_IMAGE_SLOTS === "true";
 const DEFAULT_SIZES = "(min-width: 1024px) 54rem, 100vw";
 
 export interface ImageBlockProps {
@@ -29,19 +27,17 @@ export interface ImageBlockProps {
 }
 
 /**
- * Imagen de una guía. Si el archivo NO existe en public/, la página no se rompe:
- * en desarrollo aparece un marcador que dice qué archivo falta; en producción no se
- * renderiza nada. Nunca se generan imágenes falsas.
+ * Imagen de una guía. Si el archivo NO existe en public/, la página no se rompe: aparece un
+ * marcador con el nombre del archivo, la proporción y la descripción de lo que va ahí (también en
+ * producción; se oculta con NEXT_PUBLIC_HIDE_IMAGE_SLOTS=true). Al soltar el archivo con ese nombre en
+ * la carpeta de la guía, la imagen reemplaza al marcador sin tocar código. Nunca se generan imágenes falsas.
  */
-export function ImageBlock({ image, className, sizes: sizesProp, loading = "lazy", bare = false }: ImageBlockProps) {
-  const sizes = sizesProp ?? (image.illustration && !image.priority ? "(min-width: 768px) 42rem, 100vw" : DEFAULT_SIZES);
+export function ImageBlock({ image, className, sizes = DEFAULT_SIZES, loading = "lazy", bare = false }: ImageBlockProps) {
   const ratio = image.aspectRatio ?? "16/9";
   const frame = cn("relative w-full overflow-hidden rounded-2xl border bg-muted", ASPECT_CLASS[ratio]);
-  // Un esquema no es una captura: el texto alternativo lo dice para quien usa lector de pantalla.
-  const alt = image.illustration ? `Esquema ilustrativo. ${image.alt}` : image.alt;
 
   if (!mediaExists(image.src)) {
-    if (!isDev) return null;
+    if (!showGuideImageSlots) return null;
     return (
       <figure className={cn("not-prose", className)} data-missing-image={image.src}>
         <div className={cn(frame, "flex flex-col items-center justify-center gap-2 border-dashed p-6 text-center")}>
@@ -58,7 +54,7 @@ export function ImageBlock({ image, className, sizes: sizesProp, loading = "lazy
   const picture = image.zoom ? (
     <ZoomableImage
       src={image.src}
-      alt={alt}
+      alt={image.alt}
       caption={image.caption}
       ratio={ASPECT_CLASS[ratio]}
       sizes={sizes}
@@ -69,12 +65,12 @@ export function ImageBlock({ image, className, sizes: sizesProp, loading = "lazy
     <div className={frame}>
       <Image
         src={image.src}
-        alt={alt}
+        alt={image.alt}
         fill
         sizes={sizes}
         priority={image.priority}
         loading={image.priority ? undefined : loading}
-        className={cn("object-cover", image.illustration && "dark:brightness-[0.88]")}
+        className="object-cover"
       />
     </div>
   );
@@ -82,10 +78,11 @@ export function ImageBlock({ image, className, sizes: sizesProp, loading = "lazy
   if (bare) return <div className={className}>{picture}</div>;
 
   return (
-    <figure className={cn("not-prose", image.illustration && !image.priority && "max-w-2xl", className)}>
+    <figure className={cn("not-prose", className)}>
       {picture}
-      {(image.caption || image.credit || image.illustration) && (
-        <figcaption className="mt-3 flex flex-wrap items-baseline gap-x-2.5 gap-y-1 text-sm leading-snug text-muted-foreground">
+      {(image.caption || image.credit) && (
+        <figcaption className="mt-2.5 text-sm leading-snug text-muted-foreground">
+          {image.caption}
           {image.credit && <span className="ml-1 opacity-80">· {image.credit}</span>}
         </figcaption>
       )}
