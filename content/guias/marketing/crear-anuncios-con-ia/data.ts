@@ -96,7 +96,7 @@ export default defineGuide({
 
   /* ───────────────────────────── imágenes (manifiesto) ───────────────────────────── */
   images: {
-    hero: slot("hero.webp", {
+    hero: slot("hero - copia.webp", {
       section: "hero",
       ratio: "16/9",
       purpose: "Muestra de un vistazo el método: la ficha con los datos de la oferta y, al lado, el anuncio final que solo dice lo que la ficha dice.",
