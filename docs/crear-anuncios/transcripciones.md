@@ -146,3 +146,29 @@ Necesito que me digas una de estas dos cosas antes de escribir el Paso 6 (Revisi
 2. **Me pegas el texto** de esas tres tablas (tal como hiciste con el resto de esta tarea), para transcribirlo igual que hice con las demás.
 
 Mientras tanto no voy a inventar el contenido de esas tres tablas ni su veredicto exacto: solo tengo, por tu resumen, el motivo de cada una en una frase, no la tabla completa fila por fila que el componente necesita mostrar.
+
+---
+
+## 05 (completa) — Revisión 1, las 4 piezas — pegado literal por el autor (no es un archivo de imagen)
+
+El autor pegó el texto completo de la Revisión 1. Se reproduce tal cual, sin editar.
+
+### ANUNCIO 1 — Red social
+(Igual a la transcripción de arriba: 14 afirmaciones, todas «Sí», falta «Solo el sábado 10 de octubre», **veredicto NO PUBLICAR**.)
+
+### ANUNCIO 2 — Texto sobre la imagen
+Afirmaciones: «Sábado 10 de octubre» (Dato de la oferta, Sí) · «20 % de descuento» (Dato de la oferta, Sí).
+Condiciones de la ficha que faltan: Solo el sábado 10 de octubre · De 9:00 a 14:00 · En el local · Hasta agotar stock por producto · No acumulable con otras ofertas.
+**Veredicto: NO PUBLICAR.** «El texto contiene datos respaldados, pero no incluye las condiciones de la oferta. Al ser únicamente texto sobre imagen, esas condiciones tendrían que aparecer en otro elemento del anuncio o quedar claramente cubiertas por el canal utilizado.»
+
+### ANUNCIO 3 — Mensaje directo
+14 afirmaciones. La primera, «te aviso de una jornada en Ferretería Casa y Clavo», tipo «Otro: descripción de la acción», **¿En la ficha? Parcial** — «La ficha identifica el negocio y la oferta, pero no utiliza el término “jornada”.» El resto, Sí.
+Condiciones de la ficha que faltan: «Solo el sábado 10 de octubre.» · La condición «en el local» no aparece expresamente asociada a la oferta.
+**Veredicto: NO PUBLICAR.** «Hay una afirmación Parcial (“jornada”) y faltan condiciones de la ficha. Además, este mensaje solo debe enviarse a personas que aceptaron recibir mensajes.»
+
+### ANUNCIO 4 — Red social, versión B
+14 afirmaciones. La primera, «¿Qué herramienta te falta en casa?», tipo «Otro: pregunta al público», **¿En la ficha? No** — «La ficha define el público como personas que hacen arreglos en casa, pero no afirma que les falte una herramienta concreta.» El resto, Sí.
+Condiciones de la ficha que faltan: «Solo el sábado 10 de octubre.»
+**Veredicto: NO PUBLICAR.** «La pregunta “¿Qué herramienta te falta en casa?” no está respaldada por la ficha... También falta explicitar que la oferta es solo ese sábado.»
+
+**Punto bloqueante resuelto.** Ya tengo las 4 tablas completas. Sigo con el Paso 1 y el Paso 2.

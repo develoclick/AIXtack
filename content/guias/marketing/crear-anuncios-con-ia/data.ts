@@ -35,7 +35,12 @@ const CRITERIOS = [
   { id: "beneficio", label: "Beneficio sin promesa", detail: "Explica lo que gana el cliente sin prometer un resultado que no controlas." },
   { id: "respaldo", label: "Afirmaciones respaldadas", detail: "Cada dato o cualidad que menciona está en la ficha." },
   { id: "accion", label: "Una acción clara", detail: "Pide una sola acción y dice cómo hacerla." },
-  { id: "canal", label: "Cabe en su canal", detail: "Su largo y su estructura son los del canal donde se publica." },
+  {
+    id: "canal",
+    label: "Cabe en su canal",
+    detail:
+      "Se comprueba contra la regla propia del texto sobre la imagen (máximo 8 palabras) y, en los demás, contra los límites de la plataforma. Si no los conoces, se marca «no conocidos» en vez de suponerlos.",
+  },
 ] as const;
 
 const RESULTADOS = [
@@ -115,56 +120,6 @@ export default defineGuide({
       caption: "La ficha completa: una fila por dato.",
       zoom: true,
     }),
-    dosEnfoques: slot("dos-enfoques.webp", {
-      section: "primer-resultado",
-      ratio: "16/9",
-      purpose: "Permite ver cómo llegan las dos versiones y comprobar, línea por línea, qué dato de la ficha usó cada una.",
-      description:
-        "La primera respuesta del asistente con las dos versiones y sus listas «Datos de la ficha usados» y «Supuestos». Marcar con un recuadro el gancho genérico de la primera y la frase sobre la trayectoria de la segunda. Caso ficticio, sin datos de cuenta.",
-      alt: "Dos versiones de un anuncio con sus listas de datos usados, con recuadros sobre un gancho genérico y una frase de trayectoria.",
-      caption: "La primera respuesta, sin editar.",
-      zoom: true,
-    }),
-    rubrica: slot("rubrica-aplicada.webp", {
-      section: "analisis",
-      ratio: "4/3",
-      purpose: "Enseña cómo se puntúa un anuncio con los seis criterios, con un ejemplo hecho que el lector puede imitar.",
-      description:
-        "Una tabla con los seis criterios, un puntaje de 0, 1 o 2 en cada uno y el total sobre 12, aplicada a la primera versión del caso. Resaltar la fila «Afirmaciones respaldadas». Datos ficticios.",
-      alt: "Tabla de puntuación de un anuncio con seis criterios y el total sobre 12.",
-      caption: "Un anuncio puntuado con la rúbrica.",
-      zoom: true,
-    }),
-    persuasion: slot("persuasion-con-respaldo.webp", {
-      section: "iteracion",
-      ratio: "16/9",
-      purpose: "Muestra qué cambia al reforzar la urgencia real y de qué dato de la ficha se apoya cada cambio.",
-      description:
-        "La tabla «Cambios» del refuerzo, con frase original, frase nueva, palanca y dato de la ficha, y debajo «Lo que no cambié». Resaltar con un mismo color la condición de la ficha y la frase nueva que la usa. Caso ficticio.",
-      alt: "Tabla de cambios de un anuncio con la frase original, la nueva, la palanca y el dato de la ficha que la respalda.",
-      caption: "Cada frase nueva cita su respaldo.",
-      zoom: true,
-    }),
-    canales: slot("canales.webp", {
-      section: "adaptacion",
-      ratio: "16/9",
-      purpose: "Deja ver cómo el mismo anuncio cambia según a quién llega, sin perder la oferta ni sus condiciones.",
-      description:
-        "Tres piezas lado a lado: el texto sobre una imagen, el texto del anuncio en una red social y un mensaje directo. Resaltar en las tres las mismas condiciones de la oferta. Caso ficticio, con [NOMBRE] en el mensaje.",
-      alt: "El mismo anuncio en tres piezas: texto sobre imagen, texto de anuncio y mensaje directo, con las condiciones resaltadas.",
-      caption: "Un anuncio, tres piezas, las mismas condiciones.",
-      zoom: true,
-    }),
-    afirmaciones: slot("hoja-de-afirmaciones.webp", {
-      section: "verificacion",
-      ratio: "16/9",
-      purpose: "Enseña la hoja de afirmaciones ya completa, que es la herramienta para comprobar el anuncio frase por frase.",
-      description:
-        "La hoja de afirmaciones del anuncio final en una hoja de cálculo, con las columnas afirmación, tipo, si está en la ficha y qué comprobar. Resaltar la columna de lo que debe comprobar la persona. Caso ficticio.",
-      alt: "Hoja de cálculo con las afirmaciones de un anuncio, su tipo, si están en la ficha y qué debe comprobar la persona.",
-      caption: "La hoja de afirmaciones del anuncio final.",
-      zoom: true,
-    }),
     prueba1: slot("prueba-prompt-01.webp", {
       section: "prompt",
       ratio: "16/9",
@@ -172,8 +127,8 @@ export default defineGuide({
       purpose: "Prueba real del prompt principal: las dos versiones que devolvió con una ficha real.",
       description:
         "Captura de la respuesta con las dos versiones, sus datos usados y supuestos. Usar la ficha del caso o la de tu negocio real. Ocultar datos personales y de cuenta.",
-      alt: "Captura de las dos versiones de un anuncio devueltas por un asistente.",
-      caption: "Prueba del prompt de anuncio.",
+      alt: "Respuesta real del prompt principal: dos versiones del anuncio de Casa y Clavo con gancho, texto, llamada a la acción, datos usados y supuestos.",
+      caption: "Prueba real: la primera respuesta, sin editar.",
       zoom: true,
     }),
     prueba2: slot("prueba-prompt-02.webp", {
@@ -183,8 +138,8 @@ export default defineGuide({
       purpose: "Prueba real del prompt de refuerzo: la versión reforzada y su tabla de cambios.",
       description:
         "Captura de la versión reforzada, la tabla de cambios, lo que no cambió y «Para revisar». Ocultar datos personales y de cuenta.",
-      alt: "Captura del refuerzo de un anuncio con su tabla de cambios.",
-      caption: "Prueba del prompt de persuasión.",
+      alt: "Respuesta real del prompt de refuerzo: la versión reforzada del anuncio, su tabla de cambios, lo que no cambió y «Para revisar: nada».",
+      caption: "Prueba real: el refuerzo, sin editar.",
       zoom: true,
     }),
     prueba3: slot("prueba-prompt-03.webp", {
@@ -194,8 +149,8 @@ export default defineGuide({
       purpose: "Prueba real del prompt de canales: la tabla por canal y las listas de datos conservados y de lo que no cabe.",
       description:
         "Captura de la respuesta con la tabla de canales, «Datos conservados» y «No cabe». Ocultar datos personales y de cuenta.",
-      alt: "Captura de la adaptación de un anuncio a varios canales.",
-      caption: "Prueba del prompt de canales.",
+      alt: "Respuesta real del prompt de canales: el anuncio adaptado a red social, texto sobre la imagen y mensaje directo, con lo conservado y lo que no cabe en cada uno.",
+      caption: "Prueba real: la adaptación a los tres canales, sin editar.",
       zoom: true,
     }),
     prueba4: slot("prueba-prompt-04.webp", {
@@ -205,8 +160,8 @@ export default defineGuide({
       purpose: "Prueba real del prompt de variantes: la versión B, la hipótesis y las condiciones para comparar.",
       description:
         "Captura de la tabla con las versiones A y B, la hipótesis, la señal a observar y las listas de lo que se mantiene igual y de cuándo no se puede concluir. Ocultar datos personales y de cuenta.",
-      alt: "Captura de una prueba A/B de un anuncio con su hipótesis y sus condiciones.",
-      caption: "Prueba del prompt de variantes.",
+      alt: "Respuesta real del prompt de variantes: la versión B del gancho, la hipótesis en condicional y cuándo no se puede concluir.",
+      caption: "Prueba real: la versión B para probar, sin editar.",
       zoom: true,
     }),
     prueba5: slot("prueba-prompt-05.webp", {
@@ -216,8 +171,8 @@ export default defineGuide({
       purpose: "Prueba real del prompt de afirmaciones: la tabla de afirmaciones, las condiciones ausentes y el veredicto.",
       description:
         "Captura de la tabla de afirmaciones, la lista de condiciones que faltan y el veredicto. Ocultar datos personales y de cuenta.",
-      alt: "Captura de la revisión de afirmaciones de un anuncio con su veredicto.",
-      caption: "Prueba del prompt de afirmaciones.",
+      alt: "Respuesta real del prompt de afirmaciones: el anuncio para red social y el veredicto NO PUBLICAR porque falta «solo el sábado 10 de octubre».",
+      caption: "Prueba real: la primera revisión encontró una condición que faltaba.",
       zoom: true,
     }),
   },
@@ -319,15 +274,13 @@ export default defineGuide({
 
   /* ───────────────────────────── datos ───────────────────────────── */
   dataPreparation: {
-    intro: "Antes de completar la ficha reúne lo que solo tú tienes.",
-    items: [
-      { label: "La oferta exacta", detail: "Precio o descuento, productos incluidos, fechas, horarios, stock y exclusiones, tal como los decidiste.", required: true },
-      { label: "Quién la verá", detail: "Personas que aún no te conocen, y la zona donde viven o trabajan.", required: true },
-      { label: "El respaldo que puedes mostrar", detail: "Años de trayectoria, garantías o políticas ciertas. Si no tienes, sigue sin él.", required: false },
-      { label: "Lo que no dirás", detail: "Promesas, comparaciones con otros negocios y frases que suenen a exageración.", required: true },
-      { label: "Dónde responderás", detail: "El lugar o el canal donde atenderás a quien llegue, y quién lo atenderá ese día.", required: true },
-      { label: "Tus reglas del canal", detail: "Sus límites de largo y de imagen. Compruébalos en la plataforma: cambian.", required: false },
-    ],
+    intro: "Antes de completar la ficha reúne lo que solo tú tienes: un campo por cada fila de la ficha de siete campos.",
+    items: CAMPOS_FICHA.map((c) => ({
+      label: c.campo,
+      detail: c.fill,
+      example: CASO[c.id],
+      required: c.id !== "respaldo",
+    })),
   },
 
   /* ───────────────────────────── tablas ───────────────────────────── */
@@ -351,21 +304,6 @@ export default defineGuide({
       ],
       note: "Los límites de largo y de imagen de cada canal cambian con el tiempo: consúltalos en su ayuda.",
     },
-    adaptaciones: {
-      caption: "Anuncio final adaptado a cada canal",
-      purpose: "Ver cómo el mismo anuncio cambia de forma según el canal y comprobar que la oferta y sus condiciones siguen en todos.",
-      columns: ["Canal", "Texto (listo para copiar)", "Qué cambió respecto al anuncio", "Qué mostrar (sugerencia)"],
-      rows: [
-        ["Texto sobre la imagen", "Solo este sábado: 20 % en herramientas manuales", "Solo el gancho, en grande", "Una foto de herramientas del local, sin personas identificables."],
-        [
-          "Mensaje directo",
-          "Hola [NOMBRE], te aviso de una jornada en Ferretería Casa y Clavo: el sábado 10 de octubre, de 9:00 a 14:00, herramientas manuales con 20 % de descuento. Hasta agotar stock por producto; no acumulable con otras ofertas. Estamos en calle Los Pinos con calle 5. Pasa por el local.",
-          "Saludo con nombre; no explica qué es el negocio",
-          "Nada: es solo texto.",
-        ],
-      ],
-      note: "Ejemplo generado. El anuncio para la red social queda igual que la versión final. Datos conservados: nombre, oferta, fecha, horario, condiciones, ubicación y acción. No cabe: nada.",
-    },
     variantes: {
       caption: "Dos versiones del gancho para probar",
       purpose: "Ver cómo se prepara una prueba en la que solo cambia una cosa y qué hay que mantener igual para compararla.",
@@ -373,28 +311,13 @@ export default defineGuide({
       rows: [
         [
           "Gancho",
-          "Solo este sábado: 20 % en herramientas manuales.",
-          "¿Qué herramienta te falta en casa? Este sábado, 20 % de descuento en herramientas manuales.",
-          "Podría ser que una pregunta inicial invite a leer el resto; con una sola prueba no se sabe.",
+          "Este sábado 10 de octubre, de 9:00 a 14:00, 20 % de descuento en herramientas manuales.",
+          "¿Qué herramienta te falta en casa? Este sábado 10 de octubre, de 9:00 a 14:00, 20 % de descuento en herramientas manuales.",
+          "Podría ser que un gancho en forma de pregunta haga que algunas personas recuerden con mayor facilidad la versión que vieron.",
           "Personas que, al llegar al local, dicen qué versión vieron.",
         ],
       ],
-      note: "Ejemplo generado. Se mantiene igual: texto, oferta, condiciones, ubicación, acción, imagen, canal y hora de publicación. Cómo comparar: publicar ambas a la vez y contar la señal igual para las dos. No se puede concluir si llegan muy pocas personas, si salieron en momentos distintos o si cambió algo más.",
-    },
-    afirmaciones: {
-      caption: "Hoja de afirmaciones del anuncio final",
-      purpose: "Comprobar cada frase del anuncio contra la ficha y ver qué debe confirmar la persona antes de publicar.",
-      columns: ["Afirmación", "Tipo", "¿En la ficha?", "Qué debe comprobar la persona"],
-      rows: [
-        ["«Solo este sábado» y «el sábado 10 de octubre, de 9:00 a 14:00»", "Condición", "Sí", "Que el local abra en ese horario ese día."],
-        ["«20 % en herramientas manuales»", "Dato de la oferta", "Sí", "Que el descuento alcance a todas las herramientas manuales, o listar excepciones."],
-        ["«herramientas manuales de varias marcas en un solo lugar»", "Servicio o cualidad", "Sí", "Que haya varias marcas en stock ese día."],
-        ["«Te asesoramos para elegir la adecuada»", "Servicio o cualidad", "Sí", "Que haya alguien que asesore ese sábado."],
-        ["«hasta agotar stock por producto» y «no acumulable con otras ofertas»", "Condición", "Sí", "Nada más: son condiciones de la ficha."],
-        ["«calle Los Pinos con calle 5»", "Ubicación", "Sí", "Que la dirección sea correcta."],
-      ],
-      copyable: true,
-      note: "Ejemplo generado. Condiciones de la ficha ",
+      note: "Prueba real, sin editar. Se mantiene igual: texto, oferta, condiciones, ubicación, acción y llamada a la acción. Cuándo no se puede concluir: si una versión cambia además del gancho, si no se identifica qué versión vio la persona, o si las condiciones de exposición de A y B son distintas de una forma que pueda afectar la comparación.",
     },
   },
 
@@ -444,7 +367,11 @@ export default defineGuide({
       variables: [
         { name: "FICHA", description: "La tabla de la ficha completa, campo por campo.", example: "La ficha rellena del caso" },
         { name: "ENFOQUES", description: "Un enfoque por versión, numerados.", example: "1) el beneficio para el cliente; 2) la oferta y su fecha" },
-        { name: "CANAL", description: "Dónde se publicará la versión principal.", example: "Anuncio en una red social, con una imagen" },
+        {
+          name: "CANAL",
+          description: "Dónde se publicará la versión principal. No es un campo de la ficha: lo decides tú aparte, al pedir el anuncio.",
+          example: "Anuncio en una red social, con una imagen y un texto",
+        },
       ],
       prompt: `Actúa como redactor de anuncios para un negocio pequeño. Tu destinatario es alguien que todavía no conoce el negocio y verá el anuncio sin ningún otro contexto. Tu objetivo es escribir una versión del mismo anuncio por cada enfoque que te indico, sin salirte de los datos de la ficha.
 
@@ -707,18 +634,19 @@ Verifica que: cada frase del anuncio está en alguna afirmación; cada afirmaci�
 
   /* ───────────────────────────── primer resultado ───────────────────────────── */
   firstResult: {
-    kind: "generated",
-    intro: "Salida ilustrativa, redactada aplicando el prompt principal a la ficha de Casa y Clavo con dos enfoques. La tuya será distinta.",
+    kind: "real",
+    promptId: "anuncio",
+    intro: "Transcripción literal de la prueba real del prompt principal (captura arriba), con la ficha de Casa y Clavo y dos enfoques. La tuya será distinta.",
     parts: [
       {
         type: "text",
-        text: "**ANUNCIO 1 (enfoque: el beneficio para el cliente)**\n\n**Gancho:** ¿Un arreglo pendiente en casa? Tenemos lo que necesitas.\n\n**Texto:** En Ferretería Casa y Clavo encuentras herramientas manuales de varias marcas en un solo lugar y te asesoramos para elegir la adecuada. Este sábado 10 de octubre, de 9:00 a 14:00, hay 20 % de descuento en herramientas manuales, hasta agotar stock por producto y no acumulable con otras ofertas. Estamos en calle Los Pinos con calle 5.\n\n**Llamada a la acción:** Pasa por el local.\n\n**Datos de la ficha usados:** nombre; herramientas manuales de varias marcas en un solo local; asesoramiento; 20 %; sábado 10 de octubre de 9:00 a 14:00; hasta agotar stock; no acumulable; ubicación; acción.\n\n**Supuestos que tuve que hacer:** ninguno.",
+        text: "**ANUNCIO 1 (enfoque: beneficio que recibe el cliente)**\n\n**Gancho:** Encuentra herramientas manuales de varias marcas en un solo local y recibe asesoría para elegir la adecuada.\n\n**Texto:** En Ferretería Casa y Clavo encontrarás herramientas manuales de varias marcas, como martillos, destornilladores, alicates y llaves, en un solo local. Además, te asesoramos para elegir la adecuada.\n\nEste sábado 10 de octubre, de 9:00 a 14:00, tendrás 20 % de descuento en herramientas manuales.\n\nEstamos en calle Los Pinos con calle 5. Tenemos 12 años atendiendo en el mismo local.\n\nHasta agotar stock por producto. No acumulable con otras ofertas.\n\n**Llamada a la acción:** Pasa por el local el sábado.\n\n**Datos de la ficha usados:** nombre; herramientas manuales de varias marcas; martillos, destornilladores, alicates y llaves; en un solo local; asesoría; 20 %; sábado 10 de octubre, 9:00 a 14:00; ubicación; 12 años atendiendo en el mismo local; hasta agotar stock; no acumulable; acción.\n\n**Supuestos:** ninguno.",
       },
       {
         type: "text",
-        text: "**ANUNCIO 2 (enfoque: la oferta y su fecha)**\n\n**Gancho:** Sábado 10 de octubre: 20 % de descuento en herramientas manuales.\n\n**Texto:** Martillos, destornilladores, alicates y llaves con 20 % de descuento este sábado 10 de octubre, de 9:00 a 14:00, en Ferretería Casa y Clavo, en calle Los Pinos con calle 5. Hasta agotar stock por producto. No acumulable con otras ofertas. Llevamos 12 años de experiencia atendiendo a los vecinos de Las Acacias.\n\n**Llamada a la acción:** Pasa por el local.\n\n**Datos de la ficha usados:** nombre; productos incluidos; 20 %; sábado 10 de octubre de 9:00 a 14:00; hasta agotar stock; no acumulable; ubicación; barrio; 12 años; acción.\n\n**Supuestos que tuve que hacer:** ninguno.",
+        text: "**ANUNCIO 2 (enfoque: oferta, fecha y horario)**\n\n**Gancho:** 20 % de descuento en herramientas manuales este sábado 10 de octubre.\n\n**Texto:** Ferretería Casa y Clavo tiene 20 % de descuento en herramientas manuales: martillos, destornilladores, alicates y llaves.\n\nLa oferta es solo el sábado 10 de octubre, de 9:00 a 14:00, en el local.\n\nEstamos en calle Los Pinos con calle 5. Encontrarás herramientas manuales de varias marcas en un solo local y te asesoramos para elegir la adecuada.\n\nHasta agotar stock por producto. No acumulable con otras ofertas. Ferretería Casa y Clavo lleva 12 años atendiendo en el mismo local.\n\n**Llamada a la acción:** Pasa por el local el sábado.\n\n**Datos de la ficha usados:** nombre; 20 %; martillos, destornilladores, alicates y llaves; solo el sábado 10 de octubre, 9:00 a 14:00; ubicación; en un solo local; asesoría; hasta agotar stock; no acumulable; 12 años atendiendo en el mismo local; acción.\n\n**Supuestos:** ninguno.",
       },
-      { type: "text", text: "**FALTA:** ninguno." },
+      { type: "text", text: "**Falta:** ninguna, en las dos versiones." },
     ],
   },
 
@@ -747,18 +675,20 @@ Verifica que: cada frase del anuncio está en alguna afirmación; cada afirmaci�
       },
       {
         criterionId: "oferta",
-        verdict: "ok",
-        comment: "Las dos llevan el 20 %, la fecha, el horario, el stock y que no es acumulable.",
+        verdict: "improve",
+        comment:
+          "Las dos llevan el 20 %, la fecha, el horario, el stock y que no es acumulable. Pero la versión 1 dice «Este sábado 10 de octubre» sin aclarar que la oferta es solo ese día; la 2 sí lo dice: «La oferta es solo el sábado 10 de octubre…».",
       },
       {
         criterionId: "beneficio",
         verdict: "improve",
-        comment: "La versión 2 solo habla de precio: no dice qué gana el cliente. La 1 sí, aunque su gancho, «tenemos lo que necesitas», podría ser de cualquier ferretería.",
+        comment:
+          "El gancho de la versión 2 solo habla de precio: «20 % de descuento en herramientas manuales este sábado 10 de octubre». El de la 1 explica el beneficio: «Encuentra herramientas manuales de varias marcas en un solo local y recibe asesoría para elegir la adecuada».",
       },
       {
         criterionId: "respaldo",
-        verdict: "risk",
-        comment: "La versión 2 dice «12 años de experiencia», pero la ficha dice «12 años atendiendo en el mismo local»: es una afirmación distinta y más grande.",
+        verdict: "ok",
+        comment: "Las dos citan «12 años atendiendo en el mismo local», igual que la ficha: ninguna la convierte en «12 años de experiencia» ni en nada más grande.",
       },
       {
         criterionId: "accion",
@@ -768,11 +698,11 @@ Verifica que: cada frase del anuncio está en alguna afirmación; cada afirmaci�
       {
         criterionId: "canal",
         verdict: "ok",
-        comment: "Las dos caben en un anuncio con una imagen y un texto de unas setenta palabras.",
+        comment: "Las dos caben en un anuncio con una imagen: entre 75 y 90 palabras.",
       },
     ],
     conclusion:
-      "Elegimos la versión 1: tiene beneficio y ninguna afirmación fuera de la ficha. Su gancho es su punto débil, y se refuerza sin tocar los datos.",
+      "Elegimos la versión 1: su gancho explica el beneficio, mientras que el de la 2 solo habla de precio. A la 1 le falta aclarar que la oferta es solo ese sábado; ese es justamente el punto que se corrige en el refuerzo, sin tocar ningún otro dato.",
   },
 
   /* ───────────────────────────── iteración ───────────────────────────── */
@@ -784,28 +714,18 @@ Verifica que: cada frase del anuncio está en alguna afirmación; cada afirmaci�
 
   /* ───────────────────────────── resultado final ───────────────────────────── */
   improvedResult: {
-    kind: "generated",
-    intro: "Salida ilustrativa del prompt de refuerzo aplicado a la versión 1, con la palanca «urgencia real: llevar fecha y horario al gancho». La tuya será distinta.",
+    kind: "real",
+    promptId: "persuasion",
+    intro:
+      "Transcripción literal de la prueba real del prompt de refuerzo (captura arriba), aplicado a la versión 1 con la palanca «urgencia real». De dónde sale cada frase nueva, más abajo.",
     parts: [
       {
         type: "text",
-        text: "**Versión reforzada**\n\n**Gancho:** Solo este sábado: 20 % en herramientas manuales.\n\n**Texto:** En Ferretería Casa y Clavo encuentras herramientas manuales de varias marcas en un solo lugar. Te asesoramos para elegir la adecuada. El descuento es el sábado 10 de octubre, de 9:00 a 14:00, hasta agotar stock por producto y no acumulable con otras ofertas. Estamos en calle Los Pinos con calle 5.\n\n**Llamada a la acción:** Pasa por el local.",
-      },
-      {
-        type: "table",
-        table: {
-          caption: "Cambios del refuerzo",
-          purpose: "Comprobar que cada frase nueva se apoya en un dato de la ficha y que no cambió ninguna condición.",
-          columns: ["Frase original", "Frase nueva", "Palanca", "Dato de la ficha que la respalda"],
-          rows: [
-            ["¿Un arreglo pendiente en casa? Tenemos lo que necesitas.", "Solo este sábado: 20 % en herramientas manuales.", "Urgencia real", "Condiciones (solo el sábado 10 de octubre) y oferta (20 %)."],
-            ["Este sábado 10 de octubre, de 9:00 a 14:00, hay 20 %…", "El descuento es el sábado 10 de octubre, de 9:00 a 14:00…", "Urgencia real", "Condiciones: el día pasa al gancho; el texto conserva fecha y horario."],
-          ],
-        },
+        text: "**Versión reforzada**\n\n**Gancho:** Este sábado 10 de octubre, de 9:00 a 14:00, 20 % de descuento en herramientas manuales.\n\n**Texto:** En Ferretería Casa y Clavo encontrarás herramientas manuales de varias marcas, como martillos, destornilladores, alicates y llaves, en un solo local. Además, te asesoramos para elegir la adecuada.\n\nEste sábado 10 de octubre, de 9:00 a 14:00, tendrás 20 % de descuento en herramientas manuales.\n\nEstamos en calle Los Pinos con calle 5. Tenemos 12 años atendiendo en el mismo local.\n\nHasta agotar stock por producto. No acumulable con otras ofertas.\n\n**Llamada a la acción:** Pasa por el local el sábado.",
       },
       {
         type: "text",
-        text: "**Lo que no cambié:** nombre, 20 %, herramientas manuales, sábado 10 de octubre, hasta agotar stock, no acumulable, ubicación y acción.\n\n**Para revisar:** «te asesoramos para elegir la adecuada» depende de que haya quien asesore ese sábado; está en la ficha.",
+        text: "**Lo que no cambié:** Ferretería Casa y Clavo; herramientas manuales de varias marcas; martillos, destornilladores, alicates y llaves; asesoría para elegir la adecuada; 20 % de descuento; sábado 10 de octubre; de 9:00 a 14:00; calle Los Pinos con calle 5; 12 años atendiendo en el mismo local; hasta agotar stock por producto; no acumulable con otras ofertas; llamada a la acción: pasar por el local el sábado.\n\n**Para revisar:** nada.",
       },
     ],
   },
@@ -859,7 +779,10 @@ Verifica que: cada frase del anuncio está en alguna afirmación; cada afirmaci�
     intro: "Después de publicar, el trabajo es aprender de lo que pasó y no empezar de cero la próxima vez.",
     steps: [
       { title: "Guarda tu ficha como plantilla", detail: "Cambia solo lo que cambió: producto, fechas y condiciones." },
-      { title: "Mantén un banco de afirmaciones aprobadas", detail: "Las frases que ya comprobaste («te asesoramos», «12 años atendiendo») se reutilizan sin revisarlas otra vez." },
+      {
+        title: "Mantén un banco de afirmaciones aprobadas",
+        detail: "Las frases que ya comprobaste («te asesoramos», «12 años atendiendo») se reutilizan después de confirmar que siguen siendo ciertas: el personal, el stock y los años cambian.",
+      },
       { title: "Anota la señal de cada versión", detail: "Registra cuántas personas mencionaron cada versión." },
       { title: "Cambia un elemento en la próxima prueba", detail: "Usa lo aprendido para elegir qué comparar la vez siguiente." },
       { title: "Retira los anuncios vencidos", detail: "Una oferta terminada que sigue visible genera reclamos." },
@@ -916,3 +839,97 @@ Verifica que: cada frase del anuncio está en alguna afirmación; cada afirmaci�
     },
   ],
 });
+
+/*
+ * ───────────────────────────── datos SOLO de los componentes de esta guía ─────────────────────────────
+ * No forman parte de defineGuide() (que exige un contrato fijo): son las props de los componentes de
+ * ./components.tsx (RubricaAplicada, ErrorFrecuente, TrazabilidadRefuerzo, CanalesPiezas,
+ * CorreccionAntesDespues, HeroArt). Cada valor sale de una prueba real (transcrita en
+ * docs/crear-anuncios/transcripciones.md) o de la ficha del caso (CASO, arriba); nada se inventa aquí.
+ */
+
+/** Rúbrica aplicada a las dos versiones reales de la captura 01. Ninguna saca 0 en ningún criterio. */
+export const rubricaAplicada = {
+  max: MAXIMO,
+  rule: "Si «Afirmaciones respaldadas» saca 0, la versión no se publica aunque el total sea alto. Aquí ninguna llega a 0: la decisión se basa en cuál explica mejor el beneficio.",
+  versions: [
+    {
+      label: "Versión 1",
+      scores: { entiende: 2, oferta: 1, beneficio: 2, respaldo: 2, accion: 2, canal: 2 },
+      notes: { oferta: "En parte: dice «Este sábado» sin «solo»." },
+      verdict: "Elegida",
+    },
+    {
+      label: "Versión 2",
+      scores: { entiende: 2, oferta: 2, beneficio: 1, respaldo: 2, accion: 2, canal: 2 },
+      notes: { beneficio: "En parte: el gancho solo habla de precio." },
+      verdict: "No elegida",
+    },
+  ],
+};
+
+/** El error que la rúbrica debe atrapar: la ficha real no lo cometió, pero un anuncio exagerado sí podría. */
+export const errorFrecuente = {
+  ficha: CASO.respaldo,
+  error: "Llevamos 12 años de experiencia atendiendo a los vecinos de Las Acacias.",
+  nota: "En nuestra prueba real, la IA respetó el dato. Este ejemplo muestra el error que la rúbrica debe atrapar.",
+};
+
+/** De dónde sale la única frase nueva del refuerzo (captura 02): el gancho de la versión 1, con urgencia real. */
+export const trazabilidadRefuerzo = {
+  antes: "Encuentra herramientas manuales de varias marcas en un solo local y recibe asesoría para elegir la adecuada.",
+  despues: "Este sábado 10 de octubre, de 9:00 a 14:00, 20 % de descuento en herramientas manuales.",
+  respaldos: [
+    { campo: "Condiciones", valor: CASO.condiciones },
+    { campo: "Negocio y oferta", valor: CASO.oferta },
+  ],
+};
+
+/** Las tres piezas reales de la captura 03, transcritas literalmente (antes de la corrección del Paso 6). */
+export const canalesPiezas = {
+  piezas: [
+    {
+      canal: "Anuncio en una red social",
+      texto:
+        "Gancho: Este sábado 10 de octubre, de 9:00 a 14:00, 20 % de descuento en herramientas manuales.\n\nEn Ferretería Casa y Clavo encontrarás herramientas manuales de varias marcas, como martillos, destornilladores, alicates y llaves, en un solo local. Además, te asesoramos para elegir la adecuada.\n\nEste sábado 10 de octubre, de 9:00 a 14:00, tendrás 20 % de descuento en herramientas manuales.\n\nEstamos en calle Los Pinos con calle 5. Tenemos 12 años atendiendo en el mismo local.\n\nHasta agotar stock por producto. No acumulable con otras ofertas.\n\nPasa por el local el sábado.",
+      datosConservados: ["Ferretería Casa y Clavo", "20 % de descuento", "sábado 10 de octubre, 9:00–14:00", "calle Los Pinos con calle 5", "12 años atendiendo en el mismo local", "hasta agotar stock", "no acumulable"],
+      noCabe: "[FALTA: límite del canal]. No se puede confirmar que todo el texto quepa sin conocer el límite de la plataforma.",
+    },
+    {
+      canal: "Texto sobre la imagen",
+      texto: "Sábado 10 de octubre: 20 % de descuento",
+      datosConservados: ["sábado 10 de octubre", "20 % de descuento", "oferta de herramientas manuales"],
+      noCabe: "No caben en el texto de imagen: nombre del negocio, productos concretos, varias marcas, asesoría, horario, ubicación, 12 años atendiendo en el mismo local, stock, condición de no acumulación y llamada a la acción.",
+    },
+    {
+      canal: "Mensaje directo",
+      texto:
+        "Hola [NOMBRE], te aviso de una jornada en Ferretería Casa y Clavo: este sábado 10 de octubre, de 9:00 a 14:00, tendrás 20 % de descuento en herramientas manuales. Encontrarás martillos, destornilladores, alicates y llaves de varias marcas en un solo local. Además, te asesoramos para elegir la adecuada.\n\nEstamos en calle Los Pinos con calle 5. Tenemos 12 años atendiendo en el mismo local.\n\nHasta agotar stock por producto. No acumulable con otras ofertas.\n\nPasa por el local el sábado.",
+      datosConservados: ["Ferretería Casa y Clavo", "20 % de descuento", "sábado 10 de octubre, 9:00–14:00", "ubicación", "12 años atendiendo en el mismo local", "stock", "no acumulable"],
+      noCabe: "Nada, siempre que se envíe únicamente a personas que aceptaron recibir mensajes.",
+    },
+  ],
+};
+
+/** Qué corrige el Paso 6, fila por fila: solo lo que la Revisión 1 (real) señaló. */
+export const correccionAntesDespues = {
+  items: [
+    { pieza: "Todas las piezas", antes: "Este sábado 10 de octubre", despues: "Solo el sábado 10 de octubre" },
+    {
+      pieza: "Texto sobre la imagen",
+      nota: "No tiene un texto propio que corregir: sus condiciones dependen de que aparezcan en el Anuncio 1 (la pieza de red social), donde sí se explicitan.",
+    },
+    { pieza: "Mensaje directo", antes: "te aviso de una jornada en Ferretería Casa y Clavo", despues: "te aviso de una oferta en Ferretería Casa y Clavo" },
+    { pieza: "Mensaje directo", nota: "Se añade «en el local» a sus condiciones, para que quede expresamente asociada a la oferta (y no solo a la dirección)." },
+    { pieza: "Versión B", antes: "¿Qué herramienta te falta en casa?", despues: "¿Haces arreglos en casa?" },
+  ],
+};
+
+/** Ficha (izquierda) y anuncio final corregido (derecha), para el hero de la guía. */
+export const heroArt = {
+  ficha: CAMPOS_FICHA.map((c) => ({ id: c.id, campo: c.campo, valor: CASO[c.id] })),
+  gancho: "Solo el sábado 10 de octubre, de 9:00 a 14:00: 20 % de descuento en herramientas manuales.",
+  resto:
+    "En Ferretería Casa y Clavo encontrarás herramientas manuales de varias marcas, como martillos, destornilladores, alicates y llaves, en un solo local. Además, te asesoramos para elegir la adecuada. Estamos en calle Los Pinos con calle 5. Tenemos 12 años atendiendo en el mismo local. Hasta agotar stock por producto. No acumulable con otras ofertas. Pasa por el local el sábado.",
+  destacados: ["condiciones", "oferta"],
+};

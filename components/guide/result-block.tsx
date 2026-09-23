@@ -9,19 +9,22 @@ import { PromptBlock } from "./prompt-block";
 const KIND_LABEL: Record<ResultData["kind"], string> = {
   generated: "Ejemplo generado para esta guía",
   userData: "Datos del usuario",
+  real: "Prueba real, sin editar",
 };
 
 /**
  * Resultado de la IA (o datos que aporta la persona). Se etiqueta siempre de dónde sale:
- * «EJEMPLO GENERADO PARA ESTA GUÍA» frente a «DATOS DEL USUARIO». Nada se presenta como
- * resultado real de un negocio.
+ * «EJEMPLO GENERADO PARA ESTA GUÍA», «DATOS DEL USUARIO» o, cuando existe la captura del autor,
+ * «PRUEBA REAL, SIN EDITAR» (mismo verde que la insignia de PromptCard). Nada se presenta como
+ * resultado real de un negocio si no lo es.
  */
 export function ResultBlock({ data, title }: { data: ResultData; title?: string }) {
+  const badgeClass = data.kind === "real" ? `${ui.tag} border-ok/40 bg-ok-muted text-ok` : data.kind === "generated" ? ui.tag : ui.tagNeutral;
   return (
     <div className={ui.block}>
       <figure className="overflow-hidden rounded-2xl border bg-guide-surface">
         <figcaption className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b bg-background px-5 py-3">
-          <span className={data.kind === "generated" ? ui.tag : ui.tagNeutral}>{KIND_LABEL[data.kind]}</span>
+          <span className={badgeClass}>{KIND_LABEL[data.kind]}</span>
           {title && <span className="text-sm font-semibold text-guide-ink">{title}</span>}
         </figcaption>
         <div className="space-y-4 p-5 sm:p-6">

@@ -52,6 +52,11 @@ export interface GuideAnalysis {
   wordCount: number;
   /** Problemas estructurales (atributos no literales, contenido fuera de secciones…). */
   errors: string[];
+  /**
+   * Nombres importados de rutas relativas (`./components`, `../algo`…): componentes propios de
+   * ESTA guía, no del registro compartido. El validador los admite además de GUIDE_COMPONENTS.
+   */
+  localImports: string[];
 }
 
 const processor = createProcessor();
@@ -153,14 +158,28 @@ function collect(node: MdNode, sectionIndex: number, into: Collector): void {
 
 const emptyCollector = (): Collector => ({ parts: [], paragraphs: [], components: [], dataRefs: [], links: [] });
 
+/** Nombres locales de un `import ... from "./ruta relativa"` (estree del nodo mdxjsEsm). */
+function relativeImportNames(node: MdNode): string[] {
+  const body = (node as unknown as { data?: { estree?: { body?: unknown[] } } }).data?.estree?.body ?? [];
+  const names: string[] = [];
+  for (const stmt of body) {
+    const s = stmt as { type?: string; source?: { value?: unknown }; specifiers?: { local?: { name?: string } }[] };
+    if (s.type !== "ImportDeclaration" || typeof s.source?.value !== "string" || !s.source.value.startsWith(".")) continue;
+    for (const spec of s.specifiers ?? []) if (spec.local?.name) names.push(spec.local.name);
+  }
+  return names;
+}
+
 export function analyzeGuideSource(source: string): GuideAnalysis {
   const root = processor.parse(source) as unknown as MdNode;
   const sections: AnalyzedSection[] = [];
   const errors: string[] = [];
   const all = emptyCollector();
+  const localImports: string[] = [];
 
   for (const child of root.children ?? []) {
-    if (child.type === "mdxjsEsm" || isComment(child)) continue;
+    if (child.type === "mdxjsEsm") { localImports.push(...relativeImportNames(child)); continue; }
+    if (isComment(child)) continue;
 
     if (isJsx(child) && child.name === "GuideSection") {
       const index = sections.length;
@@ -200,5 +219,6 @@ export function analyzeGuideSource(source: string): GuideAnalysis {
     bodyText,
     wordCount,
     errors,
+    localImports,
   };
 }

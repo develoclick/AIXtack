@@ -267,11 +267,13 @@ function checkStructure(g: LoadedGuide, r: Reporter): void {
   for (const key of Object.keys(data)) if (!(DATA_KEYS as readonly string[]).includes(key)) r.add("error", scope, `data.ts tiene una clave desconocida: "${key}" (¿errata?).`);
   for (const key of DATA_REQUIRED_KEYS) r.need(pub, key in data && data[key] !== undefined, scope, `Falta data.${key}.`);
 
-  // componentes permitidos
-  const allowed = new Set<string>(GUIDE_COMPONENTS);
+  // componentes permitidos: el registro compartido, más los que la propia guía importa de una ruta
+  // relativa (p. ej. "./components") — componentes de esa guía, no del registro compartido.
+  const allowed = new Set<string>([...GUIDE_COMPONENTS, ...analysis.localImports]);
   const unknown = new Set<string>();
   for (const component of analysis.components) if (/^[A-Z]/.test(component.name) && !allowed.has(component.name)) unknown.add(component.name);
-  for (const name of unknown) r.add("error", scope, `Componente no registrado: <${name}>. Los disponibles están en components/guide/ y mdx-components.tsx.`);
+  for (const name of unknown)
+    r.add("error", scope, `Componente no registrado: <${name}>. Los disponibles están en components/guide/, mdx-components.tsx o un import relativo propio de la guía (p. ej. "./components").`);
 
   // secciones
   const ids = analysis.sections.map((section) => section.id);
@@ -412,7 +414,12 @@ function checkContent(g: LoadedGuide, r: Reporter): void {
   for (const key of ["firstResult", "improvedResult"] as const) {
     if (!(key in data)) continue;
     const result = asObject(data[key]);
-    r.error(result.kind === "generated" || result.kind === "userData", scope, `${key}.kind debe ser "generated" o "userData" (etiqueta de origen).`);
+    r.error(
+      result.kind === "generated" || result.kind === "userData" || result.kind === "real",
+      scope,
+      `${key}.kind debe ser "generated", "userData" o "real" (etiqueta de origen).`
+    );
+    if (result.kind === "real") r.need(pub, isText(result.promptId), scope, `${key}.promptId es obligatorio con kind "real" (para enlazar con la prueba).`);
     checkList(r, pub, scope, `${key}.parts`, result.parts, 1);
     checkParts(asList(result.parts), `${key}.parts`, scope, r);
   }

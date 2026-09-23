@@ -95,7 +95,7 @@ export const glossary: readonly GlossaryEntry[] = [
   {
     id: "brief",
     term: "Brief",
-    simple: "Un resumen escrito de lo que quieres conseguir con una pieza (una publicación, un afiche) antes de crearla: para quién, con qué datos y para provocar qué acción.",
+    simple: "Un resumen escrito de lo que quieres conseguir con una pieza (un anuncio, una publicación, un afiche) antes de crearla: para quién, con qué datos y para provocar qué acción.",
   },
   {
     id: "margen",
@@ -120,7 +120,7 @@ export const glossary: readonly GlossaryEntry[] = [
   {
     id: "gancho",
     term: "Gancho",
-    simple: "La primera frase de una publicación: la que decide si alguien sigue leyendo o pasa de largo.",
+    simple: "La primera frase de un anuncio o una publicación: la que decide si alguien sigue leyendo o pasa de largo.",
   },
   {
     id: "publico-frio",
@@ -150,7 +150,7 @@ export const glossary: readonly GlossaryEntry[] = [
   {
     id: "variable",
     term: "Variable",
-    simple: "Un hueco marcado dentro de un prompt, como {{NEGOCIO}}, que tú rellenas con tus datos antes de enviarlo. Lo demás del prompt no cambia.",
+    simple: "Un hueco marcado dentro de un prompt, como {{FICHA}}, que tú rellenas con tus datos antes de enviarlo. Lo demás del prompt no cambia.",
   },
   {
     id: "indicador",

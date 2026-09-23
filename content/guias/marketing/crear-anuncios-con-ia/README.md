@@ -34,19 +34,18 @@ Carpeta: `public/images/guias/marketing/crear-anuncios-con-ia/`. WebP, máx. 160
 
 | Archivo | Sección | Ratio |
 | --- | --- | --- |
-| `hero.webp` | Cabecera | 16:9 |
-| `ficha-completa.webp` | Datos | 4:3 |
-| `dos-enfoques.webp` | Primer resultado | 16:9 |
-| `rubrica-aplicada.webp` | Análisis | 4:3 |
-| `persuasion-con-respaldo.webp` | Iteración | 16:9 |
-| `canales.webp` | Adaptación | 16:9 |
-| `hoja-de-afirmaciones.webp` | Verificación | 16:9 |
-| `prueba-prompt-01.webp` … `05` | Junto a cada prompt | 16:9 |
+| `hero.webp` | Cabecera | 16:9 — pendiente: regenerar a partir de `<HeroArt>` (ver `components.tsx`); el actual tiene filas de la ficha cruzadas |
+| `ficha-completa.webp` | Datos | 4:3 — real (captura de la hoja de cálculo) |
+| `prueba-prompt-01.webp` … `05` | Junto a cada prompt | 16:9 — reales, transcritas en `docs/crear-anuncios/transcripciones.md` |
+
+**Ya no hay imagen para el primer resultado, la rúbrica aplicada, el refuerzo, la adaptación por canal ni la hoja de afirmaciones.** Esas cinco ilustraciones (`rubrica-aplicada.webp`, `dos-enfoques.webp`, `persuasion-con-respaldo.webp`, `canales.webp`, `hoja-de-afirmaciones.webp`) contradecían las capturas reales y se borraron; ahora son componentes HTML/CSS con texto real (`RubricaAplicada`, `ErrorFrecuente`, `TrazabilidadRefuerzo`, `CanalesPiezas`, `CorreccionAntesDespues` en `./components.tsx`), con sus datos en `data.ts` (exports con nombre, fuera de `defineGuide()`).
 
 Las cinco `prueba-prompt-0N.webp` (`promptId`: `anuncio`, `persuasion`, `canales`, `variantes`, `afirmaciones`) son capturas reales del autor: «Prueba real» solo aparece si existe el archivo.
 
+**Pendiente de decisión del autor:** `ab-ganch.webp` y `correccion-antes-despues.webp` existen en la carpeta pero ningún archivo del código los usa; son ilustraciones del mismo tipo que las cinco borradas (con texto que no coincide con las capturas reales). Falta decidir si se borran también.
+
 ## Evidencia del autor (no existe todavía)
-`evidence` está vacío a propósito. El autor puede añadir en `data.evidence`: `pruebas` (`promptId`, `fecha`, `asistente`, `nota`), `casoReal` y `revisadoEn`. Hasta entonces los prompts se presentan como «diseñados para» y no se afirma compatibilidad con ningún asistente.
+`evidence` está vacío a propósito, aunque ya existen las cinco pruebas reales (capturas + transcripción). El autor puede añadir en `data.evidence`: `pruebas` (`promptId`, `fecha`, `asistente`, `nota`), `casoReal` y `revisadoEn`. Hasta entonces los prompts se presentan como «diseñados para» y no se afirma compatibilidad con ningún asistente.
 
 ## Guía de pruebas de prompts
 Probar cada prompt en al menos un asistente y ajustarlo (y repetir la prueba) antes de publicar. Datos: los del caso (`CASO` en `data.ts`) o los de un negocio real del autor.

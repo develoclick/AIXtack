@@ -1,4 +1,5 @@
-import data from "./data";
+import data, { canalesPiezas, correccionAntesDespues, errorFrecuente, heroArt, rubricaAplicada, trazabilidadRefuerzo } from "./data";
+import { CanalesPiezas, CorreccionAntesDespues, ErrorFrecuente, HeroArt, RubricaAplicada, TrazabilidadRefuerzo } from "./components";
 
 <GuideSection id="problema" title="Por qué los anuncios con IA exageran u omiten" part="Entender el problema">
 
@@ -28,6 +29,12 @@ El negocio de esta guía es ficticio, como indica su tarjeta. Sus datos y textos
 
 <CaseStudy data={data.caseStudy} />
 
+Probamos los cinco prompts en TODO-HUMANO: asistente el TODO-HUMANO: fecha, en una sola conversación y con la ficha de este caso. Las capturas marcadas «Prueba real» son esas respuestas, sin editar.
+
+Así queda el anuncio al final de la guía, después de la corrección del paso 6:
+
+<HeroArt ficha={heroArt.ficha} gancho={heroArt.gancho} resto={heroArt.resto} destacados={heroArt.destacados} />
+
 </GuideSection>
 
 <GuideSection id="marco" title="Seis ideas antes de escribir un anuncio" part="Preparar">
@@ -47,6 +54,8 @@ Un anuncio se muestra a un <Term id="publico-frio">público frío</Term>: person
 <GuideSection id="datos" title="Antes de abrir la IA: tus datos y tu ficha" part="Preparar">
 
 <DataPreparation data={data.dataPreparation} />
+
+Dos cosas más te conviene tener a mano, aunque no son campos de la ficha: dónde vas a responder y quién atenderá ese día (lo usarás en el paso 4, al adaptar el anuncio a cada canal) y los límites de largo e imagen del canal que vayas a usar (lo usarás en el paso 6, al verificar). Si no los conoces todavía, sigue sin ellos: el prompt los marca como falta en vez de suponerlos.
 
 La ficha es un <Term id="brief">brief</Term> de siete campos y es el recurso central de la guía. Con «Copiar como tabla» la pegas en una hoja de cálculo y la completas ahí.
 
@@ -86,7 +95,7 @@ Léelas con la ficha al lado y pregúntate, en cada versión, qué dato usó y q
 
 <ResultBlock data={data.firstResult} />
 
-<GuideImage slot={data.images.dosEnfoques} />
+<ErrorFrecuente ficha={errorFrecuente.ficha} error={errorFrecuente.error} nota={errorFrecuente.nota} />
 
 </GuideSection>
 
@@ -96,7 +105,9 @@ Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que 
 
 <ResultAnalysis data={data.analysis} rubric={data.rubric} />
 
-<GuideImage slot={data.images.rubrica} />
+<RubricaAplicada criteria={data.rubric.criteria} versions={rubricaAplicada.versions} max={rubricaAplicada.max} rule={rubricaAplicada.rule} />
+
+Ahora prueba tú, con tu propio anuncio:
 
 <Rubric data={data.rubric} />
 
@@ -108,7 +119,7 @@ Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que 
 
 <PromptCard prompt={data.prompts.persuasion} proof={data.images.prueba2} evidence={data.evidence} />
 
-<GuideImage slot={data.images.persuasion} />
+<TrazabilidadRefuerzo antes={trazabilidadRefuerzo.antes} despues={trazabilidadRefuerzo.despues} respaldos={trazabilidadRefuerzo.respaldos} />
 
 </GuideSection>
 
@@ -120,13 +131,11 @@ Una <Term id="rubrica">rúbrica</Term> es una tabla de criterios con puntos que 
 
 <GuideSection id="adaptacion" title="Paso 4: llevarlo a cada canal" part="Adaptar y probar">
 
-Un <Term id="canal">canal</Term> es el lugar donde llega el anuncio. Este prompt adapta el anuncio aprobado a los que uses; el ejemplo usa dos.
+Un <Term id="canal">canal</Term> es el lugar donde llega el anuncio. Este prompt adapta el anuncio aprobado a los que uses; el ejemplo usa tres.
 
 <PromptCard prompt={data.prompts.canales} proof={data.images.prueba3} evidence={data.evidence} />
 
-<ComparisonTable table={data.comparisons.adaptaciones} eyebrow="Ejemplo generado" />
-
-<GuideImage slot={data.images.canales} />
+<CanalesPiezas piezas={canalesPiezas.piezas} />
 
 </GuideSection>
 
@@ -148,7 +157,9 @@ Es como colgar dos carteles distintos en la vitrina, a la misma hora y en el mis
 
 <PromptCard prompt={data.prompts.variantes} proof={data.images.prueba4} evidence={data.evidence} />
 
-<ComparisonTable table={data.comparisons.variantes} eyebrow="Ejemplo generado" />
+<ComparisonTable table={data.comparisons.variantes} eyebrow="Prueba real" />
+
+En el paso 6, la revisión marcó que esta pregunta no tiene respaldo en la ficha; la cambiamos por «¿Haces arreglos en casa?».
 
 </GuideSection>
 
@@ -166,9 +177,15 @@ El riesgo principal es el <Term id="dato-inventado">dato inventado</Term>: la IA
 
 <PromptCard prompt={data.prompts.afirmaciones} proof={data.images.prueba5} evidence={data.evidence} />
 
-<ComparisonTable table={data.comparisons.afirmaciones} eyebrow="Ejemplo generado" />
+En nuestra primera revisión, las cuatro piezas salieron NO PUBLICAR. El anuncio decía «Este sábado 10 de octubre», pero no aclaraba que la oferta es solo ese día. Al texto sobre la imagen le faltaban las condiciones. El mensaje directo hablaba de una «jornada», palabra que no figura en la ficha. Y la pregunta de la versión B no tenía respaldo. Corregimos las cuatro piezas y repetimos la revisión: sin hallazgos en la ficha. La tabla de abajo es la hoja final.
 
-<GuideImage slot={data.images.afirmaciones} />
+<CorreccionAntesDespues items={correccionAntesDespues.items} />
+
+<Callout variant="warning" title="Pendiente de la Revisión 2">
+
+TODO-HUMANO: salida Revisión 2. Aquí va la tabla «Hoja de afirmaciones del anuncio final» con las filas literales del Anuncio 1 corregido, en cuanto se repita la revisión con las cuatro piezas ya corregidas.
+
+</Callout>
 
 </GuideSection>
 

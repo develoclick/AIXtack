@@ -320,8 +320,13 @@ export interface MethodData {
 }
 
 export interface ResultData {
-  /** «generated» = ejemplo generado con IA para esta guía; «userData» = datos aportados por el usuario. */
-  kind: "generated" | "userData";
+  /**
+   * «generated» = ejemplo generado con IA para esta guía; «userData» = datos aportados por el usuario;
+   * «real» = transcripción literal de una prueba real del autor (existe la captura, con `promptId`).
+   */
+  kind: "generated" | "userData" | "real";
+  /** Solo con `kind: "real"`: la clave del prompt probado, para enlazar con `evidence.pruebas`. */
+  promptId?: string;
   intro?: string;
   parts: ContentPart[];
   image?: ImageRef;
