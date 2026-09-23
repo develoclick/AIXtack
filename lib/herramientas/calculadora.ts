@@ -75,7 +75,12 @@ export function formatear(valor: number, formato: FormatoNumero, decimales: numb
 
 function valorEntrada(entrada: EntradaCalculadora, texto: string | number | undefined): { valor: number | null; error?: string } {
   const vacia = texto === undefined || String(texto).trim() === "";
-  if (vacia) return entrada.requerido === false ? { valor: entrada.porDefecto ?? 0 } : { valor: null, error: "Escribe un número." };
+  if (vacia) {
+    if (entrada.requerido !== false) return { valor: null, error: "Escribe un número." };
+    // El valor por defecto se escribe como la persona lo escribiría (20 = 20 %), igual que un dato tecleado.
+    const defecto = entrada.porDefecto ?? 0;
+    return { valor: entrada.unidad === "porcentaje" ? defecto / 100 : defecto };
+  }
   const n = leerNumero(texto);
   if (n === null) return { valor: null, error: "Escribe solo números (por ejemplo 12.5)." };
   if (entrada.unidad === "entero" && !Number.isInteger(n)) return { valor: null, error: "Escribe un número entero." };

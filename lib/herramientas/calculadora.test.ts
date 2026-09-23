@@ -133,3 +133,17 @@ test("una salida opcional sin datos queda en «—», no bloquea `completo` y no
   assert.equal(sin.completo, true);
   assert.equal(calcular(c, { a: "10", extra: "5" }).resultados[1].valor, 15);
 });
+
+test("el valor por defecto de un porcentaje opcional se escribe como 20 (=20 %), igual que un dato tecleado", () => {
+  const c: Calculadora = {
+    entradas: [
+      { id: "base", label: "Base", ejemplo: "100" },
+      { id: "reserva", label: "Reserva (opcional, 20 % por defecto)", unidad: "porcentaje", ejemplo: "20", requerido: false, porDefecto: 20 },
+    ],
+    salidas: [{ id: "usable", etiqueta: "Usable", formula: "base * (1 - reserva)", formato: "numero", decimales: 0 }],
+    casosDePrueba: [],
+  };
+  assert.equal(calcular(c, { base: 100 }).resultados[0].valor, 80);
+  assert.equal(calcular(c, { base: 100, reserva: "0" }).resultados[0].valor, 100);
+  assert.equal(calcular(c, { base: 100, reserva: "50" }).resultados[0].valor, 50);
+});

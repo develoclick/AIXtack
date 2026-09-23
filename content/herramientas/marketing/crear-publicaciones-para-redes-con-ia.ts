@@ -152,7 +152,7 @@ Antes de responder, comprueba que cada dato de cada opción está en mis datos, 
     { p: "¿Tengo que revisar las reglas de la plataforma?", r: "Sí. Las reglas sobre promociones e imágenes dependen de la plataforma y de tu país, y esta herramienta no las cubre." },
   ],
 
-  relacionadas: ["marketing/crear-anuncios-con-ia", "marketing/crear-afiches-con-ia"], // se ajustará al crear calendario-de-contenido
+  relacionadas: ["marketing/calendario-de-contenido-con-ia", "marketing/crear-anuncios-con-ia"],
 
   metodoCompleto: {
     titulo: "Método completo: el brief de siete campos y la rúbrica",
