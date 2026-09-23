@@ -9,6 +9,7 @@ import { AuroraRibbon } from "@/components/visual/aurora-ribbon";
 import { getCategory } from "@/content/categorias";
 import { rutaHerramienta, type HerramientaCargada } from "@/lib/herramientas/registro";
 import { formatDate } from "@/lib/utils/format";
+import { CapturaFigura } from "./captura-figura";
 import { ChecklistRevision } from "./checklist-revision";
 import { EjemploReal } from "./ejemplo-real";
 import { EspacioAnuncio } from "./espacio-anuncio";
@@ -207,6 +208,9 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
             </summary>
             <div className="pb-4">
               <RichText text={h.metodoCompleto.parrafos.join("\n\n")} />
+              {h.metodoCompleto.capturas?.map((c) => (
+                <CapturaFigura key={c.src} captura={c} />
+              ))}
             </div>
           </details>
         )}

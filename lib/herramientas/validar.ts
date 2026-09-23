@@ -30,7 +30,7 @@ export const PALABRAS_MIN = 1500;
 export const PALABRAS_MAX = 2500;
 const PALABRAS_ABSOLUTAS = /garantiz|100\s?%|aumenta(?:r|mos)? tus ventas|duplica tus ventas/i;
 const TIPOS = ["generador", "calculadora", "analizador", "kit"];
-const ETIQUETAS = ["Prueba real", "Ilustración", "Simulación"];
+const ETIQUETAS = ["Prueba real", "Captura de hoja", "Ilustración", "Simulación"];
 
 /** Todo el texto que ve la persona en la página, salvo el prompt (`tarea`), los datos técnicos y los casos de prueba. */
 export function textosVisibles(h: Herramienta): string[] {
@@ -49,7 +49,7 @@ export function textosVisibles(h: Herramienta): string[] {
   for (const r of h.rubros) t.push(r.rubro, r.ejemplo, r.consejo);
   for (const e of h.errores) t.push(e.error, e.solucion);
   for (const f of h.faq) t.push(f.p, f.r);
-  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos);
+  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).flatMap((c) => [c.alt, c.pie ?? ""]));
   for (const l of h.meta.limites ?? []) t.push(l.concepto, l.valor);
   return t.filter(Boolean);
 }
@@ -153,7 +153,7 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Faltan meta.probadoEn y meta.probadoFecha: sin prueba real no se publica.");
   publicada(h.ejemplo.capturas.length >= 1 && h.ejemplo.capturas.length <= 2, `Capturas: ${h.ejemplo.capturas.length} (deben ser 1–2 en el ejemplo real).`);
   publicada(h.ejemplo.capturas.some((c) => c.etiqueta === "Prueba real"), "Falta al menos una captura etiquetada «Prueba real».");
-  for (const c of h.ejemplo.capturas) {
+  for (const c of [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])]) {
     error(ETIQUETAS.includes(c.etiqueta), `Captura ${c.src}: etiqueta «${c.etiqueta}» no válida.`);
     error(c.alt.trim().length >= 25, `Captura ${c.src}: el alt es demasiado corto para describir la imagen.`);
     error(c.src.startsWith(`/img/${h.meta.area}/${h.meta.slug}/`), `Captura ${c.src}: debe estar en /img/${h.meta.area}/${h.meta.slug}/.`);

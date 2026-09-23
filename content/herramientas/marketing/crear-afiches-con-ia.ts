@@ -205,7 +205,7 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
     },
   ],
 
-  relacionadas: [], // TODO: añadir «marketing/crear-anuncios-con-ia» y «marketing/crear-promociones-con-ia» cuando existan en el formato nuevo (Lote A): una página solo enlaza a páginas publicadas.
+  relacionadas: ["marketing/crear-anuncios-con-ia", "marketing/crear-promociones-con-ia"],
 
   metodoCompleto: {
     titulo: "Método completo: niveles, rúbrica y hoja de revisión",

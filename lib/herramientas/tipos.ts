@@ -91,7 +91,8 @@ export interface MejoraPrompt {
   prompt: string;
 }
 
-export type EtiquetaImagen = "Prueba real" | "Ilustración" | "Simulación";
+/** «Prueba real» = captura real, sin editar, de un chat con una IA. «Captura de hoja» = captura real de una hoja de cálculo. */
+export type EtiquetaImagen = "Prueba real" | "Captura de hoja" | "Ilustración" | "Simulación";
 
 export interface CapturaEjemplo {
   /** Ruta pública, en /img/{area}/{slug}/…  */
@@ -195,7 +196,8 @@ export interface Herramienta {
   faq: PreguntaFrecuente[];
   /** Rutas «area/slug» de herramientas relacionadas. */
   relacionadas: string[];
-  metodoCompleto: { titulo: string; parrafos: string[] } | null;
+  /** Texto largo plegado. `capturas` = pruebas reales adicionales (por ejemplo, las de la versión anterior del método). */
+  metodoCompleto: { titulo: string; parrafos: string[]; capturas?: CapturaEjemplo[] } | null;
 }
 
 export function defineHerramienta<T extends Herramienta>(herramienta: T): T {

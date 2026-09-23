@@ -1,8 +1,6 @@
-import { ZoomableImage } from "@/components/guide/zoomable-image";
-import { ui } from "@/components/guide/ui";
 import { mediaExists } from "@/lib/guides/media";
 import type { EjemploReal as EjemploRealDatos } from "@/lib/herramientas/tipos";
-import { cn } from "@/lib/utils";
+import { CapturaFigura } from "./captura-figura";
 
 /**
  * Bloque 6: el caso de ejemplo, sus capturas y «Qué corregí yo». Cada imagen lleva su etiqueta honesta
@@ -43,13 +41,7 @@ export function EjemploReal({ ejemplo }: { ejemplo: EjemploRealDatos }) {
       )}
 
       {capturas.map((captura) => (
-        <figure key={captura.src} className="mt-6">
-          <p className="mb-2">
-            <span className={cn(captura.etiqueta === "Prueba real" ? `${ui.tag} border-ok/40 bg-ok-muted text-ok` : ui.tagNeutral)}>{captura.etiqueta}</span>
-          </p>
-          <ZoomableImage src={captura.src} alt={captura.alt} caption={captura.pie} ratio="" sizes="(min-width: 1024px) 54rem, 100vw" loading="lazy" />
-          {captura.pie && <figcaption className="mt-2 text-sm leading-snug text-muted-foreground">{captura.pie}</figcaption>}
-        </figure>
+        <CapturaFigura key={captura.src} captura={captura} />
       ))}
 
       {ejemplo.queCorregi.length > 0 && (
