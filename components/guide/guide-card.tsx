@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import type { ReactNode } from "react";
+import { ArrowUpRight, ImagePlus } from "lucide-react";
 import { getCategory } from "@/content/categorias";
 import { guidePath } from "@/lib/guides/constants";
 import { mediaExists } from "@/lib/guides/media";
 import type { GuideSummary } from "@/lib/guides/types";
+import { cn } from "@/lib/utils";
 import { ui } from "./ui";
 
 /** Imagen hero de la guía por convención de carpeta; solo si el archivo existe (nada se inventa). */
@@ -13,11 +15,53 @@ function heroSrcOf(guide: GuideSummary): string | null {
   return mediaExists(src) ? src : null;
 }
 
+/**
+ * Espacio de imagen de una tarjeta: si `hero.webp` ya existe se ve la foto; mientras no exista,
+ * un espacio con la identidad del sitio (retícula + resplandor de marca) para que la composición
+ * quede terminada. En cuanto el autor suelta el archivo en la carpeta de la guía, esta misma caja
+ * muestra la foto sin tocar código: nunca hay que "activar" nada a mano.
+ */
+function GuideThumb({
+  src,
+  sizes,
+  className,
+  imgClassName,
+  iconSize = "size-9",
+  priority,
+  children,
+}: {
+  src: string | null;
+  sizes: string;
+  className: string;
+  imgClassName?: string;
+  iconSize?: string;
+  priority?: boolean;
+  children?: ReactNode;
+}) {
+  return (
+    <span className={cn("relative block overflow-hidden bg-paper-2", className)}>
+      {src ? (
+        <Image src={src} alt="" fill sizes={sizes} priority={priority} className={cn("object-cover", imgClassName)} />
+      ) : (
+        <>
+          <span aria-hidden className="bg-lines absolute inset-0 opacity-70" />
+          <span aria-hidden className="glow-brand absolute -right-1/4 -top-1/3 h-4/5 w-4/5 opacity-50" />
+          <span aria-hidden className="absolute inset-0 flex items-center justify-center">
+            <ImagePlus className={cn("text-foreground/25", iconSize)} aria-hidden />
+          </span>
+        </>
+      )}
+      {children}
+    </span>
+  );
+}
+
 type Variant = "card" | "row" | "feature";
 
 /**
  * Guía en listados. Tres composiciones: `card` (relacionadas), `row` (filas editoriales de la
- * biblioteca y los hubs) y `feature` (pieza destacada, oscura, con la imagen hero si existe).
+ * biblioteca y los hubs) y `feature` (pieza destacada, oscura). Las tres reservan siempre su
+ * imagen (ver `GuideThumb`): con `hero.webp` o sin él, la composición nunca queda incompleta.
  */
 export function GuideCard({
   guide,
@@ -40,9 +84,21 @@ export function GuideCard({
     return (
       <Link
         href={guidePath(guide)}
-        className="guide-focus group grid grid-cols-[2.25rem_minmax(0,1fr)_auto] items-start gap-x-4 border-b py-5 transition-colors first:border-t hover:bg-muted/40 sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:gap-x-6 sm:px-2 sm:py-6"
+        className="guide-focus group grid grid-cols-[4.25rem_minmax(0,1fr)_auto] items-start gap-x-4 border-b py-4 transition-colors first:border-t hover:bg-muted/40 sm:grid-cols-[6.5rem_minmax(0,1fr)_auto] sm:gap-x-6 sm:px-2 sm:py-5"
       >
-        <span className="pt-1.5 font-mono text-xs tabular-nums text-muted-foreground">{index !== undefined ? String(index).padStart(2, "0") : "—"}</span>
+        <GuideThumb
+          src={hero}
+          sizes="(min-width: 640px) 6.5rem, 4.25rem"
+          className="aspect-[4/3] w-full rounded-xl border"
+          imgClassName="transition-transform duration-500 group-hover:scale-[1.05] motion-reduce:transition-none"
+          iconSize="size-6"
+        >
+          {index !== undefined && (
+            <span className="absolute left-1 top-1 rounded-md bg-background/85 px-1.5 py-0.5 font-mono text-[0.6rem] font-medium tabular-nums text-muted-foreground backdrop-blur-sm sm:left-1.5 sm:top-1.5">
+              {String(index).padStart(2, "0")}
+            </span>
+          )}
+        </GuideThumb>
         <div className="min-w-0">
           <p className={ui.eyebrow}>{label}</p>
           <h3 className="mt-1.5 text-balance text-lg font-semibold leading-snug tracking-tight text-guide-ink transition-colors group-hover:text-brand sm:text-xl">
@@ -69,18 +125,13 @@ export function GuideCard({
         >
           <span aria-hidden className="glow-brand absolute -right-24 -top-24 -z-10 size-[26rem] opacity-70 transition-transform duration-700 group-hover:scale-110 motion-reduce:transition-none" />
           <span aria-hidden className="glow-cool absolute -bottom-32 -left-16 -z-10 size-[22rem] opacity-60" />
-          {hero && (
-            
-            <span className="relative m-3 block aspect-video shrink-0 overflow-hidden rounded-[1.4rem] ring-1 ring-white/10 @3xl:aspect-auto @3xl:min-h-72 @3xl:w-[46%]">
-              <Image
-                src={hero}
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 42vw, 100vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.03] motion-reduce:transition-none"
-              />
-            </span>
-          )}
+          <GuideThumb
+            src={hero}
+            sizes="(min-width: 1024px) 42vw, 100vw"
+            className="m-3 aspect-video shrink-0 rounded-[1.4rem] ring-1 ring-white/10 @3xl:aspect-auto @3xl:min-h-72 @3xl:w-[46%]"
+            imgClassName="transition-transform duration-700 group-hover:scale-[1.03] motion-reduce:transition-none"
+            iconSize="size-14"
+          />
           <div className="flex flex-1 flex-col justify-end p-7 pt-6 sm:p-9 sm:pt-7 @3xl:pl-6">
             <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.16em] text-brand">{label}</p>
             <h3 className="mt-3 max-w-xl text-balance text-3xl font-semibold leading-[1.08] tracking-tight sm:text-4xl">{guide.title}</h3>
@@ -100,11 +151,13 @@ export function GuideCard({
       href={guidePath(guide)}
       className="guide-focus guide-lift group flex h-full flex-col overflow-hidden rounded-2xl border bg-background hover:border-brand/50"
     >
-      {hero && (
-        <span className="relative block aspect-video w-full overflow-hidden border-b bg-muted">
-          <Image src={hero} alt="" fill sizes="(min-width: 640px) 26rem, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none" />
-        </span>
-      )}
+      <GuideThumb
+        src={hero}
+        sizes="(min-width: 640px) 26rem, 100vw"
+        className="aspect-video w-full border-b"
+        imgClassName="transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+        iconSize="size-10"
+      />
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center justify-between gap-3">
           <p className={ui.eyebrow}>{label}</p>

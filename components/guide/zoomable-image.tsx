@@ -21,16 +21,28 @@ export function ZoomableImage({ src, alt, caption, ratio, sizes, loading, priori
   return (
     <>
       <button
-        type="button"
-        onClick={() => dialogRef.current?.showModal()}
-        aria-label={`Ampliar imagen: ${alt}`}
-        className={`guide-focus group relative block w-full cursor-zoom-in overflow-hidden rounded-xl border bg-muted ${ratio}`}
-      >
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} loading={priority ? undefined : loading} className="object-cover" />
-        <span className="absolute right-2 top-2 rounded-md bg-background/85 p-1.5 text-foreground opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-          <Maximize2 className="size-4" aria-hidden />
-        </span>
-      </button>
+  type="button"
+  onClick={() => dialogRef.current?.showModal()}
+  aria-label={`Ampliar imagen: ${alt}`}
+  className="guide-focus group relative block w-full cursor-zoom-in overflow-hidden rounded-xl border bg-muted"
+>
+  <Image
+    src={src}
+    alt={alt}
+    width={1200}
+    height={800}
+    sizes={sizes}
+    priority={priority}
+    loading={priority ? undefined : loading}
+    className="block h-auto w-full"
+  />
+
+  <span className="absolute right-2 top-2 rounded-md bg-background/85 p-1.5 text-foreground opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+    <Maximize2 className="size-4"
+      aria-hidden
+    />
+  </span>
+</button>
 
       <dialog
         ref={dialogRef}
