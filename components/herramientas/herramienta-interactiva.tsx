@@ -38,7 +38,7 @@ export function HerramientaInteractiva({ campos, usaPerfil, calculadora, tarea }
       construirPrompt(
         perfil,
         campos.map((c) => ({ id: c.id, label: c.label, valor: valores[c.id], requerido: c.requerido })),
-        estado ? estado.resultados.filter((r) => r.enPrompt).map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : null,
+        estado ? estado.resultados.filter((r) => r.enPrompt && !(r.opcional && r.valor === null)).map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : null,
         tarea,
         { usaPerfil }
       ),

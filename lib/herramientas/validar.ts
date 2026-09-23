@@ -89,7 +89,8 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   error(new Set(idsCampos).size === idsCampos.length, "Hay campos con el mismo id.");
   for (const c of h.campos) {
     error(/^[A-Za-z][A-Za-z0-9_]*$/.test(c.id), `Campo «${c.id}»: id no válido.`);
-    error(c.ejemplo.trim() !== "", `Campo «${c.id}»: falta el ejemplo de «Probar con un ejemplo».`);
+    // Un campo opcional puede quedar vacío en el ejemplo (por ejemplo, una condición que el caso deja pendiente a propósito).
+    error(c.ejemplo.trim() !== "" || !c.requerido, `Campo «${c.id}»: falta el ejemplo de «Probar con un ejemplo».`);
     error(c.tipo !== "seleccion" || Boolean(c.opciones && c.opciones.length > 1), `Campo «${c.id}»: una selección necesita opciones.`);
     error(c.tipo !== "seleccion" || !c.opciones || c.opciones.includes(c.ejemplo), `Campo «${c.id}»: el ejemplo no está entre las opciones.`);
   }

@@ -46,7 +46,9 @@ export interface EntradaCalculadora {
   /** Cómo se escribe el dato: `moneda` antepone el símbolo del perfil; `porcentaje` se escribe como 20 (=20 %). */
   unidad?: "moneda" | "porcentaje" | "numero" | "entero";
   ejemplo: string;
+  /** `false` = opcional: vacío vale `porDefecto` (0 si no se indica). */
   requerido?: boolean;
+  porDefecto?: number;
   min?: number;
   max?: number;
   ayuda?: string;
@@ -65,6 +67,8 @@ export interface SalidaCalculadora {
   decimales?: number;
   /** Si `false`, se muestra en la página pero no viaja al prompt. Por defecto `true`. */
   enPrompt?: boolean;
+  /** Salida que depende de datos opcionales: sin ellos se muestra «—» y no viaja al prompt (no se marca [FALTA]). */
+  opcional?: boolean;
   ayuda?: string;
 }
 

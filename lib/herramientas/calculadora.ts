@@ -14,6 +14,7 @@ export interface ResultadoCalculo {
   /** Texto para mostrar y para el prompt; `null` cuando no hay valor. */
   texto: string | null;
   enPrompt: boolean;
+  opcional: boolean;
 }
 
 export interface EstadoCalculadora {
@@ -74,7 +75,7 @@ export function formatear(valor: number, formato: FormatoNumero, decimales: numb
 
 function valorEntrada(entrada: EntradaCalculadora, texto: string | number | undefined): { valor: number | null; error?: string } {
   const vacia = texto === undefined || String(texto).trim() === "";
-  if (vacia) return entrada.requerido === false ? { valor: null } : { valor: null, error: "Escribe un número." };
+  if (vacia) return entrada.requerido === false ? { valor: entrada.porDefecto ?? 0 } : { valor: null, error: "Escribe un número." };
   const n = leerNumero(texto);
   if (n === null) return { valor: null, error: "Escribe solo números (por ejemplo 12.5)." };
   if (entrada.unidad === "entero" && !Number.isInteger(n)) return { valor: null, error: "Escribe un número entero." };
@@ -104,9 +105,10 @@ export function calcular(calculadora: Calculadora, entradas: Record<string, stri
       valor,
       texto: valor === null ? null : formatear(valor, salida.formato, salida.decimales, moneda),
       enPrompt: salida.enPrompt !== false,
+      opcional: salida.opcional === true,
     });
   }
-  return { errores, resultados, completo: Object.keys(errores).length === 0 && resultados.every((r) => r.valor !== null) };
+  return { errores, resultados, completo: Object.keys(errores).length === 0 && resultados.every((r) => r.valor !== null || r.opcional) };
 }
 
 export interface FalloDeCaso {
