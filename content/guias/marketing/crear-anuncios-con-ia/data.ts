@@ -340,7 +340,7 @@ export default defineGuide({
         ["«No acumulable con otras ofertas»", "Condición", "Sí", "Que realmente no sea acumulable con otras ofertas."],
       ],
       copyable: true,
-      note: "Comprobación manual contra la ficha (la misma que enseña este paso): no es una respuesta nueva de la IA, sino la verificación de que la única condición que la Revisión 1 marcó como ausente («solo el sábado 10 de octubre») ya está en el texto corregido. Condiciones de la ficha que faltan: ninguna. Veredicto: sin hallazgos en la ficha.",
+      note: "Corregimos las cuatro piezas y comprobamos a mano, contra la ficha, que ya no faltaba ninguna condición. La tabla de abajo es esa comprobación.",
     },
   },
 
@@ -725,7 +725,7 @@ Verifica que: cada frase del anuncio está en alguna afirmación; cada afirmaci�
       },
     ],
     conclusion:
-      "Elegimos la versión 1: su gancho explica el beneficio, mientras que el de la 2 solo habla de precio. A la 1 le falta aclarar que la oferta es solo ese sábado; ese es justamente el punto que se corrige en el refuerzo, sin tocar ningún otro dato.",
+      "Elegimos la versión 1: su gancho explica el beneficio, mientras que el de la 2 solo habla de precio. A la 1 le falta aclarar que la oferta es solo ese sábado. El refuerzo del paso 3 no lo corrige: lo atrapa la revisión de afirmaciones del paso 6, y por eso ese paso no se salta.",
   },
 
   /* ───────────────────────────── iteración ───────────────────────────── */
