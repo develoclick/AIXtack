@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
-import { GuideCard } from "@/components/guide/guide-card";
+import { TarjetaHerramienta } from "@/components/herramientas/tarjeta-herramienta";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { AuroraRibbon } from "@/components/visual/aurora-ribbon";
@@ -11,8 +11,9 @@ import { FloatingIllustration } from "@/components/visual/floating-illustration"
 import { Reveal } from "@/components/visual/reveal";
 import { categories, getCategory } from "@/content/categorias";
 import { mediaExists } from "@/lib/guides/media";
-import { listGuidesByCategory, toSummary } from "@/lib/guides/registry";
-import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo/json-ld";
+import { listarVisibles, publicadasPorArea } from "@/lib/herramientas/registro";
+import { herramientasCollectionJsonLd } from "@/lib/herramientas/seo";
+import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 interface PageProps {
@@ -33,7 +34,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const category = getCategory(categoria);
   if (!category) return {};
 
-  return buildMetadata({ title: category.title, description: category.description, path: `/${category.slug}` });
+  // Un área sin ninguna herramienta publicada solo tendría la introducción: no se indexa hasta que haya contenido.
+  const publicadas = await publicadasPorArea(category.slug);
+  return buildMetadata({ title: category.title, description: category.description, path: `/${category.slug}`, noIndex: publicadas.length === 0 });
 }
 
 export default async function CategoryHubPage({ params }: PageProps) {
@@ -41,8 +44,7 @@ export default async function CategoryHubPage({ params }: PageProps) {
   const category = getCategory(categoria);
   if (!category) notFound();
 
-  const guides = (await listGuidesByCategory(category.slug)).map(toSummary);
-  const [featured, second, third, ...rest] = guides;
+  const herramientas = (await listarVisibles()).filter((h) => h.meta.area === category.slug);
   const others = categories.filter((item) => item.slug !== category.slug);
   const breadcrumbs = [{ name: category.name, path: `/${category.slug}` }];
   const [lead, ...intro] = category.intro;
@@ -54,11 +56,11 @@ export default async function CategoryHubPage({ params }: PageProps) {
       <JsonLd
         data={[
           breadcrumbJsonLd([{ name: "Inicio", path: "/" }, ...breadcrumbs]),
-          collectionPageJsonLd({
+          herramientasCollectionJsonLd({
             name: category.title,
             description: category.description,
             path: `/${category.slug}`,
-            guides,
+            herramientas: herramientas.filter((h) => h.publicado),
           }),
         ]}
       />
@@ -116,7 +118,7 @@ export default async function CategoryHubPage({ params }: PageProps) {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20 lg:px-8 lg:py-24">
           <Reveal>
             <h2 id="situaciones" className="text-display-md text-balance">
-              Situaciones que ayudan a resolver estas guías
+              Situaciones que ayudan a resolver estas herramientas
             </h2>
           </Reveal>
           <ul className="border-t border-white/15">
@@ -132,47 +134,26 @@ export default async function CategoryHubPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ── Guías del área: una destacada, dos medianas y filas ─────────────────────── */}
-      <section aria-labelledby="guias-de-la-categoria" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      {/* ── Herramientas del área ───────────────────────────────────────────────────── */}
+      <section aria-labelledby="herramientas-del-area" className="herramienta-scope mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <Reveal>
-          <h2 id="guias-de-la-categoria" className="text-display-md text-balance">
-            Guías de {category.name}
+          <h2 id="herramientas-del-area" className="text-display-md text-balance">
+            Herramientas de {category.name}
           </h2>
         </Reveal>
 
-        {guides.length > 0 ? (
-          <>
-            <div className="mt-12 grid gap-5 lg:grid-cols-12">
-              {featured && (
-                <Reveal className={second ? "lg:col-span-7 h-fit" : "lg:col-span-12 h-fit"}>
-                  <GuideCard guide={featured} showCategory={false} variant="feature" />
-                </Reveal>
-              )}
-              {second && (
-                <div className="flex flex-col gap-5 lg:col-span-5">
-                  <Reveal delay={100} className="flex-1">
-                    <GuideCard guide={second} showCategory={false} />
-                  </Reveal>
-                  {third && (
-                    <Reveal delay={180} className="flex-1">
-                      <GuideCard guide={third} showCategory={false} />
-                    </Reveal>
-                  )}
-                </div>
-              )}
-            </div>
-            {rest.length > 0 && (
-              <ul className="mt-12 grid gap-x-14 lg:grid-cols-2">
-                {rest.map((guide, index) => (
-                  <li key={guide.slug}>
-                    <GuideCard guide={guide} showCategory={false} variant="row" index={index + 4} />
-                  </li>
-                ))}
-              </ul>
-            )}
-          </>
+        {herramientas.length > 0 ? (
+          <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {herramientas.map((h) => (
+              <li key={h.meta.slug}>
+                <TarjetaHerramienta herramienta={h} mostrarArea={false} />
+              </li>
+            ))}
+          </ul>
         ) : (
-          <p className="mt-4 text-muted-foreground">Estamos preparando las primeras guías de esta categoría.</p>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            Estamos preparando las herramientas de esta área. Cada una se publica solo cuando su prompt se ha probado de verdad en una IA.
+          </p>
         )}
       </section>
 
@@ -191,8 +172,8 @@ export default async function CategoryHubPage({ params }: PageProps) {
             ))}
           </ul>
           <p className="mt-8">
-            <Link href="/guias" className="pill-link border-brand/40 font-medium text-brand">
-              Ver todas las guías <ArrowRight className="size-3.5" aria-hidden />
+            <Link href="/herramientas" className="pill-link border-brand/40 font-medium text-brand">
+              Ver todas las herramientas <ArrowRight className="size-3.5" aria-hidden />
             </Link>
           </p>
         </div>

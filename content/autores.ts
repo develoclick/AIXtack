@@ -4,6 +4,8 @@
  * detrás de una guía y quiere firmarla, se añade aquí con la información que
  * ella misma confirme.
  */
+// TODO: bio breve del autor (la escribe el dueño del sitio; no se inventa ni se deduce). Mientras no exista, no se muestra.
+// TODO: decidir si además de DeveloClick (alias/organización) se firma con un nombre de persona; añadirlo aquí solo con lo que confirme.
 export interface Author {
   id: string;
   name: string;

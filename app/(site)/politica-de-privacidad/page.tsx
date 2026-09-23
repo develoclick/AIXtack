@@ -44,15 +44,27 @@ export default function PrivacyPolicyPage() {
           <strong>Tu elección sobre las cookies</strong>, que se guarda en el almacenamiento local de tu navegador para
           no volver a preguntarte en cada visita.
         </li>
+        <li>
+          <strong>Los datos de tu negocio que decidas guardar en las herramientas</strong>, que permanecen solo en tu
+          navegador (ver más abajo).
+        </li>
       </ul>
 
-      <h2>Lo que escribes en las herramientas de IA</h2>
+      <h2>Los datos de tu negocio en las herramientas</h2>
       <p>
-        Las guías de este sitio te enseñan a escribir instrucciones (prompts) para herramientas de inteligencia
-        artificial. Los prompts se copian desde el sitio y se pegan en la herramienta que tú elijas:{" "}
-        <strong>no recibimos ni almacenamos lo que escribas en ellas</strong>. Cada herramienta tiene su propia política
-        de privacidad, y en las guías te recomendamos no compartir con la IA datos personales de tus clientes ni
-        información confidencial que no sea necesaria.
+        Las herramientas de este sitio te piden algunos datos de tu negocio (nombre, rubro, tono, moneda y similares) para
+        armar el prompt. Si los guardas en «Mi negocio», <strong>se almacenan solo en este navegador</strong> (en el
+        almacenamiento local de tu dispositivo): no se envían a nuestros servidores y no los vemos. Puedes borrarlos en
+        cualquier momento desde la propia página o limpiando los datos del sitio en tu navegador. Si tu navegador bloquea el
+        almacenamiento local, las herramientas siguen funcionando, pero no recordarán tus datos.
+      </p>
+
+      <h2>Lo que pegas en una herramienta de IA</h2>
+      <p>
+        Las herramientas generan instrucciones (prompts) que copias y pegas en el asistente de inteligencia artificial que tú
+        elijas: <strong>no recibimos ni almacenamos lo que escribas en él</strong>. Cada asistente tiene su propia política de
+        privacidad, y te recomendamos no compartir con la IA datos personales de tus clientes ni información confidencial que no
+        sea necesaria.
       </p>
 
       <h2>Publicidad de Google AdSense</h2>
@@ -90,7 +102,8 @@ export default function PrivacyPolicyPage() {
 
       <h2>Conservación de los datos</h2>
       <p>
-        Al no existir cuentas ni formularios, no mantenemos una base de datos de contactos: los correos que nos envíes
+        Los datos de tu negocio guardados en las herramientas dependen de tu navegador: se conservan hasta que los borres. Al
+        no existir cuentas ni formularios, no mantenemos una base de datos de contactos: los correos que nos envíes
         quedan en nuestra bandeja hasta que nos pidas eliminarlos. Los datos de analítica los conserva Google Analytics
         según su propia configuración de retención.
       </p>

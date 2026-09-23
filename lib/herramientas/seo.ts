@@ -40,3 +40,19 @@ export function herramientaFaqJsonLd(h: Herramienta) {
     mainEntity: h.faq.map((f) => ({ "@type": "Question", name: f.p, acceptedAnswer: { "@type": "Answer", text: f.r } })),
   };
 }
+
+/** Página de listado (biblioteca o área) con las herramientas que muestra. */
+export function herramientasCollectionJsonLd(input: { name: string; description: string; path: string; herramientas: Herramienta[] }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: input.name,
+    description: input.description,
+    url: absoluta(input.path),
+    inLanguage: "es",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: input.herramientas.map((h, i) => ({ "@type": "ListItem", position: i + 1, name: h.meta.titulo, url: absoluta(rutaHerramienta(h.meta)) })),
+    },
+  };
+}

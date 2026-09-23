@@ -61,7 +61,15 @@ export function listarTodas(): Promise<HerramientaCargada[]> {
   return cache;
 }
 
-/** Solo las publicadas: la única fuente para /herramientas, áreas, sitemap y «relacionadas». */
+/**
+ * Para los listados de la web (biblioteca, áreas, inicio). En producción devuelve SOLO las publicadas; con `next dev`
+ * añade los borradores para poder revisarlos (las tarjetas los marcan). Las internas de prueba no salen nunca.
+ */
+export async function listarVisibles(produccion: boolean = esProduccion): Promise<HerramientaCargada[]> {
+  return (await listarTodas()).filter((h) => !h.interna && (h.publicado || !produccion));
+}
+
+/** Solo las publicadas: la única fuente para el sitemap y «relacionadas». */
 export async function listarPublicadas(): Promise<HerramientaCargada[]> {
   return (await listarTodas()).filter((h) => h.publicado && !h.interna);
 }
