@@ -394,7 +394,7 @@ export default defineGuide({
         ["«calle Los Pinos con calle 5»", "Ubicación", "Sí", "Que la dirección sea correcta."],
       ],
       copyable: true,
-      note: "Ejemplo generado. Condiciones de la ficha que faltan en el anuncio: ninguna. Veredicto: SIN HALLAZGOS EN LA FICHA; quedan por comprobar los puntos de la última columna. Esta hoja compara con la ficha; que la ficha sea cierta lo comprueba la persona.",
+      note: "Ejemplo generado. Condiciones de la ficha ",
     },
   },
 
