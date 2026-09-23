@@ -64,7 +64,7 @@ export default function ContactPage() {
         </ul>
 
         <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Si nos escribes para proponer una guía, cuéntanos qué tarea de tu negocio quieres resolver y qué te lo impide hoy. Última actualización:{" "}
+          Si nos escribes para proponer una herramienta, cuéntanos qué tarea de tu negocio quieres resolver y qué te lo impide hoy. Última actualización:{" "}
           <time dateTime={updatedAt}>{formatDate(updatedAt)}</time>.
         </p>
       </div>

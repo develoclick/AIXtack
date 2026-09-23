@@ -5,15 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "prebuild": "npm run guias:validar && npm run herramientas:validar",
+    "prebuild": "npm run herramientas:validar",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test \"lib/**/*.test.ts\"",
-    "guias:validar": "tsx scripts/validate-guides.ts",
-    "guias:test": "tsx scripts/test-validator.ts",
     "herramientas:validar": "tsx scripts/validate-herramientas.ts",
+    "sitio:verificar": "tsx scripts/verificar-sitio.ts",
     "guia:nueva": "tsx scripts/new-guide.ts"
   },
   "dependencies": {

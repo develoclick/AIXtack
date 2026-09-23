@@ -4,12 +4,12 @@ import { NextResponse } from "next/server";
  * Modelo anterior del sitio (directorio de herramientas, prompts sueltos, blog,
  * categorías, alternativas, comparativas, noticias, tutoriales, etiquetas y afiliados).
  * Esas URLs ya no existen y no tienen un equivalente: responden 410 (Gone) para que
- * Google las retire del índice más rápido que con un 404. Las que SÍ tienen una guía
+ * Google las retire del índice más rápido que con un 404. Las que SÍ tienen una herramienta
  * equivalente se redirigen antes con 301 (content/redirects.ts → next.config.ts), y como
  * las redirecciones de next.config se evalúan antes que este proxy, esas nunca llegan aquí.
  *
  * `matcher` debe ser una lista literal (Next la analiza en el build). Ninguna entrada
- * puede coincidir con una ruta vigente: scripts/validate-guides.ts lo comprueba.
+ * puede coincidir con una ruta vigente: lib/redirects.test.ts lo comprueba.
  */
 export const config = {
   matcher: [
@@ -44,7 +44,7 @@ const BODY = `<!doctype html>
 <body>
 <h1>Este contenido ya no existe</h1>
 <p>Esta página formaba parte de una versión anterior del sitio y fue retirada de forma definitiva.</p>
-<p><a href="/guias">Ver las guías prácticas de IA para tu negocio</a> · <a href="/">Ir al inicio</a></p>
+<p><a href="/herramientas">Ver las herramientas de IA para tu negocio</a> · <a href="/">Ir al inicio</a></p>
 </body>
 </html>`;
 

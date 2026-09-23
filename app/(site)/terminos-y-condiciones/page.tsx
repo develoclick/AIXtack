@@ -19,22 +19,22 @@ export default function TermsPage() {
 
       <h2>1. Descripción del servicio</h2>
       <p>
-        {siteName} es un sitio de contenido educativo en español con guías prácticas para usar inteligencia artificial
+        {siteName} es un sitio de contenido educativo en español con herramientas y guías cortas para usar inteligencia artificial
         en tareas de microempresas y emprendedores. El acceso al contenido es gratuito, no requiere registro y no
         existen cuentas de usuario.
       </p>
 
       <h2>2. Naturaleza informativa del contenido</h2>
       <p>
-        Las guías tienen carácter informativo y educativo. No constituyen asesoramiento financiero, contable, legal ni
-        profesional de ningún tipo. Los ejemplos que aparecen en las guías utilizan negocios ficticios y se identifican
+        Las herramientas y sus guías tienen carácter informativo y educativo. No constituyen asesoramiento financiero, contable, legal ni
+        profesional de ningún tipo. Los ejemplos que aparecen en ellas utilizan negocios ficticios y se identifican
         como tales; ilustran un método y no representan resultados reales ni garantizados.
       </p>
 
       <h2>3. Uso de la inteligencia artificial y responsabilidad del usuario</h2>
       <p>
         Los resultados que genera una herramienta de inteligencia artificial pueden contener errores, omisiones o
-        información inventada. Cada guía indica qué debe verificar una persona antes de utilizar el resultado. Eres
+        información inventada. Cada herramienta indica qué debe verificar una persona antes de utilizar el resultado. Eres
         responsable de revisar precios, fechas, condiciones comerciales, cálculos, datos de clientes y cualquier
         información legal o financiera antes de aplicarla en tu negocio, así como de las decisiones que tomes a partir
         de ella.

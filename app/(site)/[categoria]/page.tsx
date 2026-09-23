@@ -21,7 +21,7 @@ interface PageProps {
 }
 
 // Solo existen los hubs del registro content/categorias.ts. Cualquier otro
-// primer segmento devuelve 404 real (y no colisiona con /guias, /contacto, etc.,
+// primer segmento devuelve 404 real (y no colisiona con /herramientas, /contacto, etc.,
 // que son rutas estáticas con prioridad).
 export const dynamicParams = false;
 
@@ -118,7 +118,7 @@ export default async function CategoryHubPage({ params }: PageProps) {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-20 lg:px-8 lg:py-24">
           <Reveal>
             <h2 id="situaciones" className="text-display-md text-balance">
-              Situaciones que ayudan a resolver estas herramientas
+              Situaciones en las que ayudan estas herramientas
             </h2>
           </Reveal>
           <ul className="border-t border-white/15">

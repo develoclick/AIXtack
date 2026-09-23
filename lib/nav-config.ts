@@ -8,23 +8,25 @@ export interface NavLink {
 /** Navegación principal: cabecera y menú móvil. */
 export const primaryNav: NavLink[] = [
   { label: "Inicio", href: "/" },
-  { label: "Guías", href: "/guias" },
+  { label: "Herramientas", href: "/herramientas" },
   ...categories.map((category) => ({ label: category.name, href: `/${category.slug}` })),
   { label: "Sobre el sitio", href: "/sobre-nosotros" },
 ];
 
-/** Pie de página: guías por área, el sitio y las páginas legales. */
+/** Pie de página: herramientas por área, el sitio y las páginas legales. */
 export const footerNav: { title: string; links: NavLink[] }[] = [
   {
-    title: "Guías por área",
+    title: "Herramientas por área",
     links: [
       ...categories.map((category) => ({ label: category.name, href: `/${category.slug}` })),
-      { label: "Todas las guías", href: "/guias" },
+      { label: "Todas las herramientas", href: "/herramientas" },
     ],
   },
   {
     title: "El sitio",
     links: [
+      { label: "Cómo probamos", href: "/como-probamos" },
+      { label: "Mi negocio", href: "/mi-negocio" },
       { label: "Sobre nosotros", href: "/sobre-nosotros" },
       { label: "Contacto", href: "/contacto" },
     ],

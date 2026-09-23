@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `${siteName} — ${siteTagline}`,
     short_name: siteName,
     description:
-      "Guías paso a paso para resolver con inteligencia artificial tareas reales de microempresas y emprendedores.",
+      "Herramientas para resolver con inteligencia artificial tareas reales de microempresas y emprendedores.",
     start_url: "/",
     display: "standalone",
     background_color: "#0a0a0a",

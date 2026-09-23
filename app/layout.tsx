@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: `%s · ${siteName}`,
   },
   description:
-    "Guías paso a paso para resolver con inteligencia artificial tareas reales de tu negocio: anuncios, promociones, clientes, precios, análisis y organización.",
+    "Herramientas para resolver con inteligencia artificial tareas reales de tu negocio: eliges la tarea, llenas unos datos y copias el prompt (anuncios, promociones, clientes, precios, análisis y organización).",
   applicationName: siteName,
   verification: {
     google: "B3ClaGnGqP20qsHVIDjZGAi4T6DsIOG1BmrL1Kv9NUQ",

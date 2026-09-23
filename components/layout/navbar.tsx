@@ -43,7 +43,7 @@ export function Navbar() {
       <div className={cn("mx-auto flex w-full max-w-[90rem] items-center px-5 transition-[height] duration-300 sm:px-8 lg:px-10", scrolled ? "h-[60px]" : "h-[72px]")}>
         <Link href="/" aria-label={`${siteName} — Inicio`} className="group flex shrink-0 items-center">
           <Image
-            src="/images/guias/general/logolight.png"
+            src="/images/site/logo-claro.png"
             alt={`${siteName} — Inicio`}
             width={180}
             height={50}
@@ -51,7 +51,7 @@ export function Navbar() {
             className="h-9 w-auto object-contain transition-transform duration-500 group-hover:scale-[1.03] dark:hidden"
           />
           <Image
-            src="/images/guias/general/logodark.png"
+            src="/images/site/logo-oscuro.png"
             alt={`${siteName} — Inicio`}
             width={180}
             height={50}
@@ -143,7 +143,7 @@ export function Navbar() {
                     <span className="size-1.5 animate-pulse rounded-full bg-brand" aria-hidden />
                     <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">Contenido actualizado</span>
                   </div>
-                  <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">Guías, herramientas y recursos prácticos para trabajar mejor con inteligencia artificial.</p>
+                  <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">Herramientas y guías cortas prácticas para trabajar mejor con inteligencia artificial.</p>
                 </div>
               </div>
             </SheetContent>

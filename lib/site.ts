@@ -11,10 +11,10 @@ export const contactEmail = "contacto@guiapromptsia.com";
 export const institutionalPages = [
   { path: "/sobre-nosotros", title: "Sobre nosotros", updatedAt: "2026-09-23" },
   { path: "/como-probamos", title: "Cómo probamos", updatedAt: "2026-09-23" },
-  { path: "/contacto", title: "Contacto", updatedAt: "2026-09-18" },
+  { path: "/contacto", title: "Contacto", updatedAt: "2026-09-23" },
   { path: "/politica-de-privacidad", title: "Política de privacidad", updatedAt: "2026-09-23" },
-  { path: "/politica-de-cookies", title: "Política de cookies", updatedAt: "2026-09-18" },
-  { path: "/terminos-y-condiciones", title: "Términos y condiciones", updatedAt: "2026-09-18" },
+  { path: "/politica-de-cookies", title: "Política de cookies", updatedAt: "2026-09-23" },
+  { path: "/terminos-y-condiciones", title: "Términos y condiciones", updatedAt: "2026-09-23" },
 ] as const;
 
 export type InstitutionalPath = (typeof institutionalPages)[number]["path"];
@@ -24,7 +24,8 @@ export function institutionalUpdatedAt(path: InstitutionalPath): string {
 }
 
 /** Fecha de la última modificación del contenido propio de la home (no depende de las guías). */
-export const HOME_UPDATED_AT = "2026-09-18";
-export const LIBRARY_UPDATED_AT = "2026-09-18";
+export const HOME_UPDATED_AT = "2026-09-23";
+/** Fecha de la última modificación del texto propio de la biblioteca /herramientas. */
+export const LIBRARY_UPDATED_AT = "2026-09-23";
 /** Fecha de la última modificación de la introducción editorial de los hubs (content/categorias.ts). */
-export const CATEGORIES_UPDATED_AT = "2026-09-18";
+export const CATEGORIES_UPDATED_AT = "2026-09-23";

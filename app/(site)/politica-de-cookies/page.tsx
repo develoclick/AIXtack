@@ -26,7 +26,7 @@ export default function CookiesPolicyPage() {
           consentimiento porque sin ellos el sitio no puede recordar tus preferencias.
         </li>
         <li>
-          <strong>Cookies analíticas (Google Analytics):</strong> nos permiten saber, de forma agregada, qué guías se
+          <strong>Cookies analíticas (Google Analytics):</strong> nos permiten saber, de forma agregada, qué herramientas se
           visitan más y cómo se navega por el sitio, para mejorar el contenido. <strong>Solo se cargan si aceptas.</strong>{" "}
           Si las rechazas, el script de Google Analytics no se carga.
         </li>

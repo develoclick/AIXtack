@@ -19,7 +19,7 @@ export function Footer() {
               {siteName}
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-foreground/70">
-              {siteTagline}: guías paso a paso para resolver con inteligencia artificial las tareas reales de tu negocio.
+              {siteTagline}: herramientas para resolver con inteligencia artificial las tareas reales de tu negocio.
             </p>
           </div>
 
