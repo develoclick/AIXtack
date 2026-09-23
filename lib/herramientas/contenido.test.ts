@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { pathToFileURL } from "node:url";
-import { validarHerramienta } from "./validar";
+import { notaDeProduccion, validarHerramienta } from "./validar";
 import { listarPublicadas, listarTodas, publicadasPorArea, relacionadasDe } from "./registro";
 import type { Herramienta } from "./tipos";
 
@@ -88,4 +88,12 @@ test("no hay código de AdSense en los componentes de herramientas", () => {
   for (const f of fs.readdirSync(dir)) {
     assert.doesNotMatch(fs.readFileSync(path.join(dir, f), "utf8"), /adsbygoogle|googlesyndication|pagead/i, f);
   }
+});
+
+test("la detección de notas de producción no confunde la palabra «todo» con un TODO", () => {
+  assert.equal(notaDeProduccion("Lo escribes todo en una frase y todo lo demás sobra."), false);
+  assert.equal(notaDeProduccion("TODO: subir la captura"), true);
+  assert.equal(notaDeProduccion("Aquí va la captura pendiente"), true);
+  assert.equal(notaDeProduccion("[completar]"), true);
+  assert.equal(notaDeProduccion("Puedes reemplazar el color si lo prefieres."), false);
 });

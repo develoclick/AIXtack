@@ -28,6 +28,20 @@ export function EjemploReal({ ejemplo }: { ejemplo: EjemploRealDatos }) {
         </dl>
       )}
 
+      {ejemplo.resultado && Object.keys(ejemplo.resultado).length > 0 && (
+        <div className="mt-4">
+          <h3 className="text-base font-semibold text-guide-ink">Resultado del ejemplo</h3>
+          <dl className="mt-2 divide-y rounded-xl border bg-background">
+            {Object.entries(ejemplo.resultado).map(([campo, valor]) => (
+              <div key={campo} className="grid gap-1 px-4 py-3 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-4">
+                <dt className="text-sm font-semibold text-guide-ink">{campo}</dt>
+                <dd className="text-[0.97rem] text-foreground">{valor}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
+
       {capturas.map((captura) => (
         <figure key={captura.src} className="mt-6">
           <p className="mb-2">

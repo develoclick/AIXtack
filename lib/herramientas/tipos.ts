@@ -106,6 +106,11 @@ export interface EjemploReal {
   /** Lleva «(ficticio)» o «(ficticia)» la primera vez que aparece. */
   negocio: string;
   datos: Record<string, string>;
+  /**
+   * Lo que sale del caso, línea por línea (por ejemplo, los niveles de un afiche). Debe coincidir con
+   * la captura real: si cambia la captura, cambia esto.
+   */
+  resultado?: Record<string, string>;
   capturas: CapturaEjemplo[];
   /** «Qué corregí yo» (3 líneas). */
   queCorregi: string[];

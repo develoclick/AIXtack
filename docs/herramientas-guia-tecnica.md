@@ -5,7 +5,7 @@ Cómo funciona la infraestructura del modelo «Herramienta + guía corta» y có
 ## Añadir una página
 1. Crea `content/herramientas/{area}/{slug}.ts` con `export default defineHerramienta({...})` (esquema en `lib/herramientas/tipos.ts`). El nombre del archivo es el slug; el área es la carpeta (`marketing`, `ventas`, `clientes`, `analisis`, `negocio`).
 2. Déjala con `publicado: false`. Lo que falte (prueba real, capturas, fecha) queda como `null`/vacío con un comentario `// TODO:` **en el archivo de datos**, nunca en la página.
-3. Las imágenes van en `public/img/{area}/{slug}/…` y se declaran en `ejemplo.capturas` (con su etiqueta: «Prueba real», «Ilustración» o «Simulación») y `meta.ogImage`.
+3. Las imágenes van en `public/img/{area}/{slug}/…` y se declaran en `ejemplo.capturas` (con su etiqueta: «Prueba real», «Ilustración» o «Simulación») y `meta.ogImage`. `ejemplo.resultado` muestra lo que sale del caso (por ejemplo, los niveles de un afiche) y debe coincidir con la captura real.
 4. Comprueba: `npm run herramientas:validar`, `npm test`, `npm run build`.
 5. Solo pasa a `publicado: true` cuando el validador da 0 errores: exige 1.500–2.500 palabras, descripción de 140–160 caracteres, prueba real (`probadoEn` y `probadoFecha`), 1–2 capturas con archivo existente, 3–4 mejoras/ideas/errores, 4–6 preguntas, 2–3 relacionadas publicadas, sin TODO ni promesas absolutas.
 

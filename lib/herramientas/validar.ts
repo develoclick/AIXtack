@@ -42,7 +42,7 @@ export function textosVisibles(h: Herramienta): string[] {
   }
   t.push(...(h.pasos ?? []));
   for (const m of h.mejoras) t.push(m.label, m.prompt);
-  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.datos), ...h.ejemplo.queCorregi);
+  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.datos), ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
   for (const c of h.ejemplo.capturas) t.push(c.alt, c.pie ?? "");
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
@@ -52,6 +52,11 @@ export function textosVisibles(h: Herramienta): string[] {
   if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos);
   for (const l of h.meta.limites ?? []) t.push(l.concepto, l.valor);
   return t.filter(Boolean);
+}
+
+/** «TODO» solo en mayúsculas (la palabra española «todo» es normal); el resto, sin distinguir mayúsculas. */
+export function notaDeProduccion(texto: string): boolean {
+  return /\bTODO\b/.test(texto) || /\[completar\]|captura pendiente|lorem ipsum|reemplazar (aquí|esto|por)/i.test(texto);
 }
 
 export function contarPalabras(textos: string[]): number {
@@ -142,7 +147,7 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   publicada(h.ejemplo.queCorregi.length === 3, `«Qué corregí yo» tiene ${h.ejemplo.queCorregi.length} líneas (deben ser 3).`);
   publicada(/\(fictici[oa]\)/i.test(h.ejemplo.negocio), "El negocio de ejemplo debe llevar «(ficticio)» o «(ficticia)».");
   publicada(!PALABRAS_ABSOLUTAS.test(textos.join("\n")), "Hay una promesa absoluta («garantizado», «100 %», «aumenta tus ventas»).");
-  publicada(!textos.some((t) => /\bTODO\b|\[completar\]|reemplazar|captura pendiente|lorem ipsum/i.test(t)), "Hay una nota de producción visible (TODO, reemplazar, captura pendiente…).");
+  publicada(!textos.some(notaDeProduccion), "Hay una nota de producción visible (TODO, [completar], captura pendiente, reemplazar aquí…).");
 
   /* ── prueba real (solo publicadas) ── */
   publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Faltan meta.probadoEn y meta.probadoFecha: sin prueba real no se publica.");
