@@ -340,7 +340,7 @@ export default defineGuide({
         ["«No acumulable con otras ofertas»", "Condición", "Sí", "Que realmente no sea acumulable con otras ofertas."],
       ],
       copyable: true,
-      note: "Corregimos las cuatro piezas y comprobamos a mano, contra la ficha, que ya no faltaba ninguna condición. La tabla de abajo es esa comprobación.",
+      note: "Esta tabla es una comprobación hecha a mano contra la ficha, no una nueva respuesta de la IA: confirma que la condición que faltaba («solo el sábado 10 de octubre») ya está en el texto. Condiciones de la ficha que faltan: ninguna.",
     },
   },
 
