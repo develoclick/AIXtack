@@ -158,7 +158,8 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   publicada(h.relacionadas.length >= 2 && h.relacionadas.length <= 3, `Siguiente paso: ${h.relacionadas.length} relacionadas (deben ser 2–3).`);
   publicada(h.ejemplo.queCorregi.length === 3, `«Qué corregí yo» tiene ${h.ejemplo.queCorregi.length} líneas (deben ser 3).`);
   publicada(/\(fictici[oa]\)/i.test(h.ejemplo.negocio), "El negocio de ejemplo debe llevar «(ficticio)» o «(ficticia)».");
-  publicada(!PALABRAS_ABSOLUTAS.test(textos.join("\n")), "Hay una promesa absoluta («garantizado», «100 %», «aumenta tus ventas»).");
+  // Citar entre «» una frase prohibida para explicar por qué no debe usarse («100 % natural») no es prometerla.
+  publicada(!PALABRAS_ABSOLUTAS.test(textos.join("\n").replace(/«[^»]*»/g, " ")),"Hay una promesa absoluta («garantizado», «100 %», «aumenta tus ventas»).");
   publicada(!textos.some(notaDeProduccion), "Hay una nota de producción visible (TODO, [completar], captura pendiente, reemplazar aquí…).");
 
   /* ── prueba real (solo publicadas) ── */

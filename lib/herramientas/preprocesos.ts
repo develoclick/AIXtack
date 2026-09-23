@@ -119,12 +119,40 @@ export function resumenVentas(textoTabla: string, moneda?: string): EstadoPrepro
   const ordenados = [...porProducto.entries()].sort((a, b) => b[1].monto - a[1].monto || a[0].localeCompare(b[0]));
   const control = ordenados.reduce((s, [, v]) => s + v.monto, 0);
 
+  // Por mes, solo si TODAS las fechas se entienden (AAAA-MM-DD o DD/MM/AAAA): así una fecha rara no reparte mal las ventas.
+  const meses = new Map<string, { monto: number; dias: Set<string> }>();
+  let fechasOk = filas.length > 0;
+  for (const f of filas) {
+    const iso = /^(\d{4})-(\d{2})-\d{2}$/.exec(f.fecha);
+    const latino = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(f.fecha);
+    const mes = iso ? `${iso[1]}-${iso[2]}` : latino ? `${latino[3]}-${latino[2].padStart(2, "0")}` : null;
+    if (!mes) {
+      fechasOk = false;
+      break;
+    }
+    const a = meses.get(mes) ?? { monto: 0, dias: new Set<string>() };
+    a.monto += f.monto;
+    a.dias.add(f.fecha);
+    meses.set(mes, a);
+  }
+  const porMes: ResultadoPreproceso[] = fechasOk
+    ? [...meses.entries()]
+        .sort((x, y) => x[0].localeCompare(y[0]))
+        .map(([mes, v]) => ({
+          id: `mes:${mes}`,
+          etiqueta: `Mes ${mes}`,
+          valor: v.monto,
+          texto: `${dinero(v.monto)} · ${v.dias.size} días con ventas · ${dinero(v.monto / v.dias.size)} por día con ventas`,
+        }))
+    : [];
+
   const resultados: ResultadoPreproceso[] = [
     { id: "filas", etiqueta: "Ventas leídas", valor: filas.length, texto: String(filas.length) },
     { id: "dias", etiqueta: "Días distintos con ventas", valor: dias, texto: String(dias) },
     { id: "total", etiqueta: "Total vendido", valor: filas.length ? total : null, texto: filas.length ? dinero(total) : null },
     { id: "unidades", etiqueta: "Unidades vendidas", valor: filas.length ? unidades : null, texto: filas.length ? formatear(unidades, "numero", 2) : null },
     { id: "promedioDia", etiqueta: "Promedio por día con ventas", valor: dias ? total / dias : null, texto: dias ? dinero(total / dias) : null },
+    ...porMes,
     ...ordenados.map(([nombre, v]) => ({
       id: `producto:${nombre}`,
       etiqueta: `Producto «${nombre}»`,

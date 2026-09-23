@@ -79,3 +79,29 @@ test("los casos de prueba declarados se verifican y un caso roto se detecta", ()
   assert.equal(verificarCasosPreproceso(rota).length, 1);
   assert.equal(ejecutarPreproceso(cfg, { resenas: "", temas: "" }).completo, false);
 });
+
+const VERDE = [
+  "2026-08-03;Monstera;2;36.00", "2026-08-03;Maceta;3;15.00", "2026-08-10;Helecho;4;40.00", "2026-08-10;Maceta;5;25.00",
+  "2026-08-17;Pack de suculentas;3;45.00", "2026-08-17;Fertilizante;2;16.00", "2026-08-24;Monstera;1;18.00", "2026-08-24;Maceta;4;20.00",
+  "2026-09-07;Monstera;1;18.00", "2026-09-07;Maceta;2;12.00", "2026-09-14;Helecho;3;30.00", "2026-09-14;Pack de suculentas;2;30.00",
+  "2026-09-21;Fertilizante;3;24.00", "2026-09-21;Monstera;1;18.00",
+].join("\n");
+
+test("resumen de ventas por mes: total, días con ventas y promedio por día con ventas (caso Verde Hogar)", () => {
+  const e = resumenVentas(VERDE);
+  const v = (id: string) => e.resultados.find((r) => r.id === id)!;
+  assert.equal(v("total").valor, 347);
+  assert.equal(v("mes:2026-08").valor, 215);
+  assert.equal(v("mes:2026-08").texto, "$215.00 · 4 días con ventas · $53.75 por día con ventas");
+  assert.equal(v("mes:2026-09").texto, "$132.00 · 3 días con ventas · $44.00 por día con ventas");
+  assert.equal(v("producto:Maceta").valor, 72);
+  assert.equal(v("control").texto, "Sí");
+});
+
+test("resumen de ventas por mes: fechas DD/MM/AAAA y sin mes si alguna fecha no se entiende", () => {
+  const latino = resumenVentas("05/03/2026;Pan;1;2\n20/04/2026;Pan;1;2");
+  assert.ok(latino.resultados.some((r) => r.id === "mes:2026-03") && latino.resultados.some((r) => r.id === "mes:2026-04"));
+  const raro = resumenVentas("marzo;Pan;1;2\n2026-04-20;Pan;1;2");
+  assert.equal(raro.resultados.some((r) => r.id.startsWith("mes:")), false);
+  assert.equal(raro.resultados.find((r) => r.id === "total")!.valor, 4);
+});
