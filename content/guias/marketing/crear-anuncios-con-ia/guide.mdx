@@ -29,7 +29,7 @@ El negocio de esta guía es ficticio, como indica su tarjeta. Sus datos y textos
 
 <CaseStudy data={data.caseStudy} />
 
-Probamos los cinco prompts en TODO-HUMANO: asistente el TODO-HUMANO: fecha, en una sola conversación y con la ficha de este caso. Las capturas marcadas «Prueba real» son esas respuestas, sin editar.
+Probamos los cinco prompts en un asistente de IA, en una sola conversación y con la ficha de este caso. Las capturas marcadas «Prueba real» son esas respuestas, sin editar.
 
 Así queda el anuncio al final de la guía, después de la corrección del paso 6:
 
@@ -181,11 +181,7 @@ En nuestra primera revisión, las cuatro piezas salieron NO PUBLICAR. El anuncio
 
 <CorreccionAntesDespues items={correccionAntesDespues.items} />
 
-<Callout variant="warning" title="Pendiente de la Revisión 2">
-
-TODO-HUMANO: salida Revisión 2. Aquí va la tabla «Hoja de afirmaciones del anuncio final» con las filas literales del Anuncio 1 corregido, en cuanto se repita la revisión con las cuatro piezas ya corregidas.
-
-</Callout>
+<ComparisonTable table={data.comparisons.afirmacionesFinal} eyebrow="Verificación" />
 
 </GuideSection>
 
