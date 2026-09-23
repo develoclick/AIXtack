@@ -80,6 +80,26 @@ export interface CasoDePrueba {
   tolerancia?: number;
 }
 
+/** Caso de prueba de un pre-proceso: textos que se pegan y resultados esperados (número = valor; texto = texto mostrado). */
+export interface CasoPreproceso {
+  nombre: string;
+  valores: Record<string, string>;
+  esperado: Record<string, number | string>;
+}
+
+/**
+ * Pre-proceso de un Analizador: la página cuenta o suma el texto pegado antes de que la IA lo analice.
+ *  - `conteo-temas`: cuenta reseñas por tema según un libro de códigos («Tema: palabra, palabra»).
+ *  - `resumen-ventas`: totales de una tabla de ventas (fecha, producto, cantidad, monto).
+ */
+export interface Preproceso {
+  tipo: "conteo-temas" | "resumen-ventas";
+  /** ids de los campos: `texto` = lo que se analiza; `temas` = el libro de códigos (solo conteo-temas). */
+  campos: { texto: string; temas?: string };
+  /** Al menos 3 casos, igual que las calculadoras. */
+  casosDePrueba: CasoPreproceso[];
+}
+
 export interface Calculadora {
   entradas: EntradaCalculadora[];
   salidas: SalidaCalculadora[];
@@ -184,6 +204,8 @@ export interface Herramienta {
   /** Campos del perfil «Mi negocio» que esta herramienta usa (se completan solos). */
   usaPerfil: PerfilClave[];
   calculadora: Calculadora | null;
+  /** Solo Analizadores: cuenta o suma en la página antes del prompt. */
+  preproceso?: Preproceso | null;
   /**
    * Parte específica del prompt. Puede citar campos con `{{id}}`; el prompt final nunca muestra llaves:
    * un campo vacío se marca [FALTA] (si es requerido) o «no indicado».

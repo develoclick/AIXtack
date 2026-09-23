@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { calcular, simboloMoneda } from "@/lib/herramientas/calculadora";
-import type { Calculadora as CalculadoraDatos, Campo, PerfilClave } from "@/lib/herramientas/tipos";
+import { ejecutarPreproceso } from "@/lib/herramientas/preprocesos";
+import type { Calculadora as CalculadoraDatos, Campo, PerfilClave, Preproceso } from "@/lib/herramientas/tipos";
 import { construirPrompt } from "@/lib/prompts/construir-prompt";
 import { BotonCopiar } from "./boton-copiar";
 import { Calculadora } from "./calculadora";
@@ -14,6 +15,7 @@ export interface DatosInteractivos {
   campos: Campo[];
   usaPerfil: PerfilClave[];
   calculadora: CalculadoraDatos | null;
+  preproceso?: Preproceso | null;
   tarea: string;
 }
 
@@ -24,7 +26,7 @@ const vacios = (ids: string[]) => Object.fromEntries(ids.map((id) => [id, ""]));
  * Todo ocurre en el navegador. La barra de acciones queda pegada abajo en el celular para que «Copiar
  * prompt» esté siempre a la vista. Aquí nunca hay publicidad.
  */
-export function HerramientaInteractiva({ campos, usaPerfil, calculadora, tarea }: DatosInteractivos) {
+export function HerramientaInteractiva({ campos, usaPerfil, calculadora, preproceso, tarea }: DatosInteractivos) {
   const perfil = usePerfil();
   const [valores, setValores] = useState<Record<string, string>>(() => vacios(campos.map((c) => c.id)));
   const [entradas, setEntradas] = useState<Record<string, string>>(() => vacios(calculadora?.entradas.map((e) => e.id) ?? []));
@@ -33,16 +35,21 @@ export function HerramientaInteractiva({ campos, usaPerfil, calculadora, tarea }
   const moneda = simboloMoneda(perfil.moneda);
   const estado = useMemo(() => (calculadora ? calcular(calculadora, entradas, perfil.moneda) : null), [calculadora, entradas, perfil.moneda]);
 
+  const previo = useMemo(() => (preproceso ? ejecutarPreproceso(preproceso, valores, perfil.moneda) : null), [preproceso, valores, perfil.moneda]);
+
   const prompt = useMemo(
     () =>
       construirPrompt(
         perfil,
         campos.map((c) => ({ id: c.id, label: c.label, valor: valores[c.id], requerido: c.requerido })),
-        estado ? estado.resultados.filter((r) => r.enPrompt && !(r.opcional && r.valor === null)).map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : null,
+        [
+          ...(estado ? estado.resultados.filter((r) => r.enPrompt && !(r.opcional && r.valor === null)).map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : []),
+          ...(previo && previo.completo ? previo.resultados.map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : []),
+        ],
         tarea,
         { usaPerfil }
       ),
-    [perfil, campos, valores, estado, tarea, usaPerfil]
+    [perfil, campos, valores, estado, previo, tarea, usaPerfil]
   );
 
   const faltan = campos.filter((c) => c.requerido && !valores[c.id]?.trim()).map((c) => c.label);
@@ -95,6 +102,32 @@ export function HerramientaInteractiva({ campos, usaPerfil, calculadora, tarea }
               setConEjemplo(false);
             }}
           />
+        )}
+
+        {previo && (previo.resultados.length > 0 || previo.errores.length > 0) && (
+          <section aria-labelledby="resultados-previo" className="rounded-xl border bg-guide-surface p-4 sm:p-5">
+            <h3 id="resultados-previo" className="text-base font-semibold text-guide-ink">
+              Lo que cuenta y suma esta página (no la IA)
+            </h3>
+            {previo.errores.length > 0 && (
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-medium text-risk">
+                {previo.errores.map((e) => (
+                  <li key={e}>{e}</li>
+                ))}
+              </ul>
+            )}
+            {previo.completo && (
+              <dl className="mt-3 grid gap-x-6 gap-y-3 sm:grid-cols-2" aria-live="polite">
+                {previo.resultados.map((r) => (
+                  <div key={r.id} className="min-w-0 border-b border-foreground/10 pb-2">
+                    <dt className="text-sm text-muted-foreground">{r.etiqueta}</dt>
+                    <dd className="mt-0.5 text-[1.02rem] font-semibold tabular-nums text-guide-ink">{r.texto ?? "—"}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            {!previo.completo && <p className="mt-2 text-sm text-muted-foreground">Cuando el texto se entienda, aquí verás los conteos. Mientras tanto, el prompt le pide a la IA que no cuente ni sume por su cuenta.</p>}
+          </section>
         )}
 
         {conEjemplo && <p className="text-sm text-muted-foreground">Estás viendo un ejemplo. Cambia cualquier dato por el tuyo o pulsa «Empezar de cero».</p>}

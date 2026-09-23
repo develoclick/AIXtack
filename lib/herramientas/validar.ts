@@ -10,6 +10,7 @@ import { categories } from "../../content/categorias";
 import { getAuthor } from "../../content/autores";
 import { verificarCasos } from "./calculadora";
 import { ErrorExpresion, idsUsados } from "./expresiones";
+import { verificarCasosPreproceso } from "./preprocesos";
 import { PERFIL_CLAVES, type Herramienta } from "./tipos";
 
 export interface ContextoValidacion {
@@ -119,6 +120,16 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
       error(false, `No se pudieron ejecutar los casos de prueba: ${(e as Error).message}`);
     }
   }
+
+  /* ── pre-proceso (analizadores) ── */
+  if (h.preproceso) {
+    const p = h.preproceso;
+    error(idsCampos.includes(p.campos.texto), `Pre-proceso: el campo «${p.campos.texto}» no existe.`);
+    error(p.tipo !== "conteo-temas" || Boolean(p.campos.temas && idsCampos.includes(p.campos.temas)), "Pre-proceso conteo-temas: falta el campo del libro de códigos.");
+    error(p.casosDePrueba.length >= 3, `El pre-proceso necesita al menos 3 casos de prueba (tiene ${p.casosDePrueba.length}).`);
+    for (const f of verificarCasosPreproceso(p)) error(false, `Pre-proceso, caso «${f.caso}», resultado ${f.resultado}: esperado ${f.esperado}, obtenido ${f.obtenido}.`);
+  }
+  error(h.meta.tipo !== "analizador" || Boolean(h.preproceso), "Un analizador necesita un pre-proceso: la página cuenta o suma, la IA no.");
 
   /* ── plataforma y límites ── */
   for (const l of h.meta.limites ?? []) {

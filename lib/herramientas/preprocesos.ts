@@ -1,0 +1,165 @@
+/**
+ * Pre-procesos de los Analizadores: la página CUENTA y SUMA antes de que la IA analice (principio 9: los cálculos los
+ * hace la página, nunca la IA). Cada pre-proceso lee un texto pegado por la persona y devuelve resultados ya hechos que
+ * viajan al prompt con la orden de no recalcularlos.
+ *
+ *  - «conteo-temas»: cuenta cuántas reseñas mencionan cada tema, según un libro de códigos que escribe la persona
+ *    («Tema: palabra1, palabra2»). Lo que no encaja en ningún tema queda como «sin tema»: no se clasifica por adivinanza.
+ *  - «resumen-ventas»: lee una tabla de ventas (fecha, producto, cantidad, monto) y calcula totales, días con ventas,
+ *    promedio por día y el total de cada producto, con un total de control.
+ */
+import { formatear } from "./calculadora";
+import { leerNumero } from "./calculadora";
+import type { CasoPreproceso, Preproceso } from "./tipos";
+
+export interface ResultadoPreproceso {
+  id: string;
+  etiqueta: string;
+  valor: number | null;
+  texto: string | null;
+}
+
+export interface EstadoPreproceso {
+  /** Problemas de lectura (líneas que no se entienden, falta de datos), en lenguaje llano. */
+  errores: string[];
+  resultados: ResultadoPreproceso[];
+  completo: boolean;
+}
+
+/** Minúsculas y sin tildes, para comparar palabras sin que importe cómo se escribieron. */
+export function normalizar(texto: string): string {
+  return texto.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+}
+
+const lineas = (texto: string) =>
+  texto
+    .replace(/\r\n/g, "\n")
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean);
+
+const porcentaje = (parte: number, total: number) => (total === 0 ? 0 : parte / total);
+
+/* ───────────────────────────── conteo por temas ───────────────────────────── */
+
+export function conteoTemas(textoResenas: string, textoTemas: string): EstadoPreproceso {
+  const errores: string[] = [];
+  const resenas = lineas(textoResenas).map((r) => ({ original: r, norm: normalizar(r) }));
+  if (resenas.length === 0) errores.push("Pega al menos una reseña, una por línea.");
+
+  const temas: { nombre: string; claves: string[] }[] = [];
+  lineas(textoTemas).forEach((linea, i) => {
+    const corte = linea.indexOf(":");
+    const nombre = corte > 0 ? linea.slice(0, corte).trim() : "";
+    const claves = corte > 0 ? linea.slice(corte + 1).split(/[,;]/).map((c) => normalizar(c.trim())).filter(Boolean) : [];
+    if (!nombre || claves.length === 0) errores.push(`La línea ${i + 1} de los temas no tiene el formato «Tema: palabra, palabra» (${linea.slice(0, 40)}).`);
+    else temas.push({ nombre, claves });
+  });
+  if (temas.length === 0 && !errores.some((e) => e.includes("temas"))) errores.push("Escribe al menos un tema con sus palabras clave, por ejemplo «Servicio: lento, demora».");
+
+  const total = resenas.length;
+  const resultados: ResultadoPreproceso[] = [{ id: "resenas", etiqueta: "Reseñas analizadas", valor: total, texto: String(total) }];
+
+  const conTema = new Set<number>();
+  for (const tema of temas) {
+    const indices = resenas.flatMap((r, i) => (tema.claves.some((c) => r.norm.includes(c)) ? [i] : []));
+    indices.forEach((i) => conTema.add(i));
+    const p = porcentaje(indices.length, total);
+    resultados.push({ id: `tema:${tema.nombre}`, etiqueta: `Reseñas que mencionan «${tema.nombre}»`, valor: indices.length, texto: `${indices.length} de ${total} (${formatear(p, "porcentaje", 1)})` });
+  }
+  const sinTema = total - conTema.size;
+  resultados.push({ id: "sinTema", etiqueta: "Reseñas sin ninguno de los temas", valor: sinTema, texto: `${sinTema} de ${total}` });
+
+  return { errores, resultados, completo: errores.length === 0 && total > 0 && temas.length > 0 };
+}
+
+/* ───────────────────────────── resumen de ventas ───────────────────────────── */
+
+interface FilaVenta {
+  fecha: string;
+  producto: string;
+  cantidad: number;
+  monto: number;
+}
+
+function partir(linea: string): string[] {
+  const sep = linea.includes("\t") ? "\t" : linea.includes(";") ? ";" : linea.includes("|") ? "|" : ",";
+  return linea.split(sep).map((c) => c.trim());
+}
+
+export function resumenVentas(textoTabla: string, moneda?: string): EstadoPreproceso {
+  const errores: string[] = [];
+  const filas: FilaVenta[] = [];
+  const todas = lineas(textoTabla);
+  todas.forEach((linea, i) => {
+    const c = partir(linea);
+    const cantidad = leerNumero(c[2]);
+    const monto = leerNumero(c[3]);
+    if (i === 0 && c.length >= 4 && (cantidad === null || monto === null)) return; // encabezado
+    if (c.length < 4 || !c[0] || !c[1] || cantidad === null || monto === null || cantidad < 0 || monto < 0) {
+      if (errores.length < 5) errores.push(`La línea ${i + 1} no se entiende (${linea.slice(0, 50)}): usa fecha, producto, cantidad y monto.`);
+      return;
+    }
+    filas.push({ fecha: c[0], producto: c[1], cantidad, monto });
+  });
+  if (todas.length === 0) errores.push("Pega la tabla de ventas: una venta por línea con fecha, producto, cantidad y monto.");
+
+  const dinero = (n: number) => formatear(n, "moneda", 2, moneda);
+  const total = filas.reduce((s, f) => s + f.monto, 0);
+  const unidades = filas.reduce((s, f) => s + f.cantidad, 0);
+  const dias = new Set(filas.map((f) => f.fecha)).size;
+
+  const porProducto = new Map<string, { monto: number; unidades: number }>();
+  for (const f of filas) {
+    const a = porProducto.get(f.producto) ?? { monto: 0, unidades: 0 };
+    a.monto += f.monto;
+    a.unidades += f.cantidad;
+    porProducto.set(f.producto, a);
+  }
+  const ordenados = [...porProducto.entries()].sort((a, b) => b[1].monto - a[1].monto || a[0].localeCompare(b[0]));
+  const control = ordenados.reduce((s, [, v]) => s + v.monto, 0);
+
+  const resultados: ResultadoPreproceso[] = [
+    { id: "filas", etiqueta: "Ventas leídas", valor: filas.length, texto: String(filas.length) },
+    { id: "dias", etiqueta: "Días distintos con ventas", valor: dias, texto: String(dias) },
+    { id: "total", etiqueta: "Total vendido", valor: filas.length ? total : null, texto: filas.length ? dinero(total) : null },
+    { id: "unidades", etiqueta: "Unidades vendidas", valor: filas.length ? unidades : null, texto: filas.length ? formatear(unidades, "numero", 2) : null },
+    { id: "promedioDia", etiqueta: "Promedio por día con ventas", valor: dias ? total / dias : null, texto: dias ? dinero(total / dias) : null },
+    ...ordenados.map(([nombre, v]) => ({
+      id: `producto:${nombre}`,
+      etiqueta: `Producto «${nombre}»`,
+      valor: v.monto,
+      texto: `${dinero(v.monto)} (${formatear(porcentaje(v.monto, total), "porcentaje", 1)} del total) · ${formatear(v.unidades, "numero", 2)} unidades`,
+    })),
+    { id: "control", etiqueta: "Control: la suma por producto es igual al total", valor: filas.length ? (Math.abs(control - total) < 1e-9 ? 1 : 0) : null, texto: filas.length ? (Math.abs(control - total) < 1e-9 ? "Sí" : "No") : null },
+  ];
+  return { errores, resultados, completo: errores.length === 0 && filas.length > 0 };
+}
+
+/* ───────────────────────────── despacho y verificación ───────────────────────────── */
+
+export function ejecutarPreproceso(config: Preproceso, valores: Record<string, string>, moneda?: string): EstadoPreproceso {
+  if (config.tipo === "conteo-temas") return conteoTemas(valores[config.campos.texto] ?? "", valores[config.campos.temas ?? ""] ?? "");
+  return resumenVentas(valores[config.campos.texto] ?? "", moneda);
+}
+
+export interface FalloDePreproceso {
+  caso: string;
+  resultado: string;
+  esperado: number | string;
+  obtenido: number | string | null;
+}
+
+/** Ejecuta los `casosDePrueba` del pre-proceso y devuelve lo que no coincide (vacío = todo bien). */
+export function verificarCasosPreproceso(config: Preproceso): FalloDePreproceso[] {
+  const fallos: FalloDePreproceso[] = [];
+  for (const caso of config.casosDePrueba as CasoPreproceso[]) {
+    const estado = ejecutarPreproceso(config, caso.valores);
+    for (const [id, esperado] of Object.entries(caso.esperado)) {
+      const r = estado.resultados.find((x) => x.id === id);
+      const ok = r !== undefined && (typeof esperado === "number" ? r.valor !== null && Math.abs(r.valor - esperado) < 0.0005 : r.texto === esperado);
+      if (!ok) fallos.push({ caso: caso.nombre, resultado: id, esperado, obtenido: r ? (typeof esperado === "number" ? r.valor : r.texto) : null });
+    }
+  }
+  return fallos;
+}

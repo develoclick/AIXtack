@@ -104,7 +104,7 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
 
         {/* 3 · Herramienta */}
         <Bloque id="herramienta" titulo={h.meta.tipo === "calculadora" ? "Calcula y copia tu prompt" : "Llena los datos y copia tu prompt"}>
-          <HerramientaInteractiva campos={h.campos} usaPerfil={h.usaPerfil} calculadora={h.calculadora} tarea={h.tarea} />
+          <HerramientaInteractiva campos={h.campos} usaPerfil={h.usaPerfil} calculadora={h.calculadora} preproceso={h.preproceso ?? null} tarea={h.tarea} />
           {limites.length > 0 && h.meta.plataforma && (
             <div className="mt-6 rounded-xl border bg-guide-surface p-4 sm:p-5">
               <h3 className="text-base font-semibold text-guide-ink">Límites de {h.meta.plataforma.nombre}</h3>
