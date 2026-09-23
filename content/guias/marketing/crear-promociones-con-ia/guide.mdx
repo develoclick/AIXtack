@@ -1,4 +1,5 @@
-import data from "./data";
+import data, { cuentasResult, errorFrecuente, formulasResult } from "./data";
+import { ErrorFrecuente } from "./components";
 
 <GuideSection id="problema" title="Tienes una idea de promoción, pero no sabes si te deja ganancia" part="Entender el problema">
 
@@ -27,6 +28,8 @@ No hace falta experiencia previa: cada término se explica al usarlo, y un <Term
 El negocio es inventado, como indica su tarjeta: sus cifras sirven para practicar las cuentas.
 
 <CaseStudy data={data.caseStudy} />
+
+Probamos los cuatro prompts en un asistente de IA, en una sola conversación y con los datos de este caso. Las capturas marcadas «Prueba real» son esas respuestas, sin editar. Las cuentas se comprobaron en la hoja de cálculo de la guía.
 
 </GuideSection>
 
@@ -78,13 +81,13 @@ Un prompt es como el encargo que le das a un empleado nuevo: cuanto más claro, 
 
 <PromptCard prompt={data.prompts.formulas} proof={data.images.prueba1} evidence={data.evidence} />
 
-<ComparisonTable table={data.comparisons.hoja} eyebrow="Ejemplo generado" />
+<ResultBlock data={formulasResult} />
+
+La fórmula de C2, `=C10+C11`, supone que C10 y C11 son el costo de un café y de un croissant, en otra zona de la hoja. En la calculadora de abajo esos costos ya vienen sumados en la columna C.
 
 Con «Copiar como tabla» pegas esta calculadora en la celda A1 de una hoja nueva y ya calcula: cambia los números por los tuyos.
 
 <ComparisonTable table={data.comparisons.calculadora} eyebrow="Plantilla para copiar" />
-
-<GuideImage slot={data.images.hoja} />
 
 </GuideSection>
 
@@ -98,11 +101,9 @@ Este prompt pide ideas, no cifras: los cálculos los haces tú en la hoja.
 
 <GuideSection id="primer-resultado" title="Lo que respondió la IA la primera vez" part="Hacer">
 
-Fíjate en lo que no hay: ninguna cifra y dos datos pendientes.
+Fíjate en lo que no hay: ninguna cifra, y en cada promoción, el dato que le falta.
 
 <ResultBlock data={data.firstResult} />
-
-<GuideImage slot={data.images.alternativas} />
 
 </GuideSection>
 
@@ -112,13 +113,17 @@ Pide las cifras con este prompt y reproduce la tabla en tu hoja: así sabrás si
 
 <PromptCard prompt={data.prompts.cuentas} proof={data.images.prueba3} evidence={data.evidence} />
 
-<ComparisonTable table={data.comparisons.cuentasIA} eyebrow="Ejemplo generado" />
+<ResultBlock data={cuentasResult} />
+
+Ahora pon lado a lado lo que devolvió la IA y lo que da tu hoja:
+
+<ComparisonTable table={data.comparisons.cuentasVsHoja} eyebrow="Cuentas de la IA / Mi hoja" />
 
 Una <Term id="rubrica">rúbrica</Term> es una lista de criterios con puntaje que se aplica siempre igual.
 
 <ResultAnalysis data={data.analysis} rubric={data.rubric} />
 
-<GuideImage slot={data.images.cuentas} />
+<ErrorFrecuente incorrecto={errorFrecuente.incorrecto} correcto={errorFrecuente.correcto} nota={errorFrecuente.nota} />
 
 <Rubric data={data.rubric} />
 
@@ -128,7 +133,7 @@ Una <Term id="rubrica">rúbrica</Term> es una lista de criterios con puntaje que
 
 <IterationBlock data={data.iteration} />
 
-<PromptCard prompt={data.prompts.decision} proof={data.images.prueba4} evidence={data.evidence} />
+<PromptCard prompt={data.prompts.decision} proof={[data.images.prueba4, data.images.prueba4b]} evidence={data.evidence} />
 
 </GuideSection>
 
@@ -136,11 +141,11 @@ Una <Term id="rubrica">rúbrica</Term> es una lista de criterios con puntaje que
 
 <ResultBlock data={data.improvedResult} />
 
-<GuideImage slot={data.images.decision} />
+La IA comparó con los mismos 20 pedidos ($54.00 frente a $64.00). En la hoja completamos el escenario del objetivo: con 24 pedidos, 24 × $2.70 = $64.80, casi lo mismo que hoy. El punto de equilibrio está en 23.7 pedidos: por eso la condición de parada es «menos de 24».
 
 </GuideSection>
 
-<GuideSection id="ejemplos" title="Tres negocios, las mismas tres cuentas" part="Comparar y ampliar">
+<GuideSection id="ejemplos" title="Otros dos negocios, las mismas tres cuentas" part="Comparar y ampliar">
 
 El método no cambia; cambia la canasta. Los negocios siguientes son ficticios.
 

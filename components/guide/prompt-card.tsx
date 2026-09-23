@@ -12,10 +12,12 @@ import { PromptWorkbench } from "./prompt-workbench";
  * archivo existe; la fecha, el asistente y la nota solo si el autor los aportó en `evidence.pruebas`.
  * Sin archivo no hay nada en producción. Se distingue de `EJEMPLO GENERADO` (simulado).
  */
-function PromptProof({ slot, evidence, promptId }: { slot?: ImageSlot; evidence?: EvidenceData; promptId: string }) {
-  if (!slot) return null;
-  const exists = mediaExists(slot.src);
-  if (!exists && !showGuideImageSlots) return null;
+function PromptProof({ slots, evidence, promptId }: { slots: ImageSlot[]; evidence?: EvidenceData; promptId: string }) {
+  // Una respuesta larga puede venir en varias capturas (`prueba-prompt-04.webp`, `prueba-prompt-04b.webp`):
+  // comparten una sola insignia y una sola nota del autor.
+  const shown = slots.filter((slot) => mediaExists(slot.src) || showGuideImageSlots);
+  if (shown.length === 0) return null;
+  const exists = shown.some((slot) => mediaExists(slot.src));
   const test = evidence?.pruebas?.find((item) => item.promptId === promptId);
 
   return (
@@ -31,7 +33,9 @@ function PromptProof({ slot, evidence, promptId }: { slot?: ImageSlot; evidence?
           {test?.asistente && <span className="text-xs text-muted-foreground">Asistente: {test.asistente}</span>}
         </p>
       )}
-      <ImageBlock image={slotToImage(slot)} className={exists ? "mt-3" : ""} />
+      {shown.map((slot, index) => (
+        <ImageBlock key={slot.file} image={slotToImage(slot)} className={exists ? "mt-3" : index > 0 ? "mt-3" : ""} />
+      ))}
       {exists && test?.nota && (
         <p className="mt-3 text-[0.93rem] leading-relaxed text-foreground/90">
           <span className="font-semibold text-guide-ink">Lo que observó el autor: </span>
@@ -46,10 +50,11 @@ function PromptProof({ slot, evidence, promptId }: { slot?: ImageSlot; evidence?
  * Prompt completo de una guía (v3): se muestra UNA sola vez, con su constructor de variables,
  * y trae debajo la «Prueba real» si el autor la aportó (`proof` = slot `prueba-prompt-0N.webp`).
  */
-export function PromptCard({ prompt, proof, evidence }: { prompt: GuidePrompt; proof?: ImageSlot; evidence?: EvidenceData }) {
+export function PromptCard({ prompt, proof, evidence }: { prompt: GuidePrompt; proof?: ImageSlot | ImageSlot[]; evidence?: EvidenceData }) {
+  const slots = proof === undefined ? [] : Array.isArray(proof) ? proof : [proof];
   return (
     <PromptWorkbench prompt={prompt}>
-      <PromptProof slot={proof} evidence={evidence} promptId={proof?.promptId ?? ""} />
+      <PromptProof slots={slots} evidence={evidence} promptId={slots[0]?.promptId ?? ""} />
     </PromptWorkbench>
   );
 }

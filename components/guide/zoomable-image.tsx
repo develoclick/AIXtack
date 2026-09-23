@@ -50,19 +50,22 @@ export function ZoomableImage({ src, alt, caption, ratio, sizes, loading, priori
         onClick={(event) => {
           if (event.target === dialogRef.current) dialogRef.current?.close();
         }}
-        className="m-auto max-h-[92vh] max-w-[min(96vw,1200px)] rounded-xl border bg-background p-0 backdrop:bg-black/70"
+        className="m-auto max-h-[92vh] max-w-[min(96vw,1200px)] overflow-auto rounded-xl border bg-background p-0 backdrop:bg-black/70"
       >
         <div className="relative">
-          <button
-            type="button"
-            onClick={() => dialogRef.current?.close()}
-            aria-label="Cerrar imagen ampliada"
-            className="guide-focus absolute right-2 top-2 z-10 rounded-md bg-background/90 p-2 text-foreground"
-          >
-            <X className="size-4" aria-hidden />
-          </button>
-          {/* eslint-disable-next-line @next/next/no-img-element -- vista ampliada: el archivo original a tamaño natural */}
-          <img src={src} alt={alt} className="max-h-[86vh] w-auto max-w-full" />
+          {/* Sticky: en móvil la imagen se desplaza dentro del diálogo y el botón de cerrar sigue a la vista. */}
+          <div className="sticky top-0 z-10 flex h-0 justify-end">
+            <button
+              type="button"
+              onClick={() => dialogRef.current?.close()}
+              aria-label="Cerrar imagen ampliada"
+              className="guide-focus m-2 h-fit rounded-md bg-background/90 p-2 text-foreground"
+            >
+              <X className="size-4" aria-hidden />
+            </button>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element -- vista ampliada: el archivo original a tamaño natural. En móvil no se reduce al ancho de pantalla: así el texto de una captura se lee desplazando. */}
+          <img src={src} alt={alt} className="max-h-[86vh] w-auto max-w-full max-sm:max-h-none max-sm:max-w-none" />
           {caption && <p className="border-t px-4 py-3 text-sm text-muted-foreground">{caption}</p>}
         </div>
       </dialog>

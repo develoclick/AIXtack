@@ -150,7 +150,7 @@ export const glossary: readonly GlossaryEntry[] = [
   {
     id: "variable",
     term: "Variable",
-    simple: "Un hueco marcado dentro de un prompt, como {{FICHA}}, que tú rellenas con tus datos antes de enviarlo. Lo demás del prompt no cambia.",
+    simple: "Un hueco marcado dentro de un prompt, como {{COLUMNAS}}, que tú rellenas con tus datos antes de enviarlo. Lo demás del prompt no cambia.",
   },
   {
     id: "indicador",
