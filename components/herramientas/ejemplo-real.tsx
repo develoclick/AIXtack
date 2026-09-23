@@ -1,0 +1,53 @@
+import { ZoomableImage } from "@/components/guide/zoomable-image";
+import { ui } from "@/components/guide/ui";
+import { mediaExists } from "@/lib/guides/media";
+import type { EjemploReal as EjemploRealDatos } from "@/lib/herramientas/tipos";
+import { cn } from "@/lib/utils";
+
+/**
+ * Bloque 6: el caso de ejemplo, sus capturas y «Qué corregí yo». Cada imagen lleva su etiqueta honesta
+ * («Prueba real» solo para capturas reales de un chat; «Ilustración» o «Simulación» para lo demás).
+ * Si un archivo no existe no se muestra nada: la página no enseña marcadores ni notas de producción.
+ */
+export function EjemploReal({ ejemplo }: { ejemplo: EjemploRealDatos }) {
+  const capturas = ejemplo.capturas.filter((c) => mediaExists(c.src));
+  const datos = Object.entries(ejemplo.datos);
+
+  return (
+    <div>
+      <p className="text-[0.97rem] font-semibold text-guide-ink">{ejemplo.negocio}</p>
+
+      {datos.length > 0 && (
+        <dl className="mt-3 grid gap-x-6 gap-y-2 rounded-xl border bg-guide-surface p-4 sm:grid-cols-2">
+          {datos.map(([campo, valor]) => (
+            <div key={campo} className="min-w-0">
+              <dt className="text-sm text-muted-foreground">{campo}</dt>
+              <dd className="text-[0.97rem] text-foreground">{valor}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {capturas.map((captura) => (
+        <figure key={captura.src} className="mt-6">
+          <p className="mb-2">
+            <span className={cn(captura.etiqueta === "Prueba real" ? `${ui.tag} border-ok/40 bg-ok-muted text-ok` : ui.tagNeutral)}>{captura.etiqueta}</span>
+          </p>
+          <ZoomableImage src={captura.src} alt={captura.alt} caption={captura.pie} ratio="" sizes="(min-width: 1024px) 54rem, 100vw" loading="lazy" />
+          {captura.pie && <figcaption className="mt-2 text-sm leading-snug text-muted-foreground">{captura.pie}</figcaption>}
+        </figure>
+      ))}
+
+      {ejemplo.queCorregi.length > 0 && (
+        <div className="mt-6 rounded-xl border-l-[3px] border-brand bg-guide-surface px-5 py-4">
+          <h3 className="text-base font-semibold text-guide-ink">Qué corregí yo</h3>
+          <ul className="mt-2 list-disc space-y-1.5 pl-5 text-[0.97rem] leading-relaxed text-foreground/90">
+            {ejemplo.queCorregi.map((linea) => (
+              <li key={linea}>{linea}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
