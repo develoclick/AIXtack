@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { footerNav } from "@/lib/nav-config";
-import { siteName, siteTagline } from "@/lib/site";
+import { EDITORIAL, getAuthor } from "@/content/autores";
+import { contactEmail, siteName, siteTagline } from "@/lib/site";
 import { AuroraRibbon } from "@/components/visual/aurora-ribbon";
 
 /** Pie de página: franja de tinta con el nombre del sitio en grande, columnas de navegación y línea legal. */
@@ -45,7 +46,10 @@ export function Footer() {
 
         <div className="mt-6 border-t border-white/10 pt-6 text-xs text-foreground/60">
           <p>
-            © {year} {siteName}. Todos los derechos reservados.
+            © {year} {siteName}, publicado por {getAuthor(EDITORIAL)!.name}. Todos los derechos reservados. Contacto:{" "}
+            <a href={`mailto:${contactEmail}`} className="underline underline-offset-2 hover:text-foreground">
+              {contactEmail}
+            </a>
           </p>
         </div>
       </div>

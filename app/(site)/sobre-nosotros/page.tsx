@@ -34,7 +34,8 @@ const toc: [string, string][] = [
   ["como-se-financia", "Cómo se financia"],
 ];
 
-const autor = getAuthor(AUTOR_POR_DEFECTO)!.name;
+const autorDatos = getAuthor(AUTOR_POR_DEFECTO)!;
+const autor = autorDatos.name;
 const editorial = getAuthor(EDITORIAL)!.name;
 
 export default function AboutPage() {
@@ -144,6 +145,7 @@ export default function AboutPage() {
           quieres proponer una tarea que te gustaría ver resuelta o tienes cualquier duda, escríbenos desde la{" "}
           <Link href="/contacto">página de contacto</Link> o a <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
         </p>
+        {autorDatos.bio && <p>{autorDatos.bio}</p>}
 
         <h2 id="como-se-financia">Cómo se financia</h2>
         <p>

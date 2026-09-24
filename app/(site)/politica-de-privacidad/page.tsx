@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/shared/legal-page";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
 import { contactEmail, institutionalUpdatedAt, siteName } from "@/lib/site";
 
 export const metadata = buildMetadata({
@@ -19,8 +20,8 @@ export default function PrivacyPolicyPage() {
 
       <h2>Responsable del tratamiento</h2>
       <p>
-        {siteName} es un proyecto de DeveloClick, responsable del tratamiento de los datos recogidos a través de este
-        sitio. Para cualquier consulta sobre esta política puedes escribirnos a{" "}
+        {siteName} lo publica {getAuthor(EDITORIAL)!.name}, responsable del tratamiento de los datos recogidos a través de
+        este sitio, y lo escribe y prueba {getAuthor(AUTOR_POR_DEFECTO)!.name}. Para cualquier consulta sobre esta política puedes escribirnos a{" "}
         <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
       </p>
 

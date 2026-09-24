@@ -3,6 +3,7 @@ import { EditorialHero } from "@/components/visual/editorial-hero";
 import { FloatingIllustration } from "@/components/visual/floating-illustration";
 import { Reveal } from "@/components/visual/reveal";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
 import { contactEmail, institutionalUpdatedAt } from "@/lib/site";
 import { formatDate } from "@/lib/utils/format";
 
@@ -64,7 +65,7 @@ export default function ContactPage() {
         </ul>
 
         <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Si nos escribes para proponer una herramienta, cuéntanos qué tarea de tu negocio quieres resolver y qué te lo impide hoy. Última actualización:{" "}
+          El correo lo lee {getAuthor(AUTOR_POR_DEFECTO)!.name}, de {getAuthor(EDITORIAL)!.name}. Si nos escribes para proponer una herramienta, cuéntanos qué tarea de tu negocio quieres resolver y qué te lo impide hoy. Última actualización:{" "}
           <time dateTime={updatedAt}>{formatDate(updatedAt)}</time>.
         </p>
       </div>

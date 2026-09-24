@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/shared/legal-page";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
 import { contactEmail, institutionalUpdatedAt, siteName } from "@/lib/site";
 
 export const metadata = buildMetadata({
@@ -21,7 +22,8 @@ export default function TermsPage() {
       <p>
         {siteName} es un sitio de contenido educativo en español con herramientas y guías cortas para usar inteligencia artificial
         en tareas de microempresas y emprendedores. El acceso al contenido es gratuito, no requiere registro y no
-        existen cuentas de usuario.
+        existen cuentas de usuario. El sitio lo publica {getAuthor(EDITORIAL)!.name} y lo escribe y prueba{" "}
+        {getAuthor(AUTOR_POR_DEFECTO)!.name}.
       </p>
 
       <h2>2. Naturaleza informativa del contenido</h2>

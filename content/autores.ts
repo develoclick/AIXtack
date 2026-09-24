@@ -8,12 +8,14 @@
 export interface Author {
   id: string;
   name: string;
+  /** Biografía breve (2–4 líneas), escrita por la propia persona. Sin ella, no se muestra nada. */
+  bio?: string;
   /** Tipo schema.org para el JSON-LD. */
   type: "Organization" | "Person";
 }
 
 export const authors: readonly Author[] = [
-  { id: "nicolas", name: "Nicolas", type: "Person" },
+  { id: "nicolas", name: "Nicolas", type: "Person" /* bio: TODO, la escribe Nicolas */ },
   { id: "develoclick", name: "DeveloClick", type: "Organization" },
 ];
 

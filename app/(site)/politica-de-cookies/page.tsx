@@ -21,8 +21,8 @@ export default function CookiesPolicyPage() {
       <h2>Qué usamos</h2>
       <ul>
         <li>
-          <strong>Almacenamiento local necesario:</strong> tu preferencia de tema claro u oscuro y tu elección sobre las
-          cookies. Se guardan en el almacenamiento local del navegador, no se envían a ningún servidor y no requieren
+          <strong>Almacenamiento local necesario:</strong> tu preferencia de tema claro u oscuro, tu elección sobre las
+          cookies y, si decides guardarlos, los datos de tu negocio del perfil «Mi negocio». Se guardan en el almacenamiento local del navegador, no se envían a ningún servidor y no requieren
           consentimiento porque sin ellos el sitio no puede recordar tus preferencias.
         </li>
         <li>
