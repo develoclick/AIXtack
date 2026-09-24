@@ -1,6 +1,6 @@
 # Recorrido interactivo (Playwright, build de producción)
 
-Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 px y 1280 px). 596 pruebas: 596 OK, 0 FALLA.
+Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 px y 1280 px). 604 pruebas: 604 OK, 0 FALLA.
 
 | Página | Vista (px) | Prueba | Resultado | Detalle |
 |---|---|---|---|---|
@@ -148,12 +148,16 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 375 | prompt del ejemplo sin {{ }}, undefined, null ni NaN | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | prompt del ejemplo sin [FALTA] en los datos | OK | 0 [FALTA] |
 | /marketing/crear-afiches-con-ia | 375 | «Ver el prompt completo» muestra el prompt | OK |  |
-| /marketing/crear-afiches-con-ia | 375 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3829 caracteres copiados |
+| /marketing/crear-afiches-con-ia | 375 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3972 caracteres copiados |
 | /marketing/crear-afiches-con-ia | 375 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | conteo de palabras · El caso de La Espiga (los datos de «Probar con un ejemplo») | OK | «Tus datos suman 39 palabras (máximo 39).»; el prompt trae el total |
+| /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Sin datos: cero palabras | OK | «Tus datos suman 0 palabras (máximo 39).»; el prompt trae el total |
+| /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Sin precio no se cuenta el «por» del titular | OK | «Tus datos suman 11 palabras (máximo 39).»; el prompt trae el total |
+| /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Se pasa del máximo: el aviso dice cuántas de más | OK | «Tus datos suman 49 palabras (máximo 39).» + aviso (no bloquea); el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 375 | 0 errores en consola | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | portapapeles API bloqueado: alternativa (execCommand) o texto a mano | OK | copiado con execCommand |
 | /marketing/crear-afiches-con-ia | 375 | 0 errores de consola con el portapapeles sin API | OK |  |
-| /marketing/crear-afiches-con-ia | 375 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3790 caracteres |
+| /marketing/crear-afiches-con-ia | 375 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3933 caracteres |
 | /marketing/crear-afiches-con-ia | 375 | 0 errores de consola con el portapapeles bloqueado | OK |  |
 | /marketing/crear-anuncios-con-ia | 375 | sin scroll horizontal | OK | ancho de contenido 375 · ventana 375 |
 | /marketing/crear-anuncios-con-ia | 375 | botones y controles ≥ 44 px | OK |  |
@@ -446,12 +450,16 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 1280 | prompt del ejemplo sin {{ }}, undefined, null ni NaN | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | prompt del ejemplo sin [FALTA] en los datos | OK | 0 [FALTA] |
 | /marketing/crear-afiches-con-ia | 1280 | «Ver el prompt completo» muestra el prompt | OK |  |
-| /marketing/crear-afiches-con-ia | 1280 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3829 caracteres copiados |
+| /marketing/crear-afiches-con-ia | 1280 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3972 caracteres copiados |
 | /marketing/crear-afiches-con-ia | 1280 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · El caso de La Espiga (los datos de «Probar con un ejemplo») | OK | «Tus datos suman 39 palabras (máximo 39).»; el prompt trae el total |
+| /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Sin datos: cero palabras | OK | «Tus datos suman 0 palabras (máximo 39).»; el prompt trae el total |
+| /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Sin precio no se cuenta el «por» del titular | OK | «Tus datos suman 11 palabras (máximo 39).»; el prompt trae el total |
+| /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Se pasa del máximo: el aviso dice cuántas de más | OK | «Tus datos suman 49 palabras (máximo 39).» + aviso (no bloquea); el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores en consola | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | portapapeles API bloqueado: alternativa (execCommand) o texto a mano | OK | copiado con execCommand |
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores de consola con el portapapeles sin API | OK |  |
-| /marketing/crear-afiches-con-ia | 1280 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3790 caracteres |
+| /marketing/crear-afiches-con-ia | 1280 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3933 caracteres |
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores de consola con el portapapeles bloqueado | OK |  |
 | /marketing/crear-anuncios-con-ia | 1280 | sin scroll horizontal | OK | ancho de contenido 1280 · ventana 1280 |
 | /marketing/crear-anuncios-con-ia | 1280 | botones y controles ≥ 44 px | OK |  |
