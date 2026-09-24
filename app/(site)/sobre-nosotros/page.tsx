@@ -140,7 +140,8 @@ export default function AboutPage() {
         <h2 id="quien-esta-detras">Quién está detrás de {siteName}</h2>
         {autorDatos.bioLarga?.map((parrafo) => <p key={parrafo}>{parrafo}</p>)}
         <p>
-          {siteName} es un proyecto de {editorial}, responsable editorial y legal del sitio. Cada herramienta lleva la
+          {siteName} es un proyecto de {editorial}. El responsable editorial y legal del sitio es {autor}, persona natural con
+          domicilio en {autorDatos.pais}; {editorial} es el nombre del proyecto, no una empresa registrada. Cada herramienta lleva la
           firma de {autor} —«Probado por {autor} en [IA] el [fecha]», solo cuando esa prueba existe— y la fecha real de
           actualización. Si encuentras un error, quieres proponer una tarea que te gustaría ver resuelta o tienes cualquier
           duda, escríbenos desde la <Link href="/contacto">página de contacto</Link> o a{" "}

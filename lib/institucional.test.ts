@@ -68,3 +68,14 @@ test("locale: og:locale es_PE y fechas en es-419 (público y autor en Latinoamé
   assert.doesNotMatch(leer("lib", "seo", "metadata.ts"), /es_ES/);
   assert.match(leer("lib", "utils", "format.ts"), /"es-419"/);
 });
+
+test("responsable legal: Nicolas (persona natural, Perú); DeveloClick es el nombre del proyecto, no una empresa registrada", () => {
+  const sobre = leer("app", "(site)", "sobre-nosotros", "page.tsx");
+  assert.match(sobre, /responsable editorial y legal del sitio es \{autor\}/);
+  assert.match(sobre, /persona natural/);
+  assert.match(sobre, /no una empresa registrada/);
+  assert.doesNotMatch(sobre, /\{editorial\}, responsable editorial y legal/);
+  assert.equal(getAuthor(AUTOR_POR_DEFECTO)?.pais, "Perú");
+  assert.match(leer("components", "layout", "footer.tsx"), /un proyecto de/);
+  assert.doesNotMatch(leer("components", "layout", "footer.tsx"), /publicado por/);
+});

@@ -31,7 +31,10 @@ export const authors: readonly Author[] = [
   { id: "develoclick", name: "DeveloClick", type: "Organization" },
 ];
 
-/** Quien prueba y firma las herramientas (persona: Nicolas) y quien edita y publica el sitio (organización: DeveloClick). Todo el sitio lee el nombre de aquí. */
+/**
+ * Nicolas: persona natural, con domicilio en Perú; prueba y firma las herramientas y es el responsable editorial y legal del sitio.
+ * DeveloClick: nombre del proyecto (NO una empresa registrada); es el `publisher` del JSON-LD. Todo el sitio lee los nombres de aquí.
+ */
 export const AUTOR_POR_DEFECTO = "nicolas";
 export const EDITORIAL = "develoclick";
 

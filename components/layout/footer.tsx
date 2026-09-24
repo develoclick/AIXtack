@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { footerNav } from "@/lib/nav-config";
-import { EDITORIAL, getAuthor } from "@/content/autores";
+import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
 import { contactEmail, siteName, siteTagline } from "@/lib/site";
 import { AuroraRibbon } from "@/components/visual/aurora-ribbon";
 
@@ -46,7 +46,7 @@ export function Footer() {
 
         <div className="mt-6 border-t border-white/10 pt-6 text-xs text-foreground/60">
           <p>
-            © {year} {siteName}, publicado por {getAuthor(EDITORIAL)!.name}. Todos los derechos reservados. Contacto:{" "}
+            © {year} {siteName}, un proyecto de {getAuthor(EDITORIAL)!.name}. Responsable: {getAuthor(AUTOR_POR_DEFECTO)!.name}. Todos los derechos reservados. Contacto:{" "}
             <a href={`mailto:${contactEmail}`} className="underline underline-offset-2 hover:text-foreground">
               {contactEmail}
             </a>
