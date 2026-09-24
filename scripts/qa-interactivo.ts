@@ -14,7 +14,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { chromium, type Browser, type BrowserContext, type Page } from "playwright-core";
+import { chromium, type Browser, type Page } from "playwright-core";
 import { calcular, formatear } from "../lib/herramientas/calculadora";
 import { ejecutarPreproceso } from "../lib/herramientas/preprocesos";
 import { listarTodas, rutaHerramienta, type HerramientaCargada } from "../lib/herramientas/registro";

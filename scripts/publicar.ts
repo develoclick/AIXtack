@@ -120,7 +120,7 @@ function reemplazarArray(s: string, nombre: string, desde: number, nuevoTexto: s
   const i = s.indexOf(clave, desde);
   if (i < 0) throw new Error(`no encuentro «${nombre}» en el archivo de datos`);
   const abre = i + clave.length - 1;
-  let cierra = encontrarCierre(s, abre);
+  const cierra = encontrarCierre(s, abre);
   let despues = cierra + 1;
   if (s[despues] === ",") despues++;
   // comentario TODO en la misma línea

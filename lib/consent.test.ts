@@ -35,3 +35,13 @@ test("la fuente Metropolis carga como máximo 3 pesos con font-display: swap", (
   assert.equal((layout.match(/metropolis-latin-\d+-normal\.woff2/g) ?? []).length, 3);
   assert.match(layout, /display: "swap"/);
 });
+
+test("rendimiento: el menú móvil se carga bajo demanda, sin framer-motion, y Reveal/Parallax no llevan JavaScript de cliente", () => {
+  const leer = (...partes: string[]) => fs.readFileSync(path.join(process.cwd(), ...partes), "utf8");
+  const navbar = leer("components", "layout", "navbar.tsx");
+  assert.doesNotMatch(navbar, /components\/ui\/sheet/, "la barra no importa el diálogo: lo hace menu-movil.tsx, cargado con next/dynamic");
+  assert.match(navbar, /dynamic\(/);
+  assert.match(leer("components", "layout", "menu-movil.tsx"), /components\/ui\/sheet/);
+  for (const f of ["reveal.tsx", "parallax.tsx"]) assert.doesNotMatch(leer("components", "visual", f), /"use client"|useEffect|useState/, `${f} debe ser un componente de servidor`);
+  assert.doesNotMatch(leer("package.json"), /framer-motion/);
+});
