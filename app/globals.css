@@ -569,22 +569,44 @@
     }
   }
 
-  /* Aparición al entrar en pantalla. Sin JavaScript (o con menos movimiento) todo es visible. */
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal[data-ready="true"] {
+  /* Aparición al entrar en pantalla, sin JavaScript: solo donde el navegador admite animaciones ligadas al scroll
+     y el movimiento está permitido. En cualquier otro caso el contenido se ve siempre. */
+  @keyframes reveal-entrada {
+    from {
       opacity: 0;
       transform: translate3d(0, 14px, 0);
-      transition:
-        opacity 0.7s var(--guide-ease),
-        transform 0.7s var(--guide-ease);
-      transition-delay: var(--reveal-delay, 0ms);
     }
-    .reveal[data-ready="true"][data-in="true"] {
+    to {
       opacity: 1;
       transform: none;
     }
-    .reveal[data-instant="true"] {
-      transition: none;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        animation: reveal-entrada linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 35%;
+      }
+    }
+  }
+
+  /* Paralaje de las ilustraciones decorativas, sin JavaScript (solo desde md y con movimiento permitido). */
+  @keyframes parallax-mover {
+    from {
+      transform: translate3d(0, var(--parallax, 0px), 0);
+    }
+    to {
+      transform: translate3d(0, calc(var(--parallax, 0px) * -1), 0);
+    }
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
+      .parallax {
+        animation: parallax-mover linear both;
+        animation-timeline: view();
+        will-change: transform;
+      }
     }
   }
 
