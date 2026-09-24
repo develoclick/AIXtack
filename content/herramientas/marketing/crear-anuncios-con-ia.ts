@@ -94,7 +94,7 @@ Antes de responder, comprueba que cada dato de cada versión está en mis datos,
     ],
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -187,6 +187,10 @@ Antes de responder, comprueba que cada dato de cada versión está en mis datos,
       "**Hoja de afirmaciones.** Para cada frase del anuncio anota su tipo (dato de la oferta, cualidad, respaldo, acción), si está en tus datos y qué debes comprobar tú. En la prueba real de la versión anterior, la primera revisión marcó los cuatro anuncios como «no publicar»: faltaba aclarar que la oferta era solo ese día, el mensaje directo usaba una palabra que no estaba en la ficha y la pregunta de la versión B no tenía respaldo.",
       "**Capturas del método anterior.** Las imágenes que siguen son chats reales, sin retocar, hechos con la versión encadenada de esta herramienta y con los datos de Casa y Clavo (ficticia); no muestran la respuesta a este prompt único, que se probará aparte.",
       "**Lo que este método no hace.** No conoce tu stock ni tus resultados, no configura la campaña, no decide la oferta y no sustituye las normas de publicidad de tu país.",
+      "**Cómo elegir el gancho.** El gancho es lo primero que ve quien no te conoce, así que debe decir en pocas palabras qué ofreces y por qué le interesa. Compara los ganchos que devuelve la IA con una pregunta: ¿se entiende sin saber qué negocio soy?, ¿lleva un dato concreto (precio, fecha, cantidad)? Descarta los que solo dicen «aprovecha» o «no te lo pierdas», porque no aportan nada que un cliente pueda comprobar. Si dos ganchos te gustan, no elijas: prueba los dos, cambiando solo esa frase.",
+      "**Cómo leer los resultados de un anuncio.** Mira los números que te da tu propia plataforma (personas alcanzadas, clics, mensajes recibidos) y, sobre todo, lo que ocurre fuera de ella: cuántas personas dijeron que vinieron por el anuncio y cuántas ventas hubo en el periodo de la oferta. No esperes cifras exactas ni compares con lo que dicen otros negocios: solo te sirve compararte contigo mismo, con la misma oferta y periodos parecidos. Esta herramienta no promete resultados; te ayuda a que lo que publicas sea claro, verdadero y comprobable.",
+      "**Cuándo no conviene anunciar.** Si tu oferta depende de un stock que no tienes asegurado, si no puedes atender los mensajes en los horarios que prometes o si las condiciones aún no están decididas, espera. Un anuncio que genera mensajes que no puedes responder daña la confianza más de lo que ayuda a vender. Y si el asistente marca un [FALTA], respóndelo antes de publicar.",
+      "**Aviso.** Las reglas de publicidad, descuentos, comparaciones, uso de imágenes y datos de contacto cambian según el país y la plataforma. Esta herramienta no las cubre ni da asesoría legal; verifica las políticas del canal donde publicarás y, ante la duda, consulta a un profesional.",
     ],
     capturas: [
       {

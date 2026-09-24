@@ -124,7 +124,7 @@ Antes de responder, comprueba que cada cifra está en los cálculos de la págin
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -176,6 +176,11 @@ Antes de responder, comprueba que cada cifra está en los cálculos de la págin
       ejemplo: "Estudio de uñas Brillo (ficticio): servicios por día con sus montos. Contexto: dos semanas con menos cupos por vacaciones de una estilista. La comparación justa es por día con ventas y por cupos disponibles.",
       consejo: "En servicios cambia «producto» por «servicio» en la tabla. Las cuentas y la lectura son las mismas.",
     },
+    {
+      rubro: "Tienda online",
+      ejemplo: "Luz de Barrio (ficticio), que vende velas por Instagram y WhatsApp: la tabla junta pedidos de los dos canales. Contexto: en un mes cambió el costo del envío y en otro hubo una publicación con mucho alcance. La IA plantea hipótesis separadas (canal, envío, publicación) y qué dato distinguiría cada una.",
+      consejo: "Añade una columna «canal» solo si vas a usarla: la página cuenta por producto y por mes, así que el canal conviene anotarlo en «lo que pasó» y comparar los períodos por separado.",
+    },
   ],
 
   errores: [
@@ -218,6 +223,10 @@ Antes de responder, comprueba que cada cifra está en los cálculos de la págin
       "**Cómo contar lo que pasó.** La tabla no muestra que cerraste tres días, que bajaste un precio o que se agotó un producto. Anótalo en «Lo que pasó en cada período», con fechas si puedes. Es el dato más valioso del análisis: sin él, la IA solo puede plantear explicaciones genéricas y tú no puedes comparar de forma justa.",
       "**Rúbrica de seis criterios** para revisar la lectura de la IA (0, 1 o 2 puntos cada uno): cada cifra está en tu resumen; separa hechos de hipótesis; ofrece alternativas; compara de forma justa; dice cómo comprobar; dice lo que no se puede afirmar.",
       "**Lo que este método no hace.** No encuentra causas (solo propone explicaciones posibles), con pocos datos no hay conclusiones, depende de que tú cuentes lo que pasó en cada período y no sustituye a un contador.",
+      "**Cómo decidir qué comprobar primero.** No todas las hipótesis cuestan lo mismo de comprobar ni cambian lo mismo tu decisión. Ordénalas con dos preguntas: ¿puedo comprobarla hoy con datos que ya tengo?, y ¿qué haría distinto si fuera cierta? Una hipótesis fácil de comprobar y que cambiaría una decisión importante va primero (por ejemplo, mirar las ventas de un producto en los días en que sí había stock). Una que exige meses de datos o una encuesta va al final. Si dos hipótesis te llevarían a la misma decisión, no hace falta separarlas para actuar.",
+      "**Errores de lectura que se ven en la práctica.** Un pedido muy grande en un solo día puede subir el total de un mes sin decir nada de la demanda normal: mira el promedio por día con ventas y pregúntate si ese día fue una excepción. Un producto con dos o tres ventas no permite hablar de porcentajes: cuenta unidades. Si el total de control dice «No», revisa primero los nombres de producto que difieren solo por una mayúscula o un espacio. Y si registras las devoluciones, decide antes cómo lo harás y cuéntalo en «lo que pasó», para que ni tú ni la IA las confundan con una caída de ventas.",
+      "**Cuándo no conviene usar esta herramienta.** Si vendes muy pocas veces al mes pero cada venta es enorme, un resumen por día no dirá casi nada: mira cada operación. Si aún no anotas tus ventas, empieza por anotarlas dos o tres meses, aunque sea en una hoja sencilla. Y si necesitas cerrar cuentas, presentar impuestos o decidir sobre un préstamo, esta herramienta no reemplaza a un contador: sirve para entender qué pasó con tus ventas, no para cumplir obligaciones.",
+      "**Aviso.** Esta herramienta ofrece información general para entender tus ventas. No da asesoría contable, tributaria ni financiera, y las decisiones que tomes con ella son tuyas: cuando el dinero en juego sea importante, consulta a un profesional.",
     ],
   },
 });

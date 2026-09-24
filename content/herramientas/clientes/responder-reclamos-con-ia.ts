@@ -75,7 +75,7 @@ Antes de responder, comprueba que cada frase con un hecho se apoya en mis hechos
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -127,6 +127,11 @@ Antes de responder, comprueba que cada frase con un hecho se apoya en mis hechos
       ejemplo: "Estudio Trazo (ficticio, diseño gráfico): un cliente dice que la entrega llegó tarde. Confirmado: fecha acordada y fecha de envío. Ofrece: una ronda extra de ajustes sin costo. No ofrece: devolver el anticipo.",
       consejo: "Con servicios, deja por escrito qué estaba acordado antes del reclamo: es el hecho que más se discute.",
     },
+    {
+      rubro: "Trabajo por encargo",
+      ejemplo: "Maderas Rivera (ficticio): una clienta dice que el mueble llegó con un rayón. Confirmado: la fecha de entrega y la nota firmada al recibirlo. Sin confirmar: cuándo apareció el rayón. Ofrece: revisarlo en su casa y repararlo sin costo. No ofrece: cambiar el mueble entero.",
+      consejo: "En trabajos hechos a medida, guarda fotos y notas de entrega: son los hechos que más pesan. Sin ese registro, el reclamo se queda en «tu palabra contra la mía».",
+    },
   ],
 
   errores: [
@@ -168,6 +173,11 @@ Antes de responder, comprueba que cada frase con un hecho se apoya en mis hechos
       "**Cómo usar la respuesta pública.** Espera a haber escrito por privado y publica después, para que el cliente no lea la oferta en tu respuesta pública. Deja fuera de ella las fechas, los montos, el motivo del retraso, la compensación y cualquier palabra dura del cliente; solo reconoce lo que puedes reconocer y dile que le escribiste por el canal privado.",
       "**Rúbrica de cinco criterios** para revisar el borrador (0, 1 o 2 puntos cada uno): cada hecho sale de tu ficha; ofrece solo lo que decidiste; reconoce lo que pasó sin culpar ni discutir; responde a cada punto; suena sereno y claro.",
       "**Lo que este método no hace.** No cubre reclamos con riesgo legal o de salud, no arregla la causa (una buena respuesta no evita el próximo reclamo si el problema sigue), no controla la reseña y necesita políticas propias de envío y devolución: sin ellas, la decisión se toma a ciegas.",
+      "**Tres plazos que conviene fijar antes del primer reclamo.** El primero es el aviso de recibo: unas horas para decir «recibimos tu mensaje y lo estamos revisando». El segundo es la respuesta de fondo, cuando ya tienes los hechos y la decisión. El tercero es el cierre: cuándo vuelves a escribir para comprobar que el problema quedó resuelto. Decide qué plazo puedes cumplir de verdad en tu negocio y escríbelo; un plazo corto que no cumples empeora el reclamo más que uno largo que sí cumples.",
+      "**Cómo decidir qué ofrecer.** Antes de pedirle nada a la IA, responde por escrito tres cosas: qué falló de verdad, qué dice tu política para ese caso y qué puedes sostener si otro cliente pide lo mismo. Lo que ofrezcas a uno se convierte en precedente para los demás, así que ofrece lo mínimo suficiente para reparar el problema y no lo máximo que se te ocurre para que el cliente se calme. Si tu política no cubre el caso, decide tú, anota la decisión y actualiza la política después. Nunca compenses algo que no está confirmado: pide primero el dato que falta.",
+      "**Cuando el mismo reclamo llega por varios canales.** Es habitual que alguien escriba por WhatsApp, deje un comentario en redes y una reseña. Elige una sola persona para llevar el caso, reúne todo en un mismo registro y responde en el orden que planeaste: primero en privado, después en público. Así evitas respuestas contradictorias y ofertas duplicadas.",
+      "**Cómo aprender de cada reclamo.** Al cerrar el caso, anota tres cosas: qué falló, por qué falló y qué cambiarás para que no se repita. Una vez al mes revisa esas notas y busca el patrón (envíos, avisos, faltantes, mensajes sin respuesta). Un buen texto para el cliente ayuda a ese cliente; corregir la causa evita el reclamo siguiente, y eso no lo puede hacer la IA.",
+      "**Aviso.** Esta herramienta prepara borradores para revisar; no da asesoría legal. Las reglas de atención al consumidor, garantías, devoluciones y publicidad cambian según el país, y un reclamo que menciona lesiones, denuncias o abogados debe atenderlo una persona con criterio, con apoyo profesional si hace falta.",
     ],
   },
 });

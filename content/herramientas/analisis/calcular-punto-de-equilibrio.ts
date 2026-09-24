@@ -119,7 +119,7 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -171,6 +171,11 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
       ejemplo: "Rincón (ficticia): costos fijos de $1,500, producto promedio de $20 y costo variable de $10.50 (compra, empaque y tiempo de atención). El margen de contribución es $9.50: necesita 158 ventas al mes ($3,160); abriendo 26 días, son 6.1 al día.",
       consejo: "Con márgenes chicos por venta, pequeños cambios de precio mueven mucho el punto de equilibrio: pruébalos en la calculadora.",
     },
+    {
+      rubro: "Trabajo por encargo",
+      ejemplo: "Maderas Rivera (ficticio) no tiene un precio fijo: cada mueble es distinto. Para calcular usa un trabajo típico de los últimos meses (el precio promedio que cobró y el costo de los materiales de ese trabajo) y vuelve a calcular cuando cambia el tipo de encargos.",
+      consejo: "Si tus trabajos varían mucho, calcula dos casos: uno pequeño y uno grande. Verás si el punto de equilibrio depende de pocos encargos grandes o de muchos pequeños.",
+    },
   ],
 
   errores: [
@@ -212,6 +217,11 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
       "**Dónde encontrar cada dato.** Los costos fijos están en tus recibos y extractos del último mes: alquiler, servicios, cuotas y sueldos. El precio promedio sale de dividir lo que vendiste en un periodo entre el número de ventas. El costo variable se calcula sumando lo que cuesta producir o comprar lo que se lleva cada cliente. Si no tienes un dato exacto, pon una estimación y anótala como supuesto: es mejor un cálculo con supuestos claros que ninguno.",
       "**Cuando quieres una ganancia.** Suma la ganancia mensual que quieres a los costos fijos y vuelve a calcular: el resultado es lo que necesitas vender para cubrir los costos y esa ganancia. Por ejemplo, si Café Mirador (ficticio) quisiera además 500 al mes, tendría que cubrir 3060: 3060 ÷ 3.50 = 874.3, es decir 875 clientes y 4375 en dinero. Sigue siendo un umbral, no una predicción.",
       "**Lo que este método no hace.** No predice ventas, no distingue entre productos con márgenes muy distintos (usa un promedio) y no da asesoría contable ni tributaria.",
+      "**Cómo elegir el precio promedio y el costo variable.** Toma un periodo reciente y representativo (un mes normal, no el de una campaña) y divide lo que entró por ventas entre el número de ventas o de clientes: ese es tu precio promedio. Haz lo mismo con el costo de lo que vendiste: ingredientes, mercadería, empaque y comisiones por venta. Si tu negocio tiene temporadas, calcula con un mes de temporada alta y otro de baja para ver cuánto cambia el resultado. Cuanto menos se parezcan tus ventas entre sí, más conviene repetir el cálculo por grupos de productos.",
+      "**Costos que se olvidan.** Los más frecuentes son tu propio sueldo, las comisiones de cobro con tarjeta o de las plataformas, las mermas (lo que se daña o no se vende), los costos «semivariables» como la luz de un horno o de una cocina, que suben cuando vendes más, y los pagos que no son mensuales pero llegan (una licencia anual, un seguro). Divide los pagos anuales entre doce y súmalos a los costos fijos. Un cálculo con un costo olvidado te da un punto de equilibrio más bajo que el real, y esa diferencia se nota cuando el dinero no alcanza.",
+      "**Cómo usar el resultado para decidir.** Compara las ventas que necesitas por día con las que tienes hoy. Si hoy vendes claramente más, el margen de seguridad es la diferencia: cuánto podrían bajar tus ventas antes de perder. Si vendes menos, elige una sola palanca y pruébala en la calculadora: subir un poco el precio promedio, bajar el costo variable (por ejemplo, cambiando de proveedor o de empaque) o bajar los costos fijos (renegociando el alquiler o los servicios). Anota qué dato cambiaste y cuánto, para saber después si funcionó.",
+      "**Cuándo repetir el cálculo.** Vuelve a calcular cuando cambie el alquiler o un sueldo, cuando cambies tus precios, cuando un proveedor suba sus costos y cuando abras un día más o uno menos. Si el resultado cambia mucho con una variación pequeña de un dato, ese dato es el que más vale la pena vigilar.",
+      "**Aviso.** Este cálculo sirve para entender tus cifras y planificar. No es asesoría contable, tributaria ni financiera: los impuestos, las obligaciones laborales y las reglas de cada país cambian, y las decisiones sobre préstamos, contratos o personal conviene consultarlas con un profesional.",
     ],
   },
 });

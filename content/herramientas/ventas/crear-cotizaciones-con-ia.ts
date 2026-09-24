@@ -139,7 +139,7 @@ Antes de responder, comprueba que cada importe y cada total es idéntico al de l
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -191,6 +191,11 @@ Antes de responder, comprueba que cada importe y cada total es idéntico al de l
       ejemplo: "Muebles Norte (ficticio): 10 sillas a $40 con 5 % de descuento y un transporte de $25 sin descuento; subtotal $425; descuento $20 sobre las sillas; total $405 sin impuesto.",
       consejo: "Pon el transporte como línea aparte y sin descuento: el cliente ve qué paga por el producto y qué por llevarlo.",
     },
+    {
+      rubro: "Producción por encargo",
+      ejemplo: "Luz de Cera (ficticio) cotiza un pedido de velas personalizadas para un evento: las velas van en una línea con descuento por cantidad y la personalización de las etiquetas en otra, sin descuento. En «Qué no incluye» aclara la entrega y la instalación de una mesa de exhibición.",
+      consejo: "Cuando el cliente pide un extra que no estaba en la cotización, hazlo constar como una línea nueva con su importe: evita discutir después qué estaba incluido.",
+    },
   ],
 
   errores: [
@@ -233,6 +238,12 @@ Antes de responder, comprueba que cada importe y cada total es idéntico al de l
       "**Cuando el cliente negocia.** Un descuento nuevo se anota como un porcentaje nuevo sobre los ítems que corresponda, no como un precio final a ojo. Así el documento explica de dónde sale el importe y tú puedes comprobar cuánto margen te queda antes de aceptar. Si quieres saber si el descuento te conviene, calcula primero el precio y el margen con la herramienta de precios.",
       "**Rúbrica de cinco criterios** para revisar el documento (0, 1 o 2 puntos cada uno): las cifras coinciden con la hoja; solo condiciones confirmadas; dice qué incluye y qué no; se puede aceptar sin preguntar; sin promesas que nadie respalda.",
       "**Lo que este método no hace.** No fija tu precio, no conoce condiciones que no le das, no da asesoría legal ni tributaria (impuestos, facturación, garantías y cláusulas varían por país) y no envía la cotización ni da seguimiento al cliente.",
+      "**Cómo ordenar el detalle.** Escribe una línea por concepto, con una descripción que el cliente entienda sin preguntarte («Módulo bajo de cocina, 80 cm») y con cantidad, precio unitario e importe. Agrupa lo que se cobra por producto y separa lo que se cobra por servicio (instalación, transporte). Así el cliente puede ver cuánto paga por cada cosa y tú puedes explicar una línea sin tener que justificar el total completo. Un detalle confuso genera preguntas; uno claro las evita.",
+      "**Cuándo y cómo dar un descuento.** Un descuento debe tener una razón escrita (por volumen, por pago anticipado, por un cliente frecuente) y una base clara: a qué líneas se aplica. Evita los descuentos abiertos («te hago un precio») porque no sabes cuánto has cedido cuando llegue el momento de cobrar. Antes de ofrecerlo, calcula cuánto te queda de margen con el descuento; si no lo sabes, usa la herramienta de precios y márgenes. Un descuento se puede conceder después, pero rara vez se puede retirar.",
+      "**El anticipo: para qué sirve.** Un anticipo compromete al cliente y cubre parte de tus costos iniciales, por ejemplo los materiales. Decide qué porcentaje pides según lo que tienes que gastar antes de empezar, y escribe con claridad cuándo se paga y qué confirma (que el trabajo queda reservado y empieza en la fecha acordada). Qué ocurre si el cliente cancela y cómo se trata legalmente un anticipo cambian según el país: consulta a un profesional antes de escribir esas condiciones.",
+      "**Vigencia y cambios de precio.** La fecha hasta la que vale tu oferta protege tu margen, porque los costos cambian. Elige un plazo que puedas sostener (si tus materiales suben cada semana, un plazo largo es un riesgo) y escríbelo con día y mes completos. Si el cliente responde después, no tienes que honrar el precio: vuelve a calcular con los costos de hoy y envía una cotización nueva con otra fecha.",
+      "**Una revisión final antes de enviar.** Lee la cotización como si fueras el cliente: ¿queda claro qué recibo, cuánto pago y cuándo?, ¿sé qué no está incluido?, ¿sé hasta cuándo vale y cómo acepto? Comprueba que el nombre del cliente y su pedido son los correctos, que la fecha de emisión es la de hoy y que ninguna frase promete algo que no decidiste. Guarda una copia con la fecha: es tu registro de lo que ofreciste.",
+      "**Aviso.** La cotización es un documento comercial y puede tener efectos legales, fiscales y de consumo que dependen de tu país y del tipo de cliente. Esta herramienta no da asesoría legal ni tributaria: consulta con un profesional cómo deben presentarse los impuestos, la facturación, las garantías y las condiciones de pago y cancelación.",
     ],
   },
 });

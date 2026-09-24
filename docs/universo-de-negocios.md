@@ -49,3 +49,15 @@ Todos los negocios de los ejemplos son **ficticios** y llevan «(ficticio)» o �
 - Estudio de uñas Brillo: los costos fijos ($300 y $900) y los materiales ($2.00 y $7) no coincidían entre páginas; ahora son $900 y $2.00.
 - Rincón: costos fijos de $200 y de $1,500 y costo de $13 (que incluía fijos) frente a un costo variable: ahora $1,500 y variable $10.50.
 - Perfil de ejemplo: Panadería La Espiga con «Ciudad de ejemplo» y moneda «$» (antes «Lima, Perú» y «S/»).
+
+## Apariciones añadidas al ampliar el contenido (sin cifras nuevas)
+
+Al ampliar las 15 páginas se reutilizaron negocios ya existentes en ejemplos **cualitativos** (sin precios ni cantidades nuevas), para no crear datos que choquen con los de arriba:
+
+- Luz de Barrio: vender en dos canales (analizar-ventas) y consultar el estado de un pedido (responder-consultas).
+- Maderas Rivera: trabajo por encargo en punto de equilibrio, reclamos (mueble con un rayón), publicaciones (carrusel del proceso) y precios y márgenes (cada mueble se calcula aparte).
+- Cerámica Sol: reseñas de una tienda online (opiniones) y una jornada de una sola persona (organizar tareas).
+- Peluquería Rizo Fino: calendario de contenido para llenar turnos de días con menos clientes.
+- Luz de Cera: preparar un lote de velas (documentar procesos) y una cotización para un evento (cotizaciones).
+- Rincón: un jarrón de cerámica en la descripción de productos.
+- Patitas (ficticia, tienda de mascotas): solo en el calendario de contenido (dos horas por semana; objetivo «más mensajes por consultas»).

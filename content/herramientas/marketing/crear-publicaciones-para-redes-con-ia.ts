@@ -71,7 +71,7 @@ Antes de responder, comprueba que cada dato de cada opción está en mis datos, 
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -123,6 +123,11 @@ Antes de responder, comprueba que cada dato de cada opción está en mis datos, 
       ejemplo: "Estudio de uñas Brillo (ficticio): objetivo «interactuar»; una pregunta al público sobre qué diseño prefieren; acción: responder en los comentarios; formato: post con una imagen y texto.",
       consejo: "Si pides que comenten, la pregunta debe ser fácil de responder en una palabra y no prometer nada a cambio.",
     },
+    {
+      rubro: "Trabajo por encargo",
+      ejemplo: "Maderas Rivera (ficticio): objetivo «informar»; mostrar cómo se arma un mueble a medida, de la medición a la instalación; acción: escribir por mensaje para pedir una visita de medición; formato: carrusel de imágenes con un paso por imagen.",
+      consejo: "Un proceso se cuenta mejor con una imagen por paso y una frase corta en cada una. Pide al cliente que autorice las fotos de su casa antes de publicarlas.",
+    },
   ],
 
   errores: [
@@ -165,6 +170,11 @@ Antes de responder, comprueba que cada dato de cada opción está en mis datos, 
       "**Una semana con una hora.** Un día fijo (por ejemplo, el lunes), completa el formulario, copia el prompt, elige una opción, comprueba los datos con la lista de revisión y programa la publicación. Con dos publicaciones por semana, repite el proceso una vez más. Lo que llevas de un día a otro es el perfil «Mi negocio»: no lo vuelvas a escribir.",
       "**Cómo adaptar a otro formato.** Un texto pensado para una imagen sobra en un mensaje, y al recortarlo a mano se pierde una condición. Pídele a la IA la adaptación y revisa qué quedó fuera: lo que no cabe en el formato debe decirse en otro lugar, no borrarse en silencio.",
       "**Lo que este método no hace.** No conoce tus resultados ni cómo funciona hoy cada plataforma, puede inventar un dato aunque se lo prohíbas (por eso se comprueban), no decide qué publicar, no diseña la imagen ni programa la publicación y no sustituye las normas de publicidad de tu país.",
+      "**Cómo escribir el gancho.** El gancho es la primera frase, la que se ve antes de «ver más». Debe decir para quién es o qué cambia, con un dato concreto y sin adornos: «Martes y miércoles: hidratación con 15 % de descuento» funciona mejor que «Mímate esta semana». Compara los tres ganchos que devuelve la IA y quédate con el que un cliente entendería en dos segundos. Si necesitas explicar el gancho, todavía no es un buen gancho.",
+      "**Qué revisar en el texto alternativo y en los hashtags.** El texto alternativo describe la imagen para quien no la ve: qué aparece y qué hace, sin repetir la oferta ni añadir lo que la imagen no muestra. Si la IA inventó un detalle (un color, un lugar, una persona), bórralo. Los hashtags son una sugerencia: comprueba cada uno en la propia red para ver qué contenido aparece debajo, y quita los que se usen para otra cosa o que no te representen.",
+      "**Lo que una publicación no puede resolver.** Una publicación no tiene letra pequeña: si una condición cambia la decisión del cliente (que la oferta es solo con cita, que hay cupos limitados, que aplica solo en el local), va en el cuerpo del texto, no en un comentario ni en una historia aparte. Si la condición no cabe en el formato, cambia de formato o de oferta. Lo mismo vale para las fechas: escribe el día y el mes completos, sin «esta semana» que se lee distinto mañana.",
+      "**Cuándo conviene no publicar.** Si falta un dato clave, si no tienes permiso para una foto o un nombre, si no hay nadie que atienda el mensaje que estás pidiendo o si la promoción depende de algo que todavía no está confirmado, espera. Una publicación que promete algo que no puedes cumplir cuesta más que un día sin publicar. Y si el asistente devuelve un [FALTA], respóndelo tú antes de seguir: el prompt lo marca justamente para eso.",
+      "**Aviso.** Este método ayuda a redactar y ordenar; no garantiza alcance, interacción ni ventas. Las reglas de publicidad, promociones, uso de imágenes y datos de otras personas cambian según el país y la red social, y la responsabilidad por lo que publicas es de tu negocio. Ante la duda, consulta a un profesional.",
     ],
   },
 });

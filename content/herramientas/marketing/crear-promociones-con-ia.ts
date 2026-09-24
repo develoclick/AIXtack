@@ -122,7 +122,7 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
     ],
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -215,6 +215,10 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
       "**Punto de equilibrio de la prueba.** Con 20 pedidos por semana y un margen de $3.20 ganas $64.00; con la promoción A y los mismos 20 pedidos, $54.00. Con 24 pedidos, 24 × $2.70 = $64.80, casi lo mismo que hoy. El punto de equilibrio está en 23.7 pedidos: por eso la condición de parada de este caso es «menos de 24».",
       "**Rúbrica de seis criterios** para contrastar cuentas ajenas, con 0, 1 o 2 puntos cada una: usa solo mis datos; convierte cada oferta en descuento; aplica las fórmulas pedidas; coincide con mi hoja; marca lo que rompe mis límites; no predice ventas.",
       "**Capturas del método anterior.** Estas imágenes son chats reales, sin editar, del método encadenado anterior, con los datos de Café Mirador (ficticio): allí la IA hacía las cuentas y el dueño las contrastaba con su hoja, y las cuatro filas coincidieron. La primera imagen es la hoja de datos del caso, no una respuesta de una IA.",
+      "**Cómo elegir entre varios tipos de promoción.** Antes de calcular, escribe qué quieres conseguir: vender más de un producto que rota poco, llenar una franja lenta, conseguir clientes que vuelvan o liquidar algo que sobra. Un combo sirve para subir el gasto por cliente; una tarjeta de visitas, para que vuelvan; un descuento en una franja, para mover la hora lenta; un 2x1, para liquidar. Si dos tipos sirven al mismo objetivo, calcula ambos con la misma canasta y quédate con el que exige menos ventas extra para ganar lo mismo.",
+      "**Qué revisar antes de lanzarla.** Confirma que tu equipo y tu stock pueden con el aumento de pedidos que necesita la promoción, que la condición de parada está escrita y que todos en el local saben cuáles son las condiciones (días, horarios, exclusiones). Anota cuántos pedidos tenías antes: sin ese dato de partida no podrás saber si la promoción funcionó o si esa semana simplemente hubo más gente.",
+      "**Cómo leerla al terminar.** Compara las semanas de la promoción con las semanas normales de la misma franja, no con el total del mes. Fíjate no solo en los pedidos sino en el margen: una promoción que sube los pedidos pero baja el margen más de lo previsto perdió dinero. Si no llegaste al umbral, decide con una regla que fijaste antes de empezar (parar, ajustar o repetir), no con la impresión de la última semana.",
+      "**Aviso.** Las reglas sobre promociones, descuentos, sorteos, precios tachados y publicidad de ofertas cambian según el país y no las cubre esta herramienta. Antes de lanzar una promoción con condiciones especiales, consulta la normativa de consumo que te corresponde o a un profesional.",
     ],
     capturas: [
       {

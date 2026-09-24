@@ -69,7 +69,7 @@ Antes de responder, comprueba que cada dato del borrador está en USADO, que nin
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -121,6 +121,11 @@ Antes de responder, comprueba que cada dato del borrador está en USADO, que nin
       ejemplo: "Estudio Trazo (ficticio, diseño gráfico): «¿Cuánto cuesta un logo?» Datos: el precio depende del alcance; primero se hace una llamada de 15 minutos. El borrador pide qué necesita y propone la llamada, sin dar un precio.",
       consejo: "Cuando el precio depende de tu criterio, el borrador sirve para reunir información, no para cotizar.",
     },
+    {
+      rubro: "Tienda online",
+      ejemplo: "Luz de Barrio (ficticio): «¿Cuándo llega mi pedido?» Datos: el enlace de seguimiento de la empresa de envíos y el aviso de que los plazos los marca el transportista. El borrador comparte el enlace, pide el número de pedido y no promete una fecha.",
+      consejo: "En una tienda online casi todas las consultas son sobre el estado de un pedido: prepara tu texto para explicar cómo consultarlo y quién responde por los retrasos, sin comprometer una fecha que no controlas.",
+    },
   ],
 
   errores: [
@@ -163,6 +168,11 @@ Antes de responder, comprueba que cada dato del borrador está en USADO, que nin
       "**Antes de enviar.** Lee el borrador con la consulta al lado, comprueba que cada dato está en tus datos, corrige el tono si suena a otra persona y confirma que el siguiente paso es uno solo. Si no puedes comprobar algo, no lo envíes: pregunta primero.",
       "**Rúbrica de cinco criterios** para revisar el borrador (0, 1 o 2 puntos cada uno): cada dato sale de tu base; no diagnostica ni promete; pide lo que falta; atiende todo lo que preguntó; escala cuando toca.",
       "**Lo que este método no hace.** No conoce el estado de un pedido (un stock o una agenda se pegan cada vez), no es un chatbot, no sustituye la atención humana en reclamos y casos delicados, y no cumple la normativa por ti: las reglas sobre datos personales y comunicaciones comerciales varían por país.",
+      "**Cómo escribir «Tus datos para responder».** Una idea por línea y sin ambigüedades: «Horario: lunes a viernes de 8:00 a 17:30» funciona; «abrimos temprano y cerramos a media tarde» obliga a la IA a interpretar. Separa lo estable (horario, políticas, formas de pago) de lo del día (turnos, stock, un precio vigente) y pon la fecha de lo segundo. Si un precio depende de algo que solo el cliente sabe, escríbelo así («desde $35, según el vehículo») y di qué dato hay que pedirle. Cuanto más concretas sean tus líneas, menos tendrás que corregir el borrador.",
+      "**El canal cambia el texto.** En WhatsApp conviene un mensaje corto, con una idea por párrafo y un siguiente paso claro. En un correo cabe un saludo, algún detalle más y una despedida. En un comentario público de una red social, no incluyas datos del cliente ni de su pedido: responde en general y pasa la conversación a un mensaje privado. Indica el canal en el formulario para que el borrador salga con el formato correcto, y aun así léelo con los ojos del cliente que lo va a recibir.",
+      "**Qué revisar en el tono.** Lee el borrador en voz alta: si no lo dirías así a un cliente, cámbialo. Un tono cercano no debe volverse demasiado familiar con quien acaba de escribirte, y uno profesional no debe sonar frío cuando alguien está preocupado. Si ya completaste tu perfil «Mi negocio», el tono se aplica solo; si no, dilo en tus datos («tono: cercano, de tú, sin emojis»).",
+      "**Cómo saber si te está sirviendo.** Durante dos semanas anota, sin números inventados, cuántas veces tuviste que corregir un borrador y qué corregiste. Si siempre corriges lo mismo (un dato viejo, una promesa de plazo), el arreglo está en tus datos, no en el prompt: actualízalos y vuelve a probar. Si casi todas las consultas terminan en «ESCALAR: sí», quizá lo que necesitas es acordar con tu equipo quién las atiende y en cuánto tiempo.",
+      "**Aviso.** Esta herramienta prepara borradores; no da asesoría legal ni cumple por ti las normas sobre datos personales, comunicaciones comerciales o atención al consumidor, que cambian según el país y la plataforma. Quien envía el mensaje y responde por lo que dice es tu negocio.",
     ],
   },
 });

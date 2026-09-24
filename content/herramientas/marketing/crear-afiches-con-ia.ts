@@ -83,7 +83,7 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -207,6 +207,10 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
       "**Hoja de revisión antes de imprimir.** Anota cada dato del afiche en una fila con tres columnas: el dato tal como aparece, si coincide con tu fuente y qué debes comprobar tú (que el precio sea el vigente, que el negocio abra en ese horario, que la dirección sea correcta yendo a comprobarla). La IA puede ayudarte a comparar; las pruebas de tres segundos, de distancia y la impresa solo puedes hacerlas tú.",
       "**Referencia de contraste.** Las pautas WCAG 2.2 piden una relación de 4.5:1 para texto normal y 3:1 para texto grande (consultado el 19 de septiembre de 2026 en w3.org, «Understanding Success Criterion 1.4.3: Contrast (Minimum)»). Son pautas para contenido web: aquí sirven de guía, no de norma para afiches impresos.",
       "**Lo que este método no hace.** No diseña el afiche, no conoce dónde se verá, puede colar un dato que no diste (por eso cada dato se compara con tu fuente) y no asegura visitas ni ventas: un afiche claro ayuda a que se entienda; lo que ocurra después depende de tu negocio.",
+      "**Cómo pasar el contenido a la herramienta de diseño.** Abre un documento del tamaño que elegiste y pega cada nivel como una caja de texto aparte, en orden de tamaño: el nivel 1 grande, el 4 pequeño. Copia y pega desde tu ficha, sin reescribir. Deja márgenes generosos, alinea todo a un mismo lado y usa una o dos fuentes como máximo. Coloca la foto de apoyo como fondo o a un lado, pero nunca encima de un texto si le quita contraste. Guarda una versión con la foto y otra sin ella: sirve para ver qué pasa si la imagen se imprime más oscura de lo esperado.",
+      "**Qué preguntar antes de imprimir.** La imprenta o el servicio de copias sabe cosas que tú no: el tamaño exacto del papel, si necesita un margen de sangrado, en qué formato quiere el archivo, si imprime en color o en blanco y negro y cuánto tarda. Pídele una prueba pequeña de un solo ejemplar antes de imprimir cien y revísala en el lugar donde va a estar el afiche, con la luz real. Los colores de la pantalla y los del papel rara vez coinciden.",
+      "**Dónde colocarlo.** Un afiche se lee de pasada, así que su lugar importa tanto como su texto: a la altura de los ojos, donde la gente ya se detiene (una puerta, una vitrina, una caja) y con un mensaje que tenga sentido para quien pasa en ese lugar. Anota la fecha en que lo pusiste y cuándo lo retirarás: un afiche vencido, con una oferta que ya no existe, le hace más daño a tu negocio que no tener ninguno.",
+      "**Aviso.** Las reglas sobre carteles en la vía pública, publicidad de precios y ofertas, y uso de imágenes o marcas cambian según el país y la ciudad. Esta herramienta prepara el contenido; verifica los permisos y las normas que apliquen a tu caso antes de imprimir y colocar el afiche.",
     ],
   },
 });

@@ -120,7 +120,7 @@ Antes de responder, comprueba que cada fila es una tarea mía, que no inventaste
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -172,6 +172,11 @@ Antes de responder, comprueba que cada fila es una tarea mía, que no inventaste
       ejemplo: "Estudio Trazo (ficticio): pendientes como enviar dos facturas, ordenar archivos de un proyecto y preparar una propuesta. Fecha firme: una factura vence el viernes. Capacidad: 90 minutos al día, cuatro días.",
       consejo: "Si trabajas solo, pon una sola persona y no busques qué delegar: lo que importa es cuántas tareas caben en tus minutos.",
     },
+    {
+      rubro: "Taller o producción",
+      ejemplo: "Cerámica Sol (ficticia), atendida por una sola persona: pendientes como fotografiar las piezas nuevas, empacar los pedidos de la semana y pedir esmalte al proveedor. La capacidad es la que ella mida en sus propias jornadas; las tareas sin tiempo conocido se quedan fuera hasta medirlas.",
+      consejo: "Cuando trabajas con las manos, agrupa las tareas parecidas en un mismo bloque (todas las fotos juntas, todos los empaques juntos): cambiar de tarea a cada rato cuesta tiempo que la lista no muestra.",
+    },
   ],
 
   errores: [
@@ -208,10 +213,16 @@ Antes de responder, comprueba que cada fila es una tarea mía, que no inventaste
     titulo: "Método completo: la matriz de prioridad y la rutina diaria",
     parrafos: [
       "**La matriz de prioridad.** La versión anterior de esta guía cruzaba el impacto con la urgencia. Impacto alto con urgencia alta: esta semana. Alto con urgencia media o baja: programar con fecha. Medio con urgencia alta: esta semana; medio con media: programar con fecha; medio con baja: si sobra. Bajo con urgencia alta: si sobra; bajo con media o baja: aplazar. La urgencia era alta si la fecha estaba a 7 días o menos, media de 8 a 30 y baja con más de 30 días o sin fecha. Lo que se repite cada semana es «rutina» y no pasa por la matriz.",
-      "**El caso completo.** Lavandería Brisa (ficticia) tiene 25 pendientes y una capacidad de 495 minutos por semana entre las tres personas: Ana 225 (45 por día), Luis 120 (60 los martes y jueves) y Marta 150 (30 por día). Esta página se centra en una persona a la vez: calcula sus minutos libres y cuántas tareas caben.",
+      "**El caso completo.** Lavandería Brisa (ficticia) tiene 8 pendientes en este ejemplo y una capacidad de 495 minutos por semana entre las tres personas: Ana 225 (45 por día), Luis 120 (60 los martes y jueves) y Marta 150 (30 por día). Esta página se centra en una persona a la vez: calcula sus minutos libres y cuántas tareas caben.",
       "**La rutina diaria de 15 minutos.** Por la mañana, al abrir: leer la nota de ayer, mirar la agenda y elegir como máximo tres prioridades, cada una con un verbo. Al cerrar: anotar lo que quedó esperando algo o a alguien, lo que se decidió y lo que se aplaza. Un hábito pequeño gana a uno grande: un sistema que exige una hora se abandona al tercer día.",
       "**Rúbrica de seis criterios** para revisar la propuesta de la IA (0, 1 o 2 puntos cada uno): cada fila es una tarea tuya; no inventa fechas ni minutos; el impacto sale de tu texto; encuentra lo que depende de otra tarea; asigna solo lo que cada persona puede hacer; no decide por ti.",
       "**Lo que este método no hace.** El impacto es una propuesta (la IA no conoce tu negocio), la regla no mide todo (por ejemplo, el dinero disponible), los minutos son estimaciones y no es una aplicación: no avisa ni recuerda, lo actualizas tú cada lunes.",
+      "**Cómo escribir un buen pendiente.** Un pendiente empieza con un verbo, tiene un solo objeto y un final que se pueda reconocer. «Ver lo del seguro» no se puede tachar; «pedir dos presupuestos de seguro para el local» sí. Si al leer una tarea no sabes cuál sería el primer gesto para empezarla, todavía no es una tarea: es un tema. Reescribe los temas como tareas antes de pegar la lista, porque la IA solo puede ordenar lo que está claro.",
+      "**Cómo medir cuánto tardas.** Durante una semana anota, al terminar cada tarea, cuántos minutos tardó de verdad, con lo que incluye esperar, buscar y volver a empezar. Con esas notas calcula un promedio por tipo de tarea (gestiones, arreglos, mensajes, compras) y úsalo en la calculadora. Si una tarea tarda mucho más que el promedio, es candidata a partirse. Un tiempo medido vale más que uno estimado, y uno estimado vale más que ninguno anotado como certeza.",
+      "**Qué hacer cuando las tareas no caben.** Tienes cuatro salidas y conviene recorrerlas en este orden: partir la tarea en acciones más pequeñas, aplazarla con una fecha, delegarla o eliminarla. Eliminar es una decisión válida: una tarea que lleva meses en la lista sin fecha y sin consecuencias probablemente no importa tanto como parecía. Lo que no conviene es apretar el plan hasta que quepa, porque un plan que solo funciona si nada sale mal no sirve.",
+      "**Cómo delegar sin perder el control.** Delega una tarea completa con su final claro, no un pedazo suelto. Dile a la persona qué resultado esperas, para cuándo y cómo sabrás que terminó; deja por escrito lo que pueda decidir sola y lo que debe consultarte. Anota la tarea con la fecha en que la revisarás. La IA propone qué se puede delegar según lo que escribiste que cada persona puede hacer; si no escribiste nada, no lo supondrá.",
+      "**Una revisión semanal de diez minutos.** El mismo día cada semana, marca lo que se hizo, mueve lo pendiente con una nueva fecha o decide que ya no hace falta, y anota cuántas tareas caben de verdad según cómo fue la semana anterior. Vuelve a usar la calculadora con esos números. Al cabo de un mes verás qué tipo de tareas siempre se atrasan, y ahí está lo que conviene cambiar: el tiempo dedicado, la persona o la tarea.",
+      "**Aviso.** Las fechas límite de trámites, impuestos, permisos o pagos las fija una autoridad o un proveedor, no esta herramienta: confírmalas en la fuente oficial antes de anotarlas. Esta herramienta te ayuda a organizarte; no da asesoría legal, contable ni laboral.",
     ],
   },
 });

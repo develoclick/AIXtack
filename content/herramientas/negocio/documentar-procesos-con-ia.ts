@@ -79,7 +79,7 @@ Antes de responder, comprueba que cada paso, herramienta y plazo salió de lo qu
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -131,6 +131,11 @@ Antes de responder, comprueba que cada paso, herramienta y plazo salió de lo qu
       ejemplo: "Estudio Trazo (ficticio): «Entregar un proyecto a un cliente». Pasos: revisar el archivo final, exportar los formatos acordados, enviar el enlace y anotar la fecha. Señal de terminado: el cliente confirmó la recepción.",
       consejo: "Pon al final la comprobación que haría el cliente: es el punto donde un procedimiento suele quedarse corto.",
     },
+    {
+      rubro: "Taller o producción",
+      ejemplo: "Luz de Cera (ficticio): «Preparar un lote de velas». Pasos: pesar la cera, preparar los vasos, verter y dejar reposar, y etiquetar el lote con su fecha. Señal de terminado: cada vela tiene su etiqueta y el lote quedó anotado en la hoja.",
+      consejo: "En producción, anota los momentos en que hay que esperar (reposo, secado): quien empieza suele seguir con otra cosa y olvida volver a mirar.",
+    },
   ],
 
   errores: [
@@ -173,6 +178,11 @@ Antes de responder, comprueba que cada paso, herramienta y plazo salió de lo qu
       "**Cómo mantenerlo vivo.** Un procedimiento se queda viejo cuando cambia una herramienta o un plazo. Pon la fecha de la versión al pie de la hoja, revisa el procedimiento cuando cambie algo y pídele a quien lo use que anote cualquier duda que tenga. Cada duda anotada es un paso o una excepción que falta.",
       "**Rúbrica de seis criterios** para revisar el procedimiento (0, 1 o 2 puntos cada uno): todo sale de tus respuestas; un paso, una acción; cada paso dice cómo saber que salió bien; lo que sale distinto dice qué hacer; lo entiende quien nunca lo hizo; lo que no sabes queda marcado.",
       "**Lo que este método no hace.** El procedimiento es tan bueno como tu recorrido (si haces el proceso con prisa, escribirás ese camino), una prueba con una persona no cubre todos los casos, no reemplaza la formación y no ejecuta ni automatiza nada.",
+      "**Cómo elegir el nivel de detalle.** La medida la da quien va a seguir el procedimiento. Si es alguien que nunca hizo la tarea, cada paso debe poder hacerse sin preguntar: «abre la hoja de pedidos» y no «registra el pedido». Si el paso te obliga a decidir algo (¿está pagado?, ¿hay stock?), separa la decisión del paso y escribe qué se hace en cada respuesta. Un paso que mezcla dos acciones o una decisión escondida suele ser el que se traba en la prueba.",
+      "**Cómo escribir la señal de que salió bien.** Debe ser algo que la persona pueda ver o comprobar, no una opinión: «la fila de la hoja tiene el número de seguimiento», «el estado del pedido dice Enviado», «la caja está cerrada con cinta y lleva la etiqueta». Evita «hazlo con cuidado» o «asegúrate de que esté bien». Si no encuentras una señal para un paso, pregúntate si ese paso hace falta o si en realidad es parte del anterior.",
+      "**Cuántas excepciones documentar.** Escribe las que ocurren de verdad y las que cuestan caro si se ignoran; con cuatro o cinco casos raros suele bastar. Cuando un caso raro se repite cada semana, deja de ser una excepción: conviértelo en un paso del procedimiento. No intentes prever todo desde el primer día, porque un procedimiento con cien excepciones no lo lee nadie. Es más útil una versión corta que se actualiza con lo que sale en la práctica.",
+      "**Cuándo dividir un proceso en dos.** Si el procedimiento ocupa más de una hoja, si dos personas distintas hacen partes distintas o si hay un momento en el que el proceso se detiene y sigue otro día, conviene partirlo en dos procedimientos que se enlazan («cuando termines, sigue con…»). Cada uno queda más fácil de enseñar, de probar y de actualizar.",
+      "**Aviso.** Un procedimiento que describe tareas de personas puede tener consecuencias laborales, de seguridad o de salud que esta herramienta no valora. Para tareas con riesgos (maquinaria, productos químicos, alimentos, manejo de dinero) o que afecten a un contrato de trabajo, consulta las normas y a un profesional de tu país; aquí solo se ordena lo que tú cuentas.",
     ],
   },
 });

@@ -70,7 +70,7 @@ Antes de responder, comprueba que cada dato de las dos versiones está en mis da
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -122,6 +122,11 @@ Antes de responder, comprueba que cada dato de las dos versiones está en mis da
       ejemplo: "Jabones Brisa (ficticio), jabón artesanal de 100 g: ingredientes de la etiqueta, aroma, peso y forma de conservarlo. Sin confirmar: cualquier efecto sobre la piel.",
       consejo: "Nada de efectos sobre la piel o la salud sin un documento detrás: es donde las descripciones inventadas suenan mejor y se sostienen peor.",
     },
+    {
+      rubro: "Decoración y hogar",
+      ejemplo: "Rincón (ficticia), un jarrón de cerámica: material y acabado según el proveedor, alto, diámetro de la boca y capacidad medidos en la tienda, y forma de limpiarlo. Sin confirmar: si es apto para contener agua o flores frescas y si resiste el lavavajillas.",
+      consejo: "En decoración la duda típica es «¿cabe en mi espacio?»: pon las medidas reales y, si puedes, una referencia (junto a qué objeto se fotografió). No des por hecho usos que no probaste.",
+    },
   ],
 
   errores: [
@@ -164,6 +169,11 @@ Antes de responder, comprueba que cada dato de las dos versiones está en mis da
       "**Qué no debe entrar nunca.** Precios, promociones y plazos de envío (caducan), comparaciones con otras marcas, superlativos que no puedas demostrar y cualquier promesa de seguridad, salud o rendimiento sin un documento detrás. Si un adjetivo suena a hecho, trátalo como hecho y pide su respaldo.",
       "**Rúbrica de cinco criterios** para revisar la descripción (0, 1 o 2 puntos cada uno): cada hecho tiene su fila; no insinúa lo que no se afirma; sin promesas de seguridad ni salud; responde las dudas del comprador; cumple el largo y el canal.",
       "**Lo que este método no hace.** No conoce tu producto (solo sabe cómo se describen productos parecidos), no asegura que obedezca aunque se lo prohíbas (por eso se audita), no valida seguridad, salud ni normativa, y una buena descripción no compensa unas fotos flojas, un precio incoherente o un envío poco fiable.",
+      "**Cómo escribir los datos comprobados.** Una idea por frase y, entre paréntesis, de dónde sale: «Cera de soja (etiqueta del proveedor)», «9 cm de alto (medido en el taller)». Si un dato viene de una persona, di quién y cuándo. Copia los números tal como los mediste, con su unidad. Si dudas de un dato, no lo escondas entre los comprobados: pásalo a «Datos que aún no has confirmado». Una lista corta y verdadera vale más que una larga con un dato dudoso, porque ese único dato puede convertirse en la frase que un cliente te reclame.",
+      "**Cómo usar las preguntas de tus clientes.** Tus clientes ya te dicen qué necesitan saber. Antes de pegar la lista, ordénala de la más repetida a la menos: la descripción debe responder primero a las dos o tres primeras. Si no tienes datos para una, la herramienta la devuelve en FALTA y esa es la tarea que te queda: medir, pedir el dato o probar. Cuando la cierres, la próxima descripción del mismo tipo de producto ya saldrá con esa respuesta.",
+      "**Qué le toca a la foto, al título y a la descripción.** La foto muestra el tamaño y el aspecto; el título dice qué es; la descripción explica de qué está hecho, cómo se usa y cómo se cuida. No repitas en la descripción lo que ya dice el título ni describas lo que la foto muestra. Y no uses la descripción para compensar una foto que engaña: si el color real es distinto, dilo en un dato comprobado («el color puede variar según la pantalla») en lugar de adornarlo.",
+      "**Cuándo revisar una descripción publicada.** Revísala cuando cambie el proveedor o el material, cuando modifiques el tamaño o el embalaje, cuando un cliente reporte una duda que la descripción no resolvía y cuando dejes de vender una variante. Una descripción que ya no coincide con el producto genera devoluciones y reclamos. Anota la fecha de la última revisión junto a los datos comprobados para saber cuándo volver a mirarla.",
+      "**Aviso.** Las reglas sobre etiquetado, alérgenos, ingredientes, cosméticos, alimentos, juguetes o productos para la piel cambian según el país y el canal de venta. Esta herramienta organiza los datos que tú confirmas; no valida seguridad ni normativa ni sustituye la revisión de un profesional cuando el producto lo requiera.",
     ],
   },
 });

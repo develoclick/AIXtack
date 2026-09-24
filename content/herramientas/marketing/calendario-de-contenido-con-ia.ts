@@ -122,7 +122,7 @@ Antes de responder, comprueba que cada semana tiene exactamente la cantidad de p
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -179,6 +179,11 @@ Antes de responder, comprueba que cada semana tiene exactamente la cantidad de p
       ejemplo: "Estudio de uñas Brillo (ficticio): objetivo «llenar la agenda de martes y miércoles», una hora y media por semana. Piezas cortas: antes y después con permiso de la clienta, un consejo de cuidado y un aviso de cupos.",
       consejo: "Publica solo las fotos que tengas permiso de mostrar: aclara el permiso en «lo que no vas a publicar».",
     },
+    {
+      rubro: "Negocio de atención por turnos",
+      ejemplo: "Peluquería Rizo Fino (ficticia): objetivo «llenar los turnos de los días con menos clientes». Las ideas salen de preguntas reales: cuánto dura un tratamiento, cómo cuidar el pelo rizado en casa y cómo reservar por mensaje. Cada semana incluye una pieza con la forma de reservar.",
+      consejo: "Cierra cada pieza con la misma acción (reservar por mensaje) y cámbiala solo cuando cambies de objetivo. Así puedes comparar qué publicación trajo más mensajes.",
+    },
   ],
 
   errores: [
@@ -220,6 +225,11 @@ Antes de responder, comprueba que cada semana tiene exactamente la cantidad de p
       "**Rúbrica de cinco criterios** para revisar el calendario (0, 1 o 2 puntos cada uno): cabe en mi tiempo; sale de mi banco; respeta mis días y mis fechas; no repite el mismo tipo de pieza; se produce en un bloque.",
       "**Reciclaje.** Volver a usar una pieza ya publicada con otro formato u otro ángulo y los mismos datos tiene su propio tiempo y una espera mínima de unas semanas para que no parezca repetida. Si la pieza tiene datos con vigencia (un menú, un precio), actualízalos antes de reutilizarla.",
       "**Lo que este método no hace.** No conoce tu ritmo, puede colocar mal una fecha (por eso se comprueban), no programa ni publica, no sabe cuándo rinde mejor cada pieza (eso sale de tus estadísticas) y no sustituye las normas de publicidad.",
+      "**Cómo medir tus tiempos de producción.** Elige cinco publicaciones recientes de cada formato y anota cuánto tardaste en cada una, desde pensar la idea hasta dejarla lista: fotos o grabación, edición, texto, revisión y aprobación. Suma también el tiempo de publicarla y contestar los primeros comentarios si es parte de tu rutina. Saca el promedio y úsalo en la calculadora. Es normal descubrir que una pieza que creías de diez minutos tarda cuarenta: mejor saberlo antes de planear cuatro por semana.",
+      "**Cómo repartir los tipos de pieza.** Como criterio práctico, no como regla universal, conviene que en el mes haya piezas que enseñan algo útil, piezas que muestran tu trabajo o tu equipo, piezas que responden a una pregunta de clientes y solo algunas que piden una acción directa (reservar, comprar). Un calendario con todas las piezas pidiendo lo mismo cansa. Al leer el calendario de la IA, cuenta cuántas piezas piden una acción y cuántas aportan algo antes de esa petición.",
+      "**Cuando el calendario no se cumple.** Pasa: una semana con más trabajo, una pieza que se complica, un día sin conexión. Antes de rehacerlo todo, mueve lo pendiente al siguiente día de publicación, baja una pieza de la semana y anota qué falló (el tiempo por pieza, el día de producción, un formato demasiado largo). Si tres semanas seguidas no llegas, el problema no es la disciplina: son tus minutos usables o tus formatos, y hay que volver a calcular con menos publicaciones o con formatos más cortos.",
+      "**Qué revisar al terminar el mes.** Mira tus propias estadísticas (mensajes recibidos, reservas, visitas al perfil) y compara semanas parecidas, no meses distintos. Fíjate en qué piezas generaron preguntas reales y cuáles pasaron sin respuesta. No hace falta interpretarlo todo: elige una pieza que funcionó y una que no, y decide qué repetirás y qué cambiarás el mes siguiente. Esta herramienta no promete alcance, seguidores ni ventas; lo que mejora es tu organización.",
+      "**Aviso.** Las plataformas cambian sus reglas y sus formatos, y el uso de fotos de personas, música, marcas y textos ajenos tiene condiciones que esta herramienta no cubre. Pide permiso para lo que muestres de otras personas, verifica cada fecha que añadas y revisa las normas de la plataforma y de tu país antes de publicar.",
     ],
   },
 });

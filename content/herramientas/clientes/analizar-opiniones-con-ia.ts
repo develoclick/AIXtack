@@ -143,7 +143,7 @@ Antes de responder, comprueba que cada cita aparece tal cual en una reseña (bú
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -195,6 +195,11 @@ Antes de responder, comprueba que cada cita aparece tal cual en una reseña (bú
       ejemplo: "Estudio Trazo (ficticio, diseño gráfico): temas «Plazos», «Comunicación» y «Resultado». Palabras clave de «Plazos»: entrega, plazo, tarde, rapido. Una reseña sobre «buena comunicación» cuenta solo en Comunicación.",
       consejo: "En servicios, las palabras cambian según el cliente («entregaron tarde» y «tardaron»). Añade las variantes que veas.",
     },
+    {
+      rubro: "Tienda online",
+      ejemplo: "Cerámica Sol (ficticia), tienda online de una sola persona: temas «Producto», «Embalaje», «Envío» y «Atención». Las reseñas de piezas rotas suelen mencionar embalaje y envío a la vez, y la página las cuenta en los dos.",
+      consejo: "Separa «Embalaje» de «Envío»: el primero lo controlas tú y el segundo, en buena parte, el transportista. Así sabes qué puedes cambiar hoy.",
+    },
   ],
 
   errores: [
@@ -237,6 +242,11 @@ Antes de responder, comprueba que cada cita aparece tal cual en una reseña (bú
       "**Qué hacer con el resultado.** Elige un tema, lee todas sus reseñas completas (no solo las citas), anota qué cambiarías y qué comprobarías con tus clientes antes de cambiar nada. Guarda el libro de códigos y las palabras clave para repetir el análisis el próximo trimestre y comparar con el mismo criterio.",
       "**Rúbrica de cinco criterios** para revisar la lectura de la IA (0, 1 o 2 puntos cada uno): cada cita está en su reseña; aplica tus temas; recoge todas las menciones; la valencia es la del texto; no cuenta ni calcula.",
       "**Lo que este método no hace.** No explica por qué se quejan, no representa a todos tus clientes (quien deja una opinión no es quien no la deja), no decide qué mejorar y no cubre la normativa de datos personales ni de uso de reseñas, que varía por país y plataforma.",
+      "**Cómo elegir tus temas.** Empieza con cuatro a seis temas y haz que cada uno corresponda a algo que puedas cambiar: la comida, la espera, el trato, el precio. Un tema que nunca podrías mejorar (el clima, por ejemplo) solo ensucia el conteo. Comprueba que los temas no se pisen: si «Servicio» y «Espera» comparten palabras, las mismas reseñas contarán en los dos y no sabrás cuál pesa más. Cuando un tema acumule muchas reseñas, pártelo (por ejemplo, «Comida» en «Sabor» y «Porciones») y vuelve a contar.",
+      "**Una muestra de control antes de fiarte.** Lee tú diez reseñas, anota a mano en qué temas caen y compáralo con lo que cuenta la página. Si coinciden, los conteos te sirven; si no, las palabras clave necesitan ajuste. Es una revisión de diez minutos que evita decidir con un conteo equivocado, y conviene repetirla cada vez que cambies las palabras clave.",
+      "**Lo que un conteo por palabras no entiende.** La página busca palabras: no distingue la negación («no estaba frío» cuenta en el mismo tema que «estaba frío»), ni la ironía, ni una reseña que menciona un tema solo de pasada. Por eso el conteo dice cuántas reseñas hablan de algo, no si lo elogian o lo critican. Esa lectura la aportan las citas: léelas enteras, con la reseña delante, antes de decir «se quejan de esto».",
+      "**Cuándo pedir más que un conteo.** Si un tema aparece en muchas reseñas y no entiendes el motivo, no lo supongas: pregúntalo a tus clientes con dos o tres preguntas concretas (la IA puede ayudarte a redactarlas) y compara con la siguiente tanda de opiniones. Un análisis de reseñas sugiere dónde mirar; hablar con la gente confirma qué pasa.",
+      "**Aviso.** Las reseñas son texto de otras personas: quita nombres, teléfonos y cualquier dato que las identifique antes de pegarlas en una herramienta de IA y revisa las condiciones de la plataforma donde se publicaron. Esta herramienta no da asesoría legal sobre protección de datos ni sobre el uso de reseñas, que cambia según el país.",
     ],
   },
 });

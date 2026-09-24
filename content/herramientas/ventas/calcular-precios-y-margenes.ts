@@ -127,7 +127,7 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
   capturasPendientes: [
     {
       archivo: "prueba-01.webp",
@@ -179,6 +179,11 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
       ejemplo: "Rincón (ficticia), un jarrón: compra $8.00, empaque $1.00, 6 minutos a $15 la hora ($1.50) y gastos fijos de $1,500 con 600 ventas al mes ($2.50). Costo total $13.00; para un margen del 35 %, el precio es $20.00.",
       consejo: "Si compras por volumen, el costo de materiales cambia con cada pedido: actualiza la calculadora cuando cambie un costo importante.",
     },
+    {
+      rubro: "Trabajo por encargo",
+      ejemplo: "Maderas Rivera (ficticio): cada mueble es distinto, así que no hay un costo por unidad fijo. Se calcula cada trabajo por separado: materiales del encargo, horas reales de taller y de instalación con el valor de la hora, y una parte de los gastos fijos según cuántos encargos se hacen al mes.",
+      consejo: "Guarda el costo real de cada trabajo terminado y compáralo con lo que habías calculado: esa diferencia es lo que más te enseña para el próximo precio.",
+    },
   ],
 
   errores: [
@@ -220,6 +225,11 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
       "**La misma hoja en una hoja de cálculo.** Con los datos en la columna B: costo por caja `=B5/C4+B6+B7/60*B8/C4+B10/B11`; precio objetivo `=C13*100/(100-B14)`; margen real `=REDONDEAR((B18-C13)/B18*100;1)`. En inglés, `ROUND`. Los porcentajes se escriben como números enteros (40 significa 40 %).",
       "**Rúbrica de cinco criterios** para revisar la lectura de la IA (0, 1 o 2 puntos cada uno): las cifras son las de la calculadora; cada porcentaje dice su base; no decide ni promete; nombra lo que supone; deja preguntas para aclarar.",
       "**Lo que este método no hace.** No decide el precio, no conoce tus ventas, no reparte tus gastos fijos entre varios productos y no da asesoría contable ni tributaria.",
+      "**Cómo estimar el valor de tu hora.** Una forma sencilla es partir de lo que necesitas que te pague el negocio cada mes y dividirlo entre las horas que de verdad puedes dedicar a producir o atender. Ojo: no todas tus horas se pueden vender, porque parte del tiempo se va en comprar, limpiar, contestar mensajes y organizarte. Por eso el valor de tu hora suele ser mayor que un simple sueldo dividido entre las horas del mes. Si no sabes por dónde empezar, prueba con un valor y cambia el dato en la calculadora para ver cuánto mueve el precio.",
+      "**Redondear el precio sin perder de vista el margen.** El precio que calcula la página es el que da exactamente tu margen deseado. En la práctica solemos redondear (de 43.33 a 44 o a 45) por comodidad al cobrar o porque el mercado lo entiende mejor. Redondear hacia arriba mejora el margen; hacia abajo, lo reduce. Escribe el precio que pensabas cobrar en «Precio que estás pensando cobrar» y mira el margen real que resulta: así sabes exactamente qué estás decidiendo.",
+      "**Comisiones, envíos y descuentos.** Si vendes por una plataforma que cobra una comisión, si aceptas pagos con tarjeta o si ofreces envío gratis, esos costos también son parte de lo que cuesta vender. Súmalos a los materiales o al empaque antes de calcular. Con los descuentos, calcula cuánto baja tu margen antes de ofrecerlos: un descuento que parece pequeño sobre el precio puede ser grande sobre lo que te queda. Puedes comprobarlo cambiando el precio elegido en la calculadora.",
+      "**Cuándo revisar el precio.** Revísalo cuando cambie el costo de un ingrediente o de un material importante, cuando cambie tu alquiler o el valor de tu tiempo, cuando vendas claramente menos o más de lo que suponías y cuando lances un producto nuevo. No esperes a que el margen sea negativo: una revisión cada tres o cuatro meses suele ser suficiente para un negocio pequeño. Si tienes que subir el precio, decide primero cuánto y solo después pídele a la IA cómo comunicarlo.",
+      "**Aviso.** Esta herramienta ayuda a entender tus costos y a comparar escenarios. No da asesoría contable, tributaria ni legal: los impuestos, las reglas sobre cómo mostrar precios y las normas de consumo cambian según el país, y conviene consultarlas con un profesional antes de fijar o publicar un precio.",
     ],
   },
 });
