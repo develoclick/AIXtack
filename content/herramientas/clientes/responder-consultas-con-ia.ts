@@ -76,6 +76,15 @@ Antes de responder, comprueba que cada dato del borrador está en USADO, que nin
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la respuesta de la IA a una consulta de un cliente del Taller Los Pinos (ficticio). Debe verse la respuesta lista, la versión corta y la lista de lo que no se afirmó por falta de datos.",
+    },
+  ],
+
   checklist: [
     "Cada precio, plazo, condición o garantía está en mis datos, y lo de hoy sigue vigente ahora mismo.",
     "No promete nada que mi negocio no pueda cumplir.",

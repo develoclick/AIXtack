@@ -89,23 +89,23 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
       "Nivel 4 · Letra pequeña": "Hasta agotar existencias. Máximo 2 combos por persona.",
       "Total": "39 palabras (menos de 40)",
     },
-    capturas: [
-      // TODO: subir las dos imágenes y revisar los alt con lo que muestren de verdad (ver la lista de la Fase 2).
-      {
-        src: "/img/marketing/crear-afiches-con-ia/chat-la-espiga.webp",
-        alt: "Captura de la respuesta de un asistente de IA con el texto del afiche de la panadería La Espiga en cuatro niveles, el brief para diseñarlo y el prompt de imagen sin texto.",
-        etiqueta: "Prueba real",
-        pie: "Prueba real: la respuesta de la IA al prompt de esta página, sin editar.",
-      },
-      {
-        src: "/img/marketing/crear-afiches-con-ia/afiche-final.webp",
-        alt: "Afiche final de la panadería La Espiga, con la foto de los panes, el combo como titular y la dirección abajo, hecho en una herramienta de diseño.",
-        etiqueta: "Ilustración",
-        pie: "Ilustración: el afiche del caso ficticio ya maquetado, con una foto de los panes.",
-      },
-    ],
+    capturas: [],
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
+
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la respuesta de la IA al prompt de esta página con el texto del afiche de la Panadería La Espiga (ficticia) en los niveles N1–N4, el brief para diseñarlo y el prompt de imagen sin texto. Los niveles deben coincidir con «Resultado del ejemplo» de la página.",
+    },
+    {
+      archivo: "prueba-02.webp",
+      etiqueta: "Resultado final diseñado con el texto de la IA",
+      muestra: "El afiche final ya maquetado en la herramienta de diseño, con la foto de los panes, el combo como titular y la dirección abajo, usando el texto de la captura anterior.",
+    },
+  ],
 
   checklist: [
     "Cada cifra, horario y dirección coincide con mi fuente, dígito por dígito.",

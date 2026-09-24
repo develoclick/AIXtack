@@ -151,7 +151,7 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
 
         {/* 6 · Ejemplo real */}
         <Bloque id="ejemplo" titulo="Un ejemplo, paso a paso">
-          <EjemploReal ejemplo={h.ejemplo} />
+          <EjemploReal ejemplo={h.ejemplo} pendientes={h.capturasPendientes} />
         </Bloque>
 
         <EspacioAnuncio posicion="despues-del-ejemplo" />

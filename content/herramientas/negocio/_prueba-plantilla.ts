@@ -65,6 +65,8 @@ Usa las cifras de los cálculos ya hechos solo si ayudan al cliente a entender l
     capturas: [], // TODO: página interna sin capturas.
     queCorregi: ["Quité una frase que prometía más clientes.", "Añadí el horario de la promoción.", "Comprobé el precio contra la hoja."],
   },
+  capturasPendientes: [],
+
   checklist: ["Los precios coinciden con mi hoja.", "La vigencia está clara.", "No promete resultados.", "Las condiciones están completas.", "Puedo cumplir la oferta."],
   porQueFunciona: [
     { titulo: "La página calcula", texto: "Los números salen de la calculadora; el prompt los recibe ya hechos." },

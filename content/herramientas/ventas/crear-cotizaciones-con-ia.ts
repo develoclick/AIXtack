@@ -147,6 +147,15 @@ Antes de responder, comprueba que cada importe y cada total es idéntico al de l
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la cotización redactada para Maderas Rivera (ficticio) con los totales que calculó la página. Deben verse el subtotal, el descuento, el impuesto, el total, el anticipo y el saldo sin que la IA cambie ninguna cifra.",
+    },
+  ],
+
   checklist: [
     "Cada cifra del documento coincide con la calculadora y la calculadora con mis precios y porcentajes.",
     "Comprobé el total una vez más, a mano o con una calculadora aparte.",

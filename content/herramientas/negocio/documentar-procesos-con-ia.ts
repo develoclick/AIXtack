@@ -85,6 +85,15 @@ Antes de responder, comprueba que cada paso, herramienta y plazo salió de lo qu
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: el procedimiento paso a paso, la lista para imprimir y los puntos de control que devuelve la IA para el proceso de Cerámica Sol (ficticia).",
+    },
+  ],
+
   checklist: [
     "Hice el proceso una vez, de verdad, con notas, antes de contarlo.",
     "Cada paso del procedimiento lo dije yo; la IA no agregó ninguno, y lo que marcó «FALTA» lo completé o sigue marcado.",

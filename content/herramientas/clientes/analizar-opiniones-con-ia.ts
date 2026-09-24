@@ -148,6 +148,15 @@ Antes de responder, comprueba que cada cita aparece tal cual en una reseña (bú
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la respuesta de la IA a las 25 reseñas ficticias de La Higuera con los conteos por tema de la página. Deben verse los temas, las citas textuales, elogios y problemas, y las tres acciones.",
+    },
+  ],
+
   checklist: [
     "Quité de las opiniones todo dato personal antes de compartirlas, y revisé las condiciones de la plataforma donde están las reseñas.",
     "Comprobé cada cita contra su reseña: está copiada letra por letra.",

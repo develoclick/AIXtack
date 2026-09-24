@@ -125,6 +125,15 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la respuesta de la IA con las cifras del punto de equilibrio de Café Mirador (ficticio) ya calculadas por la página. Debe verse la explicación en palabras simples y las tres formas de bajarlo, sin que la IA recalcule.",
+    },
+  ],
+
   checklist: [
     "Puse todos los costos fijos del mes, incluido un sueldo para mí si quiero que el negocio también me lo pague.",
     "El precio promedio es lo que realmente cobro, no el precio de lista.",

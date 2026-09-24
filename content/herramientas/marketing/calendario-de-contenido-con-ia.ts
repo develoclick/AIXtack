@@ -130,6 +130,20 @@ Antes de responder, comprueba que cada semana tiene exactamente la cantidad de p
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: el calendario de 4 semanas en tabla que devuelve la IA para Restaurante Mesa Larga (ficticio), con la capacidad de tiempo calculada por la página.",
+    },
+    {
+      archivo: "prueba-02.webp",
+      etiqueta: "Prueba real",
+      muestra: "Mismo chat: el banco de ideas y el plan para producir por lotes.",
+    },
+  ],
+
   checklist: [
     "Mis tiempos por publicación son los que medí, no una estimación.",
     "La suma de cada semana cabe en mis minutos usables (la calculadora lo dice) y dejé una reserva.",

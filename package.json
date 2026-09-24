@@ -14,6 +14,7 @@
     "herramientas:validar": "tsx scripts/validate-herramientas.ts",
     "sitio:verificar": "tsx scripts/verificar-sitio.ts",
     "contar-palabras": "tsx scripts/contar-palabras.ts",
+    "capturas": "tsx scripts/capturas.ts",
     "guia:nueva": "tsx scripts/new-guide.ts"
   },
   "dependencies": {

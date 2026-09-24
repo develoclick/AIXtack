@@ -1,5 +1,6 @@
 import { mediaExists } from "@/lib/guides/media";
-import type { EjemploReal as EjemploRealDatos } from "@/lib/herramientas/tipos";
+import type { CapturaPendiente, EjemploReal as EjemploRealDatos } from "@/lib/herramientas/tipos";
+import { pendientesVisibles } from "@/lib/herramientas/vista-previa";
 import { CapturaFigura } from "./captura-figura";
 
 /**
@@ -7,8 +8,10 @@ import { CapturaFigura } from "./captura-figura";
  * («Prueba real» solo para capturas reales de un chat; «Ilustración» o «Simulación» para lo demás).
  * Si un archivo no existe no se muestra nada: la página no enseña marcadores ni notas de producción.
  */
-export function EjemploReal({ ejemplo }: { ejemplo: EjemploRealDatos }) {
+export function EjemploReal({ ejemplo, pendientes: todasLasPendientes = [] }: { ejemplo: EjemploRealDatos; pendientes?: CapturaPendiente[] }) {
   const capturas = ejemplo.capturas.filter((c) => mediaExists(c.src));
+  // Recuadros grises de «captura pendiente»: solo en desarrollo o con MOSTRAR_BORRADORES=true. En producción, nada.
+  const pendientes = pendientesVisibles(todasLasPendientes);
   const datos = Object.entries(ejemplo.datos);
 
   return (
@@ -43,6 +46,20 @@ export function EjemploReal({ ejemplo }: { ejemplo: EjemploRealDatos }) {
       {capturas.map((captura) => (
         <CapturaFigura key={captura.src} captura={captura} />
       ))}
+
+      {pendientes.length > 0 && (
+        <div className="mt-6 space-y-3" data-capturas-pendientes>
+          {pendientes.map((p) => (
+            <div key={p.archivo} className="rounded-xl border-2 border-dashed border-foreground/40 bg-muted/60 p-5 text-sm leading-relaxed text-foreground/80">
+              <p className="font-mono text-[0.8rem] font-semibold text-foreground">{p.archivo}</p>
+              <p className="mt-1">
+                <span className="font-semibold">{p.etiqueta}</span> · captura pendiente (solo visible en revisión)
+              </p>
+              <p className="mt-1">{p.muestra}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {ejemplo.queCorregi.length > 0 && (
         <div className="mt-6 rounded-xl border-l-[3px] border-brand bg-guide-surface px-5 py-4">

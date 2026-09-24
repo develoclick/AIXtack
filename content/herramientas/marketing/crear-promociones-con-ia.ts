@@ -109,13 +109,17 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
         src: "/img/marketing/crear-promociones-con-ia/prueba-prompt-02.webp",
         alt: "Captura de la respuesta de un asistente de IA con cuatro promociones para Café Mirador: combo de media mañana, desayuno completo, tarjeta de fidelidad y ven acompañado, cada una con su canasta, su riesgo y el dato que le falta.",
         etiqueta: "Prueba real",
-        pie: "Prueba real, con el prompt de la versión anterior de esta guía: las cuatro alternativas, todavía sin cifras.",
+        ancho: 1087,
+        alto: 544,
+        leyenda: "Prueba real, con el prompt de la versión anterior de esta guía: las cuatro alternativas, todavía sin cifras.",
       },
       {
         src: "/img/marketing/crear-promociones-con-ia/prueba-prompt-04.webp",
         alt: "Captura de la recomendación de un asistente de IA: diferencias con las cifras anteriores, promoción D descartada por superar el 20 % y recomendación de la promoción A con su cuenta semanal.",
         etiqueta: "Prueba real",
-        pie: "Prueba real, método anterior: la recomendación con las cifras del dueño (en aquel método, la IA también hacía las cuentas).",
+        ancho: 522,
+        alto: 784,
+        leyenda: "Prueba real, método anterior: la recomendación con las cifras del dueño (en aquel método, la IA también hacía las cuentas).",
       },
     ],
     queCorregi: [
@@ -124,6 +128,15 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
       "Repetí las cuentas en mi hoja y coincidieron; la condición de parada (menos de 24 pedidos por semana tras dos semanas) la puse yo.",
     ],
   },
+
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo con el prompt de esta página y las cifras ya calculadas de Café Mirador (ficticio): el texto de la promoción y las dos alternativas, sin que la IA recalcule.",
+    },
+  ],
 
   checklist: [
     "Recalculé el margen y las ventas necesarias en mi hoja y coinciden con los de la página.",
@@ -214,14 +227,18 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
       {
         src: "/img/marketing/crear-promociones-con-ia/datos-necesarios.webp",
         alt: "Hoja de cálculo «Datos del caso — Café Mirador» con precio, costo y margen de café, croissant, jugo natural y desayuno completo, y debajo el objetivo, la franja, las ventas actuales y los límites.",
-        etiqueta: "Captura de hoja",
-        pie: "Captura de hoja: los datos del caso ficticio de Café Mirador.",
+        etiqueta: "Ilustración",
+        ancho: 1600,
+        alto: 711,
+        leyenda: "Captura de la hoja con los datos del caso ficticio de Café Mirador; no es una respuesta de una IA.",
       },
       {
         src: "/img/marketing/crear-promociones-con-ia/prueba-prompt-03.webp",
         alt: "Captura de la respuesta de un asistente de IA con la tabla de cuentas de las cuatro promociones, las cuentas paso a paso y «Para comprobar tú»; la promoción D no respeta el límite del 20 %.",
         etiqueta: "Prueba real",
-        pie: "Prueba real, método anterior: las cuentas que devolvió la IA, para recalcular en la hoja.",
+        ancho: 634,
+        alto: 787,
+        leyenda: "Prueba real, método anterior: las cuentas que devolvió la IA, para recalcular en la hoja.",
       },
     ],
   },

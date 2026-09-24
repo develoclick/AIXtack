@@ -130,6 +130,15 @@ Antes de responder, comprueba que cada cifra está en los cálculos de la págin
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la respuesta de la IA al prompt de esta página con las ventas de Verde Hogar (ficticio) y los conteos ya hechos por la página. Debe verse la separación entre dato e hipótesis, lo que hay que verificar y las tres decisiones posibles.",
+    },
+  ],
+
   checklist: [
     "El total de control dice «Sí»: la suma por producto es igual al total.",
     "Cada cifra del análisis aparece en los cálculos de la página; ninguna es una cuenta nueva de la IA.",

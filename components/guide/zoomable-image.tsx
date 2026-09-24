@@ -12,10 +12,13 @@ interface ZoomableImageProps {
   sizes: string;
   loading: "lazy" | "eager";
   priority?: boolean;
+  /** Tamaño real del archivo (evita saltos de diseño). */
+  width?: number;
+  height?: number;
 }
 
 /** Imagen ampliable con <dialog> nativo: Esc cierra, el foco vuelve al botón, sin librerías. */
-export function ZoomableImage({ src, alt, caption, ratio, sizes, loading, priority }: ZoomableImageProps) {
+export function ZoomableImage({ src, alt, caption, ratio, sizes, loading, priority, width = 1200, height = 800 }: ZoomableImageProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
@@ -29,8 +32,8 @@ export function ZoomableImage({ src, alt, caption, ratio, sizes, loading, priori
   <Image
     src={src}
     alt={alt}
-    width={1200}
-    height={800}
+    width={width}
+    height={height}
     sizes={sizes}
     priority={priority}
     loading={priority ? undefined : loading}

@@ -83,6 +83,15 @@ Antes de responder, comprueba que cada frase con un hecho se apoya en mis hechos
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la respuesta de la IA a un reclamo de un cliente de Luz de Barrio (ficticio). Debe verse la separación entre hechos y emociones, la respuesta profesional (privada) y el siguiente paso concreto.",
+    },
+  ],
+
   checklist: [
     "Leí el borrador como lo leería el cliente, con su mensaje original al lado.",
     "Cada fecha, hora y dato coincide con mis registros, y cada oferta con lo que decidí y puedo cumplir.",

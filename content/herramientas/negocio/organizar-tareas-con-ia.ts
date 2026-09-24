@@ -126,6 +126,15 @@ Antes de responder, comprueba que cada fila es una tarea mía, que no inventaste
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: las tareas priorizadas, el plan de la semana, lo que se puede delegar y la rutina diaria de 15 minutos para Lavandería Brisa (ficticia), con la capacidad ya calculada por la página.",
+    },
+  ],
+
   checklist: [
     "Cada fila de la tabla es una tarea que escribí; la IA no agregó ninguna.",
     "Las fechas son las mías; lo que no tenía fecha sigue sin fecha.",

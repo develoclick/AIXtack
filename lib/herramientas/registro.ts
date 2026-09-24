@@ -9,16 +9,10 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { categories } from "../../content/categorias";
 import type { AreaId, Herramienta } from "./tipos";
+import { vistaPreviaDeBorradores } from "./vista-previa";
 
 const DIRECTORIO = path.join(process.cwd(), "content", "herramientas");
 const esProduccion = process.env.NODE_ENV === "production";
-/**
- * Vista previa para revisión (auditoría): con MOSTRAR_BORRADORES=true en el entorno del build, los LISTADOS
- * (biblioteca, áreas, portada) también enseñan los borradores, marcados como tales. Sigue sin afectar a lo demás:
- * los borradores mantienen noindex, no entran en el sitemap ni en «relacionadas», y no cambia ninguna redirección.
- * Se quita borrando la variable y redesplegando.
- */
-const vistaPreviaDeBorradores = process.env.MOSTRAR_BORRADORES === "true";
 
 export interface HerramientaCargada extends Herramienta {
   /** Solo se ve en desarrollo. */

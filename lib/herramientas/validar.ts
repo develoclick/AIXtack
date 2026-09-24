@@ -11,7 +11,7 @@ import { getAuthor } from "../../content/autores";
 import { verificarCasos } from "./calculadora";
 import { ErrorExpresion, idsUsados } from "./expresiones";
 import { verificarCasosPreproceso } from "./preprocesos";
-import { PERFIL_CLAVES, type Herramienta } from "./tipos";
+import { ETIQUETAS_IMAGEN, PERFIL_CLAVES, type Herramienta } from "./tipos";
 
 export interface ContextoValidacion {
   existeImagen: (src: string) => boolean;
@@ -31,7 +31,6 @@ export const PALABRAS_MIN = 1500;
 export const PALABRAS_MAX = 2500;
 const PALABRAS_ABSOLUTAS = /garantiz|100\s?%|aumenta(?:r|mos)? tus ventas|duplica tus ventas/i;
 const TIPOS = ["generador", "calculadora", "analizador", "kit"];
-const ETIQUETAS = ["Prueba real", "Captura de hoja", "Ilustración", "Simulación"];
 
 /** Todo el texto que ve la persona en la página, salvo el prompt (`tarea`), los datos técnicos y los casos de prueba. */
 export function textosVisibles(h: Herramienta): string[] {
@@ -44,13 +43,13 @@ export function textosVisibles(h: Herramienta): string[] {
   t.push(...(h.pasos ?? []));
   for (const m of h.mejoras) t.push(m.label, m.prompt);
   t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.datos), ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
-  for (const c of h.ejemplo.capturas) t.push(c.alt, c.pie ?? "");
+  for (const c of h.ejemplo.capturas) t.push(c.alt, c.leyenda);
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
   for (const r of h.rubros) t.push(r.rubro, r.ejemplo, r.consejo);
   for (const e of h.errores) t.push(e.error, e.solucion);
   for (const f of h.faq) t.push(f.p, f.r);
-  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).flatMap((c) => [c.alt, c.pie ?? ""]));
+  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).flatMap((c) => [c.alt, c.leyenda]));
   for (const l of h.meta.limites ?? []) t.push(l.concepto, l.valor);
   return t.filter(Boolean);
 }
@@ -65,13 +64,13 @@ export function textosEditoriales(h: Herramienta): string[] {
   t.push(...(h.pasos ?? []));
   for (const m of h.mejoras) t.push(m.label);
   t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
-  for (const c of h.ejemplo.capturas) t.push(c.alt, c.pie ?? "");
+  for (const c of h.ejemplo.capturas) t.push(c.alt, c.leyenda);
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
   for (const r of h.rubros) t.push(r.rubro, r.ejemplo, r.consejo);
   for (const e of h.errores) t.push(e.error, e.solucion);
   for (const f of h.faq) t.push(f.p, f.r);
-  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).flatMap((c) => [c.alt, c.pie ?? ""]));
+  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).flatMap((c) => [c.alt, c.leyenda]));
   for (const l of h.meta.limites ?? []) t.push(l.concepto, l.valor);
   return t.filter(Boolean);
 }
@@ -190,11 +189,27 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   publicada(h.ejemplo.capturas.length >= 1 && h.ejemplo.capturas.length <= 2, `Capturas: ${h.ejemplo.capturas.length} (deben ser 1–2 en el ejemplo real).`);
   publicada(h.ejemplo.capturas.some((c) => c.etiqueta === "Prueba real"), "Falta al menos una captura etiquetada «Prueba real».");
   for (const c of [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])]) {
-    error(ETIQUETAS.includes(c.etiqueta), `Captura ${c.src}: etiqueta «${c.etiqueta}» no válida.`);
-    error(c.alt.trim().length >= 25, `Captura ${c.src}: el alt es demasiado corto para describir la imagen.`);
+    error((ETIQUETAS_IMAGEN as readonly string[]).includes(c.etiqueta), `Captura ${c.src}: etiqueta «${c.etiqueta}» no válida (solo: ${ETIQUETAS_IMAGEN.join(" | ")}).`);
+    error(Boolean(c.alt?.trim()), `Captura ${c.src}: el alt es obligatorio.`);
+    error(!c.alt?.trim() || c.alt.trim().length >= 25, `Captura ${c.src}: el alt es demasiado corto para describir la imagen.`);
+    error(Boolean(c.leyenda?.trim()), `Captura ${c.src}: falta la leyenda.`);
+    error(Number.isInteger(c.ancho) && c.ancho > 0 && Number.isInteger(c.alto) && c.alto > 0, `Captura ${c.src}: ancho y alto deben ser enteros positivos (píxeles del archivo).`);
     error(c.src.startsWith(`/img/${h.meta.area}/${h.meta.slug}/`), `Captura ${c.src}: debe estar en /img/${h.meta.area}/${h.meta.slug}/.`);
     publicada(ctx.existeImagen(c.src), `Captura ${c.src}: el archivo no existe en public/.`);
   }
+  /* ── capturas pendientes: solo en borradores; una página publicada no puede tener ninguna ── */
+  const pendientes = h.capturasPendientes ?? [];
+  error(Array.isArray(h.capturasPendientes), "Falta `capturasPendientes` (usa [] si no falta ninguna captura).");
+  for (const p of pendientes) {
+    error(/^[a-z0-9][a-z0-9-]*\.webp$/.test(p.archivo), `Captura pendiente «${p.archivo}»: el nombre debe ser minúsculas y terminar en .webp (por ejemplo prueba-01.webp).`);
+    error((ETIQUETAS_IMAGEN as readonly string[]).includes(p.etiqueta), `Captura pendiente ${p.archivo}: etiqueta «${p.etiqueta}» no válida.`);
+    error(Boolean(p.muestra?.trim()), `Captura pendiente ${p.archivo}: falta indicar qué debe mostrar.`);
+    // Solo aviso: subir la imagen antes de actualizar los datos no debe romper el despliegue.
+    aviso(!ctx.existeImagen(`/img/${h.meta.area}/${h.meta.slug}/${p.archivo}`), `Captura pendiente ${p.archivo}: el archivo ya existe en public/img/…; pásalo a \`ejemplo.capturas\` y quítalo de las pendientes.`);
+  }
+  error(new Set(pendientes.map((p) => p.archivo)).size === pendientes.length, "Hay capturas pendientes con el mismo nombre de archivo.");
+  error(!h.publicado || pendientes.length === 0, `Una página publicada no puede tener capturas pendientes (${pendientes.length}).`);
+  error(!h.publicado || [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])].some((c) => c.etiqueta === "Prueba real"), "Una página publicada exige al menos 1 captura con etiqueta «Prueba real».");
   if (h.meta.ogImage) publicada(ctx.existeImagen(h.meta.ogImage), `og:image ${h.meta.ogImage}: el archivo no existe en public/.`);
   else publicada(false, "Falta meta.ogImage (og:image propia).");
 

@@ -76,6 +76,15 @@ Antes de responder, comprueba que cada dato de las dos versiones está en mis da
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la versión corta, la versión larga y la lista FALTA (lo que no tiene dato) para un producto de Luz de Cera (ficticio).",
+    },
+  ],
+
   checklist: [
     "Cada dato de la descripción está en mis datos comprobados y sé de dónde sale.",
     "Comprobé medidas y peso con una regla, una balanza o la ficha oficial.",

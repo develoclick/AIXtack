@@ -115,16 +115,34 @@ export interface MejoraPrompt {
   prompt: string;
 }
 
-/** «Prueba real» = captura real, sin editar, de un chat con una IA. «Captura de hoja» = captura real de una hoja de cálculo. */
-export type EtiquetaImagen = "Prueba real" | "Captura de hoja" | "Ilustración" | "Simulación";
+/** Únicas etiquetas válidas de una imagen (estándar 2). «Prueba real» = captura real, sin editar, de un chat con una IA. */
+export const ETIQUETAS_IMAGEN = ["Prueba real", "Ilustración", "Simulación", "Resultado final diseñado con el texto de la IA", "Foto generada con IA"] as const;
+export type EtiquetaImagen = (typeof ETIQUETAS_IMAGEN)[number];
 
 export interface CapturaEjemplo {
-  /** Ruta pública, en /img/{area}/{slug}/…  */
+  /** Ruta pública, en /img/{area}/{slug}/…, por ejemplo /img/marketing/crear-afiches-con-ia/prueba-01.webp */
   src: string;
+  /** Obligatorio: describe lo que muestra la imagen. */
   alt: string;
   /** «Prueba real» solo para capturas reales, sin editar, de un chat. */
   etiqueta: EtiquetaImagen;
-  pie?: string;
+  /** Texto bajo la imagen. */
+  leyenda: string;
+  /** Tamaño real del archivo en píxeles (evita saltos de diseño). */
+  ancho: number;
+  alto: number;
+}
+
+/**
+ * Captura que aún no existe. Solo se ve con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris punteado en el bloque 6);
+ * en producción no se renderiza nada. Una página `publicado: true` no puede tener ninguna pendiente.
+ */
+export interface CapturaPendiente {
+  /** Nombre del archivo esperado en public/img/{area}/{slug}/, por ejemplo «prueba-01.webp». */
+  archivo: string;
+  etiqueta: EtiquetaImagen;
+  /** Qué debe mostrar la captura (para quien la toma). */
+  muestra: string;
 }
 
 export interface EjemploReal {
@@ -215,6 +233,8 @@ export interface Herramienta {
   pasos?: [string, string, string];
   mejoras: MejoraPrompt[];
   ejemplo: EjemploReal;
+  /** Capturas que faltan por subir (una prueba NUEVA con el prompt que genera la página hoy). `[]` cuando no falta ninguna. */
+  capturasPendientes: CapturaPendiente[];
   checklist: string[];
   porQueFunciona: PorQueFunciona[];
   rubros: RubroEjemplo[];

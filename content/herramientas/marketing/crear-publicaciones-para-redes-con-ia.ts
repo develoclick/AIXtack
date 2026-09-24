@@ -79,6 +79,15 @@ Antes de responder, comprueba que cada dato de cada opción está en mis datos, 
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: las tres opciones de publicación de Peluquería Rizo Fino (ficticia), la adaptación al formato elegido, el texto alternativo de la imagen y los hashtags.",
+    },
+  ],
+
   checklist: [
     "Cada precio, descuento, día, fecha y condición coincide con lo que yo decidí.",
     "No queda ningún [FALTA] sin resolver ni sin borrar.",

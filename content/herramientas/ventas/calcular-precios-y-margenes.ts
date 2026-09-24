@@ -135,6 +135,15 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
+  // Capturas por subir: solo se ven con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris en el bloque 6). `npm run capturas` las lista.
+  capturasPendientes: [
+    {
+      archivo: "prueba-01.webp",
+      etiqueta: "Prueba real",
+      muestra: "Chat nuevo: la revisión de la lógica del precio de Galletería Migas (ficticia), los escenarios y cómo comunicar el precio, con las cifras ya calculadas por la página.",
+    },
+  ],
+
   checklist: [
     "Cada dato tiene su origen y los supuestos están marcados como supuestos.",
     "Puse un valor a mi hora de trabajo, aunque hoy no me la pague, y sé que es una decisión mía.",
