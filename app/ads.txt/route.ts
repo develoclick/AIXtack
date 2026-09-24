@@ -4,8 +4,8 @@ export async function GET() {
   // 1. Obtiene la variable de entorno o usa tu Publisher ID directo como respaldo
   const rawId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "pub-1950156439970490";
 
-  // 2. Limpia el prefijo "ca-" o "ca-pub-" si viniere en la variable
-  const publisherId = rawId.replace(/^ca-pub-|^ca-/, "");
+  // 2. Limpia el prefijo "ca-pub-", "ca-" o "pub-" si viniere en la variable (o en el respaldo)
+  const publisherId = rawId.replace(/^ca-pub-|^ca-|^pub-/, "");
 
   // 3. Formatea la línea oficial requerida por Google AdSense
   const body = `google.com, pub-${publisherId}, DIRECT, f08c47fec0942fa0`;
