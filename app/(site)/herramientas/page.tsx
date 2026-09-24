@@ -59,6 +59,11 @@ export default async function HerramientasPage() {
       </header>
 
       <div className="herramienta-scope mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        {visibles.some((h) => !h.publicado) && (
+          <p role="note" className="mb-8 rounded-xl border border-foreground/40 bg-guide-surface p-4 text-sm leading-relaxed text-foreground">
+            Vista previa de revisión: las herramientas marcadas «Borrador · en revisión» aún no están publicadas (no se indexan) y les faltan sus pruebas reales.
+          </p>
+        )}
         {visibles.length > 0 ? (
           <BibliotecaHerramientas
             areas={categories.map((c) => ({ id: c.slug, nombre: c.name }))}

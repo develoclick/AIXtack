@@ -12,6 +12,13 @@ import type { AreaId, Herramienta } from "./tipos";
 
 const DIRECTORIO = path.join(process.cwd(), "content", "herramientas");
 const esProduccion = process.env.NODE_ENV === "production";
+/**
+ * Vista previa para revisión (auditoría): con MOSTRAR_BORRADORES=true en el entorno del build, los LISTADOS
+ * (biblioteca, áreas, portada) también enseñan los borradores, marcados como tales. Sigue sin afectar a lo demás:
+ * los borradores mantienen noindex, no entran en el sitemap ni en «relacionadas», y no cambia ninguna redirección.
+ * Se quita borrando la variable y redesplegando.
+ */
+const vistaPreviaDeBorradores = process.env.MOSTRAR_BORRADORES === "true";
 
 export interface HerramientaCargada extends Herramienta {
   /** Solo se ve en desarrollo. */
@@ -65,7 +72,7 @@ export function listarTodas(): Promise<HerramientaCargada[]> {
  * Para los listados de la web (biblioteca, áreas, inicio). En producción devuelve SOLO las publicadas; con `next dev`
  * añade los borradores para poder revisarlos (las tarjetas los marcan). Las internas de prueba no salen nunca.
  */
-export async function listarVisibles(produccion: boolean = esProduccion): Promise<HerramientaCargada[]> {
+export async function listarVisibles(produccion: boolean = esProduccion && !vistaPreviaDeBorradores): Promise<HerramientaCargada[]> {
   return (await listarTodas()).filter((h) => !h.interna && (h.publicado || !produccion));
 }
 

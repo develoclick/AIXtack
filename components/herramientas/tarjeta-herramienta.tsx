@@ -8,8 +8,8 @@ export const ETIQUETA_TIPO: Record<string, string> = { generador: "Generador", c
 
 /**
  * Tarjeta de una herramienta para la biblioteca, las áreas y el inicio. Solo recibe herramientas que
- * `listarVisibles()` deja pasar: en producción, únicamente las publicadas. El aviso de borrador solo puede
- * aparecer con `next dev`.
+ * `listarVisibles()` deja pasar: en producción, únicamente las publicadas (salvo la vista previa de revisión,
+ * MOSTRAR_BORRADORES=true). El aviso de borrador solo aparece en `next dev` o en esa vista previa.
  */
 export function TarjetaHerramienta({ herramienta: h, mostrarArea = true }: { herramienta: HerramientaCargada; mostrarArea?: boolean }) {
   return (
@@ -20,7 +20,7 @@ export function TarjetaHerramienta({ herramienta: h, mostrarArea = true }: { her
       <span className="flex flex-wrap items-center gap-2">
         <span className={ui.tagNeutral}>{ETIQUETA_TIPO[h.meta.tipo]}</span>
         {mostrarArea && <span className="text-sm text-muted-foreground">{getCategory(h.meta.area)?.name}</span>}
-        {!h.publicado && <span className={ui.tag}>Borrador · solo en desarrollo</span>}
+        {!h.publicado && <span className={ui.tag}>Borrador · en revisión</span>}
       </span>
       <span className="mt-3 text-balance text-[1.12rem] font-semibold leading-snug tracking-tight text-guide-ink">{h.meta.titulo}</span>
       <span className="mt-2 flex-1 text-[0.95rem] leading-relaxed text-muted-foreground">{h.meta.descripcion}</span>
