@@ -30,7 +30,7 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
       url,
       siteName,
       images: [{ url: image }],
-      locale: "es_ES",
+      locale: "es_PE",
       ...(type === "article" && input.article
         ? {
             type: "article" as const,

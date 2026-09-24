@@ -32,7 +32,7 @@ export function herramientaArticleJsonLd(h: Herramienta) {
     image: ogImageUrl(h),
     datePublished: h.meta.fechaPublicacion ?? h.meta.actualizado,
     dateModified: h.meta.actualizado,
-    author: autor ? { "@type": autor.type, name: autor.name } : undefined,
+    author: autor ? { "@type": autor.type, name: autor.name, ...(autor.bioCorta ? { description: autor.bioCorta, url: absoluta("/sobre-nosotros") } : {}) } : undefined,
     publisher: { "@type": "Organization", name: editorial?.name ?? siteName, logo: { "@type": "ImageObject", url: absoluta("/logo.png") } },
     mainEntityOfPage: absoluta(rutaHerramienta(h.meta)),
   };

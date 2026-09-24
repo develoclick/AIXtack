@@ -37,14 +37,34 @@ test("mismo responsable en todas partes: Nicolas (Person) y DeveloClick (Organiz
   }
 });
 
-test("la biografía de Nicolas es el único pendiente: vive en el archivo de datos y no se muestra sin texto", () => {
+test("la biografía de Nicolas vive en content/autores.ts (bioCorta, bioLarga de 3 párrafos, país) y las páginas la leen de ahí", () => {
   const nicolas = authors.find((a) => a.id === "nicolas")!;
-  assert.equal(nicolas.bio, undefined);
-  assert.match(leer("content", "autores.ts"), /TODO.*bio/i);
-  assert.match(leer("app", "(site)", "sobre-nosotros", "page.tsx"), /autorDatos\.bio &&/);
+  assert.match(nicolas.bioCorta ?? "", /^Nicolas — ingeniero de prompts en Perú\./);
+  assert.equal(nicolas.bioLarga?.length, 3);
+  assert.equal(nicolas.pais, "Perú");
+  assert.doesNotMatch(leer("content", "autores.ts"), /TODO/);
+  const sobre = leer("app", "(site)", "sobre-nosotros", "page.tsx");
+  assert.match(sobre, /autorDatos\.bioLarga\?\.map/);
+  assert.match(sobre, /Quién está detrás de/);
+  assert.match(sobre, /proyecto de \{editorial\}/);
+  assert.doesNotMatch(sobre, /Soy Nicolas|ingeniería de prompts/, "el texto de la biografía no se copia en la página");
   // Ninguna página institucional muestra un TODO ni notas de producción.
   for (const f of ["sobre-nosotros", "politica-de-privacidad", "politica-de-cookies", "terminos-y-condiciones", "contacto", "como-probamos"]) {
     const t = leer("app", "(site)", f, "page.tsx").replace(/\/\/.*$/gm, "");
     assert.doesNotMatch(t, /\bTODO\b|\[completar\]|captura pendiente/, f);
   }
+});
+
+test("/como-probamos describe el método real (varias pruebas, comparar, ajustar, mejor versión, captura real, «Qué corregí yo») y solo las etiquetas de imagen que existen", async () => {
+  const { ETIQUETAS_IMAGEN } = await import("./herramientas/tipos");
+  const t = leer("app", "(site)", "como-probamos", "page.tsx");
+  for (const frase of [/Varias pruebas y comparación/, /Ajustes y mejor versión/, /La captura real/, /Qué corregí yo/]) assert.match(t, frase);
+  for (const etiqueta of ETIQUETAS_IMAGEN) assert.ok(t.includes(`["${etiqueta}"`), `falta la etiqueta «${etiqueta}»`);
+  assert.doesNotMatch(t, /Captura de hoja/, "esa etiqueta no existe (el validador la rechaza)");
+});
+
+test("locale: og:locale es_PE y fechas en es-419 (público y autor en Latinoamérica)", () => {
+  assert.match(leer("lib", "seo", "metadata.ts"), /locale: "es_PE"/);
+  assert.doesNotMatch(leer("lib", "seo", "metadata.ts"), /es_ES/);
+  assert.match(leer("lib", "utils", "format.ts"), /"es-419"/);
 });

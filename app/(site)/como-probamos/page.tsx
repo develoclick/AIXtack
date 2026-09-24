@@ -15,9 +15,10 @@ export const metadata = buildMetadata({
 
 const etiquetas: [string, string][] = [
   ["Prueba real", "Captura de una conversación real con un asistente de IA, tal como salió, sin retocar el texto de la respuesta. Es la única imagen que lleva esta etiqueta."],
-  ["Captura de hoja", "Captura de una hoja de cálculo real en la que se comprobaron las cifras."],
   ["Ilustración", "Un dibujo o esquema que explica una idea. No muestra ningún resultado real."],
   ["Simulación", "Un ejemplo construido por nosotros para enseñar la forma de una respuesta. No es una respuesta real de ninguna IA."],
+  ["Resultado final diseñado con el texto de la IA", "El producto terminado (por ejemplo, un afiche) que se maquetó a mano en una herramienta de diseño usando el texto que escribió la IA. Es un resultado diseñado, no una imagen que generó la IA."],
+  ["Foto generada con IA", "Una imagen creada por un generador de imágenes. No es una foto real del producto ni del negocio."],
 ];
 
 export default function ComoProbamosPage() {
@@ -51,10 +52,16 @@ export default function ComoProbamosPage() {
               <strong>El prompt completo, con datos de ejemplo.</strong> Llenamos la herramienta con los datos de un negocio ficticio, copiamos el prompt que genera y lo pegamos en un asistente de IA.
             </li>
             <li>
-              <strong>La respuesta.</strong> Guardamos la captura de la conversación y la comparamos con lo que la página dice que debería ocurrir. El texto de cada página tiene que coincidir con lo que muestra la captura.
+              <strong>Varias pruebas y comparación.</strong> El prompt se prueba más de una vez y se comparan las respuestas entre sí: dos pruebas del mismo prompt pueden dar textos distintos, y eso es justo lo que hay que ver antes de publicar.
             </li>
             <li>
-              <strong>Lo que hubo que corregir.</strong> Si la respuesta tenía fallos, los anotamos en «Qué corregí yo» y ajustamos el prompt. Si no anotamos nada, no inventamos correcciones.
+              <strong>Ajustes y mejor versión.</strong> Se prueban distintos cambios en el prompt y se queda la versión que da mejores resultados. Esa es la que publicamos.
+            </li>
+            <li>
+              <strong>La captura real.</strong> Guardamos la captura de la conversación de la prueba y la comparamos con lo que la página dice que debería ocurrir. El texto de cada página tiene que coincidir con lo que muestra la captura.
+            </li>
+            <li>
+              <strong>Lo que hubo que corregir.</strong> Lo que tuvo que cambiarse a mano en la respuesta de la IA se anota en «Qué corregí yo». Si no hubo nada que corregir, no inventamos correcciones.
             </li>
             <li>
               <strong>Los cálculos.</strong> Las calculadoras se comprueban con casos de prueba automáticos antes de cada publicación (ver más abajo).

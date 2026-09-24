@@ -30,7 +30,7 @@ const toc: [string, string][] = [
   ["que-no-es", "Qué no es"],
   ["como-esta-hecha", "Cómo está hecha cada herramienta"],
   ["como-trabajamos", "Cómo trabajamos"],
-  ["quien-esta-detras", "Quién está detrás"],
+  ["quien-esta-detras", `Quién está detrás de ${siteName}`],
   ["como-se-financia", "Cómo se financia"],
 ];
 
@@ -137,15 +137,15 @@ export default function AboutPage() {
           </li>
         </ul>
 
-        <h2 id="quien-esta-detras">Quién está detrás</h2>
+        <h2 id="quien-esta-detras">Quién está detrás de {siteName}</h2>
+        {autorDatos.bioLarga?.map((parrafo) => <p key={parrafo}>{parrafo}</p>)}
         <p>
-          {siteName} lo escribe y prueba {autor}, y lo publica {editorial}, responsable editorial y legal del sitio. Cada
-          herramienta lleva la firma de {autor} —«Probado por {autor} en [IA] el [fecha]», solo cuando esa prueba
-          existe— y la fecha real de actualización. Si encuentras un error,
-          quieres proponer una tarea que te gustaría ver resuelta o tienes cualquier duda, escríbenos desde la{" "}
-          <Link href="/contacto">página de contacto</Link> o a <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+          {siteName} es un proyecto de {editorial}, responsable editorial y legal del sitio. Cada herramienta lleva la
+          firma de {autor} —«Probado por {autor} en [IA] el [fecha]», solo cuando esa prueba existe— y la fecha real de
+          actualización. Si encuentras un error, quieres proponer una tarea que te gustaría ver resuelta o tienes cualquier
+          duda, escríbenos desde la <Link href="/contacto">página de contacto</Link> o a{" "}
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
         </p>
-        {autorDatos.bio && <p>{autorDatos.bio}</p>}
 
         <h2 id="como-se-financia">Cómo se financia</h2>
         <p>
