@@ -131,3 +131,15 @@ test("no hay textos casi idénticos entre páginas (estándar 18)", async () => 
   const d = await buscarDuplicados(0.4);
   assert.deepEqual(d.map((x) => `${x.a} ↔ ${x.b}: ${x.textoA.slice(0, 60)}`), []);
 });
+
+test("EspacioAnuncio: vacío, sin código de AdSense y sin ocupar espacio mientras no haya anuncio (empty:hidden, sin márgenes)", async () => {
+  const { createElement } = await import("react");
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { EspacioAnuncio } = await import("../../components/herramientas/espacio-anuncio");
+  for (const posicion of ["despues-del-ejemplo", "despues-de-errores"] as const) {
+    const html = renderToStaticMarkup(createElement(EspacioAnuncio, { posicion }));
+    assert.match(html, /^<div [^>]*><\/div>$/, "sin contenido dentro");
+    assert.match(html, /empty:hidden/);
+    assert.doesNotMatch(html, /\bm[ytblrx]?-\d|adsbygoogle|googlesyndication|pagead|<script|<ins/i, "sin márgenes ni código de anuncios");
+  }
+});

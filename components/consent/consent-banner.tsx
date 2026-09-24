@@ -1,12 +1,16 @@
 "use client";
 
 import { useConsent } from "@/hooks/use-consent";
+import { BANNER_PROPIO_ACTIVO } from "@/lib/consent-config";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 export function ConsentBanner() {
   const { decided, acceptAll, rejectAll } = useConsent();
+
+  // Interruptor en lib/consent-config.ts: se apaga cuando se activa la CMP de Google, para no mostrar dos avisos.
+  if (!BANNER_PROPIO_ACTIVO) return null;
 
   return (
     <AnimatePresence>
