@@ -5,7 +5,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { categories } from "../../content/categorias";
-import { listarPublicadas, listarTodas, listarVisibles } from "./registro";
+import { entradasDelSitemap } from "./mapa-sitio";
+import { areaEsIndexable, bibliotecaEsIndexable, listarPublicadas, listarTodas, listarVisibles } from "./registro";
 import { contarPalabras } from "./validar";
 
 test("listarVisibles: en producción solo aparecen las publicadas y nunca las internas", async () => {
@@ -35,4 +36,34 @@ test("las cinco áreas del plan existen y ninguna herramienta apunta a un área 
   assert.deepEqual(categories.map((c) => c.slug).sort(), ["analisis", "clientes", "marketing", "negocio", "ventas"]);
   const slugs = new Set(categories.map((c) => c.slug));
   for (const h of await listarTodas()) assert.ok(slugs.has(h.meta.area), h.meta.slug);
+});
+
+test("regla de indexación: un área o /herramientas solo son indexables con al menos 1 herramienta publicada", async () => {
+  const [una] = (await listarTodas()).filter((h) => !h.interna);
+  const publicada = { ...una, publicado: true };
+  assert.equal(areaEsIndexable([], una.meta.area), false);
+  assert.equal(bibliotecaEsIndexable([]), false);
+  assert.equal(areaEsIndexable([publicada], una.meta.area), true);
+  assert.equal(bibliotecaEsIndexable([publicada]), true);
+  for (const c of categories.filter((x) => x.slug !== una.meta.area)) assert.equal(areaEsIndexable([publicada], c.slug), false, c.slug);
+});
+
+test("sitemap: sin publicadas solo portada e institucionales; con una suma su área, la biblioteca y la herramienta; nunca /mi-negocio", async () => {
+  const [una] = (await listarTodas()).filter((h) => !h.interna);
+  const rutas = (l: Parameters<typeof entradasDelSitemap>[0]) => entradasDelSitemap(l).map((e) => e.url.replace("https://www.guiapromptsia.com", "") || "/");
+  const ninguna = rutas([]);
+  assert.ok(ninguna.includes("/") && ninguna.includes("/como-probamos"));
+  assert.ok(!ninguna.includes("/herramientas"));
+  for (const c of categories) assert.ok(!ninguna.includes(`/${c.slug}`), c.slug);
+  const con = rutas([{ ...una, publicado: true }]);
+  assert.ok(con.includes("/herramientas") && con.includes(`/${una.meta.area}`) && con.includes(`/${una.meta.area}/${una.meta.slug}`));
+  assert.equal(con.filter((r) => categories.some((c) => r === `/${c.slug}`)).length, 1);
+  assert.ok(!ninguna.includes("/mi-negocio") && !con.includes("/mi-negocio"));
+  // Estado real: el sitemap sale de las publicadas de verdad (hoy, ninguna).
+  const reales = await listarPublicadas();
+  assert.equal(rutas(reales).includes("/herramientas"), reales.length > 0);
+});
+
+test("todas las URLs del sitemap usan el dominio con www", () => {
+  for (const e of entradasDelSitemap([])) assert.ok(e.url.startsWith("https://www.guiapromptsia.com"), e.url);
 });

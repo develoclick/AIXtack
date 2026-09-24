@@ -81,6 +81,15 @@ export async function listarPublicadas(): Promise<HerramientaCargada[]> {
   return (await listarTodas()).filter((h) => h.publicado && !h.interna);
 }
 
+/**
+ * Regla de indexación de los listados (automática, no se decide a mano):
+ *  - un área es indexable (y entra al sitemap) solo si tiene al menos 1 herramienta con `publicado: true`;
+ *  - /herramientas, igual, con al menos 1 publicada en todo el sitio.
+ * Si no, esas páginas llevan noindex y quedan fuera del sitemap. Reciben la lista de PUBLICADAS.
+ */
+export const areaEsIndexable = (publicadas: Pick<Herramienta, "meta">[], area: string) => publicadas.some((h) => h.meta.area === area);
+export const bibliotecaEsIndexable = (publicadas: Pick<Herramienta, "meta">[]) => publicadas.length > 0;
+
 export async function publicadasPorArea(area: AreaId): Promise<HerramientaCargada[]> {
   return (await listarPublicadas()).filter((h) => h.meta.area === area);
 }
