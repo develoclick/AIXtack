@@ -31,8 +31,8 @@ export default defineHerramienta({
 
   campos: [
     { id: "negocio", label: "¿Qué negocio y qué vendes?", tipo: "texto", ejemplo: "Cafetería de barrio: café y croissant", requerido: true },
-    { id: "unidad", label: "¿Qué cuenta como una venta?", tipo: "texto", ejemplo: "Un pedido promedio de café + croissant", requerido: true, ayuda: "La «unidad» de la calculadora: un producto, un pedido promedio o un servicio." },
-    { id: "supuestos", label: "Supuestos que hiciste (opcional)", tipo: "largo", ejemplo: "El precio promedio de $4.00 es una estimación. No incluí el sueldo de la dueña.", ayuda: "Todo dato que sea una estimación y no una cifra comprobada." },
+    { id: "unidad", label: "¿Qué cuenta como una venta?", tipo: "texto", ejemplo: "Un cliente que compra: se usa el gasto promedio por cliente", requerido: true, ayuda: "La «unidad» de la calculadora: un producto, el gasto promedio por cliente o un servicio." },
+    { id: "supuestos", label: "Supuestos que hiciste (opcional)", tipo: "largo", ejemplo: "El gasto promedio de $5.00 por cliente es una estimación (mezcla de cafés, croissants, combos y jugos). No incluí el sueldo de la dueña.", ayuda: "Todo dato que sea una estimación y no una cifra comprobada." },
   ],
   usaPerfil: ["nombre", "rubro", "moneda"],
 
@@ -42,8 +42,8 @@ export default defineHerramienta({
       { id: "sueldos", label: "Sueldos del mes", unidad: "moneda", ejemplo: "1400", requerido: false, ayuda: "Incluye el tuyo si quieres que el negocio también te lo pague." },
       { id: "servicios", label: "Servicios del mes (luz, agua, internet…)", unidad: "moneda", ejemplo: "200", requerido: false },
       { id: "otrosFijos", label: "Otros costos fijos del mes", unidad: "moneda", ejemplo: "160", requerido: false, ayuda: "Seguros, cuotas, licencias… lo que pagas aunque no vendas." },
-      { id: "precio", label: "Precio promedio de una venta", unidad: "moneda", ejemplo: "4", ayuda: "Lo que realmente cobras en promedio, no el precio de lista." },
-      { id: "costoVariable", label: "Costo variable por venta", unidad: "moneda", ejemplo: "1.30", ayuda: "Lo que te cuesta cada venta: ingredientes, empaque, comisión. No cuentes alquiler ni sueldos." },
+      { id: "precio", label: "Precio promedio de una venta", unidad: "moneda", ejemplo: "5", ayuda: "Lo que realmente cobras en promedio, no el precio de lista. Si vendes productos distintos, usa el gasto promedio por cliente." },
+      { id: "costoVariable", label: "Costo variable por venta", unidad: "moneda", ejemplo: "1.50", ayuda: "Lo que te cuesta cada venta (o cada cliente): ingredientes, empaque, comisión. No cuentes alquiler ni sueldos." },
       { id: "dias", label: "Días que abres al mes", unidad: "entero", ejemplo: "26", min: 1, max: 31 },
     ],
     salidas: [
@@ -58,8 +58,8 @@ export default defineHerramienta({
     casosDePrueba: [
       {
         nombre: "Café Mirador (ficticio)",
-        entradas: { alquiler: 800, sueldos: 1400, servicios: 200, otrosFijos: 160, precio: 4, costoVariable: 1.3, dias: 26 },
-        esperado: { costosFijos: 2560, margenContribucion: 2.7, razon: 0.675, unidadesMes: 949, ventasMes: 3796, unidadesDia: 36.5, ventasDia: 146 },
+        entradas: { alquiler: 800, sueldos: 1400, servicios: 200, otrosFijos: 160, precio: 5, costoVariable: 1.5, dias: 26 },
+        esperado: { costosFijos: 2560, margenContribucion: 3.5, razon: 0.7, unidadesMes: 732, ventasMes: 3660, unidadesDia: 28.1538, ventasDia: 140.7692 },
       },
       {
         nombre: "Resultado exacto: 250 unidades",
@@ -108,18 +108,18 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
   ],
 
   ejemplo: {
-    negocio: "Café Mirador (ficticio), cafetería de barrio con dos personas en el mostrador",
+    negocio: "Café Mirador (ficticio), cafetería de barrio que abre 26 días al mes en un local alquilado y vive del gasto promedio de cada cliente",
     datos: {
       "Costos fijos del mes": "Alquiler 800 · sueldos 1400 · servicios 200 · otros 160",
-      "Precio promedio de una venta": "4.00 (un pedido de café + croissant)",
-      "Costo variable por venta": "1.30",
+      "Precio promedio de una venta": "5.00 (gasto promedio por cliente: café, croissant, combos y jugos)",
+      "Costo variable por venta": "1.50",
       "Días que abre al mes": "26",
     },
     resultado: {
       "Costos fijos del mes": "2560",
-      "Margen de contribución por venta": "2.70 (67.5 % del precio)",
-      "Ventas al mes para no perder": "949 pedidos = 3796 en dinero",
-      "Ventas por día abierto": "36.5 pedidos = 146 en dinero",
+      "Margen de contribución por venta": "3.50 (70.0 % del precio)",
+      "Ventas al mes para no perder": "732 clientes = 3660 en dinero",
+      "Ventas por día abierto": "28.2 clientes = 140.77 en dinero",
     },
     capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
@@ -139,7 +139,7 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
     "El precio promedio es lo que realmente cobro, no el precio de lista.",
     "El costo variable incluye todo lo que cuesta cada venta y ningún costo fijo.",
     "Entiendo que el punto de equilibrio es un mínimo para no perder, no una meta ni una predicción.",
-    "Comprobé una cuenta con una calculadora aparte y anoté los supuestos que hice.",
+    "Repetí la división de los costos fijos entre el margen en una calculadora aparte y anoté qué datos son estimaciones.",
   ],
 
   porQueFunciona: [
@@ -199,7 +199,7 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
   ],
 
   faq: [
-    { p: "¿Qué es una «venta» si vendo productos muy distintos?", r: "Usa un pedido o un producto promedio: el precio promedio de lo que cobras y el costo promedio de lo que te cuesta. Cuanto más parecidos sean tus productos, más fiable es el resultado." },
+    { p: "¿Qué es una «venta» si vendo productos muy distintos?", r: "Usa el gasto promedio por cliente: lo que cobras en promedio a cada persona que compra y lo que te cuesta atenderla. Cuanto más parecidos sean tus productos, más fiable es el resultado." },
     { p: "¿Debo incluir los impuestos?", r: "Depende de tu país y de cómo cobres. Si los cobras aparte, no forman parte del precio. Consulta a un profesional cómo deben tratarse; esta herramienta no da asesoría contable ni tributaria." },
     { p: "¿Qué pasa si el costo variable es igual o mayor que el precio?", r: "No hay punto de equilibrio: cada venta pierde dinero o no aporta nada. La calculadora lo muestra como «—»; el problema está en el precio o en el costo de cada venta." },
     { p: "¿Cada cuánto debo recalcularlo?", r: "Cuando cambie un alquiler, un sueldo, el precio promedio o el costo de lo que vendes, y al menos cuando cambies tu forma de cobrar." },
@@ -213,10 +213,10 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
     titulo: "Método completo: las fórmulas y cómo usar el resultado",
     parrafos: [
       "**Las fórmulas.** Costos fijos = alquiler + sueldos + servicios + otros. Margen de contribución = precio promedio − costo variable por venta. Ventas al mes para no perder (en unidades) = costos fijos ÷ margen de contribución, redondeado hacia arriba. Ventas en dinero = unidades × precio promedio. Por día abierto = ventas del mes ÷ días que abres.",
-      "**El caso completo.** En Café Mirador (ficticio): costos fijos de 2560 (800 de alquiler, 1400 en sueldos, 200 en servicios y 160 en otros). El pedido promedio se cobra a 4.00 y cuesta 1.30 en ingredientes y empaque, así que cada venta aporta 2.70. 2560 ÷ 2.70 = 948.1, que se redondea a 949 pedidos al mes: 3796 en dinero. Abriendo 26 días, son 36.5 pedidos y 146 al día.",
+      "**El caso completo.** En Café Mirador (ficticio): costos fijos de 2560 (800 de alquiler, 1400 en sueldos, 200 en servicios y 160 en otros). Cada cliente gasta 5.00 en promedio (la mezcla de cafés, croissants, combos y jugos que se venden, sin contar como «un producto» ninguno de ellos) y esa venta cuesta 1.50 en ingredientes y empaque, así que cada cliente aporta 3.50. 2560 ÷ 3.50 = 731.4, que se redondea a 732 clientes al mes: 3660 en dinero. Abriendo 26 días, son 28.2 clientes y 140.77 al día.",
       "**Cómo usar el resultado.** Compara las ventas por día que necesitas con las que tienes hoy. Si hoy vendes más, el margen sobre el punto de equilibrio es tu ganancia antes de otros costos que no incluiste. Si vendes menos, decide qué palanca mover: el precio promedio, el costo variable o los costos fijos. Cambia solo un dato cada vez para ver qué efecto tiene.",
       "**Dónde encontrar cada dato.** Los costos fijos están en tus recibos y extractos del último mes: alquiler, servicios, cuotas y sueldos. El precio promedio sale de dividir lo que vendiste en un periodo entre el número de ventas. El costo variable se calcula sumando lo que cuesta producir o comprar lo que se lleva cada cliente. Si no tienes un dato exacto, pon una estimación y anótala como supuesto: es mejor un cálculo con supuestos claros que ninguno.",
-      "**Cuando quieres una ganancia.** Suma la ganancia mensual que quieres a los costos fijos y vuelve a calcular: el resultado es lo que necesitas vender para cubrir los costos y esa ganancia. Por ejemplo, si Café Mirador (ficticio) quisiera además 500 al mes, tendría que cubrir 3060: 3060 ÷ 2.70 = 1133.3, es decir 1134 pedidos y 4536 en dinero. Sigue siendo un umbral, no una predicción.",
+      "**Cuando quieres una ganancia.** Suma la ganancia mensual que quieres a los costos fijos y vuelve a calcular: el resultado es lo que necesitas vender para cubrir los costos y esa ganancia. Por ejemplo, si Café Mirador (ficticio) quisiera además 500 al mes, tendría que cubrir 3060: 3060 ÷ 3.50 = 874.3, es decir 875 clientes y 4375 en dinero. Sigue siendo un umbral, no una predicción.",
       "**Lo que este método no hace.** No predice ventas, no distingue entre productos con márgenes muy distintos (usa un promedio) y no da asesoría contable ni tributaria.",
     ],
   },
