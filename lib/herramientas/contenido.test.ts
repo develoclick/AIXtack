@@ -53,7 +53,10 @@ test("una página no publicada nunca aparece en listados, áreas ni relacionadas
   const borrador = todas.find((h) => !h.publicado);
   if (borrador) {
     const apunta = { ...borrador, relacionadas: [`${borrador.meta.area}/${borrador.meta.slug}`] };
-    assert.deepEqual(await relacionadasDe(apunta), []);
+    // En producción sin vista previa, un borrador no enseña otros borradores.
+    assert.deepEqual(await relacionadasDe(apunta, true), []);
+    // Una página publicada nunca enlaza a un borrador, ni siquiera con la vista previa activa.
+    assert.deepEqual(await relacionadasDe({ ...apunta, publicado: true }, false), []);
   }
 });
 
@@ -96,4 +99,22 @@ test("la detección de notas de producción no confunde la palabra «todo» con 
   assert.equal(notaDeProduccion("Aquí va la captura pendiente"), true);
   assert.equal(notaDeProduccion("[completar]"), true);
   assert.equal(notaDeProduccion("Puedes reemplazar el color si lo prefieres."), false);
+});
+
+test("las 15 páginas tienen 2–3 relacionadas válidas: URLs nuevas que existen, sin repetir y sin apuntarse a sí mismas", async () => {
+  const todas = (await listarTodas()).filter((h) => !h.interna);
+  assert.equal(todas.length, 15);
+  const existentes = new Set(todas.map((h) => `${h.meta.area}/${h.meta.slug}`));
+  for (const h of todas) {
+    const propia = `${h.meta.area}/${h.meta.slug}`;
+    assert.ok(h.relacionadas.length >= 2 && h.relacionadas.length <= 3, `${propia}: ${h.relacionadas.length} relacionadas`);
+    assert.equal(new Set(h.relacionadas).size, h.relacionadas.length, `${propia}: relacionadas repetidas`);
+    for (const r of h.relacionadas) {
+      assert.ok(/^[a-z]+\/[a-z0-9-]+$/.test(r) && !r.includes("guias"), `${propia}: «${r}» no es una URL nueva`);
+      assert.ok(existentes.has(r), `${propia}: «${r}» no existe`);
+      assert.notEqual(r, propia);
+    }
+    // Con la vista previa (borradores visibles) el bloque 12 sale completo.
+    assert.equal((await relacionadasDe(h, false)).length, h.relacionadas.length, `${propia}: el bloque «Siguiente paso» no saldría completo`);
+  }
 });

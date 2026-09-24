@@ -6,7 +6,7 @@ import { rutaHerramienta, type HerramientaCargada } from "@/lib/herramientas/reg
 
 const TIPO: Record<string, string> = { generador: "Generador", calculadora: "Calculadora", analizador: "Analizador", kit: "Kit" };
 
-/** Bloque 12: 2–3 herramientas relacionadas. Solo llegan las PUBLICADAS (las filtra `relacionadasDe`). */
+/** Bloque 12: 2–3 herramientas relacionadas. Las filtra `relacionadasDe` (una página publicada solo recibe publicadas). */
 export function Relacionadas({ herramientas }: { herramientas: HerramientaCargada[] }) {
   if (herramientas.length === 0) return null;
   return (
@@ -17,6 +17,7 @@ export function Relacionadas({ herramientas }: { herramientas: HerramientaCargad
             <span className="flex flex-wrap items-center gap-2">
               <span className={ui.tagNeutral}>{TIPO[h.meta.tipo]}</span>
               <span className="text-sm text-muted-foreground">{getCategory(h.meta.area)?.name}</span>
+              {!h.publicado && <span className={ui.tag}>Borrador · en revisión</span>}
             </span>
             <span className="mt-3 text-[1.02rem] font-semibold leading-snug text-guide-ink">{h.meta.titulo}</span>
             <span className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{h.meta.descripcion}</span>

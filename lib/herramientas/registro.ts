@@ -90,12 +90,16 @@ export async function obtenerHerramienta(area: string, slug: string): Promise<He
   return (await listarTodas()).find((h) => h.meta.area === area && h.meta.slug === slug);
 }
 
-/** «area/slug» → herramienta, solo si está publicada. */
-export async function relacionadasDe(h: Herramienta): Promise<HerramientaCargada[]> {
-  const publicadas = await listarPublicadas();
+/**
+ * «area/slug» → herramienta. Una página PUBLICADA solo enlaza a páginas publicadas. Un borrador enlaza a lo que su
+ * contexto deja ver (`listarVisibles`): en producción sin vista previa, solo publicadas (bloque oculto); con
+ * `next dev` o MOSTRAR_BORRADORES=true, también borradores, para poder revisar el bloque «Siguiente paso».
+ */
+export async function relacionadasDe(h: Herramienta, produccion: boolean = esProduccion && !vistaPreviaDeBorradores): Promise<HerramientaCargada[]> {
+  const candidatas = h.publicado ? await listarPublicadas() : await listarVisibles(produccion);
   return h.relacionadas.flatMap((ruta) => {
     const [area, slug] = ruta.split("/");
-    const destino = publicadas.find((p) => p.meta.area === area && p.meta.slug === slug);
+    const destino = candidatas.find((p) => p.meta.area === area && p.meta.slug === slug);
     return destino ? [destino] : [];
   });
 }
