@@ -111,14 +111,6 @@ Antes de responder, comprueba que cada semana tiene exactamente la cantidad de p
 
   ejemplo: {
     negocio: "Restaurante Mesa Larga (ficticio), restaurante familiar; la dueña dedica tres horas por semana a las redes",
-    datos: {
-      "Tiempo semanal": "3 horas, con una reserva del 20 % para imprevistos",
-      "Tiempo por publicación": "25 minutos de producción y 5 de publicación",
-      "Publicaciones por semana": "4",
-      Días: "Se produce el lunes; se publica martes, jueves, viernes y sábado; nunca domingo",
-      "Fecha propia": "Aniversario del restaurante: sábado de la semana 3",
-      Objetivo: "Que reserven mesa entre semana",
-    },
     resultado: {
       "Minutos usables por semana": "144",
       "Publicaciones que caben": "4 (de 30 minutos cada una)",

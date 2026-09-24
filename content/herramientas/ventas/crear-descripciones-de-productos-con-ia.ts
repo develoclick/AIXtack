@@ -66,12 +66,6 @@ Antes de responder, comprueba que cada dato de las dos versiones está en mis da
 
   ejemplo: {
     negocio: "Luz de Cera (ficticio), taller de velas artesanales de dos personas que vende en su tienda online y en ferias",
-    datos: {
-      Producto: "Vela Cedro y Vainilla, 200 g",
-      "Datos comprobados": "Cera de soja, mecha de algodón, vaso de vidrio con tapa de madera, aroma con notas de cedro y vainilla, 200 g netos, 9 cm de alto y 8 cm de diámetro, hecha a mano en lotes pequeños, cuidados de uso",
-      "Sin confirmar": "Porcentaje de soja de la cera, cuántas horas dura la vela y certificaciones de seguridad",
-      "Preguntas de los clientes": "¿Cuánto mide? ¿Cuánto dura? ¿Cómo se cuida?",
-    },
     capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },

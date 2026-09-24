@@ -87,7 +87,7 @@ test("las capturas pendientes se dibujan solo en revisión: con la vista previa 
   const h = (await listarTodas()).find((x) => x.meta.slug === "crear-afiches-con-ia")!;
   assert.deepEqual(pendientesVisibles(h.capturasPendientes, false), []);
   assert.equal(pendientesVisibles(h.capturasPendientes, true).length, 2);
-  const html = (mostrar: boolean) => renderToStaticMarkup(createElement(EjemploReal, { ejemplo: h.ejemplo, pendientes: pendientesVisibles(h.capturasPendientes, mostrar) }));
+  const html = (mostrar: boolean) => renderToStaticMarkup(createElement(EjemploReal, { ejemplo: h.ejemplo, datos: [], pendientes: pendientesVisibles(h.capturasPendientes, mostrar) }));
   assert.match(html(true), /prueba-01\.webp/);
   assert.match(html(true), /border-dashed/);
   assert.doesNotMatch(html(false), /prueba-01\.webp|border-dashed|pendiente/);

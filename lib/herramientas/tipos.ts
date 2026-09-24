@@ -148,7 +148,6 @@ export interface CapturaPendiente {
 export interface EjemploReal {
   /** Lleva «(ficticio)» o «(ficticia)» la primera vez que aparece. */
   negocio: string;
-  datos: Record<string, string>;
   /**
    * Lo que sale del caso, línea por línea (por ejemplo, los niveles de un afiche). Debe coincidir con
    * la captura real: si cambia la captura, cambia esto.

@@ -69,14 +69,6 @@ Antes de responder, comprueba que cada dato de cada versión está en mis datos,
 
   ejemplo: {
     negocio: "Ferretería Casa y Clavo (ficticia), ferretería de barrio con tres personas en el mostrador",
-    datos: {
-      "¿Qué anuncias?": "Herramientas manuales: martillos, destornilladores, alicates y llaves",
-      Oferta: "20 % de descuento en herramientas manuales",
-      Beneficio: "Varias marcas en un solo local y asesoría para elegir la adecuada",
-      Vigencia: "Solo el sábado 10 de octubre, de 9:00 a 14:00, en el local. Hasta agotar stock por producto. No acumulable con otras ofertas.",
-      Respaldo: "12 años atendiendo en el mismo local",
-      Acción: "Pasar por el local el sábado. Calle Los Pinos con calle 5",
-    },
     capturas: [
       {
         src: "/img/marketing/crear-anuncios-con-ia/prueba-prompt-01.webp",

@@ -72,16 +72,6 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
 
   ejemplo: {
     negocio: "Panadería La Espiga (ficticia), panadería de barrio con vitrina hacia la calle",
-    datos: {
-      Oferta: "Combo de fin de semana: 6 panes y 1 pan dulce",
-      Precio: "$6",
-      "Días y horario": "Sábado y domingo, de 7:00 a 13:00",
-      "Acción": "Entrar a comprar el combo",
-      Lugar: "Panadería La Espiga, Av. Ejemplo 123 (dirección ficticia)",
-      Condiciones: "Hasta agotar existencias. Máximo 2 combos por persona.",
-      Tamaño: "A4",
-      "Herramienta de diseño": "Canva",
-    },
     resultado: {
       "Nivel 1 · Titular": "Combo de fin de semana: 6 panes y 1 pan dulce por $6",
       "Nivel 2 · Apoyo": "Sábado y domingo, de 7:00 a 13:00",

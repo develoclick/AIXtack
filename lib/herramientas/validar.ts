@@ -42,7 +42,7 @@ export function textosVisibles(h: Herramienta): string[] {
   }
   t.push(...(h.pasos ?? []));
   for (const m of h.mejoras) t.push(m.label, m.prompt);
-  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.datos), ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
+  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
   for (const c of h.ejemplo.capturas) t.push(c.alt, c.leyenda);
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);

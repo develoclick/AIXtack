@@ -71,14 +71,6 @@ Antes de responder, comprueba que cada frase con un hecho se apoya en mis hechos
 
   ejemplo: {
     negocio: "Luz de Barrio (ficticio), tienda online de velas artesanales que vende por Instagram y WhatsApp",
-    datos: {
-      Reclamo: "Un pedido de regalo que llegó el martes, cuando el cliente esperaba el jueves, para una fecha límite del sábado",
-      "Hechos confirmados": "Entregado el martes 9; se le informó «entre el jueves y el viernes»; salió el viernes 5 y no el martes 2 por falta de cajas",
-      "Sin confirmar": "La caja golpeada y los otros dos mensajes",
-      "Sí ofrece": "Devolver el costo del envío en hasta 5 días hábiles y un cupón del 10 % por 60 días",
-      "No ofrece": "Devolver el total del pedido",
-      "Siguiente paso": "Que responda con una foto de la caja",
-    },
     capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },

@@ -71,12 +71,6 @@ Antes de responder, comprueba que cada paso, herramienta y plazo salió de lo qu
 
   ejemplo: {
     negocio: "Cerámica Sol (ficticia), tienda online de cerámica artesanal atendida por una sola persona",
-    datos: {
-      Proceso: "Registrar un pedido, desde el aviso hasta que sale el paquete",
-      "Lo que existe": "Siete líneas de notas de un recorrido real",
-      "Quién lo hará": "Mateo, ayudante a tiempo parcial que nunca lo hizo y empieza el lunes",
-      "Termina cuando": "El pedido dice «Enviado», la fila de la hoja tiene el seguimiento y el stock está descontado",
-    },
     resultado: {
       "Lo que Lucía recordó": "7 pasos: llega el correo, abre el panel, revisa el stock, anota el pedido, empaca, hace la etiqueta y marca «Enviado»",
       "Lo que salió en la entrevista": "12 pasos: el proceso real tiene cinco pasos más que no estaban en las notas",

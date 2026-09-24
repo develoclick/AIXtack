@@ -110,12 +110,6 @@ Antes de responder, comprueba que cada fila es una tarea mía, que no inventaste
 
   ejemplo: {
     negocio: "Lavandería Brisa (ficticia), negocio familiar con tres personas y casi ninguna hora libre",
-    datos: {
-      Pendientes: "8 tareas escritas tal como salieron: pagar la factura de la luz, arreglar una lavadora, responder una reseña, pedir detergente, actualizar precios, preguntar por un seguro, hacer el inventario de bolsas y publicar el horario de feriados",
-      "Fechas firmes": "La factura de la luz vence el 10; el horario de feriados debe estar publicado antes del día 20",
-      "Tiempo de Ana": "45 minutos por día, cinco días por semana, con una rutina diaria de 15 minutos",
-      "Tareas de esta semana": "4, de unos 30 minutos cada una",
-    },
     resultado: {
       "Minutos libres para tareas": "150 (225 de la semana menos 75 de rutina)",
       "Tareas que caben": "5",

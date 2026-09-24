@@ -114,12 +114,6 @@ Antes de responder, comprueba que cada cifra está en los cálculos de la págin
 
   ejemplo: {
     negocio: "Verde Hogar (ficticio), tienda de plantas de interior abierta todos los días",
-    datos: {
-      Productos: "Monstera, Helecho, Pack de suculentas, Maceta y Fertilizante",
-      "Período": "Agosto y septiembre; en septiembre las ventas bajaron",
-      "Lo que pasó": "Agosto: la maceta costó $5 en lugar de $6 todo el mes. Septiembre: tienda cerrada 3 días por una reforma, sin promoción; no se registró si hubo faltantes de stock",
-      "Decisión pendiente": "Repetir la promoción o cambiar el surtido",
-    },
     resultado: {
       "Total vendido (14 ventas)": "$347.00",
       "Agosto": "$215.00 · 4 días con ventas · $53.75 por día con ventas",

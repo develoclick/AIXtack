@@ -92,13 +92,6 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
 
   ejemplo: {
     negocio: "Café Mirador (ficticio), cafetería de barrio con dos personas en el mostrador",
-    datos: {
-      Productos: "Café $2.50 (costo $0.60) · Croissant $2.00 (costo $0.70) · Jugo natural $3.00 (costo $1.10)",
-      Objetivo: "Pasar de 20 a 24 pedidos de café + croissant por semana en la franja lenta",
-      Franja: "Martes a jueves, de 9:30 a 11:30, durante tres semanas",
-      Límites: "Descuento máximo del 20 % y nada por debajo del costo",
-      "Condición de parada": "Detener si tras dos semanas se venden menos de 24 pedidos por semana",
-    },
     resultado: {
       "Promoción A · Combo (1 café + 1 croissant a $4.00)": "Margen $3.20 → $2.70 · descuento real 11.1 % · ventas necesarias +18.5 % (23.7 pedidos por semana) · respeta el límite",
       "Promoción D · Ven acompañado": "Descartada: descuento real 22.2 %, supera el límite del 20 %",

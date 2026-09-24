@@ -109,12 +109,6 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
 
   ejemplo: {
     negocio: "Café Mirador (ficticio), cafetería de barrio que abre 26 días al mes en un local alquilado y vive del gasto promedio de cada cliente",
-    datos: {
-      "Costos fijos del mes": "Alquiler 800 · sueldos 1400 · servicios 200 · otros 160",
-      "Precio promedio de una venta": "5.00 (gasto promedio por cliente: café, croissant, combos y jugos)",
-      "Costo variable por venta": "1.50",
-      "Días que abre al mes": "26",
-    },
     resultado: {
       "Costos fijos del mes": "2560",
       "Margen de contribución por venta": "3.50 (70.0 % del precio)",

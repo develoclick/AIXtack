@@ -67,14 +67,6 @@ Antes de responder, comprueba que cada dato de cada opción está en mis datos, 
 
   ejemplo: {
     negocio: "Peluquería Rizo Fino (ficticia), peluquería de barrio con tres estilistas",
-    datos: {
-      Objetivo: "Vender: que reserven turno para martes o miércoles, los días con menos clientes",
-      "Tema o producto": "Tratamiento de hidratación con 15 % de descuento, solo martes y miércoles, hasta el 31 de octubre. Se reserva únicamente por mensaje.",
-      Red: "Instagram, con una imagen y texto",
-      "Llamada a la acción": "Escribir la palabra «turno» por mensaje para reservar",
-      "Muestra de voz": "«Pasa sin apuro. Te lavamos el pelo, charlamos un rato y te vas contenta. Aquí nadie corre.»",
-      Límites: "No prometer resultados en el cabello, no mostrar fotos de clientes sin permiso y no hablar de otras peluquerías",
-    },
     capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },

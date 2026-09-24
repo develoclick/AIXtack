@@ -116,14 +116,6 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
 
   ejemplo: {
     negocio: "Galletería Migas (ficticia), galletas artesanales por encargo y en ferias, con dos personas",
-    datos: {
-      Producto: "Una caja de 6 galletas; cada tanda rinde 24 galletas (4 cajas)",
-      Materiales: "12 por caja",
-      "Empaque y etiqueta": "3 por caja",
-      Trabajo: "15 minutos por caja, con una hora valorada en 20",
-      "Gastos fijos": "600 al mes, con 150 cajas vendidas al mes (supuesto)",
-      "Margen deseado": "40 % sobre el precio",
-    },
     resultado: {
       "Costo total por caja": "24 (12 materiales + 3 empaque + 5 trabajo + 4 gastos fijos)",
       "Precio para el 40 %": "40 (24 ÷ 0.60)",

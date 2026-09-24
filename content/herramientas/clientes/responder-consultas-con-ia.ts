@@ -65,13 +65,6 @@ Antes de responder, comprueba que cada dato del borrador está en USADO, que nin
 
   ejemplo: {
     negocio: "Taller Los Pinos (ficticio), taller mecánico de barrio con cuatro personas y una sola línea de WhatsApp",
-    datos: {
-      Consulta: "«¿Cuánto cuesta un cambio de aceite y me lo pueden hacer hoy? Creo que mi auto también hace un ruido raro al frenar.»",
-      "Cambio de aceite y filtro": "Desde $35, según el vehículo; se necesitan marca, modelo y año; tarda unas 2 horas",
-      "Turnos libres hoy": "15:00 y 16:30",
-      "Averías por mensaje": "No se dan diagnósticos: se invita a revisar el vehículo en el taller",
-      Garantía: "30 días en mano de obra",
-    },
     capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },

@@ -130,11 +130,6 @@ Antes de responder, comprueba que cada cita aparece tal cual en una reseña (bú
 
   ejemplo: {
     negocio: "Restaurante La Higuera (ficticio), restaurante familiar; su dueña guarda 25 reseñas ficticias del último trimestre",
-    datos: {
-      Opiniones: "25 reseñas ficticias, sin fecha ni autor",
-      Temas: "Comida, Servicio, Espera, Precio, Ambiente y Reservas, cada uno con sus palabras clave",
-      "Lo que quiere saber": "Qué queja se repite más y qué elogian sus clientes",
-    },
     resultado: {
       "Reseñas analizadas": "25",
       Comida: "9 de 25 (36.0 %)",

@@ -127,14 +127,6 @@ Antes de responder, comprueba que cada importe y cada total es idéntico al de l
 
   ejemplo: {
     negocio: "Maderas Rivera (ficticio), carpintería de muebles a medida con dos personas",
-    datos: {
-      Cliente: "Sra. Paredes: una cocina con tres módulos bajos, dos altos, una encimera de 2 m e instalación",
-      "Con descuento del 10 %": "3 módulos bajos a 450 y 2 módulos altos a 300",
-      "Sin descuento": "1 encimera de madera a 700 y 12 horas de instalación a 25",
-      "Impuesto y anticipo": "Impuesto de 20 % sobre el subtotal con descuento; anticipo de 40 % sobre el total",
-      Vigencia: "15 días desde la emisión: del 12 al 27 de marzo",
-      "Pendiente de decidir": "El plazo de entrega y la garantía",
-    },
     resultado: {
       Subtotal: "2950 (1950 con descuento + 1000 sin descuento)",
       "Descuento del 10 % sobre 1950": "195",

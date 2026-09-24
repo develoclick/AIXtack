@@ -61,7 +61,6 @@ Usa las cifras de los cálculos ya hechos solo si ayudan al cliente a entender l
   ],
   ejemplo: {
     negocio: "Café Mirador (ficticio)",
-    datos: { Producto: "Combo de café y croissant", "Precio normal": "$4.50", Costo: "$1.30", "Precio con promoción": "$4.00" },
     capturas: [], // TODO: página interna sin capturas.
     queCorregi: ["Quité una frase que prometía más clientes.", "Añadí el horario de la promoción.", "Comprobé el precio contra la hoja."],
   },
