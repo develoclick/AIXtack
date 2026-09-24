@@ -22,7 +22,7 @@ export interface CampoPerfil {
 export const CAMPOS_PERFIL: CampoPerfil[] = [
   { clave: "nombre", label: "Nombre del negocio", ejemplo: "Panadería La Espiga" },
   { clave: "rubro", label: "Rubro", ejemplo: "Panadería" },
-  { clave: "ciudad", label: "Ciudad y país", ejemplo: "Lima, Perú" },
+  { clave: "ciudad", label: "Ciudad y país", ejemplo: "Ciudad de ejemplo" },
   { clave: "queVendes", label: "Qué vendes (principal)", ejemplo: "Pan del día, pan dulce, tortas por encargo", largo: true },
   { clave: "clientes", label: "Clientes típicos", ejemplo: "Familias del barrio, oficinistas por la mañana", largo: true },
   { clave: "tono", label: "Tono", ejemplo: "Cercano", tipo: "seleccion", opciones: ["Cercano", "Profesional", "Divertido"] },
@@ -30,7 +30,7 @@ export const CAMPOS_PERFIL: CampoPerfil[] = [
   { clave: "direccion", label: "Dirección", ejemplo: "Av. Ejemplo 123" },
   { clave: "horario", label: "Horario", ejemplo: "L–D 6:30–20:00" },
   { clave: "contacto", label: "Contacto", ejemplo: "WhatsApp 999 999 999" },
-  { clave: "moneda", label: "Moneda", ejemplo: "S/" },
+  { clave: "moneda", label: "Moneda", ejemplo: "$" },
 ];
 
 export function etiquetaPerfil(clave: PerfilClave): string {
