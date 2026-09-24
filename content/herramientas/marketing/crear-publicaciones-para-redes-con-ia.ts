@@ -158,7 +158,7 @@ Antes de responder, comprueba que cada dato de cada opción está en mis datos, 
     { p: "¿Sirve con cualquier asistente de IA?", r: "El prompt es texto y puedes pegarlo en el asistente que uses, pero cada uno responde a su manera y puede equivocarse: por eso el método termina en tu verificación." },
     { p: "¿Le puedo pedir la mejor hora para publicar?", r: "No: la IA no ve las estadísticas de tu cuenta. Mira las tuyas. Los hashtags sí puedes pedirlos, pero verifica cada uno antes de usarlo." },
     { p: "¿Puede la IA generar la imagen?", r: "Esta herramienta pide solo el texto y el texto alternativo. Si generas una imagen, revisa que no incluya letras, números ni marcas que no sean tuyas." },
-    { p: "¿Tengo que revisar las reglas de la plataforma?", r: "Sí. Las reglas sobre promociones e imágenes dependen de la plataforma y de tu país, y esta herramienta no las cubre." },
+    { p: "¿Puedo publicar lo que devuelve la IA sin mirar las normas de la red?", r: "No sin mirarlas: las reglas sobre promociones, imágenes y uso de marcas dependen de cada red y de tu país, y esta herramienta no las cubre." },
   ],
 
   relacionadas: ["marketing/calendario-de-contenido-con-ia", "marketing/crear-anuncios-con-ia"],

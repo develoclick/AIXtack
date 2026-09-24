@@ -142,19 +142,19 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
     {
       rubro: "Restaurante",
       ejemplo:
-        "Fonda El Sabor (ficticia): «Menú del día: sopa, plato de fondo y bebida por $5» · «De lunes a viernes, de 12:00 a 15:00» · «Reserva por WhatsApp · 999 999 999» · «Hasta agotar existencias.»",
+        "Fonda El Sabor (ficticia), un afiche para la vitrina con cuatro niveles: titular «Menú del día: sopa, plato de fondo y bebida por $5»; apoyo «De lunes a viernes, de 12:00 a 15:00»; contacto «Reserva por WhatsApp · 999 999 999»; letra pequeña «Hasta agotar existencias.»",
       consejo: "El protagonista es lo que come el cliente y su precio, no el nombre del local. El nombre baja al nivel 3, junto al contacto.",
     },
     {
       rubro: "Tienda",
       ejemplo:
-        "Boutique Aldea (ficticia): «Camisas: 2 por $15» · «Solo este sábado, de 10:00 a 18:00» · «Pasa por la tienda · Calle Ejemplo 45» · «No acumulable con otras ofertas.»",
+        "Boutique Aldea (ficticia), un afiche para la puerta: titular «Camisas: 2 por $15»; apoyo «Solo este sábado, de 10:00 a 18:00»; contacto «Pasa por la tienda · Calle Ejemplo 45»; letra pequeña «No acumulable con otras ofertas.»",
       consejo: "Si la oferta dura un solo día, la fecha va en el nivel 2 y bien visible: es lo que decide si la persona viene hoy.",
     },
     {
       rubro: "Servicios",
       ejemplo:
-        "Estudio de uñas Brillo (ficticio): «Manicura con diseño: $12» · «Martes y miércoles, con cita» · «Reserva por WhatsApp · 999 999 999» · «Cupos limitados por día.»",
+        "Estudio de uñas Brillo (ficticio), un afiche para la recepción: titular «Manicura con diseño: $12»; apoyo «Martes y miércoles, con cita»; contacto «Reserva por WhatsApp · 999 999 999»; letra pequeña «Cupos limitados por día.»",
       consejo: "Una sola acción y un solo contacto. Si pones teléfono, redes y correo con el mismo tamaño, nadie sabe cuál usar.",
     },
   ],

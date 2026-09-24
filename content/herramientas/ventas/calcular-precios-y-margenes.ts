@@ -147,7 +147,7 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
   checklist: [
     "Cada dato tiene su origen y los supuestos están marcados como supuestos.",
     "Puse un valor a mi hora de trabajo, aunque hoy no me la pague, y sé que es una decisión mía.",
-    "Comprobé una cuenta con una calculadora aparte.",
+    "Recalculé el precio sugerido en una hoja aparte antes de aceptarlo.",
     "Comparé el precio con lo que pagan mis clientes y con lo que cobran otros, que la calculadora no sabe.",
     "Probé qué pasa con mi margen si suben los costos o bajan las ventas, y consulté a un profesional lo que corresponda a impuestos y precios.",
   ],

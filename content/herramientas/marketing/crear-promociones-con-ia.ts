@@ -111,7 +111,7 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
         etiqueta: "Prueba real",
         ancho: 1087,
         alto: 544,
-        leyenda: "Prueba real, con el prompt de la versión anterior de esta guía: las cuatro alternativas, todavía sin cifras.",
+        leyenda: "Prueba real del método anterior: las cuatro alternativas, todavía sin cifras.",
       },
       {
         src: "/img/marketing/crear-promociones-con-ia/prueba-prompt-04.webp",
@@ -221,7 +221,7 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
       "**El error más frecuente (ilustración, caso ficticio).** Aplicar el 15 % al margen en lugar de al precio: 5.10 × 0.85 = 4.34, cuando lo correcto es 6.375 − 2.40 = 3.975, y las ventas necesarias pasan de +17.6 % a +28.3 %. En la prueba real la IA no cometió este error; por eso las cuentas de esta página las hace una fórmula y no la IA.",
       "**Punto de equilibrio de la prueba.** Con 20 pedidos por semana y un margen de $3.20 ganas $64.00; con la promoción A y los mismos 20 pedidos, $54.00. Con 24 pedidos, 24 × $2.70 = $64.80, casi lo mismo que hoy. El punto de equilibrio está en 23.7 pedidos: por eso la condición de parada de este caso es «menos de 24».",
       "**Rúbrica de seis criterios** para contrastar cuentas ajenas, con 0, 1 o 2 puntos cada una: usa solo mis datos; convierte cada oferta en descuento; aplica las fórmulas pedidas; coincide con mi hoja; marca lo que rompe mis límites; no predice ventas.",
-      "**Pruebas reales del método anterior.** Las capturas de abajo son respuestas reales de una IA, sin editar, a los prompts encadenados de la versión anterior de esta guía, con los datos de Café Mirador. En ese método la IA calculaba y se contrastaba con la hoja: en la prueba, las cuatro filas coincidieron. La primera es una captura real de la hoja de datos del caso.",
+      "**Capturas del método anterior.** Estas imágenes son chats reales, sin editar, del método encadenado anterior, con los datos de Café Mirador (ficticio): allí la IA hacía las cuentas y el dueño las contrastaba con su hoja, y las cuatro filas coincidieron. La primera imagen es la hoja de datos del caso, no una respuesta de una IA.",
     ],
     capturas: [
       {

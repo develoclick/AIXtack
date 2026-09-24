@@ -17,6 +17,7 @@
     "capturas": "tsx scripts/capturas.ts",
     "qa": "tsx scripts/qa-interactivo.ts",
     "que-falta": "tsx scripts/que-falta.ts",
+    "duplicados": "tsx scripts/duplicados.ts",
     "guia:nueva": "tsx scripts/new-guide.ts"
   },
   "dependencies": {
