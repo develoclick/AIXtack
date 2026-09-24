@@ -33,7 +33,8 @@ async function leerArchivos(): Promise<{ area: AreaId; archivo: string }[]> {
       continue;
     }
     for (const hijo of hijos) {
-      if (!hijo.isFile() || !/\.ts$/.test(hijo.name) || /\.test\.ts$/.test(hijo.name)) continue;
+      // `isFile()` puede dar false para archivos de OneDrive «a petición» (puntos de reanálisis en Windows): se descartan solo las carpetas.
+      if (hijo.isDirectory() || !/\.ts$/.test(hijo.name) || /\.test\.ts$/.test(hijo.name)) continue;
       if (esProduccion && hijo.name.startsWith("_")) continue;
       entradas.push({ area: area.slug, archivo: hijo.name.replace(/\.ts$/, "") });
     }
