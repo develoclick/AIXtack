@@ -21,7 +21,7 @@ export default defineHerramienta({
     probadoFecha: null, // TODO: fecha real de la prueba (AAAA-MM-DD).
     actualizado: "2026-09-23",
     fechaPublicacion: "2026-09-18",
-    ogImage: "/img/ventas/calcular-precios-y-margenes/og.webp", // TODO: subir og.webp (1200×630).
+    ogImage: "/img/ventas/calcular-precios-y-margenes/og.webp",
   },
 
   antesDespues: {

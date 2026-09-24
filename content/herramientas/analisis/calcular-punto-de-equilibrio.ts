@@ -21,7 +21,7 @@ export default defineHerramienta({
     probadoEn: null, // TODO: IA con la que se hace la prueba real. Sin prueba real no se publica.
     probadoFecha: null, // TODO: fecha real de la prueba (AAAA-MM-DD).
     actualizado: "2026-09-23",
-    ogImage: "/img/analisis/calcular-punto-de-equilibrio/og.webp", // TODO: subir og.webp (1200×630).
+    ogImage: "/img/analisis/calcular-punto-de-equilibrio/og.webp",
   },
 
   antesDespues: {

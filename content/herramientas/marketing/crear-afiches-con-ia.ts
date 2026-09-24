@@ -23,7 +23,7 @@ export default defineHerramienta({
     probadoFecha: null, // TODO: fecha real de la prueba (AAAA-MM-DD).
     actualizado: "2026-09-23",
     fechaPublicacion: "2026-09-19", // la guía larga original se publicó ese día
-    ogImage: "/img/marketing/crear-afiches-con-ia/og.webp", // TODO: subir og.webp (1200×630).
+    ogImage: "/img/marketing/crear-afiches-con-ia/og.webp",
   },
 
   antesDespues: {

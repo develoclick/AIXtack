@@ -8,7 +8,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { OG_POR_DEFECTO, siteUrl } from "../site";
 import { listarTodas } from "./registro";
-import { herramientaArticleJsonLd, ogImageUrl } from "./seo";
+import { herramientaArticleJsonLd, ogImageUrl, tieneOgPropia } from "./seo";
 import type { Herramienta } from "./tipos";
 import { validarHerramienta } from "./validar";
 
@@ -52,4 +52,19 @@ test("publicado:true exige su propia og.webp (error); en borrador solo aviso", a
   assert.ok(pub({ ogImage: propia }, false).length > 0, "publicada con og propia que no existe: error");
   const borrador = con({ publicado: false }, { ogImage: propia }, false);
   assert.ok(!borrador.errores.some((e) => /og/.test(e)) && borrador.avisos.some((e) => /og/.test(e)), "borrador: solo aviso");
+});
+
+test("las 15 herramientas tienen su propia og.webp (1200×630) en public/img/{area}/{slug}/", async () => {
+  for (const h of (await listarTodas()).filter((x) => !x.interna)) {
+    assert.equal(h.meta.ogImage, `/img/${h.meta.area}/${h.meta.slug}/og.webp`, h.meta.slug);
+    const archivo = path.join(raiz, "public", h.meta.ogImage!);
+    assert.ok(fs.existsSync(archivo), `${h.meta.slug}: falta ${h.meta.ogImage}`);
+    const b = fs.readFileSync(archivo);
+    const tipo = b.toString("ascii", 12, 16);
+    const ancho = tipo === "VP8 " ? b.readUInt16LE(26) & 0x3fff : 1 + b.readUIntLE(24, 3);
+    const alto = tipo === "VP8 " ? b.readUInt16LE(28) & 0x3fff : 1 + b.readUIntLE(27, 3);
+    assert.deepEqual([ancho, alto], [1200, 630], `${h.meta.slug}: tamaño de la og`);
+    assert.ok(tieneOgPropia(h), h.meta.slug);
+    assert.equal(ogImageUrl(h), `${siteUrl}${h.meta.ogImage}`);
+  }
 });
