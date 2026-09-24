@@ -12,6 +12,7 @@
  * en public/) y la tabla en docs/qa/resultados.md. Sale con código 1 si algo falla.
  */
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { chromium, type Browser, type BrowserContext, type Page } from "playwright-core";
 import { calcular, formatear } from "../lib/herramientas/calculadora";
@@ -20,7 +21,10 @@ import { listarTodas, rutaHerramienta, type HerramientaCargada } from "../lib/he
 import { TEXTO_PRIVACIDAD } from "../lib/herramientas/perfil";
 
 const base = (process.argv[2] ?? "http://localhost:3100").replace(/\/$/, "");
-const salida = path.join(process.cwd(), "docs", "qa");
+// `--solo /area/slug`: recorre solo esa herramienta (lo usa `npm run publicar`); las capturas y el resultado van a una carpeta temporal.
+const soloIdx = process.argv.indexOf("--solo");
+const solo = soloIdx >= 0 ? process.argv[soloIdx + 1] : undefined;
+const salida = solo ? path.join(os.tmpdir(), "qa-solo") : path.join(process.cwd(), "docs", "qa");
 const VIEWPORTS = [
   { nombre: "375", ancho: 375, alto: 812, movil: true },
   { nombre: "1280", ancho: 1280, alto: 800, movil: false },
@@ -524,12 +528,15 @@ async function main() {
   fs.mkdirSync(salida, { recursive: true });
   const browser = await chromium.launch({ channel: "chrome", headless: true });
   const todas = (await listarTodas()).filter((h) => !h.interna);
+  if (solo && !todas.some((h) => rutaHerramienta(h.meta) === solo)) throw new Error(`No existe la herramienta ${solo}`);
   for (const v of VIEWPORTS) {
     console.log(`— ${v.nombre} px —`);
-    await pruebasPortada(browser, v);
-    await pruebasMiNegocio(browser, v);
-    await pruebasPerfil(browser, todas, v);
-    for (const h of todas) {
+    if (!solo) {
+      await pruebasPortada(browser, v);
+      await pruebasMiNegocio(browser, v);
+      await pruebasPerfil(browser, todas, v);
+    }
+    for (const h of todas.filter((x) => !solo || rutaHerramienta(x.meta) === solo)) {
       console.log(`  ${rutaHerramienta(h.meta)}`);
       await pruebasHerramienta(browser, h, v);
     }

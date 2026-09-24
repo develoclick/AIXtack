@@ -19,6 +19,7 @@
     "que-falta": "tsx scripts/que-falta.ts",
     "duplicados": "tsx scripts/duplicados.ts",
     "og": "tsx scripts/generar-og.ts",
+    "publicar": "tsx scripts/publicar.ts",
     "guia:nueva": "tsx scripts/new-guide.ts"
   },
   "dependencies": {
