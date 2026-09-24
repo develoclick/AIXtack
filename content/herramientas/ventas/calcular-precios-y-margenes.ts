@@ -174,17 +174,17 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
   rubros: [
     {
       rubro: "Restaurante",
-      ejemplo: "Fonda El Sabor (ficticia), plato del día: materiales $2.20, empaque $0.30, 10 minutos a $12 la hora ($2.00) y gastos fijos de $900 con 600 platos al mes ($1.50). Costo total $6.00; para un margen del 40 %, el precio es $10.00.",
+      ejemplo: "Fonda El Sabor (ficticia), un plato de fondo a la carta: materiales $2.20, empaque $0.30, 10 minutos a $12 la hora ($2.00) y gastos fijos de $2,400 con 1,600 platos al mes ($1.50). Costo total $6.00; para un margen del 40 %, el precio es $10.00.",
       consejo: "Los platos que compartes con otros (aceite, gas) entran en los gastos fijos: decide cuánto de cada gasto le toca a cada plato.",
     },
     {
       rubro: "Servicios",
-      ejemplo: "Estudio de uñas Brillo (ficticio): materiales $2.00, 45 minutos a $10 la hora ($7.50) y gastos fijos de $300 con 100 servicios al mes ($3.00). Costo total $12.50; para un margen del 50 %, el precio es $25.00.",
+      ejemplo: "Estudio de uñas Brillo (ficticio): materiales $2.00, 45 minutos a $10 la hora ($7.50) y gastos fijos de $900 con 300 servicios al mes ($3.00). Costo total $12.50; para un margen del 50 %, el precio es $25.00.",
       consejo: "En un servicio, tu tiempo es casi todo el costo. Si no le pones valor a tu hora, el precio parece rentable y no lo es.",
     },
     {
       rubro: "Tienda",
-      ejemplo: "Rincón (ficticia), un jarrón: compra $8.00, empaque $1.00, 6 minutos a $15 la hora ($1.50) y gastos fijos de $200 con 80 ventas al mes ($2.50). Costo total $13.00; para un margen del 35 %, el precio es $20.00.",
+      ejemplo: "Rincón (ficticia), un jarrón: compra $8.00, empaque $1.00, 6 minutos a $15 la hora ($1.50) y gastos fijos de $1,500 con 600 ventas al mes ($2.50). Costo total $13.00; para un margen del 35 %, el precio es $20.00.",
       consejo: "Si compras por volumen, el costo de materiales cambia con cada pedido: actualiza la calculadora cuando cambie un costo importante.",
     },
   ],

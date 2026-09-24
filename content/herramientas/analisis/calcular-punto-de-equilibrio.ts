@@ -164,17 +164,17 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
   rubros: [
     {
       rubro: "Restaurante",
-      ejemplo: "Fonda El Sabor (ficticia): costos fijos de $2,400 al mes, plato promedio de $8.00 y costo variable de $3.20. El margen de contribución es $4.80: necesita 500 platos al mes ($4,000); abriendo 25 días, son 20 platos al día.",
+      ejemplo: "Fonda El Sabor (ficticia): costos fijos de $2,400 al mes, gasto promedio por cliente de $8.00 (mezcla del menú del día a $5 y platos a la carta) y costo variable de $2.40. El margen de contribución es $5.60: necesita 429 clientes al mes ($3,432); abriendo 25 días, son 17.2 clientes al día.",
       consejo: "Si tu carta tiene platos muy distintos, usa el precio y el costo promedio de lo que realmente se vende, no del plato más caro.",
     },
     {
       rubro: "Servicios",
-      ejemplo: "Estudio de uñas Brillo (ficticio): costos fijos de $900, servicio promedio de $25 y materiales de $7. El margen de contribución es $18: necesita 50 servicios al mes ($1,250); abriendo 20 días, son 2.5 al día.",
+      ejemplo: "Estudio de uñas Brillo (ficticio): costos fijos de $900, servicio promedio de $25 y materiales de $2.00. El margen de contribución es $23: necesita 40 servicios al mes ($1,000); abriendo 20 días, son 2 al día.",
       consejo: "En un servicio con agenda, las horas vacías no se recuperan: mira cuántas citas al día necesitas y compáralas con tu agenda real.",
     },
     {
       rubro: "Tienda",
-      ejemplo: "Rincón (ficticia): costos fijos de $1,500, producto promedio de $20 y costo de compra de $13. El margen de contribución es $7: necesita 215 ventas al mes ($4,300); abriendo 26 días, son 8.3 al día.",
+      ejemplo: "Rincón (ficticia): costos fijos de $1,500, producto promedio de $20 y costo variable de $10.50 (compra, empaque y tiempo de atención). El margen de contribución es $9.50: necesita 158 ventas al mes ($3,160); abriendo 26 días, son 6.1 al día.",
       consejo: "Con márgenes chicos por venta, pequeños cambios de precio mueven mucho el punto de equilibrio: pruébalos en la calculadora.",
     },
   ],

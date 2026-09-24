@@ -173,7 +173,7 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
     },
     {
       rubro: "Tienda",
-      ejemplo: "Rincón (ficticia): artículo a $10.00 con costo de $4.00. Segunda unidad a mitad de precio: la canasta de dos vale $15.00 en vez de $20.00, el descuento real es 25 % y el margen baja de $12.00 a $7.00: necesita +71.4 %.",
+      ejemplo: "Rincón (ficticia): un artículo pequeño a $10.00 con costo de $4.00. Segunda unidad a mitad de precio: la canasta de dos vale $15.00 en vez de $20.00, el descuento real es 25 % y el margen baja de $12.00 a $7.00: necesita +71.4 %.",
       consejo: "«A mitad de precio» suena a poco, pero sobre la canasta de dos es un 25 %. Conviértelo antes de compararlo con tu límite.",
     },
     {
