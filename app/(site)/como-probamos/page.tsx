@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AUTOR_POR_DEFECTO, getAuthor } from "@/content/autores";
 import { JsonLd } from "@/components/seo/json-ld";
 import { EditorialHero } from "@/components/visual/editorial-hero";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
@@ -20,6 +21,7 @@ const etiquetas: [string, string][] = [
 ];
 
 export default function ComoProbamosPage() {
+  const autor = getAuthor(AUTOR_POR_DEFECTO)!.name;
   const updatedAt = institutionalUpdatedAt("/como-probamos");
 
   return (
@@ -85,7 +87,7 @@ export default function ComoProbamosPage() {
 
           <h2 id="probado-por">Cuándo aparece «Probado por»</h2>
           <p>
-            Cada herramienta publicada indica quién la probó, en qué asistente de IA y en qué fecha. Esa línea solo existe si la prueba existe: no la escribimos por adelantado ni la repetimos en páginas que no se han probado.
+            Cada herramienta publicada indica quién la probó ({autor}), en qué asistente de IA y en qué fecha. Esa línea solo existe si la prueba existe: no la escribimos por adelantado ni la repetimos en páginas que no se han probado.
           </p>
 
           <h2 id="calculos">Cómo comprobamos los cálculos</h2>

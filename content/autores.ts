@@ -5,7 +5,6 @@
  * ella misma confirme.
  */
 // TODO: bio breve del autor (la escribe el dueño del sitio; no se inventa ni se deduce). Mientras no exista, no se muestra.
-// TODO: confirmar el nombre con el que se firma (los estándares dicen «Nino»; se pidió «Nicolas»). Se cambia solo aquí.
 export interface Author {
   id: string;
   name: string;
@@ -18,7 +17,7 @@ export const authors: readonly Author[] = [
   { id: "develoclick", name: "DeveloClick", type: "Organization" },
 ];
 
-/** Quien prueba y firma las herramientas (persona) y quien edita y publica el sitio (organización). */
+/** Quien prueba y firma las herramientas (persona: Nicolas) y quien edita y publica el sitio (organización: DeveloClick). Todo el sitio lee el nombre de aquí. */
 export const AUTOR_POR_DEFECTO = "nicolas";
 export const EDITORIAL = "develoclick";
 

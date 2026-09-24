@@ -245,7 +245,7 @@ Texto visible obligatorio: *"Tus datos se guardan solo en este navegador. No los
 10. **Errores comunes:** 3–4 con su solución.
 11. **Preguntas frecuentes:** 4–6.
 12. **Siguiente paso:** 2–3 herramientas relacionadas.
-13. **Autor y verificación:** "Probado por Nino en [IA] el [fecha]" · "Actualizado el [fecha]".
+13. **Autor y verificación:** "Probado por Nicolas en [IA] el [fecha]" · "Actualizado el [fecha]".
 
 **Anuncios de AdSense:** después del bloque 6 y después del bloque 10. Nunca dentro del bloque 3 ni junto a "Copiar prompt".
 

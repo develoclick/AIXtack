@@ -2,6 +2,7 @@ import Link from "next/link";
 import { EditorialHero } from "@/components/visual/editorial-hero";
 import { FloatingIllustration } from "@/components/visual/floating-illustration";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
 import { contactEmail, institutionalUpdatedAt, siteName } from "@/lib/site";
 import { formatDate } from "@/lib/utils/format";
 
@@ -32,6 +33,9 @@ const toc: [string, string][] = [
   ["quien-esta-detras", "Quién está detrás"],
   ["como-se-financia", "Cómo se financia"],
 ];
+
+const autor = getAuthor(AUTOR_POR_DEFECTO)!.name;
+const editorial = getAuthor(EDITORIAL)!.name;
 
 export default function AboutPage() {
   const updatedAt = institutionalUpdatedAt("/sobre-nosotros");
@@ -134,8 +138,9 @@ export default function AboutPage() {
 
         <h2 id="quien-esta-detras">Quién está detrás</h2>
         <p>
-          {siteName} lo escribe y mantiene DeveloClick, que es también el responsable editorial y legal del sitio.
-          Cada herramienta lleva su firma y la fecha real de publicación y de actualización. Si encuentras un error,
+          {siteName} lo escribe y prueba {autor}, y lo publica {editorial}, responsable editorial y legal del sitio. Cada
+          herramienta lleva la firma de {autor} —«Probado por {autor} en [IA] el [fecha]», solo cuando esa prueba
+          existe— y la fecha real de actualización. Si encuentras un error,
           quieres proponer una tarea que te gustaría ver resuelta o tienes cualquier duda, escríbenos desde la{" "}
           <Link href="/contacto">página de contacto</Link> o a <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
         </p>
