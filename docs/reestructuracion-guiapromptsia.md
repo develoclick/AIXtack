@@ -103,7 +103,7 @@ Los campos del **perfil** (sección 6) se completan solos. Aquí están solo los
 
 ### 3. /marketing/crear-afiches-con-ia — Generador (PILOTO)
 - **Campos:** oferta · precio · días y horario · lugar · condiciones · tamaño (A4 / A3) · herramienta de diseño (Canva, otra).
-- **Resultado:** texto en 4 niveles (N1–N4), recortado a menos de 30 palabras; un brief para diseñar; un prompt de imagen **sin texto**.
+- **Resultado:** texto en 4 niveles (N1–N4), con un total de menos de 40 palabras; un brief para diseñar; un prompt de imagen **sin texto**.
 - **Ejemplo real:** La Espiga (captura del chat + afiche final con la foto de los panes).
 
 ### 4. /marketing/crear-publicaciones-para-redes-con-ia — Generador

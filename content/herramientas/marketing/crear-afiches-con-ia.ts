@@ -38,6 +38,7 @@ export default defineHerramienta({
     { id: "accion", label: "¿Qué quieres que haga quien lo lea?", tipo: "texto", ejemplo: "Entrar a comprar el combo", requerido: true, ayuda: "Una sola acción: venir, llamar, escribir o reservar." },
     { id: "lugar", label: "Lugar o contacto que irá en el afiche", tipo: "texto", ejemplo: "Panadería La Espiga, Av. Ejemplo 123", requerido: true, ayuda: "Solo el dato que sirve a esa acción: una dirección, un teléfono o un enlace." },
     { id: "condiciones", label: "Condiciones", tipo: "largo", ejemplo: "Hasta agotar existencias. Máximo 2 combos por persona.", ayuda: "Opcional. Límites y letra pequeña, tal como deben aparecer." },
+    { id: "colores", label: "Colores de tu marca", tipo: "texto", ejemplo: "Texto #5A3A22 sobre fondo #F4E9D8", ayuda: "Opcional. El color del texto y el del fondo del afiche, como códigos (por ejemplo #5A3A22). Si no los das, el brief los deja como [FALTA]." },
     { id: "tamano", label: "Tamaño", tipo: "seleccion", ejemplo: "A4", opciones: ["A4", "A3"], requerido: true },
     { id: "herramienta", label: "Herramienta de diseño", tipo: "seleccion", ejemplo: "Canva", opciones: ["Canva", "Otra herramienta"], requerido: true },
   ],
@@ -47,13 +48,13 @@ export default defineHerramienta({
   tarea: `Prepara el contenido de un afiche para mi negocio. Entrega tres cosas y usa solo los datos de arriba.
 
 1. TEXTO DEL AFICHE en cuatro niveles. Cada dato va en un solo nivel y se copia tal cual (cifras, horarios, direcciones); no lo completes ni lo reformules:
-- Nivel 1 · Titular (lo único que se lee de lejos): la oferta con su precio.
+- Nivel 1 · Titular (lo único que se lee de lejos): exactamente «{{oferta}} por {{precio}}», sin cambiar ni una palabra ni el precio.
 - Nivel 2 · Apoyo: los días y el horario.
 - Nivel 3 · Acción y contacto: la acción única y el lugar o contacto.
 - Nivel 4 · Letra pequeña: las condiciones.
-Entre los cuatro niveles no pueden sumar 40 palabras o más: cuéntalas y dime el total. Si hay que recortar, quita adjetivos y repeticiones, nunca un dato ni una condición. Si un nivel no tiene dato, escribe [FALTA: qué dato] en vez de inventarlo.
+Entre los cuatro niveles deben sumar menos de 40 palabras: cuéntalas y dime el total. Si hay que recortar, quita adjetivos y repeticiones, nunca un dato ni una condición. Si un nivel no tiene dato, escribe [FALTA: qué dato] en vez de inventarlo.
 
-2. BRIEF PARA DISEÑAR en {{herramienta}}, tamaño {{tamano}}: orden de lectura, tamaño relativo de cada nivel (relativo, no en puntos ni centímetros), contraste, espacio y lo que no debe aparecer. No inventes colores, fuentes ni medidas: si falta un dato de marca o de impresión, escribe [FALTA: qué dato]. Para el contraste, pídeme comprobar el par de colores con un verificador; no afirmes que un par cumple.
+2. BRIEF PARA DISEÑAR en {{herramienta}}, tamaño {{tamano}}: orden de lectura, tamaño relativo de cada nivel (relativo, no en puntos ni centímetros), contraste, espacio y lo que no debe aparecer. Usa exactamente los colores que te di (texto y fondo) y no inventes otros, ni fuentes ni medidas: si falta un dato de marca o de impresión, escribe [FALTA: qué dato]. Para el contraste, pídeme comprobar el par de colores con un verificador; no afirmes que un par cumple.
 
 3. PROMPT DE IMAGEN SIN TEXTO para un generador de imágenes: pide una sola imagen de apoyo con el producto de mis datos, sin letras, números, logotipos ni carteles dentro de la imagen, y con espacio libre para colocar el texto encima.
 
@@ -61,11 +62,11 @@ No uses superlativos («el mejor», «único»), no añadas descuentos, ahorros,
 
 Formato de salida, en este orden y con estos títulos: TEXTO DEL AFICHE (Nivel 1, Nivel 2, Nivel 3, Nivel 4), TOTAL DE PALABRAS, DE DÓNDE SALE CADA DATO (copiado de mis datos o redactado por ti), BRIEF PARA DISEÑAR, PROMPT DE IMAGEN SIN TEXTO y FALTA.
 
-Antes de responder, comprueba que cada cifra, horario y dirección de los niveles coincide letra por letra con mis datos, que hay una sola acción y que el total de palabras es menor de 40. Corrige lo que no cumpla.`,
+Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{precio}}», que cada cifra, horario y dirección de los niveles coincide letra por letra con mis datos, que hay una sola acción y que el total es menos de 40 palabras. Corrige lo que no cumpla.`,
 
   mejoras: [
     { label: "Otros titulares", prompt: "Dame tres versiones del nivel 1 sin cambiar el precio ni la vigencia." },
-    { label: "Más corto", prompt: "Recorta el texto a menos de 30 palabras sin quitar ninguna condición: lo que salga del titular pásalo al nivel 4." },
+    { label: "Más corto", prompt: "Recorta el texto sin quitar ninguna condición: lo que salga del titular pásalo al nivel 4. Dime el nuevo total, que debe seguir siendo menos de 40 palabras." },
     { label: "Revisar los datos", prompt: "Lista cada cifra, horario y dirección del texto final y dime si coincide letra por letra con mis datos." },
     { label: "Imagen sin texto", prompt: "Reescribe el prompt de imagen para que no aparezca ninguna letra, número ni logotipo dentro de la imagen." },
   ],
@@ -80,6 +81,7 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
       "Total": "39 palabras (menos de 40)",
     },
     capturas: [],
+    transcripcion: "", // TODO: respuesta completa de la IA, copiada del MISMO chat de la captura «Prueba real», tal como salió. Vacío hasta la prueba: no se escribe a mano.
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
@@ -119,7 +121,7 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
     {
       titulo: "Un tope de palabras obliga a decidir",
       texto:
-        "El texto no puede sumar 40 palabras o más. Para respetarlo se quitan adjetivos y repeticiones, y lo necesario pero secundario baja a la letra pequeña. Eso es lo que hace que el titular se entienda en tres segundos.",
+        "El texto debe sumar menos de 40 palabras. Para respetarlo se quitan adjetivos y repeticiones, y lo necesario pero secundario baja a la letra pequeña. Eso es lo que hace que el titular se entienda en tres segundos.",
     },
     {
       titulo: "La IA prepara el mensaje; el diseño es tuyo",
@@ -175,7 +177,7 @@ Antes de responder, comprueba que cada cifra, horario y dirección de los nivele
     },
     {
       p: "¿Cuántas palabras debe tener un afiche?",
-      r: "No hay una cifra universal. Como referencia práctica, esta herramienta mantiene los cuatro niveles por debajo de 40 palabras y usa la prueba de los tres segundos: lo que no responde a qué ofreces, cuánto cuesta, hasta cuándo o qué hacer, sobra.",
+      r: "No hay una cifra universal. Como referencia práctica, esta herramienta mantiene los cuatro niveles en menos de 40 palabras y usa la prueba de los tres segundos: lo que no responde a qué ofreces, cuánto cuesta, hasta cuándo o qué hacer, sobra.",
     },
     {
       p: "¿Qué tamaño y resolución necesito para imprimir?",

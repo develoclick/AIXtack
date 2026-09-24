@@ -189,6 +189,8 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Faltan meta.probadoEn y meta.probadoFecha: sin prueba real no se publica.");
   publicada(h.ejemplo.capturas.length >= 1 && h.ejemplo.capturas.length <= 2, `Capturas: ${h.ejemplo.capturas.length} (deben ser 1–2 en el ejemplo real).`);
   publicada(h.ejemplo.capturas.some((c) => c.etiqueta === "Prueba real"), "Falta al menos una captura etiquetada «Prueba real».");
+  // La transcripción es la respuesta real del mismo chat de la prueba: sin prueba (IA y fecha) no debe existir.
+  if (h.ejemplo.transcripcion?.trim()) publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Hay «transcripcion» pero faltan meta.probadoEn y meta.probadoFecha: la transcripción es de la prueba real y no se inventa.");
   for (const c of [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])]) {
     error((ETIQUETAS_IMAGEN as readonly string[]).includes(c.etiqueta), `Captura ${c.src}: etiqueta «${c.etiqueta}» no válida (solo: ${ETIQUETAS_IMAGEN.join(" | ")}).`);
     error(Boolean(c.alt?.trim()), `Captura ${c.src}: el alt es obligatorio.`);

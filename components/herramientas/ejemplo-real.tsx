@@ -89,6 +89,15 @@ export function EjemploReal({ ejemplo, datos, calculos = [], pendientes = [] }: 
         </div>
       )}
 
+      {ejemplo.transcripcion?.trim() && (
+        <details className="mt-6 rounded-xl border bg-background">
+          <summary className="guide-focus flex min-h-11 cursor-pointer items-center px-4 font-medium text-guide-ink underline underline-offset-2">
+            Respuesta completa de la IA (transcripción del mismo chat)
+          </summary>
+          <pre className="max-h-[32rem] overflow-auto whitespace-pre-wrap break-words border-t p-4 font-mono text-[0.8rem] leading-relaxed">{ejemplo.transcripcion}</pre>
+        </details>
+      )}
+
       {ejemplo.queCorregi.length > 0 && (
         <div className="mt-6 rounded-xl border-l-[3px] border-brand bg-guide-surface px-5 py-4">
           <h3 className="text-base font-semibold text-guide-ink">Qué corregí yo</h3>

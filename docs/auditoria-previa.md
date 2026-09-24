@@ -479,7 +479,7 @@ Gravedad: **A** = puede invalidar una regla del encargo; **M** = afecta a SEO o 
 - N3 «Entrar a comprar el combo · Panadería La Espiga, Av. Ejemplo 123» → «Pasa por La Espiga · Av. Ejemplo 123»
 - N4 «Hasta agotar existencias. Máximo 2 combos por persona.» → «Máximo 2 combos por persona»
 
-Usaré los del encargo (son «exactos»), pero **suman 39 palabras** (13 + 7 + 11 + 8, sin contar «·») y el propio encargo pide «recortado a menos de 30 palabras»: el ejemplo contradice la regla que enseña (la guía actual queda justo en 30). Necesito que elijas: subir el límite a 40, o recortar los textos. Ningún texto sale de una captura real, así que el ejemplo real del piloto también sería ficticio hasta que lo pruebes.
+Usaré los del encargo (son «exactos»), pero **suman 39 palabras** (13 + 7 + 11 + 8, sin contar «·») y el propio encargo pide «recortado a menos de 30 palabras»: el ejemplo contradice la regla que enseña (la guía actual queda justo en 30). Necesito que elijas: subir el límite a 40, o recortar los textos. Ningún texto sale de una captura real, así que el ejemplo real del piloto también sería ficticio hasta que lo pruebes. **Decidido después: el límite de la herramienta es «menos de 40 palabras» (el ejemplo suma 39).**
 
 **R8 · Redirecciones a un área genérica (M).** Las 4 guías sin equivalente irían por 301 a `/marketing/crear-promociones-con-ia` y a `/analisis`. Google puede tratar una redirección a una página de contenido distinto como «soft 404», y el sitio ya decidió lo contrario en `content/redirects.ts` («solo existe una regla cuando la página de destino responde a la misma intención; sin equivalente, 410»). Decisión D3.
 

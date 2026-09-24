@@ -154,6 +154,12 @@ export interface EjemploReal {
    */
   resultado?: Record<string, string>;
   capturas: CapturaEjemplo[];
+  /**
+   * Respuesta completa de la IA, copiada tal cual del MISMO chat de la captura «Prueba real». Se muestra en un bloque
+   * plegable «Respuesta completa de la IA (transcripción del mismo chat)». Vacía hasta que exista la prueba: nunca se
+   * escribe a mano ni se genera.
+   */
+  transcripcion?: string;
   /** «Qué corregí yo» (3 líneas). */
   queCorregi: string[];
 }
