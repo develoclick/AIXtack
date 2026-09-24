@@ -1,27 +1,27 @@
 # Verificación del cambio de rutas (estado actual)
 
-Regenerado el 2026-09-24 sobre `main` (local, sin push). Dominio base único: `https://www.guiapromptsia.com` (constante `siteUrl` en `lib/site.ts`). Comandos: `npm run build`, `npm test` (111 pruebas OK), `npm run herramientas:validar` (0 errores), `npm run sitio:verificar`, `npm run qa`, `npm run capturas`, `npm run contar-palabras`, `npm run que-falta`, `npm run duplicados`, `npm run og`, `npm run publicar`.
+Regenerado el 2026-09-24 sobre `main` (local, sin push). Dominio base único: `https://www.guiapromptsia.com` (constante `siteUrl` en `lib/site.ts`). Comandos: `npm run build`, `npm test` (123 pruebas OK), `npm run herramientas:validar` (0 errores), `npm run sitio:verificar`, `npm run qa`, `npm run capturas`, `npm run contar-palabras`, `npm run que-falta`, `npm run duplicados`, `npm run og`, `npm run publicar`.
 
 ## Estado
 
 - Las 15 herramientas siguen con `publicado: false` (noindex, fuera del sitemap). Lo único que falta en cada una son tus capturas reales, «Qué corregí yo» y la IA y la fecha de la prueba (las publica `npm run publicar`, ver `docs/como-publicar.md`).
 - Contenido: las 15 tienen entre 1.723 y 1.884 palabras editoriales (rango 1.500–2.500), meta descripción de 140–160 caracteres, su propia `og.webp` de 1200×630 y sus ejemplos con los mismos datos en todas las páginas (`docs/universo-de-negocios.md`).
 - Regla automática de indexación: un área y `/herramientas` son indexables y entran al sitemap solo con al menos 1 herramienta `publicado: true`. Hoy ninguna: noindex y el sitemap tiene solo la portada y las 6 institucionales.
-- Autor Nicolas (Person), publisher DeveloClick (Organization); «Probado por Nicolas en {IA} el {fecha}» solo si existe la prueba.
+- Autor y responsable legal: Nicolas (persona natural, Perú), con su biografía en `content/autores.ts` (ya no es un pendiente); DeveloClick es el nombre del proyecto (no una empresa registrada) y sigue como `publisher` del JSON-LD. Legal: ley aplicable y jurisdicción de la República del Perú, Ley N.° 29733 en Privacidad. `og:locale` es_PE.
+- «Probado por Nicolas en {IA} el {fecha}» solo si existe la prueba; debajo va la biografía corta con enlace a Sobre nosotros.
+- Afiches: colores de La Espiga (#5A3A22 sobre #F4E9D8), tope «menos de 40 palabras», nivel 1 exacto «… por $6» y `ejemplo.transcripcion` (desplegable, vacío hasta la prueba).
 - Validador: `publicado: true` exige 1.500–2.500 palabras, meta descripción 140–160, su og propia, ≥ 1 captura «Prueba real», 0 capturas pendientes, «Qué corregí yo» con 3 líneas, `probadoEn` y `probadoFecha`.
 - Las cajas de «captura pendiente» solo se ven con `NODE_ENV=development` (`npm run dev`); nunca en un build de producción ni en Vercel, aunque `MOSTRAR_BORRADORES` esté activa.
 
-## 1. Producción en vivo (https://www.guiapromptsia.com, despliegue de `c43aeee`)
+## 1. Producción en vivo (https://www.guiapromptsia.com, despliegue de `1a5e8a0`)
 
-Despliegue de Vercel: terminó bien (el canonical con `www` apareció en la portada unos 30 s después del push; no hay Vercel CLI en este equipo, se comprobó por la web). Ejecutado con `npm run sitio:verificar -- https://www.guiapromptsia.com`: **SIN FALLOS**.
+Ejecutado con `npm run sitio:verificar -- https://www.guiapromptsia.com` el 2026-09-24: **SIN FALLOS**. Se comprobó por la web (no hay Vercel CLI en este equipo): producción sirve la biografía de Nicolas y `og:locale` es_PE, es decir, el commit `1a5e8a0`.
 
-- `https://guiapromptsia.com/` → **308** → `https://www.guiapromptsia.com/`; `/herramientas` → 308 → `https://www.guiapromptsia.com/herramientas`; `/marketing/crear-afiches-con-ia` → 308 → `https://www.guiapromptsia.com/marketing/crear-afiches-con-ia`.
-- `sitemap.xml`: 7 URLs, todas con `https://www.`; `robots.txt` → `Sitemap: https://www.guiapromptsia.com/sitemap.xml`.
-- Noindex en las 15 herramientas, las 5 áreas y `/herramientas` (tabla de abajo). Portada, «Cómo probamos», «Sobre nosotros», contacto y las 3 páginas legales son indexables.
-- En vivo se ven las tarjetas de borradores: `MOSTRAR_BORRADORES=true` está activa en Vercel (por eso el chequeo de enlaces encontró 29 destinos y el build local sin la variable, 14).
-- Las 26 URLs de la sección 5 y otras 16 del modelo anterior responden 301 al destino correcto (primera tabla); las retiradas sin equivalente responden 410.
+- `https://guiapromptsia.com/…` responde 308 a la misma ruta con `www`; el sitemap tiene 7 URLs con `https://www.`; `robots.txt` apunta a `https://www.guiapromptsia.com/sitemap.xml`; `/ads.txt` responde 200 en texto plano con `google.com, pub-1950156439970490, DIRECT, f08c47fec0942fa0` (el ID es del dueño).
+- Noindex en las 15 herramientas, las 5 áreas y `/herramientas`; portada y páginas institucionales indexables.
+- Con `MOSTRAR_BORRADORES=true` en Vercel se ven las tarjetas de borradores en los listados (sus páginas siguen en noindex): quitar la variable antes de postular a AdSense (checklist).
 
-### URLs antiguas → código → destino
+### URLs antiguas
 
 | URL antigua | Código | Destino (Location) | ¿Correcto? |
 |---|---|---|---|
@@ -109,7 +109,24 @@ Despliegue de Vercel: terminó bien (el canonical con `www` apareció en la port
 
 7 URLs: /, /sobre-nosotros, /como-probamos, /contacto, /politica-de-privacidad, /politica-de-cookies, /terminos-y-condiciones
 
-### Modelo anterior sin equivalente: 410 (ver el chequeo completo con `npm run sitio:verificar`)
+### Modelo anterior sin equivalente
+
+| URL | Código |
+|---|---|
+| /herramientas-ia/x | 410 |
+| /prompts/no-existe | 410 |
+| /blog/no-existe | 410 |
+| /categoria/x | 410 |
+| /etiqueta/x | 410 |
+| /feed.xml | 410 |
+
+### robots.txt
+
+
+User-Agent: *
+Allow: /
+
+Sitemap: https://www.guiapromptsia.com/sitemap.xml
 
 ## 2. og:image
 
@@ -177,7 +194,7 @@ Solo lo tuyo: por cada herramienta, las capturas reales de la prueba, «Qué cor
 | clientes/responder-consultas-con-ia | 0 / 1 | 1806 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
 | clientes/responder-reclamos-con-ia | 0 / 1 | 1742 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
 | marketing/calendario-de-contenido-con-ia | 0 / 2 | 1723 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| marketing/crear-afiches-con-ia | 0 / 2 | 1884 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| marketing/crear-afiches-con-ia | 0 / 2 | 1883 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
 | marketing/crear-anuncios-con-ia | 5 / 1 | 1787 (ok) | sí | no | ninguno |
 | marketing/crear-promociones-con-ia | 3 / 1 | 1842 (ok) | sí | no | ninguno |
 | marketing/crear-publicaciones-para-redes-con-ia | 0 / 1 | 1748 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
@@ -190,7 +207,7 @@ Solo lo tuyo: por cada herramienta, las capturas reales de la prueba, «Qué cor
 Textos editoriales (≥ 60 caracteres) idénticos en más de una página: 0
 
 
-Otros puntos de los 19 estándares que no se pueden dar por cumplidos hasta que hagas la prueba: (3) el texto coincide con las capturas, (4) «Probado por Nicolas…». (11–13) verificados en escritorio y a 375 px con Chrome; **NO PUDE COMPROBAR** en un celular físico ni con lectores de pantalla.
+Otros puntos de los 19 estándares que no se pueden dar por cumplidos hasta que hagas la prueba: (3) el texto coincide con las capturas, (4) «Probado por Nicolas…» (su biografía ya está). (11–13) verificados en escritorio y a 375 px con Chrome; **NO PUDE COMPROBAR** en un celular físico ni con lectores de pantalla.
 
 ## Palabras editoriales
 
@@ -202,7 +219,7 @@ Otros puntos de los 19 estándares que no se pueden dar por cumplidos hasta que 
 | /clientes/responder-consultas-con-ia | no | 1806 | dentro | 1924 (dentro) |
 | /clientes/responder-reclamos-con-ia | no | 1742 | dentro | 1907 (dentro) |
 | /marketing/calendario-de-contenido-con-ia | no | 1723 | dentro | 1989 (dentro) |
-| /marketing/crear-afiches-con-ia | no | 1884 | dentro | 2051 (dentro) |
+| /marketing/crear-afiches-con-ia | no | 1883 | dentro | 2087 (dentro) |
 | /marketing/crear-anuncios-con-ia | no | 1787 | dentro | 1932 (dentro) |
 | /marketing/crear-promociones-con-ia | no | 1842 | dentro | 2078 (dentro) |
 | /marketing/crear-publicaciones-para-redes-con-ia | no | 1748 | dentro | 1917 (dentro) |

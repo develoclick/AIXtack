@@ -143,17 +143,17 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 375 | botones y controles ≥ 44 px | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | foco visible con Tab | OK | 43 controles; sin contorno: ninguno |
 | /marketing/crear-afiches-con-ia | 375 | «Empezar de cero»: formulario vacío y el prompt marca [FALTA] | OK | 7 obligatorios |
-| /marketing/crear-afiches-con-ia | 375 | «Probar con un ejemplo» llena el formulario | OK | 8 controles con valor, 8 esperados |
-| /marketing/crear-afiches-con-ia | 375 | cada campo recibe su valor de ejemplo | OK | 8 de 8 |
+| /marketing/crear-afiches-con-ia | 375 | «Probar con un ejemplo» llena el formulario | OK | 9 controles con valor, 9 esperados |
+| /marketing/crear-afiches-con-ia | 375 | cada campo recibe su valor de ejemplo | OK | 9 de 9 |
 | /marketing/crear-afiches-con-ia | 375 | prompt del ejemplo sin {{ }}, undefined, null ni NaN | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | prompt del ejemplo sin [FALTA] en los datos | OK | 0 [FALTA] |
 | /marketing/crear-afiches-con-ia | 375 | «Ver el prompt completo» muestra el prompt | OK |  |
-| /marketing/crear-afiches-con-ia | 375 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3548 caracteres copiados |
+| /marketing/crear-afiches-con-ia | 375 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3829 caracteres copiados |
 | /marketing/crear-afiches-con-ia | 375 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | 0 errores en consola | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | portapapeles API bloqueado: alternativa (execCommand) o texto a mano | OK | copiado con execCommand |
 | /marketing/crear-afiches-con-ia | 375 | 0 errores de consola con el portapapeles sin API | OK |  |
-| /marketing/crear-afiches-con-ia | 375 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3510 caracteres |
+| /marketing/crear-afiches-con-ia | 375 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3790 caracteres |
 | /marketing/crear-afiches-con-ia | 375 | 0 errores de consola con el portapapeles bloqueado | OK |  |
 | /marketing/crear-anuncios-con-ia | 375 | sin scroll horizontal | OK | ancho de contenido 375 · ventana 375 |
 | /marketing/crear-anuncios-con-ia | 375 | botones y controles ≥ 44 px | OK |  |
@@ -441,17 +441,17 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 1280 | botones y controles ≥ 44 px | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | foco visible con Tab | OK | 43 controles; sin contorno: ninguno |
 | /marketing/crear-afiches-con-ia | 1280 | «Empezar de cero»: formulario vacío y el prompt marca [FALTA] | OK | 7 obligatorios |
-| /marketing/crear-afiches-con-ia | 1280 | «Probar con un ejemplo» llena el formulario | OK | 8 controles con valor, 8 esperados |
-| /marketing/crear-afiches-con-ia | 1280 | cada campo recibe su valor de ejemplo | OK | 8 de 8 |
+| /marketing/crear-afiches-con-ia | 1280 | «Probar con un ejemplo» llena el formulario | OK | 9 controles con valor, 9 esperados |
+| /marketing/crear-afiches-con-ia | 1280 | cada campo recibe su valor de ejemplo | OK | 9 de 9 |
 | /marketing/crear-afiches-con-ia | 1280 | prompt del ejemplo sin {{ }}, undefined, null ni NaN | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | prompt del ejemplo sin [FALTA] en los datos | OK | 0 [FALTA] |
 | /marketing/crear-afiches-con-ia | 1280 | «Ver el prompt completo» muestra el prompt | OK |  |
-| /marketing/crear-afiches-con-ia | 1280 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3548 caracteres copiados |
+| /marketing/crear-afiches-con-ia | 1280 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3829 caracteres copiados |
 | /marketing/crear-afiches-con-ia | 1280 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores en consola | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | portapapeles API bloqueado: alternativa (execCommand) o texto a mano | OK | copiado con execCommand |
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores de consola con el portapapeles sin API | OK |  |
-| /marketing/crear-afiches-con-ia | 1280 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3510 caracteres |
+| /marketing/crear-afiches-con-ia | 1280 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3790 caracteres |
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores de consola con el portapapeles bloqueado | OK |  |
 | /marketing/crear-anuncios-con-ia | 1280 | sin scroll horizontal | OK | ancho de contenido 1280 · ventana 1280 |
 | /marketing/crear-anuncios-con-ia | 1280 | botones y controles ≥ 44 px | OK |  |
