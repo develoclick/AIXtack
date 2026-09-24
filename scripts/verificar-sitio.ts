@@ -13,7 +13,7 @@
 import { categories } from "../content/categorias";
 import { redirects } from "../content/redirects";
 import { listarTodas, rutaHerramienta } from "../lib/herramientas/registro";
-import { institutionalPages } from "../lib/site";
+import { institutionalPages, siteUrl } from "../lib/site";
 
 const base = (process.argv[2] ?? "http://localhost:3100").replace(/\/$/, "");
 const fallos: string[] = [];
@@ -50,7 +50,7 @@ async function main() {
     ...institutionalPages.filter((p) => p.path !== "/como-probamos").map((p) => ({ ruta: p.path, publicada: null, tipo: "otra" as const })),
     ...todas.map((h) => ({ ruta: rutaHerramienta(h.meta), publicada: h.publicado, tipo: "herramienta" as const })),
   ];
-  filas.push("\n### URLs nuevas\n", "| URL | Código | Canonical | Robots | Publicada |", "|---|---|---|---|---|");
+  filas.push("\n### URLs nuevas (página → canonical)\n", "| URL | Código | Canonical | og:url | Robots | Publicada |", "|---|---|---|---|---|---|");
   const htmlPorRuta = new Map<string, string>();
   for (const n of nuevas) {
     const res = await pedir(n.ruta);
@@ -60,7 +60,14 @@ async function main() {
     const robots = /<meta[^>]+name="robots"[^>]+content="([^"]+)"/.exec(html)?.[1] ?? "index (por defecto)";
     if (res.status !== 200) fallo(`${n.ruta}: código ${res.status}`);
     if (canon.length !== 1) fallo(`${n.ruta}: ${canon.length} canonical`);
-    else if (canon[0].replace(/\/$/, "") !== new URL(canon[0]).origin + (n.ruta === "/" ? "" : n.ruta)) fallo(`${n.ruta}: canonical ${canon[0]}`);
+    else if (canon[0].replace(/\/$/, "") !== siteUrl + (n.ruta === "/" ? "" : n.ruta)) fallo(`${n.ruta}: canonical ${canon[0]} (esperado ${siteUrl}${n.ruta})`);
+    const ogUrl = /<meta[^>]+property="og:url"[^>]+content="([^"]+)"/.exec(html)?.[1] ?? "";
+    if (ogUrl.replace(/\/$/, "") !== siteUrl + (n.ruta === "/" ? "" : n.ruta)) fallo(`${n.ruta}: og:url «${ogUrl}»`);
+    // Ninguna URL absoluta del sitio sin «www» en todo el HTML (canonical, og, JSON-LD url/@id/breadcrumbs, enlaces…).
+    const sinWww = [...new Set(html.match(/https?:\/\/guiapromptsia\.com[^"'\s<>\\]*/g) ?? [])];
+    if (sinWww.length) fallo(`${n.ruta}: URLs sin www en el HTML: ${sinWww.join(", ")}`);
+    const jsonLd = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
+    for (const j of jsonLd) for (const u of j.match(/https?:\/\/[^"\\]+/g) ?? []) if (/guiapromptsia\.com/.test(u) && !u.startsWith(siteUrl)) fallo(`${n.ruta}: JSON-LD con URL fuera de ${siteUrl}: ${u}`);
     if (cuenta(html, /<h1[\s>]/g) !== 1) fallo(`${n.ruta}: ${cuenta(html, /<h1[\s>]/g)} H1`);
     if (n.tipo === "herramienta") {
       if (cuenta(html, /"@type":"Article"/g) !== 1) fallo(`${n.ruta}: Article JSON-LD ≠ 1`);
@@ -69,7 +76,7 @@ async function main() {
       if (n.publicada === false && !noindex) fallo(`${n.ruta}: no publicada pero indexable`);
       if (n.publicada === true && noindex) fallo(`${n.ruta}: publicada pero noindex`);
     }
-    filas.push(`| ${n.ruta} | ${res.status} | ${canon[0] ?? "—"} | ${robots} | ${n.publicada === null ? "n/a" : n.publicada ? "sí" : "no"} |`);
+    filas.push(`| ${n.ruta} | ${res.status} | ${canon[0] ?? "—"} | ${ogUrl || "—"} | ${robots} | ${n.publicada === null ? "n/a" : n.publicada ? "sí" : "no"} |`);
   }
 
   // 3) enlaces internos
@@ -99,6 +106,8 @@ async function main() {
 
   // 4) sitemap
   const sm = await (await pedir("/sitemap.xml")).text();
+  for (const u of sm.match(/<loc>[^<]+<\/loc>/g) ?? []) if (!u.startsWith(`<loc>${siteUrl}`)) fallo(`Sitemap: ${u} no usa ${siteUrl}`);
+  for (const u of sm.match(/<image:loc>[^<]+<\/image:loc>/g) ?? []) if (!u.startsWith(`<image:loc>${siteUrl}`)) fallo(`Sitemap: ${u} no usa ${siteUrl}`);
   const urls = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(/^https?:\/\/[^/]+/, "") || "/");
   filas.push(`\n### Sitemap\n\n${urls.length} URLs: ${urls.join(", ") || "(ninguna)"}`);
   for (const u of urls) {
@@ -115,6 +124,7 @@ async function main() {
     filas.push(`| ${u} | ${res.status} |`);
   }
   const robotsTxt = await (await pedir("/robots.txt")).text();
+  if (!robotsTxt.includes(`Sitemap: ${siteUrl}/sitemap.xml`)) fallo(`robots.txt no apunta a ${siteUrl}/sitemap.xml`);
   filas.push(`\n### robots.txt\n\n\`\`\`\n${robotsTxt.trim()}\n\`\`\``);
 
   console.log(filas.join("\n"));
