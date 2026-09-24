@@ -13,7 +13,7 @@ export default defineHerramienta({
     area: "clientes",
     tipo: "generador",
     titulo: "Responde un reclamo con calma y sin comprometerte de más",
-    descripcion: "Separa hechos y emociones, escribe lo que ofreces y lo que no, y copia un prompt que redacta una respuesta serena y una reseña pública breve sin prometer de más.",
+    descripcion: "Separa hechos y emociones, escribe qué ofreces y qué no, y copia un prompt que redacta una respuesta serena y una reseña pública breve sin prometer de más.",
     tiempo: "5 min",
     probadoEn: null, // TODO: IA con la que se hace la prueba real. Sin prueba real no se publica.
     probadoFecha: null, // TODO: fecha real de la prueba (AAAA-MM-DD).

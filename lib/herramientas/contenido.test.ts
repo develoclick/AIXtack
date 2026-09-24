@@ -118,3 +118,16 @@ test("las 15 páginas tienen 2–3 relacionadas válidas: URLs nuevas que existe
     assert.equal((await relacionadasDe(h, false)).length, h.relacionadas.length, `${propia}: el bloque «Siguiente paso» no saldría completo`);
   }
 });
+
+test("las 15 meta descriptions miden entre 140 y 160 caracteres, también en borrador", async () => {
+  for (const h of (await listarTodas()).filter((x) => !x.interna)) {
+    const n = h.meta.descripcion.length;
+    assert.ok(n >= 140 && n <= 160, `${h.meta.slug}: ${n} caracteres`);
+  }
+});
+
+test("no hay textos casi idénticos entre páginas (estándar 18)", async () => {
+  const { buscarDuplicados } = await import("../../scripts/duplicados");
+  const d = await buscarDuplicados(0.4);
+  assert.deepEqual(d.map((x) => `${x.a} ↔ ${x.b}: ${x.textoA.slice(0, 60)}`), []);
+});

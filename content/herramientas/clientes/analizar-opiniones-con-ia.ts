@@ -53,7 +53,7 @@ export default defineHerramienta({
     area: "clientes",
     tipo: "analizador",
     titulo: "Descubre qué dicen tus clientes en sus comentarios",
-    descripcion: "Pega tus reseñas y tus temas: la página cuenta cuántas mencionan cada uno y el prompt pide a la IA leer, citar y proponer tres acciones sin contar por su cuenta.",
+    descripcion: "Pega tus reseñas y tus temas: la página cuenta cuántas mencionan cada uno y el prompt pide a la IA leer, citar y proponer tres acciones sin contar.",
     tiempo: "5 min",
     probadoEn: null, // TODO: IA con la que se hace la prueba real. Sin prueba real no se publica.
     probadoFecha: null, // TODO: fecha real de la prueba (AAAA-MM-DD).
