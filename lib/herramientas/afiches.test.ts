@@ -194,3 +194,7 @@ test("aviso en vivo: «Tus datos suman X palabras (máximo 39)»; si se pasa, av
   const vacio = renderToStaticMarkup(createElement(ConteoPalabras, { estado: ejecutarPreproceso(datos.preproceso!, {}), maximo: 39 }));
   assert.match(texto(vacio), /Tus datos suman 0 palabras \(máximo 39\)\./);
 });
+
+test("«Siguiente paso» de los afiches: publicaciones para redes, anuncios y promociones, en ese orden", () => {
+  assert.deepEqual(datos.relacionadas, ["marketing/crear-publicaciones-para-redes-con-ia", "marketing/crear-anuncios-con-ia", "marketing/crear-promociones-con-ia"]);
+});

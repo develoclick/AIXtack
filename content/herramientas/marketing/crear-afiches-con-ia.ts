@@ -256,7 +256,7 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
     },
   ],
 
-  relacionadas: ["marketing/crear-anuncios-con-ia", "marketing/crear-promociones-con-ia"],
+  relacionadas: ["marketing/crear-publicaciones-para-redes-con-ia", "marketing/crear-anuncios-con-ia", "marketing/crear-promociones-con-ia"],
 
   metodoCompleto: {
     titulo: "Método completo: niveles, rúbrica y hoja de revisión",
