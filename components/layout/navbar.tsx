@@ -44,7 +44,7 @@ export function Navbar() {
         <Link href="/" aria-label={`${siteName} — Inicio`} className="group flex shrink-0 items-center">
           <Image
             src="/images/site/logo-claro.png"
-            alt={`${siteName} — Inicio`}
+            alt={siteName}
             width={180}
             height={50}
             priority
@@ -52,7 +52,7 @@ export function Navbar() {
           />
           <Image
             src="/images/site/logo-oscuro.png"
-            alt={`${siteName} — Inicio`}
+            alt={siteName}
             width={180}
             height={50}
             priority
