@@ -79,3 +79,21 @@ test("responsable legal: Nicolas (persona natural, Perú); DeveloClick es el nom
   assert.match(leer("components", "layout", "footer.tsx"), /un proyecto de/);
   assert.doesNotMatch(leer("components", "layout", "footer.tsx"), /publicado por/);
 });
+
+test("legal: responsable Nicolas (persona natural, Perú), ley y jurisdicción de la República del Perú, Ley 29733 en privacidad y nada de España/UE como ley aplicable", () => {
+  const p = (n: string) => leer("app", "(site)", n, "page.tsx").replace(/\s+/g, " ");
+  const terminos = p("terminos-y-condiciones");
+  const privacidad = p("politica-de-privacidad");
+  const cookies = p("politica-de-cookies");
+  for (const t of [terminos, privacidad, cookies]) {
+    assert.ok(t.includes("persona natural"), "responsable: persona natural");
+    assert.ok(t.includes("contactEmail"), "responsable: correo de contacto");
+    assert.ok(!t.includes("publica {getAuthor(EDITORIAL)"), "DeveloClick ya no es quien publica");
+    assert.ok(!/Unión Europea y España|España/.test(t.replace("por ejemplo, los de los usuarios de la Unión Europea", "")), "sin España como ley aplicable");
+  }
+  assert.ok(terminos.includes("Ley aplicable y jurisdicción") && terminos.includes("leyes de la República del Perú") && terminos.includes("tribunales competentes de la República del Perú"));
+  assert.ok(privacidad.includes("Ley N.° 29733"), "privacidad cita la Ley 29733");
+  assert.ok(privacidad.includes("Autoridad Nacional de Protección de Datos Personales"));
+  assert.ok(privacidad.includes("AdSense") && privacidad.includes("Google Analytics") && privacidad.includes("solo en este navegador"), "se conserva lo de AdSense, Analytics con consentimiento y perfil local");
+  assert.ok(cookies.includes("Ley N.° 29733"));
+});

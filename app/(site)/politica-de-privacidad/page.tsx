@@ -10,6 +10,8 @@ export const metadata = buildMetadata({
   path: "/politica-de-privacidad",
 });
 
+const responsable = getAuthor(AUTOR_POR_DEFECTO)!;
+
 export default function PrivacyPolicyPage() {
   return (
     <LegalPage title="Política de privacidad" updatedAt={institutionalUpdatedAt("/politica-de-privacidad")}>
@@ -20,9 +22,17 @@ export default function PrivacyPolicyPage() {
 
       <h2>Responsable del tratamiento</h2>
       <p>
-        {siteName} lo publica {getAuthor(EDITORIAL)!.name}, responsable del tratamiento de los datos recogidos a través de
-        este sitio, y lo escribe y prueba {getAuthor(AUTOR_POR_DEFECTO)!.name}. Para cualquier consulta sobre esta política puedes escribirnos a{" "}
+        El responsable del tratamiento de los datos personales recogidos a través de este sitio es {responsable.name}, persona
+        natural con domicilio en {responsable.pais}. {siteName} es un proyecto de {getAuthor(EDITORIAL)!.name}, nombre del
+        proyecto que no corresponde a una empresa registrada. Para cualquier consulta sobre esta política, escribe a{" "}
         <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+      </p>
+
+      <h2>Ley aplicable</h2>
+      <p>
+        El tratamiento de datos personales en este sitio se rige por la Ley N.° 29733, Ley de Protección de Datos Personales del
+        Perú, y su reglamento. Si vives fuera del Perú, respetamos también los derechos que la normativa de tu país te reconozca
+        (por ejemplo, los de los usuarios de la Unión Europea).
       </p>
 
       <h2>Datos que tratamos</h2>
@@ -111,9 +121,11 @@ export default function PrivacyPolicyPage() {
 
       <h2>Tus derechos</h2>
       <p>
-        Puedes solicitar el acceso, la rectificación, la portabilidad o la eliminación de tus datos, así como oponerte
-        a su tratamiento, escribiéndonos a <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. Responderemos en el
-        plazo que establece la normativa de protección de datos aplicable.
+        Conforme a la Ley N.° 29733, puedes solicitar información sobre el tratamiento de tus datos y ejercer tus derechos de
+        acceso, rectificación, cancelación (supresión) y oposición, así como revocar tu consentimiento, escribiéndonos a{" "}
+        <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. Responderemos en el plazo que establece la normativa peruana de
+        protección de datos personales. Si consideras que no se ha atendido tu solicitud, puedes acudir a la Autoridad Nacional
+        de Protección de Datos Personales del Perú.
       </p>
 
       <h2>Cambios en esta política</h2>

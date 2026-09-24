@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { LegalPage } from "@/components/shared/legal-page";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { institutionalUpdatedAt, siteName } from "@/lib/site";
+import { AUTOR_POR_DEFECTO, getAuthor } from "@/content/autores";
+import { contactEmail, institutionalUpdatedAt, siteName } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "Política de cookies",
@@ -51,6 +52,14 @@ export default function CookiesPolicyPage() {
           configuración de anuncios
         </a>
         .
+      </p>
+
+      <h2>Responsable</h2>
+      <p>
+        El responsable de este sitio y del tratamiento de los datos descritos aquí es {getAuthor(AUTOR_POR_DEFECTO)!.name}, persona
+        natural con domicilio en {getAuthor(AUTOR_POR_DEFECTO)!.pais}. Correo de contacto:{" "}
+        <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. Estas cookies se rigen por las leyes de la República del Perú
+        (Ley N.° 29733, de Protección de Datos Personales).
       </p>
 
       <h2>Más información</h2>
