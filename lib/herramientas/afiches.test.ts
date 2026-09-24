@@ -68,8 +68,12 @@ test("sin datos, cada campo requerido queda como [FALTA] y la tarea también", (
   assert.equal(/\{\{|\}\}/.test(prompt), false);
 });
 
-test("el piloto sigue sin publicar hasta tener prueba real", () => {
-  assert.equal(datos.publicado, false);
-  assert.equal(datos.meta.probadoEn, null);
-  assert.equal(datos.meta.probadoFecha, null);
+test("el piloto solo está publicado si tiene su prueba real (IA y fecha) y ninguna captura pendiente", () => {
+  if (datos.publicado) {
+    assert.ok(datos.meta.probadoEn && datos.meta.probadoFecha, "publicado sin probadoEn/probadoFecha");
+    assert.deepEqual(datos.capturasPendientes, []);
+  } else {
+    assert.equal(datos.meta.probadoEn, null);
+    assert.equal(datos.meta.probadoFecha, null);
+  }
 });

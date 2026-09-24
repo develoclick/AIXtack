@@ -47,11 +47,12 @@ test("todas las capturas declaradas: etiqueta válida, alt y leyenda, ruta de su
   }
 });
 
-test("las 15 páginas declaran 1–2 capturas pendientes, con nombre .webp, etiqueta válida y descripción; ninguna repetida", async () => {
+test("los borradores declaran 1–2 capturas pendientes (nombre .webp, etiqueta válida, descripción, sin repetir); una página publicada, ninguna", async () => {
   const todas = (await listarTodas()).filter((h) => !h.interna);
   assert.equal(todas.length, 15);
   for (const h of todas) {
-    assert.ok(h.capturasPendientes.length >= 1 && h.capturasPendientes.length <= 2, `${h.meta.slug}: ${h.capturasPendientes.length} pendientes`);
+    if (h.publicado) assert.deepEqual(h.capturasPendientes, [], `${h.meta.slug}: publicada con pendientes`);
+    else assert.ok(h.capturasPendientes.length >= 1 && h.capturasPendientes.length <= 2, `${h.meta.slug}: ${h.capturasPendientes.length} pendientes`);
     assert.equal(new Set(h.capturasPendientes.map((p) => p.archivo)).size, h.capturasPendientes.length);
     for (const p of h.capturasPendientes) {
       assert.match(p.archivo, /^[a-z0-9][a-z0-9-]*\.webp$/);
@@ -62,8 +63,9 @@ test("las 15 páginas declaran 1–2 capturas pendientes, con nombre .webp, etiq
   }
 });
 
-test("afiches: (1) chat N1–N4 «Prueba real» y (2) afiche final «Resultado final diseñado con el texto de la IA»", async () => {
+test("afiches (mientras esté en borrador): (1) chat N1–N4 «Prueba real» y (2) afiche final «Resultado final diseñado con el texto de la IA»", async () => {
   const h = (await listarTodas()).find((x) => x.meta.slug === "crear-afiches-con-ia")!;
+  if (h.publicado) return; // ya publicada: sus capturas están en «capturas» y no quedan pendientes
   assert.deepEqual(
     h.capturasPendientes.map((p) => [p.archivo, p.etiqueta]),
     [
@@ -75,19 +77,24 @@ test("afiches: (1) chat N1–N4 «Prueba real» y (2) afiche final «Resultado f
   assert.match(h.capturasPendientes[1].muestra, /panes/);
 });
 
-test("anuncios y promociones conservan las capturas del método anterior y añaden la pendiente de la prueba nueva", async () => {
+test("anuncios y promociones conservan las capturas del método anterior; en borrador añaden la pendiente de la prueba nueva", async () => {
   for (const slug of ["crear-anuncios-con-ia", "crear-promociones-con-ia"]) {
     const h = (await listarTodas()).find((x) => x.meta.slug === slug)!;
-    assert.ok(h.ejemplo.capturas.length >= 2, `${slug}: se mantienen sus capturas`);
-    assert.equal(h.capturasPendientes.length, 1);
+    const todas = [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])];
+    assert.ok(todas.length >= 3, `${slug}: se mantienen sus capturas del método anterior`);
+    assert.equal(h.capturasPendientes.length, h.publicado ? 0 : 1);
   }
 });
 
 test("las capturas pendientes se dibujan solo en revisión: con la vista previa apagada (producción) no sale nada", async () => {
   const h = (await listarTodas()).find((x) => x.meta.slug === "crear-afiches-con-ia")!;
-  assert.deepEqual(pendientesVisibles(h.capturasPendientes, false), []);
-  assert.equal(pendientesVisibles(h.capturasPendientes, true).length, 2);
-  const html = (mostrar: boolean) => renderToStaticMarkup(createElement(EjemploReal, { ejemplo: h.ejemplo, datos: [], pendientes: pendientesVisibles(h.capturasPendientes, mostrar) }));
+  const pendientes = [
+    { archivo: "prueba-01.webp", etiqueta: "Prueba real" as const, muestra: "Chat nuevo de prueba: lo que debe mostrar esta captura pendiente." },
+    { archivo: "prueba-02.webp", etiqueta: "Ilustración" as const, muestra: "Imagen final de prueba con lo que debe mostrar." },
+  ];
+  assert.deepEqual(pendientesVisibles(pendientes, false), []);
+  assert.equal(pendientesVisibles(pendientes, true).length, 2);
+  const html = (mostrar: boolean) => renderToStaticMarkup(createElement(EjemploReal, { ejemplo: { ...h.ejemplo, capturas: [] }, datos: [], pendientes: pendientesVisibles(pendientes, mostrar) }));
   assert.match(html(true), /prueba-01\.webp/);
   assert.match(html(true), /border-dashed/);
   assert.doesNotMatch(html(false), /prueba-01\.webp|border-dashed|pendiente/);
@@ -96,12 +103,13 @@ test("las capturas pendientes se dibujan solo en revisión: con la vista previa 
 test("regla de publicación: publicado:true exige ≥1 «Prueba real» y 0 pendientes; el borrador no", async () => {
   const h = (await listarTodas()).find((x) => x.meta.slug === "crear-anuncios-con-ia")!;
   const archivos = [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])].map((c) => c.src);
+  const pendiente = { archivo: "prueba-99.webp", etiqueta: "Prueba real" as const, muestra: "Captura pendiente de prueba con su descripción." };
   const pub = (extra: Partial<Herramienta>) => validarHerramienta({ ...h, publicado: true, ...extra }, ctx(h, archivos)).errores;
-  assert.ok(pub({}).some((e) => /no puede tener capturas pendientes/.test(e)), "publicada con pendientes");
+  assert.ok(pub({ capturasPendientes: [pendiente] }).some((e) => /no puede tener capturas pendientes/.test(e)), "publicada con pendientes");
   assert.ok(!pub({ capturasPendientes: [] }).some((e) => /pendientes|Prueba real/.test(e)), "publicada, sin pendientes y con Prueba real: pasa");
   const sinReal = { ...h.ejemplo, capturas: h.ejemplo.capturas.map((c) => ({ ...c, etiqueta: "Ilustración" as const })) };
   assert.ok(pub({ capturasPendientes: [], ejemplo: sinReal, metodoCompleto: null }).some((e) => /Prueba real/.test(e)), "publicada sin Prueba real");
-  const borrador = validarHerramienta({ ...h, publicado: false }, ctx(h, archivos));
+  const borrador = validarHerramienta({ ...h, publicado: false, capturasPendientes: [pendiente] }, ctx(h, archivos));
   assert.ok(!borrador.errores.some((e) => /pendientes|Prueba real/.test(e)), "el borrador con pendientes es válido");
 });
 

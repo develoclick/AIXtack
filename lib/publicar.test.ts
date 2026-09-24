@@ -12,7 +12,9 @@ import { validarHerramienta } from "./herramientas/validar";
 import type { Herramienta } from "./herramientas/tipos";
 
 const raiz = process.cwd();
-const fuente = (ruta: string) => fs.readFileSync(path.join(raiz, "content", "herramientas", `${ruta}.ts`), "utf8");
+// Copias fijas de dos páginas en borrador (una sin capturas y otra con capturas del método anterior): así las pruebas no dependen de qué páginas estén publicadas.
+const FIXTURES: Record<string, string> = { "marketing/crear-afiches-con-ia": "pagina-sin-capturas", "marketing/crear-anuncios-con-ia": "pagina-con-capturas-anteriores" };
+const fuente = (ruta: string) => fs.readFileSync(path.join(raiz, "lib", "herramientas", "fixtures", `${FIXTURES[ruta]}.ts.txt`), "utf8");
 const CORREGI = ["La IA inventó una cifra que no dije y la quité yo.", "Cambié el tono de la primera opción, que era muy formal.", "Añadí el dato del horario que faltaba en el texto."];
 
 async function cargar(fuenteTs: string): Promise<Herramienta> {

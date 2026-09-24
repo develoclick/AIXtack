@@ -114,8 +114,10 @@ test("las 15 páginas tienen 2–3 relacionadas válidas: URLs nuevas que existe
       assert.ok(existentes.has(r), `${propia}: «${r}» no existe`);
       assert.notEqual(r, propia);
     }
-    // Con la vista previa (borradores visibles) el bloque 12 sale completo.
-    assert.equal((await relacionadasDe(h, false)).length, h.relacionadas.length, `${propia}: el bloque «Siguiente paso» no saldría completo`);
+    // Con la vista previa (borradores visibles) el bloque 12 de un BORRADOR sale completo; una publicada solo enseña publicadas.
+    const visibles = (await relacionadasDe(h, false)).length;
+    if (!h.publicado) assert.equal(visibles, h.relacionadas.length, `${propia}: el bloque «Siguiente paso» no saldría completo`);
+    else assert.ok(visibles <= h.relacionadas.length);
   }
 });
 

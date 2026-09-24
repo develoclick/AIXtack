@@ -215,6 +215,12 @@ function paso(nombre: string, cmd: string, args: string[], opciones: { entorno?:
   return { ok: true, salida };
 }
 
+/** Solo las líneas que dicen qué falla (el resto de la salida es ruido); si no hay ninguna, la salida completa. */
+export function lineasQueFallan(salida: string, patron: RegExp): string {
+  const lineas = salida.split("\n").filter((l) => patron.test(l)).slice(0, 30);
+  return lineas.length ? lineas.join("\n") : salida;
+}
+
 function puertoLibre(): Promise<number> {
   return new Promise((res, rej) => {
     const srv = net.createServer();
@@ -321,9 +327,9 @@ async function main() {
 
   // 2) validador y tests
   let r = paso("Validador de herramientas (como página publicada)", npm, ["run", "herramientas:validar"]);
-  if (!r.ok) fallo("El validador", r.salida);
+  if (!r.ok) fallo("El validador", lineasQueFallan(r.salida, /^\s*✖/));
   r = paso("Tests", npm, ["test"]);
-  if (!r.ok) fallo("Los tests", r.salida);
+  if (!r.ok) fallo("Los tests", lineasQueFallan(r.salida, /^\s*✖|AssertionError|Error:/));
 
   // 3) build + QA de esta página
   if (!args.sinQa) {

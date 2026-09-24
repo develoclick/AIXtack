@@ -161,7 +161,8 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   /* ── relacionadas ── */
   for (const ruta of h.relacionadas) {
     if (!ctx.existentes.has(ruta)) error(false, `Relacionada «${ruta}»: no existe esa herramienta.`);
-    else if (h.publicado) error(ctx.publicadas.has(ruta), `Relacionada «${ruta}»: una página publicada solo enlaza a páginas publicadas.`);
+    // Una publicada nunca enseña un borrador (relacionadasDe lo oculta): mientras la relacionada siga en borrador, solo aviso.
+    else if (h.publicado) aviso(ctx.publicadas.has(ruta), `Relacionada «${ruta}»: sigue en borrador y no se mostrará en «Siguiente paso» hasta que se publique.`);
   }
 
   /* ── contenido: se exige a las publicadas; en borradores solo avisa ── */
