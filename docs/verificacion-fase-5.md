@@ -1,13 +1,15 @@
 # Verificación del cambio de rutas (estado actual)
 
-Regenerado el 2026-09-23 sobre `main`. Dominio base único: `https://www.guiapromptsia.com` (constante `siteUrl` en `lib/site.ts`). Comandos: `npm run build`, `npm test` (85 pruebas OK), `npm run herramientas:validar` (0 errores), `npm run sitio:verificar`, `npm run qa`, `npm run capturas`, `npm run contar-palabras`, `npm run que-falta`.
+Regenerado el 2026-09-24 sobre `main` (local, sin push). Dominio base único: `https://www.guiapromptsia.com` (constante `siteUrl` en `lib/site.ts`). Comandos: `npm run build`, `npm test` (111 pruebas OK), `npm run herramientas:validar` (0 errores), `npm run sitio:verificar`, `npm run qa`, `npm run capturas`, `npm run contar-palabras`, `npm run que-falta`, `npm run duplicados`, `npm run og`, `npm run publicar`.
 
 ## Estado
 
-- Las 15 herramientas siguen con `publicado: false` (noindex, fuera del sitemap); faltan pruebas reales, capturas y og propia.
+- Las 15 herramientas siguen con `publicado: false` (noindex, fuera del sitemap). Lo único que falta en cada una son tus capturas reales, «Qué corregí yo» y la IA y la fecha de la prueba (las publica `npm run publicar`, ver `docs/como-publicar.md`).
+- Contenido: las 15 tienen entre 1.723 y 1.884 palabras editoriales (rango 1.500–2.500), meta descripción de 140–160 caracteres, su propia `og.webp` de 1200×630 y sus ejemplos con los mismos datos en todas las páginas (`docs/universo-de-negocios.md`).
 - Regla automática de indexación: un área y `/herramientas` son indexables y entran al sitemap solo con al menos 1 herramienta `publicado: true`. Hoy ninguna: noindex y el sitemap tiene solo la portada y las 6 institucionales.
 - Autor Nicolas (Person), publisher DeveloClick (Organization); «Probado por Nicolas en {IA} el {fecha}» solo si existe la prueba.
-- Validador: recuento editorial de palabras; `publicado: true` exige 1.500–2.500 palabras, ≥ 1 captura «Prueba real», 0 capturas pendientes y su propia `og.webp`.
+- Validador: `publicado: true` exige 1.500–2.500 palabras, meta descripción 140–160, su og propia, ≥ 1 captura «Prueba real», 0 capturas pendientes, «Qué corregí yo» con 3 líneas, `probadoEn` y `probadoFecha`.
+- Las cajas de «captura pendiente» solo se ven con `NODE_ENV=development` (`npm run dev`); nunca en un build de producción ni en Vercel, aunque `MOSTRAR_BORRADORES` esté activa.
 
 ## 1. Producción en vivo (https://www.guiapromptsia.com, despliegue de `c43aeee`)
 
@@ -109,26 +111,19 @@ Despliegue de Vercel: terminó bien (el canonical con `www` apareció en la port
 
 ### Modelo anterior sin equivalente: 410 (ver el chequeo completo con `npm run sitio:verificar`)
 
-
 ## 2. og:image
 
-- Había una imagen general (`public/og-default.png`), pero era de la marca anterior («AIXtack… comparativas y noticias»): no servía. Se creó `public/og-default.webp` (1200×630): el logotipo real sobre un panel blanco y el nombre «Guía Prompts IA» y el lema en blanco sobre el verde de marca; sin capturas ni simulaciones. Se retiró el `.png` obsoleto.
-- Toda página sin `og.webp` propia usa `/og-default.webp` (og:image, twitter:image y el JSON-LD `Article`); ninguna apunta a un archivo inexistente (test + el chequeo en vivo pide cada imagen y exige 200 y tipo `image/*`).
-- `publicado: true` exige `/img/{area}/{slug}/og.webp`; con `publicado: false`, solo aviso. `npm run capturas` lista «og propia: pendiente (usa /og-default.webp)» y ya no cuenta `og.webp` como archivo inexistente.
+- `public/og-default.webp` (1200×630): logotipo real sobre un panel blanco, nombre «Guía Prompts IA» y lema en blanco sobre el verde de marca; sin capturas ni simulaciones (se retiró el `.png` de la marca anterior).
+- Cada una de las 15 herramientas tiene su propia `public/img/{área}/{slug}/og.webp` (1200×630, se regenera con `npm run og`): el H1, el área y la marca sobre el color de marca; sin imitar chats ni capturas.
+- Toda página resuelve a un archivo existente (propia o respaldo) en `og:image`, `twitter:image` y en el JSON-LD `Article`; el chequeo en vivo pide cada imagen y exige 200 y tipo `image/*`.
 
-## 3. Recorrido interactivo (Playwright + Chrome 153, build de producción local)
+## 3. Recorrido interactivo (Playwright + Chrome, build de producción local)
 
-`npm run qa -- http://localhost:3100`: **596 pruebas, 596 OK** a 375 px y a 1280 px (portada, `/mi-negocio` y las 15 herramientas). Detalle prueba por prueba: `docs/qa/resultados.md`; capturas de pantalla: `docs/qa/375/` y `docs/qa/1280/` (2,3 MB en total, fuera de `public/`).
+`npm run qa -- http://localhost:3100`: **596 pruebas, 596 OK** a 375 px y a 1280 px (portada, `/mi-negocio`, perfil y las 15 herramientas). Detalle prueba por prueba: `docs/qa/resultados.md`; capturas de pantalla: `docs/qa/375/` y `docs/qa/1280/` (fuera de `public/`).
 
-Cubre: formulario, «Probar con un ejemplo» (cada campo recibe su valor), «Empezar de cero», «Ver el prompt completo», «Copiar prompt» con portapapeles permitido (el portapapeles = el prompt), con la API bloqueada (alternativa) y con todo bloqueado (aparece el texto para copiar a mano), perfil (guardar, autocompletar en otra herramienta, borrar) y `localStorage` bloqueado, calculadoras (27 casos de prueba por vista, 54 comprobaciones: esperado frente a obtenido), conteos de los 2 analizadores (6 casos por vista), sin scroll horizontal, botones ≥ 44 px, foco visible con contraste ≥ 3:1, 0 errores de consola y prompt sin `{{ }}`, `undefined`, `null` ni `NaN`.
+Cubre: formulario, «Probar con un ejemplo» (cada campo recibe su valor), «Empezar de cero», «Ver el prompt completo», «Copiar prompt» con portapapeles permitido, con la API bloqueada y con todo bloqueado (aparece el texto para copiar a mano), perfil (guardar, autocompletar en otra herramienta, borrar) y `localStorage` bloqueado, calculadoras (54 casos: esperado frente a obtenido), conteos de los 2 analizadores (12 casos), sin scroll horizontal, botones ≥ 44 px, foco visible con contraste ≥ 3:1, 0 errores de consola y prompt sin `{{ }}`, `undefined`, `null` ni `NaN`.
 
-**Qué falló al principio y se corrigió** (commits aparte):
-1. Botones del encabezado por debajo de 44 px: modo oscuro (36 px) y menú móvil (40 px) → 44 px (`cb6cd3b`).
-2. Anillo de foco con contraste insuficiente: el verde de marca al 50 % daba ~1,6:1 en enlaces del encabezado, migas, tarjetas de la portada y botones (`Button`). Ahora es la tinta de la marca (2 px, ≥ 3:1) en todo el sitio (`cb6cd3b`, `f5d3b06`).
-3. (Solo del entorno local) el registro de herramientas daba 0 páginas en Windows cuando OneDrive dejaba los archivos «a petición» (`isFile()` devolvía false): ahora solo descarta carpetas. No afectaba a Vercel (Linux).
-4. Falsos positivos del propio recorrido, corregidos en el script: etiqueta «(obligatorio)» sin espacio, saltos de línea `\r\n` del portapapeles de Windows, id del bloque de conteos, transición de color que se medía a mitad de camino.
-
-Nota: cuando un texto pegado tiene una línea que no se entiende, los analizadores muestran el aviso y **no** ofrecen conteos (ni los mandan al prompt) hasta que se corrige; el recorrido lo comprueba así.
+**Qué falló al principio y se corrigió** (commits aparte): botones del encabezado de 36/40 px → 44 px; anillo de foco de ~1,6:1 → tinta de la marca (≥ 3:1) en todo el sitio; el registro de herramientas daba 0 páginas en Windows con OneDrive «a petición» (`isFile()`), ya corregido; y varios falsos positivos del propio recorrido.
 
 ### Resumen por página
 
@@ -153,126 +148,94 @@ Nota: cuando un texto pegado tiene una línea que no se entiende, los analizador
 | /ventas/crear-cotizaciones-con-ia | 21/21 | 21/21 | OK |
 | /ventas/crear-descripciones-de-productos-con-ia | 16/16 | 16/16 | OK |
 
-## 4. Inventario de negocios de ejemplo
+## 4. Negocios de ejemplo
 
-Todos los negocios principales llevan «(ficticio)» o «(ficticia)» en su **primera aparición** dentro de la página (comprobado por script en el orden en que se muestran los bloques: 15 de 15). Los negocios secundarios de las pestañas «según tu tipo de negocio» también llevan la marca (Estudio Trazo la lleva como «(ficticio, diseño gráfico)»).
+El inventario completo (negocio, rubro, datos fijos, reglas de moneda, direcciones y teléfonos) está en `docs/universo-de-negocios.md`, y un test comprueba que un mismo negocio usa los mismos datos en todas las páginas donde aparece. Se corrigió lo que esta sección señalaba antes: Café Mirador (precios fijos y «gasto promedio por cliente» en el punto de equilibrio), ejemplo del perfil (La Espiga, «Av. Ejemplo 123», «$», «Ciudad de ejemplo», sin ciudad real) y datos repetidos entre Fonda El Sabor, Estudio Brillo y Rincón. Se conserva «Calle Los Pinos con calle 5» porque aparece en las capturas reales del método anterior. **NO PUDE COMPROBAR** que ningún nombre ficticio coincida con un negocio real.
 
-| Página | Negocio principal | ¿«(ficticio)» en la 1.ª aparición? | Datos que usa |
-|---|---|---|---|
-| analisis/analizar-ventas-con-ia | Verde Hogar (ficticio), tienda de plantas de interior | Sí | Rubro: plantas; sin ciudad, dirección, horario ni WhatsApp; 14 ventas de agosto y septiembre 2026 (total $347.00; maceta $5 → $6); moneda «$» |
-| analisis/calcular-punto-de-equilibrio | Café Mirador (ficticio), cafetería de barrio | Sí | Rubro: cafetería; sin ciudad, dirección ni WhatsApp; alquiler 800, sueldos 1.400, servicios 200, otros 160; venta promedio $4.00; costo variable $1.30; 26 días al mes; moneda «$» |
-| clientes/analizar-opiniones-con-ia | Restaurante La Higuera (ficticio) | Sí | Rubro: restaurante; 25 reseñas ficticias del último trimestre; sin ciudad, dirección, horario, WhatsApp ni precios |
-| clientes/responder-consultas-con-ia | Taller Los Pinos (ficticio), taller mecánico | Sí | Horario L–V 8:00–17:30 y sáb 8:00–13:00; cambio de aceite $35; una línea de WhatsApp (sin número); sin ciudad ni dirección; moneda «$» |
-| clientes/responder-reclamos-con-ia | Luz de Barrio (ficticio), velas online | Sí | Vende por Instagram y WhatsApp (sin número); pedido entregado «martes 9 a las 14:12»; sin ciudad ni dirección |
-| marketing/calendario-de-contenido-con-ia | Restaurante Mesa Larga (ficticio) | Sí | Rubro: restaurante; Instagram y Facebook; 3 h por semana; sin ciudad, dirección ni WhatsApp |
-| marketing/crear-afiches-con-ia | Panadería La Espiga (ficticia) | Sí | «Av. Ejemplo 123 (dirección ficticia)», «Calle Ejemplo 45», WhatsApp «999 999 999»; combo $6 sábado y domingo 7:00–13:00; sin ciudad; moneda «$» |
-| marketing/crear-anuncios-con-ia | Ferretería Casa y Clavo (ficticia) | Sí | «Calle Los Pinos con calle 5» (nombre de calle verosímil); sábado 10 de octubre 9:00–14:00; 20 % de descuento; «12 años atendiendo»; sin ciudad ni WhatsApp; moneda «$» |
-| marketing/crear-promociones-con-ia | Café Mirador (ficticio) | Sí | Canasta café + croissant: normal $4.50, costo $1.30, promoción $4.00; martes a jueves 9:30–11:30; 20 → 24 pedidos por semana; sin ciudad ni dirección; moneda «$» |
-| marketing/crear-publicaciones-para-redes-con-ia | Peluquería Rizo Fino (ficticia) | Sí | Instagram; tratamiento con 15 % de descuento, martes y miércoles hasta el 31 de octubre; sin ciudad, dirección ni WhatsApp |
-| negocio/documentar-procesos-con-ia | Cerámica Sol (ficticia) | Sí | Tienda online con una persona (Lucía; Mateo empieza el lunes: nombres de pila ficticios); sin ciudad, dirección ni WhatsApp |
-| negocio/organizar-tareas-con-ia | Lavandería Brisa (ficticia) | Sí | Tres personas (Luis, Marta); factura de luz que vence «el 10»; sin ciudad ni dirección |
-| ventas/calcular-precios-y-margenes | Galletería Migas (ficticia) | Sí | Caja de 6 galletas: materiales $12, empaque $3, 15 min a $20/h, fijos $600 con 150 cajas; margen 40 %; competencia $36; moneda «$» |
-| ventas/crear-cotizaciones-con-ia | Maderas Rivera (ficticio) | Sí | Cliente «Sra. Paredes»; ítems $450, $300, $700 y 12 h a $25; descuento 10 %, impuesto 20 %, anticipo 40 %; «del 12 al 27 de marzo»; WhatsApp (sin número); sin ciudad ni dirección |
-| ventas/crear-descripciones-de-productos-con-ia | Luz de Cera (ficticio) | Sí | Vela Cedro y Vainilla de 200 g; se vende en tienda online y ferias; sin ciudad, dirección, horario ni precios |
+## 5. Rendimiento (Chrome móvil 412×823, CPU ×4, 4G lenta 1,6 Mbps / 150 ms, mediana de 3 cargas, build local)
 
-**Negocios secundarios** (las pestañas «según tu tipo de negocio», con «(ficticio/a)»): Fonda El Sabor (11 páginas), Boutique Aldea (10), Estudio de uñas Brillo (7), Estudio Trazo (6), Rincón (3), La Esquina (1), Muebles Norte (1), Dulces Almendra (1) y Jabones Brisa (1). Usan datos coherentes entre páginas (por ejemplo, Fonda El Sabor: menú del día $5 de 12:00 a 15:00, plato de $8.00 en el punto de equilibrio), sin ciudad ni dirección real.
+**Lighthouse no está instalado en este equipo y no se instaló**: **NO PUDE COMPROBAR** sus cuatro puntuaciones. Estas cifras son del propio Chrome y no equivalen a Lighthouse (servidor local, sin auditoría de accesibilidad, buenas prácticas ni SEO).
 
-**Inconsistencias y riesgos (sin cambiar nada; decisión tuya):**
-
-1. **Café Mirador tiene un precio distinto entre dos páginas.** En `crear-promociones-con-ia` el precio normal del combo café + croissant es $4.50 y la promoción $4.00; en `calcular-punto-de-equilibrio` el «pedido promedio de café + croissant» es $4.00 (dice que es una estimación). Coinciden el costo ($1.30) y la descripción del negocio (texto idéntico en las dos páginas: 1 párrafo duplicado). Para que el mismo negocio sea coherente, conviene usar $4.50 en el punto de equilibrio o aclarar que $4.00 es el precio de la promoción.
-2. **Las pruebas de ejemplo del perfil** (`lib/herramientas/perfil.ts`) usan «Panadería La Espiga», «Lima, Perú», «Av. Ejemplo 123», «L–D 6:30–20:00», «WhatsApp 999 999 999» y moneda «S/», mientras la página de afiches usa «$» y un horario distinto (sábado y domingo 7:00–13:00, para un combo concreto). Es el mismo negocio con moneda y ciudad distintas.
-3. **Datos que podrían coincidir con algo real:** «Lima, Perú» (ciudad real, solo en el ejemplo del perfil) y «Calle Los Pinos con calle 5» (anuncios). «Av. Ejemplo 123», «Calle Ejemplo 45» y «999 999 999» son claramente falsos. Conviene sustituir «Calle Los Pinos con calle 5» por «Calle Ejemplo» y evitar una ciudad real en el ejemplo del perfil.
-4. **Nombres de negocios genéricos** («Café Mirador», «Casa y Clavo», «La Espiga», «La Higuera», «Mesa Larga», «Fonda El Sabor», «Rizo Fino», «Cerámica Sol», etc.) son frecuentes en el mundo real y pueden coincidir con negocios que existen. Todos están marcados como ficticios; **NO PUDE COMPROBAR** que ninguno coincida con un negocio real (no hay forma fiable de verificarlo desde aquí).
-5. **Moneda:** todas las páginas usan «$» sin país; el impuesto varía entre ejemplos (20 % en Maderas Rivera, 18 % en Estudio Trazo, 5 % de descuento en Muebles Norte): son negocios distintos, sin conflicto.
-
-
-## 5. Lighthouse móvil
-
-**Lighthouse no está instalado en este equipo y no se instaló** (habría que descargarlo de npm: pídemelo si lo quieres). Por eso **NO PUDE COMPROBAR** las cuatro puntuaciones. Como aproximación, medí con Chrome (móvil 412×823, CPU ×4 más lenta, red tipo «4G lenta» 1,6 Mbps / 150 ms) sobre el build local, mediana de 3 cargas; **no equivalen a Lighthouse** (servidor local, sin auditoría de accesibilidad, buenas prácticas ni SEO):
-
-| Página | FCP = LCP | CLS | TBT aprox. | Peticiones | Peso | JS | Fuentes | Imágenes |
+| Página | | FCP = LCP | CLS | TBT aprox. | Peticiones | Peso | JS | Fuentes |
 |---|---|---|---|---|---|---|---|---|
-| `/` | 2,2 s | 0 | ~1,0 s | 54 | 538 KB | 250 KB | 128 KB | 56 KB |
-| `/marketing/crear-afiches-con-ia` | 2,3 s | 0 | ~1,1 s | 43 | 523 KB | 270 KB | 128 KB | 19 KB |
+| `/` | antes | 2,17 s | 0 | 622 ms | 54 | 539 KB | 250 KB | 128 KB |
+| `/` | después | 1,79 s | 0 | 583 ms | 48 | 424 KB | 188 KB | 76 KB |
+| `/marketing/crear-afiches-con-ia` | antes | 2,29 s | 0 | 728 ms | 43 | 525 KB | 270 KB | 128 KB |
+| `/marketing/crear-afiches-con-ia` | después | 2,30 s | 0 | 643 ms | 38 | 412 KB | 210 KB | 76 KB |
 
-Tres problemas principales de cada una (según esas mediciones y la revisión del código):
-
-- **Portada:** (1) bloqueo del hilo principal alto (~1,0 s con CPU ×4): hidratación de muchos componentes animados (`Reveal`, `FloatingIllustration`, marquesina); (2) 54 peticiones y 5 pesos de la fuente Metropolis (400–800, 128 KB); (3) el LCP es el titular y depende de las fuentes y del JS de animación.
-- **`/marketing/crear-afiches-con-ia`:** (1) ~1,1 s de bloqueo del hilo principal: hidrata la página entera aunque solo el bloque de la herramienta es interactivo; (2) 270 KB de JS y 43 peticiones; (3) las mismas 5 fuentes (128 KB) para una página de texto.
-- SEO y accesibilidad (que Lighthouse suele penalizar): la página es noindex a propósito (se ignora); el resto de comprobaciones de accesibilidad (etiquetas, foco, contraste del foco, tamaños de toque, sin desborde) las cubre el recorrido de la sección 3.
+Qué se cambió (cuatro commits): fuente Metropolis con 3 pesos (400, 600, 700) y `font-display: swap`; aviso de cookies con animación CSS y sin `framer-motion` (dependencia eliminada); `Reveal` y `Parallax` como componentes de servidor con animaciones CSS ligadas al scroll; menú móvil descargado solo al pasar, enfocar o pulsar el botón. Resultado: −21 % de peso y −60 a −62 KB de JS en las dos páginas; la portada baja el FCP/LCP un 17 %; el de la herramienta no cambia (dentro del ruido de la medición). El bloqueo del hilo principal en la herramienta (~640 ms con CPU ×4) es el propio bloque interactivo (formulario, prompt, calculadoras) y el resto del framework: no se toca porque es lo único que necesita JavaScript.
 
 ## 6. ¿Qué falta para `publicado: true`?
 
-Todas las herramientas: `probadoEn` y `probadoFecha` vacíos (no hay prueba real todavía), og propia pendiente y capturas «Prueba real» pendientes (las pendientes son las que se ven como recuadros grises en revisión). «Qué corregí yo» solo puede escribirlo quien hizo la prueba. Detalle del resto de estándares (el validador, como si la página estuviera publicada):
+Solo lo tuyo: por cada herramienta, las capturas reales de la prueba, «Qué corregí yo» (3 líneas), la IA y la fecha de la prueba; lo demás lo comprueba `npm run publicar`. Detalle (el validador, como si la página estuviera publicada):
 
 | Página | Prueba real (puestas/pendientes) | Palabras editoriales (faltan para 1.500) | og propia | probadoEn / probadoFecha | Otros incumplimientos (validador como si estuviera publicada) |
 |---|---|---|---|---|---|
-| analisis/analizar-ventas-con-ia | 0 / 1 | 1318 (faltan 182) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| analisis/calcular-punto-de-equilibrio | 0 / 1 | 1272 (faltan 228) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3).; 1 texto(s) idéntico(s) a otra página |
-| clientes/analizar-opiniones-con-ia | 0 / 1 | 1327 (faltan 173) | no | no | meta.descripcion tiene 161 caracteres: deben ser 140–160.; «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| clientes/responder-consultas-con-ia | 0 / 1 | 1351 (faltan 149) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| clientes/responder-reclamos-con-ia | 0 / 1 | 1307 (faltan 193) | no | no | meta.descripcion tiene 161 caracteres: deben ser 140–160.; «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| marketing/calendario-de-contenido-con-ia | 0 / 2 | 1268 (faltan 232) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| marketing/crear-afiches-con-ia | 0 / 2 | 1528 (ok) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| marketing/crear-anuncios-con-ia | 5 / 1 | 1455 (faltan 45) | no | no | ninguno |
-| marketing/crear-promociones-con-ia | 3 / 1 | 1578 (ok) | no | no | ninguno; 1 texto(s) idéntico(s) a otra página |
-| marketing/crear-publicaciones-para-redes-con-ia | 0 / 1 | 1287 (faltan 213) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| negocio/documentar-procesos-con-ia | 0 / 1 | 1315 (faltan 185) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| negocio/organizar-tareas-con-ia | 0 / 1 | 1220 (faltan 280) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| ventas/calcular-precios-y-margenes | 0 / 1 | 1293 (faltan 207) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| ventas/crear-cotizaciones-con-ia | 0 / 1 | 1240 (faltan 260) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
-| ventas/crear-descripciones-de-productos-con-ia | 0 / 1 | 1304 (faltan 196) | no | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| analisis/analizar-ventas-con-ia | 0 / 1 | 1727 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| analisis/calcular-punto-de-equilibrio | 0 / 1 | 1794 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| clientes/analizar-opiniones-con-ia | 0 / 1 | 1725 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| clientes/responder-consultas-con-ia | 0 / 1 | 1806 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| clientes/responder-reclamos-con-ia | 0 / 1 | 1742 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| marketing/calendario-de-contenido-con-ia | 0 / 2 | 1723 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| marketing/crear-afiches-con-ia | 0 / 2 | 1884 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| marketing/crear-anuncios-con-ia | 5 / 1 | 1787 (ok) | sí | no | ninguno |
+| marketing/crear-promociones-con-ia | 3 / 1 | 1842 (ok) | sí | no | ninguno |
+| marketing/crear-publicaciones-para-redes-con-ia | 0 / 1 | 1748 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| negocio/documentar-procesos-con-ia | 0 / 1 | 1747 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| negocio/organizar-tareas-con-ia | 0 / 1 | 1739 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| ventas/calcular-precios-y-margenes | 0 / 1 | 1776 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| ventas/crear-cotizaciones-con-ia | 0 / 1 | 1768 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
+| ventas/crear-descripciones-de-productos-con-ia | 0 / 1 | 1769 (ok) | sí | no | «Qué corregí yo» tiene 0 líneas (deben ser 3). |
 
-Textos editoriales (≥ 60 caracteres) idénticos en más de una página: 1
-  · [calcular-punto-de-equilibrio, crear-promociones-con-ia] Café Mirador (ficticio), cafetería de barrio con dos personas en el mostrador…
+Textos editoriales (≥ 60 caracteres) idénticos en más de una página: 0
 
 
-Otros puntos de los 19 estándares que hoy no se pueden dar por cumplidos para ninguna: (3) el texto coincide con las capturas (aún no hay capturas de la prueba nueva), (4) «Probado por Nicolas…», (11–13) verificados en escritorio y a 375 px con Chrome (596/596), **NO PUDE COMPROBAR** en un celular físico ni con lectores de pantalla, (15) og propia. Los dos casos de `meta.descripcion` de 161 caracteres (opiniones y reclamos) son ajustes de un carácter en el contenido editorial (no tocados).
+Otros puntos de los 19 estándares que no se pueden dar por cumplidos hasta que hagas la prueba: (3) el texto coincide con las capturas, (4) «Probado por Nicolas…». (11–13) verificados en escritorio y a 375 px con Chrome; **NO PUDE COMPROBAR** en un celular físico ni con lectores de pantalla.
 
 ## Palabras editoriales
 
 | Página | Publicado | Palabras editoriales | Rango 1500–2500 | Recuento amplio (con formulario y «mejoras»; solo informativo) |
 |---|---|---|---|---|
-| /analisis/analizar-ventas-con-ia | no | 1318 | FALTAN 182 | 1507 (dentro) |
-| /analisis/calcular-punto-de-equilibrio | no | 1272 | FALTAN 228 | 1528 (dentro) |
-| /clientes/analizar-opiniones-con-ia | no | 1327 | FALTAN 173 | 1505 (dentro) |
-| /clientes/responder-consultas-con-ia | no | 1351 | FALTAN 149 | 1529 (dentro) |
-| /clientes/responder-reclamos-con-ia | no | 1307 | FALTAN 193 | 1557 (dentro) |
-| /marketing/calendario-de-contenido-con-ia | no | 1268 | FALTAN 232 | 1578 (dentro) |
-| /marketing/crear-afiches-con-ia | no | 1528 | dentro | 1737 (dentro) |
-| /marketing/crear-anuncios-con-ia | no | 1455 | FALTAN 45 | 1667 (dentro) |
-| /marketing/crear-promociones-con-ia | no | 1578 | dentro | 1875 (dentro) |
-| /marketing/crear-publicaciones-para-redes-con-ia | no | 1287 | FALTAN 213 | 1540 (dentro) |
-| /negocio/documentar-procesos-con-ia | no | 1315 | FALTAN 185 | 1521 (dentro) |
-| /negocio/organizar-tareas-con-ia | no | 1220 | FALTAN 280 | 1551 (dentro) |
-| /ventas/calcular-precios-y-margenes | no | 1293 | FALTAN 207 | 1624 (dentro) |
-| /ventas/crear-cotizaciones-con-ia | no | 1240 | FALTAN 260 | 1600 (dentro) |
-| /ventas/crear-descripciones-de-productos-con-ia | no | 1304 | FALTAN 196 | 1502 (dentro) |
+| /analisis/analizar-ventas-con-ia | no | 1727 | dentro | 1863 (dentro) |
+| /analisis/calcular-punto-de-equilibrio | no | 1794 | dentro | 2049 (dentro) |
+| /clientes/analizar-opiniones-con-ia | no | 1725 | dentro | 1873 (dentro) |
+| /clientes/responder-consultas-con-ia | no | 1806 | dentro | 1924 (dentro) |
+| /clientes/responder-reclamos-con-ia | no | 1742 | dentro | 1907 (dentro) |
+| /marketing/calendario-de-contenido-con-ia | no | 1723 | dentro | 1989 (dentro) |
+| /marketing/crear-afiches-con-ia | no | 1884 | dentro | 2051 (dentro) |
+| /marketing/crear-anuncios-con-ia | no | 1787 | dentro | 1932 (dentro) |
+| /marketing/crear-promociones-con-ia | no | 1842 | dentro | 2078 (dentro) |
+| /marketing/crear-publicaciones-para-redes-con-ia | no | 1748 | dentro | 1917 (dentro) |
+| /negocio/documentar-procesos-con-ia | no | 1747 | dentro | 1904 (dentro) |
+| /negocio/organizar-tareas-con-ia | no | 1739 | dentro | 1992 (dentro) |
+| /ventas/calcular-precios-y-margenes | no | 1776 | dentro | 2065 (dentro) |
+| /ventas/crear-cotizaciones-con-ia | no | 1768 | dentro | 2055 (dentro) |
+| /ventas/crear-descripciones-de-productos-con-ia | no | 1769 | dentro | 1898 (dentro) |
 
-15 páginas; 2 dentro del rango con el recuento editorial, 13 fuera.
+15 páginas; 15 dentro del rango con el recuento editorial, 0 fuera.
 
 
 ## Capturas
 
 | Página | Publicado | Capturas puestas | Pendientes | og propia | Archivos mencionados que no existen |
 |---|---|---|---|---|---|
-| /analisis/analizar-ventas-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /analisis/calcular-punto-de-equilibrio | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /clientes/analizar-opiniones-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /clientes/responder-consultas-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /clientes/responder-reclamos-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /marketing/calendario-de-contenido-con-ia | no | 0 de 0 (0 «Prueba real») | 2 | pendiente (usa /og-default.webp) | — |
-| /marketing/crear-afiches-con-ia | no | 0 de 0 (0 «Prueba real») | 2 | pendiente (usa /og-default.webp) | — |
-| /marketing/crear-anuncios-con-ia | no | 5 de 5 (5 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /marketing/crear-promociones-con-ia | no | 4 de 4 (3 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /marketing/crear-publicaciones-para-redes-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /negocio/documentar-procesos-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /negocio/organizar-tareas-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /ventas/calcular-precios-y-margenes | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /ventas/crear-cotizaciones-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
-| /ventas/crear-descripciones-de-productos-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | pendiente (usa /og-default.webp) | — |
+| /analisis/analizar-ventas-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /analisis/calcular-punto-de-equilibrio | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /clientes/analizar-opiniones-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /clientes/responder-consultas-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /clientes/responder-reclamos-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /marketing/calendario-de-contenido-con-ia | no | 0 de 0 (0 «Prueba real») | 2 | sí | — |
+| /marketing/crear-afiches-con-ia | no | 0 de 0 (0 «Prueba real») | 2 | sí | — |
+| /marketing/crear-anuncios-con-ia | no | 5 de 5 (5 «Prueba real») | 1 | sí | — |
+| /marketing/crear-promociones-con-ia | no | 4 de 4 (3 «Prueba real») | 1 | sí | — |
+| /marketing/crear-publicaciones-para-redes-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /negocio/documentar-procesos-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /negocio/organizar-tareas-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /ventas/calcular-precios-y-margenes | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /ventas/crear-cotizaciones-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
+| /ventas/crear-descripciones-de-productos-con-ia | no | 0 de 0 (0 «Prueba real») | 1 | sí | — |
 
-Total: 9 capturas puestas, 17 pendientes, 0 archivos mencionados que no existen; 15 og propias pendientes (esas páginas usan el respaldo /og-default.webp).
+Total: 9 capturas puestas, 17 pendientes, 0 archivos mencionados que no existen; 0 og propias pendientes (esas páginas usan el respaldo /og-default.webp).
 
 ### Capturas pendientes
 
@@ -296,5 +259,5 @@ Total: 9 capturas puestas, 17 pendientes, 0 archivos mencionados que no existen;
 | /ventas/crear-cotizaciones-con-ia | `prueba-01.webp` | Prueba real | ≥ 1.200 px de ancho, .webp | Chat nuevo: la cotización redactada para Maderas Rivera (ficticio) con los totales que calculó la página. Deben verse el subtotal, el descuento, el impuesto, el total, el anticipo y el saldo sin que la IA cambie ninguna cifra. |
 | /ventas/crear-descripciones-de-productos-con-ia | `prueba-01.webp` | Prueba real | ≥ 1.200 px de ancho, .webp | Chat nuevo: la versión corta, la versión larga y la lista FALTA (lo que no tiene dato) para un producto de Luz de Cera (ficticio). |
 
-Carpeta de cada página: public/img/{área}/{slug}/. Los recuadros grises solo se ven con `next dev` o MOSTRAR_BORRADORES=true.
+Carpeta de cada página: public/img/{área}/{slug}/. Los recuadros grises solo se ven con `next dev` (nunca en un build de producción).
 
