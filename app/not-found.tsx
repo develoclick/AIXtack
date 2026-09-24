@@ -28,7 +28,7 @@ export default function NotFound() {
         speed={0.05}
         sizes="20rem"
         className="absolute bottom-10 right-[8%] w-64"
-        purpose="Asistente con una lupa mirando un mapa doblado (ver docs/rediseno/PLAN.md, imagen-14)."
+        purpose="Asistente con una lupa mirando un mapa doblado."
       />
       <p className="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-brand">Error 404</p>
       <h1 className="text-display-md text-balance">Página no encontrada</h1>

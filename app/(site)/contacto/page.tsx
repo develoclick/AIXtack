@@ -31,7 +31,7 @@ export default function ContactPage() {
             speed={0.07}
             sizes="20rem"
             className="relative ml-auto w-72 lg:w-80"
-            purpose="Sobre marfil abierto del que sale un avión de papel menta (ver docs/rediseno/PLAN.md, imagen-12)."
+            purpose="Sobre marfil abierto del que sale un avión de papel menta."
           />
         }
       />

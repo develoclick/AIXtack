@@ -123,7 +123,7 @@ export default async function HomePage() {
               speed={0.06}
               sizes="(min-width: 1024px) 30rem, 60vw"
               className="absolute -right-6 top-1/2 z-0 w-[66%] -translate-y-1/2"
-              purpose="Asistente de IA con fichas de trabajo flotando alrededor de una cinta de degradado (ver docs/rediseno/PLAN.md, imagen-01)."
+              purpose="Asistente de IA con fichas de trabajo flotando alrededor de una cinta de degradado."
             />
             {stack.map((h, index) => (
               <Reveal
@@ -202,7 +202,7 @@ export default async function HomePage() {
                       height={480}
                       sizes="(min-width: 640px) 10rem, 6rem"
                       className="h-auto w-24 object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-3 sm:w-40"
-                      purpose={`Objeto 3D del área ${category.name} (ver docs/rediseno/PLAN.md).`}
+                      purpose={`Objeto 3D del área ${category.name}.`}
                     />
                   </Link>
                 </Reveal>
@@ -223,7 +223,7 @@ export default async function HomePage() {
           speed={0.05}
           sizes="30rem"
           className="absolute right-4 top-10 z-0 hidden w-[28rem] lg:block xl:w-[30rem]"
-          purpose="Mesa de trabajo isométrica con cuatro estaciones (ver docs/rediseno/PLAN.md, imagen-02)."
+          purpose="Mesa de trabajo isométrica con cuatro estaciones."
         />
 
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -292,7 +292,7 @@ export default async function HomePage() {
           speed={0.04}
           sizes="20rem"
           className="absolute -bottom-4 left-[3%] z-0 hidden w-[19rem] lg:block"
-          purpose="Balanza con un cubo de IA y una mano abierta en equilibrio (ver docs/rediseno/PLAN.md, imagen-03)."
+          purpose="Balanza con un cubo de IA y una mano abierta en equilibrio."
         />
 
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20 lg:px-8 lg:py-28">

@@ -84,7 +84,7 @@ export default async function CategoryHubPage({ params }: PageProps) {
           speed={0.07}
           sizes="(min-width: 1280px) 26rem, 22rem"
           className="absolute bottom-10 right-[6%] z-10 w-[20rem] xl:w-[40rem]"
-          purpose={`Objeto 3D del área ${category.name} (ver docs/rediseno/PLAN.md).`}
+          purpose={`Objeto 3D del área ${category.name}.`}
         />
 
         <div className="mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">

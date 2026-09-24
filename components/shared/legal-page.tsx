@@ -19,7 +19,7 @@ export function LegalPage({ title, updatedAt, children }: { title: string; updat
             speed={0.04}
             sizes="14rem"
             className="relative ml-auto hidden w-52 lg:block"
-            purpose="Escudo redondeado con una casilla de verificación sobre una hoja (ver docs/rediseno/PLAN.md, imagen-13)."
+            purpose="Escudo redondeado con una casilla de verificación sobre una hoja."
           />
         }
       >

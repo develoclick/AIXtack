@@ -54,7 +54,7 @@ export default function AboutPage() {
             height={900}
             speed={0.05}
             className="relative ml-auto w-full max-w-md"
-            purpose="Cuaderno abierto con una casilla marcada, lápiz, lupa y una planta (ver docs/rediseno/PLAN.md, imagen-11)."
+            purpose="Cuaderno abierto con una casilla marcada, lápiz, lupa y una planta."
           />
         }
       />
