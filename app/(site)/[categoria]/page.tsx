@@ -11,7 +11,7 @@ import { FloatingIllustration } from "@/components/visual/floating-illustration"
 import { Reveal } from "@/components/visual/reveal";
 import { categories, getCategory } from "@/content/categorias";
 import { mediaExists } from "@/lib/guides/media";
-import { listarVisibles, publicadasPorArea } from "@/lib/herramientas/registro";
+import { listarVisibles } from "@/lib/herramientas/registro";
 import { herramientasCollectionJsonLd } from "@/lib/herramientas/seo";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -34,9 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const category = getCategory(categoria);
   if (!category) return {};
 
-  // Un área sin ninguna herramienta publicada solo tendría la introducción: no se indexa hasta que haya contenido.
-  const publicadas = await publicadasPorArea(category.slug);
-  return buildMetadata({ title: category.title, description: category.description, path: `/${category.slug}`, noIndex: publicadas.length === 0 });
+  // Indexable aunque el área aún no tenga herramientas publicadas: tiene su introducción propia y está en el sitemap.
+  return buildMetadata({ title: category.title, description: category.description, path: `/${category.slug}` });
 }
 
 export default async function CategoryHubPage({ params }: PageProps) {

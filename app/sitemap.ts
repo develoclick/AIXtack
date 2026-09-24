@@ -13,20 +13,19 @@ function imagenes(h: HerramientaCargada): string[] {
 }
 
 /**
- * Sitemap: SOLO URLs nuevas y que responden 200 indexables: la home, las herramientas PUBLICADAS, la biblioteca y las
- * áreas que tienen al menos una herramienta publicada (sin ella son noindex) y las páginas institucionales.
- * Nunca incluye borradores, /mi-negocio, rutas retiradas ni páginas noindex. `lastModified` son fechas reales.
+ * Sitemap: SOLO URLs nuevas, indexables y que responden 200: la home, la biblioteca /herramientas, las cinco áreas,
+ * las herramientas con `publicado: true` (hoy ninguna) y las páginas institucionales.
+ * Nunca incluye borradores (noindex), /mi-negocio ni rutas retiradas. `lastModified` son fechas reales.
  * No lleva `priority` ni `changeFrequency`: Google los ignora y un valor inventado no aporta nada.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const publicadas = await listarPublicadas();
   const todas = publicadas.map((h) => h.meta.actualizado);
-  const areasConHerramientas = categories.filter((c) => publicadas.some((h) => h.meta.area === c.slug));
 
   return [
     { url: `${siteUrl}/`, lastModified: latest(HOME_UPDATED_AT, ...todas) },
-    ...(publicadas.length > 0 ? [{ url: `${siteUrl}/herramientas`, lastModified: latest(LIBRARY_UPDATED_AT, ...todas) }] : []),
-    ...areasConHerramientas.map((c) => ({
+    { url: `${siteUrl}/herramientas`, lastModified: latest(LIBRARY_UPDATED_AT, ...todas) },
+    ...categories.map((c) => ({
       url: `${siteUrl}/${c.slug}`,
       lastModified: latest(CATEGORIES_UPDATED_AT, ...publicadas.filter((h) => h.meta.area === c.slug).map((h) => h.meta.actualizado)),
     })),

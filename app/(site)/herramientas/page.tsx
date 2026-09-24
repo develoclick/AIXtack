@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { AuroraRibbon } from "@/components/visual/aurora-ribbon";
 import { categories } from "@/content/categorias";
-import { listarPublicadas, listarVisibles } from "@/lib/herramientas/registro";
+import { listarVisibles } from "@/lib/herramientas/registro";
 import { herramientasCollectionJsonLd } from "@/lib/herramientas/seo";
 import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -15,11 +15,8 @@ const TITULO = "Herramientas de IA para tu negocio";
 const DESCRIPCION =
   "Elige la tarea, llena unos datos y copia el prompt: generadores, calculadoras y kits para anuncios, precios, clientes, ventas y organización de tu negocio.";
 
-export async function generateMetadata() {
-  // Sin ninguna herramienta publicada la biblioteca no tiene contenido que indexar.
-  const publicadas = await listarPublicadas();
-  return buildMetadata({ title: TITULO, description: DESCRIPCION, path: "/herramientas", noIndex: publicadas.length === 0 });
-}
+// Indexable aunque aún no haya herramientas publicadas: tiene texto propio y está en el sitemap (las páginas de herramienta sí siguen en noindex).
+export const metadata = buildMetadata({ title: TITULO, description: DESCRIPCION, path: "/herramientas" });
 
 export default async function HerramientasPage() {
   const visibles = await listarVisibles();
