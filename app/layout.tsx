@@ -11,15 +11,14 @@ import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
 import { siteName, siteTagline, siteUrl } from "@/lib/site";
 
 // Metropolis (paquete @fontsource/metropolis, licencia Unlicense): se sirve desde nuestro dominio, sin pedir nada a Google.
+// Solo 3 pesos (400, 600 y 700) con font-display: swap: el 500 se ve con el 400 y el 650/800 con el 700 (el navegador toma el más cercano).
 const metropolis = localFont({
   variable: "--font-metropolis",
   display: "swap",
   src: [
     { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-500-normal.woff2", weight: "500", style: "normal" },
     { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-600-normal.woff2", weight: "600", style: "normal" },
     { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-700-normal.woff2", weight: "700", style: "normal" },
-    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-800-normal.woff2", weight: "800", style: "normal" },
   ],
 });
 
