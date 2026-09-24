@@ -1,4 +1,4 @@
-import { getAuthor } from "@/content/autores";
+import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
 import { getCategory } from "@/content/categorias";
 import { mediaExists } from "@/lib/guides/media";
 import { siteName, siteUrl } from "@/lib/site";
@@ -14,7 +14,8 @@ export function ogImageUrl(h: Herramienta): string | undefined {
 
 /** Un solo `Article` por página. Las fechas son las reales de los datos. */
 export function herramientaArticleJsonLd(h: Herramienta) {
-  const autor = getAuthor(h.meta.autor ?? "develoclick");
+  const autor = getAuthor(h.meta.autor ?? AUTOR_POR_DEFECTO);
+  const editorial = getAuthor(EDITORIAL);
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -26,7 +27,7 @@ export function herramientaArticleJsonLd(h: Herramienta) {
     datePublished: h.meta.fechaPublicacion ?? h.meta.actualizado,
     dateModified: h.meta.actualizado,
     author: autor ? { "@type": autor.type, name: autor.name } : undefined,
-    publisher: { "@type": "Organization", name: siteName, logo: { "@type": "ImageObject", url: absoluta("/logo.png") } },
+    publisher: { "@type": "Organization", name: editorial?.name ?? siteName, logo: { "@type": "ImageObject", url: absoluta("/logo.png") } },
     mainEntityOfPage: absoluta(rutaHerramienta(h.meta)),
   };
 }

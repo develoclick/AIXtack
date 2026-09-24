@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { PaginaHerramienta } from "@/components/herramientas/pagina-herramienta";
 import { JsonLd } from "@/components/seo/json-ld";
-import { getAuthor } from "@/content/autores";
+import { AUTOR_POR_DEFECTO, getAuthor } from "@/content/autores";
 import { getCategory } from "@/content/categorias";
 import { listarTodas, obtenerHerramienta, relacionadasDe, rutaHerramienta } from "@/lib/herramientas/registro";
 import { herramientaArticleJsonLd, herramientaFaqJsonLd, ogImageUrl } from "@/lib/herramientas/seo";
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     article: {
       publishedTime: h.meta.fechaPublicacion,
       modifiedTime: h.meta.actualizado,
-      authors: [getAuthor(h.meta.autor ?? "develoclick")?.name ?? ""].filter(Boolean),
+      authors: [getAuthor(h.meta.autor ?? AUTOR_POR_DEFECTO)?.name ?? ""].filter(Boolean),
     },
   });
 }
