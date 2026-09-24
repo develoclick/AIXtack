@@ -55,6 +55,27 @@ export function textosVisibles(h: Herramienta): string[] {
   return t.filter(Boolean);
 }
 
+/**
+ * Solo el texto EDITORIAL de la página: lo que se lee como explicación. Deja fuera el formulario (etiquetas y ayudas de
+ * los campos y de la calculadora), los valores de ejemplo del formulario, los prompts (`tarea` y el texto de cada
+ * «mejora») y los datos técnicos. Lo usa `npm run contar-palabras`; el validador usa `textosVisibles` (más amplio).
+ */
+export function textosEditoriales(h: Herramienta): string[] {
+  const t: string[] = [h.meta.titulo, h.meta.descripcion, h.antesDespues.antes, h.antesDespues.despues];
+  t.push(...(h.pasos ?? []));
+  for (const m of h.mejoras) t.push(m.label);
+  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
+  for (const c of h.ejemplo.capturas) t.push(c.alt, c.pie ?? "");
+  t.push(...h.checklist);
+  for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
+  for (const r of h.rubros) t.push(r.rubro, r.ejemplo, r.consejo);
+  for (const e of h.errores) t.push(e.error, e.solucion);
+  for (const f of h.faq) t.push(f.p, f.r);
+  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).flatMap((c) => [c.alt, c.pie ?? ""]));
+  for (const l of h.meta.limites ?? []) t.push(l.concepto, l.valor);
+  return t.filter(Boolean);
+}
+
 /** «TODO» solo en mayúsculas (la palabra española «todo» es normal); el resto, sin distinguir mayúsculas. */
 export function notaDeProduccion(texto: string): boolean {
   return /\bTODO\b/.test(texto) || /\[completar\]|captura pendiente|lorem ipsum|reemplazar (aquí|esto|por)/i.test(texto);
