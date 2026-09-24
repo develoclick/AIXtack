@@ -1,6 +1,6 @@
 /**
  * Cuenta las palabras EDITORIALES visibles de cada herramienta (sin formulario, sin prompt) y las compara con el
- * rango de los estándares (1.500–2.500). También muestra el recuento más amplio que usa el validador.
+ * rango de los estándares (1.500–2.500). Es el mismo recuento que usa el validador. También muestra, solo como dato, el recuento más amplio.
  *
  *   npm run contar-palabras
  *
@@ -26,7 +26,7 @@ async function main() {
   }
 
   const estado = (n: number) => (n < PALABRAS_MIN ? `FALTAN ${PALABRAS_MIN - n}` : n > PALABRAS_MAX ? `SOBRAN ${n - PALABRAS_MAX}` : "dentro");
-  console.log(`| Página | Publicado | Palabras editoriales | Rango ${PALABRAS_MIN.toLocaleString("es")}–${PALABRAS_MAX.toLocaleString("es")} | Recuento del validador (con formulario y «mejoras») |`);
+  console.log(`| Página | Publicado | Palabras editoriales | Rango ${PALABRAS_MIN.toLocaleString("es")}–${PALABRAS_MAX.toLocaleString("es")} | Recuento amplio (con formulario y «mejoras»; solo informativo) |`);
   console.log("|---|---|---|---|---|");
   for (const f of filas) console.log(`| ${f.ruta} | ${f.publicado ? "sí" : "no"} | ${f.editorial} | ${estado(f.editorial)} | ${f.validador} (${estado(f.validador)}) |`);
   const fuera = filas.filter((f) => f.editorial < PALABRAS_MIN || f.editorial > PALABRAS_MAX).length;

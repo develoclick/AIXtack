@@ -58,7 +58,7 @@ export function textosVisibles(h: Herramienta): string[] {
 /**
  * Solo el texto EDITORIAL de la página: lo que se lee como explicación. Deja fuera el formulario (etiquetas y ayudas de
  * los campos y de la calculadora), los valores de ejemplo del formulario, los prompts (`tarea` y el texto de cada
- * «mejora») y los datos técnicos. Lo usa `npm run contar-palabras`; el validador usa `textosVisibles` (más amplio).
+ * «mejora») y los datos técnicos. Lo usan el validador (estándar 17) y `npm run contar-palabras`. `textosVisibles` (más amplio) se usa para las demás comprobaciones de texto.
  */
 export function textosEditoriales(h: Herramienta): string[] {
   const t: string[] = [h.meta.titulo, h.meta.descripcion, h.antesDespues.antes, h.antesDespues.despues];
@@ -167,8 +167,10 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
 
   /* ── contenido: se exige a las publicadas; en borradores solo avisa ── */
   const textos = textosVisibles(h);
-  const palabras = contarPalabras(textos);
-  publicada(palabras >= PALABRAS_MIN && palabras <= PALABRAS_MAX, `${palabras} palabras visibles: deben estar entre ${PALABRAS_MIN} y ${PALABRAS_MAX}.`);
+  // El estándar 17 usa el recuento EDITORIAL (sin formulario, sin ejemplos del formulario, sin tarea ni prompts de mejoras).
+  // Borrador fuera de rango → solo aviso; `publicado: true` fuera de 1.500–2.500 → error que rompe el build.
+  const palabras = contarPalabras(textosEditoriales(h));
+  publicada(palabras >= PALABRAS_MIN && palabras <= PALABRAS_MAX, `${palabras} palabras editoriales: deben estar entre ${PALABRAS_MIN} y ${PALABRAS_MAX}.`);
   publicada(h.meta.descripcion.length >= 140 && h.meta.descripcion.length <= 160, `meta.descripcion tiene ${h.meta.descripcion.length} caracteres: deben ser 140–160.`);
   publicada(h.mejoras.length >= 3 && h.mejoras.length <= 4, `Mejoras: ${h.mejoras.length} (deben ser 3–4).`);
   publicada(h.checklist.length === 5, `Checklist: ${h.checklist.length} casillas (deben ser 5).`);
