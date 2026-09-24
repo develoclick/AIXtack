@@ -1,10 +1,9 @@
 /**
- * URL base ÚNICA del sitio: canonical, sitemap, JSON-LD y og:image salen de aquí (no hay otro dominio escrito en el código).
- * Estado a 2026-09-24: el dominio sin «www» redirige (308) a www.guiapromptsia.com, así que la web real es la de «www»
- * mientras esta constante y NEXT_PUBLIC_SITE_URL apuntan al dominio sin «www». PENDIENTE DE DECISIÓN del dueño del sitio:
- * cambiar solo NEXT_PUBLIC_SITE_URL (Vercel + .env) o cambiar el dominio principal en Vercel; no se ha tocado.
+ * URL base ÚNICA del sitio: canonical, og:url, JSON-LD, sitemap y robots salen de aquí (no hay otro dominio escrito en el código).
+ * Es una constante, NO una variable de entorno: así una variable antigua en Vercel (NEXT_PUBLIC_SITE_URL sin «www») no puede
+ * volver a poner otro dominio. El dominio sin «www» redirige (308) a www.guiapromptsia.com; este es el dominio principal.
  */
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://guiapromptsia.com";
+export const siteUrl = "https://www.guiapromptsia.com";
 export const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 export const siteTagline = "IA práctica para microempresas y emprendedores";
 export const contactEmail = "contacto@guiapromptsia.com";
