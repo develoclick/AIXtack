@@ -20,6 +20,11 @@ Cómo funciona la infraestructura del modelo «Herramienta + guía corta» y có
 Las fórmulas viven en el archivo de datos como texto y las evalúa `lib/herramientas/expresiones.ts` (sin `eval`). Se pueden usar los ids de las entradas y de las salidas anteriores, `+ - * /`, comparaciones, `&& || !` y `min`, `max`, `abs`, `round(x; n)`, `techo`, `piso`, `si(cond; a; b)`. Un porcentaje se escribe como 20 y llega a la fórmula como 0.2. Un dato no válido o una división entre cero dan «—» y `[FALTA]` en el prompt; nunca una cifra inventada.
 Cada calculadora declara `casosDePrueba` (mínimo 3); `npm test` y el validador los ejecutan. Fija la base de cada porcentaje (margen sobre precio o recargo sobre costo) antes de escribir la fórmula.
 
+## Conteos que hace la página (pre-procesos) y `contarPalabras()`
+Regla de fondo (estándar 9): **lo que se puede contar o calcular lo hace la página, no la IA.** Los pre-procesos (`preproceso` en el archivo de datos) leen lo que la persona escribe y devuelven resultados ya hechos: `conteo-temas` y `resumen-ventas` (analizadores) y `conteo-palabras` (afiches). Un pre-proceso puede declarar `variables`: en la tarea, `{{palabras}}` se sustituye por el resultado con ese id (por ejemplo `variables: { palabras: "total" }`), para escribir «La página contó {{palabras}} palabras en tus datos. No vuelvas a contarlas.». Todo pre-proceso lleva al menos 3 casos de prueba que ejecutan el validador, `npm test` y `npm run qa`.
+
+`contarPalabras()` (`lib/texto/contar-palabras.ts`) es la única función de conteo. **Qué cuenta como palabra:** cada trozo separado por espacios o saltos de línea que contiene al menos una letra o un número. Cuentan «$6», «7:00», «13:00», «2», «1.500», «Av.», «pan-dulce» (1 cada una); **no** cuentan «·», «—», «-», «&» ni «…» solos; «7 : 00» son 2. Sirve para las palabras editoriales de cada página y para límites de texto como el de los afiches («menos de 40 palabras» = máximo 39; «Tus datos suman X palabras (máximo 39)» en vivo, con aviso que no bloquea).
+
 ## Perfil «Mi negocio»
 `lib/herramientas/perfil.ts`: 11 campos, `localStorage` siempre en `try/catch` (sin almacenamiento funciona en memoria), borrado y el texto «Tus datos se guardan solo en este navegador. No los recibimos ni los almacenamos.». `/mi-negocio` es noindex y no está en el sitemap.
 

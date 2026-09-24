@@ -8,6 +8,7 @@ import { construirPrompt } from "@/lib/prompts/construir-prompt";
 import { BotonCopiar } from "./boton-copiar";
 import { Calculadora } from "./calculadora";
 import { FormularioHerramienta } from "./formulario-herramienta";
+import { ConteoPalabras } from "./conteo-palabras";
 import { PanelPerfil } from "./panel-perfil";
 import { usePerfil } from "./use-perfil";
 
@@ -37,6 +38,12 @@ export function HerramientaInteractiva({ campos, usaPerfil, calculadora, preproc
 
   const previo = useMemo(() => (preproceso ? ejecutarPreproceso(preproceso, valores, perfil.moneda) : null), [preproceso, valores, perfil.moneda]);
 
+  // Lo que la página cuenta y la tarea nombra con {{variable}} (por ejemplo, las palabras): la IA no lo vuelve a contar.
+  const variablesDeLaTarea = useMemo(
+    () => Object.fromEntries(Object.entries(preproceso?.variables ?? {}).map(([variable, id]) => [variable, String(previo?.resultados.find((r) => r.id === id)?.valor ?? 0)])),
+    [preproceso, previo]
+  );
+
   const prompt = useMemo(
     () =>
       construirPrompt(
@@ -44,12 +51,12 @@ export function HerramientaInteractiva({ campos, usaPerfil, calculadora, preproc
         campos.map((c) => ({ id: c.id, label: c.label, valor: valores[c.id], requerido: c.requerido })),
         [
           ...(estado ? estado.resultados.filter((r) => r.enPrompt && !(r.opcional && r.valor === null)).map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : []),
-          ...(previo && previo.completo ? previo.resultados.map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : []),
+          ...(previo && previo.completo ? previo.resultados.filter((r) => r.enPrompt !== false).map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : []),
         ],
         tarea,
-        { usaPerfil }
+        { usaPerfil, variables: variablesDeLaTarea }
       ),
-    [perfil, campos, valores, estado, previo, tarea, usaPerfil]
+    [perfil, campos, valores, estado, previo, tarea, usaPerfil, variablesDeLaTarea]
   );
 
   const faltan = campos.filter((c) => c.requerido && !valores[c.id]?.trim()).map((c) => c.label);
@@ -104,7 +111,9 @@ export function HerramientaInteractiva({ campos, usaPerfil, calculadora, preproc
           />
         )}
 
-        {previo && (previo.resultados.length > 0 || previo.errores.length > 0) && (
+        {preproceso?.tipo === "conteo-palabras" && previo && <ConteoPalabras estado={previo} maximo={preproceso.palabras!.maximo} />}
+
+        {previo && preproceso?.tipo !== "conteo-palabras" && (previo.resultados.length > 0 || previo.errores.length > 0) && (
           <section aria-labelledby="resultados-previo" className="rounded-xl border bg-guide-surface p-4 sm:p-5">
             <h3 id="resultados-previo" className="text-base font-semibold text-guide-ink">
               Lo que cuenta y suma esta página (no la IA)

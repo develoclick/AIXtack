@@ -91,11 +91,17 @@ export interface CasoPreproceso {
  * Pre-proceso de un Analizador: la página cuenta o suma el texto pegado antes de que la IA lo analice.
  *  - `conteo-temas`: cuenta reseñas por tema según un libro de códigos («Tema: palabra, palabra»).
  *  - `resumen-ventas`: totales de una tabla de ventas (fecha, producto, cantidad, monto).
+ *  - `conteo-palabras`: cuenta las palabras del texto que irá en la pieza (por ejemplo, los cuatro niveles de un afiche) con
+ *    `contarPalabras()` y las compara con un máximo. El total viaja al prompt por una variable de la tarea, no como «cálculo hecho».
  */
 export interface Preproceso {
-  tipo: "conteo-temas" | "resumen-ventas";
-  /** ids de los campos: `texto` = lo que se analiza; `temas` = el libro de códigos (solo conteo-temas). */
-  campos: { texto: string; temas?: string };
+  tipo: "conteo-temas" | "resumen-ventas" | "conteo-palabras";
+  /** ids de los campos: `texto` = lo que se analiza; `temas` = el libro de códigos (solo conteo-temas). No se usa en conteo-palabras. */
+  campos: { texto?: string; temas?: string };
+  /** Solo conteo-palabras: cada nivel es la unión (con `union`) de los campos indicados que tengan texto; `maximo` es el tope de palabras. */
+  palabras?: { maximo: number; niveles: { id: string; etiqueta: string; campos: string[]; union: string }[] };
+  /** Variables de la tarea: `{{nombre}}` se sustituye por el valor del resultado con ese id (por ejemplo `{ palabras: "total" }`). */
+  variables?: Record<string, string>;
   /** Al menos 3 casos, igual que las calculadoras. */
   casosDePrueba: CasoPreproceso[];
 }

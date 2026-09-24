@@ -28,6 +28,8 @@ export interface CalculoConValor {
 
 export interface OpcionesPrompt {
   usaPerfil?: readonly PerfilClave[];
+  /** Valores que la página calcula y la tarea nombra con `{{nombre}}` (por ejemplo, las palabras contadas). Mandan sobre los campos. */
+  variables?: Readonly<Record<string, string>>;
 }
 
 const FALTA = "[FALTA]";
@@ -36,8 +38,9 @@ const NO_INDICADO = "no indicado";
 const limpio = (texto: string | undefined) => (texto ?? "").replace(/\r\n/g, "\n").trim();
 
 /** Sustituye los `{{id}}` de la tarea por el valor del campo (o por [FALTA] / «no indicado»). */
-export function rellenarTarea(tarea: string, campos: readonly CampoConValor[]): string {
+export function rellenarTarea(tarea: string, campos: readonly CampoConValor[], variables: Readonly<Record<string, string>> = {}): string {
   const relleno = tarea.replace(/\{\{\s*([A-Za-z0-9_]+)\s*\}\}/g, (_todo, id: string) => {
+    if (id in variables) return variables[id];
     const campo = campos.find((c) => c.id === id);
     if (!campo) return FALTA;
     const valor = limpio(campo.valor);
@@ -81,7 +84,7 @@ export function construirPrompt(
     );
   }
 
-  partes.push(["TAREA", rellenarTarea(limpio(tarea), campos)].join("\n"));
+  partes.push(["TAREA", rellenarTarea(limpio(tarea), campos, opciones.variables)].join("\n"));
   partes.push(CIERRE_COMUN);
 
   // Garantía final: ni siquiera un texto pegado por la persona puede dejar llaves dobles en el prompt.

@@ -10,6 +10,7 @@ import { categories } from "../../content/categorias";
 import { getAuthor } from "../../content/autores";
 import { verificarCasos } from "./calculadora";
 import { ErrorExpresion, idsUsados } from "./expresiones";
+import { contarPalabras } from "../texto/contar-palabras";
 import { verificarCasosPreproceso } from "./preprocesos";
 import { ETIQUETAS_IMAGEN, PERFIL_CLAVES, type Herramienta } from "./tipos";
 
@@ -80,9 +81,8 @@ export function notaDeProduccion(texto: string): boolean {
   return /\bTODO\b/.test(texto) || /\[completar\]|captura pendiente|lorem ipsum|reemplazar (aquí|esto|por)/i.test(texto);
 }
 
-export function contarPalabras(textos: string[]): number {
-  return textos.join(" ").split(/\s+/).filter((p) => /[\p{L}\p{N}]/u.test(p)).length;
-}
+// El conteo vive en lib/texto/contar-palabras.ts (lo usan también las herramientas que limitan el texto); se reexporta aquí.
+export { contarPalabras };
 
 export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): ResultadoValidacion {
   const errores: string[] = [];
@@ -115,7 +115,7 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
     error(c.tipo !== "seleccion" || Boolean(c.opciones && c.opciones.length > 1), `Campo «${c.id}»: una selección necesita opciones.`);
     error(c.tipo !== "seleccion" || !c.opciones || c.opciones.includes(c.ejemplo), `Campo «${c.id}»: el ejemplo no está entre las opciones.`);
   }
-  for (const m of h.tarea.matchAll(/\{\{\s*([A-Za-z0-9_]+)\s*\}\}/g)) error(idsCampos.includes(m[1]), `La tarea cita {{${m[1]}}} y no existe ese campo.`);
+  for (const m of h.tarea.matchAll(/\{\{\s*([A-Za-z0-9_]+)\s*\}\}/g)) error(idsCampos.includes(m[1]) || m[1] in (h.preproceso?.variables ?? {}), `La tarea cita {{${m[1]}}} y no existe ese campo ni una variable del pre-proceso.`);
   error(h.tarea.replace(/\{\{\s*[A-Za-z0-9_]+\s*\}\}/g, "").trim().length >= 40, "La tarea es demasiado corta.");
 
   /* ── calculadora ── */
@@ -144,7 +144,13 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   /* ── pre-proceso (analizadores) ── */
   if (h.preproceso) {
     const p = h.preproceso;
-    error(idsCampos.includes(p.campos.texto), `Pre-proceso: el campo «${p.campos.texto}» no existe.`);
+    if (p.tipo === "conteo-palabras") {
+      error(Boolean(p.palabras) && p.palabras!.maximo > 0 && p.palabras!.niveles.length > 0, "Pre-proceso conteo-palabras: falta `palabras` (máximo y niveles).");
+      for (const n of p.palabras?.niveles ?? []) for (const c of n.campos) error(idsCampos.includes(c), `Pre-proceso conteo-palabras, nivel «${n.etiqueta}»: el campo «${c}» no existe.`);
+    } else error(Boolean(p.campos.texto) && idsCampos.includes(p.campos.texto!), `Pre-proceso: el campo «${p.campos.texto}» no existe.`);
+    for (const [variable, resultado] of Object.entries(p.variables ?? {})) {
+      error(h.tarea.includes(`{{${variable}}}`), `Pre-proceso: la variable «{{${variable}}}» (resultado «${resultado}») no aparece en la tarea.`);
+    }
     error(p.tipo !== "conteo-temas" || Boolean(p.campos.temas && idsCampos.includes(p.campos.temas)), "Pre-proceso conteo-temas: falta el campo del libro de códigos.");
     error(p.casosDePrueba.length >= 3, `El pre-proceso necesita al menos 3 casos de prueba (tiene ${p.casosDePrueba.length}).`);
     for (const f of verificarCasosPreproceso(p)) error(false, `Pre-proceso, caso «${f.caso}», resultado ${f.resultado}: esperado ${f.esperado}, obtenido ${f.obtenido}.`);

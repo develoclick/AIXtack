@@ -74,3 +74,12 @@ test("sin ningún dato, el prompt sigue siendo válido (solo reglas, tarea y cie
   assert.equal(prompt.includes("DATOS DE"), false);
   assert.ok(prompt.includes("TAREA\nTarea sin datos."));
 });
+
+test("variables: {{nombre}} de la tarea se sustituye por lo que la página calculó, y manda sobre un campo del mismo id", () => {
+  const campos = [{ id: "otro", label: "Otro", valor: "x", requerido: true }];
+  const tarea = "La página contó {{palabras}} palabras. Dato: {{otro}}.";
+  assert.ok(construirPrompt({}, campos, null, tarea, { variables: { palabras: "39" } }).includes("La página contó 39 palabras. Dato: x."));
+  assert.ok(rellenarTarea("{{palabras}}", [{ id: "palabras", label: "Palabras", valor: "campo" }], { palabras: "7" }) === "7");
+  // Sin variable ni campo, sigue marcándose [FALTA] (nunca llaves sueltas).
+  assert.equal(rellenarTarea("{{palabras}}", []), "[FALTA]");
+});

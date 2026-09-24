@@ -7,9 +7,12 @@
  *    («Tema: palabra1, palabra2»). Lo que no encaja en ningún tema queda como «sin tema»: no se clasifica por adivinanza.
  *  - «resumen-ventas»: lee una tabla de ventas (fecha, producto, cantidad, monto) y calcula totales, días con ventas,
  *    promedio por día y el total de cada producto, con un total de control.
+ *  - «conteo-palabras»: cuenta las palabras del texto que irá en la pieza (por ejemplo, los cuatro niveles de un afiche) con
+ *    `contarPalabras()` y las compara con el máximo de la herramienta. La IA no vuelve a contarlas.
  */
 import { formatear } from "./calculadora";
 import { leerNumero } from "./calculadora";
+import { contarPalabras } from "../texto/contar-palabras";
 import type { CasoPreproceso, Preproceso } from "./tipos";
 
 export interface ResultadoPreproceso {
@@ -17,6 +20,8 @@ export interface ResultadoPreproceso {
   etiqueta: string;
   valor: number | null;
   texto: string | null;
+  /** `false` = se muestra en la página pero no viaja al prompt como «cálculo ya hecho» (por ejemplo, va por una variable de la tarea). Por defecto `true`. */
+  enPrompt?: boolean;
 }
 
 export interface EstadoPreproceso {
@@ -164,11 +169,37 @@ export function resumenVentas(textoTabla: string, moneda?: string): EstadoPrepro
   return { errores, resultados, completo: errores.length === 0 && filas.length > 0 };
 }
 
+/* ───────────────────────────── conteo de palabras ───────────────────────────── */
+
+const palabrasTexto = (n: number) => `${n} ${n === 1 ? "palabra" : "palabras"}`;
+
+/**
+ * Cuenta las palabras de cada nivel (la unión, con `union`, de los campos que tengan texto) y el total, y lo compara con el
+ * máximo. Nunca hay errores de lectura: sin texto, el total es 0. Ningún resultado viaja como «cálculo hecho»; el total llega
+ * al prompt por la variable de la tarea (ver `Preproceso.variables`).
+ */
+export function conteoPalabras(config: NonNullable<Preproceso["palabras"]>, valores: Record<string, string>): EstadoPreproceso {
+  const niveles = config.niveles.map((nivel) => {
+    const texto = nivel.campos.map((id) => (valores[id] ?? "").trim()).filter(Boolean).join(nivel.union);
+    return { id: nivel.id, etiqueta: nivel.etiqueta, palabras: contarPalabras(texto) };
+  });
+  const total = niveles.reduce((suma, n) => suma + n.palabras, 0);
+  const dentro = total <= config.maximo;
+  const resultados: ResultadoPreproceso[] = [
+    ...niveles.map((n) => ({ id: `nivel:${n.id}`, etiqueta: n.etiqueta, valor: n.palabras, texto: palabrasTexto(n.palabras), enPrompt: false })),
+    { id: "total", etiqueta: "Total de palabras de tus datos", valor: total, texto: palabrasTexto(total), enPrompt: false },
+    { id: "maximo", etiqueta: "Máximo", valor: config.maximo, texto: palabrasTexto(config.maximo), enPrompt: false },
+    { id: "dentro", etiqueta: "¿Dentro del máximo?", valor: dentro ? 1 : 0, texto: dentro ? "Sí" : `No: ${total - config.maximo} de más`, enPrompt: false },
+  ];
+  return { errores: [], resultados, completo: total > 0 };
+}
+
 /* ───────────────────────────── despacho y verificación ───────────────────────────── */
 
 export function ejecutarPreproceso(config: Preproceso, valores: Record<string, string>, moneda?: string): EstadoPreproceso {
-  if (config.tipo === "conteo-temas") return conteoTemas(valores[config.campos.texto] ?? "", valores[config.campos.temas ?? ""] ?? "");
-  return resumenVentas(valores[config.campos.texto] ?? "", moneda);
+  if (config.tipo === "conteo-palabras") return conteoPalabras(config.palabras!, valores);
+  if (config.tipo === "conteo-temas") return conteoTemas(valores[config.campos.texto ?? ""] ?? "", valores[config.campos.temas ?? ""] ?? "");
+  return resumenVentas(valores[config.campos.texto ?? ""] ?? "", moneda);
 }
 
 export interface FalloDePreproceso {

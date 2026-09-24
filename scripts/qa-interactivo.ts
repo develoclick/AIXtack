@@ -380,6 +380,19 @@ async function preprocesos(page: Page, h: HerramientaCargada, v: (typeof VIEWPOR
       }
       await page.waitForTimeout(200);
       const nodo = ejecutarPreproceso(pre, caso.valores);
+      if (pre.tipo === "conteo-palabras") {
+        // Conteo de palabras: «Tus datos suman X palabras (máximo N).», aviso solo si se pasa (no bloquea) y el prompt con el total.
+        const total = nodo.resultados.find((r) => r.id === "total")!.valor!;
+        const max = pre.palabras!.maximo;
+        const linea = ((await page.locator("[data-conteo-palabras]").innerText()) ?? "").replace(/\s+/g, " ").trim();
+        const hayAviso = (await page.locator("[data-aviso-palabras]").count()) > 0;
+        const enPrompt = await page.evaluate(() => Array.from(document.querySelectorAll("pre")).map((p) => p.textContent ?? "").find((t) => t.includes("TAREA")) ?? "");
+        const okLinea = linea === `Tus datos suman ${total} ${total === 1 ? "palabra" : "palabras"} (máximo ${max}).`;
+        const okAviso = hayAviso === total > max;
+        const okPrompt = enPrompt.includes(`La página contó ${total} palabras en tus datos. No vuelvas a contarlas.`);
+        rec(pag, v.nombre, `conteo de palabras · ${caso.nombre}`, okLinea && okAviso && okPrompt, okLinea && okAviso && okPrompt ? `«${linea}»${hayAviso ? " + aviso (no bloquea)" : ""}; el prompt trae el total` : `línea: «${linea}», aviso: ${hayAviso}, prompt con total: ${okPrompt}`);
+        continue;
+      }
       const esperados = nodo.resultados.map((r) => `${r.etiqueta}: ${r.texto ?? "—"}`);
       const dom = await page.locator("section[aria-labelledby='resultados-previo'] dl > div").evaluateAll((els) => els.map((e) => `${e.querySelector("dt")?.textContent?.trim()}: ${e.querySelector("dd")?.textContent?.trim()}`));
       if (!nodo.completo) {

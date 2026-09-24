@@ -1,4 +1,16 @@
 import { defineHerramienta } from "@/lib/herramientas/tipos";
+import { contarPalabras } from "@/lib/texto/contar-palabras";
+
+/** Máximo de palabras de los cuatro niveles («menos de 40»). Lo cuenta la página con contarPalabras(), no la IA. */
+const MAXIMO_PALABRAS = 39;
+
+/** Los cuatro niveles del caso de La Espiga: salen de los campos del ejemplo (lo comprueba afiches.test.ts). */
+const NIVELES_DEL_EJEMPLO = [
+  "Combo de fin de semana: 6 panes y 1 pan dulce por $6",
+  "Sábado y domingo, de 7:00 a 13:00",
+  "Entrar a comprar el combo · Panadería La Espiga, Av. Ejemplo 123",
+  "Hasta agotar existencias. Máximo 2 combos por persona.",
+] as const;
 
 /**
  * PILOTO del modelo «Herramienta + guía corta»: /marketing/crear-afiches-con-ia (Generador).
@@ -44,6 +56,52 @@ export default defineHerramienta({
   ],
   usaPerfil: ["nombre", "direccion", "tono"],
   calculadora: null,
+  preproceso: {
+    tipo: "conteo-palabras",
+    campos: {},
+    palabras: {
+      maximo: MAXIMO_PALABRAS,
+      niveles: [
+        { id: "n1", etiqueta: "Nivel 1 · Titular", campos: ["oferta", "precio"], union: " por " },
+        { id: "n2", etiqueta: "Nivel 2 · Apoyo", campos: ["diasHorario"], union: " " },
+        { id: "n3", etiqueta: "Nivel 3 · Acción y contacto", campos: ["accion", "lugar"], union: " · " },
+        { id: "n4", etiqueta: "Nivel 4 · Letra pequeña", campos: ["condiciones"], union: " " },
+      ],
+    },
+    variables: { palabras: "total" },
+    casosDePrueba: [
+      {
+        nombre: "El caso de La Espiga (los datos de «Probar con un ejemplo»)",
+        valores: {
+          oferta: "Combo de fin de semana: 6 panes y 1 pan dulce",
+          precio: "$6",
+          diasHorario: "Sábado y domingo, de 7:00 a 13:00",
+          accion: "Entrar a comprar el combo",
+          lugar: "Panadería La Espiga, Av. Ejemplo 123",
+          condiciones: "Hasta agotar existencias. Máximo 2 combos por persona.",
+        },
+        esperado: { "nivel:n1": 13, "nivel:n2": 7, "nivel:n3": 11, "nivel:n4": 8, total: 39, dentro: "Sí" },
+      },
+      { nombre: "Sin datos: cero palabras", valores: {}, esperado: { total: 0, dentro: "Sí" } },
+      {
+        nombre: "Sin precio no se cuenta el «por» del titular",
+        valores: { oferta: "Combo de fin de semana: 6 panes y 1 pan dulce", precio: "" },
+        esperado: { "nivel:n1": 11, total: 11 },
+      },
+      {
+        nombre: "Se pasa del máximo: el aviso dice cuántas de más",
+        valores: {
+          oferta: "Combo de fin de semana: 6 panes y 1 pan dulce",
+          precio: "$6",
+          diasHorario: "Sábado y domingo, de 7:00 a 13:00",
+          accion: "Entrar a comprar el combo",
+          lugar: "Panadería La Espiga, Av. Ejemplo 123",
+          condiciones: "Hasta agotar existencias. Máximo 2 combos por persona. No incluye bebidas ni entregas a domicilio. Consulta otros horarios.",
+        },
+        esperado: { "nivel:n4": 18, total: 49, dentro: "No: 10 de más" },
+      },
+    ],
+  },
 
   tarea: `Prepara el contenido de un afiche para mi negocio. Entrega tres cosas y usa solo los datos de arriba.
 
@@ -52,7 +110,7 @@ export default defineHerramienta({
 - Nivel 2 · Apoyo: los días y el horario.
 - Nivel 3 · Acción y contacto: la acción única y el lugar o contacto.
 - Nivel 4 · Letra pequeña: las condiciones.
-Entre los cuatro niveles deben sumar menos de 40 palabras: cuéntalas y dime el total. Si hay que recortar, quita adjetivos y repeticiones, nunca un dato ni una condición. Si un nivel no tiene dato, escribe [FALTA: qué dato] en vez de inventarlo.
+Los cuatro niveles deben sumar menos de ${MAXIMO_PALABRAS + 1} palabras. La página contó {{palabras}} palabras en tus datos. No vuelvas a contarlas. Si recortas algo, dime qué quitaste: recorta solo adjetivos y repeticiones, nunca un dato ni una condición. Si un nivel no tiene dato, escribe [FALTA: qué dato] en vez de inventarlo.
 
 2. BRIEF PARA DISEÑAR en {{herramienta}}, tamaño {{tamano}}: orden de lectura, tamaño relativo de cada nivel (relativo, no en puntos ni centímetros), contraste, espacio y lo que no debe aparecer. Usa exactamente los colores que te di (texto y fondo) y no inventes otros, ni fuentes ni medidas: si falta un dato de marca o de impresión, escribe [FALTA: qué dato]. Para el contraste, pídeme comprobar el par de colores con un verificador; no afirmes que un par cumple.
 
@@ -60,13 +118,13 @@ Entre los cuatro niveles deben sumar menos de 40 palabras: cuéntalas y dime el 
 
 No uses superlativos («el mejor», «único»), no añadas descuentos, ahorros, envíos ni plazos que yo no haya dado, y no propongas más de una acción.
 
-Formato de salida, en este orden y con estos títulos: TEXTO DEL AFICHE (Nivel 1, Nivel 2, Nivel 3, Nivel 4), TOTAL DE PALABRAS, DE DÓNDE SALE CADA DATO (copiado de mis datos o redactado por ti), BRIEF PARA DISEÑAR, PROMPT DE IMAGEN SIN TEXTO y FALTA.
+Formato de salida, en este orden y con estos títulos: TEXTO DEL AFICHE (Nivel 1, Nivel 2, Nivel 3, Nivel 4), LO QUE QUITÉ (solo si recortaste algo), DE DÓNDE SALE CADA DATO (copiado de mis datos o redactado por ti), BRIEF PARA DISEÑAR, PROMPT DE IMAGEN SIN TEXTO y FALTA.
 
-Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{precio}}», que cada cifra, horario y dirección de los niveles coincide letra por letra con mis datos, que hay una sola acción y que el total es menos de 40 palabras. Corrige lo que no cumpla.`,
+Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{precio}}», que cada cifra, horario y dirección de los niveles coincide letra por letra con mis datos, que hay una sola acción y que, si recortaste algo, dices qué quitaste (no vuelvas a contar las palabras: ya las contó la página). Corrige lo que no cumpla.`,
 
   mejoras: [
     { label: "Otros titulares", prompt: "Dame tres versiones del nivel 1 sin cambiar el precio ni la vigencia." },
-    { label: "Más corto", prompt: "Recorta el texto sin quitar ninguna condición: lo que salga del titular pásalo al nivel 4. Dime el nuevo total, que debe seguir siendo menos de 40 palabras." },
+    { label: "Más corto", prompt: "Recorta el texto sin quitar ninguna condición: lo que salga del titular pásalo al nivel 4. Dime qué quitaste y no vuelvas a contar las palabras: ya las contó la página." },
     { label: "Revisar los datos", prompt: "Lista cada cifra, horario y dirección del texto final y dime si coincide letra por letra con mis datos." },
     { label: "Imagen sin texto", prompt: "Reescribe el prompt de imagen para que no aparezca ninguna letra, número ni logotipo dentro de la imagen." },
   ],
@@ -74,11 +132,12 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
   ejemplo: {
     negocio: "Panadería La Espiga (ficticia), panadería de barrio con vitrina hacia la calle",
     resultado: {
-      "Nivel 1 · Titular": "Combo de fin de semana: 6 panes y 1 pan dulce por $6",
-      "Nivel 2 · Apoyo": "Sábado y domingo, de 7:00 a 13:00",
-      "Nivel 3 · Acción y contacto": "Entrar a comprar el combo · Panadería La Espiga, Av. Ejemplo 123",
-      "Nivel 4 · Letra pequeña": "Hasta agotar existencias. Máximo 2 combos por persona.",
-      "Total": "39 palabras (menos de 40)",
+      "Nivel 1 · Titular": NIVELES_DEL_EJEMPLO[0],
+      "Nivel 2 · Apoyo": NIVELES_DEL_EJEMPLO[1],
+      "Nivel 3 · Acción y contacto": NIVELES_DEL_EJEMPLO[2],
+      "Nivel 4 · Letra pequeña": NIVELES_DEL_EJEMPLO[3],
+      // Calculado con contarPalabras(): nunca un número escrito a mano.
+      "Total": `${contarPalabras(NIVELES_DEL_EJEMPLO)} palabras (máximo ${MAXIMO_PALABRAS})`,
     },
     capturas: [],
     transcripcion: "", // TODO: respuesta completa de la IA, copiada del MISMO chat de la captura «Prueba real», tal como salió. Vacío hasta la prueba: no se escribe a mano.
@@ -121,7 +180,7 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
     {
       titulo: "Un tope de palabras obliga a decidir",
       texto:
-        "El texto debe sumar menos de 40 palabras. Para respetarlo se quitan adjetivos y repeticiones, y lo necesario pero secundario baja a la letra pequeña. Eso es lo que hace que el titular se entienda en tres segundos.",
+        "El texto debe sumar menos de 40 palabras. Para respetarlo se quitan adjetivos y repeticiones, y lo necesario pero secundario baja a la letra pequeña. Eso es lo que hace que el titular se entienda en tres segundos. Las palabras las cuenta la página con tus datos y te avisa si te pasas; la IA no las cuenta ni las vuelve a contar.",
     },
     {
       titulo: "La IA prepara el mensaje; el diseño es tuyo",
