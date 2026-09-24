@@ -37,7 +37,7 @@ Los componentes de `components/herramientas/` usan `estilos.ts` (texto en tinta,
 ## Capturas y capturas pendientes
 
 - Cada captura de `ejemplo.capturas` (y de `metodoCompleto.capturas`) es `{ src, alt, etiqueta, leyenda, ancho, alto }`. `src` va en `/img/{area}/{slug}/…` (por ejemplo `prueba-01.webp`); `alt` es obligatorio; `ancho` y `alto` son los píxeles reales del archivo (un test lo comprueba). Etiquetas válidas: `Prueba real`, `Ilustración`, `Simulación`, `Resultado final diseñado con el texto de la IA`, `Foto generada con IA`. Se muestran en el bloque 6 (`EjemploReal` → `CapturaFigura`), y solo si el archivo existe.
-- `capturasPendientes: [{ archivo, etiqueta, muestra }]` (obligatorio, `[]` si no falta ninguna): lo que falta por subir. Con `next dev` o `MOSTRAR_BORRADORES=true` el bloque 6 dibuja un recuadro gris punteado por cada una; en producción no se renderiza nada.
+- `capturasPendientes: [{ archivo, etiqueta, muestra }]` (obligatorio, `[]` si no falta ninguna): lo que falta por subir. Solo con `next dev` el bloque 6 dibuja un recuadro gris punteado por cada una; un build de producción no renderiza nada de eso, ni siquiera con `MOSTRAR_BORRADORES=true`.
 - Para subir una captura: guarda el `.webp` (≥ 1.200 px de ancho, sin editar) en `public/img/{area}/{slug}/`, añade su objeto a `ejemplo.capturas` con su tamaño y quítala de `capturasPendientes`.
 - `npm run capturas` lista, por página, las capturas puestas, las pendientes y los archivos mencionados que no existen.
 - Regla de publicación: `publicado: true` exige al menos 1 captura «Prueba real» y 0 pendientes; si no, el build falla.

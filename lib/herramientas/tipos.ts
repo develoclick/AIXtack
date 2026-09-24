@@ -134,7 +134,7 @@ export interface CapturaEjemplo {
 }
 
 /**
- * Captura que aún no existe. Solo se ve con `next dev` o MOSTRAR_BORRADORES=true (recuadro gris punteado en el bloque 6);
+ * Captura que aún no existe. Solo se ve con `next dev` (recuadro gris punteado en el bloque 6);
  * en producción no se renderiza nada. Una página `publicado: true` no puede tener ninguna pendiente.
  */
 export interface CapturaPendiente {

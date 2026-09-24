@@ -9,7 +9,7 @@ export const ETIQUETA_TIPO: Record<string, string> = { generador: "Generador", c
 /**
  * Tarjeta de una herramienta para la biblioteca, las áreas y el inicio. Solo recibe herramientas que
  * `listarVisibles()` deja pasar: en producción, únicamente las publicadas (salvo la vista previa de revisión,
- * MOSTRAR_BORRADORES=true). El aviso de borrador solo aparece en `next dev` o en esa vista previa.
+ * MOSTRAR_BORRADORES=true). El aviso de borrador solo aparece en `next dev` o con esa vista previa (los recuadros de capturas, solo con `next dev`).
  */
 export function TarjetaHerramienta({ herramienta: h, mostrarArea = true }: { herramienta: HerramientaCargada; mostrarArea?: boolean }) {
   return (

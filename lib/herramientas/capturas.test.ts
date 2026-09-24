@@ -114,3 +114,17 @@ test("etiqueta inválida, alt vacío o tamaño ausente son errores incluso en un
   assert.ok(errores({ ancho: 0 }).some((e) => /ancho y alto/.test(e)));
   assert.ok(errores({ leyenda: "" }).some((e) => /leyenda/.test(e)));
 });
+
+test("los recuadros de capturas pendientes solo existen con NODE_ENV=development (producción, nunca, ni con MOSTRAR_BORRADORES=true)", async () => {
+  const { execFileSync } = await import("node:child_process");
+  const medir = (nodeEnv: string, mostrar: string) =>
+    execFileSync(process.execPath, ["--import", "tsx", "-e", 'import("./lib/herramientas/vista-previa.ts").then((m)=>console.log(String(m.mostrarCapturasPendientes)))'], {
+      env: { ...process.env, NODE_ENV: nodeEnv, MOSTRAR_BORRADORES: mostrar } as NodeJS.ProcessEnv,
+      cwd: raiz,
+    })
+      .toString()
+      .trim();
+  assert.equal(medir("production", "true"), "false", "producción con MOSTRAR_BORRADORES=true");
+  assert.equal(medir("production", ""), "false");
+  assert.equal(medir("development", ""), "true", "next dev");
+});

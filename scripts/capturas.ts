@@ -52,7 +52,7 @@ async function main() {
   console.log("| Página | Archivo esperado | Etiqueta | Tamaño recomendado | Qué debe mostrar |");
   console.log("|---|---|---|---|---|");
   console.log(detalle.join("\n"));
-  console.log("\nCarpeta de cada página: public/img/{área}/{slug}/. Los recuadros grises solo se ven con `next dev` o MOSTRAR_BORRADORES=true.");
+  console.log("\nCarpeta de cada página: public/img/{área}/{slug}/. Los recuadros grises solo se ven con `next dev` (nunca en un build de producción).");
 }
 
 main().catch((e) => {

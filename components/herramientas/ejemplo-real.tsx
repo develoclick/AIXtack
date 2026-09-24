@@ -1,6 +1,5 @@
 import { mediaExists } from "@/lib/guides/media";
 import type { CapturaPendiente, EjemploReal as EjemploRealDatos } from "@/lib/herramientas/tipos";
-import { pendientesVisibles } from "@/lib/herramientas/vista-previa";
 import { CapturaFigura } from "./captura-figura";
 
 /**
@@ -8,10 +7,9 @@ import { CapturaFigura } from "./captura-figura";
  * («Prueba real» solo para capturas reales de un chat; «Ilustración» o «Simulación» para lo demás).
  * Si un archivo no existe no se muestra nada: la página no enseña marcadores ni notas de producción.
  */
-export function EjemploReal({ ejemplo, pendientes: todasLasPendientes = [] }: { ejemplo: EjemploRealDatos; pendientes?: CapturaPendiente[] }) {
+export function EjemploReal({ ejemplo, pendientes = [] }: { ejemplo: EjemploRealDatos; pendientes?: CapturaPendiente[] }) {
   const capturas = ejemplo.capturas.filter((c) => mediaExists(c.src));
-  // Recuadros grises de «captura pendiente»: solo en desarrollo o con MOSTRAR_BORRADORES=true. En producción, nada.
-  const pendientes = pendientesVisibles(todasLasPendientes);
+  // `pendientes` llega ya filtrado por la página (`pendientesVisibles`): solo con `next dev` trae recuadros; en un build de producción, nunca.
   const datos = Object.entries(ejemplo.datos);
 
   return (

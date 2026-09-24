@@ -11,6 +11,7 @@ import { rutaHerramienta, type HerramientaCargada } from "@/lib/herramientas/reg
 import { formatDate } from "@/lib/utils/format";
 import { CapturaFigura } from "./captura-figura";
 import { ChecklistRevision } from "./checklist-revision";
+import { pendientesVisibles } from "@/lib/herramientas/vista-previa";
 import { EjemploReal } from "./ejemplo-real";
 import { EspacioAnuncio } from "./espacio-anuncio";
 import { Faq } from "./faq";
@@ -151,7 +152,7 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
 
         {/* 6 · Ejemplo real */}
         <Bloque id="ejemplo" titulo="Un ejemplo, paso a paso">
-          <EjemploReal ejemplo={h.ejemplo} pendientes={h.capturasPendientes} />
+          <EjemploReal ejemplo={h.ejemplo} pendientes={pendientesVisibles(h.capturasPendientes)} />
         </Bloque>
 
         <EspacioAnuncio posicion="despues-del-ejemplo" />
