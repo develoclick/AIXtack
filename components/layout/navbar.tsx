@@ -95,7 +95,7 @@ export function Navbar() {
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
               aria-label="Abrir menú"
-              className="group flex size-10 items-center justify-center rounded-full border border-border/60 bg-background/70 transition-all duration-300 hover:bg-muted xl:hidden"
+              className="group flex size-11 items-center justify-center rounded-full border border-border/60 bg-background/70 transition-all duration-300 hover:bg-muted xl:hidden"
             >
               <Menu className="size-[19px]" strokeWidth={2} />
             </SheetTrigger>

@@ -210,6 +210,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* Foco visible en TODO el sitio con contraste ≥ 3:1: la tinta (casi negra en claro, casi blanca en oscuro). El anillo de marca al 50 % no llegaba a 3:1. */
+  :focus-visible {
+    outline: 2px solid var(--guide-ink);
+    outline-offset: 2px;
+  }
   html {
     @apply font-sans;
   }
@@ -335,7 +340,7 @@
 
   /* Enfoque visible y coherente en todo lo interactivo de la guía. */
   .guide-focus:focus-visible {
-    outline: 2px solid var(--brand);
+    outline: 2px solid var(--guide-ink);
     outline-offset: 2px;
     border-radius: 0.375rem;
   }
