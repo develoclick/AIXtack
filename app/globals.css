@@ -552,6 +552,23 @@
     }
   }
 
+  /* Entrada del aviso de cookies (antes, framer-motion). Con «menos movimiento» aparece sin animar. */
+  @keyframes consent-entrada {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 100px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .consent-entrada {
+      animation: consent-entrada 0.3s ease-out both;
+    }
+  }
+
   /* Aparición al entrar en pantalla. Sin JavaScript (o con menos movimiento) todo es visible. */
   @media (prefers-reduced-motion: no-preference) {
     .reveal[data-ready="true"] {
