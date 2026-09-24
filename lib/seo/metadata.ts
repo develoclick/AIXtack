@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteName, siteUrl } from "@/lib/site";
+import { OG_POR_DEFECTO, siteName, siteUrl } from "@/lib/site";
 
 export interface BuildMetadataInput {
   title: string;
@@ -16,7 +16,7 @@ export interface BuildMetadataInput {
 
 export function buildMetadata(input: BuildMetadataInput): Metadata {
   const url = new URL(input.path, siteUrl).toString();
-  const image = input.image ?? `${siteUrl}/og-default.png`;
+  const image = input.image ?? `${siteUrl}${OG_POR_DEFECTO}`;
   const type = input.type ?? "website";
 
   return {

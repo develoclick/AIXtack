@@ -1,15 +1,21 @@
 import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
 import { getCategory } from "@/content/categorias";
 import { mediaExists } from "@/lib/guides/media";
-import { siteName, siteUrl } from "@/lib/site";
+import { OG_POR_DEFECTO, siteName, siteUrl } from "@/lib/site";
 import { rutaHerramienta } from "./registro";
 import type { Herramienta } from "./tipos";
 
 const absoluta = (ruta: string) => new URL(ruta, siteUrl).toString();
 
-/** URL absoluta de la og:image propia, solo si el archivo existe en public/. */
-export function ogImageUrl(h: Herramienta): string | undefined {
-  return h.meta.ogImage && mediaExists(h.meta.ogImage) ? absoluta(h.meta.ogImage) : undefined;
+/** ¿Existe la og:image PROPIA de la página (/img/{area}/{slug}/og.webp)? */
+export const tieneOgPropia = (h: Herramienta) => Boolean(h.meta.ogImage && mediaExists(h.meta.ogImage));
+
+/**
+ * URL absoluta de la og:image de la página: la propia si el archivo existe en public/; si no, el respaldo general del sitio
+ * (`OG_POR_DEFECTO`). Nunca apunta a un archivo inexistente.
+ */
+export function ogImageUrl(h: Herramienta): string {
+  return absoluta(tieneOgPropia(h) ? h.meta.ogImage! : OG_POR_DEFECTO);
 }
 
 /** Un solo `Article` por página. Las fechas son las reales de los datos. */

@@ -4,6 +4,8 @@
  * volver a poner otro dominio. El dominio sin «www» redirige (308) a www.guiapromptsia.com; este es el dominio principal.
  */
 export const siteUrl = "https://www.guiapromptsia.com";
+/** Imagen og:image general (1200×630, logotipo y nombre sobre el color de marca): respaldo de toda página sin og.webp propia. */
+export const OG_POR_DEFECTO = "/og-default.webp";
 export const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 export const siteTagline = "IA práctica para microempresas y emprendedores";
 export const contactEmail = "contacto@guiapromptsia.com";

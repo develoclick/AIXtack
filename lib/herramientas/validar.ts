@@ -210,8 +210,10 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   error(new Set(pendientes.map((p) => p.archivo)).size === pendientes.length, "Hay capturas pendientes con el mismo nombre de archivo.");
   error(!h.publicado || pendientes.length === 0, `Una página publicada no puede tener capturas pendientes (${pendientes.length}).`);
   error(!h.publicado || [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])].some((c) => c.etiqueta === "Prueba real"), "Una página publicada exige al menos 1 captura con etiqueta «Prueba real».");
-  if (h.meta.ogImage) publicada(ctx.existeImagen(h.meta.ogImage), `og:image ${h.meta.ogImage}: el archivo no existe en public/.`);
-  else publicada(false, "Falta meta.ogImage (og:image propia).");
+  // og:image propia obligatoria para publicar (borrador: solo aviso; mientras tanto la página usa el respaldo general del sitio).
+  const ogEsperada = `/img/${h.meta.area}/${h.meta.slug}/og.webp`;
+  publicada(h.meta.ogImage === ogEsperada, `meta.ogImage debe ser ${ogEsperada} (og:image propia); ahora: ${h.meta.ogImage ?? "sin definir"}.`);
+  if (h.meta.ogImage) publicada(ctx.existeImagen(h.meta.ogImage), `og:image ${h.meta.ogImage}: el archivo no existe en public/ (mientras tanto se usa /og-default.webp).`);
 
   return { errores, avisos, palabras };
 }

@@ -68,6 +68,15 @@ async function main() {
     if (sinWww.length) fallo(`${n.ruta}: URLs sin www en el HTML: ${sinWww.join(", ")}`);
     const jsonLd = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
     for (const j of jsonLd) for (const u of j.match(/https?:\/\/[^"\\]+/g) ?? []) if (/guiapromptsia\.com/.test(u) && !u.startsWith(siteUrl)) fallo(`${n.ruta}: JSON-LD con URL fuera de ${siteUrl}: ${u}`);
+    // og:image y twitter:image: la imagen debe existir (200, tipo imagen).
+    for (const propiedad of ["og:image", "twitter:image"]) {
+      const img = new RegExp(`<meta[^>]+(?:property|name)="${propiedad}"[^>]+content="([^"]+)"`).exec(html)?.[1];
+      if (!img) fallo(`${n.ruta}: falta ${propiedad}`);
+      else {
+        const r = await fetch(base + new URL(img).pathname);
+        if (r.status !== 200 || !(r.headers.get("content-type") ?? "").startsWith("image/")) fallo(`${n.ruta}: ${propiedad} ${img} → ${r.status}`);
+      }
+    }
     if (cuenta(html, /<h1[\s>]/g) !== 1) fallo(`${n.ruta}: ${cuenta(html, /<h1[\s>]/g)} H1`);
     if (n.tipo === "herramienta") {
       if (cuenta(html, /"@type":"Article"/g) !== 1) fallo(`${n.ruta}: Article JSON-LD ≠ 1`);

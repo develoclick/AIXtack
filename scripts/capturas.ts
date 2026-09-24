@@ -3,7 +3,8 @@
  *
  *   npm run capturas
  *
- * Por página: capturas puestas (archivo existente), pendientes y archivos mencionados en los datos que NO existen en public/.
+ * Por página: capturas puestas (archivo existente), pendientes, si tiene og:image propia (si no, usa el respaldo /og-default.webp) y archivos
+ * mencionados en los datos que NO existen en public/.
  * Después, la lista de capturas pendientes con el nombre de archivo, el tamaño recomendado y lo que debe mostrar cada una.
  * Solo informa: siempre sale con código 0 (el validador bloquea las páginas publicadas que tengan pendientes).
  */
@@ -21,6 +22,7 @@ async function main() {
   const filas: string[] = [];
   const detalle: string[] = [];
   let totales = { puestas: 0, pendientes: 0, faltan: 0 };
+  let ogPendientes = 0;
 
   for (const area of fs.readdirSync(carpeta, { withFileTypes: true })) {
     if (!area.isDirectory()) continue;
@@ -31,19 +33,21 @@ async function main() {
       const declaradas = [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])];
       const puestas = declaradas.filter((c) => existe(c.src));
       const reales = puestas.filter((c) => c.etiqueta === "Prueba real").length;
-      const mencionados = [...declaradas.map((c) => c.src), ...(h.meta.ogImage ? [h.meta.ogImage] : [])];
+      const mencionados = declaradas.map((c) => c.src);
+      const ogPropia = Boolean(h.meta.ogImage && existe(h.meta.ogImage));
+      if (!ogPropia) ogPendientes++;
       const faltan = [...new Set(mencionados)].filter((s) => !existe(s));
       const pendientes = h.capturasPendientes ?? [];
       totales = { puestas: totales.puestas + puestas.length, pendientes: totales.pendientes + pendientes.length, faltan: totales.faltan + faltan.length };
-      filas.push(`| ${ruta} | ${h.publicado ? "sí" : "no"} | ${puestas.length} de ${declaradas.length} (${reales} «Prueba real») | ${pendientes.length} | ${faltan.length ? faltan.map((s) => s.split("/").pop()).join(", ") : "—"} |`);
+      filas.push(`| ${ruta} | ${h.publicado ? "sí" : "no"} | ${puestas.length} de ${declaradas.length} (${reales} «Prueba real») | ${pendientes.length} | ${ogPropia ? "sí" : "pendiente (usa /og-default.webp)"} | ${faltan.length ? faltan.map((s) => s.split("/").pop()).join(", ") : "—"} |`);
       for (const p of pendientes) detalle.push(`| ${ruta} | \`${p.archivo}\` | ${p.etiqueta} | ${TAMANO} | ${p.muestra} |`);
     }
   }
 
-  console.log("| Página | Publicado | Capturas puestas | Pendientes | Archivos mencionados que no existen |");
-  console.log("|---|---|---|---|---|");
+  console.log("| Página | Publicado | Capturas puestas | Pendientes | og propia | Archivos mencionados que no existen |");
+  console.log("|---|---|---|---|---|---|");
   console.log(filas.join("\n"));
-  console.log(`\nTotal: ${totales.puestas} capturas puestas, ${totales.pendientes} pendientes, ${totales.faltan} archivos mencionados que no existen (og:image incluida).`);
+  console.log(`\nTotal: ${totales.puestas} capturas puestas, ${totales.pendientes} pendientes, ${totales.faltan} archivos mencionados que no existen; ${ogPendientes} og propias pendientes (esas páginas usan el respaldo /og-default.webp).`);
   console.log("\n### Capturas pendientes\n");
   console.log("| Página | Archivo esperado | Etiqueta | Tamaño recomendado | Qué debe mostrar |");
   console.log("|---|---|---|---|---|");
