@@ -116,16 +116,20 @@ Antes de responder, comprueba que cada fila es una tarea mía, que no inventaste
       "Minutos que necesitan las 4 tareas": "120, con 30 de holgura",
       "¿Caben?": "Sí",
     },
-    capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
-  capturasPendientes: [
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/negocio/organizar-tareas-con-ia/ y aparece solo. Ver docs/como-publicar.md.
+  imagenes: [
     {
-      archivo: "prueba-01.webp",
+      id: "prueba-01",
+      archivo: "prueba-01",
       etiqueta: "Prueba real",
-      muestra: "Chat nuevo: las tareas priorizadas, el plan de la semana, lo que se puede delegar y la rutina diaria de 15 minutos para Lavandería Brisa (ficticia), con la capacidad ya calculada por la página.",
+      titulo: "Chat de la IA con la respuesta al prompt de esta página",
+      alt: "Chat nuevo: las tareas priorizadas, el plan de la semana, lo que se puede delegar y la rutina diaria de 15 minutos para Lavandería Brisa (ficticia), con la capacidad ya calculada por la página.",
+      leyenda: "Prueba real: la respuesta de la IA al prompt de esta página, sin editar.",
+      ubicacion: "ejemplo",
+      obligatoria: true,
     },
   ],
 

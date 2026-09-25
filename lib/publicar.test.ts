@@ -1,21 +1,23 @@
 /**
- * npm run publicar: lectura de argumentos, tamaño real de las capturas y edición del archivo de datos (capturas → capturas,
- * probadoEn/Fecha, «Qué corregí yo», publicado). El resultado debe ser un archivo válido que pasa el validador como publicado.
+ * npm run publicar: lectura de argumentos, tamaño real de las imágenes, edición del archivo de datos (probadoEn/Fecha, «Qué corregí yo»,
+ * publicado) y lo que falta para publicar (imágenes obligatorias y, en un proceso, el registro de la prueba real). Las imágenes ya no
+ * se registran: aparecen solas al guardar el archivo con su nombre. El resultado debe pasar el validador como página publicada.
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { pathToFileURL } from "node:url";
-import { aplicarCambios, capturaDesdePendiente, encontrarCierre, leerArgumentos, objetosDeArray, repartirPendientes, tamanoWebp } from "../scripts/publicar";
-import { validarHerramienta } from "./herramientas/validar";
+import { aplicarCambios, encontrarCierre, faltaParaPublicar, leerArgumentos, objetosDeArray, tamanoWebp } from "../scripts/publicar";
+import type { ArchivoDeImagen, ImagenResuelta } from "./herramientas/imagenes";
+import { validarHerramienta, type ArchivoBuscado } from "./herramientas/validar";
 import type { Herramienta } from "./herramientas/tipos";
 
 const raiz = process.cwd();
-// Copias fijas de dos páginas en borrador (una sin capturas y otra con capturas del método anterior): así las pruebas no dependen de qué páginas estén publicadas.
-const FIXTURES: Record<string, string> = { "marketing/crear-afiches-con-ia": "pagina-sin-capturas", "marketing/crear-anuncios-con-ia": "pagina-con-capturas-anteriores" };
-const fuente = (ruta: string) => fs.readFileSync(path.join(raiz, "lib", "herramientas", "fixtures", `${FIXTURES[ruta]}.ts.txt`), "utf8");
+// Copias fijas de dos páginas en borrador (una de proceso y otra simple): así las pruebas no dependen de qué páginas estén publicadas.
+const fixture = (nombre: string) => fs.readFileSync(path.join(raiz, "lib", "herramientas", "fixtures", `${nombre}.ts.txt`), "utf8");
 const CORREGI = ["La IA inventó una cifra que no dije y la quité yo.", "Cambié el tono de la primera opción, que era muy formal.", "Añadí el dato del horario que faltaba en el texto."];
+const PASOS_DE_LA_PRUEBA = [1, 2, 3, 4, 5].map((paso) => ({ paso, hizoLaIA: "Escribió el texto de prueba.", hiceYo: "Lo revisé y cambié un signo.", tiempo: "2 min" }));
 
 async function cargar(fuenteTs: string): Promise<Herramienta> {
   const dir = path.join(raiz, "scripts", ".tmp-publicar");
@@ -29,12 +31,8 @@ async function cargar(fuenteTs: string): Promise<Herramienta> {
   }
 }
 
-function aplicar(ruta: string, ancho = 1300, alto = 900) {
-  const datos = fuente(ruta);
-  const pendientes = [...datos.matchAll(/archivo: "([^"]+)",\s*etiqueta: "([^"]+)",\s*muestra: "([^"]+)"/g)].map((m) => ({ archivo: m[1], etiqueta: m[2], muestra: m[3] }));
-  const capturas = pendientes.map((p) => capturaDesdePendiente(p, ruta, "ChatGPT", "2026-09-20", { ancho, alto }));
-  return { pendientes, texto: aplicarCambios({ fuente: datos, ia: "ChatGPT", fecha: "2026-09-20", hoy: "2026-09-25", corregi: CORREGI, capturas }) };
-}
+const archivo = (extra: Partial<ArchivoDeImagen> = {}): ArchivoDeImagen => ({ src: "/img/a/b/x.webp", ancho: 1300, alto: 900, extension: "webp", duplicadas: [], ...extra });
+const resueltas = (h: Herramienta, presentes: string[]): ImagenResuelta[] => h.imagenes.map((espacio) => ({ espacio, archivo: presentes.includes(espacio.archivo) ? archivo({ src: `/img/${h.meta.area}/${h.meta.slug}/${espacio.archivo}.webp` }) : null }));
 
 test("argumentos: ruta, --ia, --fecha y tres líneas de --corregi; errores claros si falta algo", () => {
   const ok = leerArgumentos(["marketing/crear-afiches-con-ia", "--ia", "ChatGPT", "--fecha", "2026-09-20", "--corregi", "línea uno larga", "línea dos larga", "línea tres larga"]);
@@ -48,7 +46,7 @@ test("argumentos: ruta, --ia, --fecha y tres líneas de --corregi; errores claro
   assert.ok(mal.errores.length >= 4, mal.errores.join(" | "));
 });
 
-test("tamaño real de un .webp", () => {
+test("tamaño real de una imagen (.webp, .png o .jpg)", () => {
   assert.deepEqual(tamanoWebp(fs.readFileSync(path.join(raiz, "public", "og-default.webp"))), { ancho: 1200, alto: 630 });
   assert.throws(() => tamanoWebp(Buffer.from("no es una imagen")));
 });
@@ -60,106 +58,76 @@ test("bloques: el cierre de corchetes salta cadenas y comentarios, y se separan 
   assert.equal(objetosDeArray(t.slice(t.indexOf("["), fin + 1)).length, 2);
 });
 
-test("afiches (sin capturas, 2 pendientes): pasan a capturas, sin pendientes, con prueba, «Qué corregí yo» y publicado:true", async () => {
-  const { texto, pendientes } = aplicar("marketing/crear-afiches-con-ia");
-  assert.equal(pendientes.length, 2);
-  const h = await cargar(texto);
-  assert.equal(h.publicado, true);
-  assert.equal(h.meta.probadoEn, "ChatGPT");
-  assert.equal(h.meta.probadoFecha, "2026-09-20");
-  assert.equal(h.meta.actualizado, "2026-09-25");
-  assert.deepEqual(h.capturasPendientes, []);
-  assert.deepEqual(h.ejemplo.queCorregi, CORREGI);
-  assert.deepEqual(h.ejemplo.capturas.map((c) => [c.src, c.etiqueta, c.ancho, c.alto]), [
-    ["/img/marketing/crear-afiches-con-ia/prueba-01.webp", "Prueba real", 1300, 900],
-    ["/img/marketing/crear-afiches-con-ia/prueba-02.webp", "Resultado final diseñado con el texto de la IA", 1300, 900],
-  ]);
-  const existen = new Set(h.ejemplo.capturas.map((c) => c.src));
-  const r = validarHerramienta(h, { existeImagen: (s) => existen.has(s) || s.endsWith("og.webp"), existentes: new Set([...h.relacionadas, "marketing/crear-afiches-con-ia"]), publicadas: new Set(h.relacionadas) });
-  assert.deepEqual(r.errores.filter((e) => !/relacionada/i.test(e)), []);
-});
-
-test("anuncios (2 capturas del método anterior + 1 nueva): la nueva va primero y las anteriores que no caben pasan al método completo", async () => {
-  const antes = await cargar(fuente("marketing/crear-anuncios-con-ia"));
-  const { texto } = aplicar("marketing/crear-anuncios-con-ia");
-  const h = await cargar(texto);
-  assert.equal(h.ejemplo.capturas.length, 2, "el ejemplo admite 2");
-  assert.equal(h.ejemplo.capturas[0].src, "/img/marketing/crear-anuncios-con-ia/prueba-01.webp");
-  assert.equal(h.ejemplo.capturas[1].src, antes.ejemplo.capturas[0].src);
-  assert.equal(h.metodoCompleto!.capturas!.length, antes.metodoCompleto!.capturas!.length + 1);
-  assert.ok(h.metodoCompleto!.capturas!.some((c) => c.src === antes.ejemplo.capturas[1].src), "la segunda captura anterior pasó al método completo");
-  assert.equal(h.publicado, true);
-  assert.deepEqual(h.capturasPendientes, []);
-});
-
-test("una página ya publicada no se vuelve a publicar", () => {
-  const publicada = fuente("marketing/crear-afiches-con-ia").replace(/^  publicado: false,/m, "  publicado: true,");
-  assert.throws(() => aplicarCambios({ fuente: publicada, ia: "x", fecha: "2026-09-20", hoy: "2026-09-25", corregi: CORREGI, capturas: [] }), /ya está publicada/);
-});
-
-/* ───────────── páginas de proceso: capturas obligatorias y opcionales, paso y etiquetas de imágenes hechas con IA ───────────── */
-
-const RUTA_PROCESO = "marketing/crear-afiches-con-ia";
-const fixtureProceso = () => fs.readFileSync(path.join(raiz, "lib", "herramientas", "fixtures", "pagina-de-proceso.ts.txt"), "utf8");
-
-async function publicarProceso(existentes: string[]) {
-  const datos = fixtureProceso();
-  const original = await cargar(datos);
-  const reparto = repartirPendientes(original.capturasPendientes, (a) => existentes.includes(a));
-  const capturas = reparto.usar.map((p) => capturaDesdePendiente(p, RUTA_PROCESO, "ChatGPT", "2026-09-20", { ancho: 1300, alto: 900 }));
-  const texto = aplicarCambios({ fuente: datos, ia: "ChatGPT", fecha: "2026-09-20", hoy: "2026-09-25", corregi: CORREGI, capturas });
-  return { original, reparto, capturas, h: await cargar(texto) };
+for (const [nombre, ruta] of [["proceso (afiches)", "pagina-de-proceso"], ["simple (anuncios)", "pagina-simple"]] as const) {
+  test(`${nombre}: publicar solo cambia la prueba, «Qué corregí yo», la fecha y publicado; las imágenes y el resto quedan intactos`, async () => {
+    const fuente = fixture(ruta);
+    const antes = await cargar(fuente);
+    const texto = aplicarCambios({ fuente, ia: "ChatGPT", fecha: "2026-09-20", hoy: "2026-09-25", corregi: CORREGI });
+    const h = await cargar(texto);
+    assert.equal(h.publicado, true);
+    assert.equal(h.meta.probadoEn, "ChatGPT");
+    assert.equal(h.meta.probadoFecha, "2026-09-20");
+    assert.equal(h.meta.actualizado, "2026-09-25");
+    assert.deepEqual(h.ejemplo.queCorregi, CORREGI);
+    assert.deepEqual(h.imagenes, antes.imagenes, "las imágenes no se registran ni se mueven: se detectan solas");
+    assert.deepEqual(h.ejemplo.pasos, antes.ejemplo.pasos);
+    assert.ok(!("capturas" in h.ejemplo) && !("capturasPendientes" in h));
+    assert.throws(() => aplicarCambios({ fuente: texto, ia: "x", fecha: "2026-09-20", hoy: "2026-09-25", corregi: CORREGI }), /ya está publicada/);
+  });
 }
 
-test("proceso: solo prueba-01 y afiche-final son obligatorias; las demás se suman si existen y, si no, se descartan", async () => {
-  const pendientes = (await cargar(fixtureProceso())).capturasPendientes;
-  assert.deepEqual(pendientes.filter((p) => p.obligatoria !== false).map((p) => p.archivo), ["prueba-01.webp", "afiche-final.webp"]);
-  const sinFinal = repartirPendientes(pendientes, (a) => a === "prueba-01.webp");
-  assert.deepEqual(sinFinal.faltan.map((p) => p.archivo), ["afiche-final.webp"], "sin afiche-final no se publica");
-  const sinPrueba = repartirPendientes(pendientes, (a) => a === "afiche-final.webp");
-  assert.deepEqual(sinPrueba.faltan.map((p) => p.archivo), ["prueba-01.webp"], "sin prueba-01 no se publica");
-  const minimo = repartirPendientes(pendientes, (a) => ["prueba-01.webp", "afiche-final.webp"].includes(a));
-  assert.deepEqual(minimo.faltan, []);
-  assert.deepEqual(minimo.descartadas.map((p) => p.archivo), ["prep-01.webp", "prueba-02.webp", "mockup-vitrina.webp", "estado-9x16.webp"]);
-});
-
-test("proceso: con solo lo obligatorio se publica con 2 capturas, sus pasos y el validador en verde", async () => {
-  const { h, capturas } = await publicarProceso(["prueba-01.webp", "afiche-final.webp"]);
-  assert.equal(h.publicado, true);
-  assert.deepEqual(h.capturasPendientes, []);
-  assert.deepEqual(h.ejemplo.capturas.map((c) => [c.src.split("/").pop(), c.etiqueta, c.paso]), [
-    ["prueba-01.webp", "Prueba real", 2],
-    ["afiche-final.webp", "Resultado final diseñado con el texto de la IA", 4],
-  ]);
-  assert.equal(capturas.length, 2);
-  assert.deepEqual(h.ejemplo.queCorregi, CORREGI);
-  assert.equal(h.ejemplo.notaPreparada, "La IA cambió «·» por «—» en el nivel 3; lo corregí.", "la nota preparada se conserva");
-  const existen = new Set(h.ejemplo.capturas.map((c) => c.src));
-  const r = validarHerramienta(h, { existeImagen: (s) => existen.has(s) || s.endsWith("og.webp"), existentes: new Set([...h.relacionadas, RUTA_PROCESO]), publicadas: new Set(h.relacionadas) });
+test("proceso: publicado con sus imágenes obligatorias y el registro de la prueba pasa el validador sin errores", async () => {
+  const fuente = fixture("pagina-de-proceso");
+  const h = await cargar(aplicarCambios({ fuente, ia: "ChatGPT", fecha: "2026-09-20", hoy: "2026-09-25", corregi: CORREGI }));
+  const completo: Herramienta = { ...h, ejemplo: { ...h.ejemplo, pasos: PASOS_DE_LA_PRUEBA, tiempoTotal: "14 min" } };
+  const presentes = h.imagenes.map((i) => i.archivo);
+  const buscar = (a: string): ArchivoBuscado | null => (presentes.includes(a) ? { src: `/img/marketing/crear-afiches-con-ia/${a}.webp`, ancho: 1300, alto: 900, extension: "webp", duplicadas: [] } : null);
+  const r = validarHerramienta(completo, { existeImagen: (s) => s.endsWith("og.webp"), existentes: new Set([...h.relacionadas, "marketing/crear-afiches-con-ia"]), publicadas: new Set(h.relacionadas), buscarImagen: buscar });
   assert.deepEqual(r.errores.filter((e) => !/relacionada/i.test(e)), []);
+  assert.ok(r.palabras >= 1500 && r.palabras <= 2500, `${r.palabras} palabras editoriales`);
 });
 
-test("proceso: con las 6 capturas caben todas en el ejemplo (una evidencia por paso); la simulación dice que fue generada con IA", async () => {
-  const todas = ["prep-01.webp", "prueba-01.webp", "prueba-02.webp", "afiche-final.webp", "mockup-vitrina.webp", "estado-9x16.webp"];
-  const { h } = await publicarProceso(todas);
-  assert.equal(h.ejemplo.capturas.length, 6);
-  assert.equal(h.metodoCompleto, null, "no hay método completo donde mandar capturas: no debe sobrar ninguna");
-  assert.deepEqual(h.ejemplo.capturas.map((c) => c.paso), [1, 2, 3, 4, 5, 5]);
-  const mock = h.ejemplo.capturas.find((c) => c.src.endsWith("mockup-vitrina.webp"))!;
-  assert.equal(mock.etiqueta, "Simulación");
-  assert.match(mock.leyenda, /generada con IA/);
-  assert.equal(h.ejemplo.capturas.find((c) => c.src.endsWith("prep-01.webp"))!.etiqueta, "Captura de la herramienta");
-  const existen = new Set(h.ejemplo.capturas.map((c) => c.src));
-  const r = validarHerramienta(h, { existeImagen: (s) => existen.has(s) || s.endsWith("og.webp"), existentes: new Set([...h.relacionadas, RUTA_PROCESO]), publicadas: new Set(h.relacionadas) });
-  assert.deepEqual(r.errores.filter((e) => !/relacionada/i.test(e)), []);
+/* ───────────── lo que falta para publicar ───────────── */
+
+test("faltaParaPublicar (proceso): con las obligatorias y el registro de la prueba, nada falta; opcionales ausentes no cuentan", async () => {
+  const h = { ...(await cargar(fixture("pagina-de-proceso"))) };
+  const conRegistro: Herramienta = { ...h, ejemplo: { ...h.ejemplo, pasos: PASOS_DE_LA_PRUEBA, tiempoTotal: "14 min" } };
+  const obligatorias = h.imagenes.filter((i) => i.obligatoria).map((i) => i.archivo);
+  assert.deepEqual(obligatorias, ["prep-01", "prueba-01", "afiche-final", "mockup-vitrina"]);
+  assert.deepEqual(faltaParaPublicar(conRegistro, resueltas(conRegistro, obligatorias)), []);
+  assert.deepEqual(faltaParaPublicar(conRegistro, resueltas(conRegistro, h.imagenes.map((i) => i.archivo))), []);
 });
 
-test("proceso: las leyendas por etiqueta (chat real, captura de la herramienta, imagen generada con IA)", () => {
-  const p = (etiqueta: string) => capturaDesdePendiente({ archivo: "x.webp", etiqueta, muestra: "Lo que debe mostrar la captura de prueba.", paso: 3 }, "a/b", "ChatGPT", "2026-09-20", { ancho: 10, alto: 10 });
-  assert.match(p("Prueba real").leyenda, /^Prueba real con ChatGPT el 2026-09-20/);
-  assert.match(p("Captura de la herramienta").leyenda, /^Captura de la propia herramienta/);
-  assert.match(p("Simulación").leyenda, /generada con IA/);
-  assert.match(p("Foto generada con IA").leyenda, /generada con IA/);
-  assert.doesNotMatch(p("Resultado final diseñado con el texto de la IA").leyenda, /generada con IA/);
-  assert.equal(p("Prueba real").paso, 3);
+test("faltaParaPublicar: dice qué archivo obligatorio falta (ruta y qué debe ser) y no pide las opcionales", async () => {
+  const h = await cargar(fixture("pagina-de-proceso"));
+  const conRegistro: Herramienta = { ...h, ejemplo: { ...h.ejemplo, pasos: PASOS_DE_LA_PRUEBA, tiempoTotal: "14 min" } };
+  const faltan = faltaParaPublicar(conRegistro, resueltas(conRegistro, ["prueba-01", "prep-01"]));
+  assert.equal(faltan.length, 2);
+  assert.ok(faltan[0].includes("public/img/marketing/crear-afiches-con-ia/afiche-final.webp (o .png, o .jpg)") && faltan[0].includes("Afiche A4 terminado"));
+  assert.ok(faltan[1].includes("mockup-vitrina") && faltan[1].includes("Simulación"));
+  assert.ok(!faltan.join("\n").includes("estado-9x16") && !faltan.join("\n").includes("prueba-02"));
+});
+
+test("faltaParaPublicar (proceso): pide ejemplo.pasos y ejemplo.tiempoTotal, los datos de tu prueba real", async () => {
+  const h = await cargar(fixture("pagina-de-proceso"));
+  const todas = h.imagenes.map((i) => i.archivo);
+  const sinRegistro = faltaParaPublicar(h, resueltas(h, todas));
+  assert.equal(sinRegistro.length, 2);
+  assert.ok(sinRegistro[0].startsWith("ejemplo.pasos") && sinRegistro[1].startsWith("ejemplo.tiempoTotal"));
+  const filaVacia: Herramienta = { ...h, ejemplo: { ...h.ejemplo, pasos: [{ paso: 2, hizoLaIA: "", hiceYo: "  ", tiempo: "" }], tiempoTotal: "3 min" } };
+  assert.ok(faltaParaPublicar(filaVacia, resueltas(filaVacia, todas))[0].startsWith("ejemplo.pasos"), "una fila en blanco no cuenta");
+  const soloTotal: Herramienta = { ...h, ejemplo: { ...h.ejemplo, pasos: PASOS_DE_LA_PRUEBA, tiempoTotal: "  " } };
+  assert.ok(faltaParaPublicar(soloTotal, resueltas(soloTotal, todas))[0].startsWith("ejemplo.tiempoTotal"));
+});
+
+test("faltaParaPublicar (página simple): solo la imagen obligatoria; no pide ejemplo.pasos; un archivo ilegible se dice", async () => {
+  const h = await cargar(fixture("pagina-simple"));
+  assert.deepEqual(h.imagenes.filter((i) => i.obligatoria).map((i) => i.archivo), ["prueba-01"]);
+  assert.deepEqual(faltaParaPublicar(h, resueltas(h, ["prueba-01"])), []);
+  const sin = faltaParaPublicar(h, resueltas(h, []));
+  assert.equal(sin.length, 1);
+  assert.ok(sin[0].includes("public/img/marketing/crear-anuncios-con-ia/prueba-01.webp"));
+  const roto = h.imagenes.map((espacio) => ({ espacio, archivo: espacio.archivo === "prueba-01" ? archivo({ error: "no es un archivo .webp, .png o .jpg válido", ancho: 0, alto: 0 }) : null }));
+  const r = faltaParaPublicar(h, roto);
+  assert.ok(r.length === 1 && r[0].includes("no se puede leer como imagen"));
 });

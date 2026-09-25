@@ -10,10 +10,12 @@ import { getCategory } from "@/content/categorias";
 import { rutaHerramienta, type HerramientaCargada } from "@/lib/herramientas/registro";
 import { pasosDelProceso } from "@/lib/herramientas/tipos";
 import { formatDate } from "@/lib/utils/format";
-import { CapturaFigura } from "./captura-figura";
+import { EspacioDeImagen } from "./espacio-imagen";
 import { ChecklistRevision } from "./checklist-revision";
 import { calculosDelEjemplo, datosDelEjemplo } from "@/lib/herramientas/ejemplo";
-import { pendientesVisibles } from "@/lib/herramientas/vista-previa";
+import { resolverImagenes } from "@/lib/herramientas/imagenes";
+import { imagenesEn } from "@/lib/herramientas/ubicaciones";
+import { estadoDeEspacio } from "@/lib/herramientas/vista-previa";
 import { EjemploReal } from "./ejemplo-real";
 import { EspacioAnuncio } from "./espacio-anuncio";
 import { Faq } from "./faq";
@@ -51,6 +53,9 @@ function Bloque({ id, titulo, children }: { id: string; titulo: string; children
 export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramienta: HerramientaCargada; relacionadas: HerramientaCargada[] }) {
   const categoria = getCategory(h.meta.area);
   const proceso = pasosDelProceso(h);
+  // Las imágenes se detectan al construir: para cada espacio de imagen se busca su archivo en public/img/{area}/{slug}/.
+  const imagenes = resolverImagenes(h);
+  const imagenesDelMetodo = imagenesEn(imagenes, "metodo-completo").filter((i) => estadoDeEspacio({ existe: Boolean(i.archivo && !i.archivo.error), publicado: h.publicado, obligatoria: i.espacio.obligatoria, ruta: i.espacio.archivo }).estado !== "nada");
   const pasos = proceso ? PASOS_POR_DEFECTO : ((h.pasos as [string, string, string] | undefined) ?? PASOS_POR_DEFECTO);
   const limites = h.meta.limites ?? [];
 
@@ -102,7 +107,7 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
           <div className="mx-auto max-w-[64rem] space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
             {/* 1 · Lo que vas a tener */}
             <Bloque id="resultado" titulo={`Lo que vas a tener en ${tiempoLargo}`}>
-              <TarjetasResultado resultados={h.resultadoFinal ?? []} />
+              <TarjetasResultado resultados={h.resultadoFinal ?? []} imagenes={imagenes} publicado={h.publicado} />
             </Bloque>
 
             {/* 2 · El problema */}
@@ -158,7 +163,7 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
 
             {/* 7 · Ejemplo real, con una evidencia por paso, y «Qué corregí yo» */}
             <Bloque id="ejemplo" titulo="Un ejemplo, paso a paso">
-              <EjemploReal ejemplo={h.ejemplo} datos={datosDelEjemplo(h)} calculos={calculosDelEjemplo(h)} pendientes={pendientesVisibles(h.capturasPendientes)} pasos={proceso.map((p) => ({ numero: p.numero, titulo: p.titulo }))} />
+              <EjemploReal ejemplo={h.ejemplo} datos={datosDelEjemplo(h)} calculos={calculosDelEjemplo(h)} imagenes={imagenes} publicado={h.publicado} pasos={proceso.map((p) => ({ numero: p.numero, titulo: p.titulo }))} />
             </Bloque>
 
             <EspacioAnuncio posicion="despues-del-ejemplo" />
@@ -307,7 +312,7 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
 
         {/* 6 · Ejemplo real */}
         <Bloque id="ejemplo" titulo="Un ejemplo, paso a paso">
-          <EjemploReal ejemplo={h.ejemplo} datos={datosDelEjemplo(h)} calculos={calculosDelEjemplo(h)} pendientes={pendientesVisibles(h.capturasPendientes)} />
+          <EjemploReal ejemplo={h.ejemplo} datos={datosDelEjemplo(h)} calculos={calculosDelEjemplo(h)} imagenes={imagenes} publicado={h.publicado} />
         </Bloque>
 
         <EspacioAnuncio posicion="despues-del-ejemplo" />
@@ -364,8 +369,8 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
             </summary>
             <div className="pb-4">
               <RichText text={h.metodoCompleto.parrafos.join("\n\n")} />
-              {h.metodoCompleto.capturas?.map((c) => (
-                <CapturaFigura key={c.src} captura={c} />
+              {imagenesDelMetodo.map((i) => (
+                <EspacioDeImagen key={i.espacio.id} resuelta={i} publicado={h.publicado} />
               ))}
             </div>
           </details>

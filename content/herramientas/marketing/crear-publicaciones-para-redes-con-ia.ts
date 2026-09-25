@@ -67,16 +67,20 @@ Antes de responder, comprueba que cada dato de cada opción está en mis datos, 
 
   ejemplo: {
     negocio: "Peluquería Rizo Fino (ficticia), peluquería de barrio con tres estilistas",
-    capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
-  capturasPendientes: [
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/marketing/crear-publicaciones-para-redes-con-ia/ y aparece solo. Ver docs/como-publicar.md.
+  imagenes: [
     {
-      archivo: "prueba-01.webp",
+      id: "prueba-01",
+      archivo: "prueba-01",
       etiqueta: "Prueba real",
-      muestra: "Chat nuevo: las tres opciones de publicación de Peluquería Rizo Fino (ficticia), la adaptación al formato elegido, el texto alternativo de la imagen y los hashtags.",
+      titulo: "Chat de la IA con la respuesta al prompt de esta página",
+      alt: "Chat nuevo: las tres opciones de publicación de Peluquería Rizo Fino (ficticia), la adaptación al formato elegido, el texto alternativo de la imagen y los hashtags.",
+      leyenda: "Prueba real: la respuesta de la IA al prompt de esta página, sin editar.",
+      ubicacion: "ejemplo",
+      obligatoria: true,
     },
   ],
 

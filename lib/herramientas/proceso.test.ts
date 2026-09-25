@@ -11,7 +11,8 @@ import { FormularioHerramienta } from "../../components/herramientas/formulario-
 import { PaginaHerramienta } from "../../components/herramientas/pagina-herramienta";
 import { cumple, opcionesMarcadas, referenciasDe, renderPlantilla, type ContextoPlantilla } from "./plantillas";
 import { ejecutarPreproceso, variablesDePreproceso } from "./preprocesos";
-import { itemsVisiblesDelKit, lineasQueCorregi, opcionesDelPaso, resumenKit } from "./proceso";
+import { itemsVisiblesDelKit, opcionesDelPaso, resumenKit } from "./proceso";
+import { buscarArchivo } from "./imagenes";
 import { listarTodas, type HerramientaCargada } from "./registro";
 import { pasosDelProceso, type Herramienta, type PasoProceso } from "./tipos";
 import { validarHerramienta } from "./validar";
@@ -240,8 +241,10 @@ test("las casillas se dibujan con fieldset, legend, casillas de 44 px y las opci
 
 /* ───────────── validación ───────────── */
 
+/** La página de afiches SIN las imágenes que ya existen en disco (next/image no se puede dibujar en estos tests; lo cubre `npm run qa`). */
 async function base(): Promise<HerramientaCargada> {
-  return (await listarTodas()).find((x) => x.meta.slug === "crear-afiches-con-ia")!;
+  const h = (await listarTodas()).find((x) => x.meta.slug === "crear-afiches-con-ia")!;
+  return { ...h, imagenes: h.imagenes.filter((i) => !buscarArchivo(h.meta.area, h.meta.slug, i.archivo)) };
 }
 const ctxValidacion = (h: Herramienta) => ({ existeImagen: () => true, existentes: new Set([`${h.meta.area}/${h.meta.slug}`, ...h.relacionadas]), publicadas: new Set<string>() });
 const errores = (h: Herramienta) => validarHerramienta(h, ctxValidacion(h)).errores;
@@ -281,46 +284,7 @@ test("validador: casillas con opciones válidas, sin «;» y con un ejemplo que 
   assert.ok(errores(con({ opciones: ["A; B", "C"] })).some((e) => /;/.test(e)));
 });
 
-test("validador: «Simulación» y «Foto generada con IA» exigen una leyenda que diga que fue generada con IA; «Captura de la herramienta» es válida", async () => {
-  const h = await base();
-  const cap = (etiqueta: string, leyenda: string) => ({ src: `/img/marketing/crear-afiches-con-ia/x.webp`, alt: "Descripción suficientemente larga de la captura", etiqueta: etiqueta as never, leyenda, ancho: 1200, alto: 800 });
-  const con = (c: ReturnType<typeof cap>): Herramienta => ({ ...h, ejemplo: { ...h.ejemplo, capturas: [c] } });
-  assert.ok(errores(con(cap("Simulación", "El afiche en una vitrina."))).some((e) => /generada con IA/.test(e)));
-  assert.ok(errores(con(cap("Foto generada con IA", "Imagen de apoyo."))).some((e) => /generada con IA/.test(e)));
-  assert.deepEqual(errores(con(cap("Simulación", "Simulación generada con IA: el afiche en una vitrina."))).filter((e) => /etiqueta|leyenda|generada/.test(e)), []);
-  assert.deepEqual(errores(con(cap("Captura de la herramienta", "El formulario con el ejemplo cargado."))).filter((e) => /etiqueta|leyenda/.test(e)), []);
-  // La misma regla para las capturas pendientes.
-  const pend = (muestra: string): Herramienta => ({ ...h, capturasPendientes: [{ archivo: "mock.webp", etiqueta: "Simulación", muestra }] });
-  assert.ok(errores(pend("El afiche en una vitrina, una simulación para visualizar.")).some((e) => /generada con IA/.test(e)));
-  assert.deepEqual(errores(pend("El afiche en una vitrina: imagen generada con IA para visualizar.")).filter((e) => /generada con IA/.test(e)), []);
-});
-
-test("validador: un proceso publicado admite hasta 8 capturas en el ejemplo (una por paso); una página simple, 2", async () => {
-  const h = await base();
-  const cap = (n: number) => ({ src: `/img/marketing/crear-afiches-con-ia/p${n}.webp`, alt: "Descripción suficientemente larga de la captura", etiqueta: "Prueba real" as const, leyenda: "Leyenda de la captura.", ancho: 1200, alto: 800 });
-  const publicada = (n: number): Herramienta => ({ ...h, publicado: true, capturasPendientes: [], ejemplo: { ...h.ejemplo, capturas: Array.from({ length: n }, (_, i) => cap(i)) } });
-  assert.ok(!errores(publicada(6)).some((e) => /Capturas: 6/.test(e)));
-  assert.ok(errores(publicada(9)).some((e) => /Capturas: 9 \(deben ser 1–8/.test(e)));
-});
-
-test("una captura puede citar un paso; el paso tiene que existir", async () => {
-  const h = await base();
-  const con = (paso: number): Herramienta => ({ ...h, capturasPendientes: [{ archivo: "x.webp", etiqueta: "Prueba real", muestra: "Chat con la respuesta de la IA al prompt de esta página.", paso }] });
-  assert.deepEqual(errores(con(3)).filter((e) => /paso/.test(e)), []);
-  assert.ok(errores(con(9)).some((e) => /paso 9/.test(e)));
-});
-
 /* ───────────── «Qué corregí yo» y la página ───────────── */
-
-test("la nota preparada de «Qué corregí yo» solo se enseña cuando existe una captura «Prueba real»", () => {
-  const nota = "La IA cambió «·» por «—» en el nivel 3; lo corregí.";
-  assert.equal(datos.ejemplo.notaPreparada, nota);
-  assert.deepEqual(lineasQueCorregi(datos.ejemplo, false), []);
-  assert.deepEqual(lineasQueCorregi(datos.ejemplo, true), [nota]);
-  assert.deepEqual(lineasQueCorregi({ queCorregi: ["a", "b", "c"], notaPreparada: nota }, true), [nota, "a", "b", "c"]);
-  assert.deepEqual(lineasQueCorregi({ queCorregi: ["a", "b", "c"], notaPreparada: nota }, false), ["a", "b", "c"]);
-  assert.deepEqual(datos.ejemplo.queCorregi, [], "«Qué corregí yo» sigue vacío hasta la prueba real");
-});
 
 test("la página de proceso sale con los 13 bloques en su orden, sin recuadros de captura pendiente, sin {{ }} y sin anuncios dentro de la herramienta", async () => {
   const h = await base();
@@ -343,6 +307,6 @@ test("la página de proceso sale con los 13 bloques en su orden, sin recuadros d
   assert.equal(new Set(botones).size, botones.length, "los nombres de los botones Copiar son distintos");
   // La plantilla simple no cambia: otra herramienta sigue con «Cómo usarlo».
   const otra = (await listarTodas()).find((x) => x.meta.slug === "crear-anuncios-con-ia")!;
-  const htmlOtra = renderToStaticMarkup(createElement(PaginaHerramienta, { herramienta: { ...otra, ejemplo: { ...otra.ejemplo, capturas: [] }, metodoCompleto: null }, relacionadas: [] }));
+  const htmlOtra = renderToStaticMarkup(createElement(PaginaHerramienta, { herramienta: { ...otra, imagenes: [], metodoCompleto: null }, relacionadas: [] }));
   assert.ok(texto(htmlOtra).includes("Cómo usarlo") && !texto(htmlOtra).includes("Tu kit final"));
 });

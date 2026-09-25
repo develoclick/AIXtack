@@ -18,6 +18,7 @@ import { chromium, type Browser, type Page } from "playwright-core";
 import { calcular, formatear } from "../lib/herramientas/calculadora";
 import { ejecutarPreproceso } from "../lib/herramientas/preprocesos";
 import { listarTodas, rutaHerramienta, type HerramientaCargada } from "../lib/herramientas/registro";
+import { existeUtilizable, resolverImagenes } from "../lib/herramientas/imagenes";
 import { pasosDelProceso } from "../lib/herramientas/tipos";
 import { renderPlantilla } from "../lib/herramientas/plantillas";
 import { TEXTO_PRIVACIDAD } from "../lib/herramientas/perfil";
@@ -305,6 +306,8 @@ async function pruebasHerramienta(browser: Browser, h: HerramientaCargada, v: (t
       await pruebasProceso(page, h, v);
       await kitConAlmacenBloqueado(browser, h, v);
     }
+    // Imágenes detectadas solas: la lupa (visor a pantalla completa) de cada página que ya tiene alguna imagen puesta
+    if (resolverImagenes(h).some(existeUtilizable)) await pruebasImagenes(browser, h, v);
 
     // calculadoras
     if (h.calculadora) await calculadoras(page, h, v);
@@ -347,6 +350,148 @@ async function pruebasHerramienta(browser: Browser, h: HerramientaCargada, v: (t
   }
 }
 
+/**
+ * La lupa de las imágenes que ya existen (se detectan solas por su nombre): el botón «Ampliar imagen», el visor a pantalla completa con
+ * su etiqueta y su leyenda, zoom (+, −, doble clic, pellizco, rueda), mover arrastrando, cerrar con Esc / X / tocando fuera, foco
+ * atrapado y devuelto a la imagen, y que la imagen grande solo se pide al abrir.
+ */
+async function pruebasImagenes(browser: Browser, h: HerramientaCargada, v: (typeof VIEWPORTS)[number]) {
+  const pag = rutaHerramienta(h.meta);
+  const resuelta = resolverImagenes(h).find(existeUtilizable)!;
+  const original = resuelta.archivo!.src;
+  const ctx = await contexto(browser, v, { portapapeles: false });
+  const page = await ctx.newPage();
+  const errores = vigilar(page);
+  const pedidas: string[] = [];
+  page.on("request", (r) => pedidas.push(new URL(r.url()).pathname));
+  const zoom = async () => Number(await page.evaluate(() => (document.querySelector("dialog[data-visor][open]") ?? document.querySelector("dialog[data-visor]"))?.getAttribute("data-zoom")));
+  const abierto = async () => page.evaluate(() => Boolean((document.querySelector("dialog[data-visor][open]") as HTMLDialogElement | null)?.open));
+  const enfocadoEnVisor = async () => page.evaluate(() => Boolean(document.activeElement?.closest("dialog[data-visor][open]")));
+  try {
+    await abrir(page, pag);
+    const disparador = page.locator(`button[aria-label^="Ampliar imagen"]:has(img[src*="${encodeURIComponent(original)}"]), button[aria-label^="Ampliar imagen"]:has(img[src*="${original.split("/").pop()}"])`).first();
+    await disparador.scrollIntoViewIfNeeded();
+    const caja = await disparador.boundingBox();
+    const textoBoton = ((await disparador.innerText()) ?? "").trim();
+    rec(pag, v.nombre, "lupa: la imagen indica que se puede ampliar (icono, «Ampliar» y nombre accesible «Ampliar imagen…»)", Boolean(caja && caja.width >= 43.5 && caja.height >= 43.5) && /Ampliar/.test(textoBoton) && ((await disparador.getAttribute("aria-label")) ?? "").startsWith("Ampliar imagen"), `${Math.round(caja?.width ?? 0)}×${Math.round(caja?.height ?? 0)} · «${textoBoton}»`);
+    rec(pag, v.nombre, "lupa: la imagen grande NO se carga hasta abrir (ni hay visor abierto)", !pedidas.includes(original) && (await page.locator("[data-visor-imagen]").count()) === 0 && !(await abierto()), `pedida antes de abrir: ${pedidas.includes(original)}`);
+
+    await disparador.click();
+    await page.waitForFunction(() => Boolean((document.querySelector("dialog[data-visor][open]") as HTMLDialogElement | null)?.open));
+    const visor = page.locator("dialog[data-visor][open]");
+    const bloqueada = await page.evaluate(() => document.documentElement.style.overflow === "hidden");
+    const tam = await visor.boundingBox();
+    const src = (await page.locator("[data-visor-imagen]").getAttribute("src")) ?? "";
+    await page.waitForFunction(() => (document.querySelector("[data-visor-imagen]") as HTMLImageElement | null)?.complete === true);
+    rec(pag, v.nombre, "lupa: abre a pantalla completa con la imagen original y la página de atrás bloqueada", Boolean(tam && tam.width >= v.ancho - 1 && tam.height >= v.alto - 1) && src === original && bloqueada && pedidas.includes(original), `${Math.round(tam?.width ?? 0)}×${Math.round(tam?.height ?? 0)} · ${src}`);
+    fs.mkdirSync(path.join(salida, v.nombre), { recursive: true });
+    await page.screenshot({ path: path.join(salida, v.nombre, `${h.meta.slug}-lupa.jpg`), type: "jpeg", quality: 60 });
+    const textoVisor = await visor.innerText();
+    rec(pag, v.nombre, "lupa: la etiqueta y la leyenda están visibles en el visor", textoVisor.includes(resuelta.espacio.etiqueta) && textoVisor.includes(resuelta.espacio.leyenda.slice(0, 40)), resuelta.espacio.etiqueta);
+    const fondo = await visor.evaluate((e) => getComputedStyle(e).backgroundColor);
+    rec(pag, v.nombre, "lupa: fondo oscuro", (fondo.match(/\d+(?:\.\d+)?/g) ?? []).slice(0, 3).map(Number).every((n) => n < 60), fondo);
+    rec(pag, v.nombre, "lupa: el foco pasa al visor (botón X)", await enfocadoEnVisor(), "");
+
+    // botones de zoom de 44 px
+    const botones = await visor.locator("button").evaluateAll((els) => els.map((e) => ({ nombre: e.getAttribute("aria-label"), ancho: e.getBoundingClientRect().width, alto: e.getBoundingClientRect().height })));
+    rec(pag, v.nombre, "lupa: botones Alejar, Acercar, Tamaño inicial y Cerrar de 44 px", ["Alejar", "Acercar", "Tamaño inicial", "Cerrar imagen ampliada"].every((n) => botones.some((b) => b.nombre === n && b.ancho >= 43.5 && b.alto >= 43.5)), botones.map((b) => `${b.nombre} ${Math.round(b.ancho)}×${Math.round(b.alto)}`).join(" | "));
+
+    // zoom con + y −
+    const z0 = await zoom();
+    await visor.getByRole("button", { name: "Acercar" }).click();
+    const z1 = await zoom();
+    await visor.getByRole("button", { name: "Acercar" }).click();
+    const z2 = await zoom();
+    await visor.getByRole("button", { name: "Alejar" }).click();
+    const z3 = await zoom();
+    rec(pag, v.nombre, "lupa: los botones + y − acercan y alejan", z0 === 1 && z1 > z0 && z2 > z1 && z3 < z2 && z3 > 1, `${z0} → ${z1} → ${z2} → ${z3}`);
+    await visor.getByRole("button", { name: "Tamaño inicial" }).click();
+    rec(pag, v.nombre, "lupa: «Tamaño inicial» vuelve a 100 %", (await zoom()) === 1 && /100 %/.test(await visor.locator("[data-zoom-texto]").innerText()), "");
+
+    // doble clic / doble toque
+    const area = page.locator("dialog[data-visor][open] [data-visor-area]");
+    const imagenVisor = page.locator("[data-visor-imagen]");
+    const c = (await imagenVisor.boundingBox())!;
+    await page.mouse.dblclick(c.x + c.width / 2, c.y + c.height / 2);
+    const zd = await zoom();
+    await page.mouse.dblclick(c.x + c.width / 2, c.y + c.height / 2);
+    rec(pag, v.nombre, "lupa: doble clic acerca (2,5×) y otro doble clic vuelve al tamaño inicial", zd > 2.4 && zd < 2.6 && (await zoom()) === 1, `${zd} → ${await zoom()}`);
+
+    // mover arrastrando (con zoom)
+    await visor.getByRole("button", { name: "Acercar" }).click();
+    await visor.getByRole("button", { name: "Acercar" }).click();
+    await visor.getByRole("button", { name: "Acercar" }).click();
+    const antes = (await imagenVisor.getAttribute("style")) ?? "";
+    const a = (await area.boundingBox())!;
+    await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(a.x + a.width / 2 - 80, a.y + a.height / 2 - 60, { steps: 6 });
+    await page.mouse.up();
+    const despues = (await imagenVisor.getAttribute("style")) ?? "";
+    const trasl = (t: string) => /translate\(([-\d.]+)px, ?([-\d.]+)px\)/.exec(t)?.slice(1, 3).map(Number) ?? [0, 0];
+    rec(pag, v.nombre, "lupa: con zoom se mueve arrastrando", trasl(antes).join() !== trasl(despues).join(), `${trasl(antes)} → ${trasl(despues)}`);
+    await visor.getByRole("button", { name: "Tamaño inicial" }).click();
+
+    // pellizco (solo en el celular): dos dedos que se separan
+    if (v.movil) {
+      const cdp = await ctx.newCDPSession(page);
+      const cx = a.x + a.width / 2;
+      const cy = a.y + a.height / 2;
+      const tocar = (tipo: "touchStart" | "touchMove" | "touchEnd", d: number) => cdp.send("Input.dispatchTouchEvent", { type: tipo, touchPoints: tipo === "touchEnd" ? [] : [{ x: cx - d, y: cy, id: 1 }, { x: cx + d, y: cy, id: 2 }] });
+      await tocar("touchStart", 30);
+      for (const d of [40, 55, 70, 90, 110]) await tocar("touchMove", d);
+      await tocar("touchEnd", 0);
+      const zp = await zoom();
+      rec(pag, v.nombre, "lupa: el pellizco (dos dedos) acerca", zp > 1.5, String(zp));
+      await visor.getByRole("button", { name: "Tamaño inicial" }).click();
+    }
+
+    // foco atrapado: Tab nunca sale del visor
+    let fuera = 0;
+    for (let i = 0; i < 14; i++) {
+      await page.keyboard.press("Tab");
+      if (!(await enfocadoEnVisor())) fuera++;
+    }
+    for (let i = 0; i < 4; i++) {
+      await page.keyboard.press("Shift+Tab");
+      if (!(await enfocadoEnVisor())) fuera++;
+    }
+    rec(pag, v.nombre, "lupa: el foco queda atrapado dentro del visor (18 pulsaciones de Tab)", fuera === 0, `${fuera} fuera`);
+
+    // cerrar con Esc y devolver el foco a la imagen
+    await page.keyboard.press("Escape");
+    await page.waitForFunction(() => !document.querySelector("dialog[data-visor][open]"));
+    // el evento «close» (que devuelve el scroll y el foco) llega un instante después de cerrarse el diálogo
+    await page.waitForFunction(() => document.documentElement.style.overflow === "", null, { timeout: 3000 }).catch(() => {});
+    const foco = await page.evaluate(() => {
+      const e = document.activeElement as HTMLElement | null;
+      return { aria: e?.getAttribute("aria-label") ?? "", tag: e?.tagName ?? "" };
+    });
+    rec(pag, v.nombre, "lupa: Esc cierra el visor y el foco vuelve a la imagen", foco.tag === "BUTTON" && foco.aria.startsWith("Ampliar imagen") && (await page.evaluate(() => document.documentElement.style.overflow === "")), `${foco.tag} «${foco.aria.slice(0, 40)}»`);
+    rec(pag, v.nombre, "lupa: al cerrar vuelve el zoom a 100 % y la página se puede desplazar", (await zoom()) === 1, "");
+
+    // cerrar con la X y tocando fuera
+    await disparador.click();
+    await page.waitForFunction(() => Boolean(document.querySelector("dialog[data-visor][open]")));
+    await visor.getByRole("button", { name: "Cerrar imagen ampliada" }).click();
+    await page.waitForFunction(() => !document.querySelector("dialog[data-visor][open]"));
+    const focoX = await page.evaluate(() => document.activeElement?.getAttribute("aria-label") ?? "");
+    rec(pag, v.nombre, "lupa: la X (44 px) cierra el visor y devuelve el foco a la imagen", focoX.startsWith("Ampliar imagen"), focoX.slice(0, 40));
+    await disparador.click();
+    await page.waitForFunction(() => Boolean(document.querySelector("dialog[data-visor][open]")));
+    const zona = (await page.locator("dialog[data-visor][open] [data-visor-area]").boundingBox())!;
+    await page.mouse.click(zona.x + 6, zona.y + 6);
+    await page.waitForFunction(() => !document.querySelector("dialog[data-visor][open]"), null, { timeout: 3000 }).catch(() => {});
+    rec(pag, v.nombre, "lupa: tocar fuera de la imagen cierra el visor", !(await abierto()), "");
+    if (await abierto()) await page.keyboard.press("Escape");
+    rec(pag, v.nombre, "lupa: 0 errores de consola", errores.length === 0, errores.slice(0, 2).join(" | "));
+  } catch (e) {
+    rec(pag, v.nombre, "lupa", false, String((e as Error).message).slice(0, 200));
+  } finally {
+    await ctx.close();
+  }
+}
+
 /** Cadena `aria-label` → texto del prompt que muestra el mismo paso (el `pre` del bloque de ese botón). */
 async function promptsDelProceso(page: Page) {
   return page.evaluate(() =>
@@ -379,8 +524,8 @@ async function pruebasProceso(page: Page, h: HerramientaCargada, v: (typeof VIEW
     const numeros = await page.locator("[data-paso] > p").first().innerText();
     const pasosVisibles = await page.locator("[data-paso]").count();
     rec(pag, v.nombre, `proceso: ${pasos.length} pasos numerados («Paso 1 de ${pasos.length}») con su tiempo`, pasosVisibles === pasos.length && numeros.replace(/\s+/g, " ").toLowerCase().includes(`paso 1 de ${pasos.length}`), numeros);
-    const pendientes = await page.locator("[data-capturas-pendientes], .border-dashed").count();
-    rec(pag, v.nombre, "proceso: ningún recuadro de captura pendiente en producción", pendientes === 0, String(pendientes));
+    const pendientes = await page.locator("[data-espacio-imagen][data-estado='vacio'], .border-dashed").count();
+    rec(pag, v.nombre, "proceso: ningún recuadro de imagen pendiente en el build normal (solo con MOSTRAR_BORRADORES o next dev)", pendientes === 0, String(pendientes));
 
     // opciones del paso 3 según «¿Dónde harás el afiche?»
     const orden = async () => page.locator("[data-paso='3'] [data-opcion]").evaluateAll((els) => els.map((e) => e.getAttribute("data-opcion")));

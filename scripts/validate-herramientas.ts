@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { buscarArchivo } from "../lib/herramientas/imagenes";
 import { validarHerramienta } from "../lib/herramientas/validar";
 import type { Herramienta } from "../lib/herramientas/tipos";
 
@@ -32,7 +33,7 @@ async function main() {
   let errores = 0;
   let avisos = 0;
   for (const { archivo, datos } of paginas) {
-    const r = validarHerramienta(datos, { existeImagen, existentes, publicadas });
+    const r = validarHerramienta(datos, { existeImagen, existentes, publicadas, buscarImagen: (archivo) => buscarArchivo(datos.meta.area, datos.meta.slug, archivo) });
     const estado = datos.publicado ? "publicada" : "borrador";
     const nota = archivo.includes("/_") ? ", interna" : "";
     console.log(`${r.errores.length ? "✖" : "✔"} ${archivo} (${estado}${nota}, ${r.palabras} palabras)`);

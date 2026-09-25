@@ -66,16 +66,20 @@ Antes de responder, comprueba que cada dato de las dos versiones está en mis da
 
   ejemplo: {
     negocio: "Luz de Cera (ficticio), taller de velas artesanales de dos personas que vende en su tienda online y en ferias",
-    capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
-  capturasPendientes: [
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/ventas/crear-descripciones-de-productos-con-ia/ y aparece solo. Ver docs/como-publicar.md.
+  imagenes: [
     {
-      archivo: "prueba-01.webp",
+      id: "prueba-01",
+      archivo: "prueba-01",
       etiqueta: "Prueba real",
-      muestra: "Chat nuevo: la versión corta, la versión larga y la lista FALTA (lo que no tiene dato) para un producto de Luz de Cera (ficticio).",
+      titulo: "Chat de la IA con la respuesta al prompt de esta página",
+      alt: "Chat nuevo: la versión corta, la versión larga y la lista FALTA (lo que no tiene dato) para un producto de Luz de Cera (ficticio).",
+      leyenda: "Prueba real: la respuesta de la IA al prompt de esta página, sin editar.",
+      ubicacion: "ejemplo",
+      obligatoria: true,
     },
   ],
 

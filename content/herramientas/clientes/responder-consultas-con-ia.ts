@@ -65,16 +65,20 @@ Antes de responder, comprueba que cada dato del borrador está en USADO, que nin
 
   ejemplo: {
     negocio: "Taller Los Pinos (ficticio), taller mecánico de barrio con cuatro personas y una sola línea de WhatsApp",
-    capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real»).
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
-  capturasPendientes: [
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/clientes/responder-consultas-con-ia/ y aparece solo. Ver docs/como-publicar.md.
+  imagenes: [
     {
-      archivo: "prueba-01.webp",
+      id: "prueba-01",
+      archivo: "prueba-01",
       etiqueta: "Prueba real",
-      muestra: "Chat nuevo: la respuesta de la IA a una consulta de un cliente del Taller Los Pinos (ficticio). Debe verse la respuesta lista, la versión corta y la lista de lo que no se afirmó por falta de datos.",
+      titulo: "Chat de la IA con la respuesta al prompt de esta página",
+      alt: "Chat nuevo: la respuesta de la IA a una consulta de un cliente del Taller Los Pinos (ficticio). Debe verse la respuesta lista, la versión corta y la lista de lo que no se afirmó por falta de datos.",
+      leyenda: "Prueba real: la respuesta de la IA al prompt de esta página, sin editar.",
+      ubicacion: "ejemplo",
+      obligatoria: true,
     },
   ],
 

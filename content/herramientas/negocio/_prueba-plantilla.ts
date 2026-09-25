@@ -61,10 +61,12 @@ Usa las cifras de los cálculos ya hechos solo si ayudan al cliente a entender l
   ],
   ejemplo: {
     negocio: "Café Mirador (ficticio)",
-    capturas: [], // TODO: página interna sin capturas.
     queCorregi: ["Quité una frase que prometía más clientes.", "Añadí el horario de la promoción.", "Comprobé el precio contra la hoja."],
   },
-  capturasPendientes: [],
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/negocio/prueba-plantilla/ y aparece solo. Ver docs/como-publicar.md.
+  imagenes: [
+
+  ],
 
   checklist: ["Los precios coinciden con mi hoja.", "La vigencia está clara.", "No promete resultados.", "Las condiciones están completas.", "Puedo cumplir la oferta."],
   porQueFunciona: [

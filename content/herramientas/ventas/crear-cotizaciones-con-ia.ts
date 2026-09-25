@@ -135,16 +135,20 @@ Antes de responder, comprueba que cada importe y cada total es idéntico al de l
       "Anticipo del 40 % sobre el total": "1322.40",
       Saldo: "1983.60",
     },
-    capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real») y, si el autor la tiene, una captura de la hoja.
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
-  capturasPendientes: [
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/ventas/crear-cotizaciones-con-ia/ y aparece solo. Ver docs/como-publicar.md.
+  imagenes: [
     {
-      archivo: "prueba-01.webp",
+      id: "prueba-01",
+      archivo: "prueba-01",
       etiqueta: "Prueba real",
-      muestra: "Chat nuevo: la cotización redactada para Maderas Rivera (ficticio) con los totales que calculó la página. Deben verse el subtotal, el descuento, el impuesto, el total, el anticipo y el saldo sin que la IA cambie ninguna cifra.",
+      titulo: "Chat de la IA con la respuesta al prompt de esta página",
+      alt: "Chat nuevo: la cotización redactada para Maderas Rivera (ficticio) con los totales que calculó la página. Deben verse el subtotal, el descuento, el impuesto, el total, el anticipo y el saldo sin que la IA cambie ninguna cifra.",
+      leyenda: "Prueba real: la respuesta de la IA al prompt de esta página, sin editar.",
+      ubicacion: "ejemplo",
+      obligatoria: true,
     },
   ],
 

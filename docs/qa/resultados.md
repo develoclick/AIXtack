@@ -1,6 +1,6 @@
 # Recorrido interactivo (Playwright, build de producción)
 
-Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 px y 1280 px). 680 pruebas: 680 OK, 0 FALLA.
+Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 px y 1280 px). 785 pruebas: 785 OK, 0 FALLA.
 
 | Página | Vista (px) | Prueba | Resultado | Detalle |
 |---|---|---|---|---|
@@ -153,7 +153,7 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 375 | proceso: los bloques salen en el orden de la plantilla | OK | resultado › problema › necesitas › herramienta › proceso › kit › ejemplo › revision › por-que-funciona › rubros › errores › faq › verificacion |
 | /marketing/crear-afiches-con-ia | 375 | proceso: etiquetas «15 min · Gratis · ChatGPT, Gemini o Claude + Canva» | OK | 15 min / Gratis / ChatGPT, Gemini o Claude + Canva |
 | /marketing/crear-afiches-con-ia | 375 | proceso: 5 pasos numerados («Paso 1 de 5») con su tiempo | OK | PASO 1 DE 5 · 2 MIN |
-| /marketing/crear-afiches-con-ia | 375 | proceso: ningún recuadro de captura pendiente en producción | OK | 0 |
+| /marketing/crear-afiches-con-ia | 375 | proceso: ningún recuadro de imagen pendiente en el build normal (solo con MOSTRAR_BORRADORES o next dev) | OK | 0 |
 | /marketing/crear-afiches-con-ia | 375 | paso 3: con «Canva» va primero Canva | OK | ["canva","ia-imagen"] |
 | /marketing/crear-afiches-con-ia | 375 | paso 3: con «IA de imagen» va primero la IA de imagen | OK | ["ia-imagen","canva"] |
 | /marketing/crear-afiches-con-ia | 375 | paso 3: con «Aún no sé» va primero Canva y se recomienda como la más segura | OK | A) En Canva
@@ -189,6 +189,24 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-afiches-con-ia | 375 | kit final: lo marcado se recuerda al recargar (solo en este navegador) | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | kit final con localStorage bloqueado: se puede marcar y no hay errores | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | paso 4 y descarga con localStorage bloqueado: se marca («1 de 6»), se descarga y no hay errores | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | lupa: la imagen indica que se puede ampliar (icono, «Ampliar» y nombre accesible «Ampliar imagen…») | OK | 343×213 · «Ampliar» |
+| /marketing/crear-afiches-con-ia | 375 | lupa: la imagen grande NO se carga hasta abrir (ni hay visor abierto) | OK | pedida antes de abrir: false |
+| /marketing/crear-afiches-con-ia | 375 | lupa: abre a pantalla completa con la imagen original y la página de atrás bloqueada | OK | 375×812 · /img/marketing/crear-afiches-con-ia/prueba-01.webp |
+| /marketing/crear-afiches-con-ia | 375 | lupa: la etiqueta y la leyenda están visibles en el visor | OK | Prueba real |
+| /marketing/crear-afiches-con-ia | 375 | lupa: fondo oscuro | OK | lab(2.75381 0 0) |
+| /marketing/crear-afiches-con-ia | 375 | lupa: el foco pasa al visor (botón X) | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | lupa: botones Alejar, Acercar, Tamaño inicial y Cerrar de 44 px | OK | Alejar 44×44 / Acercar 44×44 / Tamaño inicial 44×44 / Cerrar imagen ampliada 44×44 |
+| /marketing/crear-afiches-con-ia | 375 | lupa: los botones + y − acercan y alejan | OK | 1 → 1.5 → 2.25 → 1.5 |
+| /marketing/crear-afiches-con-ia | 375 | lupa: «Tamaño inicial» vuelve a 100 % | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | lupa: doble clic acerca (2,5×) y otro doble clic vuelve al tamaño inicial | OK | 2.5 → 1 |
+| /marketing/crear-afiches-con-ia | 375 | lupa: con zoom se mueve arrastrando | OK | 0,0 → -80,-60 |
+| /marketing/crear-afiches-con-ia | 375 | lupa: el pellizco (dos dedos) acerca | OK | 3.67 |
+| /marketing/crear-afiches-con-ia | 375 | lupa: el foco queda atrapado dentro del visor (18 pulsaciones de Tab) | OK | 0 fuera |
+| /marketing/crear-afiches-con-ia | 375 | lupa: Esc cierra el visor y el foco vuelve a la imagen | OK | BUTTON «Ampliar imagen: Chat de una IA de texto:» |
+| /marketing/crear-afiches-con-ia | 375 | lupa: al cerrar vuelve el zoom a 100 % y la página se puede desplazar | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | lupa: la X (44 px) cierra el visor y devuelve el foco a la imagen | OK | Ampliar imagen: Chat de una IA de texto: |
+| /marketing/crear-afiches-con-ia | 375 | lupa: tocar fuera de la imagen cierra el visor | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | lupa: 0 errores de consola | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · El caso de La Espiga (los datos de «Probar con un ejemplo») | OK | «Tus datos suman 39 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Sin datos: cero palabras | OK | «Tus datos suman 0 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Sin precio no se cuenta el «por» del titular | OK | «Tus datos suman 11 palabras (máximo 39).»; el prompt trae el total |
@@ -209,6 +227,24 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-anuncios-con-ia | 375 | «Ver el prompt completo» muestra el prompt | OK |  |
 | /marketing/crear-anuncios-con-ia | 375 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3536 caracteres copiados |
 | /marketing/crear-anuncios-con-ia | 375 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: la imagen indica que se puede ampliar (icono, «Ampliar» y nombre accesible «Ampliar imagen…») | OK | 343×241 · «Ampliar» |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: la imagen grande NO se carga hasta abrir (ni hay visor abierto) | OK | pedida antes de abrir: false |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: abre a pantalla completa con la imagen original y la página de atrás bloqueada | OK | 375×812 · /img/marketing/crear-anuncios-con-ia/prueba-prompt-01.webp |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: la etiqueta y la leyenda están visibles en el visor | OK | Prueba real |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: fondo oscuro | OK | lab(2.75381 0 0) |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: el foco pasa al visor (botón X) | OK |  |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: botones Alejar, Acercar, Tamaño inicial y Cerrar de 44 px | OK | Alejar 44×44 / Acercar 44×44 / Tamaño inicial 44×44 / Cerrar imagen ampliada 44×44 |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: los botones + y − acercan y alejan | OK | 1 → 1.5 → 2.25 → 1.5 |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: «Tamaño inicial» vuelve a 100 % | OK |  |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: doble clic acerca (2,5×) y otro doble clic vuelve al tamaño inicial | OK | 2.5 → 1 |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: con zoom se mueve arrastrando | OK | 0,0 → -80,-60 |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: el pellizco (dos dedos) acerca | OK | 3.67 |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: el foco queda atrapado dentro del visor (18 pulsaciones de Tab) | OK | 0 fuera |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: Esc cierra el visor y el foco vuelve a la imagen | OK | BUTTON «Ampliar imagen: Captura de la respuesta » |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: al cerrar vuelve el zoom a 100 % y la página se puede desplazar | OK |  |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: la X (44 px) cierra el visor y devuelve el foco a la imagen | OK | Ampliar imagen: Captura de la respuesta  |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: tocar fuera de la imagen cierra el visor | OK |  |
+| /marketing/crear-anuncios-con-ia | 375 | lupa: 0 errores de consola | OK |  |
 | /marketing/crear-anuncios-con-ia | 375 | 0 errores en consola | OK |  |
 | /marketing/crear-anuncios-con-ia | 375 | portapapeles API bloqueado: alternativa (execCommand) o texto a mano | OK | copiado con execCommand |
 | /marketing/crear-anuncios-con-ia | 375 | 0 errores de consola con el portapapeles sin API | OK |  |
@@ -225,6 +261,24 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-promociones-con-ia | 375 | «Ver el prompt completo» muestra el prompt | OK |  |
 | /marketing/crear-promociones-con-ia | 375 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3646 caracteres copiados |
 | /marketing/crear-promociones-con-ia | 375 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
+| /marketing/crear-promociones-con-ia | 375 | lupa: la imagen indica que se puede ampliar (icono, «Ampliar» y nombre accesible «Ampliar imagen…») | OK | 343×173 · «Ampliar» |
+| /marketing/crear-promociones-con-ia | 375 | lupa: la imagen grande NO se carga hasta abrir (ni hay visor abierto) | OK | pedida antes de abrir: false |
+| /marketing/crear-promociones-con-ia | 375 | lupa: abre a pantalla completa con la imagen original y la página de atrás bloqueada | OK | 375×812 · /img/marketing/crear-promociones-con-ia/prueba-prompt-02.webp |
+| /marketing/crear-promociones-con-ia | 375 | lupa: la etiqueta y la leyenda están visibles en el visor | OK | Prueba real |
+| /marketing/crear-promociones-con-ia | 375 | lupa: fondo oscuro | OK | lab(2.75381 0 0) |
+| /marketing/crear-promociones-con-ia | 375 | lupa: el foco pasa al visor (botón X) | OK |  |
+| /marketing/crear-promociones-con-ia | 375 | lupa: botones Alejar, Acercar, Tamaño inicial y Cerrar de 44 px | OK | Alejar 44×44 / Acercar 44×44 / Tamaño inicial 44×44 / Cerrar imagen ampliada 44×44 |
+| /marketing/crear-promociones-con-ia | 375 | lupa: los botones + y − acercan y alejan | OK | 1 → 1.5 → 2.25 → 1.5 |
+| /marketing/crear-promociones-con-ia | 375 | lupa: «Tamaño inicial» vuelve a 100 % | OK |  |
+| /marketing/crear-promociones-con-ia | 375 | lupa: doble clic acerca (2,5×) y otro doble clic vuelve al tamaño inicial | OK | 2.5 → 1 |
+| /marketing/crear-promociones-con-ia | 375 | lupa: con zoom se mueve arrastrando | OK | 0,0 → -80,-5.52344 |
+| /marketing/crear-promociones-con-ia | 375 | lupa: el pellizco (dos dedos) acerca | OK | 3.67 |
+| /marketing/crear-promociones-con-ia | 375 | lupa: el foco queda atrapado dentro del visor (18 pulsaciones de Tab) | OK | 0 fuera |
+| /marketing/crear-promociones-con-ia | 375 | lupa: Esc cierra el visor y el foco vuelve a la imagen | OK | BUTTON «Ampliar imagen: Captura de la respuesta » |
+| /marketing/crear-promociones-con-ia | 375 | lupa: al cerrar vuelve el zoom a 100 % y la página se puede desplazar | OK |  |
+| /marketing/crear-promociones-con-ia | 375 | lupa: la X (44 px) cierra el visor y devuelve el foco a la imagen | OK | Ampliar imagen: Captura de la respuesta  |
+| /marketing/crear-promociones-con-ia | 375 | lupa: tocar fuera de la imagen cierra el visor | OK |  |
+| /marketing/crear-promociones-con-ia | 375 | lupa: 0 errores de consola | OK |  |
 | /marketing/crear-promociones-con-ia | 375 | calculadora · A · Combo de media mañana | OK | 7 resultados coinciden |
 | /marketing/crear-promociones-con-ia | 375 | calculadora · B · Desayuno completo con 15 % | OK | 7 resultados coinciden |
 | /marketing/crear-promociones-con-ia | 375 | calculadora · C · Tarjeta de 5 visitas, la 5.ª gratis | OK | 7 resultados coinciden |
@@ -494,7 +548,7 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-afiches-con-ia | 1280 | proceso: los bloques salen en el orden de la plantilla | OK | resultado › problema › necesitas › herramienta › proceso › kit › ejemplo › revision › por-que-funciona › rubros › errores › faq › verificacion |
 | /marketing/crear-afiches-con-ia | 1280 | proceso: etiquetas «15 min · Gratis · ChatGPT, Gemini o Claude + Canva» | OK | 15 min / Gratis / ChatGPT, Gemini o Claude + Canva |
 | /marketing/crear-afiches-con-ia | 1280 | proceso: 5 pasos numerados («Paso 1 de 5») con su tiempo | OK | PASO 1 DE 5 · 2 MIN |
-| /marketing/crear-afiches-con-ia | 1280 | proceso: ningún recuadro de captura pendiente en producción | OK | 0 |
+| /marketing/crear-afiches-con-ia | 1280 | proceso: ningún recuadro de imagen pendiente en el build normal (solo con MOSTRAR_BORRADORES o next dev) | OK | 0 |
 | /marketing/crear-afiches-con-ia | 1280 | paso 3: con «Canva» va primero Canva | OK | ["canva","ia-imagen"] |
 | /marketing/crear-afiches-con-ia | 1280 | paso 3: con «IA de imagen» va primero la IA de imagen | OK | ["ia-imagen","canva"] |
 | /marketing/crear-afiches-con-ia | 1280 | paso 3: con «Aún no sé» va primero Canva y se recomienda como la más segura | OK | A) En Canva
@@ -530,6 +584,23 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-afiches-con-ia | 1280 | kit final: lo marcado se recuerda al recargar (solo en este navegador) | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | kit final con localStorage bloqueado: se puede marcar y no hay errores | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | paso 4 y descarga con localStorage bloqueado: se marca («1 de 6»), se descarga y no hay errores | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: la imagen indica que se puede ampliar (icono, «Ampliar» y nombre accesible «Ampliar imagen…») | OK | 960×595 · «Ampliar» |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: la imagen grande NO se carga hasta abrir (ni hay visor abierto) | OK | pedida antes de abrir: false |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: abre a pantalla completa con la imagen original y la página de atrás bloqueada | OK | 1280×800 · /img/marketing/crear-afiches-con-ia/prueba-01.webp |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: la etiqueta y la leyenda están visibles en el visor | OK | Prueba real |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: fondo oscuro | OK | lab(2.75381 0 0) |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: el foco pasa al visor (botón X) | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: botones Alejar, Acercar, Tamaño inicial y Cerrar de 44 px | OK | Alejar 44×44 / Acercar 44×44 / Tamaño inicial 44×44 / Cerrar imagen ampliada 44×44 |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: los botones + y − acercan y alejan | OK | 1 → 1.5 → 2.25 → 1.5 |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: «Tamaño inicial» vuelve a 100 % | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: doble clic acerca (2,5×) y otro doble clic vuelve al tamaño inicial | OK | 2.5 → 1 |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: con zoom se mueve arrastrando | OK | 0,0 → -80,-60 |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: el foco queda atrapado dentro del visor (18 pulsaciones de Tab) | OK | 0 fuera |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: Esc cierra el visor y el foco vuelve a la imagen | OK | BUTTON «Ampliar imagen: Chat de una IA de texto:» |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: al cerrar vuelve el zoom a 100 % y la página se puede desplazar | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: la X (44 px) cierra el visor y devuelve el foco a la imagen | OK | Ampliar imagen: Chat de una IA de texto: |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: tocar fuera de la imagen cierra el visor | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | lupa: 0 errores de consola | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · El caso de La Espiga (los datos de «Probar con un ejemplo») | OK | «Tus datos suman 39 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Sin datos: cero palabras | OK | «Tus datos suman 0 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Sin precio no se cuenta el «por» del titular | OK | «Tus datos suman 11 palabras (máximo 39).»; el prompt trae el total |
@@ -550,6 +621,23 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-anuncios-con-ia | 1280 | «Ver el prompt completo» muestra el prompt | OK |  |
 | /marketing/crear-anuncios-con-ia | 1280 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3536 caracteres copiados |
 | /marketing/crear-anuncios-con-ia | 1280 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: la imagen indica que se puede ampliar (icono, «Ampliar» y nombre accesible «Ampliar imagen…») | OK | 960×674 · «Ampliar» |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: la imagen grande NO se carga hasta abrir (ni hay visor abierto) | OK | pedida antes de abrir: false |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: abre a pantalla completa con la imagen original y la página de atrás bloqueada | OK | 1280×800 · /img/marketing/crear-anuncios-con-ia/prueba-prompt-01.webp |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: la etiqueta y la leyenda están visibles en el visor | OK | Prueba real |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: fondo oscuro | OK | lab(2.75381 0 0) |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: el foco pasa al visor (botón X) | OK |  |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: botones Alejar, Acercar, Tamaño inicial y Cerrar de 44 px | OK | Alejar 44×44 / Acercar 44×44 / Tamaño inicial 44×44 / Cerrar imagen ampliada 44×44 |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: los botones + y − acercan y alejan | OK | 1 → 1.5 → 2.25 → 1.5 |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: «Tamaño inicial» vuelve a 100 % | OK |  |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: doble clic acerca (2,5×) y otro doble clic vuelve al tamaño inicial | OK | 2.5 → 1 |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: con zoom se mueve arrastrando | OK | 0,0 → -80,-60 |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: el foco queda atrapado dentro del visor (18 pulsaciones de Tab) | OK | 0 fuera |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: Esc cierra el visor y el foco vuelve a la imagen | OK | BUTTON «Ampliar imagen: Captura de la respuesta » |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: al cerrar vuelve el zoom a 100 % y la página se puede desplazar | OK |  |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: la X (44 px) cierra el visor y devuelve el foco a la imagen | OK | Ampliar imagen: Captura de la respuesta  |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: tocar fuera de la imagen cierra el visor | OK |  |
+| /marketing/crear-anuncios-con-ia | 1280 | lupa: 0 errores de consola | OK |  |
 | /marketing/crear-anuncios-con-ia | 1280 | 0 errores en consola | OK |  |
 | /marketing/crear-anuncios-con-ia | 1280 | portapapeles API bloqueado: alternativa (execCommand) o texto a mano | OK | copiado con execCommand |
 | /marketing/crear-anuncios-con-ia | 1280 | 0 errores de consola con el portapapeles sin API | OK |  |
@@ -566,6 +654,23 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-promociones-con-ia | 1280 | «Ver el prompt completo» muestra el prompt | OK |  |
 | /marketing/crear-promociones-con-ia | 1280 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3646 caracteres copiados |
 | /marketing/crear-promociones-con-ia | 1280 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: la imagen indica que se puede ampliar (icono, «Ampliar» y nombre accesible «Ampliar imagen…») | OK | 960×481 · «Ampliar» |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: la imagen grande NO se carga hasta abrir (ni hay visor abierto) | OK | pedida antes de abrir: false |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: abre a pantalla completa con la imagen original y la página de atrás bloqueada | OK | 1280×800 · /img/marketing/crear-promociones-con-ia/prueba-prompt-02.webp |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: la etiqueta y la leyenda están visibles en el visor | OK | Prueba real |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: fondo oscuro | OK | lab(2.75381 0 0) |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: el foco pasa al visor (botón X) | OK |  |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: botones Alejar, Acercar, Tamaño inicial y Cerrar de 44 px | OK | Alejar 44×44 / Acercar 44×44 / Tamaño inicial 44×44 / Cerrar imagen ampliada 44×44 |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: los botones + y − acercan y alejan | OK | 1 → 1.5 → 2.25 → 1.5 |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: «Tamaño inicial» vuelve a 100 % | OK |  |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: doble clic acerca (2,5×) y otro doble clic vuelve al tamaño inicial | OK | 2.5 → 1 |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: con zoom se mueve arrastrando | OK | 0,0 → -80,-60 |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: el foco queda atrapado dentro del visor (18 pulsaciones de Tab) | OK | 0 fuera |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: Esc cierra el visor y el foco vuelve a la imagen | OK | BUTTON «Ampliar imagen: Captura de la respuesta » |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: al cerrar vuelve el zoom a 100 % y la página se puede desplazar | OK |  |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: la X (44 px) cierra el visor y devuelve el foco a la imagen | OK | Ampliar imagen: Captura de la respuesta  |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: tocar fuera de la imagen cierra el visor | OK |  |
+| /marketing/crear-promociones-con-ia | 1280 | lupa: 0 errores de consola | OK |  |
 | /marketing/crear-promociones-con-ia | 1280 | calculadora · A · Combo de media mañana | OK | 7 resultados coinciden |
 | /marketing/crear-promociones-con-ia | 1280 | calculadora · B · Desayuno completo con 15 % | OK | 7 resultados coinciden |
 | /marketing/crear-promociones-con-ia | 1280 | calculadora · C · Tarjeta de 5 visitas, la 5.ª gratis | OK | 7 resultados coinciden |

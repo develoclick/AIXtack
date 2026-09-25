@@ -19,12 +19,9 @@ export function itemsVisiblesDelKit(items: readonly ItemKit[], ctx: ContextoPlan
   return items.filter((i) => cumple(i.mostrarSi, ctx));
 }
 
-/**
- * Las líneas de «Qué corregí yo»: las que escribió el autor y, solo si ya existe la captura de una prueba real, la nota que dejó
- * preparada (`notaPreparada`) como primera línea.
- */
-export function lineasQueCorregi(ejemplo: Pick<EjemploReal, "queCorregi" | "notaPreparada">, hayPruebaReal: boolean): string[] {
-  return [...(hayPruebaReal && ejemplo.notaPreparada ? [ejemplo.notaPreparada] : []), ...ejemplo.queCorregi];
+/** Las líneas de «Qué corregí yo»: las que escribió el autor (la nota de cada imagen sale bajo la propia imagen). */
+export function lineasQueCorregi(ejemplo: Pick<EjemploReal, "queCorregi">): string[] {
+  return [...ejemplo.queCorregi];
 }
 
 /** Una salida de «Si algo falla» normalizada: su texto y las correcciones que se copian (vacío si no lleva ninguna). */

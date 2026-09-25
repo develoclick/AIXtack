@@ -45,7 +45,7 @@ test("publicado:true exige su propia og.webp (error); en borrador solo aviso", a
   const propia = `/img/${h.meta.area}/${h.meta.slug}/og.webp`;
   const ctx = (existe: boolean) => ({ existeImagen: (s: string) => (s === propia ? existe : true), existentes: new Set([`${h.meta.area}/${h.meta.slug}`, ...h.relacionadas]), publicadas: new Set<string>(h.relacionadas) });
   const con = (p: Partial<Herramienta>, meta: Partial<Herramienta["meta"]>, existe: boolean) => validarHerramienta({ ...h, ...p, meta: { ...h.meta, ...meta } }, ctx(existe));
-  const pub = (meta: Partial<Herramienta["meta"]>, existe: boolean) => con({ publicado: true, capturasPendientes: [] }, meta, existe).errores.filter((e) => /og/.test(e));
+  const pub = (meta: Partial<Herramienta["meta"]>, existe: boolean) => con({ publicado: true }, meta, existe).errores.filter((e) => /og/.test(e));
   assert.equal(pub({ ogImage: propia }, true).length, 0, "publicada con su og propia existente: sin error");
   assert.ok(pub({ ogImage: undefined }, true).length > 0, "publicada sin og propia: error");
   assert.ok(pub({ ogImage: "/logo.png" }, true).length > 0, "publicada con otra imagen: error");

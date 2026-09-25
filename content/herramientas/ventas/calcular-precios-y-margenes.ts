@@ -123,16 +123,20 @@ Antes de responder, comprueba que cada cifra es idéntica a la de los cálculos,
       "Si los ingredientes suben 25 %": "costo 27; con el precio de 40 el margen baja a 32.5 %; para mantener el 40 % el precio sería 45",
       "Si se venden 100 cajas al mes": "costo 26; margen 35 %; para mantener el 40 % el precio sería 43.3",
     },
-    capturas: [], // TODO: captura real del chat con la respuesta a este prompt (etiqueta «Prueba real») y, si el autor la tiene, una captura de la hoja de costos.
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
   },
 
-  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
-  capturasPendientes: [
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/ventas/calcular-precios-y-margenes/ y aparece solo. Ver docs/como-publicar.md.
+  imagenes: [
     {
-      archivo: "prueba-01.webp",
+      id: "prueba-01",
+      archivo: "prueba-01",
       etiqueta: "Prueba real",
-      muestra: "Chat nuevo: la revisión de la lógica del precio de Galletería Migas (ficticia), los escenarios y cómo comunicar el precio, con las cifras ya calculadas por la página.",
+      titulo: "Chat de la IA con la respuesta al prompt de esta página",
+      alt: "Chat nuevo: la revisión de la lógica del precio de Galletería Migas (ficticia), los escenarios y cómo comunicar el precio, con las cifras ya calculadas por la página.",
+      leyenda: "Prueba real: la respuesta de la IA al prompt de esta página, sin editar.",
+      ubicacion: "ejemplo",
+      obligatoria: true,
     },
   ],
 

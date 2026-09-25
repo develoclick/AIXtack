@@ -416,59 +416,81 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
       // Calculado con contarPalabras(): nunca un número escrito a mano.
       "Total": `${contarPalabras(NIVELES_DEL_EJEMPLO)} palabras (máximo ${MAXIMO_PALABRAS})`,
     },
-    capturas: [],
     // TODO: «Quién hizo qué» de la prueba real, un objeto por paso: { paso: 2, hizoLaIA: "…", hiceYo: "…", tiempo: "1 min" }. Lo escribe el autor con
     // lo que de verdad pasó y con sus tiempos medidos: no se inventa. Vacío = no se muestra nada (tampoco en producción).
     pasos: [],
     tiempoTotal: "", // TODO: tiempo total real de la prueba (por ejemplo «14 min»). Vacío = no se muestra.
     transcripcion: "", // TODO: respuesta completa de la IA, copiada del MISMO chat de la captura «Prueba real», tal como salió. Vacío hasta la prueba: no se escribe a mano.
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
-    // Nota ya redactada por el autor: NO se muestra hasta que exista la captura «Prueba real» (prueba-01). Comprueba que coincide con esa captura.
-    notaPreparada: "La IA cambió «·» por «—» en el nivel 3; lo corregí.",
   },
 
-  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 7); nunca en un build de producción. `npm run capturas` las lista.
-  // Con `npm run publicar` son obligatorias prueba-01 y afiche-final; las demás se suman si su archivo existe.
-  capturasPendientes: [
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/marketing/crear-afiches-con-ia/ y aparece
+  // solo, en su sitio: no hay que tocar este archivo. Faltan las obligatorias → un borrador enseña un recuadro punteado (vista previa) y una
+  // página publicada no se construye. Ver docs/como-publicar.md.
+  imagenes: [
     {
-      archivo: "prep-01.webp",
+      id: "prep-01",
+      archivo: "prep-01",
       etiqueta: "Captura de la herramienta",
-      paso: 1,
-      obligatoria: false,
-      muestra: "La propia herramienta con «Probar con un ejemplo» pulsado: el formulario lleno y el contador en «Tus datos suman 39 palabras (máximo 39)».",
+      titulo: "Herramienta con el formulario lleno y el contador en 39 palabras",
+      alt: "La propia herramienta con «Probar con un ejemplo» pulsado: el formulario lleno con los datos de La Espiga y el contador en «Tus datos suman 39 palabras (máximo 39)».",
+      leyenda: "La herramienta con el ejemplo cargado: el formulario lleno y el contador en 39 palabras.",
+      ubicacion: "preparacion",
+      obligatoria: true,
     },
     {
-      archivo: "prueba-01.webp",
+      id: "prueba-01",
+      archivo: "prueba-01",
       etiqueta: "Prueba real",
-      paso: 2,
-      muestra: "Chat nuevo de la IA de texto: el mensaje (el prompt) arriba y la respuesta hasta «DE DÓNDE SALE CADA DATO». Los niveles deben coincidir con «Resultado del ejemplo».",
+      titulo: "Chat de la IA con el texto del afiche",
+      alt: "Chat de una IA de texto: el prompt de esta herramienta pegado arriba y la respuesta con los cuatro niveles del afiche, hasta «De dónde sale cada dato».",
+      leyenda: "Prueba real: el chat con el prompt pegado y la respuesta hasta «De dónde sale cada dato», sin editar.",
+      ubicacion: "paso-2",
+      obligatoria: true,
+      nota: "La IA cambió el separador «·» por la palabra «en» en el nivel 3 («…el combo en Panadería La Espiga»). Lo devolví a «·», como en mis datos.",
     },
     {
-      archivo: "prueba-02.webp",
+      id: "prueba-02",
+      archivo: "prueba-02",
       etiqueta: "Prueba real",
-      paso: 3,
+      titulo: "Chat de la IA de imagen creando el afiche, o Canva con el afiche armado",
+      alt: "Chat de la IA de imagen creando el afiche con el prompt del paso 3, o Canva con el afiche armado usando el texto del paso 2.",
+      leyenda: "Prueba real: el afiche creándose a partir del texto del paso 2.",
+      ubicacion: "paso-3",
       obligatoria: false,
-      muestra: "Chat de la IA de imagen creando el afiche. Si lo armaste en Canva, sube en su lugar la captura de Canva con el afiche armado y cambia la etiqueta a «Resultado final diseñado con el texto de la IA».",
     },
     {
-      archivo: "afiche-final.webp",
+      id: "afiche-final",
+      archivo: "afiche-final",
       etiqueta: "Resultado final diseñado con el texto de la IA",
-      paso: 4,
-      muestra: "El afiche A4 terminado. Si la imagen la hizo una IA de imagen, cambia la etiqueta a «Foto generada con IA» y di en la leyenda que fue generada con IA.",
+      titulo: "Afiche A4 terminado",
+      alt: "El afiche A4 terminado de la Panadería La Espiga: el combo como titular, los días y el horario, la dirección abajo y la letra pequeña.",
+      leyenda: "Afiche A4 terminado, diseñado con el texto de los cuatro niveles del paso 2.",
+      ubicacion: ["paso-4", "resultado-afiche"],
+      obligatoria: true,
+      proporcion: "210:297",
     },
     {
-      archivo: "mockup-vitrina.webp",
+      id: "mockup-vitrina",
+      archivo: "mockup-vitrina",
       etiqueta: "Simulación",
-      paso: 5,
-      obligatoria: false,
-      muestra: "El afiche pegado en una vitrina, imagen generada con IA a partir del afiche terminado: una simulación para visualizar, no una foto de un local.",
+      titulo: "Mockup del afiche en la vitrina",
+      alt: "Simulación del afiche pegado en la vitrina de una panadería de barrio, vista desde la vereda con luz de mañana.",
+      leyenda: "Simulación generada con IA para visualizar el afiche. No es una foto real del local.",
+      ubicacion: ["paso-5", "resultado-mockup"],
+      obligatoria: true,
+      proporcion: "4:3",
     },
     {
-      archivo: "estado-9x16.webp",
+      id: "estado-9x16",
+      archivo: "estado-9x16",
       etiqueta: "Resultado final diseñado con el texto de la IA",
-      paso: 5,
+      titulo: "Versión vertical 9:16 para estado o historia",
+      alt: "La versión vertical 9:16 del afiche para un estado de WhatsApp o una historia, con el mismo texto y los mismos colores que el afiche A4.",
+      leyenda: "Versión 9:16 para estado o historia, con el mismo texto del afiche A4.",
+      ubicacion: ["paso-5", "resultado-versiones"],
       obligatoria: false,
-      muestra: "La versión vertical 9:16 para estado o historia, con el mismo texto y los mismos colores que el afiche A4.",
+      proporcion: "9:16",
     },
   ],
 

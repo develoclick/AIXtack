@@ -13,6 +13,7 @@ import { EjemploReal } from "../../components/herramientas/ejemplo-real";
 import { PaginaHerramienta } from "../../components/herramientas/pagina-herramienta";
 import { armarArchivoDeProceso, nombreDelArchivo } from "./descarga";
 import type { ContextoPlantilla } from "./plantillas";
+import { buscarArchivo } from "./imagenes";
 import { ejecutarPreproceso, variablesDePreproceso } from "./preprocesos";
 import { correccionesVisibles, itemsDeRevision, normalizarSalida } from "./proceso";
 import { listarTodas, type HerramientaCargada } from "./registro";
@@ -31,7 +32,11 @@ const pasos = pasosDelProceso(datos)!;
 const paso = (n: number) => pasos.find((p) => p.numero === n)!;
 const texto = (html: string) => html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 const leerComponente = (nombre: string) => fs.readFileSync(path.join(process.cwd(), "components", "herramientas", nombre), "utf8");
-const base = async (): Promise<HerramientaCargada> => (await listarTodas()).find((x) => x.meta.slug === "crear-afiches-con-ia")!;
+/** La página de afiches SIN las imágenes que ya existen en disco (next/image no se puede dibujar en estos tests; lo cubre `npm run qa`). */
+const base = async (): Promise<HerramientaCargada> => {
+  const h = (await listarTodas()).find((x) => x.meta.slug === "crear-afiches-con-ia")!;
+  return { ...h, imagenes: h.imagenes.filter((i) => !buscarArchivo(h.meta.area, h.meta.slug, i.archivo)) };
+};
 const ctxValidacion = (h: Herramienta) => ({ existeImagen: () => true, existentes: new Set([`${h.meta.area}/${h.meta.slug}`, ...h.relacionadas]), publicadas: new Set<string>() });
 const errores = (h: Herramienta) => validarHerramienta(h, ctxValidacion(h)).errores;
 const correcciones = (n: number, ctx = contexto()) => paso(n).siAlgoFalla.flatMap((s) => correccionesVisibles(s, ctx));
@@ -191,16 +196,16 @@ test("descarga: el botón y su aclaración salen al final del proceso, antes del
 test("ejemplo.pasos y tiempoTotal existen, están vacíos (no se inventa una prueba) y no se muestran en producción", () => {
   assert.deepEqual(datos.ejemplo.pasos, []);
   assert.equal(datos.ejemplo.tiempoTotal, "");
-  const vacio = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: { ...datos.ejemplo, capturas: [] }, datos: [], pasos: pasos.map((p) => ({ numero: p.numero, titulo: p.titulo })) }));
+  const vacio = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: datos.ejemplo, datos: [], pasos: pasos.map((p) => ({ numero: p.numero, titulo: p.titulo })) }));
   assert.ok(!vacio.includes("Quién hizo qué") && !vacio.includes("Tiempo total") && !vacio.includes("data-quien-hizo-que"));
-  const enBlanco = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: { ...datos.ejemplo, capturas: [], pasos: [{ paso: 2, hizoLaIA: "  ", hiceYo: "", tiempo: "" }], tiempoTotal: "  " }, datos: [] }));
+  const enBlanco = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: { ...datos.ejemplo, pasos: [{ paso: 2, hizoLaIA: "  ", hiceYo: "", tiempo: "" }], tiempoTotal: "  " }, datos: [] }));
   assert.ok(!enBlanco.includes("Quién hizo qué"), "filas en blanco tampoco");
 });
 
 test("ejemplo.pasos: con datos reales se muestra «Quién hizo qué» con el paso, la IA, yo, el tiempo y el total", () => {
   const html = renderToStaticMarkup(
     createElement(EjemploReal, {
-      ejemplo: { ...datos.ejemplo, capturas: [], pasos: [{ paso: 2, hizoLaIA: "Escribió los cuatro niveles.", hiceYo: "Cambié un signo.", tiempo: "1 min" }], tiempoTotal: "14 min" },
+      ejemplo: { ...datos.ejemplo, pasos: [{ paso: 2, hizoLaIA: "Escribió los cuatro niveles.", hiceYo: "Cambié un signo.", tiempo: "1 min" }], tiempoTotal: "14 min" },
       datos: [],
       pasos: pasos.map((p) => ({ numero: p.numero, titulo: p.titulo })),
     })

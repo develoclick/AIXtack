@@ -19,7 +19,7 @@ test("los datos del ejemplo son exactamente los que rellena «Probar con un ejem
     const datos = datosDelEjemplo(h);
     const esperados = [...h.campos.map((c) => [c.label, c.ejemplo]), ...(h.calculadora?.entradas.map((e) => [e.label, String(e.ejemplo)]) ?? [])].filter(([, v]) => v.trim() !== "");
     assert.deepEqual(datos.map((d) => [d.etiqueta, d.valor]), esperados, h.meta.slug);
-    const html = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: { ...h.ejemplo, capturas: [] }, datos, calculos: calculosDelEjemplo(h) }));
+    const html = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: h.ejemplo, datos, calculos: calculosDelEjemplo(h) }));
     assert.match(html, /Datos del ejemplo/);
     for (const d of datos.filter((x) => x.valor.length <= 240 && !x.valor.includes("\n"))) assert.ok(html.includes(escapar(d.valor)), `${h.meta.slug}: falta «${d.valor.slice(0, 50)}» en el ejemplo`);
     for (const d of datos.filter((x) => x.valor.length > 240 || x.valor.includes("\n"))) assert.ok(html.includes(escapar(d.valor)), `${h.meta.slug}: el texto largo de «${d.etiqueta}» debe estar completo (plegado)`);
@@ -30,7 +30,7 @@ test("calculadoras y analizadores: la página muestra lo que calcula con los dat
   for (const h of (await listarTodas()).filter((x) => !x.interna && (x.calculadora || x.preproceso))) {
     const calc = calculosDelEjemplo(h);
     assert.ok(calc.length >= 3, `${h.meta.slug}: sin cálculos del ejemplo`);
-    const html = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: { ...h.ejemplo, capturas: [] }, datos: datosDelEjemplo(h), calculos: calc }));
+    const html = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: h.ejemplo, datos: datosDelEjemplo(h), calculos: calc }));
     for (const c of calc) assert.ok(html.includes(escapar(c.texto)), `${h.meta.slug}: ${c.etiqueta}`);
   }
 });

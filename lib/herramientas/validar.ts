@@ -13,10 +13,27 @@ import { ErrorExpresion, idsUsados } from "./expresiones";
 import { contarPalabras } from "../texto/contar-palabras";
 import { verificarCasosPreproceso } from "./preprocesos";
 import { nombresDeCondicion, referenciasDe } from "./plantillas";
-import { dicePorIA, ETIQUETAS_GENERADAS_CON_IA, ETIQUETAS_IMAGEN, pasosDelProceso, PERFIL_CLAVES, SEPARADOR_CASILLAS, type Herramienta, type PasoProceso } from "./tipos";
+import { EXTENSIONES_DE_IMAGEN } from "../imagenes/dimensiones";
+import { ubicacionesValidas } from "./ubicaciones";
+import { dicePorIA, esDelEjemplo, ETIQUETAS_GENERADAS_CON_IA, ETIQUETAS_IMAGEN, pasosDelProceso, PERFIL_CLAVES, SEPARADOR_CASILLAS, ubicacionesDe, type Herramienta, type PasoProceso } from "./tipos";
+
+/** Lo que la validación necesita saber de un archivo de imagen hallado. */
+export interface ArchivoBuscado {
+  src: string;
+  ancho: number;
+  alto: number;
+  extension: string;
+  duplicadas: string[];
+  error?: string;
+}
 
 export interface ContextoValidacion {
   existeImagen: (src: string) => boolean;
+  /**
+   * Busca el archivo de un espacio de imagen (por su nombre sin extensión: .webp, luego .png y luego .jpg). Si falta, la validación lo
+   * deduce de `existeImagen` (sin tamaño). Lo usan los scripts con la lectura real de public/img (lib/herramientas/imagenes.ts).
+   */
+  buscarImagen?: (archivo: string) => ArchivoBuscado | null;
   /** Rutas «area/slug» de las páginas publicadas. */
   publicadas: ReadonlySet<string>;
   /** Rutas «area/slug» de todas las páginas que existen. */
@@ -43,7 +60,7 @@ export function textosProceso(h: Herramienta): string[] {
   const proceso = pasosDelProceso(h);
   if (!proceso) return [...((h.pasos as string[] | undefined) ?? [])];
   const t: string[] = [];
-  for (const r of h.resultadoFinal ?? []) t.push(r.titulo, r.descripcion, ...(r.captura ? [r.captura.leyenda] : []));
+  for (const r of h.resultadoFinal ?? []) t.push(r.titulo, r.descripcion, );
   for (const p of h.problema ?? []) t.push(p.titulo, p.texto);
   for (const n of h.necesitas ?? []) t.push(n.nombre, n.para, n.alternativa ?? "");
   for (const p of proceso) {
@@ -64,14 +81,14 @@ export function textosVisibles(h: Herramienta): string[] {
   }
   t.push(...textosProceso(h), h.tituloRevision ?? "");
   for (const m of h.mejoras) t.push(m.label, m.prompt);
-  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi, h.ejemplo.notaPreparada ?? "", ...(h.ejemplo.pasos ?? []).flatMap((f) => [f.hizoLaIA, f.hiceYo, f.tiempo]), h.ejemplo.tiempoTotal ?? "");
-  for (const c of h.ejemplo.capturas) t.push(c.alt, c.leyenda);
+  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi, ...(h.ejemplo.pasos ?? []).flatMap((f) => [f.hizoLaIA, f.hiceYo, f.tiempo]), h.ejemplo.tiempoTotal ?? "");
+  for (const e of h.imagenes ?? []) t.push(e.alt, e.leyenda, e.nota ?? "");
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
   for (const r of h.rubros) t.push(r.rubro, r.ejemplo, r.consejo);
   for (const e of h.errores) t.push(e.error, e.solucion);
   for (const f of h.faq) t.push(f.p, f.r);
-  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).flatMap((c) => [c.alt, c.leyenda]));
+  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos);
   for (const l of h.meta.limites ?? []) t.push(l.concepto, l.valor);
   return t.filter(Boolean);
 }
@@ -79,20 +96,19 @@ export function textosVisibles(h: Herramienta): string[] {
 /**
  * Solo el texto EDITORIAL de la página: lo que se lee como explicación. Deja fuera el formulario (etiquetas y ayudas de
  * los campos y de la calculadora), los valores de ejemplo del formulario, los prompts (`tarea` y el texto de cada
- * «mejora»), el `alt` de las imágenes (es un atributo, no texto visible), el registro de la prueba real (`ejemplo.pasos`, `transcripcion`) y los datos técnicos. Lo usan el validador (estándar 17) y `npm run contar-palabras`. `textosVisibles` (más amplio) se usa para las demás comprobaciones de texto.
+ * «mejora»), el `alt`, la leyenda y la nota de las imágenes (son pies de imagen y un atributo), el registro de la prueba real (`ejemplo.pasos`, `transcripcion`) y los datos técnicos. Lo usan el validador (estándar 17) y `npm run contar-palabras`. `textosVisibles` (más amplio) se usa para las demás comprobaciones de texto.
  */
 export function textosEditoriales(h: Herramienta): string[] {
   const t: string[] = [h.meta.titulo, h.meta.descripcion, h.antesDespues.antes, h.antesDespues.despues];
   t.push(...textosProceso(h));
   for (const m of h.mejoras) t.push(m.label);
   t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
-  for (const c of h.ejemplo.capturas) t.push(c.leyenda);
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
   for (const r of h.rubros) t.push(r.rubro, r.ejemplo, r.consejo);
   for (const e of h.errores) t.push(e.error, e.solucion);
   for (const f of h.faq) t.push(f.p, f.r);
-  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).map((c) => c.leyenda));
+  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos);
   for (const l of h.meta.limites ?? []) t.push(l.concepto, l.valor);
   return t.filter(Boolean);
 }
@@ -215,7 +231,6 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
       }
     }
     for (const k of h.kitFinal ?? []) condicion(`Kit final «${k.id}»`, k.mostrarSi);
-    for (const c of [...h.ejemplo.capturas, ...h.capturasPendientes ?? []]) error(c.paso === undefined || proceso.some((p) => p.numero === c.paso), `Captura «${"src" in c ? c.src : c.archivo}»: cita el paso ${c.paso}, que no existe.`);
   } else {
     error(!h.resultadoFinal && !h.problema && !h.necesitas && !h.kitFinal, "Los campos resultadoFinal, problema, necesitas y kitFinal solo se usan con «pasos» de proceso.");
   }
@@ -296,9 +311,6 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
 
   /* ── prueba real (solo publicadas) ── */
   publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Faltan meta.probadoEn y meta.probadoFecha: sin prueba real no se publica.");
-  const maxCapturas = proceso ? 8 : 2;
-  publicada(h.ejemplo.capturas.length >= 1 && h.ejemplo.capturas.length <= maxCapturas, `Capturas: ${h.ejemplo.capturas.length} (deben ser 1–${maxCapturas} en el ejemplo real).`);
-  publicada(h.ejemplo.capturas.some((c) => c.etiqueta === "Prueba real"), "Falta al menos una captura etiquetada «Prueba real».");
   // «Quién hizo qué» (ejemplo.pasos) y el tiempo total salen de la prueba real del autor: sin prueba (IA y fecha) no deben existir.
   const filasEjemplo = h.ejemplo.pasos ?? [];
   if (filasEjemplo.length > 0 || h.ejemplo.tiempoTotal?.trim()) {
@@ -312,30 +324,48 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   }
   // La transcripción es la respuesta real del mismo chat de la prueba: sin prueba (IA y fecha) no debe existir.
   if (h.ejemplo.transcripcion?.trim()) publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Hay «transcripcion» pero faltan meta.probadoEn y meta.probadoFecha: la transcripción es de la prueba real y no se inventa.");
-  for (const c of [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])]) {
-    error((ETIQUETAS_IMAGEN as readonly string[]).includes(c.etiqueta), `Captura ${c.src}: etiqueta «${c.etiqueta}» no válida (solo: ${ETIQUETAS_IMAGEN.join(" | ")}).`);
-    error(Boolean(c.alt?.trim()), `Captura ${c.src}: el alt es obligatorio.`);
-    error(!c.alt?.trim() || c.alt.trim().length >= 25, `Captura ${c.src}: el alt es demasiado corto para describir la imagen.`);
-    error(Boolean(c.leyenda?.trim()), `Captura ${c.src}: falta la leyenda.`);
-    error(!ETIQUETAS_GENERADAS_CON_IA.includes(c.etiqueta) || dicePorIA(c.leyenda ?? ""), `Captura ${c.src}: una imagen «${c.etiqueta}» es generada por una IA y su leyenda debe decir que fue generada con IA.`);
-    error(Number.isInteger(c.ancho) && c.ancho > 0 && Number.isInteger(c.alto) && c.alto > 0, `Captura ${c.src}: ancho y alto deben ser enteros positivos (píxeles del archivo).`);
-    error(c.src.startsWith(`/img/${h.meta.area}/${h.meta.slug}/`), `Captura ${c.src}: debe estar en /img/${h.meta.area}/${h.meta.slug}/.`);
-    publicada(ctx.existeImagen(c.src), `Captura ${c.src}: el archivo no existe en public/.`);
+  /* ── imágenes: espacios definidos en los datos; el archivo se detecta en public/img/{area}/{slug}/ (.webp, .png o .jpg) ── */
+  const carpeta = `/img/${h.meta.area}/${h.meta.slug}`;
+  const buscar =
+    ctx.buscarImagen ??
+    ((archivo: string): ArchivoBuscado | null => {
+      const hallada = EXTENSIONES_DE_IMAGEN.find((ext) => ctx.existeImagen(`${carpeta}/${archivo}.${ext}`));
+      return hallada ? { src: `${carpeta}/${archivo}.${hallada}`, ancho: 0, alto: 0, extension: hallada, duplicadas: [] } : null;
+    });
+  const espacios = h.imagenes ?? [];
+  error(Array.isArray(h.imagenes), "Falta `imagenes` (usa [] si la página no lleva imágenes).");
+  error(new Set(espacios.map((e) => e.id)).size === espacios.length, "Hay imágenes con el mismo id.");
+  error(new Set(espacios.map((e) => e.archivo)).size === espacios.length, "Hay imágenes con el mismo nombre de archivo.");
+  const ubicaciones = ubicacionesValidas(proceso ?? [], h.resultadoFinal ?? []);
+  const halladas = new Map<string, ArchivoBuscado>();
+  for (const e of espacios) {
+    const d = `Imagen «${e.id}»`;
+    error(/^[a-z0-9][a-z0-9-]*$/.test(e.archivo), `${d}: el nombre de archivo «${e.archivo}» va sin extensión, en minúsculas, con números y guiones (por ejemplo prueba-01).`);
+    error((ETIQUETAS_IMAGEN as readonly string[]).includes(e.etiqueta), `${d}: etiqueta «${e.etiqueta}» no válida (solo: ${ETIQUETAS_IMAGEN.join(" | ")}).`);
+    error(Boolean(e.alt?.trim()), `${d}: el alt es obligatorio.`);
+    error(!e.alt?.trim() || e.alt.trim().length >= 25, `${d}: el alt es demasiado corto para describir la imagen.`);
+    error(Boolean(e.leyenda?.trim()), `${d}: falta la leyenda.`);
+    error(!ETIQUETAS_GENERADAS_CON_IA.includes(e.etiqueta) || dicePorIA(e.leyenda ?? ""), `${d}: una imagen «${e.etiqueta}» es generada por una IA y su leyenda debe decir que fue generada con IA.`);
+    error(typeof e.obligatoria === "boolean", `${d}: falta \`obligatoria: true | false\`.`);
+    const lugares = ubicacionesDe(e);
+    error(lugares.length > 0, `${d}: falta la ubicación.`);
+    for (const u of lugares) error(ubicaciones.has(u), `${d}: la ubicación «${u}» no existe en esta página (valen: ${[...ubicaciones].join(", ")}).`);
+    if (e.proporcion !== undefined) error(/^\d+(?:\.\d+)?:\d+(?:\.\d+)?$/.test(e.proporcion), `${d}: la proporción «${e.proporcion}» debe ser «ancho:alto», por ejemplo 16:10.`);
+    const f = buscar(e.archivo);
+    if (f) {
+      halladas.set(e.id, f);
+      error(!f.error, `${d}: el archivo ${e.archivo}.${f.extension} no se puede leer como imagen (${f.error}).`);
+      aviso(f.duplicadas.length === 0, `${d}: hay más de un archivo con el mismo nombre (${[f.extension, ...f.duplicadas].map((x) => `${e.archivo}.${x}`).join(", ")}): se usa .${f.extension}; borra los demás.`);
+    } else {
+      // Publicada: una imagen obligatoria que falta rompe el build. Borrador: solo aviso (y, con la vista previa, un recuadro).
+      publicada(!e.obligatoria, `Falta la imagen obligatoria «${e.archivo}» (public${carpeta}/${e.archivo}.webp, .png o .jpg)${e.titulo ? `: ${e.titulo}` : ""}.`);
+    }
   }
-  /* ── capturas pendientes: solo en borradores; una página publicada no puede tener ninguna ── */
-  const pendientes = h.capturasPendientes ?? [];
-  error(Array.isArray(h.capturasPendientes), "Falta `capturasPendientes` (usa [] si no falta ninguna captura).");
-  for (const p of pendientes) {
-    error(/^[a-z0-9][a-z0-9-]*\.webp$/.test(p.archivo), `Captura pendiente «${p.archivo}»: el nombre debe ser minúsculas y terminar en .webp (por ejemplo prueba-01.webp).`);
-    error((ETIQUETAS_IMAGEN as readonly string[]).includes(p.etiqueta), `Captura pendiente ${p.archivo}: etiqueta «${p.etiqueta}» no válida.`);
-    error(Boolean(p.muestra?.trim()), `Captura pendiente ${p.archivo}: falta indicar qué debe mostrar.`);
-    error(!ETIQUETAS_GENERADAS_CON_IA.includes(p.etiqueta) || dicePorIA(p.muestra ?? ""), `Captura pendiente ${p.archivo}: una imagen «${p.etiqueta}» es generada por una IA y su descripción debe decir que será generada con IA.`);
-    // Solo aviso: subir la imagen antes de actualizar los datos no debe romper el despliegue.
-    aviso(!ctx.existeImagen(`/img/${h.meta.area}/${h.meta.slug}/${p.archivo}`), `Captura pendiente ${p.archivo}: el archivo ya existe en public/img/…; pásalo a \`ejemplo.capturas\` y quítalo de las pendientes.`);
-  }
-  error(new Set(pendientes.map((p) => p.archivo)).size === pendientes.length, "Hay capturas pendientes con el mismo nombre de archivo.");
-  error(!h.publicado || pendientes.length === 0, `Una página publicada no puede tener capturas pendientes (${pendientes.length}).`);
-  error(!h.publicado || [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])].some((c) => c.etiqueta === "Prueba real"), "Una página publicada exige al menos 1 captura con etiqueta «Prueba real».");
+  const existentes = espacios.filter((e) => halladas.has(e.id) && !halladas.get(e.id)!.error);
+  const enEjemplo = existentes.filter((e) => ubicacionesDe(e).some(esDelEjemplo));
+  const maxEnEjemplo = proceso ? 8 : 2;
+  publicada(enEjemplo.length >= 1 && enEjemplo.length <= maxEnEjemplo, `Imágenes en el ejemplo: ${enEjemplo.length} (deben ser 1–${maxEnEjemplo}; las que sobren, pásalas a «metodo-completo»).`);
+  publicada(existentes.some((e) => e.etiqueta === "Prueba real"), "Falta al menos una imagen etiquetada «Prueba real» (y que exista su archivo).");
   // og:image propia obligatoria para publicar (borrador: solo aviso; mientras tanto la página usa el respaldo general del sitio).
   const ogEsperada = `/img/${h.meta.area}/${h.meta.slug}/og.webp`;
   publicada(h.meta.ogImage === ogEsperada, `meta.ogImage debe ser ${ogEsperada} (og:image propia); ahora: ${h.meta.ogImage ?? "sin definir"}.`);

@@ -4,11 +4,12 @@
  *   npm run publicar -- {area}/{slug} --ia "ChatGPT" --fecha AAAA-MM-DD --corregi "línea 1" "línea 2" "línea 3"
  *
  * Qué hace (docs/como-publicar.md):
- *  1. comprueba que existen en public/img/{area}/{slug}/ los archivos de `capturasPendientes`;
- *  2. lee su ancho y alto reales y las pasa a `capturas` con la etiqueta prevista, más un alt y una leyenda que puedes editar;
- *  3. rellena probadoEn, probadoFecha, actualizado y «Qué corregí yo»;
- *  4. ejecuta validador, tests, build y `npm run qa` de esa página;
- *  5. SOLO si todo pasa, pone `publicado: true` y hace un commit (sin push). Si algo falla, deja el archivo como estaba y te
+ *  1. comprueba que están las imágenes obligatorias (los espacios de `imagenes` con `obligatoria: true`) en public/img/{area}/{slug}/
+ *     (.webp, .png o .jpg) y, en una página de proceso, que `ejemplo.pasos` y `ejemplo.tiempoTotal` están rellenos. Las imágenes ya no
+ *     se registran: aparecen solas al guardar el archivo con su nombre;
+ *  2. rellena probadoEn, probadoFecha, actualizado y «Qué corregí yo»;
+ *  3. ejecuta validador, tests, build y `npm run qa` de esa página;
+ *  4. SOLO si todo pasa, pone `publicado: true` y hace un commit (sin push). Si algo falla, deja el archivo como estaba y te
  *     dice exactamente qué falta.
  *
  * Opciones: `--comprobar` (hace todo, incluido el build y el QA, pero no deja ningún cambio ni hace commit) y `--sin-qa` (omite el
@@ -19,6 +20,9 @@ import fs from "node:fs";
 import net from "node:net";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { leerDimensiones } from "../lib/imagenes/dimensiones";
+import { existeUtilizable, resolverImagenes, type ImagenResuelta } from "../lib/herramientas/imagenes";
+import { pasosDelProceso, type Herramienta } from "../lib/herramientas/tipos";
 
 const raiz = process.cwd();
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
@@ -57,18 +61,8 @@ export function leerArgumentos(argv: string[]): { args?: Argumentos; errores: st
   return { errores, args: { ruta, ia: ia!, fecha: fecha!, corregi, comprobar: resto.includes("--comprobar"), sinQa: resto.includes("--sin-qa") } };
 }
 
-/** Ancho y alto reales de un .webp (VP8, VP8L o VP8X). */
-export function tamanoWebp(buf: Buffer): { ancho: number; alto: number } {
-  if (buf.toString("ascii", 0, 4) !== "RIFF" || buf.toString("ascii", 8, 12) !== "WEBP") throw new Error("no es un archivo .webp válido");
-  const tipo = buf.toString("ascii", 12, 16);
-  if (tipo === "VP8 ") return { ancho: buf.readUInt16LE(26) & 0x3fff, alto: buf.readUInt16LE(28) & 0x3fff };
-  if (tipo === "VP8X") return { ancho: 1 + buf.readUIntLE(24, 3), alto: 1 + buf.readUIntLE(27, 3) };
-  if (tipo === "VP8L") {
-    const bits = buf.readUInt32LE(21);
-    return { ancho: 1 + (bits & 0x3fff), alto: 1 + ((bits >> 14) & 0x3fff) };
-  }
-  throw new Error(`tipo de .webp desconocido (${tipo})`);
-}
+/** Ancho y alto reales de una imagen (.webp, .png o .jpg). */
+export const tamanoWebp = leerDimensiones;
 
 /** Índice del carácter que cierra el «[» o «{» que abre en `i`, saltando cadenas de texto y comentarios. */
 export function encontrarCierre(s: string, i: number): number {
@@ -102,33 +96,6 @@ export function objetosDeArray(textoArray: string): string[] {
   return salida;
 }
 
-/** Capturas que caben en el ejemplo de una página de proceso (una evidencia por paso). */
-export const LIMITE_CAPTURAS_PROCESO = 8;
-
-export interface CapturaNueva {
-  src: string;
-  alt: string;
-  etiqueta: string;
-  leyenda: string;
-  ancho: number;
-  alto: number;
-  /** Paso del proceso del que es evidencia (viene de la captura pendiente). */
-  paso?: number;
-}
-
-const objeto = (c: CapturaNueva, sangria: string) =>
-  [
-    `${sangria}{`,
-    `${sangria}  src: ${JSON.stringify(c.src)},`,
-    `${sangria}  alt: ${JSON.stringify(c.alt)},`,
-    `${sangria}  etiqueta: ${JSON.stringify(c.etiqueta)},`,
-    `${sangria}  ancho: ${c.ancho},`,
-    `${sangria}  alto: ${c.alto},`,
-    ...(c.paso !== undefined ? [`${sangria}  paso: ${c.paso},`] : []),
-    `${sangria}  leyenda: ${JSON.stringify(c.leyenda)},`,
-    `${sangria}},`,
-  ].join("\n");
-
 /** Reemplaza el valor de la propiedad `nombre: [...]` que empieza en la primera aparición tras `desde`. */
 function reemplazarArray(s: string, nombre: string, desde: number, nuevoTexto: string): { texto: string; fin: number } {
   const clave = `\n    ${nombre}: [`;
@@ -150,49 +117,18 @@ export interface CambiosPagina {
   fecha: string;
   hoy: string;
   corregi: string[];
-  capturas: CapturaNueva[];
 }
 
-/** Aplica al texto del archivo de datos: capturas, pendientes, probadoEn/Fecha, actualizado, «Qué corregí yo» y publicado. */
-export function aplicarCambios({ fuente, ia, fecha, hoy, corregi, capturas }: CambiosPagina): string {
+/** Aplica al texto del archivo de datos: probadoEn/Fecha, actualizado, «Qué corregí yo» y publicado. Las imágenes no se tocan. */
+export function aplicarCambios({ fuente, ia, fecha, hoy, corregi }: CambiosPagina): string {
   let s = fuente;
   const ejemplo = s.indexOf("\n  ejemplo: {");
   if (ejemplo < 0) throw new Error("no encuentro el bloque «ejemplo» en el archivo de datos");
 
-  // 1) capturas: las nuevas van primero; en el ejemplo caben 2, el resto de las anteriores pasa al «método completo»
-  const claveCap = "\n    capturas: [";
-  const iCap = s.indexOf(claveCap, ejemplo);
-  const abre = iCap + claveCap.length - 1;
-  const actual = objetosDeArray(s.slice(abre, encontrarCierre(s, abre) + 1));
-  const anteriores = actual;
-  const nuevas = capturas.map((c) => objeto(c, "      "));
-  const enEjemplo = [...nuevas, ...anteriores.map((o) => "      " + o + ",")];
-  // En un proceso (pasos con «numero:») el ejemplo enseña una evidencia por paso: caben 8; en una página simple, 2.
-  const limite = /\n  pasos: \[\s*\{\s*numero:/.test(s) ? LIMITE_CAPTURAS_PROCESO : 2;
-  const quedan = enEjemplo.slice(0, limite);
-  const sobran = enEjemplo.slice(limite);
-  s = reemplazarArray(s, "capturas", ejemplo, quedan.length ? `[\n${quedan.join("\n")}\n    ]` : "[]").texto;
-  if (sobran.length) {
-    const mc = s.indexOf("\n  metodoCompleto: {");
-    if (mc < 0) throw new Error("hay más de 2 capturas para el ejemplo y esta página no tiene «método completo» donde guardar las anteriores: reduce las capturas a mano");
-    const iMc = s.indexOf(claveCap, mc);
-    if (iMc < 0) throw new Error("hay más de 2 capturas para el ejemplo y el «método completo» no tiene lista de capturas: añádela a mano");
-    const abreMc = iMc + claveCap.length - 1;
-    const existentes = objetosDeArray(s.slice(abreMc, encontrarCierre(s, abreMc) + 1)).map((o) => "      " + o + ",");
-    s = reemplazarArray(s, "capturas", mc, `[\n${[...sobran, ...existentes].join("\n")}\n    ]`).texto;
-  }
-
-  // 2) «Qué corregí yo»
+  // 1) «Qué corregí yo»
   s = reemplazarArray(s, "queCorregi", ejemplo, `[\n${corregi.map((l) => `      ${JSON.stringify(l)},`).join("\n")}\n    ]`).texto;
 
-  // 3) pendientes → vacío (con su comentario)
-  const cp = s.indexOf("\n  capturasPendientes: [");
-  if (cp < 0) throw new Error("no encuentro «capturasPendientes»");
-  const cierre = encontrarCierre(s, cp + "\n  capturasPendientes: ".length);
-  const finProp = s[cierre + 1] === "," ? cierre + 2 : cierre + 1;
-  s = s.slice(0, cp) + "\n  capturasPendientes: []," + s.slice(finProp);
-
-  // 4) prueba real y fechas
+  // 2) prueba real y fechas
   const linea = (nombre: string, valor: string) => {
     const re = new RegExp(`^(\\s+)${nombre}: [^\\n]*$`, "m");
     if (!re.test(s)) throw new Error(`no encuentro «${nombre}» en meta`);
@@ -202,51 +138,30 @@ export function aplicarCambios({ fuente, ia, fecha, hoy, corregi, capturas }: Ca
   linea("probadoFecha", JSON.stringify(fecha));
   linea("actualizado", JSON.stringify(fecha > hoy ? fecha : hoy));
 
-  // 5) publicado
+  // 3) publicado
   if (!/^  publicado: false,/m.test(s)) throw new Error("la página ya está publicada o «publicado» no está en la primera línea de datos");
   s = s.replace(/^  publicado: false,/m, "  publicado: true,");
   return s;
 }
 
-export interface PendienteDeCaptura {
-  archivo: string;
-  etiqueta: string;
-  muestra: string;
-  paso?: number;
-  obligatoria?: boolean;
-}
-
-/** Etiquetas de imágenes hechas por una IA: su leyenda dice que fueron generadas con IA (lo exige el validador). */
-const GENERADAS_CON_IA = ["Simulación", "Foto generada con IA"];
-
-export function capturaDesdePendiente(p: PendienteDeCaptura, ruta: string, ia: string, fecha: string, tam: { ancho: number; alto: number }): CapturaNueva {
-  const que = p.muestra.replace(/^Chat nuevo:\s*/i, "").replace(/^Mismo chat:\s*/i, "");
-  let alt: string;
-  let leyenda: string;
-  if (p.etiqueta === "Prueba real") {
-    alt = `Captura de la conversación con ${ia}: ${que}`;
-    leyenda = `Prueba real con ${ia} el ${fecha}: la respuesta al prompt de esta página, sin editar.`;
-  } else if (p.etiqueta === "Captura de la herramienta") {
-    alt = `Captura de esta herramienta: ${que}`;
-    leyenda = `Captura de la propia herramienta con el ejemplo cargado (${fecha}).`;
-  } else if (GENERADAS_CON_IA.includes(p.etiqueta)) {
-    alt = `Imagen generada con IA del ejemplo: ${que}`;
-    leyenda = `${p.etiqueta} generada con IA (${ia}, ${fecha}): sirve para visualizar, no es una foto real.`;
-  } else {
-    alt = `Imagen final del ejemplo: ${que}`;
-    leyenda = `${p.etiqueta} (${ia}, ${fecha}).`;
-  }
-  return { src: `/img/${ruta}/${p.archivo}`, alt, etiqueta: p.etiqueta, leyenda, ancho: tam.ancho, alto: tam.alto, ...(p.paso !== undefined ? { paso: p.paso } : {}) };
-}
-
 /**
- * Qué hacer con cada captura pendiente según los archivos que existen: las que tienen archivo pasan al ejemplo; a las que no
- * lo tienen se las pide (las obligatorias) o se las descarta (las marcadas `obligatoria: false`).
+ * Lo que falta para poder publicar (lista vacía = todo listo): imágenes obligatorias que no están o no se pueden leer y, en una página
+ * de proceso, «ejemplo.pasos» y «ejemplo.tiempoTotal» (el registro de la prueba real que solo puede escribir su autor).
  */
-export function repartirPendientes(pendientes: PendienteDeCaptura[], existe: (archivo: string) => boolean): { usar: PendienteDeCaptura[]; faltan: PendienteDeCaptura[]; descartadas: PendienteDeCaptura[] } {
-  const usar = pendientes.filter((p) => existe(p.archivo));
-  const sin = pendientes.filter((p) => !existe(p.archivo));
-  return { usar, faltan: sin.filter((p) => p.obligatoria !== false), descartadas: sin.filter((p) => p.obligatoria === false) };
+export function faltaParaPublicar(h: Pick<Herramienta, "meta" | "ejemplo" | "pasos">, imagenes: ImagenResuelta[]): string[] {
+  const faltan: string[] = [];
+  const carpeta = `public/img/${h.meta.area}/${h.meta.slug}`;
+  for (const r of imagenes) {
+    const e = r.espacio;
+    if (r.archivo?.error) faltan.push(`${carpeta}/${e.archivo}.${r.archivo.extension}: no se puede leer como imagen (${r.archivo.error}).`);
+    else if (!existeUtilizable(r) && e.obligatoria) faltan.push(`${carpeta}/${e.archivo}.webp (o .png, o .jpg)  ←  ${e.etiqueta}: ${e.titulo ?? e.alt}`);
+  }
+  if (pasosDelProceso(h)) {
+    const filas = (h.ejemplo.pasos ?? []).filter((f) => f.hizoLaIA?.trim() && f.hiceYo?.trim() && f.tiempo?.trim());
+    if (filas.length === 0) faltan.push("ejemplo.pasos (en el archivo de datos): una fila por paso con { paso, hizoLaIA, hiceYo, tiempo } de tu prueba real.");
+    if (!h.ejemplo.tiempoTotal?.trim()) faltan.push("ejemplo.tiempoTotal (en el archivo de datos): el tiempo total real de tu prueba, por ejemplo «14 min».");
+  }
+  return faltan;
 }
 
 /* ───────────────────────── ejecución ───────────────────────── */
@@ -318,22 +233,10 @@ async function main() {
   }
   const carpeta = path.join(raiz, "public", "img", area, slug);
 
-  // 1) archivos de las capturas pendientes
-  const faltan: string[] = [];
-  const capturas: CapturaNueva[] = [];
-  const reparto = repartirPendientes(datos.capturasPendientes as PendienteDeCaptura[], (a) => fs.existsSync(path.join(carpeta, a)));
-  for (const p of reparto.faltan) faltan.push(`public/img/${args.ruta}/${p.archivo}  ←  ${p.etiqueta}: ${p.muestra}`);
-  if (reparto.descartadas.length) console.log(`Sin archivo y opcionales (no se publican): ${reparto.descartadas.map((p) => p.archivo).join(", ")}`);
-  for (const p of reparto.usar) {
-    const f = path.join(carpeta, p.archivo);
-    try {
-      capturas.push(capturaDesdePendiente(p, args.ruta, args.ia, args.fecha, tamanoWebp(fs.readFileSync(f))));
-    } catch (e) {
-      faltan.push(`public/img/${args.ruta}/${p.archivo}: ${(e as Error).message}`);
-    }
-  }
+  // 1) imágenes obligatorias (se detectan solas por su nombre) y registro de la prueba real
+  const faltan = faltaParaPublicar(datos as Herramienta, resolverImagenes(datos as Herramienta));
   if (faltan.length) {
-    console.error(`No se puede publicar ${args.ruta}. Faltan estos archivos (o no son .webp válidos):\n- ${faltan.join("\n- ")}\n\nNo se ha cambiado nada.`);
+    console.error(`No se puede publicar ${args.ruta}. Falta:\n- ${faltan.join("\n- ")}\n\nNo se ha cambiado nada.`);
     process.exit(1);
   }
   const og = path.join(carpeta, "og.webp");
@@ -355,7 +258,7 @@ async function main() {
   const hoy = new Date().toLocaleDateString("sv-SE"); // AAAA-MM-DD en la zona horaria local
   let nuevo: string;
   try {
-    nuevo = aplicarCambios({ fuente: original, ia: args.ia, fecha: args.fecha, hoy, corregi: args.corregi, capturas });
+    nuevo = aplicarCambios({ fuente: original, ia: args.ia, fecha: args.fecha, hoy, corregi: args.corregi });
   } catch (e) {
     console.error(`No se pudo preparar el archivo de datos: ${(e as Error).message}\nNo se ha cambiado nada.`);
     process.exit(1);

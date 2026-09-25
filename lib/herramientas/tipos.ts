@@ -138,36 +138,41 @@ export const ETIQUETAS_GENERADAS_CON_IA: readonly string[] = ["Simulación", "Fo
 export const dicePorIA = (texto: string) => /generad[oa]s? con (una )?IA/i.test(texto);
 export type EtiquetaImagen = (typeof ETIQUETAS_IMAGEN)[number];
 
-export interface CapturaEjemplo {
-  /** Ruta pública, en /img/{area}/{slug}/…, por ejemplo /img/marketing/crear-afiches-con-ia/prueba-01.webp */
-  src: string;
-  /** Obligatorio: describe lo que muestra la imagen. */
-  alt: string;
-  /** «Prueba real» solo para capturas reales, sin editar, de un chat. */
-  etiqueta: EtiquetaImagen;
-  /** Texto bajo la imagen. */
-  leyenda: string;
-  /** Tamaño real del archivo en píxeles (evita saltos de diseño). */
-  ancho: number;
-  alto: number;
-  /** Paso del proceso (`pasos`) del que es evidencia: el ejemplo la muestra bajo «Paso N · título». */
-  paso?: number;
-}
-
 /**
- * Captura que aún no existe. Solo se ve con `next dev` (recuadro gris punteado en el bloque 6);
- * en producción no se renderiza nada. Una página `publicado: true` no puede tener ninguna pendiente.
+ * Un ESPACIO DE IMAGEN de la página: se define en los datos y la imagen aparece sola cuando existe el archivo
+ * `public/img/{area}/{slug}/{archivo}.webp` (o .png, o .jpg; gana .webp). No hay que tocar el archivo de datos al añadirla:
+ * su ancho y su alto reales se leen del archivo al construir la página.
+ *
+ *  - Si el archivo existe: se muestra con su etiqueta, su `alt` y su `leyenda`, y se puede ampliar con la lupa.
+ *  - Si no existe y la página es un borrador (`publicado: false`) con la vista previa activa (`next dev` o MOSTRAR_BORRADORES=true):
+ *    un recuadro punteado con el título, la etiqueta prevista y el nombre del archivo esperado.
+ *  - Si no existe y la página está publicada: una imagen `obligatoria` rompe el build con un error claro; una opcional no enseña nada.
  */
-export interface CapturaPendiente {
-  /** Nombre del archivo esperado en public/img/{area}/{slug}/, por ejemplo «prueba-01.webp». */
+export interface EspacioImagen {
+  /** Identificador único dentro de la página. */
+  id: string;
+  /** Nombre del archivo SIN extensión (minúsculas, números y guiones): «prueba-01». */
   archivo: string;
+  /** Solo las etiquetas de `ETIQUETAS_IMAGEN`. «Prueba real» = captura real, sin editar, de un chat con una IA. */
   etiqueta: EtiquetaImagen;
-  /** Qué debe mostrar la captura (para quien la toma). */
-  muestra: string;
-  /** Paso del proceso del que es evidencia (pasa a `CapturaEjemplo.paso` al publicar). */
-  paso?: number;
-  /** `false` = si no existe el archivo, `npm run publicar` la descarta en vez de exigirla. Por defecto `true`. */
-  obligatoria?: boolean;
+  /** Obligatorio: describe lo que muestra la imagen (mínimo 25 caracteres). */
+  alt: string;
+  /** Texto visible bajo la imagen. «Simulación» y «Foto generada con IA» deben decir que fue generada con IA. */
+  leyenda: string;
+  /**
+   * Dónde va: «preparacion», «paso-2»…«paso-5» (evidencia de un paso del proceso), «ejemplo» (páginas simples), «metodo-completo»
+   * y, en una página de proceso, «resultado-{id}» (la tarjeta de «Lo que vas a tener» con ese id). Puede ser una lista
+   * (por ejemplo, `["paso-4", "resultado-afiche"]`: la misma imagen en el ejemplo y en la tarjeta).
+   */
+  ubicacion: string | string[];
+  /** `true` = si la página está publicada, tiene que existir el archivo (si no, el build falla). */
+  obligatoria: boolean;
+  /** Nota que sale debajo de la imagen (solo cuando la imagen existe). */
+  nota?: string;
+  /** Título corto de lo que debe ir, para el recuadro de vista previa («Chat de la IA con el texto del afiche»). */
+  titulo?: string;
+  /** Proporción esperada del recuadro de vista previa, «ancho:alto» (por defecto «16:10»). Evita saltos de diseño. */
+  proporcion?: string;
 }
 
 /** Una fila de «Quién hizo qué»: el paso del proceso, lo que hizo la IA, lo que hizo el autor y el tiempo real. */
@@ -187,7 +192,6 @@ export interface EjemploReal {
    * la captura real: si cambia la captura, cambia esto.
    */
   resultado?: Record<string, string>;
-  capturas: CapturaEjemplo[];
   /**
    * Respuesta completa de la IA, copiada tal cual del MISMO chat de la captura «Prueba real». Se muestra en un bloque
    * plegable «Respuesta completa de la IA (transcripción del mismo chat)». Vacía hasta que exista la prueba: nunca se
@@ -203,11 +207,6 @@ export interface EjemploReal {
   tiempoTotal?: string;
   /** «Qué corregí yo» (3 líneas). */
   queCorregi: string[];
-  /**
-   * Nota que el autor ya redactó para «Qué corregí yo». NO se muestra hasta que exista al menos una captura «Prueba real»
-   * (con su archivo); entonces aparece como primera línea de «Qué corregí yo». No cuenta para las 3 líneas que exige publicar.
-   */
-  notaPreparada?: string;
 }
 
 /* ───────────────────────────── proceso (herramienta + guía corta, versión «proceso») ───────────────────────────── */
@@ -229,7 +228,6 @@ export interface ResultadoFinal {
   descripcion: string;
   /** Icono: «texto», «afiche», «movil», «mockup», «mensaje» o «imprimir». */
   icono?: string;
-  captura?: CapturaEjemplo;
 }
 
 /** «El problema»: un error típico (título y explicación). */
@@ -416,8 +414,8 @@ export interface Herramienta {
   tituloRevision?: string;
   mejoras: MejoraPrompt[];
   ejemplo: EjemploReal;
-  /** Capturas que faltan por subir (una prueba NUEVA con el prompt que genera la página hoy). `[]` cuando no falta ninguna. */
-  capturasPendientes: CapturaPendiente[];
+  /** Los espacios de imagen de la página (ver `EspacioImagen`). `[]` si no lleva imágenes. */
+  imagenes: EspacioImagen[];
   checklist: string[];
   porQueFunciona: PorQueFunciona[];
   rubros: RubroEjemplo[];
@@ -425,10 +423,19 @@ export interface Herramienta {
   faq: PreguntaFrecuente[];
   /** Rutas «area/slug» de herramientas relacionadas. */
   relacionadas: string[];
-  /** Texto largo plegado. `capturas` = pruebas reales adicionales (por ejemplo, las de la versión anterior del método). */
-  metodoCompleto: { titulo: string; parrafos: string[]; capturas?: CapturaEjemplo[] } | null;
+  /** Texto largo plegado. Sus imágenes son los espacios con `ubicacion: "metodo-completo"`. */
+  metodoCompleto: { titulo: string; parrafos: string[] } | null;
 }
 
 export function defineHerramienta<T extends Herramienta>(herramienta: T): T {
   return herramienta;
 }
+
+/** Ubicaciones fijas de un espacio de imagen; además valen «paso-N» y «resultado-{id}» (ver `ubicacionesDe`). */
+export const UBICACIONES_FIJAS = ["preparacion", "ejemplo", "metodo-completo"] as const;
+
+/** Las ubicaciones de un espacio como lista. */
+export const ubicacionesDe = (e: Pick<EspacioImagen, "ubicacion">): string[] => (Array.isArray(e.ubicacion) ? e.ubicacion : [e.ubicacion]);
+
+/** Un espacio de imagen es evidencia del ejemplo si va en la preparación, en un paso, en «ejemplo» o en las páginas simples. */
+export const esDelEjemplo = (u: string) => u === "preparacion" || u === "ejemplo" || /^paso-\d+$/.test(u);

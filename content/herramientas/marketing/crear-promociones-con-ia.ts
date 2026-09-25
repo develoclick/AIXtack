@@ -97,24 +97,6 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
       "Promoción D · Ven acompañado": "Descartada: descuento real 22.2 %, supera el límite del 20 %",
       "Recomendación": "Probar A durante tres semanas y detenerla si tras dos semanas hay menos de 24 pedidos por semana",
     },
-    capturas: [
-      {
-        src: "/img/marketing/crear-promociones-con-ia/prueba-prompt-02.webp",
-        alt: "Captura de la respuesta de un asistente de IA con cuatro promociones para Café Mirador: combo de media mañana, desayuno completo, tarjeta de fidelidad y ven acompañado, cada una con su canasta, su riesgo y el dato que le falta.",
-        etiqueta: "Prueba real",
-        ancho: 1087,
-        alto: 544,
-        leyenda: "Prueba real del método anterior: las cuatro alternativas, todavía sin cifras.",
-      },
-      {
-        src: "/img/marketing/crear-promociones-con-ia/prueba-prompt-04.webp",
-        alt: "Captura de la recomendación de un asistente de IA: diferencias con las cifras anteriores, promoción D descartada por superar el 20 % y recomendación de la promoción A con su cuenta semanal.",
-        etiqueta: "Prueba real",
-        ancho: 522,
-        alto: 784,
-        leyenda: "Prueba real, método anterior: la recomendación con las cifras del dueño (en aquel método, la IA también hacía las cuentas).",
-      },
-    ],
     queCorregi: [
       "La IA dejó las cuatro promociones sin precio («precio o porcentaje de descuento»): los precios los puse yo.",
       "La tarjeta y «ven acompañado» necesitaban una recompensa concreta: la definí yo (la 5.ª visita gratis; el 2.º croissant gratis).",
@@ -122,12 +104,53 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
     ],
   },
 
-  // Capturas por subir: solo se ven con `next dev` (recuadro gris en el bloque 6); nunca en un build de producción. `npm run capturas` las lista.
-  capturasPendientes: [
+  // Espacios de imagen: guarda cada archivo (.webp, .png o .jpg) con su nombre en public/img/marketing/crear-promociones-con-ia/ y aparece solo. Ver docs/como-publicar.md.
+  imagenes: [
     {
-      archivo: "prueba-01.webp",
+      id: "prueba-prompt-02",
+      archivo: "prueba-prompt-02",
       etiqueta: "Prueba real",
-      muestra: "Chat nuevo con el prompt de esta página y las cifras ya calculadas de Café Mirador (ficticio): el texto de la promoción y las dos alternativas, sin que la IA recalcule.",
+      alt: "Captura de la respuesta de un asistente de IA con cuatro promociones para Café Mirador: combo de media mañana, desayuno completo, tarjeta de fidelidad y ven acompañado, cada una con su canasta, su riesgo y el dato que le falta.",
+      leyenda: "Prueba real del método anterior: las cuatro alternativas, todavía sin cifras.",
+      ubicacion: "ejemplo",
+      obligatoria: false,
+    },
+    {
+      id: "prueba-prompt-04",
+      archivo: "prueba-prompt-04",
+      etiqueta: "Prueba real",
+      alt: "Captura de la recomendación de un asistente de IA: diferencias con las cifras anteriores, promoción D descartada por superar el 20 % y recomendación de la promoción A con su cuenta semanal.",
+      leyenda: "Prueba real, método anterior: la recomendación con las cifras del dueño (en aquel método, la IA también hacía las cuentas).",
+      ubicacion: "ejemplo",
+      obligatoria: false,
+    },
+    {
+      id: "datos-necesarios",
+      archivo: "datos-necesarios",
+      etiqueta: "Ilustración",
+      alt: "Hoja de cálculo «Datos del caso — Café Mirador» con precio, costo y margen de café, croissant, jugo natural y desayuno completo, y debajo el objetivo, la franja, las ventas actuales y los límites.",
+      leyenda: "Captura de la hoja con los datos del caso ficticio de Café Mirador; no es una respuesta de una IA.",
+      ubicacion: "metodo-completo",
+      obligatoria: false,
+    },
+    {
+      id: "prueba-prompt-03",
+      archivo: "prueba-prompt-03",
+      etiqueta: "Prueba real",
+      alt: "Captura de la respuesta de un asistente de IA con la tabla de cuentas de las cuatro promociones, las cuentas paso a paso y «Para comprobar tú»; la promoción D no respeta el límite del 20 %.",
+      leyenda: "Prueba real, método anterior: las cuentas que devolvió la IA, para recalcular en la hoja.",
+      ubicacion: "metodo-completo",
+      obligatoria: false,
+    },
+    {
+      id: "prueba-01",
+      archivo: "prueba-01",
+      etiqueta: "Prueba real",
+      titulo: "Chat de la IA con la respuesta al prompt de esta página",
+      alt: "Chat nuevo con el prompt de esta página y las cifras ya calculadas de Café Mirador (ficticio): el texto de la promoción y las dos alternativas, sin que la IA recalcule.",
+      leyenda: "Prueba real: la respuesta de la IA al prompt de esta página, sin editar.",
+      ubicacion: "ejemplo",
+      obligatoria: true,
     },
   ],
 
@@ -219,24 +242,6 @@ Antes de responder, comprueba que cada cifra que usaste está en «Cálculos ya 
       "**Qué revisar antes de lanzarla.** Confirma que tu equipo y tu stock pueden con el aumento de pedidos que necesita la promoción, que la condición de parada está escrita y que todos en el local saben cuáles son las condiciones (días, horarios, exclusiones). Anota cuántos pedidos tenías antes: sin ese dato de partida no podrás saber si la promoción funcionó o si esa semana simplemente hubo más gente.",
       "**Cómo leerla al terminar.** Compara las semanas de la promoción con las semanas normales de la misma franja, no con el total del mes. Fíjate no solo en los pedidos sino en el margen: una promoción que sube los pedidos pero baja el margen más de lo previsto perdió dinero. Si no llegaste al umbral, decide con una regla que fijaste antes de empezar (parar, ajustar o repetir), no con la impresión de la última semana.",
       "**Aviso.** Las reglas sobre promociones, descuentos, sorteos, precios tachados y publicidad de ofertas cambian según el país y no las cubre esta herramienta. Antes de lanzar una promoción con condiciones especiales, consulta la normativa de consumo que te corresponde o a un profesional.",
-    ],
-    capturas: [
-      {
-        src: "/img/marketing/crear-promociones-con-ia/datos-necesarios.webp",
-        alt: "Hoja de cálculo «Datos del caso — Café Mirador» con precio, costo y margen de café, croissant, jugo natural y desayuno completo, y debajo el objetivo, la franja, las ventas actuales y los límites.",
-        etiqueta: "Ilustración",
-        ancho: 1600,
-        alto: 711,
-        leyenda: "Captura de la hoja con los datos del caso ficticio de Café Mirador; no es una respuesta de una IA.",
-      },
-      {
-        src: "/img/marketing/crear-promociones-con-ia/prueba-prompt-03.webp",
-        alt: "Captura de la respuesta de un asistente de IA con la tabla de cuentas de las cuatro promociones, las cuentas paso a paso y «Para comprobar tú»; la promoción D no respeta el límite del 20 %.",
-        etiqueta: "Prueba real",
-        ancho: 634,
-        alto: 787,
-        leyenda: "Prueba real, método anterior: las cuentas que devolvió la IA, para recalcular en la hoja.",
-      },
     ],
   },
 });

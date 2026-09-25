@@ -1,6 +1,7 @@
 import { categories } from "../../content/categorias";
 import { mediaExists } from "../guides/media";
 import { CATEGORIES_UPDATED_AT, HOME_UPDATED_AT, institutionalPages, LIBRARY_UPDATED_AT, siteUrl } from "../site";
+import { resolverImagenes } from "./imagenes";
 import { areaEsIndexable, bibliotecaEsIndexable, rutaHerramienta, type HerramientaCargada } from "./registro";
 
 export interface EntradaSitemap {
@@ -13,7 +14,7 @@ const latest = (...dates: string[]) => dates.reduce((a, b) => (a > b ? a : b));
 
 /** Imágenes de una herramienta que EXISTEN en public/ (la og:image primero). Nunca se listan archivos que aún no están. */
 function imagenes(h: HerramientaCargada): string[] {
-  const fuentes = [h.meta.ogImage, ...h.ejemplo.capturas.map((c) => c.src), ...(h.metodoCompleto?.capturas ?? []).map((c) => c.src)];
+  const fuentes = [h.meta.ogImage, ...resolverImagenes(h).map((r) => r.archivo?.src)];
   return [...new Set(fuentes)].filter((src): src is string => Boolean(src) && mediaExists(src!)).map((src) => `${siteUrl}${src}`);
 }
 

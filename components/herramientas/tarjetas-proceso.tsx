@@ -2,9 +2,11 @@ import { FileText, ImageIcon, MessageCircle, Printer, Smartphone, Sparkles, Stor
 import type { ComponentType } from "react";
 import { Inline } from "@/components/guide/rich-text";
 import { ui } from "@/components/guide/ui";
-import { mediaExists } from "@/lib/guides/media";
+import type { ImagenResuelta } from "@/lib/herramientas/imagenes";
+import { imagenesEn } from "@/lib/herramientas/ubicaciones";
+import { estadoDeEspacio } from "@/lib/herramientas/vista-previa";
 import type { Necesidad, ProblemaItem, ResultadoFinal } from "@/lib/herramientas/tipos";
-import { CapturaFigura } from "./captura-figura";
+import { EspacioDeImagen } from "./espacio-imagen";
 import { estilos } from "./estilos";
 
 const ICONOS: Record<string, ComponentType<{ className?: string; "aria-hidden"?: boolean }>> = {
@@ -17,19 +19,20 @@ const ICONOS: Record<string, ComponentType<{ className?: string; "aria-hidden"?:
 };
 
 /**
- * «Lo que vas a tener»: una tarjeta por resultado. Con captura (y solo si el archivo existe) se enseña la captura; sin ella,
- * un icono y la descripción. Nunca un recuadro de «captura pendiente»: eso solo existe en `next dev`, en el ejemplo.
+ * «Lo que vas a tener»: una tarjeta por resultado. Si hay una imagen para esa tarjeta (un espacio con `ubicacion: "resultado-{id}"`
+ * y su archivo), se enseña con su lupa; sin ella, un icono y la descripción. Un recuadro de «imagen pendiente» solo sale en un
+ * borrador con la vista previa activa (ver EspacioDeImagen).
  */
-export function TarjetasResultado({ resultados }: { resultados: ResultadoFinal[] }) {
+export function TarjetasResultado({ resultados, imagenes = [], publicado = false, vistaPrevia }: { resultados: ResultadoFinal[]; imagenes?: ImagenResuelta[]; publicado?: boolean; vistaPrevia?: boolean }) {
   return (
     <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {resultados.map((r) => {
         const Icono = ICONOS[r.icono ?? ""] ?? Sparkles;
-        const captura = r.captura && mediaExists(r.captura.src) ? r.captura : null;
+        const suyas = imagenesEn(imagenes, `resultado-${r.id}`).filter((i) => estadoDeEspacio({ existe: Boolean(i.archivo && !i.archivo.error), publicado, obligatoria: i.espacio.obligatoria, vistaPrevia, ruta: i.espacio.archivo }).estado !== "nada");
         return (
           <li key={r.id} data-resultado={r.id} className="flex flex-col gap-3 rounded-xl border bg-background p-4">
-            {captura ? (
-              <CapturaFigura captura={captura} />
+            {suyas.length > 0 ? (
+              suyas.map((i) => <EspacioDeImagen key={i.espacio.id} resuelta={i} publicado={publicado} vistaPrevia={vistaPrevia} variante="tarjeta" sizes="(min-width: 1024px) 20rem, (min-width: 640px) 50vw, 100vw" />)
             ) : (
               <span aria-hidden className="inline-flex size-10 items-center justify-center rounded-lg border border-brand/40 bg-brand-muted text-guide-ink">
                 <Icono className="size-5" aria-hidden />

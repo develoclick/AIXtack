@@ -91,7 +91,7 @@ test("transcripcion: vacía hasta la prueba; solo se dibuja el bloque plegable s
   const base = { ejemplo: datos.ejemplo, datos: [], pendientes: [] };
   const sin = renderToStaticMarkup(createElement(EjemploReal, { ...base }));
   assert.ok(!sin.includes("Respuesta completa de la IA"));
-  const con = renderToStaticMarkup(createElement(EjemploReal, { ...base, ejemplo: { ...datos.ejemplo, capturas: [], transcripcion: "Texto de prueba de la respuesta de la IA.\nSegunda línea." } }));
+  const con = renderToStaticMarkup(createElement(EjemploReal, { ...base, ejemplo: { ...datos.ejemplo, transcripcion: "Texto de prueba de la respuesta de la IA.\nSegunda línea." } }));
   assert.match(con, /<details/);
   assert.ok(con.includes("Respuesta completa de la IA (transcripción del mismo chat)"));
   assert.ok(con.includes("Segunda línea."));
@@ -132,10 +132,9 @@ test("sin datos, cada campo requerido queda como [FALTA] y la tarea también", (
   assert.equal(/\{\{|\}\}/.test(prompt), false);
 });
 
-test("el piloto solo está publicado si tiene su prueba real (IA y fecha) y ninguna captura pendiente", () => {
+test("el piloto solo está publicado si tiene su prueba real (IA y fecha)", () => {
   if (datos.publicado) {
     assert.ok(datos.meta.probadoEn && datos.meta.probadoFecha, "publicado sin probadoEn/probadoFecha");
-    assert.deepEqual(datos.capturasPendientes, []);
   } else {
     assert.equal(datos.meta.probadoEn, null);
     assert.equal(datos.meta.probadoFecha, null);
@@ -177,7 +176,7 @@ test("«Resultado del ejemplo»: el total lo calcula contarPalabras(), no está 
 });
 
 test("el bloque «Un ejemplo» muestra lo que cuenta la página, incluido el total de palabras", () => {
-  const html = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: { ...datos.ejemplo, capturas: [] }, datos: [], calculos: calculosDelEjemplo(datos) }));
+  const html = renderToStaticMarkup(createElement(EjemploReal, { ejemplo: datos.ejemplo, datos: [], calculos: calculosDelEjemplo(datos) }));
   assert.ok(html.includes("Total de palabras de tus datos") && html.includes("39 palabras"));
   assert.ok(html.includes("39 palabras (máximo 39)"));
 });
