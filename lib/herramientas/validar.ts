@@ -47,7 +47,7 @@ export function textosProceso(h: Herramienta): string[] {
   for (const p of h.problema ?? []) t.push(p.titulo, p.texto);
   for (const n of h.necesitas ?? []) t.push(n.nombre, n.para, n.alternativa ?? "");
   for (const p of proceso) {
-    t.push(p.titulo, p.queHaces, p.resultado, p.sinOpciones ?? "", ...p.asiSabesQueSalioBien, ...p.siAlgoFalla, ...(p.avisos ?? []).map((a) => a.texto), ...(p.comprobar ?? []).map((c) => c.etiqueta));
+    t.push(p.titulo, p.queHaces, p.resultado, p.sinOpciones ?? "", ...p.asiSabesQueSalioBien, ...p.siAlgoFalla.map((s) => (typeof s === "string" ? s : s.texto)), ...(p.avisos ?? []).map((a) => a.texto), ...(p.comprobar ?? []).map((c) => c.etiqueta));
     for (const o of p.opciones ?? []) t.push(o.titulo, o.texto, ...(o.notas ?? []).map((a) => a.texto), ...(o.avisos ?? []).map((a) => a.texto));
   }
   for (const k of h.kitFinal ?? []) t.push(k.texto);
@@ -64,7 +64,7 @@ export function textosVisibles(h: Herramienta): string[] {
   }
   t.push(...textosProceso(h), h.tituloRevision ?? "");
   for (const m of h.mejoras) t.push(m.label, m.prompt);
-  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi, h.ejemplo.notaPreparada ?? "");
+  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi, h.ejemplo.notaPreparada ?? "", ...(h.ejemplo.pasos ?? []).flatMap((f) => [f.hizoLaIA, f.hiceYo, f.tiempo]), h.ejemplo.tiempoTotal ?? "");
   for (const c of h.ejemplo.capturas) t.push(c.alt, c.leyenda);
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
@@ -79,7 +79,7 @@ export function textosVisibles(h: Herramienta): string[] {
 /**
  * Solo el texto EDITORIAL de la página: lo que se lee como explicación. Deja fuera el formulario (etiquetas y ayudas de
  * los campos y de la calculadora), los valores de ejemplo del formulario, los prompts (`tarea` y el texto de cada
- * «mejora»), el `alt` de las imágenes (es un atributo, no texto visible) y los datos técnicos. Lo usan el validador (estándar 17) y `npm run contar-palabras`. `textosVisibles` (más amplio) se usa para las demás comprobaciones de texto.
+ * «mejora»), el `alt` de las imágenes (es un atributo, no texto visible), el registro de la prueba real (`ejemplo.pasos`, `transcripcion`) y los datos técnicos. Lo usan el validador (estándar 17) y `npm run contar-palabras`. `textosVisibles` (más amplio) se usa para las demás comprobaciones de texto.
  */
 export function textosEditoriales(h: Herramienta): string[] {
   const t: string[] = [h.meta.titulo, h.meta.descripcion, h.antesDespues.antes, h.antesDespues.despues];
@@ -191,6 +191,16 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
       error(/^\d+ min$/.test(p.tiempo), `${d}: el tiempo debe ser como «2 min».`);
       error(p.asiSabesQueSalioBien.length >= 2, `${d}: «asiSabesQueSalioBien» necesita al menos 2 comprobaciones.`);
       error(p.siAlgoFalla.length >= 1, `${d}: «siAlgoFalla» necesita al menos 1 salida.`);
+      for (const salida of p.siAlgoFalla) {
+        if (typeof salida === "string") continue;
+        error(Boolean(salida.texto?.trim()) && salida.correcciones.length >= 1, `${d}: una salida de «siAlgoFalla» con correcciones necesita su texto y al menos una corrección.`);
+        error(iguales(salida.correcciones.map((c) => c.etiqueta)), `${d}: hay correcciones con la misma etiqueta.`);
+        for (const c of salida.correcciones) {
+          error(Boolean(c.etiqueta?.trim()), `${d}: una corrección necesita etiqueta.`);
+          validarPlantilla(`${d}, corrección «${c.etiqueta}»`, c.prompt);
+          condicion(`${d}, corrección «${c.etiqueta}» (mostrarSi)`, c.mostrarSi);
+        }
+      }
       error(!p.promptMaestro || !p.prompt, `${d}: un paso con promptMaestro no lleva además su propio prompt.`);
       if (p.prompt) validarPlantilla(`${d} (prompt)`, p.prompt);
       for (const a of p.avisos ?? []) condicion(`${d} (aviso)`, a.si);
@@ -289,6 +299,17 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
   const maxCapturas = proceso ? 8 : 2;
   publicada(h.ejemplo.capturas.length >= 1 && h.ejemplo.capturas.length <= maxCapturas, `Capturas: ${h.ejemplo.capturas.length} (deben ser 1–${maxCapturas} en el ejemplo real).`);
   publicada(h.ejemplo.capturas.some((c) => c.etiqueta === "Prueba real"), "Falta al menos una captura etiquetada «Prueba real».");
+  // «Quién hizo qué» (ejemplo.pasos) y el tiempo total salen de la prueba real del autor: sin prueba (IA y fecha) no deben existir.
+  const filasEjemplo = h.ejemplo.pasos ?? [];
+  if (filasEjemplo.length > 0 || h.ejemplo.tiempoTotal?.trim()) {
+    publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Hay «ejemplo.pasos» o «tiempoTotal» pero faltan meta.probadoEn y meta.probadoFecha: son de la prueba real y no se inventan.");
+    error(filasEjemplo.length === 0 || Boolean(h.ejemplo.tiempoTotal?.trim()), "«ejemplo.pasos» necesita «ejemplo.tiempoTotal» (el tiempo total de la prueba).");
+    for (const f of filasEjemplo) {
+      error(Boolean(f.hizoLaIA?.trim() && f.hiceYo?.trim() && f.tiempo?.trim()), `ejemplo.pasos, paso ${f.paso}: necesita «hizoLaIA», «hiceYo» y «tiempo».`);
+      error(proceso === null || proceso.some((p) => p.numero === f.paso), `ejemplo.pasos: el paso ${f.paso} no existe en «pasos».`);
+    }
+    error(new Set(filasEjemplo.map((f) => f.paso)).size === filasEjemplo.length, "ejemplo.pasos: hay dos filas del mismo paso.");
+  }
   // La transcripción es la respuesta real del mismo chat de la prueba: sin prueba (IA y fecha) no debe existir.
   if (h.ejemplo.transcripcion?.trim()) publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Hay «transcripcion» pero faltan meta.probadoEn y meta.probadoFecha: la transcripción es de la prueba real y no se inventa.");
   for (const c of [...h.ejemplo.capturas, ...(h.metodoCompleto?.capturas ?? [])]) {

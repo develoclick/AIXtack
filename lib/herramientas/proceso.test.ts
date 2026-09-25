@@ -11,7 +11,7 @@ import { FormularioHerramienta } from "../../components/herramientas/formulario-
 import { PaginaHerramienta } from "../../components/herramientas/pagina-herramienta";
 import { cumple, opcionesMarcadas, referenciasDe, renderPlantilla, type ContextoPlantilla } from "./plantillas";
 import { ejecutarPreproceso, variablesDePreproceso } from "./preprocesos";
-import { itemsVisiblesDelKit, lineasQueCorregi, opcionesDelPaso } from "./proceso";
+import { itemsVisiblesDelKit, lineasQueCorregi, opcionesDelPaso, resumenKit } from "./proceso";
 import { listarTodas, type HerramientaCargada } from "./registro";
 import { pasosDelProceso, type Herramienta, type PasoProceso } from "./tipos";
 import { validarHerramienta } from "./validar";
@@ -159,11 +159,43 @@ test("paso 5: solo se ven las salidas de los formatos marcados; sin formatos, ni
   assert.match(paso(5).sinOpciones!, /Marca al menos un formato/);
 });
 
-test("kit final: los ítems de una versión solo salen si marcaste su formato", () => {
+test("kit final: las mismas entregas que «Lo que vas a tener» (mismos ids) más la prueba impresa revisada", () => {
+  const entregas = datos.resultadoFinal!.map((r) => r.id);
+  assert.deepEqual(entregas, ["texto", "afiche", "versiones", "mockup", "mensaje"]);
+  assert.deepEqual(datos.kitFinal!.map((k) => k.id), [...entregas, "prueba"]);
+  const por = Object.fromEntries(datos.kitFinal!.map((k) => [k.id, k.texto]));
+  assert.match(por.texto, /^Texto verificado/);
+  assert.match(por.afiche, /^Afiche A4 en PDF/);
+  assert.match(por.versiones, /9:16 y\/o 1:1/);
+  assert.match(por.mockup, /simulación/);
+  assert.match(por.mensaje, /WhatsApp/);
+  assert.match(por.prueba, /^Prueba impresa revisada/);
+});
+
+test("kit final: las entregas de un formato salen si lo marcaste; con el formulario vacío y con el ejemplo salen todas las que aplican", () => {
   const ids = (formatos: string) => itemsVisiblesDelKit(datos.kitFinal!, contexto({ ...ejemplo, formatos })).map((i) => i.id);
-  assert.deepEqual(ids("A4 impreso; Estado de WhatsApp o historia (9:16)"), ["texto", "afiche", "vertical", "mockup", "mensaje", "prueba"]);
-  assert.deepEqual(ids(""), ["texto", "afiche"]);
-  assert.deepEqual(ids("Post cuadrado (1:1)"), ["texto", "afiche", "cuadrado", "mensaje"]);
+  const todas = ["texto", "afiche", "versiones", "mockup", "mensaje", "prueba"];
+  assert.deepEqual(ids("A4 impreso; Estado de WhatsApp o historia (9:16)"), todas, "con «Probar con un ejemplo» salen las 6");
+  assert.deepEqual(ids(""), todas, "sin formatos marcados salen todas");
+  assert.deepEqual(itemsVisiblesDelKit(datos.kitFinal!, contexto(Object.fromEntries(datos.campos.map((c) => [c.id, ""])), {} as typeof perfilEspiga)).map((i) => i.id), todas, "con todo el formulario vacío");
+  assert.deepEqual(ids("Post cuadrado (1:1)"), ["texto", "afiche", "versiones", "mensaje"]);
+  assert.deepEqual(ids("A4 impreso"), ["texto", "afiche", "mockup", "prueba"]);
+  assert.deepEqual(ids("Estado de WhatsApp o historia (9:16); Post cuadrado (1:1)"), ["texto", "afiche", "versiones", "mensaje"]);
+});
+
+test("kit final: «X de N listos» cuenta solo lo que se ve (N = ítems visibles; X = marcados entre ellos)", () => {
+  const resumen = (formatos: string, marcados: string[]) => resumenKit(datos.kitFinal!, contexto({ ...ejemplo, formatos }), marcados);
+  assert.deepEqual(
+    (({ hechos, total }) => ({ hechos, total }))(resumen("A4 impreso; Estado de WhatsApp o historia (9:16)", [])),
+    { hechos: 0, total: 6 }
+  );
+  assert.deepEqual((({ hechos, total }) => ({ hechos, total }))(resumen("A4 impreso; Estado de WhatsApp o historia (9:16)", ["texto", "prueba"])), { hechos: 2, total: 6 });
+  // Un ítem marcado que ya no se ve (quitaste el formato A4) no se cuenta: X nunca pasa de N.
+  const sinA4 = resumen("Post cuadrado (1:1)", ["texto", "mockup", "prueba", "versiones"]);
+  assert.deepEqual({ hechos: sinA4.hechos, total: sinA4.total }, { hechos: 2, total: 4 });
+  assert.equal(resumen("", ["texto", "afiche", "versiones", "mockup", "mensaje", "prueba"]).hechos, 6);
+  assert.ok(resumen("A4 impreso", ["texto"]).hechos <= resumen("A4 impreso", ["texto"]).total);
+  assert.equal(resumen("A4 impreso", []).visibles.length, resumen("A4 impreso", []).total, "N coincide con las casillas que se dibujan");
 });
 
 /* ───────────── el esquema del piloto ───────────── */
@@ -182,7 +214,7 @@ test("el piloto tiene el contenido pedido: 5 resultados, 3 problemas, 4 necesida
   for (const p of pasos) {
     assert.ok(p.asiSabesQueSalioBien.length >= 2 && p.siAlgoFalla.length >= 1 && p.resultado && p.queHaces, `paso ${p.numero}`);
   }
-  assert.deepEqual(paso(4).comprobar!.map((c) => c.campo), ["oferta", "precio", "diasHorario", "lugar", "condiciones"]);
+  assert.deepEqual(paso(4).comprobar!.map((c) => c.campo), ["oferta", "precio", "diasHorario", "accion", "lugar", "condiciones"]);
   assert.ok(paso(2).promptMaestro && paso(2).mostrarMejoras);
 });
 

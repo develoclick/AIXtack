@@ -444,14 +444,93 @@ async function pruebasProceso(page: Page, h: HerramientaCargada, v: (typeof VIEW
     await siFalla.locator("summary").click();
     rec(pag, v.nombre, "«Si algo falla» es plegable y se abre", await siFalla.locator("li").first().isVisible(), "");
 
-    // kit final: marcar y recordar
-    const kit = page.locator("section[aria-labelledby='kit-titulo']");
-    await kit.getByLabel(/Texto verificado/).check();
-    rec(pag, v.nombre, "kit final: marcar un ítem actualiza «N de M listos»", /1 de \d+ listos/.test(await kit.innerText()), (await kit.innerText()).slice(-60));
+    // «Si algo falla»: cada corrección tiene su botón «Copiar corrección» y copia exactamente el texto que se ve
+    for (const resumen of await page.locator("[data-paso] details > summary", { hasText: "Si algo falla" }).all()) {
+      if (!(await resumen.evaluate((e) => (e.parentElement as HTMLDetailsElement).open))) await resumen.click();
+    }
+    const correcciones = await page.locator("[data-correccion]").evaluateAll((els) => els.map((e) => ({ nombre: e.querySelector("button")?.getAttribute("aria-label") ?? "", texto: e.querySelector("[data-correccion-texto]")?.textContent ?? "", ancho: e.querySelector("button")?.getBoundingClientRect().width ?? 0, alto: e.querySelector("button")?.getBoundingClientRect().height ?? 0 })));
+    let copiadasBien = 0;
+    const malas: string[] = [];
+    for (const c of correcciones) {
+      await page.getByRole("button", { name: c.nombre, exact: true }).click();
+      const copiado = (await page.evaluate(() => navigator.clipboard.readText()).catch(() => "")).split("\r\n").join("\n");
+      if (copiado === c.texto.trim() && copiado.length > 20 && !PROHIBIDO.test(copiado) && c.alto >= 43.5) copiadasBien++;
+      else malas.push(`${c.nombre}: ${copiado.length} car., ${Math.round(c.alto)} px`);
+    }
+    rec(pag, v.nombre, `«Si algo falla»: ${correcciones.length} botones «Copiar corrección» (≥ 44 px) copian su texto ya relleno, sin llaves`, correcciones.length >= 9 && copiadasBien === correcciones.length, malas.join(" | ") || `${correcciones.length} correcciones`);
+    const nivel1 = correcciones.find((c) => /paso 2: Corregir el nivel 1/.test(c.nombre));
+    const precio = correcciones.find((c) => /paso 3: Precio/.test(c.nombre));
+    const versiones = correcciones.find((c) => /^Copiar corrección del paso 5/.test(c.nombre));
+    rec(pag, v.nombre, "correcciones: nivel 1 exacto, precio y «mismo texto del afiche original»", Boolean(nivel1 && precio && versiones) && nivel1!.texto.includes("debe decir exactamente «Combo de fin de semana: 6 panes y 1 pan dulce por $6». No cambies nada más.") && precio!.texto.includes("el precio debe decir exactamente «$6»") && versiones!.texto.includes("Usa exactamente el mismo texto del afiche original, sin añadir nada."), (nivel1?.texto ?? "").slice(0, 80));
+    await page.getByRole("button", { name: "Probar con un ejemplo" }).click();
+
+    // paso 4: lista de revisión con casillas y «X de N comprobados» (solo en el navegador)
+    const rev = page.locator("[data-paso='4'] [data-revision]");
+    const casillas = await rev.locator("input[type=checkbox]").count();
+    rec(pag, v.nombre, "paso 4: una casilla por cada dato del formulario (6) y «0 de 6 comprobados»", casillas === 6 && /0 de 6 comprobados/.test(await rev.locator("[data-comprobados]").innerText()), `${casillas} casillas`);
+    await rev.getByLabel(/Precio:/).check();
+    await rev.getByLabel(/Acción:/).check();
+    rec(pag, v.nombre, "paso 4: marcar dos datos da «2 de 6 comprobados»", /2 de 6 comprobados/.test(await rev.locator("[data-comprobados]").innerText()), "");
+    await llenar(page, "Precio", "$7");
+    rec(pag, v.nombre, "paso 4: si cambias el precio, su casilla se desmarca sola («1 de 6»)", !(await rev.getByLabel(/Precio:/).isChecked()) && /1 de 6 comprobados/.test(await rev.locator("[data-comprobados]").innerText()), "");
+    await llenar(page, "Precio", "$6");
+    rec(pag, v.nombre, "paso 4: con el precio original la marca vuelve («2 de 6»)", /2 de 6 comprobados/.test(await rev.locator("[data-comprobados]").innerText()), "");
     await page.reload({ waitUntil: "networkidle" });
     await page.getByRole("button", { name: "Probar con un ejemplo" }).click();
-    rec(pag, v.nombre, "kit final: lo marcado se recuerda al recargar (solo en este navegador)", await page.locator("section[aria-labelledby='kit-titulo']").getByLabel(/Texto verificado/).isChecked(), "");
-    await page.evaluate(() => localStorage.removeItem("guiapromptsia:kit:marketing/crear-afiches-con-ia:v1"));
+    rec(pag, v.nombre, "paso 4: lo comprobado se recuerda al recargar (2 de 6)", /2 de 6 comprobados/.test(await page.locator("[data-paso='4'] [data-comprobados]").innerText()), "");
+    await page.getByRole("button", { name: "Empezar de cero" }).click();
+    rec(pag, v.nombre, "paso 4: con el formulario vacío no hay nada que comprobar («0 de 0») ni casillas", (await page.locator("[data-paso='4'] [data-revision] input[type=checkbox]").count()) === 0 && /0 de 0 comprobados/.test(await page.locator("[data-paso='4'] [data-comprobados]").innerText()), "");
+    await page.getByRole("button", { name: "Probar con un ejemplo" }).click();
+
+    // descargar mis datos y prompts (.txt): se crea en el navegador y no envía nada al servidor
+    const peticiones: string[] = [];
+    const alPedir = (r: { url(): string }) => peticiones.push(r.url());
+    page.on("request", alPedir);
+    const boton = page.getByRole("button", { name: "Descargar mis datos y prompts (.txt)" });
+    await boton.scrollIntoViewIfNeeded();
+    const alto = (await boton.boundingBox())?.height ?? 0;
+    const [descarga] = await Promise.all([page.waitForEvent("download"), boton.click()]);
+    const archivo = await descarga.path();
+    const contenido = archivo ? fs.readFileSync(archivo, "utf8") : "";
+    page.off("request", alPedir);
+    const hoy = new Date().toLocaleDateString("sv-SE");
+    rec(pag, v.nombre, "descarga (.txt): botón de 44 px, nombre con la fecha y aclaración «no lo recibimos»", alto >= 43.5 && descarga.suggestedFilename() === `${h.meta.slug}-${hoy}.txt` && (await page.getByText("El archivo se crea en tu navegador; no lo recibimos.").isVisible()), `${descarga.suggestedFilename()} · ${Math.round(alto)} px`);
+    const okContenido = contenido.includes(`Fecha: ${hoy}`) && ["$6", "Sábado y domingo, de 7:00 a 13:00", "Canva", "A4 impreso; Estado de WhatsApp o historia (9:16)"].every((t) => contenido.includes(t)) && [1, 2, 3, 4, 5].every((n) => contenido.includes(`PASO ${n} de 5`)) && contenido.includes("Crea un afiche vertical tamaño A4") && contenido.includes("Adapta este afiche a formato vertical 9:16") && contenido.includes("La página contó 39 palabras en tus datos.") && !PROHIBIDO.test(contenido);
+    rec(pag, v.nombre, "descarga (.txt): lleva la fecha, los datos y los prompts de los 5 pasos, sin llaves", okContenido, `${contenido.length} caracteres`);
+    const alServidor = peticiones.filter((u) => u.startsWith(base) && !/\.(js|css|woff2?|png|webp|jpg|svg)(\?|$)/.test(u));
+    rec(pag, v.nombre, "descarga (.txt): el archivo se crea en el navegador (blob) y no hace ninguna petición al servidor", alServidor.length === 0, alServidor.slice(0, 2).join(" | "));
+
+    // kit final: las mismas entregas que «Lo que vas a tener», según los formatos marcados, y «X de N listos» coherente
+    const kit = page.locator("section[aria-labelledby='kit-titulo']");
+    const contarKit = async () => ({ casillas: await kit.locator("input[type=checkbox]").count(), texto: await kit.locator("[data-listos]").innerText() });
+    const inicial = await contarKit();
+    rec(pag, v.nombre, "kit final con «Probar con un ejemplo» (A4 + 9:16): salen las 6 entregas y «0 de 6 listos»", inicial.casillas === 6 && /^0 de 6 listos/.test(inicial.texto), `${inicial.casillas} casillas · ${inicial.texto.slice(0, 20)}`);
+    const grupoKit = page.locator(`${SEL_HERR} fieldset`, { hasText: "¿Qué formatos necesitas?" });
+    await grupoKit.getByLabel("A4 impreso").uncheck();
+    await grupoKit.getByLabel("Estado de WhatsApp o historia (9:16)").uncheck();
+    const sinFormatos = await contarKit();
+    rec(pag, v.nombre, "kit final sin formatos marcados: salen todas (6) y el contador coincide", sinFormatos.casillas === 6 && /^0 de 6 listos/.test(sinFormatos.texto), `${sinFormatos.casillas} · ${sinFormatos.texto.slice(0, 20)}`);
+    await grupoKit.getByLabel("Post cuadrado (1:1)").check();
+    const soloCuadrado = await contarKit();
+    const textosKit = await kit.locator("label").allInnerTexts();
+    rec(pag, v.nombre, "kit final con solo 1:1: 4 entregas (texto, afiche, versiones, mensaje), sin mockup ni prueba impresa", soloCuadrado.casillas === 4 && /^0 de 4 listos/.test(soloCuadrado.texto) && !textosKit.some((t) => /Mockup|Prueba impresa/.test(t)) && textosKit.some((t) => /Versiones para compartir/.test(t)), `${soloCuadrado.casillas} · ${soloCuadrado.texto.slice(0, 20)}`);
+    await kit.getByLabel(/Texto verificado/).check();
+    await kit.getByLabel(/Mensaje de WhatsApp/).check();
+    const dosListos = await contarKit();
+    rec(pag, v.nombre, "kit final: marcar dos entregas da «2 de 4 listos»", /^2 de 4 listos/.test(dosListos.texto) && (await kit.locator("input:checked").count()) === 2, dosListos.texto.slice(0, 20));
+    await grupoKit.getByLabel("Post cuadrado (1:1)").uncheck();
+    await grupoKit.getByLabel("A4 impreso").check();
+    const soloA4 = await contarKit();
+    rec(pag, v.nombre, "kit final con solo A4: 4 entregas (texto, afiche, mockup, prueba) y «X de 4» sin contar lo oculto", soloA4.casillas === 4 && /^1 de 4 listos/.test(soloA4.texto), `${soloA4.casillas} · ${soloA4.texto.slice(0, 20)}`);
+    await grupoKit.getByLabel("Estado de WhatsApp o historia (9:16)").check();
+    await page.reload({ waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "Probar con un ejemplo" }).click();
+    const recordado = await page.locator("section[aria-labelledby='kit-titulo']").getByLabel(/Texto verificado/).isChecked();
+    rec(pag, v.nombre, "kit final: lo marcado se recuerda al recargar (solo en este navegador)", recordado, "");
+    await page.evaluate(() => {
+      localStorage.removeItem("guiapromptsia:kit:marketing/crear-afiches-con-ia:v1");
+      localStorage.removeItem("guiapromptsia:revision:marketing/crear-afiches-con-ia:v1");
+    });
     if (v.nombre === "1280") await captura(page, v.nombre, `${h.meta.slug}-proceso`, SEL_PROCESO);
     else await captura(page, v.nombre, `${h.meta.slug}-proceso`, SEL_PROCESO);
     // página completa (para revisar el diseño de todos los bloques)
@@ -474,6 +553,12 @@ async function kitConAlmacenBloqueado(browser: Browser, h: HerramientaCargada, v
     const kit = page.locator("section[aria-labelledby='kit-titulo']");
     await kit.getByLabel(/Texto verificado/).check();
     rec(pag, v.nombre, "kit final con localStorage bloqueado: se puede marcar y no hay errores", (await kit.getByLabel(/Texto verificado/).isChecked()) && errores.length === 0, errores.slice(0, 2).join(" | "));
+    // La lista de revisión del paso 4 y la descarga también funcionan con el almacenamiento bloqueado.
+    await page.getByRole("button", { name: "Probar con un ejemplo" }).click();
+    const rev = page.locator("[data-paso='4'] [data-revision]");
+    await rev.getByLabel(/Precio:/).check();
+    const [descarga] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Descargar mis datos y prompts (.txt)" }).click()]);
+    rec(pag, v.nombre, "paso 4 y descarga con localStorage bloqueado: se marca («1 de 6»), se descarga y no hay errores", /1 de 6 comprobados/.test(await rev.locator("[data-comprobados]").innerText()) && descarga.suggestedFilename().endsWith(".txt") && errores.length === 0, errores.slice(0, 2).join(" | "));
   } catch (e) {
     rec(pag, v.nombre, "kit final con localStorage bloqueado", false, String((e as Error).message).slice(0, 160));
   } finally {

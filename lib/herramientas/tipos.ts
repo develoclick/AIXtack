@@ -170,6 +170,15 @@ export interface CapturaPendiente {
   obligatoria?: boolean;
 }
 
+/** Una fila de «Quién hizo qué»: el paso del proceso, lo que hizo la IA, lo que hizo el autor y el tiempo real. */
+export interface PasoDelEjemplo {
+  /** Número del paso de `pasos` al que corresponde. */
+  paso: number;
+  hizoLaIA: string;
+  hiceYo: string;
+  tiempo: string;
+}
+
 export interface EjemploReal {
   /** Lleva «(ficticio)» o «(ficticia)» la primera vez que aparece. */
   negocio: string;
@@ -185,6 +194,13 @@ export interface EjemploReal {
    * escribe a mano ni se genera.
    */
   transcripcion?: string;
+  /**
+   * Quién hizo qué en la prueba real, paso a paso (lo que hizo la IA, lo que hizo el autor y cuánto tardó). Lo escribe el autor
+   * con su prueba real: nunca se inventa. Vacío = no se muestra nada (tampoco en producción).
+   */
+  pasos?: PasoDelEjemplo[];
+  /** Tiempo total de la prueba real (por ejemplo «14 min»). Vacío = no se muestra. */
+  tiempoTotal?: string;
   /** «Qué corregí yo» (3 líneas). */
   queCorregi: string[];
   /**
@@ -253,6 +269,23 @@ export interface OpcionPaso {
   destino?: string;
 }
 
+/**
+ * Un texto listo para pegar en el mismo chat de la IA cuando algo sale mal. Es una plantilla (mismas reglas que un prompt de
+ * paso): se rellena con los datos del formulario y se copia con un botón «Copiar corrección».
+ */
+export interface Correccion {
+  /** Qué corrige (por ejemplo «Precio»): distingue los botones cuando hay varios. */
+  etiqueta: string;
+  prompt: string;
+  /** La corrección solo se ve si se cumple esta condición (por ejemplo, que la condición del formulario tenga texto). */
+  mostrarSi?: Condicion;
+  /** A dónde se pega (por defecto, ChatGPT, Gemini o Claude). */
+  destino?: string;
+}
+
+/** Una salida de «Si algo falla»: un texto, o un texto con las correcciones que se copian. */
+export type SalidaFalla = string | { texto: string; correcciones: Correccion[] };
+
 export interface PasoProceso {
   numero: number;
   titulo: string;
@@ -275,7 +308,8 @@ export interface PasoProceso {
   /** Texto cuando ninguna opción se ve (por ejemplo, no se marcó ningún formato). */
   sinOpciones?: string;
   asiSabesQueSalioBien: string[];
-  siAlgoFalla: string[];
+  /** «Si algo falla». Cada salida que pide escribirle algo a la IA lleva sus `correcciones` (botón «Copiar corrección»). */
+  siAlgoFalla: SalidaFalla[];
   /** Lo que tienes al terminar el paso. */
   resultado: string;
 }

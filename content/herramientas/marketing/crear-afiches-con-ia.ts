@@ -230,9 +230,24 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
         "Si la IA recortó algo, te lo dice en «Lo que quité»; si no recortó nada, esa sección no aparece.",
       ],
       siAlgoFalla: [
-        "Si cambió el nivel 1 o inventó un dato, pega: «Corrige el nivel 1: debe ser exactamente el texto que te di».",
-        "Si aparece un descuento, un envío o un superlativo que no diste, pídele que lo quite.",
-        "Si no sigue los títulos pedidos, pídele que la repita con esos títulos.",
+        {
+          texto: "Si cambió el nivel 1 o inventó un dato, copia esta corrección y pégala en el mismo chat.",
+          correcciones: [{ etiqueta: "Corregir el nivel 1", prompt: "Corrige el nivel 1: debe decir exactamente «{{n1}}». No cambies nada más." }],
+        },
+        {
+          texto: "Si aparece un descuento, un envío, un plazo o un superlativo que no diste, pídele que lo quite.",
+          correcciones: [{ etiqueta: "Quitar lo que no diste", prompt: "Quita cualquier descuento, envío, plazo o superlativo que yo no te haya dado. No cambies nada más." }],
+        },
+        {
+          texto: "Si no sigue los títulos pedidos, pídele que la repita con ellos.",
+          correcciones: [
+            {
+              etiqueta: "Repetir con los títulos pedidos",
+              prompt:
+                "Repite tu respuesta con exactamente estos títulos, en este orden: TEXTO DEL AFICHE (Nivel 1, Nivel 2, Nivel 3, Nivel 4), LO QUE QUITÉ (solo si recortaste algo), DE DÓNDE SALE CADA DATO, BRIEF PARA DISEÑAR, {{#si foto=Sí}}IMAGEN{{/si}}{{#si !foto=Sí}}PROMPT DE IMAGEN SIN TEXTO{{/si}} y FALTA. No cambies nada más.",
+            },
+          ],
+        },
       ],
       resultado: "el texto de tu afiche en cuatro niveles.",
     },
@@ -268,7 +283,16 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
         "Tus colores y tu foto están aplicados, sin alterar el producto.",
       ],
       siAlgoFalla: [
-        "Si la IA de imagen cambió una letra o un número, termina el afiche en Canva con el texto del paso 2.",
+        {
+          texto: "Si la IA de imagen cambió una letra o un número, copia la corrección del dato que salió mal y pégala en el mismo chat de la IA de imagen. Si sigue fallando, termina el afiche en Canva con el texto del paso 2.",
+          correcciones: [
+            { etiqueta: "Oferta", prompt: "En el afiche, el texto de la oferta debe decir exactamente «{{oferta}}». Corrige solo eso y no cambies nada más.", destino: "tu IA de imagen" },
+            { etiqueta: "Precio", prompt: "En el afiche, el precio debe decir exactamente «{{precio}}». Corrige solo eso y no cambies nada más.", destino: "tu IA de imagen" },
+            { etiqueta: "Días y horario", prompt: "En el afiche, los días y el horario deben decir exactamente «{{diasHorario}}». Corrige solo eso y no cambies nada más.", destino: "tu IA de imagen" },
+            { etiqueta: "Acción y lugar", prompt: "En el afiche, la acción y el lugar deben decir exactamente «{{n3}}». Corrige solo eso y no cambies nada más.", destino: "tu IA de imagen" },
+            { etiqueta: "Condiciones", prompt: "En el afiche, la letra pequeña debe decir exactamente «{{condiciones}}». Corrige solo eso y no cambies nada más.", mostrarSi: "condiciones", destino: "tu IA de imagen" },
+          ],
+        },
         "Si la foto se ve deformada, usa la original, sin filtros.",
         "Si el texto no cabe, acorta las condiciones en tus datos y vuelve al paso 2.",
       ],
@@ -283,6 +307,7 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
         { etiqueta: "Oferta", campo: "oferta" },
         { etiqueta: "Precio", campo: "precio" },
         { etiqueta: "Días y horario", campo: "diasHorario" },
+        { etiqueta: "Acción", campo: "accion" },
         { etiqueta: "Lugar o dirección", campo: "lugar" },
         { etiqueta: "Condiciones", campo: "condiciones" },
       ],
@@ -352,7 +377,10 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
         "La prueba impresa se lee desde donde estará el afiche.",
       ],
       siAlgoFalla: [
-        "Si una versión cambió una letra o añadió texto, descártala y pide otra, o adáptala en Canva.",
+        {
+          texto: "Si una versión cambió el texto o añadió algo, descártala y pega esta corrección en el mismo chat de la IA de imagen, o adáptala tú en Canva.",
+          correcciones: [{ etiqueta: "Volver al texto del afiche original", prompt: "Esta versión cambió el texto. Usa exactamente el mismo texto del afiche original, sin añadir nada.", destino: "tu IA de imagen" }],
+        },
         "Si el mensaje de WhatsApp trae un dato que no diste, bórralo.",
         "Si la prueba sale más oscura o más pálida que en pantalla, ajusta los colores e imprime otra.",
       ],
@@ -361,13 +389,14 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
   ],
 
   kitFinal: [
-    { id: "texto", texto: "Texto verificado: los cuatro niveles, comparados con mis datos." },
-    { id: "afiche", texto: "Afiche terminado y exportado en PDF." },
-    { id: "vertical", texto: "Versión 9:16 para estado o historia.", mostrarSi: `formatos~${FORMATO_9X16}` },
-    { id: "cuadrado", texto: "Versión 1:1 para post.", mostrarSi: `formatos~${FORMATO_1X1}` },
-    { id: "mockup", texto: "Mockup en la vitrina, guardado como simulación.", mostrarSi: `formatos~${FORMATO_A4}` },
-    { id: "mensaje", texto: "Mensaje de WhatsApp listo para enviar.", mostrarSi: `formatos~${FORMATO_9X16}|formatos~${FORMATO_1X1}` },
-    { id: "prueba", texto: "Prueba impresa revisada, a tamaño real.", mostrarSi: `formatos~${FORMATO_A4}` },
+    // Las mismas entregas que «Lo que vas a tener» (mismos ids) más la prueba impresa. Las que dependen de un formato se ven si marcaste
+    // ese formato, y todas se ven con el formulario vacío (`!formatos`): así el contador «X de N listos» siempre coincide con lo que se ve.
+    { id: "texto", texto: "Texto verificado en cuatro niveles, comparado con mis datos." },
+    { id: "afiche", texto: "Afiche A4 en PDF, listo para imprimir." },
+    { id: "versiones", texto: "Versiones para compartir: 9:16 y/o 1:1, según los formatos que marqué.", mostrarSi: `formatos~${FORMATO_9X16}|formatos~${FORMATO_1X1}|!formatos` },
+    { id: "mockup", texto: "Mockup en la vitrina, guardado como simulación.", mostrarSi: `formatos~${FORMATO_A4}|!formatos` },
+    { id: "mensaje", texto: "Mensaje de WhatsApp listo para enviar.", mostrarSi: `formatos~${FORMATO_9X16}|formatos~${FORMATO_1X1}|!formatos` },
+    { id: "prueba", texto: "Prueba impresa revisada, a tamaño real.", mostrarSi: `formatos~${FORMATO_A4}|!formatos` },
   ],
 
   mejoras: [
@@ -388,6 +417,10 @@ Antes de responder, comprueba que el nivel 1 es exactamente «{{oferta}} por {{p
       "Total": `${contarPalabras(NIVELES_DEL_EJEMPLO)} palabras (máximo ${MAXIMO_PALABRAS})`,
     },
     capturas: [],
+    // TODO: «Quién hizo qué» de la prueba real, un objeto por paso: { paso: 2, hizoLaIA: "…", hiceYo: "…", tiempo: "1 min" }. Lo escribe el autor con
+    // lo que de verdad pasó y con sus tiempos medidos: no se inventa. Vacío = no se muestra nada (tampoco en producción).
+    pasos: [],
+    tiempoTotal: "", // TODO: tiempo total real de la prueba (por ejemplo «14 min»). Vacío = no se muestra.
     transcripcion: "", // TODO: respuesta completa de la IA, copiada del MISMO chat de la captura «Prueba real», tal como salió. Vacío hasta la prueba: no se escribe a mano.
     queCorregi: [], // TODO: 3 líneas con lo que el autor corrigió de verdad en la respuesta real. No se escriben sin la prueba.
     // Nota ya redactada por el autor: NO se muestra hasta que exista la captura «Prueba real» (prueba-01). Comprueba que coincide con esa captura.

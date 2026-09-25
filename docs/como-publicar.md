@@ -8,6 +8,7 @@ Una herramienta está en `publicado: false` hasta que tiene su **prueba real**. 
 2. En un chat nuevo de la IA, pulsa «Probar con un ejemplo» → «Copiar prompt» y pégalo. Anota **qué IA** usaste y **la fecha**.
 3. Haz la captura sin editar (Win+Shift+S, zoom al 125 %, 1.200 px de ancho o más) y guárdala como `.webp` en `public/img/{área}/{slug}/` con el nombre esperado (por ejemplo `prueba-01.webp`).
 4. Escribe **tres líneas** de «Qué corregí yo»: lo que cambiaste de verdad en la respuesta de la IA.
+4b. Rellena «Quién hizo qué»: en `ejemplo.pasos` una fila por paso con `{ paso, hizoLaIA, hiceYo, tiempo }` y en `ejemplo.tiempoTotal` el tiempo total. Escribe **lo que de verdad pasó y los tiempos que mediste**: la página lo enseña tal cual (vacío, no se muestra nada).
 5. (Opcional) Pega la **respuesta completa de la IA** del mismo chat en `ejemplo.transcripcion` del archivo de datos: la página la enseñará en un desplegable «Respuesta completa de la IA (transcripción del mismo chat)». Tiene que ser el texto tal como salió, no uno reescrito.
 
 ## 2. Publica

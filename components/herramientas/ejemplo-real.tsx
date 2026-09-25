@@ -32,6 +32,9 @@ export function EjemploReal({
   // La nota que el autor dejó preparada solo se enseña cuando ya existe la captura de una prueba real.
   const hayPruebaReal = capturas.some((c) => c.etiqueta === "Prueba real");
   const lineasCorregi = lineasQueCorregi(ejemplo, hayPruebaReal);
+  // «Quién hizo qué» y el tiempo total salen de la prueba real del autor: vacíos, no se muestra nada (tampoco en producción).
+  const filasPasos = (ejemplo.pasos ?? []).filter((f) => f.hizoLaIA.trim() && f.hiceYo.trim());
+  const tiempoTotal = (ejemplo.tiempoTotal ?? "").trim();
   // `pendientes` llega ya filtrado por la página (`pendientesVisibles`): solo con `next dev` trae recuadros; en un build de producción, nunca.
 
   return (
@@ -122,6 +125,34 @@ export function EjemploReal({
           </summary>
           <pre className="max-h-[32rem] overflow-auto whitespace-pre-wrap break-words border-t p-4 font-mono text-[0.8rem] leading-relaxed">{ejemplo.transcripcion}</pre>
         </details>
+      )}
+
+      {(filasPasos.length > 0 || tiempoTotal) && (
+        <div data-quien-hizo-que className="mt-6 rounded-xl border bg-background p-4 sm:p-5">
+          <h3 className="text-base font-semibold text-guide-ink">Quién hizo qué, paso a paso</h3>
+          <ol className="mt-3 grid gap-3">
+            {filasPasos.map((f) => (
+              <li key={f.paso} className="grid gap-1 rounded-lg border bg-guide-surface p-3 text-[0.97rem] leading-relaxed sm:grid-cols-[10rem_minmax(0,1fr)_minmax(0,1fr)_5rem] sm:gap-3">
+                <span className="font-semibold text-guide-ink">{tituloDePaso(f.paso)}</span>
+                <span>
+                  <span className="font-semibold text-guide-ink">La IA: </span>
+                  {f.hizoLaIA}
+                </span>
+                <span>
+                  <span className="font-semibold text-guide-ink">Yo: </span>
+                  {f.hiceYo}
+                </span>
+                <span className="text-muted-foreground sm:text-right">{f.tiempo}</span>
+              </li>
+            ))}
+          </ol>
+          {tiempoTotal && (
+            <p className="mt-3 text-[0.97rem] text-guide-ink">
+              <span className="font-semibold">Tiempo total: </span>
+              {tiempoTotal}
+            </p>
+          )}
+        </div>
       )}
 
       {lineasCorregi.length > 0 && (

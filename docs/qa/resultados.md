@@ -1,6 +1,6 @@
 # Recorrido interactivo (Playwright, build de producción)
 
-Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 px y 1280 px). 648 pruebas: 648 OK, 0 FALLA.
+Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 px y 1280 px). 680 pruebas: 680 OK, 0 FALLA.
 
 | Página | Vista (px) | Prueba | Resultado | Detalle |
 |---|---|---|---|---|
@@ -170,9 +170,25 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-afiches-con-ia | 375 | paso 3B: el prompt de la IA de imagen lleva los cuatro niveles exactos | OK | Crea un afiche vertical tamaño A4 para mi negocio. Usa EXACTAMENTE este texto, sin cambiar, añadir n |
 | /marketing/crear-afiches-con-ia | 375 | paso 4: la lista trae el precio, los días, el lugar y las condiciones tal como los escribiste | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | «Si algo falla» es plegable y se abre | OK |  |
-| /marketing/crear-afiches-con-ia | 375 | kit final: marcar un ítem actualiza «N de M listos» | OK | de 6 listos. Lo que marcas se guarda solo en este navegador. |
+| /marketing/crear-afiches-con-ia | 375 | «Si algo falla»: 9 botones «Copiar corrección» (≥ 44 px) copian su texto ya relleno, sin llaves | OK | 9 correcciones |
+| /marketing/crear-afiches-con-ia | 375 | correcciones: nivel 1 exacto, precio y «mismo texto del afiche original» | OK | Corrige el nivel 1: debe decir exactamente «Combo de fin de semana: 6 panes y 1  |
+| /marketing/crear-afiches-con-ia | 375 | paso 4: una casilla por cada dato del formulario (6) y «0 de 6 comprobados» | OK | 6 casillas |
+| /marketing/crear-afiches-con-ia | 375 | paso 4: marcar dos datos da «2 de 6 comprobados» | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | paso 4: si cambias el precio, su casilla se desmarca sola («1 de 6») | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | paso 4: con el precio original la marca vuelve («2 de 6») | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | paso 4: lo comprobado se recuerda al recargar (2 de 6) | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | paso 4: con el formulario vacío no hay nada que comprobar («0 de 0») ni casillas | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | descarga (.txt): botón de 44 px, nombre con la fecha y aclaración «no lo recibimos» | OK | crear-afiches-con-ia-2026-09-25.txt · 44 px |
+| /marketing/crear-afiches-con-ia | 375 | descarga (.txt): lleva la fecha, los datos y los prompts de los 5 pasos, sin llaves | OK | 8582 caracteres |
+| /marketing/crear-afiches-con-ia | 375 | descarga (.txt): el archivo se crea en el navegador (blob) y no hace ninguna petición al servidor | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | kit final con «Probar con un ejemplo» (A4 + 9:16): salen las 6 entregas y «0 de 6 listos» | OK | 6 casillas · 0 de 6 listos. Lo qu |
+| /marketing/crear-afiches-con-ia | 375 | kit final sin formatos marcados: salen todas (6) y el contador coincide | OK | 6 · 0 de 6 listos. Lo qu |
+| /marketing/crear-afiches-con-ia | 375 | kit final con solo 1:1: 4 entregas (texto, afiche, versiones, mensaje), sin mockup ni prueba impresa | OK | 4 · 0 de 4 listos. Lo qu |
+| /marketing/crear-afiches-con-ia | 375 | kit final: marcar dos entregas da «2 de 4 listos» | OK | 2 de 4 listos. Lo qu |
+| /marketing/crear-afiches-con-ia | 375 | kit final con solo A4: 4 entregas (texto, afiche, mockup, prueba) y «X de 4» sin contar lo oculto | OK | 4 · 1 de 4 listos. Lo qu |
 | /marketing/crear-afiches-con-ia | 375 | kit final: lo marcado se recuerda al recargar (solo en este navegador) | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | kit final con localStorage bloqueado: se puede marcar y no hay errores | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | paso 4 y descarga con localStorage bloqueado: se marca («1 de 6»), se descarga y no hay errores | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · El caso de La Espiga (los datos de «Probar con un ejemplo») | OK | «Tus datos suman 39 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Sin datos: cero palabras | OK | «Tus datos suman 0 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Sin precio no se cuenta el «por» del titular | OK | «Tus datos suman 11 palabras (máximo 39).»; el prompt trae el total |
@@ -495,9 +511,25 @@ Recomendada si aún no sabes: es la opción más segura, porque el text |
 | /marketing/crear-afiches-con-ia | 1280 | paso 3B: el prompt de la IA de imagen lleva los cuatro niveles exactos | OK | Crea un afiche vertical tamaño A4 para mi negocio. Usa EXACTAMENTE este texto, sin cambiar, añadir n |
 | /marketing/crear-afiches-con-ia | 1280 | paso 4: la lista trae el precio, los días, el lugar y las condiciones tal como los escribiste | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | «Si algo falla» es plegable y se abre | OK |  |
-| /marketing/crear-afiches-con-ia | 1280 | kit final: marcar un ítem actualiza «N de M listos» | OK | de 6 listos. Lo que marcas se guarda solo en este navegador. |
+| /marketing/crear-afiches-con-ia | 1280 | «Si algo falla»: 9 botones «Copiar corrección» (≥ 44 px) copian su texto ya relleno, sin llaves | OK | 9 correcciones |
+| /marketing/crear-afiches-con-ia | 1280 | correcciones: nivel 1 exacto, precio y «mismo texto del afiche original» | OK | Corrige el nivel 1: debe decir exactamente «Combo de fin de semana: 6 panes y 1  |
+| /marketing/crear-afiches-con-ia | 1280 | paso 4: una casilla por cada dato del formulario (6) y «0 de 6 comprobados» | OK | 6 casillas |
+| /marketing/crear-afiches-con-ia | 1280 | paso 4: marcar dos datos da «2 de 6 comprobados» | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | paso 4: si cambias el precio, su casilla se desmarca sola («1 de 6») | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | paso 4: con el precio original la marca vuelve («2 de 6») | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | paso 4: lo comprobado se recuerda al recargar (2 de 6) | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | paso 4: con el formulario vacío no hay nada que comprobar («0 de 0») ni casillas | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | descarga (.txt): botón de 44 px, nombre con la fecha y aclaración «no lo recibimos» | OK | crear-afiches-con-ia-2026-09-25.txt · 44 px |
+| /marketing/crear-afiches-con-ia | 1280 | descarga (.txt): lleva la fecha, los datos y los prompts de los 5 pasos, sin llaves | OK | 8582 caracteres |
+| /marketing/crear-afiches-con-ia | 1280 | descarga (.txt): el archivo se crea en el navegador (blob) y no hace ninguna petición al servidor | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | kit final con «Probar con un ejemplo» (A4 + 9:16): salen las 6 entregas y «0 de 6 listos» | OK | 6 casillas · 0 de 6 listos. Lo qu |
+| /marketing/crear-afiches-con-ia | 1280 | kit final sin formatos marcados: salen todas (6) y el contador coincide | OK | 6 · 0 de 6 listos. Lo qu |
+| /marketing/crear-afiches-con-ia | 1280 | kit final con solo 1:1: 4 entregas (texto, afiche, versiones, mensaje), sin mockup ni prueba impresa | OK | 4 · 0 de 4 listos. Lo qu |
+| /marketing/crear-afiches-con-ia | 1280 | kit final: marcar dos entregas da «2 de 4 listos» | OK | 2 de 4 listos. Lo qu |
+| /marketing/crear-afiches-con-ia | 1280 | kit final con solo A4: 4 entregas (texto, afiche, mockup, prueba) y «X de 4» sin contar lo oculto | OK | 4 · 1 de 4 listos. Lo qu |
 | /marketing/crear-afiches-con-ia | 1280 | kit final: lo marcado se recuerda al recargar (solo en este navegador) | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | kit final con localStorage bloqueado: se puede marcar y no hay errores | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | paso 4 y descarga con localStorage bloqueado: se marca («1 de 6»), se descarga y no hay errores | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · El caso de La Espiga (los datos de «Probar con un ejemplo») | OK | «Tus datos suman 39 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Sin datos: cero palabras | OK | «Tus datos suman 0 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Sin precio no se cuenta el «por» del titular | OK | «Tus datos suman 11 palabras (máximo 39).»; el prompt trae el total |

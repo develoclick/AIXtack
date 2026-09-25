@@ -36,6 +36,16 @@ Referencia: `content/herramientas/marketing/crear-afiches-con-ia.ts`. Para conve
 - `tituloRevision` («Revisa antes de imprimir»), `meta.herramientasExtra` («Canva») y `ejemplo.notaPreparada` (nota ya redactada que solo se ve cuando existe una captura «Prueba real»).
 - Campos nuevos del formulario: `tipo: "casillas"` (varias opciones marcables; el valor es la lista unida con «; »), además de `seleccion` como siempre.
 
+**Kit final = las entregas de «Lo que vas a tener».** Los ítems del kit usan los mismos `id` que `resultadoFinal` (más los que hagan falta, como la prueba impresa). Los que dependen de una casilla del formulario llevan `mostrarSi` y **siempre** incluyen `|!campo`, para que con el formulario vacío se vean todos; «X de N listos» cuenta solo los visibles (`resumenKit`).
+
+**«Si algo falla» con correcciones.** `siAlgoFalla` acepta textos o `{ texto, correcciones: [{ etiqueta, prompt, mostrarSi?, destino? }] }`. Cada salida que pide escribirle algo a la IA lleva sus correcciones: plantillas rellenas con los datos del formulario (`{{n1}}`, `{{precio}}`…) y un botón «Copiar corrección» de 44 px (mismo `BotonCopiar`, con la alternativa si falla el portapapeles).
+
+**Lista de revisión (`comprobar`).** El paso muestra un ítem por dato con su valor exacto y una casilla, y «X de N comprobados» (N cuenta solo los datos con texto). Lo marcado vive solo en el navegador y recuerda el valor comprobado: si cambias el dato, la casilla se desmarca sola.
+
+**Descarga.** Al final de «El proceso» hay «Descargar mis datos y prompts (.txt)»: `lib/herramientas/descarga.ts` arma el texto (fecha, datos, perfil y los prompts que se ven en cada paso) y el navegador lo descarga como Blob. No se envía nada al servidor.
+
+**Registro de la prueba real.** `ejemplo.pasos: [{ paso, hizoLaIA, hiceYo, tiempo }]` y `ejemplo.tiempoTotal` los escribe el autor con su prueba real (nunca se inventan); vacíos, no se muestra nada ni en producción. El validador exige `probadoEn` y `probadoFecha` si están llenos y no los cuenta como palabras editoriales.
+
 **Plantillas de prompt** (`lib/herramientas/plantillas.ts`, la misma sintaxis en `tarea`, `paso.prompt` y `opcion.prompt`): `{{id}}` (campo; [FALTA: etiqueta] si es requerido y está vacío), `{{id|texto de reserva}}`, `{{perfil.nombre|mi negocio}}` (dato del perfil; solo los de `usaPerfil`), `{{variable}}` (lo que calcula la página: `preproceso.variables`) y `{{#si condición}}…{{/si}}` sin anidar. Condiciones: `campo=Valor`, `campo~Opción` (casillas), `campo` (tiene texto), `!campo`, `perfil.rubro`, y «|» para O. El validador comprueba que todo lo citado existe, que los valores de una condición son opciones reales del campo y que el resultado no lleva llaves.
 
 **Etiquetas de imagen:** `Prueba real` (solo chats con una IA), `Captura de la herramienta` (captura de nuestra propia página), `Ilustración`, `Simulación` y `Foto generada con IA` (estas dos exigen una leyenda o una descripción que diga «generada con IA»), `Resultado final diseñado con el texto de la IA`. Las capturas de un proceso llevan `paso` (la evidencia se muestra bajo «Paso N · título») y, las pendientes, `obligatoria: false` si `npm run publicar` puede descartarlas cuando falte el archivo. Un proceso admite hasta 8 capturas en el ejemplo (una página simple, 2). El `alt` de una imagen no cuenta como palabra editorial.

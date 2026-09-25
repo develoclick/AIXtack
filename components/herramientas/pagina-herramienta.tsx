@@ -148,7 +148,7 @@ export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramient
 
             {/* 5 · El proceso */}
             <Bloque id="proceso" titulo="El proceso">
-              <ProcesoPasos pasos={proceso} mejoras={h.mejoras} />
+              <ProcesoPasos pasos={proceso} mejoras={h.mejoras} titulo={h.meta.titulo} slug={h.meta.slug} ruta={`${h.meta.area}/${h.meta.slug}`} />
             </Bloque>
 
             {/* 6 · Tu kit final */}

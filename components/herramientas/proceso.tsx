@@ -1,10 +1,13 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
-import { Check } from "lucide-react";
+import { useState } from "react";
+import { Check, Download } from "lucide-react";
+import { armarArchivoDeProceso, nombreDelArchivo } from "@/lib/herramientas/descarga";
 import { cumple } from "@/lib/herramientas/plantillas";
-import { itemsVisiblesDelKit, opcionesDelPaso } from "@/lib/herramientas/proceso";
+import { correccionesVisibles, itemsDeRevision, normalizarSalida, opcionesDelPaso, resumenKit } from "@/lib/herramientas/proceso";
 import type { AvisoPaso, ItemKit, MejoraPrompt, OpcionPaso, PasoProceso } from "@/lib/herramientas/tipos";
+import { siteUrl } from "@/lib/site";
+import { leerJson, useAlmacenLocal } from "./almacen-local";
 import { BotonCopiar } from "./boton-copiar";
 import { useHerramienta } from "./estado-herramienta";
 import { MejorasPrompt } from "./mejoras-prompt";
@@ -69,27 +72,89 @@ function EstadoDatos() {
   );
 }
 
-function ListaComprobar({ lista }: { lista: NonNullable<PasoProceso["comprobar"]> }) {
+const esMapaDeTextos = (x: unknown): x is Record<string, string> => typeof x === "object" && x !== null && !Array.isArray(x) && Object.values(x).every((v) => typeof v === "string");
+const esListaDeTextos = (x: unknown): x is string[] => Array.isArray(x) && x.every((v) => typeof v === "string");
+
+/**
+ * La lista de revisión del paso 4: cada dato del formulario, con su valor exacto y su casilla, y «X de N comprobados». Lo
+ * marcado se guarda solo en este navegador y recuerda el valor que se comprobó: si cambias el dato, la casilla se desmarca.
+ */
+function ListaRevision({ lista, clave }: { lista: NonNullable<PasoProceso["comprobar"]>; clave: string }) {
   const { valores } = useHerramienta();
+  const [crudo, guardar] = useAlmacenLocal(`guiapromptsia:revision:${clave}:v1`, "{}");
+  const marcados = leerJson<Record<string, string>>(crudo, {}, esMapaDeTextos);
+  const { items, comprobados, total } = itemsDeRevision(lista, valores, marcados);
+
+  function alternar(campo: string, valor: string, marcado: boolean) {
+    const siguiente = { ...marcados };
+    if (marcado) siguiente[campo] = valor;
+    else delete siguiente[campo];
+    guardar(JSON.stringify(siguiente));
+  }
+
   return (
-    <div className="mt-4 rounded-xl border bg-background p-4">
-      <h4 className="text-base font-semibold text-guide-ink">Los datos que tienes que comprobar, letra por letra</h4>
-      <ul className="mt-2 grid gap-2">
-        {lista.map(({ etiqueta, campo }) => {
-          const valor = (valores[campo] ?? "").trim();
+    <div data-revision className="mt-4 rounded-xl border bg-background p-4">
+      <h4 className="text-base font-semibold text-guide-ink">Tus datos exactos, uno por uno</h4>
+      <p className="mt-1 text-sm text-muted-foreground">Cada dato está tal como lo escribiste en «Tus datos». Marca cada casilla cuando el afiche diga exactamente lo mismo.</p>
+      <ul className="mt-3 grid gap-2">
+        {items.map((i) => {
+          const id = `revision-dato-${i.campo}`;
           return (
-            <li key={campo} className="grid gap-1 text-[0.97rem] sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-3">
-              <span className="font-semibold text-guide-ink">{etiqueta}</span>
-              <span className="min-w-0 break-words font-mono text-[0.9rem] text-foreground">{valor || "— falta en tus datos"}</span>
+            <li key={i.campo}>
+              {i.tieneDato ? (
+                <label htmlFor={id} className="flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border border-foreground/50 bg-background px-3 py-2.5 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-guide-ink">
+                  <input id={id} type="checkbox" checked={i.comprobado} onChange={(e) => alternar(i.campo, i.valor, e.target.checked)} className="mt-1 size-5 shrink-0 accent-[var(--brand)]" />
+                  <span className={`min-w-0 ${i.comprobado ? "text-muted-foreground" : "text-foreground"}`}>
+                    <span className="font-semibold text-guide-ink">{i.etiqueta}: </span>
+                    <span className="break-words font-mono text-[0.9rem]">{i.valor}</span>
+                  </span>
+                </label>
+              ) : (
+                <p className="rounded-lg border border-foreground/20 px-3 py-2.5 text-sm text-muted-foreground">
+                  <span className="font-semibold text-guide-ink">{i.etiqueta}: </span>sin dato en el formulario, no hay nada que comprobar.
+                </p>
+              )}
             </li>
           );
         })}
       </ul>
+      <p role="status" aria-live="polite" data-comprobados className="mt-3 text-sm text-muted-foreground">
+        {comprobados} de {total} comprobados. Lo que marcas se guarda solo en este navegador.
+      </p>
     </div>
   );
 }
 
-function Paso({ paso, total, mejoras }: { paso: PasoProceso; total: number; mejoras: MejoraPrompt[] }) {
+/** «Si algo falla»: cada salida que pide escribirle algo a la IA trae su texto ya relleno con «Copiar corrección». */
+function SiAlgoFalla({ paso }: { paso: PasoProceso }) {
+  const { contexto } = useHerramienta();
+  return (
+    <details className="self-start rounded-lg border bg-guide-surface">
+      <summary className="guide-focus flex min-h-11 cursor-pointer items-center px-3 text-base font-semibold text-guide-ink">Si algo falla</summary>
+      <ul className="grid gap-3 border-t px-3 py-3">
+        {paso.siAlgoFalla.map((salida, i) => {
+          const correcciones = correccionesVisibles(salida, contexto);
+          return (
+            <li key={i} className="text-[0.97rem] leading-relaxed text-foreground/90">
+              <p>{normalizarSalida(salida).texto}</p>
+              {correcciones.map((c) => (
+                <div key={c.etiqueta} data-correccion className="mt-2 rounded-lg border bg-background p-3">
+                  <p className="text-sm font-semibold text-guide-ink">{c.etiqueta}</p>
+                  <p data-correccion-texto className="mt-1 whitespace-pre-wrap break-words font-mono text-[0.85rem] leading-relaxed">
+                    {c.texto}
+                  </p>
+                  <BotonCopiar texto={c.texto} etiqueta="Copiar corrección" ariaLabel={`Copiar corrección del paso ${paso.numero}: ${c.etiqueta}`} destino={c.destino ?? "el mismo chat de la IA"} className="mt-3" />
+                </div>
+              ))}
+            </li>
+          );
+        })}
+      </ul>
+    </details>
+  );
+}
+
+function Paso({ paso, total, mejoras, clave }: { paso: PasoProceso; total: number; mejoras: MejoraPrompt[]; clave: string }) {
   const h = useHerramienta();
   const { contexto } = h;
   const opciones = opcionesDelPaso(paso, contexto);
@@ -107,7 +172,7 @@ function Paso({ paso, total, mejoras }: { paso: PasoProceso; total: number; mejo
       {paso.muestraEstadoDatos && <EstadoDatos />}
       {paso.promptMaestro && <BloquePrompt texto={h.prompt} ariaLabel={`Copiar prompt del paso ${paso.numero}: ${paso.titulo}`} destino={paso.destino} verComo="Ver el prompt completo" />}
       {paso.prompt && <BloquePrompt texto={h.construir(paso.prompt)} ariaLabel={`Copiar prompt del paso ${paso.numero}: ${paso.titulo}`} destino={paso.destino} />}
-      {paso.comprobar && <ListaComprobar lista={paso.comprobar} />}
+      {paso.comprobar && <ListaRevision lista={paso.comprobar} clave={clave} />}
       {opciones.map((o) => (
         <Opcion key={o.id} opcion={o} numero={paso.numero} />
       ))}
@@ -137,16 +202,7 @@ function Paso({ paso, total, mejoras }: { paso: PasoProceso; total: number; mejo
             ))}
           </ul>
         </div>
-        <details className="self-start rounded-lg border bg-guide-surface">
-          <summary className="guide-focus flex min-h-11 cursor-pointer items-center px-3 text-base font-semibold text-guide-ink">Si algo falla</summary>
-          <ul className="grid gap-2 border-t px-3 py-3">
-            {paso.siAlgoFalla.map((t) => (
-              <li key={t} className="text-[0.97rem] leading-relaxed text-foreground/90">
-                {t}
-              </li>
-            ))}
-          </ul>
-        </details>
+        <SiAlgoFalla paso={paso} />
       </div>
 
       <p className="mt-4 text-[0.97rem] text-guide-ink">
@@ -157,8 +213,54 @@ function Paso({ paso, total, mejoras }: { paso: PasoProceso; total: number; mejo
   );
 }
 
+/**
+ * «Descargar mis datos y prompts (.txt)»: el archivo se crea en el navegador (Blob) con la fecha, los datos del formulario y los
+ * prompts de los pasos. No se envía nada al servidor.
+ */
+function DescargarDatos({ titulo, slug, ruta, pasos }: { titulo: string; slug: string; ruta: string; pasos: PasoProceso[] }) {
+  const h = useHerramienta();
+  const [fallo, setFallo] = useState(false);
+
+  function descargar() {
+    try {
+      const fecha = new Date().toLocaleDateString("sv-SE");
+      const texto = armarArchivoDeProceso({ fecha, titulo, url: `${siteUrl}/${ruta}`, campos: h.datos.campos, usaPerfil: h.datos.usaPerfil, contexto: h.contexto, promptMaestro: h.prompt, pasos });
+      const objeto = URL.createObjectURL(new Blob([texto], { type: "text/plain;charset=utf-8" }));
+      const enlace = document.createElement("a");
+      enlace.href = objeto;
+      enlace.download = nombreDelArchivo(slug, fecha);
+      document.body.appendChild(enlace);
+      enlace.click();
+      enlace.remove();
+      window.setTimeout(() => URL.revokeObjectURL(objeto), 1000);
+      setFallo(false);
+    } catch {
+      setFallo(true);
+    }
+  }
+
+  return (
+    <div data-descarga className="mt-8 rounded-2xl border bg-guide-surface p-4 sm:p-6">
+      <button
+        type="button"
+        onClick={descargar}
+        className="guide-focus inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-guide-ink bg-guide-ink px-4 text-sm font-semibold text-background hover:bg-guide-ink/90 sm:w-auto"
+      >
+        <Download className="size-4" aria-hidden />
+        Descargar mis datos y prompts (.txt)
+      </button>
+      <p className="mt-3 text-sm text-muted-foreground">El archivo se crea en tu navegador; no lo recibimos.</p>
+      {fallo && (
+        <p role="alert" className="mt-2 text-sm font-medium text-risk">
+          No pudimos crear el archivo en este navegador. Copia los prompts uno por uno con sus botones «Copiar».
+        </p>
+      )}
+    </div>
+  );
+}
+
 /** Bloque «El proceso»: los pasos numerados, cada uno con su tiempo, su prompt con botón Copiar y sus comprobaciones. */
-export function ProcesoPasos({ pasos, mejoras }: { pasos: PasoProceso[]; mejoras: MejoraPrompt[] }) {
+export function ProcesoPasos({ pasos, mejoras, titulo, slug, ruta }: { pasos: PasoProceso[]; mejoras: MejoraPrompt[]; titulo: string; slug: string; ruta: string }) {
   return (
     <div>
       <nav aria-label="Los pasos del proceso">
@@ -176,71 +278,26 @@ export function ProcesoPasos({ pasos, mejoras }: { pasos: PasoProceso[]; mejoras
       </nav>
       <ol className="mt-6 grid gap-6">
         {pasos.map((p) => (
-          <Paso key={p.numero} paso={p} total={pasos.length} mejoras={mejoras} />
+          <Paso key={p.numero} paso={p} total={pasos.length} mejoras={mejoras} clave={ruta} />
         ))}
       </ol>
+      <DescargarDatos titulo={titulo} slug={slug} ruta={ruta} pasos={pasos} />
     </div>
   );
 }
 
-/* ── Estado del kit: localStorage con try/catch y, si está bloqueado, memoria de esta visita ── */
-const enMemoria = new Map<string, string>();
-const oyentes = new Set<() => void>();
-
-function leerCrudo(clave: string): string {
-  try {
-    const valor = window.localStorage.getItem(clave);
-    if (valor !== null) return valor;
-  } catch {
-    /* almacenamiento bloqueado: se usa la memoria de esta visita */
-  }
-  return enMemoria.get(clave) ?? "[]";
-}
-
-function escribir(clave: string, valor: string) {
-  enMemoria.set(clave, valor);
-  try {
-    window.localStorage.setItem(clave, valor);
-  } catch {
-    /* sin almacenamiento: el kit sigue funcionando, solo que no recuerda entre visitas */
-  }
-  oyentes.forEach((f) => f());
-}
-
-function suscribir(aviso: () => void) {
-  oyentes.add(aviso);
-  window.addEventListener("storage", aviso);
-  return () => {
-    oyentes.delete(aviso);
-    window.removeEventListener("storage", aviso);
-  };
-}
-
-function marcadosDe(crudo: string): string[] {
-  try {
-    const lista: unknown = JSON.parse(crudo);
-    return Array.isArray(lista) ? lista.filter((x): x is string => typeof x === "string") : [];
-  } catch {
-    return [];
-  }
-}
-
 /**
- * «Tu kit final»: lista marcable de lo que tendrás al terminar. Lo marcado se guarda solo en este navegador (si el
- * almacenamiento está bloqueado, sigue funcionando, solo que sin recordar). Los ítems con `mostrarSi` siguen a los datos.
+ * «Tu kit final»: las mismas entregas que «Lo que vas a tener». Las que dependen de un formato solo se ven si marcaste ese formato
+ * (con el formulario vacío se ven todas). Lo marcado se guarda solo en este navegador, sin errores si el almacenamiento está bloqueado.
  */
 export function KitFinal({ items, clave }: { items: ItemKit[]; clave: string }) {
   const { contexto } = useHerramienta();
-  const almacen = `guiapromptsia:kit:${clave}:v1`;
-  const crudo = useSyncExternalStore(suscribir, () => leerCrudo(almacen), () => "[]");
-  const marcados = marcadosDe(crudo);
-
-  const visibles = itemsVisiblesDelKit(items, contexto);
-  const hechos = visibles.filter((i) => marcados.includes(i.id)).length;
+  const [crudo, guardar] = useAlmacenLocal(`guiapromptsia:kit:${clave}:v1`, "[]");
+  const marcados = leerJson<string[]>(crudo, [], esListaDeTextos);
+  const { visibles, hechos, total } = resumenKit(items, contexto, marcados);
 
   function alternar(id: string, marcado: boolean) {
-    const siguiente = marcado ? [...new Set([...marcados, id])] : marcados.filter((x) => x !== id);
-    escribir(almacen, JSON.stringify(siguiente));
+    guardar(JSON.stringify(marcado ? [...new Set([...marcados, id])] : marcados.filter((x) => x !== id)));
   }
 
   return (
@@ -259,8 +316,8 @@ export function KitFinal({ items, clave }: { items: ItemKit[]; clave: string }) 
           );
         })}
       </ul>
-      <p role="status" aria-live="polite" className="mt-3 text-sm text-muted-foreground">
-        {hechos} de {visibles.length} listos. Lo que marcas se guarda solo en este navegador.
+      <p role="status" aria-live="polite" data-listos className="mt-3 text-sm text-muted-foreground">
+        {hechos} de {total} listos. Lo que marcas se guarda solo en este navegador.
       </p>
     </div>
   );
