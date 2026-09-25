@@ -18,6 +18,8 @@ import { chromium, type Browser, type Page } from "playwright-core";
 import { calcular, formatear } from "../lib/herramientas/calculadora";
 import { ejecutarPreproceso } from "../lib/herramientas/preprocesos";
 import { listarTodas, rutaHerramienta, type HerramientaCargada } from "../lib/herramientas/registro";
+import { pasosDelProceso } from "../lib/herramientas/tipos";
+import { renderPlantilla } from "../lib/herramientas/plantillas";
 import { TEXTO_PRIVACIDAD } from "../lib/herramientas/perfil";
 
 const base = (process.argv[2] ?? "http://localhost:3100").replace(/\/$/, "");
@@ -91,7 +93,10 @@ async function abrir(page: Page, ruta: string) {
   await page.waitForFunction(() => [...document.querySelectorAll("button")].some((b) => Object.keys(b).some((k) => k.startsWith("__react"))), null, { timeout: 15000 });
 }
 
-const promptTexto = (page: Page) => page.locator("section[aria-labelledby='herramienta-titulo'] pre").first().evaluate((e) => e.textContent ?? "");
+const SEL_HERR = "section[aria-labelledby='herramienta-titulo']";
+const SEL_PROCESO = "section[aria-labelledby='proceso-titulo']";
+/** El primer prompt de la página: en una herramienta simple, el del bloque de la herramienta; en un proceso, el del paso 2. */
+const promptTexto = (page: Page, panel = SEL_HERR) => page.locator(`${panel} pre`).first().evaluate((e) => e.textContent ?? "");
 const idDeEtiqueta = (page: Page, texto: string) =>
   page.evaluate((t) => {
     const re = new RegExp(`^${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}( \\(.{1,6}\\))?( ?\\(obligatorio\\))?$`);
@@ -233,6 +238,7 @@ async function captura(page: Page, vista: string, nombre: string, selector = "se
 async function pruebasHerramienta(browser: Browser, h: HerramientaCargada, v: (typeof VIEWPORTS)[number]) {
   const ruta = rutaHerramienta(h.meta);
   const pag = ruta;
+  const proceso = pasosDelProceso(h);
   const ctx = await contexto(browser, v, { portapapeles: true });
   const page = await ctx.newPage();
   page.setDefaultTimeout(8000);
@@ -250,42 +256,55 @@ async function pruebasHerramienta(browser: Browser, h: HerramientaCargada, v: (t
 
     // formulario + ejemplo
     // Los campos cuyo ejemplo es una cadena vacía (opcionales sin ejemplo) no se cuentan como «llenos».
+    const panel = proceso ? SEL_PROCESO : SEL_HERR;
+    const botonCopiar = (p: Page) => (proceso ? p.getByRole("button", { name: /^Copiar prompt del paso 2/ }) : p.getByRole("button", { name: "Copiar prompt" }));
     const campos = h.campos.filter((c) => c.ejemplo !== "").length + (h.calculadora?.entradas.filter((e) => String(e.ejemplo) !== "").length ?? 0);
     const btnEjemplo = page.getByRole("button", { name: "Probar con un ejemplo" });
     const btnCero = page.getByRole("button", { name: "Empezar de cero" });
     await btnCero.click();
-    const vacio = await promptTexto(page);
+    const vacio = await promptTexto(page, panel);
     const requeridos = h.campos.filter((c) => c.requerido);
     rec(pag, v.nombre, "«Empezar de cero»: formulario vacío y el prompt marca [FALTA]", requeridos.length === 0 || /\[FALTA\]/.test(vacio), `${requeridos.length} obligatorios`);
     await btnEjemplo.click();
     await page.waitForTimeout(250);
     const rellenos = await page.locator("section[aria-labelledby='herramienta-titulo'] input:not([type=checkbox]), section[aria-labelledby='herramienta-titulo'] textarea, section[aria-labelledby='herramienta-titulo'] select").evaluateAll((els) => els.filter((e) => (e as HTMLInputElement).value !== "").length);
-    rec(pag, v.nombre, "«Probar con un ejemplo» llena el formulario", rellenos >= campos, `${rellenos} controles con valor, ${campos} esperados`);
+    // Cada grupo de casillas con alguna marcada cuenta como un control lleno.
+    const gruposMarcados = await page.locator(`${SEL_HERR} fieldset:has(input:checked)`).count();
+    rec(pag, v.nombre, "«Probar con un ejemplo» llena el formulario", rellenos + gruposMarcados >= campos, `${rellenos + gruposMarcados} controles con valor, ${campos} esperados`);
     let bien = 0;
     for (const c of h.campos) {
+      if (c.tipo === "casillas") {
+        // Las casillas: las marcadas (en el orden de las opciones) deben ser exactamente las del ejemplo.
+        const marcadas = await page.locator(`${SEL_HERR} fieldset`, { hasText: c.label }).first().locator("label:has(input:checked)").allInnerTexts();
+        if (marcadas.map((t) => t.trim()).join("; ") === c.ejemplo) bien++;
+        continue;
+      }
       const id = await idDeEtiqueta(page, c.label);
       if (id && (await control(page, id).inputValue()) === c.ejemplo) bien++;
     }
     rec(pag, v.nombre, "cada campo recibe su valor de ejemplo", bien === h.campos.length, `${bien} de ${h.campos.length}`);
 
     // prompt
-    const textoPrompt = await promptTexto(page);
+    const textoPrompt = await promptTexto(page, panel);
     const datos = textoPrompt.slice(textoPrompt.indexOf("DATOS DE ESTA TAREA"));
     rec(pag, v.nombre, "prompt del ejemplo sin {{ }}, undefined, null ni NaN", !PROHIBIDO.test(textoPrompt), (PROHIBIDO.exec(textoPrompt) ?? [""])[0]);
     rec(pag, v.nombre, "prompt del ejemplo sin [FALTA] en los datos", !/: \[FALTA\]/.test(datos), `${(datos.match(/: \[FALTA\]/g) ?? []).length} [FALTA]`);
-    await page.locator("section[aria-labelledby='herramienta-titulo'] details summary", { hasText: "Ver el prompt completo" }).click();
-    const pre = page.locator("section[aria-labelledby='herramienta-titulo'] pre").first();
+    await page.locator(`${panel} details summary`, { hasText: "Ver el prompt completo" }).first().click();
+    const pre = page.locator(`${panel} pre`).first();
     rec(pag, v.nombre, "«Ver el prompt completo» muestra el prompt", (await pre.isVisible()) && (await pre.evaluate((e) => (e.textContent ?? "").length)) > 500, "");
 
     // copiar con permisos
-    await page.getByRole("button", { name: "Copiar prompt" }).click();
+    await botonCopiar(page).click();
     await page.getByText("Copiado ✓").first().waitFor({ timeout: 4000 }).catch(() => {});
     const copiado = await page.evaluate(() => navigator.clipboard.readText()).catch(() => "");
     const igual = (t: string) => t.split("\r\n").join("\n"); // Windows guarda los saltos de línea como \r\n
     rec(pag, v.nombre, "«Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt", igual(copiado) === textoPrompt.trim() || igual(copiado) === textoPrompt, `${copiado.length} caracteres copiados`);
     rec(pag, v.nombre, "el prompt copiado sin {{ }}, undefined, null ni NaN", copiado.length > 0 && !PROHIBIDO.test(copiado), (PROHIBIDO.exec(copiado) ?? [""])[0]);
-    if (v.nombre === "375" || h.meta.slug === "crear-afiches-con-ia") await captura(page, v.nombre, h.meta.slug);
-    else await captura(page, v.nombre, h.meta.slug);
+    await captura(page, v.nombre, h.meta.slug);
+    if (proceso) {
+      await pruebasProceso(page, h, v);
+      await kitConAlmacenBloqueado(browser, h, v);
+    }
 
     // calculadoras
     if (h.calculadora) await calculadoras(page, h, v);
@@ -306,7 +325,7 @@ async function pruebasHerramienta(browser: Browser, h: HerramientaCargada, v: (t
     try {
       await abrir(p2, ruta);
       await p2.getByRole("button", { name: "Probar con un ejemplo" }).click();
-      await p2.getByRole("button", { name: "Copiar prompt" }).click();
+      await (proceso ? p2.getByRole("button", { name: /^Copiar prompt del paso 2/ }) : p2.getByRole("button", { name: "Copiar prompt" })).click();
       if (modo === "api") {
         const copiado = await p2.getByText("Copiado ✓").first().waitFor({ timeout: 3000 }).then(() => true).catch(() => false);
         // Con execCommand disponible, la alternativa debe funcionar; si el navegador la rechaza, debe caer al texto manual.
@@ -315,9 +334,9 @@ async function pruebasHerramienta(browser: Browser, h: HerramientaCargada, v: (t
       } else {
         await p2.getByLabel("Texto para copiar a mano").waitFor({ timeout: 4000 });
         const t = await p2.getByLabel("Texto para copiar a mano").inputValue();
-        const pr = await promptTexto(p2);
+        const pr = await promptTexto(p2, proceso ? SEL_PROCESO : SEL_HERR);
         rec(pag, v.nombre, "portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo", t === pr && !PROHIBIDO.test(t), `${t.length} caracteres`);
-        if (h.meta.slug === "crear-afiches-con-ia") await captura(p2, v.nombre, `${h.meta.slug}-copia-a-mano`, "section[aria-labelledby='herramienta-titulo']");
+        if (h.meta.slug === "crear-afiches-con-ia") await captura(p2, v.nombre, `${h.meta.slug}-copia-a-mano`, proceso ? `${SEL_PROCESO} [data-paso='2']` : SEL_HERR);
       }
       rec(pag, v.nombre, `0 errores de consola con el portapapeles ${modo === "api" ? "sin API" : "bloqueado"}`, e2.filter((x) => !/bloqueado por la prueba/.test(x)).length === 0, e2.slice(0, 2).join(" | "));
     } catch (e) {
@@ -325,6 +344,140 @@ async function pruebasHerramienta(browser: Browser, h: HerramientaCargada, v: (t
     } finally {
       await c2.close();
     }
+  }
+}
+
+/** Cadena `aria-label` → texto del prompt que muestra el mismo paso (el `pre` del bloque de ese botón). */
+async function promptsDelProceso(page: Page) {
+  return page.evaluate(() =>
+    Array.from(document.querySelectorAll("button[aria-label^='Copiar prompt del paso']")).map((b) => {
+      const bloque = b.closest("div.mt-4") as HTMLElement | null;
+      return { nombre: b.getAttribute("aria-label") ?? "", texto: bloque?.querySelector("pre")?.textContent ?? "" };
+    })
+  );
+}
+
+/**
+ * Recorrido de una página de PROCESO: bloques y pasos, opciones que siguen a los datos (dónde harás el afiche, foto real,
+ * formatos), cada botón Copiar copia su prompt sin llaves, el kit final (marcar, recordar y con el almacenamiento bloqueado).
+ */
+async function pruebasProceso(page: Page, h: HerramientaCargada, v: (typeof VIEWPORTS)[number]) {
+  const pag = rutaHerramienta(h.meta);
+  const pasos = pasosDelProceso(h)!;
+  const ejemplo = Object.fromEntries(h.campos.map((c) => [c.id, c.ejemplo]));
+  try {
+    await abrir(page, pag);
+    await page.getByRole("button", { name: "Probar con un ejemplo" }).click();
+    await page.waitForTimeout(250);
+
+    // estructura
+    const bloques = await page.evaluate(() => Array.from(document.querySelectorAll("main section[aria-labelledby$='-titulo']")).map((s) => s.getAttribute("aria-labelledby")!.replace(/-titulo$/, "")).filter((id) => id !== "conteo-palabras"));
+    const esperados = ["resultado", "problema", "necesitas", "herramienta", "proceso", "kit", "ejemplo", "revision", "por-que-funciona", "rubros", "errores", "faq"];
+    rec(pag, v.nombre, "proceso: los bloques salen en el orden de la plantilla", esperados.every((id, i) => bloques[i] === id), bloques.join(" › "));
+    const etiquetas = await page.locator("article header ul[aria-label='Datos de la herramienta'] li").allInnerTexts();
+    rec(pag, v.nombre, "proceso: etiquetas «15 min · Gratis · ChatGPT, Gemini o Claude + Canva»", etiquetas.map((t) => t.trim()).join(" | ") === `${h.meta.tiempo} | Gratis | ChatGPT, Gemini o Claude + ${h.meta.herramientasExtra}`, etiquetas.join(" | "));
+    const numeros = await page.locator("[data-paso] > p").first().innerText();
+    const pasosVisibles = await page.locator("[data-paso]").count();
+    rec(pag, v.nombre, `proceso: ${pasos.length} pasos numerados («Paso 1 de ${pasos.length}») con su tiempo`, pasosVisibles === pasos.length && numeros.replace(/\s+/g, " ").toLowerCase().includes(`paso 1 de ${pasos.length}`), numeros);
+    const pendientes = await page.locator("[data-capturas-pendientes], .border-dashed").count();
+    rec(pag, v.nombre, "proceso: ningún recuadro de captura pendiente en producción", pendientes === 0, String(pendientes));
+
+    // opciones del paso 3 según «¿Dónde harás el afiche?»
+    const orden = async () => page.locator("[data-paso='3'] [data-opcion]").evaluateAll((els) => els.map((e) => e.getAttribute("data-opcion")));
+    rec(pag, v.nombre, "paso 3: con «Canva» va primero Canva", JSON.stringify(await orden()) === JSON.stringify(["canva", "ia-imagen"]), JSON.stringify(await orden()));
+    await llenar(page, "¿Dónde harás el afiche?", "IA de imagen");
+    rec(pag, v.nombre, "paso 3: con «IA de imagen» va primero la IA de imagen", JSON.stringify(await orden()) === JSON.stringify(["ia-imagen", "canva"]), JSON.stringify(await orden()));
+    await llenar(page, "¿Dónde harás el afiche?", "Aún no sé");
+    const recomendada = await page.locator("[data-paso='3'] [data-opcion='canva']").innerText();
+    rec(pag, v.nombre, "paso 3: con «Aún no sé» va primero Canva y se recomienda como la más segura", JSON.stringify(await orden()) === JSON.stringify(["canva", "ia-imagen"]) && /más segura/.test(recomendada), recomendada.slice(0, 80));
+    await llenar(page, "¿Dónde harás el afiche?", "Canva");
+
+    // foto real
+    const promptImagen = async () => page.locator("[data-paso='3'] [data-opcion='ia-imagen'] pre").evaluate((e) => e.textContent ?? "");
+    const conNo = await promptImagen();
+    await llenar(page, "¿Tienes una foto real de tu producto?", "Sí");
+    const conSi = await promptImagen();
+    rec(pag, v.nombre, "foto real: «Sí» → «usa la foto que adjunto, sin alterar el producto»; «No» → imagen de apoyo generada", /Usa la foto que adjunto como imagen principal, sin alterar el producto/.test(conSi) && /Imagen de apoyo: /.test(conNo) && !/Imagen de apoyo/.test(conSi), "");
+    const avisoIA = await page.locator("[data-paso='3']").innerText();
+    rec(pag, v.nombre, "foto real «Sí»: desaparece el aviso de imagen generada con IA", !/indica que es una imagen generada con IA/.test(avisoIA), "");
+    await llenar(page, "¿Tienes una foto real de tu producto?", "No");
+    rec(pag, v.nombre, "foto real «No»: el paso 3 avisa que se indique que es generada con IA", /indica que es una imagen generada con IA/.test(await page.locator("[data-paso='3']").innerText()), "");
+
+    // formatos del paso 5
+    const salidas = async () => page.locator("[data-paso='5'] [data-opcion]").evaluateAll((els) => els.map((e) => e.getAttribute("data-opcion")));
+    rec(pag, v.nombre, "paso 5: con A4 + 9:16 solo salen imprimir, mockup, 9:16 y el mensaje", JSON.stringify(await salidas()) === JSON.stringify(["imprimir", "mockup", "vertical", "mensaje"]), JSON.stringify(await salidas()));
+    const grupo = page.locator(`${SEL_HERR} fieldset`, { hasText: "¿Qué formatos necesitas?" });
+    await grupo.getByLabel("A4 impreso").uncheck();
+    await grupo.getByLabel("Estado de WhatsApp o historia (9:16)").uncheck();
+    rec(pag, v.nombre, "paso 5: sin formatos marcados no hay salidas y se pide marcar uno", (await salidas()).length === 0 && /Marca al menos un formato/.test(await page.locator("[data-paso='5']").innerText()), "");
+    await grupo.getByLabel("Post cuadrado (1:1)").check();
+    rec(pag, v.nombre, "paso 5: con 1:1 salen la versión cuadrada y el mensaje", JSON.stringify(await salidas()) === JSON.stringify(["cuadrado", "mensaje"]), JSON.stringify(await salidas()));
+    await grupo.getByLabel("Post cuadrado (1:1)").uncheck();
+    await grupo.getByLabel("A4 impreso").check();
+    await grupo.getByLabel("Estado de WhatsApp o historia (9:16)").check();
+    // el estado de «Probar con un ejemplo» vuelve tal cual
+    rec(pag, v.nombre, "formatos: el ejemplo vuelve a A4 + 9:16", JSON.stringify(await salidas()) === JSON.stringify(["imprimir", "mockup", "vertical", "mensaje"]), "");
+
+    // cada botón Copiar copia su prompt, sin llaves
+    const lista = await promptsDelProceso(page);
+    let bienCopiados = 0;
+    const problemas: string[] = [];
+    for (const p of lista) {
+      await page.getByRole("button", { name: p.nombre, exact: true }).click();
+      const copiado = (await page.evaluate(() => navigator.clipboard.readText()).catch(() => "")).split("\r\n").join("\n");
+      if (copiado === p.texto && copiado.length > 20 && !PROHIBIDO.test(copiado)) bienCopiados++;
+      else problemas.push(`${p.nombre}: ${copiado.length} car.`);
+    }
+    rec(pag, v.nombre, `cada botón Copiar (${lista.length}) copia exactamente su prompt, sin {{ }}, undefined, null ni NaN`, lista.length >= 5 && bienCopiados === lista.length, problemas.join(" | ") || `${lista.length} prompts`);
+    const nombresUnicos = new Set(lista.map((p) => p.nombre)).size === lista.length;
+    rec(pag, v.nombre, "los botones Copiar tienen nombres accesibles distintos", nombresUnicos, lista.map((p) => p.nombre).join(" | "));
+    // El prompt del paso 3B es el pedido, con el texto de los cuatro niveles y los colores.
+    const b = lista.find((p) => /paso 3: B\)/.test(p.nombre));
+    const opcionB = pasos.find((p) => p.numero === 3)!.opciones!.find((o) => o.id === "ia-imagen")!;
+    const esperado = renderPlantilla(opcionB.prompt!, { campos: h.campos, valores: ejemplo, perfil: {}, variables: { n1: "Combo de fin de semana: 6 panes y 1 pan dulce por $6", n2: "Sábado y domingo, de 7:00 a 13:00", n3: "Entrar a comprar el combo · Panadería La Espiga, Av. Ejemplo 123", n4: "Hasta agotar existencias. Máximo 2 combos por persona." } });
+    rec(pag, v.nombre, "paso 3B: el prompt de la IA de imagen lleva los cuatro niveles exactos", Boolean(b) && b!.texto === esperado, (b?.texto ?? "sin prompt").slice(0, 100));
+
+    // lista de comprobación del paso 4
+    const revision = await page.locator("[data-paso='4']").innerText();
+    rec(pag, v.nombre, "paso 4: la lista trae el precio, los días, el lugar y las condiciones tal como los escribiste", ["$6", "Sábado y domingo, de 7:00 a 13:00", "Panadería La Espiga, Av. Ejemplo 123", "Hasta agotar existencias."].every((t) => revision.includes(t)), "");
+    const siFalla = page.locator("[data-paso='2'] details", { hasText: "Si algo falla" });
+    await siFalla.locator("summary").click();
+    rec(pag, v.nombre, "«Si algo falla» es plegable y se abre", await siFalla.locator("li").first().isVisible(), "");
+
+    // kit final: marcar y recordar
+    const kit = page.locator("section[aria-labelledby='kit-titulo']");
+    await kit.getByLabel(/Texto verificado/).check();
+    rec(pag, v.nombre, "kit final: marcar un ítem actualiza «N de M listos»", /1 de \d+ listos/.test(await kit.innerText()), (await kit.innerText()).slice(-60));
+    await page.reload({ waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "Probar con un ejemplo" }).click();
+    rec(pag, v.nombre, "kit final: lo marcado se recuerda al recargar (solo en este navegador)", await page.locator("section[aria-labelledby='kit-titulo']").getByLabel(/Texto verificado/).isChecked(), "");
+    await page.evaluate(() => localStorage.removeItem("guiapromptsia:kit:marketing/crear-afiches-con-ia:v1"));
+    if (v.nombre === "1280") await captura(page, v.nombre, `${h.meta.slug}-proceso`, SEL_PROCESO);
+    else await captura(page, v.nombre, `${h.meta.slug}-proceso`, SEL_PROCESO);
+    // página completa (para revisar el diseño de todos los bloques)
+    const dir = path.join(salida, v.nombre);
+    fs.mkdirSync(dir, { recursive: true });
+    await page.screenshot({ path: path.join(dir, `${h.meta.slug}-pagina-completa.jpg`), type: "jpeg", quality: 45, fullPage: true });
+  } catch (e) {
+    rec(pag, v.nombre, "recorrido del proceso", false, String((e as Error).message).slice(0, 200));
+  }
+}
+
+/** Kit final con el almacenamiento bloqueado: marcar sigue funcionando (en memoria) y no hay errores de consola. */
+async function kitConAlmacenBloqueado(browser: Browser, h: HerramientaCargada, v: (typeof VIEWPORTS)[number]) {
+  const pag = rutaHerramienta(h.meta);
+  const ctx = await contexto(browser, v, { almacenBloqueado: true });
+  const page = await ctx.newPage();
+  const errores = vigilar(page);
+  try {
+    await abrir(page, pag);
+    const kit = page.locator("section[aria-labelledby='kit-titulo']");
+    await kit.getByLabel(/Texto verificado/).check();
+    rec(pag, v.nombre, "kit final con localStorage bloqueado: se puede marcar y no hay errores", (await kit.getByLabel(/Texto verificado/).isChecked()) && errores.length === 0, errores.slice(0, 2).join(" | "));
+  } catch (e) {
+    rec(pag, v.nombre, "kit final con localStorage bloqueado", false, String((e as Error).message).slice(0, 160));
+  } finally {
+    await ctx.close();
   }
 }
 

@@ -14,11 +14,12 @@ export const metadata = buildMetadata({
 });
 
 const etiquetas: [string, string][] = [
-  ["Prueba real", "Captura de una conversación real con un asistente de IA, tal como salió, sin retocar el texto de la respuesta. Es la única imagen que lleva esta etiqueta."],
+  ["Prueba real", "Captura de una conversación real con un asistente de IA, tal como salió, sin retocar el texto de la respuesta. Solo las capturas de chats con una IA llevan esta etiqueta."],
+  ["Captura de la herramienta", "Captura de nuestra propia página, por ejemplo el formulario lleno con un ejemplo. No es una conversación con una IA."],
   ["Ilustración", "Un dibujo o esquema que explica una idea. No muestra ningún resultado real."],
-  ["Simulación", "Un ejemplo construido por nosotros para enseñar la forma de una respuesta. No es una respuesta real de ninguna IA."],
+  ["Simulación", "Una imagen o un ejemplo hecho para visualizar cómo se vería algo (por ejemplo, un afiche en una vitrina). Si la generó una IA, su leyenda lo dice: no es una foto real ni una respuesta real."],
   ["Resultado final diseñado con el texto de la IA", "El producto terminado (por ejemplo, un afiche) que se maquetó a mano en una herramienta de diseño usando el texto que escribió la IA. Es un resultado diseñado, no una imagen que generó la IA."],
-  ["Foto generada con IA", "Una imagen creada por un generador de imágenes. No es una foto real del producto ni del negocio."],
+  ["Foto generada con IA", "Una imagen creada por un generador de imágenes; su leyenda dice siempre que fue generada con IA. No es una foto real del producto ni del negocio."],
 ];
 
 export default function ComoProbamosPage() {

@@ -40,7 +40,7 @@ async function main() {
       const pendientes = h.capturasPendientes ?? [];
       totales = { puestas: totales.puestas + puestas.length, pendientes: totales.pendientes + pendientes.length, faltan: totales.faltan + faltan.length };
       filas.push(`| ${ruta} | ${h.publicado ? "sí" : "no"} | ${puestas.length} de ${declaradas.length} (${reales} «Prueba real») | ${pendientes.length} | ${ogPropia ? "sí" : "pendiente (usa /og-default.webp)"} | ${faltan.length ? faltan.map((s) => s.split("/").pop()).join(", ") : "—"} |`);
-      for (const p of pendientes) detalle.push(`| ${ruta} | \`${p.archivo}\` | ${p.etiqueta} | ${TAMANO} | ${p.muestra} |`);
+      for (const p of pendientes) detalle.push(`| ${ruta} | \`${p.archivo}\` | ${p.etiqueta}${p.paso !== undefined ? ` (paso ${p.paso})` : ""}${p.obligatoria === false ? " · opcional" : ""} | ${TAMANO} | ${p.muestra} |`);
     }
   }
 

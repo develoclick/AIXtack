@@ -12,7 +12,7 @@ const ctx = (h: Herramienta) => ({ existeImagen: () => true, existentes: new Set
 const PATRON = /palabras editoriales/;
 
 async function base() {
-  return (await listarTodas()).find((h) => !h.interna && h.meta.slug === "crear-afiches-con-ia")! as Herramienta;
+  return (await listarTodas()).find((h) => !h.interna && h.meta.slug === "crear-anuncios-con-ia")! as Herramienta;
 }
 const conRelleno = (h: Herramienta, palabras: number): Herramienta => ({ ...h, faq: [...h.faq, { p: "Pregunta de relleno de la prueba", r: Array(palabras).fill("palabra").join(" ") }] });
 

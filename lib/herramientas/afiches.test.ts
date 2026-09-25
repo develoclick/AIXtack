@@ -13,13 +13,12 @@ import { construirPrompt } from "../prompts/construir-prompt";
 import datos from "../../content/herramientas/marketing/crear-afiches-con-ia";
 import type { Herramienta } from "./tipos";
 import { contarPalabras } from "../texto/contar-palabras";
-import { ejecutarPreproceso } from "./preprocesos";
+import { ejecutarPreproceso, variablesDePreproceso } from "./preprocesos";
 import { validarHerramienta } from "./validar";
 
 const ejemplo = Object.fromEntries(datos.campos.map((c) => [c.id, c.ejemplo]));
 const campos = datos.campos.map((c) => ({ id: c.id, label: c.label, valor: ejemplo[c.id], requerido: c.requerido }));
-const totalPalabras = ejecutarPreproceso(datos.preproceso!, ejemplo).resultados.find((r) => r.id === "total")!.valor;
-const opc = { usaPerfil: datos.usaPerfil, variables: { palabras: String(totalPalabras) } };
+const opc = { usaPerfil: datos.usaPerfil, variables: variablesDePreproceso(datos.preproceso, ejecutarPreproceso(datos.preproceso!, ejemplo)) };
 const perfil = { nombre: "Panadería La Espiga", direccion: "Av. Ejemplo 123", tono: "Cercano" };
 
 const N = {
@@ -111,7 +110,9 @@ test("el prompt del ejemplo contiene cada dato tal cual y ninguna llave", () => 
   assert.equal(/^- .*: \[FALTA\]/m.test(prompt), false, "con el ejemplo completo no queda ningún hueco en los datos");
   assert.equal(prompt.includes("[FALTA: Herramienta"), false);
   assert.match(prompt, /DATOS DE MI NEGOCIO\n- Nombre del negocio: Panadería La Espiga\n- Dirección: Av\. Ejemplo 123\n- Tono: Cercano/);
-  assert.match(prompt, /en Canva, tamaño A4/);
+  assert.ok(prompt.includes("BRIEF PARA DISEÑAR en Canva, para estos formatos: A4 impreso; Estado de WhatsApp o historia (9:16): orden de lectura"));
+  assert.ok(prompt.includes("3. PROMPT DE IMAGEN SIN TEXTO"), "foto real = No → imagen de apoyo generada");
+  assert.ok(!prompt.includes("usa la foto que adjunto"));
 });
 
 test("el prompt pide las tres cosas y fija las reglas del método", () => {
@@ -126,7 +127,8 @@ test("sin datos, cada campo requerido queda como [FALTA] y la tarea también", (
   const prompt = construirPrompt({}, vacios, null, datos.tarea, opc);
   for (const c of datos.campos.filter((x) => x.requerido)) assert.ok(prompt.includes(`- ${c.label}: [FALTA]`), `falta el hueco de «${c.label}»`);
   assert.equal(prompt.includes("- Condiciones:"), false, "condiciones es opcional: se omite");
-  assert.match(prompt, /BRIEF PARA DISEÑAR en \[FALTA: Herramienta de diseño\], tamaño \[FALTA: Tamaño\]/);
+  assert.ok(prompt.includes("BRIEF PARA DISEÑAR en Canva: orden de lectura"), "sin elegir dónde, se recomienda Canva; sin formatos no se cita ninguno");
+  assert.ok(prompt.includes("3. IMAGEN: [FALTA: si tengo una foto real de mi producto]."));
   assert.equal(/\{\{|\}\}/.test(prompt), false);
 });
 

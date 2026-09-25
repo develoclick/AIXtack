@@ -102,6 +102,9 @@ export function objetosDeArray(textoArray: string): string[] {
   return salida;
 }
 
+/** Capturas que caben en el ejemplo de una página de proceso (una evidencia por paso). */
+export const LIMITE_CAPTURAS_PROCESO = 8;
+
 export interface CapturaNueva {
   src: string;
   alt: string;
@@ -109,10 +112,22 @@ export interface CapturaNueva {
   leyenda: string;
   ancho: number;
   alto: number;
+  /** Paso del proceso del que es evidencia (viene de la captura pendiente). */
+  paso?: number;
 }
 
 const objeto = (c: CapturaNueva, sangria: string) =>
-  [`${sangria}{`, `${sangria}  src: ${JSON.stringify(c.src)},`, `${sangria}  alt: ${JSON.stringify(c.alt)},`, `${sangria}  etiqueta: ${JSON.stringify(c.etiqueta)},`, `${sangria}  ancho: ${c.ancho},`, `${sangria}  alto: ${c.alto},`, `${sangria}  leyenda: ${JSON.stringify(c.leyenda)},`, `${sangria}},`].join("\n");
+  [
+    `${sangria}{`,
+    `${sangria}  src: ${JSON.stringify(c.src)},`,
+    `${sangria}  alt: ${JSON.stringify(c.alt)},`,
+    `${sangria}  etiqueta: ${JSON.stringify(c.etiqueta)},`,
+    `${sangria}  ancho: ${c.ancho},`,
+    `${sangria}  alto: ${c.alto},`,
+    ...(c.paso !== undefined ? [`${sangria}  paso: ${c.paso},`] : []),
+    `${sangria}  leyenda: ${JSON.stringify(c.leyenda)},`,
+    `${sangria}},`,
+  ].join("\n");
 
 /** Reemplaza el valor de la propiedad `nombre: [...]` que empieza en la primera aparición tras `desde`. */
 function reemplazarArray(s: string, nombre: string, desde: number, nuevoTexto: string): { texto: string; fin: number } {
@@ -152,8 +167,10 @@ export function aplicarCambios({ fuente, ia, fecha, hoy, corregi, capturas }: Ca
   const anteriores = actual;
   const nuevas = capturas.map((c) => objeto(c, "      "));
   const enEjemplo = [...nuevas, ...anteriores.map((o) => "      " + o + ",")];
-  const quedan = enEjemplo.slice(0, 2);
-  const sobran = enEjemplo.slice(2);
+  // En un proceso (pasos con «numero:») el ejemplo enseña una evidencia por paso: caben 8; en una página simple, 2.
+  const limite = /\n  pasos: \[\s*\{\s*numero:/.test(s) ? LIMITE_CAPTURAS_PROCESO : 2;
+  const quedan = enEjemplo.slice(0, limite);
+  const sobran = enEjemplo.slice(limite);
   s = reemplazarArray(s, "capturas", ejemplo, quedan.length ? `[\n${quedan.join("\n")}\n    ]` : "[]").texto;
   if (sobran.length) {
     const mc = s.indexOf("\n  metodoCompleto: {");
@@ -191,17 +208,45 @@ export function aplicarCambios({ fuente, ia, fecha, hoy, corregi, capturas }: Ca
   return s;
 }
 
-export function capturaDesdePendiente(p: { archivo: string; etiqueta: string; muestra: string }, ruta: string, ia: string, fecha: string, tam: { ancho: number; alto: number }): CapturaNueva {
+export interface PendienteDeCaptura {
+  archivo: string;
+  etiqueta: string;
+  muestra: string;
+  paso?: number;
+  obligatoria?: boolean;
+}
+
+/** Etiquetas de imágenes hechas por una IA: su leyenda dice que fueron generadas con IA (lo exige el validador). */
+const GENERADAS_CON_IA = ["Simulación", "Foto generada con IA"];
+
+export function capturaDesdePendiente(p: PendienteDeCaptura, ruta: string, ia: string, fecha: string, tam: { ancho: number; alto: number }): CapturaNueva {
   const que = p.muestra.replace(/^Chat nuevo:\s*/i, "").replace(/^Mismo chat:\s*/i, "");
-  const esChat = p.etiqueta === "Prueba real";
-  return {
-    src: `/img/${ruta}/${p.archivo}`,
-    alt: esChat ? `Captura de la conversación con ${ia}: ${que}` : `Imagen final del ejemplo: ${que}`,
-    etiqueta: p.etiqueta,
-    leyenda: esChat ? `Prueba real con ${ia} el ${fecha}: la respuesta al prompt de esta página, sin editar.` : `${p.etiqueta} (${ia}, ${fecha}).`,
-    ancho: tam.ancho,
-    alto: tam.alto,
-  };
+  let alt: string;
+  let leyenda: string;
+  if (p.etiqueta === "Prueba real") {
+    alt = `Captura de la conversación con ${ia}: ${que}`;
+    leyenda = `Prueba real con ${ia} el ${fecha}: la respuesta al prompt de esta página, sin editar.`;
+  } else if (p.etiqueta === "Captura de la herramienta") {
+    alt = `Captura de esta herramienta: ${que}`;
+    leyenda = `Captura de la propia herramienta con el ejemplo cargado (${fecha}).`;
+  } else if (GENERADAS_CON_IA.includes(p.etiqueta)) {
+    alt = `Imagen generada con IA del ejemplo: ${que}`;
+    leyenda = `${p.etiqueta} generada con IA (${ia}, ${fecha}): sirve para visualizar, no es una foto real.`;
+  } else {
+    alt = `Imagen final del ejemplo: ${que}`;
+    leyenda = `${p.etiqueta} (${ia}, ${fecha}).`;
+  }
+  return { src: `/img/${ruta}/${p.archivo}`, alt, etiqueta: p.etiqueta, leyenda, ancho: tam.ancho, alto: tam.alto, ...(p.paso !== undefined ? { paso: p.paso } : {}) };
+}
+
+/**
+ * Qué hacer con cada captura pendiente según los archivos que existen: las que tienen archivo pasan al ejemplo; a las que no
+ * lo tienen se las pide (las obligatorias) o se las descarta (las marcadas `obligatoria: false`).
+ */
+export function repartirPendientes(pendientes: PendienteDeCaptura[], existe: (archivo: string) => boolean): { usar: PendienteDeCaptura[]; faltan: PendienteDeCaptura[]; descartadas: PendienteDeCaptura[] } {
+  const usar = pendientes.filter((p) => existe(p.archivo));
+  const sin = pendientes.filter((p) => !existe(p.archivo));
+  return { usar, faltan: sin.filter((p) => p.obligatoria !== false), descartadas: sin.filter((p) => p.obligatoria === false) };
 }
 
 /* ───────────────────────── ejecución ───────────────────────── */
@@ -276,12 +321,11 @@ async function main() {
   // 1) archivos de las capturas pendientes
   const faltan: string[] = [];
   const capturas: CapturaNueva[] = [];
-  for (const p of datos.capturasPendientes as { archivo: string; etiqueta: string; muestra: string }[]) {
+  const reparto = repartirPendientes(datos.capturasPendientes as PendienteDeCaptura[], (a) => fs.existsSync(path.join(carpeta, a)));
+  for (const p of reparto.faltan) faltan.push(`public/img/${args.ruta}/${p.archivo}  ←  ${p.etiqueta}: ${p.muestra}`);
+  if (reparto.descartadas.length) console.log(`Sin archivo y opcionales (no se publican): ${reparto.descartadas.map((p) => p.archivo).join(", ")}`);
+  for (const p of reparto.usar) {
     const f = path.join(carpeta, p.archivo);
-    if (!fs.existsSync(f)) {
-      faltan.push(`public/img/${args.ruta}/${p.archivo}  ←  ${p.etiqueta}: ${p.muestra}`);
-      continue;
-    }
     try {
       capturas.push(capturaDesdePendiente(p, args.ruta, args.ia, args.fecha, tamanoWebp(fs.readFileSync(f))));
     } catch (e) {

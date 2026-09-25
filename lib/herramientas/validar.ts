@@ -12,7 +12,8 @@ import { verificarCasos } from "./calculadora";
 import { ErrorExpresion, idsUsados } from "./expresiones";
 import { contarPalabras } from "../texto/contar-palabras";
 import { verificarCasosPreproceso } from "./preprocesos";
-import { ETIQUETAS_IMAGEN, PERFIL_CLAVES, type Herramienta } from "./tipos";
+import { nombresDeCondicion, referenciasDe } from "./plantillas";
+import { dicePorIA, ETIQUETAS_GENERADAS_CON_IA, ETIQUETAS_IMAGEN, pasosDelProceso, PERFIL_CLAVES, SEPARADOR_CASILLAS, type Herramienta, type PasoProceso } from "./tipos";
 
 export interface ContextoValidacion {
   existeImagen: (src: string) => boolean;
@@ -33,6 +34,26 @@ export const PALABRAS_MAX = 2500;
 const PALABRAS_ABSOLUTAS = /garantiz|100\s?%|aumenta(?:r|mos)? tus ventas|duplica tus ventas/i;
 const TIPOS = ["generador", "calculadora", "analizador", "kit"];
 
+/**
+ * El texto explicativo de la página cuando `pasos` es un PROCESO: lo que vas a tener, el problema, lo que necesitas, cada paso
+ * (qué haces, opciones, así sabes que salió bien, si algo falla, resultado) y el kit final. Los prompts de los pasos NO cuentan
+ * (son prompts, como la `tarea`). Con la lista simple de 3 textos de «Cómo usarlo» devuelve esos textos.
+ */
+export function textosProceso(h: Herramienta): string[] {
+  const proceso = pasosDelProceso(h);
+  if (!proceso) return [...((h.pasos as string[] | undefined) ?? [])];
+  const t: string[] = [];
+  for (const r of h.resultadoFinal ?? []) t.push(r.titulo, r.descripcion, ...(r.captura ? [r.captura.leyenda] : []));
+  for (const p of h.problema ?? []) t.push(p.titulo, p.texto);
+  for (const n of h.necesitas ?? []) t.push(n.nombre, n.para, n.alternativa ?? "");
+  for (const p of proceso) {
+    t.push(p.titulo, p.queHaces, p.resultado, p.sinOpciones ?? "", ...p.asiSabesQueSalioBien, ...p.siAlgoFalla, ...(p.avisos ?? []).map((a) => a.texto), ...(p.comprobar ?? []).map((c) => c.etiqueta));
+    for (const o of p.opciones ?? []) t.push(o.titulo, o.texto, ...(o.notas ?? []).map((a) => a.texto), ...(o.avisos ?? []).map((a) => a.texto));
+  }
+  for (const k of h.kitFinal ?? []) t.push(k.texto);
+  return t;
+}
+
 /** Todo el texto que ve la persona en la página, salvo el prompt (`tarea`), los datos técnicos y los casos de prueba. */
 export function textosVisibles(h: Herramienta): string[] {
   const t: string[] = [h.meta.titulo, h.meta.descripcion, h.meta.tiempo, h.antesDespues.antes, h.antesDespues.despues];
@@ -41,9 +62,9 @@ export function textosVisibles(h: Herramienta): string[] {
     for (const e of h.calculadora.entradas) t.push(e.label, e.ayuda ?? "");
     for (const s of h.calculadora.salidas) t.push(s.etiqueta, s.ayuda ?? "");
   }
-  t.push(...(h.pasos ?? []));
+  t.push(...textosProceso(h), h.tituloRevision ?? "");
   for (const m of h.mejoras) t.push(m.label, m.prompt);
-  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
+  t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi, h.ejemplo.notaPreparada ?? "");
   for (const c of h.ejemplo.capturas) t.push(c.alt, c.leyenda);
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
@@ -58,20 +79,20 @@ export function textosVisibles(h: Herramienta): string[] {
 /**
  * Solo el texto EDITORIAL de la página: lo que se lee como explicación. Deja fuera el formulario (etiquetas y ayudas de
  * los campos y de la calculadora), los valores de ejemplo del formulario, los prompts (`tarea` y el texto de cada
- * «mejora») y los datos técnicos. Lo usan el validador (estándar 17) y `npm run contar-palabras`. `textosVisibles` (más amplio) se usa para las demás comprobaciones de texto.
+ * «mejora»), el `alt` de las imágenes (es un atributo, no texto visible) y los datos técnicos. Lo usan el validador (estándar 17) y `npm run contar-palabras`. `textosVisibles` (más amplio) se usa para las demás comprobaciones de texto.
  */
 export function textosEditoriales(h: Herramienta): string[] {
   const t: string[] = [h.meta.titulo, h.meta.descripcion, h.antesDespues.antes, h.antesDespues.despues];
-  t.push(...(h.pasos ?? []));
+  t.push(...textosProceso(h));
   for (const m of h.mejoras) t.push(m.label);
   t.push(h.ejemplo.negocio, ...Object.values(h.ejemplo.resultado ?? {}), ...h.ejemplo.queCorregi);
-  for (const c of h.ejemplo.capturas) t.push(c.alt, c.leyenda);
+  for (const c of h.ejemplo.capturas) t.push(c.leyenda);
   t.push(...h.checklist);
   for (const p of h.porQueFunciona) t.push(p.titulo, p.texto);
   for (const r of h.rubros) t.push(r.rubro, r.ejemplo, r.consejo);
   for (const e of h.errores) t.push(e.error, e.solucion);
   for (const f of h.faq) t.push(f.p, f.r);
-  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).flatMap((c) => [c.alt, c.leyenda]));
+  if (h.metodoCompleto) t.push(h.metodoCompleto.titulo, ...h.metodoCompleto.parrafos, ...(h.metodoCompleto.capturas ?? []).map((c) => c.leyenda));
   for (const l of h.meta.limites ?? []) t.push(l.concepto, l.valor);
   return t.filter(Boolean);
 }
@@ -114,9 +135,80 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
     error(c.ejemplo.trim() !== "" || !c.requerido, `Campo «${c.id}»: falta el ejemplo de «Probar con un ejemplo».`);
     error(c.tipo !== "seleccion" || Boolean(c.opciones && c.opciones.length > 1), `Campo «${c.id}»: una selección necesita opciones.`);
     error(c.tipo !== "seleccion" || !c.opciones || c.opciones.includes(c.ejemplo), `Campo «${c.id}»: el ejemplo no está entre las opciones.`);
+    if (c.tipo === "casillas") {
+      error(Boolean(c.opciones && c.opciones.length > 1), `Campo «${c.id}»: unas casillas necesitan opciones.`);
+      error((c.opciones ?? []).every((o) => !o.includes(SEPARADOR_CASILLAS.trim())), `Campo «${c.id}»: las opciones de unas casillas no pueden llevar «;».`);
+      const marcadas = c.ejemplo.split(SEPARADOR_CASILLAS.trim()).map((x) => x.trim()).filter(Boolean);
+      error(marcadas.every((m) => (c.opciones ?? []).includes(m)), `Campo «${c.id}»: el ejemplo tiene una opción que no está entre las opciones.`);
+    }
   }
-  for (const m of h.tarea.matchAll(/\{\{\s*([A-Za-z0-9_]+)\s*\}\}/g)) error(idsCampos.includes(m[1]) || m[1] in (h.preproceso?.variables ?? {}), `La tarea cita {{${m[1]}}} y no existe ese campo ni una variable del pre-proceso.`);
-  error(h.tarea.replace(/\{\{\s*[A-Za-z0-9_]+\s*\}\}/g, "").trim().length >= 40, "La tarea es demasiado corta.");
+  const variablesPagina = Object.keys(h.preproceso?.variables ?? {});
+  const perfilUsado = (h.usaPerfil ?? []) as string[];
+  /** Una plantilla (la `tarea` o el prompt de un paso) solo puede citar campos, variables de la página y datos del perfil que la herramienta usa. */
+  const validarPlantilla = (donde: string, texto: string) => {
+    const { marcas, condiciones, anidado } = referenciasDe(texto);
+    error(!anidado, `${donde}: los bloques {{#si}} no se pueden anidar.`);
+    const existe = (ref: string) => (ref.startsWith("perfil.") ? perfilUsado.includes(ref.slice("perfil.".length)) : idsCampos.includes(ref) || variablesPagina.includes(ref));
+    for (const ref of marcas) error(existe(ref), `${donde} cita {{${ref}}} y no existe ese campo, variable del pre-proceso ni dato del perfil que la herramienta use (usaPerfil).`);
+    for (const c of condiciones) {
+      for (const ref of nombresDeCondicion(c)) error(existe(ref), `${donde}: la condición «${c}» cita «${ref}», que no existe.`);
+      validarValoresDeCondicion(donde, c);
+    }
+    error(!/\{\{|\}\}/.test(texto.replace(/\{\{[^{}]*\}\}/g, "")), `${donde}: hay llaves sueltas.`);
+  };
+  /** En «campo=Valor» o «campo~Valor», si el campo tiene opciones, el valor tiene que ser una de ellas (evita erratas). */
+  const validarValoresDeCondicion = (donde: string, condicion: string) => {
+    for (const parte of condicion.split("|")) {
+      const c = parte.trim().replace(/^!/, "");
+      const m = /^([^=~]+)([=~])(.*)$/.exec(c);
+      if (!m) continue;
+      const campo = h.campos.find((x) => x.id === m[1].trim());
+      if (campo?.opciones) error(campo.opciones.includes(m[3].trim()), `${donde}: la condición «${condicion}» usa «${m[3].trim()}», que no es una opción de «${campo.id}».`);
+    }
+  };
+  validarPlantilla("La tarea", h.tarea);
+  error(h.tarea.replace(/\{\{[^{}]*\}\}/g, "").trim().length >= 40, "La tarea es demasiado corta.");
+
+  /* ── proceso (pasos, resultado final, problema, necesitas, kit) ── */
+  const proceso = pasosDelProceso(h);
+  if (proceso) {
+    const iguales = (ids: string[]) => new Set(ids).size === ids.length;
+    error((h.resultadoFinal ?? []).length >= 3 && iguales((h.resultadoFinal ?? []).map((r) => r.id)), "Proceso: «resultadoFinal» necesita al menos 3 resultados con id distinto.");
+    for (const r of h.resultadoFinal ?? []) error(Boolean(r.titulo?.trim() && r.descripcion?.trim()), `Proceso: el resultado «${r.id}» necesita título y descripción.`);
+    error((h.problema ?? []).length === 3, `Proceso: «problema» debe tener 3 tarjetas (tiene ${(h.problema ?? []).length}).`);
+    error((h.necesitas ?? []).length >= 3 && (h.necesitas ?? []).some((n) => n.obligatorio), "Proceso: «necesitas» necesita al menos 3 elementos y alguno obligatorio.");
+    error((h.kitFinal ?? []).length >= 3 && iguales((h.kitFinal ?? []).map((k) => k.id)), "Proceso: «kitFinal» necesita al menos 3 ítems con id distinto.");
+    error(proceso.length >= 3 && proceso.every((p, i) => p.numero === i + 1), "Proceso: los pasos deben estar numerados 1, 2, 3… en orden.");
+    error(proceso.filter((p) => p.promptMaestro).length <= 1, "Proceso: solo un paso puede llevar el prompt completo (promptMaestro).");
+    const condicion = (donde: string, c: string | undefined) => {
+      if (!c) return;
+      for (const ref of nombresDeCondicion(c)) error(ref.startsWith("perfil.") ? perfilUsado.includes(ref.slice(8)) : idsCampos.includes(ref) || variablesPagina.includes(ref), `${donde}: la condición «${c}» cita «${ref}», que no existe.`);
+      validarValoresDeCondicion(donde, c);
+    };
+    for (const p of proceso as PasoProceso[]) {
+      const d = `Paso ${p.numero}`;
+      error(Boolean(p.titulo?.trim() && p.queHaces?.trim() && p.resultado?.trim()), `${d}: necesita título, «queHaces» y «resultado».`);
+      error(/^\d+ min$/.test(p.tiempo), `${d}: el tiempo debe ser como «2 min».`);
+      error(p.asiSabesQueSalioBien.length >= 2, `${d}: «asiSabesQueSalioBien» necesita al menos 2 comprobaciones.`);
+      error(p.siAlgoFalla.length >= 1, `${d}: «siAlgoFalla» necesita al menos 1 salida.`);
+      error(!p.promptMaestro || !p.prompt, `${d}: un paso con promptMaestro no lleva además su propio prompt.`);
+      if (p.prompt) validarPlantilla(`${d} (prompt)`, p.prompt);
+      for (const a of p.avisos ?? []) condicion(`${d} (aviso)`, a.si);
+      for (const c of p.comprobar ?? []) error(idsCampos.includes(c.campo), `${d}: comprobar cita el campo «${c.campo}», que no existe.`);
+      error(iguales((p.opciones ?? []).map((o) => o.id)), `${d}: hay opciones con el mismo id.`);
+      for (const o of p.opciones ?? []) {
+        error(Boolean(o.titulo?.trim() && o.texto?.trim()), `${d}, opción «${o.id}»: necesita título y texto.`);
+        if (o.prompt) validarPlantilla(`${d}, opción «${o.id}» (prompt)`, o.prompt);
+        condicion(`${d}, opción «${o.id}» (mostrarSi)`, o.mostrarSi);
+        condicion(`${d}, opción «${o.id}» (primeraSi)`, o.primeraSi);
+        for (const a of [...(o.notas ?? []), ...(o.avisos ?? [])]) condicion(`${d}, opción «${o.id}» (aviso)`, a.si);
+      }
+    }
+    for (const k of h.kitFinal ?? []) condicion(`Kit final «${k.id}»`, k.mostrarSi);
+    for (const c of [...h.ejemplo.capturas, ...h.capturasPendientes ?? []]) error(c.paso === undefined || proceso.some((p) => p.numero === c.paso), `Captura «${"src" in c ? c.src : c.archivo}»: cita el paso ${c.paso}, que no existe.`);
+  } else {
+    error(!h.resultadoFinal && !h.problema && !h.necesitas && !h.kitFinal, "Los campos resultadoFinal, problema, necesitas y kitFinal solo se usan con «pasos» de proceso.");
+  }
 
   /* ── calculadora ── */
   if (h.calculadora) {
@@ -149,7 +241,8 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
       for (const n of p.palabras?.niveles ?? []) for (const c of n.campos) error(idsCampos.includes(c), `Pre-proceso conteo-palabras, nivel «${n.etiqueta}»: el campo «${c}» no existe.`);
     } else error(Boolean(p.campos.texto) && idsCampos.includes(p.campos.texto!), `Pre-proceso: el campo «${p.campos.texto}» no existe.`);
     for (const [variable, resultado] of Object.entries(p.variables ?? {})) {
-      error(h.tarea.includes(`{{${variable}}}`), `Pre-proceso: la variable «{{${variable}}}» (resultado «${resultado}») no aparece en la tarea.`);
+      const plantillas = [h.tarea, ...(pasosDelProceso(h) ?? []).flatMap((p) => [p.prompt ?? "", ...(p.opciones ?? []).map((o) => o.prompt ?? "")])];
+      error(plantillas.some((t) => t.includes(`{{${variable}}}`)), `Pre-proceso: la variable «{{${variable}}}» (resultado «${resultado}») no aparece en la tarea ni en ningún prompt de un paso.`);
     }
     error(p.tipo !== "conteo-temas" || Boolean(p.campos.temas && idsCampos.includes(p.campos.temas)), "Pre-proceso conteo-temas: falta el campo del libro de códigos.");
     error(p.casosDePrueba.length >= 3, `El pre-proceso necesita al menos 3 casos de prueba (tiene ${p.casosDePrueba.length}).`);
@@ -193,7 +286,8 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
 
   /* ── prueba real (solo publicadas) ── */
   publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Faltan meta.probadoEn y meta.probadoFecha: sin prueba real no se publica.");
-  publicada(h.ejemplo.capturas.length >= 1 && h.ejemplo.capturas.length <= 2, `Capturas: ${h.ejemplo.capturas.length} (deben ser 1–2 en el ejemplo real).`);
+  const maxCapturas = proceso ? 8 : 2;
+  publicada(h.ejemplo.capturas.length >= 1 && h.ejemplo.capturas.length <= maxCapturas, `Capturas: ${h.ejemplo.capturas.length} (deben ser 1–${maxCapturas} en el ejemplo real).`);
   publicada(h.ejemplo.capturas.some((c) => c.etiqueta === "Prueba real"), "Falta al menos una captura etiquetada «Prueba real».");
   // La transcripción es la respuesta real del mismo chat de la prueba: sin prueba (IA y fecha) no debe existir.
   if (h.ejemplo.transcripcion?.trim()) publicada(Boolean(h.meta.probadoEn && h.meta.probadoFecha), "Hay «transcripcion» pero faltan meta.probadoEn y meta.probadoFecha: la transcripción es de la prueba real y no se inventa.");
@@ -202,6 +296,7 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
     error(Boolean(c.alt?.trim()), `Captura ${c.src}: el alt es obligatorio.`);
     error(!c.alt?.trim() || c.alt.trim().length >= 25, `Captura ${c.src}: el alt es demasiado corto para describir la imagen.`);
     error(Boolean(c.leyenda?.trim()), `Captura ${c.src}: falta la leyenda.`);
+    error(!ETIQUETAS_GENERADAS_CON_IA.includes(c.etiqueta) || dicePorIA(c.leyenda ?? ""), `Captura ${c.src}: una imagen «${c.etiqueta}» es generada por una IA y su leyenda debe decir que fue generada con IA.`);
     error(Number.isInteger(c.ancho) && c.ancho > 0 && Number.isInteger(c.alto) && c.alto > 0, `Captura ${c.src}: ancho y alto deben ser enteros positivos (píxeles del archivo).`);
     error(c.src.startsWith(`/img/${h.meta.area}/${h.meta.slug}/`), `Captura ${c.src}: debe estar en /img/${h.meta.area}/${h.meta.slug}/.`);
     publicada(ctx.existeImagen(c.src), `Captura ${c.src}: el archivo no existe en public/.`);
@@ -213,6 +308,7 @@ export function validarHerramienta(h: Herramienta, ctx: ContextoValidacion): Res
     error(/^[a-z0-9][a-z0-9-]*\.webp$/.test(p.archivo), `Captura pendiente «${p.archivo}»: el nombre debe ser minúsculas y terminar en .webp (por ejemplo prueba-01.webp).`);
     error((ETIQUETAS_IMAGEN as readonly string[]).includes(p.etiqueta), `Captura pendiente ${p.archivo}: etiqueta «${p.etiqueta}» no válida.`);
     error(Boolean(p.muestra?.trim()), `Captura pendiente ${p.archivo}: falta indicar qué debe mostrar.`);
+    error(!ETIQUETAS_GENERADAS_CON_IA.includes(p.etiqueta) || dicePorIA(p.muestra ?? ""), `Captura pendiente ${p.archivo}: una imagen «${p.etiqueta}» es generada por una IA y su descripción debe decir que será generada con IA.`);
     // Solo aviso: subir la imagen antes de actualizar los datos no debe romper el despliegue.
     aviso(!ctx.existeImagen(`/img/${h.meta.area}/${h.meta.slug}/${p.archivo}`), `Captura pendiente ${p.archivo}: el archivo ya existe en public/img/…; pásalo a \`ejemplo.capturas\` y quítalo de las pendientes.`);
   }

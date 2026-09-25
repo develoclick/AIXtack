@@ -65,25 +65,35 @@ test("las páginas internas de prueba (archivos «_…») no existen en producci
   assert.match(codigo, /esProduccion && hijo\.name\.startsWith\("_"\)/);
 });
 
-test("EspacioAnuncio solo se usa en PaginaHerramienta, dos veces, después de los bloques 6 y 10", () => {
+test("EspacioAnuncio solo se usa en PaginaHerramienta, dos veces por plantilla: después del ejemplo real y después de los errores comunes; nunca en la herramienta, el proceso ni junto a Copiar", () => {
   const dir = path.join(raiz, "components", "herramientas");
   const usan = fs.readdirSync(dir).filter((f) => f !== "espacio-anuncio.tsx" && fs.readFileSync(path.join(dir, f), "utf8").includes("<EspacioAnuncio"));
   assert.deepEqual(usan, ["pagina-herramienta.tsx"]);
 
-  const pagina = fs.readFileSync(path.join(dir, "pagina-herramienta.tsx"), "utf8");
-  const posiciones = [...pagina.matchAll(/<EspacioAnuncio posicion="([a-z-]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(posiciones, ["despues-del-ejemplo", "despues-de-errores"]);
-  const iEj = pagina.indexOf('<Bloque id="ejemplo"');
-  const iA1 = pagina.indexOf('posicion="despues-del-ejemplo"');
-  const iRev = pagina.indexOf('<Bloque id="revision"');
-  assert.ok(iEj < iA1 && iA1 < iRev, "el primer espacio va entre el bloque 6 y el 7");
-  const iErr = pagina.indexOf('<Bloque id="errores"');
-  const iA2 = pagina.indexOf('posicion="despues-de-errores"');
-  const iFaq = pagina.indexOf('<Bloque id="faq"');
-  assert.ok(iErr < iA2 && iA2 < iFaq, "el segundo espacio va después del bloque 10");
-  const iHerr = pagina.indexOf('<Bloque id="herramienta"');
-  const iComo = pagina.indexOf('<Bloque id="como-usarlo"');
-  assert.ok(!pagina.slice(iHerr, iComo).includes("EspacioAnuncio"), "nunca dentro del bloque de la herramienta");
+  const fuente = fs.readFileSync(path.join(dir, "pagina-herramienta.tsx"), "utf8");
+  const corte = fuente.indexOf("// PLANTILLA SIMPLE");
+  assert.ok(corte > 0, "la plantilla simple y la de proceso viven en el mismo archivo");
+  for (const [nombre, pagina, antesDe] of [
+    ["proceso", fuente.slice(0, corte), '<Bloque id="proceso"'],
+    ["simple", fuente.slice(corte), '<Bloque id="como-usarlo"'],
+  ] as const) {
+    const posiciones = [...pagina.matchAll(/<EspacioAnuncio posicion="([a-z-]+)"/g)].map((m) => m[1]);
+    assert.deepEqual(posiciones, ["despues-del-ejemplo", "despues-de-errores"], nombre);
+    const iEj = pagina.indexOf('<Bloque id="ejemplo"');
+    const iA1 = pagina.indexOf('posicion="despues-del-ejemplo"');
+    const iRev = pagina.indexOf('<Bloque id="revision"');
+    assert.ok(iEj < iA1 && iA1 < iRev, `${nombre}: el primer espacio va entre el ejemplo real y la revisión`);
+    const iErr = pagina.indexOf('<Bloque id="errores"');
+    const iA2 = pagina.indexOf('posicion="despues-de-errores"');
+    const iFaq = pagina.indexOf('<Bloque id="faq"');
+    assert.ok(iErr < iA2 && iA2 < iFaq, `${nombre}: el segundo espacio va después de los errores comunes`);
+    const iHerr = pagina.indexOf('<Bloque id="herramienta"');
+    assert.ok(!pagina.slice(iHerr, pagina.indexOf(antesDe === '<Bloque id="proceso"' ? '<Bloque id="ejemplo"' : antesDe)).includes("EspacioAnuncio"), `${nombre}: nunca dentro de la herramienta`);
+  }
+  // En la plantilla de proceso, ni el proceso ni el kit llevan anuncio; y los componentes con botones Copiar no lo importan.
+  const proceso = fuente.slice(0, corte);
+  assert.ok(!proceso.slice(proceso.indexOf('<Bloque id="proceso"'), proceso.indexOf('<Bloque id="ejemplo"')).includes("EspacioAnuncio"));
+  for (const f of ["proceso.tsx", "boton-copiar.tsx", "mejoras-prompt.tsx", "herramienta-interactiva.tsx"]) assert.ok(!fs.readFileSync(path.join(dir, f), "utf8").includes("EspacioAnuncio"), f);
 });
 
 test("no hay código de AdSense en los componentes de herramientas", () => {

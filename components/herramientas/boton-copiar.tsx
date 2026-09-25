@@ -34,9 +34,12 @@ export function BotonCopiar({
   destino = "ChatGPT, Gemini o Claude",
   compacto = false,
   className,
+  ariaLabel,
 }: {
   texto: string;
   etiqueta?: string;
+  /** Nombre accesible completo cuando hay varios botones «Copiar» en la página (debe contener el texto visible). */
+  ariaLabel?: string;
   destino?: string;
   compacto?: boolean;
   className?: string;
@@ -81,6 +84,7 @@ export function BotonCopiar({
       <button
         type="button"
         onClick={copiar}
+        aria-label={ariaLabel}
         className={cn(
           "guide-focus inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border px-4 text-sm font-semibold transition-colors",
           compacto ? "" : "w-full sm:w-auto",

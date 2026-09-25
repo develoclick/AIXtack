@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { AuroraRibbon } from "@/components/visual/aurora-ribbon";
 import { getCategory } from "@/content/categorias";
 import { rutaHerramienta, type HerramientaCargada } from "@/lib/herramientas/registro";
+import { pasosDelProceso } from "@/lib/herramientas/tipos";
 import { formatDate } from "@/lib/utils/format";
 import { CapturaFigura } from "./captura-figura";
 import { ChecklistRevision } from "./checklist-revision";
@@ -17,10 +18,13 @@ import { EjemploReal } from "./ejemplo-real";
 import { EspacioAnuncio } from "./espacio-anuncio";
 import { Faq } from "./faq";
 import { FirmaVerificacion } from "./firma-verificacion";
-import { HerramientaInteractiva } from "./herramienta-interactiva";
+import { ProveedorHerramienta } from "./estado-herramienta";
+import { HerramientaInteractiva, PanelDatos } from "./herramienta-interactiva";
 import { MejorasPrompt } from "./mejoras-prompt";
 import { PestanasRubro } from "./pestanas-rubro";
+import { KitFinal, ProcesoPasos } from "./proceso";
 import { Relacionadas } from "./relacionadas";
+import { ListaNecesitas, TarjetasProblema, TarjetasResultado } from "./tarjetas-proceso";
 
 const PASOS_POR_DEFECTO: [string, string, string] = [
   "Completa los datos de esta tarea. Si quieres, añade los de tu negocio: se guardan solo en tu navegador. También puedes pulsar «Probar con un ejemplo».",
@@ -46,44 +50,194 @@ function Bloque({ id, titulo, children }: { id: string; titulo: string; children
  */
 export function PaginaHerramienta({ herramienta: h, relacionadas }: { herramienta: HerramientaCargada; relacionadas: HerramientaCargada[] }) {
   const categoria = getCategory(h.meta.area);
-  const pasos = h.pasos ?? PASOS_POR_DEFECTO;
+  const proceso = pasosDelProceso(h);
+  const pasos = proceso ? PASOS_POR_DEFECTO : ((h.pasos as [string, string, string] | undefined) ?? PASOS_POR_DEFECTO);
   const limites = h.meta.limites ?? [];
 
+  // 1 · Título con resultado + etiquetas (común a las dos plantillas)
+  const cabecera = (
+  <header className="not-prose relative isolate border-b">
+    <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="bg-lines absolute inset-x-0 top-0 h-full opacity-60" />
+      <AuroraRibbon className="-right-[14%] top-[2%] hidden h-[22rem] w-[58%] lg:block" />
+    </div>
+    <div className="mx-auto max-w-[64rem] px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pb-14 lg:pt-10">
+      <Breadcrumbs items={[...(categoria ? [{ name: categoria.name, path: `/${categoria.slug}` }] : []), { name: h.meta.titulo, path: rutaHerramienta(h.meta) }]} />
+      {categoria && (
+        <p className={estilos.eyebrow}>
+          <Link href={`/${categoria.slug}`} className="guide-focus hover:underline">
+            {categoria.name}
+          </Link>
+        </p>
+      )}
+      <h1 className="mt-3 max-w-4xl text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-guide-ink sm:text-5xl">{h.meta.titulo}</h1>
+      <p className="mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">{h.meta.descripcion}</p>
+      <ul className="mt-6 flex flex-wrap gap-2" aria-label="Datos de la herramienta">
+        <li className={ui.chip}>
+          <Clock className="size-3.5" aria-hidden />
+          {h.meta.tiempo}
+        </li>
+        <li className={ui.chip}>
+          <Gift className="size-3.5" aria-hidden />
+          Gratis
+        </li>
+        <li className={ui.chip}>
+          <MessageSquare className="size-3.5" aria-hidden />
+          ChatGPT, Gemini o Claude{h.meta.herramientasExtra ? ` + ${h.meta.herramientasExtra}` : ""}
+        </li>
+      </ul>
+    </div>
+  </header>
+  );
+
+  // PLANTILLA DE PROCESO (herramienta + guía corta con pasos): docs/herramientas-guia-tecnica.md
+  if (proceso) {
+    const datosInteractivos = { campos: h.campos, usaPerfil: h.usaPerfil, calculadora: h.calculadora, preproceso: h.preproceso ?? null, tarea: h.tarea };
+    const tiempoLargo = h.meta.tiempo.replace(/\bmin$/, "minutos");
+    return (
+      <article className="herramienta-scope">
+        {cabecera}
+
+        <ProveedorHerramienta datos={datosInteractivos}>
+          <div className="mx-auto max-w-[64rem] space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+            {/* 1 · Lo que vas a tener */}
+            <Bloque id="resultado" titulo={`Lo que vas a tener en ${tiempoLargo}`}>
+              <TarjetasResultado resultados={h.resultadoFinal ?? []} />
+            </Bloque>
+
+            {/* 2 · El problema */}
+            <Bloque id="problema" titulo="El problema">
+              <TarjetasProblema items={h.problema ?? []} />
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                <div className="rounded-xl border bg-background p-5">
+                  <p className={ui.tagNeutral}>Antes: el pedido típico</p>
+                  <p className="mt-3 text-[0.97rem] leading-relaxed text-foreground/90">
+                    <Inline text={h.antesDespues.antes} />
+                  </p>
+                </div>
+                <div className="rounded-xl border border-brand/40 bg-brand-muted/40 p-5">
+                  <p className={estilos.tag}>Después: con este proceso</p>
+                  <p className="mt-3 text-[0.97rem] leading-relaxed text-foreground/90">
+                    <Inline text={h.antesDespues.despues} />
+                  </p>
+                </div>
+              </div>
+            </Bloque>
+
+            {/* 3 · Qué necesitas */}
+            <Bloque id="necesitas" titulo="Qué necesitas">
+              <ListaNecesitas items={h.necesitas ?? []} />
+            </Bloque>
+
+            {/* 4 · Tus datos: el formulario y el conteo; los prompts salen en cada paso del proceso */}
+            <Bloque id="herramienta" titulo="Tus datos">
+              <PanelDatos conCopiar={false} />
+              {limites.length > 0 && h.meta.plataforma && (
+                <div className="mt-6 rounded-xl border bg-guide-surface p-4 sm:p-5">
+                  <h3 className="text-base font-semibold text-guide-ink">Límites de {h.meta.plataforma.nombre}</h3>
+                  <ul className="mt-2 space-y-2 text-[0.97rem] leading-relaxed text-foreground/90">
+                    {limites.map((l) => (
+                      <li key={l.concepto}>
+                        <strong>{l.concepto}:</strong> {l.valor}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </Bloque>
+
+            {/* 5 · El proceso */}
+            <Bloque id="proceso" titulo="El proceso">
+              <ProcesoPasos pasos={proceso} mejoras={h.mejoras} />
+            </Bloque>
+
+            {/* 6 · Tu kit final */}
+            <Bloque id="kit" titulo="Tu kit final">
+              <KitFinal items={h.kitFinal ?? []} clave={`${h.meta.area}/${h.meta.slug}`} />
+            </Bloque>
+
+            {/* 7 · Ejemplo real, con una evidencia por paso, y «Qué corregí yo» */}
+            <Bloque id="ejemplo" titulo="Un ejemplo, paso a paso">
+              <EjemploReal ejemplo={h.ejemplo} datos={datosDelEjemplo(h)} calculos={calculosDelEjemplo(h)} pendientes={pendientesVisibles(h.capturasPendientes)} pasos={proceso.map((p) => ({ numero: p.numero, titulo: p.titulo }))} />
+            </Bloque>
+
+            <EspacioAnuncio posicion="despues-del-ejemplo" />
+
+            {/* 8 · Revisa antes de publicar (o de imprimir) */}
+            <Bloque id="revision" titulo={h.tituloRevision ?? "Revisa antes de publicar"}>
+              <ChecklistRevision items={h.checklist} />
+            </Bloque>
+
+            {/* 9 · Por qué funciona */}
+            <Bloque id="por-que-funciona" titulo="Por qué funciona">
+              <ul className="grid gap-4 md:grid-cols-2">
+                {h.porQueFunciona.map((p) => (
+                  <li key={p.titulo} className="rounded-xl border bg-background p-5">
+                    <h3 className={ui.h4}>{p.titulo}</h3>
+                    <p className="mt-2 text-[0.97rem] leading-relaxed text-foreground/90">
+                      <Inline text={p.texto} />
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </Bloque>
+
+            {/* 10 · Según tu tipo de negocio */}
+            <Bloque id="rubros" titulo="Según tu tipo de negocio">
+              <PestanasRubro rubros={h.rubros} />
+            </Bloque>
+
+            {/* 11 · Errores comunes */}
+            <Bloque id="errores" titulo="Errores comunes">
+              <ul className="grid gap-4 md:grid-cols-2">
+                {h.errores.map((e) => (
+                  <li key={e.error} className="rounded-xl border bg-background p-5">
+                    <h3 className={ui.h4}>{e.error}</h3>
+                    <p className="mt-2 text-[0.97rem] leading-relaxed text-foreground/90">
+                      <span className="font-semibold text-guide-ink">Cómo evitarlo: </span>
+                      <Inline text={e.solucion} />
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </Bloque>
+
+            <EspacioAnuncio posicion="despues-de-errores" />
+
+            {h.metodoCompleto && (
+              <details className="group rounded-xl border bg-guide-surface px-4 py-2 sm:px-5">
+                <summary className="guide-focus flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 py-2 text-lg font-semibold text-guide-ink">{h.metodoCompleto.titulo}</summary>
+                <div className="pb-4">
+                  <RichText text={h.metodoCompleto.parrafos.join("\n\n")} />
+                </div>
+              </details>
+            )}
+
+            {/* 12 · Preguntas frecuentes y siguiente paso */}
+            <Bloque id="faq" titulo="Preguntas frecuentes">
+              <Faq preguntas={h.faq} />
+            </Bloque>
+
+            {relacionadas.length > 0 && (
+              <Bloque id="siguiente" titulo="Siguiente paso">
+                <Relacionadas herramientas={relacionadas} />
+              </Bloque>
+            )}
+
+            {/* 13 · Autor y verificación */}
+            <Bloque id="verificacion" titulo="Autor y verificación">
+              <FirmaVerificacion meta={h.meta} />
+            </Bloque>
+          </div>
+        </ProveedorHerramienta>
+      </article>
+    );
+  }
+
+  // PLANTILLA SIMPLE (los 13 bloques de siempre)
   return (
     <article className="herramienta-scope">
-      {/* 1 · Título con resultado + etiquetas */}
-      <header className="not-prose relative isolate border-b">
-        <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="bg-lines absolute inset-x-0 top-0 h-full opacity-60" />
-          <AuroraRibbon className="-right-[14%] top-[2%] hidden h-[22rem] w-[58%] lg:block" />
-        </div>
-        <div className="mx-auto max-w-[64rem] px-4 pb-10 pt-8 sm:px-6 lg:px-8 lg:pb-14 lg:pt-10">
-          <Breadcrumbs items={[...(categoria ? [{ name: categoria.name, path: `/${categoria.slug}` }] : []), { name: h.meta.titulo, path: rutaHerramienta(h.meta) }]} />
-          {categoria && (
-            <p className={estilos.eyebrow}>
-              <Link href={`/${categoria.slug}`} className="guide-focus hover:underline">
-                {categoria.name}
-              </Link>
-            </p>
-          )}
-          <h1 className="mt-3 max-w-4xl text-balance text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-guide-ink sm:text-5xl">{h.meta.titulo}</h1>
-          <p className="mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground">{h.meta.descripcion}</p>
-          <ul className="mt-6 flex flex-wrap gap-2" aria-label="Datos de la herramienta">
-            <li className={ui.chip}>
-              <Clock className="size-3.5" aria-hidden />
-              {h.meta.tiempo}
-            </li>
-            <li className={ui.chip}>
-              <Gift className="size-3.5" aria-hidden />
-              Gratis
-            </li>
-            <li className={ui.chip}>
-              <MessageSquare className="size-3.5" aria-hidden />
-              ChatGPT, Gemini o Claude
-            </li>
-          </ul>
-        </div>
-      </header>
+      {cabecera}
 
       <div className="mx-auto max-w-[64rem] space-y-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
         {/* 2 · Antes / después */}

@@ -7,7 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { pathToFileURL } from "node:url";
-import { aplicarCambios, capturaDesdePendiente, encontrarCierre, leerArgumentos, objetosDeArray, tamanoWebp } from "../scripts/publicar";
+import { aplicarCambios, capturaDesdePendiente, encontrarCierre, leerArgumentos, objetosDeArray, repartirPendientes, tamanoWebp } from "../scripts/publicar";
 import { validarHerramienta } from "./herramientas/validar";
 import type { Herramienta } from "./herramientas/tipos";
 
@@ -95,4 +95,71 @@ test("anuncios (2 capturas del método anterior + 1 nueva): la nueva va primero 
 test("una página ya publicada no se vuelve a publicar", () => {
   const publicada = fuente("marketing/crear-afiches-con-ia").replace(/^  publicado: false,/m, "  publicado: true,");
   assert.throws(() => aplicarCambios({ fuente: publicada, ia: "x", fecha: "2026-09-20", hoy: "2026-09-25", corregi: CORREGI, capturas: [] }), /ya está publicada/);
+});
+
+/* ───────────── páginas de proceso: capturas obligatorias y opcionales, paso y etiquetas de imágenes hechas con IA ───────────── */
+
+const RUTA_PROCESO = "marketing/crear-afiches-con-ia";
+const fixtureProceso = () => fs.readFileSync(path.join(raiz, "lib", "herramientas", "fixtures", "pagina-de-proceso.ts.txt"), "utf8");
+
+async function publicarProceso(existentes: string[]) {
+  const datos = fixtureProceso();
+  const original = await cargar(datos);
+  const reparto = repartirPendientes(original.capturasPendientes, (a) => existentes.includes(a));
+  const capturas = reparto.usar.map((p) => capturaDesdePendiente(p, RUTA_PROCESO, "ChatGPT", "2026-09-20", { ancho: 1300, alto: 900 }));
+  const texto = aplicarCambios({ fuente: datos, ia: "ChatGPT", fecha: "2026-09-20", hoy: "2026-09-25", corregi: CORREGI, capturas });
+  return { original, reparto, capturas, h: await cargar(texto) };
+}
+
+test("proceso: solo prueba-01 y afiche-final son obligatorias; las demás se suman si existen y, si no, se descartan", async () => {
+  const pendientes = (await cargar(fixtureProceso())).capturasPendientes;
+  assert.deepEqual(pendientes.filter((p) => p.obligatoria !== false).map((p) => p.archivo), ["prueba-01.webp", "afiche-final.webp"]);
+  const sinFinal = repartirPendientes(pendientes, (a) => a === "prueba-01.webp");
+  assert.deepEqual(sinFinal.faltan.map((p) => p.archivo), ["afiche-final.webp"], "sin afiche-final no se publica");
+  const sinPrueba = repartirPendientes(pendientes, (a) => a === "afiche-final.webp");
+  assert.deepEqual(sinPrueba.faltan.map((p) => p.archivo), ["prueba-01.webp"], "sin prueba-01 no se publica");
+  const minimo = repartirPendientes(pendientes, (a) => ["prueba-01.webp", "afiche-final.webp"].includes(a));
+  assert.deepEqual(minimo.faltan, []);
+  assert.deepEqual(minimo.descartadas.map((p) => p.archivo), ["prep-01.webp", "prueba-02.webp", "mockup-vitrina.webp", "estado-9x16.webp"]);
+});
+
+test("proceso: con solo lo obligatorio se publica con 2 capturas, sus pasos y el validador en verde", async () => {
+  const { h, capturas } = await publicarProceso(["prueba-01.webp", "afiche-final.webp"]);
+  assert.equal(h.publicado, true);
+  assert.deepEqual(h.capturasPendientes, []);
+  assert.deepEqual(h.ejemplo.capturas.map((c) => [c.src.split("/").pop(), c.etiqueta, c.paso]), [
+    ["prueba-01.webp", "Prueba real", 2],
+    ["afiche-final.webp", "Resultado final diseñado con el texto de la IA", 4],
+  ]);
+  assert.equal(capturas.length, 2);
+  assert.deepEqual(h.ejemplo.queCorregi, CORREGI);
+  assert.equal(h.ejemplo.notaPreparada, "La IA cambió «·» por «—» en el nivel 3; lo corregí.", "la nota preparada se conserva");
+  const existen = new Set(h.ejemplo.capturas.map((c) => c.src));
+  const r = validarHerramienta(h, { existeImagen: (s) => existen.has(s) || s.endsWith("og.webp"), existentes: new Set([...h.relacionadas, RUTA_PROCESO]), publicadas: new Set(h.relacionadas) });
+  assert.deepEqual(r.errores.filter((e) => !/relacionada/i.test(e)), []);
+});
+
+test("proceso: con las 6 capturas caben todas en el ejemplo (una evidencia por paso); la simulación dice que fue generada con IA", async () => {
+  const todas = ["prep-01.webp", "prueba-01.webp", "prueba-02.webp", "afiche-final.webp", "mockup-vitrina.webp", "estado-9x16.webp"];
+  const { h } = await publicarProceso(todas);
+  assert.equal(h.ejemplo.capturas.length, 6);
+  assert.equal(h.metodoCompleto, null, "no hay método completo donde mandar capturas: no debe sobrar ninguna");
+  assert.deepEqual(h.ejemplo.capturas.map((c) => c.paso), [1, 2, 3, 4, 5, 5]);
+  const mock = h.ejemplo.capturas.find((c) => c.src.endsWith("mockup-vitrina.webp"))!;
+  assert.equal(mock.etiqueta, "Simulación");
+  assert.match(mock.leyenda, /generada con IA/);
+  assert.equal(h.ejemplo.capturas.find((c) => c.src.endsWith("prep-01.webp"))!.etiqueta, "Captura de la herramienta");
+  const existen = new Set(h.ejemplo.capturas.map((c) => c.src));
+  const r = validarHerramienta(h, { existeImagen: (s) => existen.has(s) || s.endsWith("og.webp"), existentes: new Set([...h.relacionadas, RUTA_PROCESO]), publicadas: new Set(h.relacionadas) });
+  assert.deepEqual(r.errores.filter((e) => !/relacionada/i.test(e)), []);
+});
+
+test("proceso: las leyendas por etiqueta (chat real, captura de la herramienta, imagen generada con IA)", () => {
+  const p = (etiqueta: string) => capturaDesdePendiente({ archivo: "x.webp", etiqueta, muestra: "Lo que debe mostrar la captura de prueba.", paso: 3 }, "a/b", "ChatGPT", "2026-09-20", { ancho: 10, alto: 10 });
+  assert.match(p("Prueba real").leyenda, /^Prueba real con ChatGPT el 2026-09-20/);
+  assert.match(p("Captura de la herramienta").leyenda, /^Captura de la propia herramienta/);
+  assert.match(p("Simulación").leyenda, /generada con IA/);
+  assert.match(p("Foto generada con IA").leyenda, /generada con IA/);
+  assert.doesNotMatch(p("Resultado final diseñado con el texto de la IA").leyenda, /generada con IA/);
+  assert.equal(p("Prueba real").paso, 3);
 });

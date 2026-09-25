@@ -22,11 +22,17 @@ export type Perfil = Partial<Record<PerfilClave, string>>;
 
 /* ───────────────────────────── campos del formulario ───────────────────────────── */
 
+/** Separador de las opciones marcadas de un campo `casillas` (las opciones no pueden llevar «;»). */
+export const SEPARADOR_CASILLAS = "; ";
+
 export interface Campo {
   id: string;
   label: string;
-  /** `largo` = área de texto (para pegar consultas, reseñas, listas…). */
-  tipo: "texto" | "largo" | "numero" | "seleccion";
+  /**
+   * `largo` = área de texto (para pegar consultas, reseñas, listas…); `seleccion` = una opción de `opciones`;
+   * `casillas` = varias opciones marcables: el valor es la lista de las marcadas unidas con SEPARADOR_CASILLAS.
+   */
+  tipo: "texto" | "largo" | "numero" | "seleccion" | "casillas";
   /** Valor de «Probar con un ejemplo». Obligatorio: cada campo se puede probar. */
   ejemplo: string;
   requerido?: boolean;
@@ -121,8 +127,15 @@ export interface MejoraPrompt {
   prompt: string;
 }
 
-/** Únicas etiquetas válidas de una imagen (estándar 2). «Prueba real» = captura real, sin editar, de un chat con una IA. */
-export const ETIQUETAS_IMAGEN = ["Prueba real", "Ilustración", "Simulación", "Resultado final diseñado con el texto de la IA", "Foto generada con IA"] as const;
+/**
+ * Únicas etiquetas válidas de una imagen (estándar 2). «Prueba real» = captura real, sin editar, de un chat con una IA.
+ * «Captura de la herramienta» = captura de esta misma página (por ejemplo, el formulario lleno).
+ */
+export const ETIQUETAS_IMAGEN = ["Prueba real", "Captura de la herramienta", "Ilustración", "Simulación", "Resultado final diseñado con el texto de la IA", "Foto generada con IA"] as const;
+/** Etiquetas de imágenes hechas por una IA: su leyenda tiene que decir que fueron generadas con IA. */
+export const ETIQUETAS_GENERADAS_CON_IA: readonly string[] = ["Simulación", "Foto generada con IA"];
+/** ¿La leyenda (o la descripción de una captura pendiente) dice que la imagen fue generada con IA? */
+export const dicePorIA = (texto: string) => /generad[oa]s? con (una )?IA/i.test(texto);
 export type EtiquetaImagen = (typeof ETIQUETAS_IMAGEN)[number];
 
 export interface CapturaEjemplo {
@@ -137,6 +150,8 @@ export interface CapturaEjemplo {
   /** Tamaño real del archivo en píxeles (evita saltos de diseño). */
   ancho: number;
   alto: number;
+  /** Paso del proceso (`pasos`) del que es evidencia: el ejemplo la muestra bajo «Paso N · título». */
+  paso?: number;
 }
 
 /**
@@ -149,6 +164,10 @@ export interface CapturaPendiente {
   etiqueta: EtiquetaImagen;
   /** Qué debe mostrar la captura (para quien la toma). */
   muestra: string;
+  /** Paso del proceso del que es evidencia (pasa a `CapturaEjemplo.paso` al publicar). */
+  paso?: number;
+  /** `false` = si no existe el archivo, `npm run publicar` la descarta en vez de exigirla. Por defecto `true`. */
+  obligatoria?: boolean;
 }
 
 export interface EjemploReal {
@@ -168,6 +187,110 @@ export interface EjemploReal {
   transcripcion?: string;
   /** «Qué corregí yo» (3 líneas). */
   queCorregi: string[];
+  /**
+   * Nota que el autor ya redactó para «Qué corregí yo». NO se muestra hasta que exista al menos una captura «Prueba real»
+   * (con su archivo); entonces aparece como primera línea de «Qué corregí yo». No cuenta para las 3 líneas que exige publicar.
+   */
+  notaPreparada?: string;
+}
+
+/* ───────────────────────────── proceso (herramienta + guía corta, versión «proceso») ───────────────────────────── */
+
+/**
+ * Condición sobre los datos del formulario (y del perfil), en texto:
+ *  - `campo=Valor`: el campo vale exactamente ese valor;
+ *  - `campo~Valor`: el campo (por ejemplo, unas casillas) contiene esa opción;
+ *  - `campo`: el campo tiene texto; `!campo`: está vacío;
+ *  - `perfil.rubro`: lo mismo con un dato del perfil «Mi negocio»;
+ *  - varias condiciones separadas por «|» = basta una (O).
+ */
+export type Condicion = string;
+
+/** «Lo que vas a tener»: un resultado concreto del proceso. Sin captura se muestra un icono y la descripción. */
+export interface ResultadoFinal {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  /** Icono: «texto», «afiche», «movil», «mockup», «mensaje» o «imprimir». */
+  icono?: string;
+  captura?: CapturaEjemplo;
+}
+
+/** «El problema»: un error típico (título y explicación). */
+export interface ProblemaItem {
+  titulo: string;
+  texto: string;
+}
+
+/** «Qué necesitas». */
+export interface Necesidad {
+  nombre: string;
+  para: string;
+  obligatorio: boolean;
+  alternativa?: string;
+}
+
+/** Un aviso visible (por ejemplo, «es una simulación»), opcionalmente solo si se cumple una condición. */
+export interface AvisoPaso {
+  texto: string;
+  si?: Condicion;
+}
+
+export interface OpcionPaso {
+  id: string;
+  titulo: string;
+  texto: string;
+  /** Plantilla del prompt de esta opción (mismas reglas que `PasoProceso.prompt`). */
+  prompt?: string;
+  /** La opción solo se ve si se cumple esta condición (por ejemplo, un formato marcado). */
+  mostrarSi?: Condicion;
+  /** La opción va la primera si se cumple esta condición (por ejemplo, la herramienta elegida). */
+  primeraSi?: Condicion;
+  /** Nota que solo se ve si se cumple su condición (por ejemplo, «recomendada» cuando la persona no sabe). */
+  notas?: AvisoPaso[];
+  avisos?: AvisoPaso[];
+  /** A dónde se pega el prompt (por defecto, ChatGPT, Gemini o Claude). */
+  destino?: string;
+}
+
+export interface PasoProceso {
+  numero: number;
+  titulo: string;
+  /** Por ejemplo «2 min». */
+  tiempo: string;
+  queHaces: string;
+  opciones?: OpcionPaso[];
+  /** Plantilla del prompt del paso: se construye con los datos del formulario y del perfil, y nunca muestra llaves. */
+  prompt?: string;
+  /** El prompt del paso es el prompt completo de la herramienta (reglas comunes, datos y `tarea`). */
+  promptMaestro?: boolean;
+  destino?: string;
+  avisos?: AvisoPaso[];
+  /** Datos del formulario que hay que comprobar (paso de revisión): se muestran con su valor actual. */
+  comprobar?: { etiqueta: string; campo: string }[];
+  /** Muestra «Te falta…» y el conteo del formulario (paso de datos). */
+  muestraEstadoDatos?: boolean;
+  /** Muestra las «mejoras» (líneas para pegar en el mismo chat) dentro del paso. */
+  mostrarMejoras?: boolean;
+  /** Texto cuando ninguna opción se ve (por ejemplo, no se marcó ningún formato). */
+  sinOpciones?: string;
+  asiSabesQueSalioBien: string[];
+  siAlgoFalla: string[];
+  /** Lo que tienes al terminar el paso. */
+  resultado: string;
+}
+
+/** Lista final marcable (el estado se guarda solo en el navegador). */
+export interface ItemKit {
+  id: string;
+  texto: string;
+  mostrarSi?: Condicion;
+}
+
+/** Los pasos de un proceso, o `null` si `pasos` es la lista simple de 3 textos de «Cómo usarlo». */
+export function pasosDelProceso(h: { pasos?: readonly unknown[] }): PasoProceso[] | null {
+  const p = h.pasos;
+  return p && p.length > 0 && typeof p[0] === "object" ? (p as PasoProceso[]) : null;
 }
 
 export interface PorQueFunciona {
@@ -224,6 +347,8 @@ export interface Herramienta {
     autor?: string;
     /** Ruta pública de la imagen og:image propia (solo se usa si el archivo existe). */
     ogImage?: string;
+    /** Herramienta de fuera que se usa además de la IA de chat (por ejemplo «Canva»): sale en la etiqueta del encabezado. */
+    herramientasExtra?: string;
     /** Solo para páginas por plataforma. */
     plataforma?: { id: string; nombre: string };
     limites?: LimitePlataforma[];
@@ -240,8 +365,21 @@ export interface Herramienta {
    * un campo vacío se marca [FALTA] (si es requerido) o «no indicado».
    */
   tarea: string;
-  /** Opcional: los 3 pasos de «Cómo usarlo». */
-  pasos?: [string, string, string];
+  /**
+   * Opcional. O bien los 3 textos de «Cómo usarlo» (versión simple), o bien los pasos de un PROCESO (`PasoProceso[]`), que
+   * activa la plantilla de proceso junto con `resultadoFinal`, `problema`, `necesitas` y `kitFinal`.
+   */
+  pasos?: [string, string, string] | PasoProceso[];
+  /** «Lo que vas a tener»: los resultados concretos del proceso. */
+  resultadoFinal?: ResultadoFinal[];
+  /** «El problema»: 3 errores típicos. */
+  problema?: ProblemaItem[];
+  /** «Qué necesitas». */
+  necesitas?: Necesidad[];
+  /** «Tu kit final»: lista marcable de lo que tendrás al terminar. */
+  kitFinal?: ItemKit[];
+  /** Título propio del bloque de revisión (por defecto «Revisa antes de publicar»). */
+  tituloRevision?: string;
   mejoras: MejoraPrompt[];
   ejemplo: EjemploReal;
   /** Capturas que faltan por subir (una prueba NUEVA con el prompt que genera la página hoy). `[]` cuando no falta ninguna. */

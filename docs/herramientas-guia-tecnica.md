@@ -25,6 +25,25 @@ Regla de fondo (estándar 9): **lo que se puede contar o calcular lo hace la pá
 
 `contarPalabras()` (`lib/texto/contar-palabras.ts`) es la única función de conteo. **Qué cuenta como palabra:** cada trozo separado por espacios o saltos de línea que contiene al menos una letra o un número. Cuentan «$6», «7:00», «13:00», «2», «1.500», «Av.», «pan-dulce» (1 cada una); **no** cuentan «·», «—», «-», «&» ni «…» solos; «7 : 00» son 2. Sirve para las palabras editoriales de cada página y para límites de texto como el de los afiches («menos de 40 palabras» = máximo 39; «Tus datos suman X palabras (máximo 39)» en vivo, con aviso que no bloquea).
 
+## Plantilla de proceso (herramienta + guía corta, versión «proceso»)
+Referencia: `content/herramientas/marketing/crear-afiches-con-ia.ts`. Para convertir otra herramienta, añade estos campos **opcionales** (si faltan, la página se ve como siempre):
+
+- `resultadoFinal: [{ id, titulo, descripcion, icono?, captura? }]` — «Lo que vas a tener» (≥ 3). Iconos: texto, afiche, movil, mockup, mensaje, imprimir.
+- `problema: [{ titulo, texto }]` — exactamente 3 errores típicos.
+- `necesitas: [{ nombre, para, obligatorio, alternativa? }]` — ≥ 3, alguno obligatorio.
+- `pasos: [{ numero, titulo, tiempo: "2 min", queHaces, opciones?, prompt?, promptMaestro?, avisos?, comprobar?, muestraEstadoDatos?, mostrarMejoras?, sinOpciones?, asiSabesQueSalioBien: string[], siAlgoFalla: string[], resultado }]` — numerados 1, 2, 3… Con `promptMaestro: true` el paso enseña el prompt completo de la herramienta (reglas comunes + datos + `tarea`); un solo paso puede llevarlo. `opciones: [{ id, titulo, texto, prompt?, mostrarSi?, primeraSi?, notas?, avisos?, destino? }]`.
+- `kitFinal: [{ id, texto, mostrarSi? }]` — lista marcable (≥ 3).
+- `tituloRevision` («Revisa antes de imprimir»), `meta.herramientasExtra` («Canva») y `ejemplo.notaPreparada` (nota ya redactada que solo se ve cuando existe una captura «Prueba real»).
+- Campos nuevos del formulario: `tipo: "casillas"` (varias opciones marcables; el valor es la lista unida con «; »), además de `seleccion` como siempre.
+
+**Plantillas de prompt** (`lib/herramientas/plantillas.ts`, la misma sintaxis en `tarea`, `paso.prompt` y `opcion.prompt`): `{{id}}` (campo; [FALTA: etiqueta] si es requerido y está vacío), `{{id|texto de reserva}}`, `{{perfil.nombre|mi negocio}}` (dato del perfil; solo los de `usaPerfil`), `{{variable}}` (lo que calcula la página: `preproceso.variables`) y `{{#si condición}}…{{/si}}` sin anidar. Condiciones: `campo=Valor`, `campo~Opción` (casillas), `campo` (tiene texto), `!campo`, `perfil.rubro`, y «|» para O. El validador comprueba que todo lo citado existe, que los valores de una condición son opciones reales del campo y que el resultado no lleva llaves.
+
+**Etiquetas de imagen:** `Prueba real` (solo chats con una IA), `Captura de la herramienta` (captura de nuestra propia página), `Ilustración`, `Simulación` y `Foto generada con IA` (estas dos exigen una leyenda o una descripción que diga «generada con IA»), `Resultado final diseñado con el texto de la IA`. Las capturas de un proceso llevan `paso` (la evidencia se muestra bajo «Paso N · título») y, las pendientes, `obligatoria: false` si `npm run publicar` puede descartarlas cuando falte el archivo. Un proceso admite hasta 8 capturas en el ejemplo (una página simple, 2). El `alt` de una imagen no cuenta como palabra editorial.
+
+**Estado compartido:** `ProveedorHerramienta` (client) guarda los valores del formulario, el perfil, las variables y el prompt; el formulario, los pasos y el kit lo leen. La lógica pura y probada está en `lib/herramientas/proceso.ts` (opciones visibles y su orden, ítems del kit, líneas de «Qué corregí yo»). Los botones Copiar de una página con varios prompts llevan un `aria-label` distinto («Copiar prompt del paso 3: B) Con una IA de imagen»).
+
+**Al migrar una herramienta:** empieza por los pasos (¿qué hace la persona de principio a fin?), deja a la IA solo lo que hace bien y a la página lo que puede contar o calcular. Mantén 1.800–2.500 palabras editoriales *contando* las leyendas de las capturas y «Qué corregí yo» ya publicados (deja margen: al publicar se suman unas 100–150 palabras).
+
 ## Perfil «Mi negocio»
 `lib/herramientas/perfil.ts`: 11 campos, `localStorage` siempre en `try/catch` (sin almacenamiento funciona en memoria), borrado y el texto «Tus datos se guardan solo en este navegador. No los recibimos ni los almacenamos.». `/mi-negocio` es noindex y no está en el sitemap.
 
@@ -42,7 +61,7 @@ Los componentes de `components/herramientas/` usan `estilos.ts` (texto en tinta,
 ## Capturas y capturas pendientes
 
 - **Transcripción (opcional):** `ejemplo.transcripcion` es la respuesta completa de la IA copiada del MISMO chat de la captura «Prueba real». Si existe, el bloque 6 la muestra en un desplegable «Respuesta completa de la IA (transcripción del mismo chat)». Empieza vacía (`""`) y no se escribe a mano: el validador exige `probadoEn` y `probadoFecha` cuando hay transcripción (error en una página publicada, aviso en un borrador). No cuenta para las palabras editoriales.
-- Cada captura de `ejemplo.capturas` (y de `metodoCompleto.capturas`) es `{ src, alt, etiqueta, leyenda, ancho, alto }`. `src` va en `/img/{area}/{slug}/…` (por ejemplo `prueba-01.webp`); `alt` es obligatorio; `ancho` y `alto` son los píxeles reales del archivo (un test lo comprueba). Etiquetas válidas: `Prueba real`, `Ilustración`, `Simulación`, `Resultado final diseñado con el texto de la IA`, `Foto generada con IA`. Se muestran en el bloque 6 (`EjemploReal` → `CapturaFigura`), y solo si el archivo existe.
+- Cada captura de `ejemplo.capturas` (y de `metodoCompleto.capturas`) es `{ src, alt, etiqueta, leyenda, ancho, alto }`. `src` va en `/img/{area}/{slug}/…` (por ejemplo `prueba-01.webp`); `alt` es obligatorio; `ancho` y `alto` son los píxeles reales del archivo (un test lo comprueba). Etiquetas válidas: `Prueba real`, `Captura de la herramienta`, `Ilustración`, `Simulación`, `Resultado final diseñado con el texto de la IA`, `Foto generada con IA` (ver «Plantilla de proceso»). Se muestran en el bloque 6 (`EjemploReal` → `CapturaFigura`), y solo si el archivo existe.
 - `capturasPendientes: [{ archivo, etiqueta, muestra }]` (obligatorio, `[]` si no falta ninguna): lo que falta por subir. Solo con `next dev` el bloque 6 dibuja un recuadro gris punteado por cada una; un build de producción no renderiza nada de eso, ni siquiera con `MOSTRAR_BORRADORES=true`.
 - Para subir una captura: guarda el `.webp` (≥ 1.200 px de ancho, sin editar) en `public/img/{area}/{slug}/`, añade su objeto a `ejemplo.capturas` con su tamaño y quítala de `capturasPendientes`.
 - `npm run capturas` lista, por página, las capturas puestas, las pendientes y los archivos mencionados que no existen.

@@ -1,6 +1,6 @@
 # Recorrido interactivo (Playwright, build de producción)
 
-Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 px y 1280 px). 604 pruebas: 604 OK, 0 FALLA.
+Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 px y 1280 px). 648 pruebas: 648 OK, 0 FALLA.
 
 | Página | Vista (px) | Prueba | Resultado | Detalle |
 |---|---|---|---|---|
@@ -143,13 +143,36 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 375 | botones y controles ≥ 44 px | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | foco visible con Tab | OK | 43 controles; sin contorno: ninguno |
 | /marketing/crear-afiches-con-ia | 375 | «Empezar de cero»: formulario vacío y el prompt marca [FALTA] | OK | 7 obligatorios |
-| /marketing/crear-afiches-con-ia | 375 | «Probar con un ejemplo» llena el formulario | OK | 9 controles con valor, 9 esperados |
-| /marketing/crear-afiches-con-ia | 375 | cada campo recibe su valor de ejemplo | OK | 9 de 9 |
+| /marketing/crear-afiches-con-ia | 375 | «Probar con un ejemplo» llena el formulario | OK | 10 controles con valor, 10 esperados |
+| /marketing/crear-afiches-con-ia | 375 | cada campo recibe su valor de ejemplo | OK | 10 de 10 |
 | /marketing/crear-afiches-con-ia | 375 | prompt del ejemplo sin {{ }}, undefined, null ni NaN | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | prompt del ejemplo sin [FALTA] en los datos | OK | 0 [FALTA] |
 | /marketing/crear-afiches-con-ia | 375 | «Ver el prompt completo» muestra el prompt | OK |  |
-| /marketing/crear-afiches-con-ia | 375 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3972 caracteres copiados |
+| /marketing/crear-afiches-con-ia | 375 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 4232 caracteres copiados |
 | /marketing/crear-afiches-con-ia | 375 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | proceso: los bloques salen en el orden de la plantilla | OK | resultado › problema › necesitas › herramienta › proceso › kit › ejemplo › revision › por-que-funciona › rubros › errores › faq › verificacion |
+| /marketing/crear-afiches-con-ia | 375 | proceso: etiquetas «15 min · Gratis · ChatGPT, Gemini o Claude + Canva» | OK | 15 min / Gratis / ChatGPT, Gemini o Claude + Canva |
+| /marketing/crear-afiches-con-ia | 375 | proceso: 5 pasos numerados («Paso 1 de 5») con su tiempo | OK | PASO 1 DE 5 · 2 MIN |
+| /marketing/crear-afiches-con-ia | 375 | proceso: ningún recuadro de captura pendiente en producción | OK | 0 |
+| /marketing/crear-afiches-con-ia | 375 | paso 3: con «Canva» va primero Canva | OK | ["canva","ia-imagen"] |
+| /marketing/crear-afiches-con-ia | 375 | paso 3: con «IA de imagen» va primero la IA de imagen | OK | ["ia-imagen","canva"] |
+| /marketing/crear-afiches-con-ia | 375 | paso 3: con «Aún no sé» va primero Canva y se recomienda como la más segura | OK | A) En Canva
+Recomendada si aún no sabes: es la opción más segura, porque el text |
+| /marketing/crear-afiches-con-ia | 375 | foto real: «Sí» → «usa la foto que adjunto, sin alterar el producto»; «No» → imagen de apoyo generada | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | foto real «Sí»: desaparece el aviso de imagen generada con IA | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | foto real «No»: el paso 3 avisa que se indique que es generada con IA | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | paso 5: con A4 + 9:16 solo salen imprimir, mockup, 9:16 y el mensaje | OK | ["imprimir","mockup","vertical","mensaje"] |
+| /marketing/crear-afiches-con-ia | 375 | paso 5: sin formatos marcados no hay salidas y se pide marcar uno | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | paso 5: con 1:1 salen la versión cuadrada y el mensaje | OK | ["cuadrado","mensaje"] |
+| /marketing/crear-afiches-con-ia | 375 | formatos: el ejemplo vuelve a A4 + 9:16 | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | cada botón Copiar (5) copia exactamente su prompt, sin {{ }}, undefined, null ni NaN | OK | 5 prompts |
+| /marketing/crear-afiches-con-ia | 375 | los botones Copiar tienen nombres accesibles distintos | OK | Copiar prompt del paso 2: El texto de tu afiche / Copiar prompt del paso 3: B) Con una IA de imagen / Copiar prompt del paso 5: Mockup en la vitrina (simulación) / Copiar prompt del paso 5: Versión 9:16 para estado o historia / Copiar prompt del paso 5: Mensaje para enviar el afiche por WhatsApp |
+| /marketing/crear-afiches-con-ia | 375 | paso 3B: el prompt de la IA de imagen lleva los cuatro niveles exactos | OK | Crea un afiche vertical tamaño A4 para mi negocio. Usa EXACTAMENTE este texto, sin cambiar, añadir n |
+| /marketing/crear-afiches-con-ia | 375 | paso 4: la lista trae el precio, los días, el lugar y las condiciones tal como los escribiste | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | «Si algo falla» es plegable y se abre | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | kit final: marcar un ítem actualiza «N de M listos» | OK | de 6 listos. Lo que marcas se guarda solo en este navegador. |
+| /marketing/crear-afiches-con-ia | 375 | kit final: lo marcado se recuerda al recargar (solo en este navegador) | OK |  |
+| /marketing/crear-afiches-con-ia | 375 | kit final con localStorage bloqueado: se puede marcar y no hay errores | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · El caso de La Espiga (los datos de «Probar con un ejemplo») | OK | «Tus datos suman 39 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Sin datos: cero palabras | OK | «Tus datos suman 0 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 375 | conteo de palabras · Sin precio no se cuenta el «por» del titular | OK | «Tus datos suman 11 palabras (máximo 39).»; el prompt trae el total |
@@ -157,7 +180,7 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 375 | 0 errores en consola | OK |  |
 | /marketing/crear-afiches-con-ia | 375 | portapapeles API bloqueado: alternativa (execCommand) o texto a mano | OK | copiado con execCommand |
 | /marketing/crear-afiches-con-ia | 375 | 0 errores de consola con el portapapeles sin API | OK |  |
-| /marketing/crear-afiches-con-ia | 375 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3933 caracteres |
+| /marketing/crear-afiches-con-ia | 375 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 4192 caracteres |
 | /marketing/crear-afiches-con-ia | 375 | 0 errores de consola con el portapapeles bloqueado | OK |  |
 | /marketing/crear-anuncios-con-ia | 375 | sin scroll horizontal | OK | ancho de contenido 375 · ventana 375 |
 | /marketing/crear-anuncios-con-ia | 375 | botones y controles ≥ 44 px | OK |  |
@@ -445,13 +468,36 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 1280 | botones y controles ≥ 44 px | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | foco visible con Tab | OK | 43 controles; sin contorno: ninguno |
 | /marketing/crear-afiches-con-ia | 1280 | «Empezar de cero»: formulario vacío y el prompt marca [FALTA] | OK | 7 obligatorios |
-| /marketing/crear-afiches-con-ia | 1280 | «Probar con un ejemplo» llena el formulario | OK | 9 controles con valor, 9 esperados |
-| /marketing/crear-afiches-con-ia | 1280 | cada campo recibe su valor de ejemplo | OK | 9 de 9 |
+| /marketing/crear-afiches-con-ia | 1280 | «Probar con un ejemplo» llena el formulario | OK | 10 controles con valor, 10 esperados |
+| /marketing/crear-afiches-con-ia | 1280 | cada campo recibe su valor de ejemplo | OK | 10 de 10 |
 | /marketing/crear-afiches-con-ia | 1280 | prompt del ejemplo sin {{ }}, undefined, null ni NaN | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | prompt del ejemplo sin [FALTA] en los datos | OK | 0 [FALTA] |
 | /marketing/crear-afiches-con-ia | 1280 | «Ver el prompt completo» muestra el prompt | OK |  |
-| /marketing/crear-afiches-con-ia | 1280 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 3972 caracteres copiados |
+| /marketing/crear-afiches-con-ia | 1280 | «Copiar prompt» (portapapeles permitido): «Copiado ✓» y el portapapeles = el prompt | OK | 4232 caracteres copiados |
 | /marketing/crear-afiches-con-ia | 1280 | el prompt copiado sin {{ }}, undefined, null ni NaN | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | proceso: los bloques salen en el orden de la plantilla | OK | resultado › problema › necesitas › herramienta › proceso › kit › ejemplo › revision › por-que-funciona › rubros › errores › faq › verificacion |
+| /marketing/crear-afiches-con-ia | 1280 | proceso: etiquetas «15 min · Gratis · ChatGPT, Gemini o Claude + Canva» | OK | 15 min / Gratis / ChatGPT, Gemini o Claude + Canva |
+| /marketing/crear-afiches-con-ia | 1280 | proceso: 5 pasos numerados («Paso 1 de 5») con su tiempo | OK | PASO 1 DE 5 · 2 MIN |
+| /marketing/crear-afiches-con-ia | 1280 | proceso: ningún recuadro de captura pendiente en producción | OK | 0 |
+| /marketing/crear-afiches-con-ia | 1280 | paso 3: con «Canva» va primero Canva | OK | ["canva","ia-imagen"] |
+| /marketing/crear-afiches-con-ia | 1280 | paso 3: con «IA de imagen» va primero la IA de imagen | OK | ["ia-imagen","canva"] |
+| /marketing/crear-afiches-con-ia | 1280 | paso 3: con «Aún no sé» va primero Canva y se recomienda como la más segura | OK | A) En Canva
+Recomendada si aún no sabes: es la opción más segura, porque el text |
+| /marketing/crear-afiches-con-ia | 1280 | foto real: «Sí» → «usa la foto que adjunto, sin alterar el producto»; «No» → imagen de apoyo generada | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | foto real «Sí»: desaparece el aviso de imagen generada con IA | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | foto real «No»: el paso 3 avisa que se indique que es generada con IA | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | paso 5: con A4 + 9:16 solo salen imprimir, mockup, 9:16 y el mensaje | OK | ["imprimir","mockup","vertical","mensaje"] |
+| /marketing/crear-afiches-con-ia | 1280 | paso 5: sin formatos marcados no hay salidas y se pide marcar uno | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | paso 5: con 1:1 salen la versión cuadrada y el mensaje | OK | ["cuadrado","mensaje"] |
+| /marketing/crear-afiches-con-ia | 1280 | formatos: el ejemplo vuelve a A4 + 9:16 | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | cada botón Copiar (5) copia exactamente su prompt, sin {{ }}, undefined, null ni NaN | OK | 5 prompts |
+| /marketing/crear-afiches-con-ia | 1280 | los botones Copiar tienen nombres accesibles distintos | OK | Copiar prompt del paso 2: El texto de tu afiche / Copiar prompt del paso 3: B) Con una IA de imagen / Copiar prompt del paso 5: Mockup en la vitrina (simulación) / Copiar prompt del paso 5: Versión 9:16 para estado o historia / Copiar prompt del paso 5: Mensaje para enviar el afiche por WhatsApp |
+| /marketing/crear-afiches-con-ia | 1280 | paso 3B: el prompt de la IA de imagen lleva los cuatro niveles exactos | OK | Crea un afiche vertical tamaño A4 para mi negocio. Usa EXACTAMENTE este texto, sin cambiar, añadir n |
+| /marketing/crear-afiches-con-ia | 1280 | paso 4: la lista trae el precio, los días, el lugar y las condiciones tal como los escribiste | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | «Si algo falla» es plegable y se abre | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | kit final: marcar un ítem actualiza «N de M listos» | OK | de 6 listos. Lo que marcas se guarda solo en este navegador. |
+| /marketing/crear-afiches-con-ia | 1280 | kit final: lo marcado se recuerda al recargar (solo en este navegador) | OK |  |
+| /marketing/crear-afiches-con-ia | 1280 | kit final con localStorage bloqueado: se puede marcar y no hay errores | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · El caso de La Espiga (los datos de «Probar con un ejemplo») | OK | «Tus datos suman 39 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Sin datos: cero palabras | OK | «Tus datos suman 0 palabras (máximo 39).»; el prompt trae el total |
 | /marketing/crear-afiches-con-ia | 1280 | conteo de palabras · Sin precio no se cuenta el «por» del titular | OK | «Tus datos suman 11 palabras (máximo 39).»; el prompt trae el total |
@@ -459,7 +505,7 @@ Generado con `npm run qa` contra http://localhost:3100 (Chrome del sistema, 375 
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores en consola | OK |  |
 | /marketing/crear-afiches-con-ia | 1280 | portapapeles API bloqueado: alternativa (execCommand) o texto a mano | OK | copiado con execCommand |
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores de consola con el portapapeles sin API | OK |  |
-| /marketing/crear-afiches-con-ia | 1280 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 3933 caracteres |
+| /marketing/crear-afiches-con-ia | 1280 | portapapeles totalmente bloqueado: aparece el texto para copiar a mano con el prompt completo | OK | 4192 caracteres |
 | /marketing/crear-afiches-con-ia | 1280 | 0 errores de consola con el portapapeles bloqueado | OK |  |
 | /marketing/crear-anuncios-con-ia | 1280 | sin scroll horizontal | OK | ancho de contenido 1280 · ventana 1280 |
 | /marketing/crear-anuncios-con-ia | 1280 | botones y controles ≥ 44 px | OK |  |

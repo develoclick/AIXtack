@@ -10,6 +10,7 @@
  */
 import { etiquetaPerfil } from "../herramientas/perfil";
 import type { Perfil, PerfilClave } from "../herramientas/tipos";
+import { renderPlantilla } from "../herramientas/plantillas";
 import { CIERRE_COMUN } from "./cierre-comun";
 import { INTRO_REGLAS, REGLAS_COMUNES } from "./reglas-comunes";
 
@@ -33,22 +34,20 @@ export interface OpcionesPrompt {
 }
 
 const FALTA = "[FALTA]";
-const NO_INDICADO = "no indicado";
 
 const limpio = (texto: string | undefined) => (texto ?? "").replace(/\r\n/g, "\n").trim();
 
-/** Sustituye los `{{id}}` de la tarea por el valor del campo (o por [FALTA] / «no indicado»). */
-export function rellenarTarea(tarea: string, campos: readonly CampoConValor[], variables: Readonly<Record<string, string>> = {}): string {
-  const relleno = tarea.replace(/\{\{\s*([A-Za-z0-9_]+)\s*\}\}/g, (_todo, id: string) => {
-    if (id in variables) return variables[id];
-    const campo = campos.find((c) => c.id === id);
-    if (!campo) return FALTA;
-    const valor = limpio(campo.valor);
-    if (valor) return valor;
-    return campo.requerido ? `${FALTA.slice(0, -1)}: ${campo.label}]` : NO_INDICADO;
+/**
+ * Convierte la `tarea` (una plantilla) en texto: sustituye `{{id}}` por el valor del campo (o [FALTA] / «no indicado»), las
+ * variables que calcula la página y los datos del perfil, y resuelve los bloques `{{#si …}}`. Ver plantillas.ts.
+ */
+export function rellenarTarea(tarea: string, campos: readonly CampoConValor[], variables: Readonly<Record<string, string>> = {}, perfil: Perfil = {}): string {
+  return renderPlantilla(tarea, {
+    campos: campos.map((c) => ({ id: c.id, label: c.label, requerido: c.requerido })),
+    valores: Object.fromEntries(campos.map((c) => [c.id, c.valor])),
+    perfil,
+    variables,
   });
-  // Cinturón y tirantes: si quedara alguna llave suelta, no llega al prompt.
-  return relleno.replace(/\{\{|\}\}/g, "");
 }
 
 export function construirPrompt(
@@ -84,7 +83,7 @@ export function construirPrompt(
     );
   }
 
-  partes.push(["TAREA", rellenarTarea(limpio(tarea), campos, opciones.variables)].join("\n"));
+  partes.push(["TAREA", rellenarTarea(limpio(tarea), campos, opciones.variables, perfil)].join("\n"));
   partes.push(CIERRE_COMUN);
 
   // Garantía final: ni siquiera un texto pegado por la persona puede dejar llaves dobles en el prompt.

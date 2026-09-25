@@ -10,7 +10,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { EjemploReal } from "../../components/herramientas/ejemplo-real";
 import { listarTodas } from "./registro";
-import { ETIQUETAS_IMAGEN, type Herramienta } from "./tipos";
+import { ETIQUETAS_IMAGEN, pasosDelProceso, type Herramienta } from "./tipos";
 import { pendientesVisibles } from "./vista-previa";
 import { validarHerramienta } from "./validar";
 
@@ -47,12 +47,12 @@ test("todas las capturas declaradas: etiqueta válida, alt y leyenda, ruta de su
   }
 });
 
-test("los borradores declaran 1–2 capturas pendientes (nombre .webp, etiqueta válida, descripción, sin repetir); una página publicada, ninguna", async () => {
+test("los borradores declaran 1–2 capturas pendientes (hasta 8 en un proceso; nombre .webp, etiqueta válida, descripción, sin repetir); una página publicada, ninguna", async () => {
   const todas = (await listarTodas()).filter((h) => !h.interna);
   assert.equal(todas.length, 15);
   for (const h of todas) {
     if (h.publicado) assert.deepEqual(h.capturasPendientes, [], `${h.meta.slug}: publicada con pendientes`);
-    else assert.ok(h.capturasPendientes.length >= 1 && h.capturasPendientes.length <= 2, `${h.meta.slug}: ${h.capturasPendientes.length} pendientes`);
+    else assert.ok(h.capturasPendientes.length >= 1 && h.capturasPendientes.length <= (pasosDelProceso(h) ? 8 : 2), `${h.meta.slug}: ${h.capturasPendientes.length} pendientes`);
     assert.equal(new Set(h.capturasPendientes.map((p) => p.archivo)).size, h.capturasPendientes.length);
     for (const p of h.capturasPendientes) {
       assert.match(p.archivo, /^[a-z0-9][a-z0-9-]*\.webp$/);
@@ -63,18 +63,26 @@ test("los borradores declaran 1–2 capturas pendientes (nombre .webp, etiqueta 
   }
 });
 
-test("afiches (mientras esté en borrador): (1) chat N1–N4 «Prueba real» y (2) afiche final «Resultado final diseñado con el texto de la IA»", async () => {
+test("afiches (mientras esté en borrador): 6 capturas, una por paso, con prueba-01 y afiche-final obligatorias", async () => {
   const h = (await listarTodas()).find((x) => x.meta.slug === "crear-afiches-con-ia")!;
   if (h.publicado) return; // ya publicada: sus capturas están en «capturas» y no quedan pendientes
   assert.deepEqual(
-    h.capturasPendientes.map((p) => [p.archivo, p.etiqueta]),
+    h.capturasPendientes.map((p) => [p.archivo, p.etiqueta, p.paso, p.obligatoria !== false]),
     [
-      ["prueba-01.webp", "Prueba real"],
-      ["prueba-02.webp", "Resultado final diseñado con el texto de la IA"],
+      ["prep-01.webp", "Captura de la herramienta", 1, false],
+      ["prueba-01.webp", "Prueba real", 2, true],
+      ["prueba-02.webp", "Prueba real", 3, false],
+      ["afiche-final.webp", "Resultado final diseñado con el texto de la IA", 4, true],
+      ["mockup-vitrina.webp", "Simulación", 5, false],
+      ["estado-9x16.webp", "Resultado final diseñado con el texto de la IA", 5, false],
     ]
   );
-  assert.match(h.capturasPendientes[0].muestra, /N1–N4/);
-  assert.match(h.capturasPendientes[1].muestra, /panes/);
+  const por = Object.fromEntries(h.capturasPendientes.map((p) => [p.archivo, p.muestra]));
+  assert.ok(por["prep-01.webp"].includes("contador en «Tus datos suman 39 palabras (máximo 39)»"));
+  assert.match(por["prueba-01.webp"], /DE DÓNDE SALE CADA DATO/);
+  assert.match(por["prueba-02.webp"], /IA de imagen/);
+  assert.match(por["mockup-vitrina.webp"], /generada con IA/, "una simulación hecha por IA lo dice");
+  assert.match(por["estado-9x16.webp"], /9:16/);
 });
 
 test("anuncios y promociones conservan las capturas del método anterior; en borrador añaden la pendiente de la prueba nueva", async () => {

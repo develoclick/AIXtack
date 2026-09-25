@@ -22,6 +22,8 @@ export interface ResultadoPreproceso {
   texto: string | null;
   /** `false` = se muestra en la página pero no viaja al prompt como «cálculo ya hecho» (por ejemplo, va por una variable de la tarea). Por defecto `true`. */
   enPrompt?: boolean;
+  /** Texto que el resultado representa (por ejemplo, el texto de un nivel): una variable de la tarea o de un paso lo usa en lugar del número. */
+  contenido?: string;
 }
 
 export interface EstadoPreproceso {
@@ -181,12 +183,12 @@ const palabrasTexto = (n: number) => `${n} ${n === 1 ? "palabra" : "palabras"}`;
 export function conteoPalabras(config: NonNullable<Preproceso["palabras"]>, valores: Record<string, string>): EstadoPreproceso {
   const niveles = config.niveles.map((nivel) => {
     const texto = nivel.campos.map((id) => (valores[id] ?? "").trim()).filter(Boolean).join(nivel.union);
-    return { id: nivel.id, etiqueta: nivel.etiqueta, palabras: contarPalabras(texto) };
+    return { id: nivel.id, etiqueta: nivel.etiqueta, texto, palabras: contarPalabras(texto) };
   });
   const total = niveles.reduce((suma, n) => suma + n.palabras, 0);
   const dentro = total <= config.maximo;
   const resultados: ResultadoPreproceso[] = [
-    ...niveles.map((n) => ({ id: `nivel:${n.id}`, etiqueta: n.etiqueta, valor: n.palabras, texto: palabrasTexto(n.palabras), enPrompt: false })),
+    ...niveles.map((n) => ({ id: `nivel:${n.id}`, etiqueta: n.etiqueta, valor: n.palabras, texto: palabrasTexto(n.palabras), enPrompt: false, contenido: n.texto || `[FALTA: ${n.etiqueta}]` })),
     { id: "total", etiqueta: "Total de palabras de tus datos", valor: total, texto: palabrasTexto(total), enPrompt: false },
     { id: "maximo", etiqueta: "Máximo", valor: config.maximo, texto: palabrasTexto(config.maximo), enPrompt: false },
     { id: "dentro", etiqueta: "¿Dentro del máximo?", valor: dentro ? 1 : 0, texto: dentro ? "Sí" : `No: ${total - config.maximo} de más`, enPrompt: false },
@@ -221,4 +223,18 @@ export function verificarCasosPreproceso(config: Preproceso): FalloDePreproceso[
     }
   }
   return fallos;
+}
+
+/**
+ * Variables que un pre-proceso pone a disposición de la tarea y de los pasos: `{ nombreDeLaVariable: idDelResultado }` →
+ * `{ nombreDeLaVariable: texto }`, donde el texto es el `contenido` del resultado (si lo tiene) o su valor numérico.
+ */
+export function variablesDePreproceso(config: Preproceso | null | undefined, estado: EstadoPreproceso | null): Record<string, string> {
+  if (!config?.variables) return {};
+  return Object.fromEntries(
+    Object.entries(config.variables).map(([variable, id]) => {
+      const r = estado?.resultados.find((x) => x.id === id);
+      return [variable, r?.contenido ?? String(r?.valor ?? 0)];
+    })
+  );
 }

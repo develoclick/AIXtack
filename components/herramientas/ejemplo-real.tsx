@@ -1,5 +1,6 @@
 import { mediaExists } from "@/lib/guides/media";
 import type { CalculoEjemplo, DatoEjemplo } from "@/lib/herramientas/ejemplo";
+import { lineasQueCorregi } from "@/lib/herramientas/proceso";
 import type { CapturaPendiente, EjemploReal as EjemploRealDatos } from "@/lib/herramientas/tipos";
 import { CapturaFigura } from "./captura-figura";
 
@@ -8,8 +9,29 @@ import { CapturaFigura } from "./captura-figura";
  * («Prueba real» solo para capturas reales de un chat; «Ilustración» o «Simulación» para lo demás).
  * Si un archivo no existe no se muestra nada: la página no enseña marcadores ni notas de producción.
  */
-export function EjemploReal({ ejemplo, datos, calculos = [], pendientes = [] }: { ejemplo: EjemploRealDatos; datos: DatoEjemplo[]; calculos?: CalculoEjemplo[]; pendientes?: CapturaPendiente[] }) {
+export function EjemploReal({
+  ejemplo,
+  datos,
+  calculos = [],
+  pendientes = [],
+  pasos = [],
+}: {
+  ejemplo: EjemploRealDatos;
+  datos: DatoEjemplo[];
+  calculos?: CalculoEjemplo[];
+  pendientes?: CapturaPendiente[];
+  /** Pasos del proceso (número y título): las capturas con `paso` salen bajo «Paso N · título». */
+  pasos?: { numero: number; titulo: string }[];
+}) {
   const capturas = ejemplo.capturas.filter((c) => mediaExists(c.src));
+  const tituloDePaso = (n?: number) => {
+    if (n === undefined) return null;
+    const p = pasos.find((x) => x.numero === n);
+    return p ? `Paso ${n} · ${p.titulo}` : `Paso ${n}`;
+  };
+  // La nota que el autor dejó preparada solo se enseña cuando ya existe la captura de una prueba real.
+  const hayPruebaReal = capturas.some((c) => c.etiqueta === "Prueba real");
+  const lineasCorregi = lineasQueCorregi(ejemplo, hayPruebaReal);
   // `pendientes` llega ya filtrado por la página (`pendientesVisibles`): solo con `next dev` trae recuadros; en un build de producción, nunca.
 
   return (
@@ -72,7 +94,10 @@ export function EjemploReal({ ejemplo, datos, calculos = [], pendientes = [] }: 
       )}
 
       {capturas.map((captura) => (
-        <CapturaFigura key={captura.src} captura={captura} />
+        <div key={captura.src} data-evidencia={captura.paso ?? ""}>
+          {tituloDePaso(captura.paso) && <h3 className="mt-6 text-base font-semibold text-guide-ink">{tituloDePaso(captura.paso)}</h3>}
+          <CapturaFigura captura={captura} />
+        </div>
       ))}
 
       {pendientes.length > 0 && (
@@ -81,7 +106,8 @@ export function EjemploReal({ ejemplo, datos, calculos = [], pendientes = [] }: 
             <div key={p.archivo} className="rounded-xl border-2 border-dashed border-foreground/40 bg-muted/60 p-5 text-sm leading-relaxed text-foreground/80">
               <p className="font-mono text-[0.8rem] font-semibold text-foreground">{p.archivo}</p>
               <p className="mt-1">
-                <span className="font-semibold">{p.etiqueta}</span> · captura pendiente (solo visible en revisión)
+                <span className="font-semibold">{p.etiqueta}</span>
+                {tituloDePaso(p.paso) ? ` · ${tituloDePaso(p.paso)}` : ""} · captura pendiente{p.obligatoria === false ? " (opcional)" : ""} (solo visible en revisión)
               </p>
               <p className="mt-1">{p.muestra}</p>
             </div>
@@ -98,11 +124,11 @@ export function EjemploReal({ ejemplo, datos, calculos = [], pendientes = [] }: 
         </details>
       )}
 
-      {ejemplo.queCorregi.length > 0 && (
+      {lineasCorregi.length > 0 && (
         <div className="mt-6 rounded-xl border-l-[3px] border-brand bg-guide-surface px-5 py-4">
           <h3 className="text-base font-semibold text-guide-ink">Qué corregí yo</h3>
           <ul className="mt-2 list-disc space-y-1.5 pl-5 text-[0.97rem] leading-relaxed text-foreground/90">
-            {ejemplo.queCorregi.map((linea) => (
+            {lineasCorregi.map((linea) => (
               <li key={linea}>{linea}</li>
             ))}
           </ul>

@@ -1,77 +1,24 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { calcular, simboloMoneda } from "@/lib/herramientas/calculadora";
-import { ejecutarPreproceso } from "@/lib/herramientas/preprocesos";
-import type { Calculadora as CalculadoraDatos, Campo, PerfilClave, Preproceso } from "@/lib/herramientas/tipos";
-import { construirPrompt } from "@/lib/prompts/construir-prompt";
 import { BotonCopiar } from "./boton-copiar";
 import { Calculadora } from "./calculadora";
-import { FormularioHerramienta } from "./formulario-herramienta";
 import { ConteoPalabras } from "./conteo-palabras";
+import { type DatosInteractivos, ProveedorHerramienta, useHerramienta } from "./estado-herramienta";
+import { FormularioHerramienta } from "./formulario-herramienta";
 import { PanelPerfil } from "./panel-perfil";
-import { usePerfil } from "./use-perfil";
 
-export interface DatosInteractivos {
-  campos: Campo[];
-  usaPerfil: PerfilClave[];
-  calculadora: CalculadoraDatos | null;
-  preproceso?: Preproceso | null;
-  tarea: string;
-}
-
-const vacios = (ids: string[]) => Object.fromEntries(ids.map((id) => [id, ""]));
+export type { DatosInteractivos };
 
 /**
- * El corazón de la página: perfil → formulario → calculadora → prompt → «Copiar prompt».
- * Todo ocurre en el navegador. La barra de acciones queda pegada abajo en el celular para que «Copiar
- * prompt» esté siempre a la vista. Aquí nunca hay publicidad.
+ * El corazón de la página: perfil → formulario → calculadora → (conteos) y, en las herramientas simples, el prompt con su
+ * botón «Copiar prompt». Todo ocurre en el navegador; aquí nunca hay publicidad.
+ *
+ * Con `conCopiar={false}` (páginas de PROCESO) no muestra el prompt: cada paso del proceso trae el suyo, con su botón Copiar,
+ * y solo se avisa de lo que falta.
  */
-export function HerramientaInteractiva({ campos, usaPerfil, calculadora, preproceso, tarea }: DatosInteractivos) {
-  const perfil = usePerfil();
-  const [valores, setValores] = useState<Record<string, string>>(() => vacios(campos.map((c) => c.id)));
-  const [entradas, setEntradas] = useState<Record<string, string>>(() => vacios(calculadora?.entradas.map((e) => e.id) ?? []));
-  const [conEjemplo, setConEjemplo] = useState(false);
-
-  const moneda = simboloMoneda(perfil.moneda);
-  const estado = useMemo(() => (calculadora ? calcular(calculadora, entradas, perfil.moneda) : null), [calculadora, entradas, perfil.moneda]);
-
-  const previo = useMemo(() => (preproceso ? ejecutarPreproceso(preproceso, valores, perfil.moneda) : null), [preproceso, valores, perfil.moneda]);
-
-  // Lo que la página cuenta y la tarea nombra con {{variable}} (por ejemplo, las palabras): la IA no lo vuelve a contar.
-  const variablesDeLaTarea = useMemo(
-    () => Object.fromEntries(Object.entries(preproceso?.variables ?? {}).map(([variable, id]) => [variable, String(previo?.resultados.find((r) => r.id === id)?.valor ?? 0)])),
-    [preproceso, previo]
-  );
-
-  const prompt = useMemo(
-    () =>
-      construirPrompt(
-        perfil,
-        campos.map((c) => ({ id: c.id, label: c.label, valor: valores[c.id], requerido: c.requerido })),
-        [
-          ...(estado ? estado.resultados.filter((r) => r.enPrompt && !(r.opcional && r.valor === null)).map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : []),
-          ...(previo && previo.completo ? previo.resultados.filter((r) => r.enPrompt !== false).map((r) => ({ etiqueta: r.etiqueta, texto: r.texto })) : []),
-        ],
-        tarea,
-        { usaPerfil, variables: variablesDeLaTarea }
-      ),
-    [perfil, campos, valores, estado, previo, tarea, usaPerfil, variablesDeLaTarea]
-  );
-
-  const faltan = campos.filter((c) => c.requerido && !valores[c.id]?.trim()).map((c) => c.label);
-
-  function probarConEjemplo() {
-    setValores(Object.fromEntries(campos.map((c) => [c.id, c.ejemplo])));
-    setEntradas(Object.fromEntries((calculadora?.entradas ?? []).map((e) => [e.id, e.ejemplo])));
-    setConEjemplo(true);
-  }
-
-  function limpiar() {
-    setValores(vacios(campos.map((c) => c.id)));
-    setEntradas(vacios(calculadora?.entradas.map((e) => e.id) ?? []));
-    setConEjemplo(false);
-  }
+export function PanelDatos({ conCopiar = true }: { conCopiar?: boolean }) {
+  const { datos, valores, entradas, estado, previo, moneda, faltan, conEjemplo, prompt, setValor, setEntrada, probarConEjemplo, limpiar } = useHerramienta();
+  const { campos, usaPerfil, calculadora, preproceso } = datos;
 
   return (
     <div className="rounded-2xl border bg-background shadow-sm">
@@ -87,29 +34,9 @@ export function HerramientaInteractiva({ campos, usaPerfil, calculadora, preproc
 
         {usaPerfil.length > 0 && <PanelPerfil claves={usaPerfil} />}
 
-        {calculadora && estado && (
-          <Calculadora
-            calculadora={calculadora}
-            entradas={entradas}
-            onCambio={(id, valor) => {
-              setEntradas((prev) => ({ ...prev, [id]: valor }));
-              setConEjemplo(false);
-            }}
-            estado={estado}
-            moneda={moneda}
-          />
-        )}
+        {calculadora && estado && <Calculadora calculadora={calculadora} entradas={entradas} onCambio={setEntrada} estado={estado} moneda={moneda} />}
 
-        {campos.length > 0 && (
-          <FormularioHerramienta
-            campos={campos}
-            valores={valores}
-            onCambio={(id, valor) => {
-              setValores((prev) => ({ ...prev, [id]: valor }));
-              setConEjemplo(false);
-            }}
-          />
-        )}
+        {campos.length > 0 && <FormularioHerramienta campos={campos} valores={valores} onCambio={setValor} />}
 
         {preproceso?.tipo === "conteo-palabras" && previo && <ConteoPalabras estado={previo} maximo={preproceso.palabras!.maximo} />}
 
@@ -140,22 +67,41 @@ export function HerramientaInteractiva({ campos, usaPerfil, calculadora, preproc
         )}
 
         {conEjemplo && <p className="text-sm text-muted-foreground">Estás viendo un ejemplo. Cambia cualquier dato por el tuyo o pulsa «Empezar de cero».</p>}
-      </div>
 
-      {/* Barra de acciones: «Copiar prompt» queda pegado abajo en el celular y siempre cerca del formulario. */}
-      <div className="sticky bottom-0 z-10 rounded-b-2xl border-t bg-background/95 p-3 backdrop-blur sm:static sm:p-6 sm:pt-4">
-        <BotonCopiar texto={prompt} />
-        {faltan.length > 0 && (
-          <p className="mt-3 text-sm text-muted-foreground">
-            Te falta: {faltan.join(", ")}. Puedes copiar igualmente: el prompt lo marca como [FALTA] y la IA te lo preguntará.
+        {!conCopiar && faltan.length > 0 && (
+          <p data-faltan className="text-sm text-muted-foreground" role="status">
+            Te falta: {faltan.join(", ")}. Puedes seguir igualmente: cada prompt marca lo que falta como [FALTA] y la IA te lo preguntará.
           </p>
         )}
       </div>
 
-      <details className="border-t px-4 py-3 sm:px-6">
-        <summary className="guide-focus min-h-11 cursor-pointer rounded text-sm font-semibold text-guide-ink">Ver el prompt completo</summary>
-        <pre className="mt-3 max-h-96 overflow-auto whitespace-pre-wrap break-words rounded-lg border bg-guide-code p-4 font-mono text-[0.8rem] leading-relaxed text-guide-code-foreground">{prompt}</pre>
-      </details>
+      {conCopiar && (
+        <>
+          {/* Barra de acciones: «Copiar prompt» queda pegado abajo en el celular y siempre cerca del formulario. */}
+          <div className="sticky bottom-0 z-10 rounded-b-2xl border-t bg-background/95 p-3 backdrop-blur sm:static sm:p-6 sm:pt-4">
+            <BotonCopiar texto={prompt} />
+            {faltan.length > 0 && (
+              <p className="mt-3 text-sm text-muted-foreground">
+                Te falta: {faltan.join(", ")}. Puedes copiar igualmente: el prompt lo marca como [FALTA] y la IA te lo preguntará.
+              </p>
+            )}
+          </div>
+
+          <details className="border-t px-4 py-3 sm:px-6">
+            <summary className="guide-focus min-h-11 cursor-pointer rounded text-sm font-semibold text-guide-ink">Ver el prompt completo</summary>
+            <pre className="mt-3 max-h-96 overflow-auto whitespace-pre-wrap break-words rounded-lg border bg-guide-code p-4 font-mono text-[0.8rem] leading-relaxed text-guide-code-foreground">{prompt}</pre>
+          </details>
+        </>
+      )}
     </div>
+  );
+}
+
+/** Herramienta simple (sin proceso): el formulario, el prompt y «Copiar prompt», con su propio estado. */
+export function HerramientaInteractiva(datos: DatosInteractivos) {
+  return (
+    <ProveedorHerramienta datos={datos}>
+      <PanelDatos />
+    </ProveedorHerramienta>
   );
 }

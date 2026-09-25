@@ -101,10 +101,13 @@ Los campos del **perfil** (sección 6) se completan solos. Aquí están solo los
 - **Prompt:** incluye los números ya calculados; la IA propone el texto de la promoción y 2 alternativas, **sin recalcular**.
 - **Ejemplo real:** Café Mirador (capturas actuales + calculadora).
 
-### 3. /marketing/crear-afiches-con-ia — Generador (PILOTO)
-- **Campos:** oferta · precio · días y horario · lugar · condiciones · tamaño (A4 / A3) · herramienta de diseño (Canva, otra).
-- **Resultado:** texto en 4 niveles (N1–N4), con un total de menos de 40 palabras; un brief para diseñar; un prompt de imagen **sin texto**.
-- **Ejemplo real:** La Espiga (captura del chat + afiche final con la foto de los panes).
+### 3. /marketing/crear-afiches-con-ia — Proceso (PILOTO de la plantilla de proceso)
+- **Promesa:** «Crea tu afiche completo, listo para imprimir y pegar en tu local», en 15 minutos: del problema al afiche terminado, impreso y publicado.
+- **Campos (10):** oferta · precio · días y horario · acción · lugar · condiciones · colores de la marca · **¿tienes foto real?** (Sí / No) · **¿dónde harás el afiche?** (Canva / IA de imagen / Aún no sé) · **¿qué formatos necesitas?** (casillas: A4 impreso, estado de WhatsApp o historia 9:16, post cuadrado 1:1). Sustituyen a «tamaño» y «herramienta de diseño».
+- **La página cuenta:** las palabras de los cuatro niveles (máximo 39, «menos de 40»), en vivo, con aviso que no bloquea.
+- **Proceso (5 pasos, 15 min):** 1 Datos (2 min) · 2 Texto (1 min: el prompt completo, niveles N1–N4 con el N1 exacto «oferta por precio») · 3 Afiche (5 min: A) Canva o B) IA de imagen con un prompt que trae el texto exacto; primero la opción elegida) · 4 Revisión (2 min: la página lista los datos que hay que comparar letra por letra) · 5 Salida (5 min: prueba impresa, mockup en vitrina como simulación, versión 9:16 y 1:1, mensaje de WhatsApp; solo los formatos marcados).
+- **Kit final:** texto verificado · afiche en PDF · versión 9:16 (si la marcó) · versión 1:1 (si la marcó) · mockup · mensaje de WhatsApp · prueba impresa revisada.
+- **Ejemplo real:** La Espiga, con una evidencia por paso: preparación («Captura de la herramienta»), texto («Prueba real»), afiche («Prueba real» de la IA de imagen, o captura de Canva), afiche final («Resultado final diseñado con el texto de la IA» o «Foto generada con IA»), mockup («Simulación», generada con IA) y estado 9:16. `npm run publicar` exige al menos `prueba-01` y `afiche-final`.
 
 ### 4. /marketing/crear-publicaciones-para-redes-con-ia — Generador
 - **Campos:** objetivo (vender / informar / interactuar) · tema o producto · red social · formato (post, carrusel, historia, reel) · dato clave · llamada a la acción.
@@ -250,6 +253,21 @@ Texto visible obligatorio: *"Tus datos se guardan solo en este navegador. No los
 **Anuncios de AdSense:** después del bloque 6 y después del bloque 10. Nunca dentro del bloque 3 ni junto a "Copiar prompt".
 
 **Extensión objetivo:** 1.500–2.500 palabras por página.
+
+### 7.1 Plantilla de PROCESO (afiches y, después, las otras 14)
+
+Se activa cuando el archivo de datos trae `pasos` de proceso (objetos con `numero`), además de `resultadoFinal`, `problema`, `necesitas` y `kitFinal`. Sin esos campos la página es la plantilla simple de arriba. Orden (móvil primero, botones de 44 px):
+
+1. **Título + etiquetas** (*15 min · Gratis · ChatGPT, Gemini o Claude + Canva*) y **«Lo que vas a tener en 15 minutos»**: tarjetas de `resultadoFinal` (con captura si existe; si no, icono y descripción; nunca un recuadro de pendiente en producción).
+2. **El problema:** 3 tarjetas (más el antes/después).
+3. **Qué necesitas:** obligatorio u opcional dicho con texto, y la alternativa.
+4. **Tus datos:** el formulario, el conteo (si lo hay) y el aviso de lo que falta.
+5. **El proceso:** pasos numerados («Paso 2 de 5»), cada uno con tiempo, qué haces, botón **Copiar** con su prompt (construido con los datos y el perfil, sin `{{ }}`), «Así sabes que salió bien» y «Si algo falla» (plegable).
+6. **Tu kit final:** lista marcable (el estado vive solo en el navegador, con `try/catch`).
+7. **Ejemplo real:** una evidencia por paso y «Qué corregí yo». *(anuncio)*
+8. **Revisa antes de imprimir** (o publicar) · 9. **Por qué funciona** · 10. **Según tu tipo de negocio** · 11. **Errores comunes** *(anuncio)* · 12. **Preguntas frecuentes** y **Siguiente paso** · 13. **Autor y verificación**.
+
+**Anuncios:** solo después del bloque 7 y del 11. Nunca dentro del formulario, del proceso ni junto a un botón Copiar.
 
 ---
 
