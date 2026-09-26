@@ -23,12 +23,11 @@ export default function CookiesPolicyPage() {
       <ul>
         <li>
           <strong>Almacenamiento local necesario:</strong> tu preferencia de tema claro u oscuro, tu elección sobre las
-          cookies y, si decides guardarlos, los datos de tu negocio del perfil «Mi negocio». Se guardan en el almacenamiento local del navegador, no se envían a ningún servidor y no requieren
+          cookies y, si decides guardarlos, los datos que escribes en los formularios de las herramientas. Se guardan en el almacenamiento local del navegador, no se envían a ningún servidor y no requieren
           consentimiento porque sin ellos el sitio no puede recordar tus preferencias.
         </li>
         <li>
-          <strong>Cookies analíticas (Google Analytics):</strong> nos permiten saber, de forma agregada, qué herramientas se
-          visitan más y cómo se navega por el sitio, para mejorar el contenido. <strong>Solo se cargan si aceptas.</strong>{" "}
+          <strong>Cookies analíticas (Google Analytics):</strong> nos permiten saber, de forma agregada, qué páginas se visitan más y cómo se navega por el sitio, para mejorar el contenido. <strong>Solo se cargan si aceptas.</strong>{" "}
           Si las rechazas, el script de Google Analytics no se carga.
         </li>
         <li>

@@ -1,32 +1,21 @@
 import type { ReactNode } from "react";
-import { EditorialHero } from "@/components/visual/editorial-hero";
-import { FloatingIllustration } from "@/components/visual/floating-illustration";
+import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { formatDate } from "@/lib/utils/format";
 
-/** Contenedor común de las páginas institucionales de texto (privacidad, cookies, términos). */
-export function LegalPage({ title, updatedAt, children }: { title: string; updatedAt: string; children: ReactNode }) {
+/** Contenedor común de las páginas institucionales de texto (sobre nosotros, contacto, privacidad, cookies, términos). */
+export function LegalPage({ title, updatedAt, eyebrow = "Legal", children }: { title: string; updatedAt: string; eyebrow?: string; children: ReactNode }) {
   return (
     <>
-      <EditorialHero
-        quiet
-        eyebrow="Legal"
-        title={title}
-        aside={
-          <FloatingIllustration
-            file="legal-escudo.png"
-            width={800}
-            height={800}
-            speed={0.04}
-            sizes="14rem"
-            className="relative ml-auto hidden w-52 lg:block"
-            purpose="Escudo redondeado con una casilla de verificación sobre una hoja."
-          />
-        }
-      >
-        <p className="mt-5 font-mono text-xs text-muted-foreground">
-          Última actualización: <time dateTime={updatedAt}>{formatDate(updatedAt)}</time>
-        </p>
-      </EditorialHero>
+      <div className="border-b fondo-portada">
+        <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+          <Breadcrumbs items={[{ nombre: "Inicio", href: "/" }, { nombre: title }]} />
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-brand">{eyebrow}</p>
+          <h1 className="mt-2 text-3xl font-bold leading-tight tracking-[var(--tracking-display)] sm:text-4xl">{title}</h1>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Última actualización: <time dateTime={updatedAt}>{formatDate(updatedAt)}</time>
+          </p>
+        </div>
+      </div>
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="prose prose-neutral max-w-none dark:prose-invert prose-a:text-brand prose-h2:tracking-tight prose-headings:scroll-mt-28">{children}</div>
       </div>

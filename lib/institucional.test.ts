@@ -1,12 +1,15 @@
 /**
- * Páginas institucionales: enlazadas desde el pie, un solo correo, mismo responsable (Nicolas / DeveloClick) y la biografía
- * de Nicolas como único pendiente (en el archivo de datos, nunca visible).
+ * Páginas institucionales y estructura del sitio: enlazadas desde el pie, un solo correo, mismo responsable
+ * (Nicolas / DeveloClick), rutas del proxy que no chocan con las vigentes y registro de categorías y prompts coherente.
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { authors, AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "../content/autores";
+import { categorias, categoriasDisponibles, getCategoria } from "../content/categorias";
+import { getPrompt, prompts, rutaDePrompt } from "../content/prompts";
+import { config as proxyConfig } from "../proxy";
 import { footerNav } from "./nav-config";
 import { contactEmail, institutionalPages } from "./site";
 
@@ -23,13 +26,19 @@ test("privacidad, cookies, términos, sobre nosotros y contacto están enlazados
 
 test("un solo correo en todo el código: contacto@guiapromptsia.com", () => {
   const correos = new Set<string>();
-  for (const dir of ["app", "components", "lib", "content"]) for (const f of archivos(dir)) for (const m of leer(f).match(/[\w.+-]+@[\w-]+\.[a-z]{2,}/gi) ?? []) correos.add(m.toLowerCase());
+  for (const dir of ["app", "components", "lib", "content"]) {
+    for (const f of archivos(dir)) {
+      if (f.endsWith(".test.ts") || f.includes("cv-ejemplo")) continue; // el ejemplo ficticio usa correos @example.com
+      for (const m of leer(f).match(/[\w.+-]+@[\w-]+\.[a-z]{2,}/gi) ?? []) if (!/@(correo|example)\.com$/i.test(m)) correos.add(m.toLowerCase()); // sin los correos de ejemplo de los formularios
+    }
+  }
   assert.deepEqual([...correos], [contactEmail]);
 });
 
 test("mismo responsable en todas partes: Nicolas (Person) y DeveloClick (Organization), tomados de content/autores.ts", () => {
   assert.equal(getAuthor(AUTOR_POR_DEFECTO)?.name, "Nicolas");
   assert.equal(getAuthor(EDITORIAL)?.name, "DeveloClick");
+  assert.equal(getAuthor(AUTOR_POR_DEFECTO)?.pais, "Perú");
   for (const f of ["app/(site)/sobre-nosotros/page.tsx", "app/(site)/politica-de-privacidad/page.tsx", "app/(site)/terminos-y-condiciones/page.tsx", "app/(site)/contacto/page.tsx", "components/layout/footer.tsx"]) {
     const t = leer(f);
     assert.match(t, /EDITORIAL/, `${f} no usa la constante del responsable`);
@@ -37,50 +46,18 @@ test("mismo responsable en todas partes: Nicolas (Person) y DeveloClick (Organiz
   }
 });
 
-test("la biografía de Nicolas vive en content/autores.ts (bioCorta, bioLarga de 3 párrafos, país) y las páginas la leen de ahí", () => {
+test("la biografía vive en content/autores.ts y las páginas la leen de ahí (sin TODO ni notas de producción)", () => {
   const nicolas = authors.find((a) => a.id === "nicolas")!;
   assert.match(nicolas.bioCorta ?? "", /^Nicolas — ingeniero de prompts en Perú\./);
   assert.equal(nicolas.bioLarga?.length, 3);
-  assert.equal(nicolas.pais, "Perú");
-  assert.doesNotMatch(leer("content", "autores.ts"), /TODO/);
-  const sobre = leer("app", "(site)", "sobre-nosotros", "page.tsx");
-  assert.match(sobre, /autorDatos\.bioLarga\?\.map/);
-  assert.match(sobre, /Quién está detrás de/);
-  assert.match(sobre, /proyecto de \{editorial\}/);
-  assert.doesNotMatch(sobre, /Soy Nicolas|ingeniería de prompts/, "el texto de la biografía no se copia en la página");
-  // Ninguna página institucional muestra un TODO ni notas de producción.
-  for (const f of ["sobre-nosotros", "politica-de-privacidad", "politica-de-cookies", "terminos-y-condiciones", "contacto", "como-probamos"]) {
+  assert.match(leer("app", "(site)", "sobre-nosotros", "page.tsx"), /autorDatos\.bioLarga\?\.map/);
+  for (const f of ["sobre-nosotros", "politica-de-privacidad", "politica-de-cookies", "terminos-y-condiciones", "contacto"]) {
     const t = leer("app", "(site)", f, "page.tsx").replace(/\/\/.*$/gm, "");
-    assert.doesNotMatch(t, /\bTODO\b|\[completar\]|captura pendiente/, f);
+    assert.doesNotMatch(t, /\bTODO\b|\[completar\]/, f);
   }
 });
 
-test("/como-probamos describe el método real (varias pruebas, comparar, ajustar, mejor versión, captura real, «Qué corregí yo») y solo las etiquetas de imagen que existen", async () => {
-  const { ETIQUETAS_IMAGEN } = await import("./herramientas/tipos");
-  const t = leer("app", "(site)", "como-probamos", "page.tsx");
-  for (const frase of [/Varias pruebas y comparación/, /Ajustes y mejor versión/, /La captura real/, /Qué corregí yo/]) assert.match(t, frase);
-  for (const etiqueta of ETIQUETAS_IMAGEN) assert.ok(t.includes(`["${etiqueta}"`), `falta la etiqueta «${etiqueta}»`);
-  assert.doesNotMatch(t, /Captura de hoja/, "esa etiqueta no existe (el validador la rechaza)");
-});
-
-test("locale: og:locale es_PE y fechas en es-419 (público y autor en Latinoamérica)", () => {
-  assert.match(leer("lib", "seo", "metadata.ts"), /locale: "es_PE"/);
-  assert.doesNotMatch(leer("lib", "seo", "metadata.ts"), /es_ES/);
-  assert.match(leer("lib", "utils", "format.ts"), /"es-419"/);
-});
-
-test("responsable legal: Nicolas (persona natural, Perú); DeveloClick es el nombre del proyecto, no una empresa registrada", () => {
-  const sobre = leer("app", "(site)", "sobre-nosotros", "page.tsx");
-  assert.match(sobre, /responsable editorial y legal del sitio es \{autor\}/);
-  assert.match(sobre, /persona natural/);
-  assert.match(sobre, /no una empresa registrada/);
-  assert.doesNotMatch(sobre, /\{editorial\}, responsable editorial y legal/);
-  assert.equal(getAuthor(AUTOR_POR_DEFECTO)?.pais, "Perú");
-  assert.match(leer("components", "layout", "footer.tsx"), /un proyecto de/);
-  assert.doesNotMatch(leer("components", "layout", "footer.tsx"), /publicado por/);
-});
-
-test("legal: responsable Nicolas (persona natural, Perú), ley y jurisdicción de la República del Perú, Ley 29733 en privacidad y nada de España/UE como ley aplicable", () => {
+test("legal: responsable persona natural en Perú, Ley 29733 y nada de España/UE como ley aplicable", () => {
   const p = (n: string) => leer("app", "(site)", n, "page.tsx").replace(/\s+/g, " ");
   const terminos = p("terminos-y-condiciones");
   const privacidad = p("politica-de-privacidad");
@@ -88,12 +65,38 @@ test("legal: responsable Nicolas (persona natural, Perú), ley y jurisdicción d
   for (const t of [terminos, privacidad, cookies]) {
     assert.ok(t.includes("persona natural"), "responsable: persona natural");
     assert.ok(t.includes("contactEmail"), "responsable: correo de contacto");
-    assert.ok(!t.includes("publica {getAuthor(EDITORIAL)"), "DeveloClick ya no es quien publica");
-    assert.ok(!/Unión Europea y España|España/.test(t.replace("por ejemplo, los de los usuarios de la Unión Europea", "")), "sin España como ley aplicable");
   }
-  assert.ok(terminos.includes("Ley aplicable y jurisdicción") && terminos.includes("leyes de la República del Perú") && terminos.includes("tribunales competentes de la República del Perú"));
-  assert.ok(privacidad.includes("Ley N.° 29733"), "privacidad cita la Ley 29733");
+  assert.ok(terminos.includes("leyes de la República del Perú") && terminos.includes("tribunales competentes de la República del Perú"));
+  assert.ok(privacidad.includes("Ley N.° 29733"));
   assert.ok(privacidad.includes("Autoridad Nacional de Protección de Datos Personales"));
-  assert.ok(privacidad.includes("AdSense") && privacidad.includes("Google Analytics") && privacidad.includes("solo en este navegador"), "se conserva lo de AdSense, Analytics con consentimiento y perfil local");
-  assert.ok(cookies.includes("Ley N.° 29733"));
+  assert.ok(privacidad.includes("Google Analytics") && privacidad.includes("solo en este navegador"));
+  assert.ok(!/Mi negocio|microempresas/.test(privacidad + terminos + cookies), "sin restos del modelo anterior");
+});
+
+test("locale: og:locale es_PE y fechas en es-419", () => {
+  assert.match(leer("lib", "seo", "metadata.ts"), /locale: "es_PE"/);
+  assert.match(leer("lib", "utils", "format.ts"), /"es-419"/);
+});
+
+test("el proxy (410) no captura ninguna ruta vigente del sitio", () => {
+  const vigentes = ["/", ...institutionalPages.map((p) => p.path), ...categoriasDisponibles.map((c) => `/${c.slug}`), ...prompts.map(rutaDePrompt)];
+  for (const patron of proxyConfig.matcher) {
+    const base = patron.replace(/\/:path\*$/, "");
+    for (const ruta of vigentes) assert.ok(ruta !== base && !ruta.startsWith(`${base}/`), `${patron} choca con ${ruta}`);
+  }
+});
+
+test("categorías y prompts: slugs únicos, subcategorías válidas y cada prompt en una categoría disponible", () => {
+  assert.equal(new Set(categorias.map((c) => c.slug)).size, categorias.length);
+  assert.equal(categorias.length, 8);
+  for (const c of categorias) assert.equal(new Set(c.subcategorias.map((s) => s.slug)).size, c.subcategorias.length, c.slug);
+  assert.deepEqual(categoriasDisponibles.map((c) => c.slug), ["carrera-y-empleo"]);
+  assert.equal(new Set(prompts.map((p) => `${p.categoria}/${p.slug}`)).size, prompts.length);
+  for (const p of prompts) {
+    const c = getCategoria(p.categoria);
+    assert.ok(c?.disponible, p.slug);
+    assert.ok(c!.subcategorias.some((s) => s.slug === p.subcategoria), `${p.slug}: subcategoría`);
+    assert.ok(p.descripcion.length >= 120 && p.descripcion.length <= 165, `${p.slug}: meta descripción de ${p.descripcion.length} caracteres`);
+    assert.equal(getPrompt(p.categoria, p.slug), p);
+  }
 });

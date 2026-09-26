@@ -5,8 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${siteName} — ${siteTagline}`,
     short_name: siteName,
-    description:
-      "Herramientas para resolver con inteligencia artificial tareas reales de microempresas y emprendedores.",
+    description: "Biblioteca gratuita de prompts en español para ChatGPT, Gemini y Claude.",
     start_url: "/",
     display: "standalone",
     background_color: "#0a0a0a",

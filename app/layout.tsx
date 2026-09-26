@@ -28,8 +28,7 @@ export const metadata: Metadata = {
     default: `${siteName} — ${siteTagline}`,
     template: `%s · ${siteName}`,
   },
-  description:
-    "Herramientas para resolver con inteligencia artificial tareas reales de tu negocio: eliges la tarea, llenas unos datos y copias el prompt (anuncios, promociones, clientes, precios, análisis y organización).",
+  description: "Biblioteca gratuita de prompts en español para ChatGPT, Gemini y Claude: llena tus datos, copia el prompt listo y úsalo.",
   applicationName: siteName,
   verification: {
     google: "B3ClaGnGqP20qsHVIDjZGAi4T6DsIOG1BmrL1Kv9NUQ",

@@ -1,57 +1,42 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { PaginaHerramienta } from "@/components/herramientas/pagina-herramienta";
 import { JsonLd } from "@/components/seo/json-ld";
-import { AUTOR_POR_DEFECTO, getAuthor } from "@/content/autores";
-import { getCategory } from "@/content/categorias";
-import { listarTodas, obtenerHerramienta, relacionadasDe, rutaHerramienta } from "@/lib/herramientas/registro";
-import { herramientaArticleJsonLd, herramientaFaqJsonLd, ogImageUrl } from "@/lib/herramientas/seo";
-import { breadcrumbJsonLd } from "@/lib/seo/json-ld";
+import { PaginaCv, PREGUNTAS_CV } from "@/components/prompts/cv/pagina-cv";
+import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
+import { getCategoria } from "@/content/categorias";
+import { getPrompt, prompts, rutaDePrompt } from "@/content/prompts";
+import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 interface PageProps {
   params: Promise<{ categoria: string; slug: string }>;
 }
 
-// El universo de herramientas se conoce en build time (un archivo de datos por página). Cualquier
-// combinación área/slug que no exista devuelve 404 real. Las páginas `publicado: false` se sirven con
-// noindex (para poder revisarlas) pero no aparecen en ningún listado ni en el sitemap; las internas
-// de prueba (archivos «_…») solo existen con `next dev`.
+// Solo existen las rutas registradas en content/prompts; cualquier otra combinación devuelve 404 real.
 export const dynamicParams = false;
 
-export async function generateStaticParams() {
-  const paginas = await listarTodas();
-  return paginas.map((h) => ({ categoria: h.meta.area, slug: h.meta.slug }));
+export function generateStaticParams() {
+  return prompts.map((p) => ({ categoria: p.categoria, slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { categoria, slug } = await params;
-  const h = await obtenerHerramienta(categoria, slug);
-  if (!h) return {};
-
+  const p = getPrompt(categoria, slug);
+  if (!p) return {};
   return buildMetadata({
-    title: h.meta.titulo,
-    description: h.meta.descripcion,
-    path: rutaHerramienta(h.meta),
+    title: p.titulo,
+    description: p.descripcion,
+    path: rutaDePrompt(p),
     type: "article",
-    image: ogImageUrl(h),
-    noIndex: !h.publicado || h.interna,
-    article: {
-      publishedTime: h.meta.fechaPublicacion,
-      modifiedTime: h.meta.actualizado,
-      authors: [getAuthor(h.meta.autor ?? AUTOR_POR_DEFECTO)?.name ?? ""].filter(Boolean),
-    },
+    article: { publishedTime: p.publicado, modifiedTime: p.actualizado, authors: [getAuthor(AUTOR_POR_DEFECTO)!.name] },
   });
 }
 
-export default async function HerramientaPage({ params }: PageProps) {
+export default async function PromptPage({ params }: PageProps) {
   const { categoria, slug } = await params;
-  const h = await obtenerHerramienta(categoria, slug);
-  const area = getCategory(categoria);
-  if (!h || !area) notFound();
-
-  const relacionadas = await relacionadasDe(h);
-  const faq = herramientaFaqJsonLd(h);
+  const p = getPrompt(categoria, slug);
+  const c = getCategoria(categoria);
+  if (!p || !c) notFound();
 
   return (
     <>
@@ -59,14 +44,22 @@ export default async function HerramientaPage({ params }: PageProps) {
         data={[
           breadcrumbJsonLd([
             { name: "Inicio", path: "/" },
-            { name: area.name, path: `/${area.slug}` },
-            { name: h.meta.titulo, path: rutaHerramienta(h.meta) },
+            { name: c.nombre, path: `/${c.slug}` },
+            { name: p.tituloCorto, path: rutaDePrompt(p) },
           ]),
-          herramientaArticleJsonLd(h),
-          ...(faq ? [faq] : []),
+          articleJsonLd({
+            titulo: p.titulo,
+            descripcion: p.descripcion,
+            path: rutaDePrompt(p),
+            publicado: p.publicado,
+            actualizado: p.actualizado,
+            autor: getAuthor(AUTOR_POR_DEFECTO)!.name,
+            editorial: getAuthor(EDITORIAL)!.name,
+          }),
+          faqJsonLd(PREGUNTAS_CV),
         ]}
       />
-      <PaginaHerramienta herramienta={h} relacionadas={relacionadas} />
+      {p.tipo === "cv-ats" && <PaginaCv prompt={p} />}
     </>
   );
 }

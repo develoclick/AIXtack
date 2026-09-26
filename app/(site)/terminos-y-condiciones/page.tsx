@@ -22,8 +22,8 @@ export default function TermsPage() {
 
       <h2>1. Descripción del servicio</h2>
       <p>
-        {siteName} es un sitio de contenido educativo en español con herramientas y guías cortas para usar inteligencia artificial
-        en tareas de microempresas y emprendedores. El acceso al contenido es gratuito, no requiere registro y no
+        {siteName} es un sitio de contenido educativo en español con prompts y herramientas para usar inteligencia artificial
+        en tareas cotidianas, como preparar tu hoja de vida. El acceso al contenido es gratuito, no requiere registro y no
         existen cuentas de usuario.
       </p>
 
@@ -36,18 +36,19 @@ export default function TermsPage() {
 
       <h2>3. Naturaleza informativa del contenido</h2>
       <p>
-        Las herramientas y sus guías tienen carácter informativo y educativo. No constituyen asesoramiento financiero, contable, legal ni
-        profesional de ningún tipo. Los ejemplos que aparecen en ellas utilizan negocios ficticios y se identifican
+        Las herramientas y sus explicaciones tienen carácter informativo y educativo. No constituyen asesoramiento financiero, contable, legal,
+        laboral ni profesional de ningún tipo, y no garantizan resultados (por ejemplo, superar un proceso de selección u obtener
+        una entrevista). Los ejemplos que aparecen utilizan personas y negocios ficticios y se identifican
         como tales; ilustran un método y no representan resultados reales ni garantizados.
       </p>
 
       <h2>4. Uso de la inteligencia artificial y responsabilidad del usuario</h2>
       <p>
         Los resultados que genera una herramienta de inteligencia artificial pueden contener errores, omisiones o
-        información inventada. Cada herramienta indica qué debe verificar una persona antes de utilizar el resultado. Eres
-        responsable de revisar precios, fechas, condiciones comerciales, cálculos, datos de clientes y cualquier
-        información legal o financiera antes de aplicarla en tu negocio, así como de las decisiones que tomes a partir
-        de ella.
+        información inventada. Cada página indica qué debe verificar una persona antes de utilizar el resultado. Eres
+        responsable de revisar nombres, fechas, cifras, cargos y cualquier otra información antes de usarla (por ejemplo,
+        antes de enviar tu hoja de vida a una empresa), así como de las decisiones que tomes a partir de ella. Todo lo que
+        figure en un documento que envíes debe ser veraz.
       </p>
 
       <h2>5. Uso permitido</h2>

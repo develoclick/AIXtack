@@ -1,323 +1,193 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, ClipboardList, Copy, ShieldCheck, SlidersHorizontal } from "lucide-react";
-import { TarjetaHerramienta } from "@/components/herramientas/tarjeta-herramienta";
-import { buttonVariants } from "@/components/ui/button";
-import { AuroraRibbon } from "@/components/visual/aurora-ribbon";
-import { BigIndex } from "@/components/visual/big-index";
-import { FloatingIllustration } from "@/components/visual/floating-illustration";
-import { Marquee } from "@/components/visual/marquee";
-import { Reveal } from "@/components/visual/reveal";
-import { SiteImage } from "@/components/visual/site-image";
-import { categories } from "@/content/categorias";
-import { listarVisibles, rutaHerramienta } from "@/lib/herramientas/registro";
+import { ArrowRight, ClipboardCopy, FileDown, PencilLine } from "lucide-react";
+import { JsonLd } from "@/components/seo/json-ld";
+import { Buscador } from "@/components/home/buscador";
+import { SidebarCategorias } from "@/components/home/sidebar-categorias";
+import { IconoDeCategoria } from "@/components/layout/icono-categoria";
+import { TarjetaPrompt } from "@/components/prompts/tarjeta-prompt";
+import { categorias } from "@/content/categorias";
+import { prompts, RUTA_CV } from "@/content/prompts";
+import { itemsBuscables } from "@/lib/buscable";
+import { faqJsonLd } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { siteName, siteTagline } from "@/lib/site";
-import { cn } from "@/lib/utils";
+import { HOME_UPDATED_AT, siteName } from "@/lib/site";
+import { formatDate } from "@/lib/utils/format";
 
 export const metadata = buildMetadata({
-  title: `${siteName} — ${siteTagline}`,
-  absoluteTitle: true,
-  description:
-    "Herramientas de IA para tu negocio: elige la tarea, llena unos datos y copia el prompt listo para pegar. Con guía corta, ejemplo, lista de revisión y cálculos hechos por la página.",
+  title: `Prompts en español gratis para ChatGPT, Gemini y Claude — ${siteName}`,
+  description: "Biblioteca gratuita de prompts en español: llena tus datos, copia el prompt listo y úsalo en ChatGPT, Gemini o Claude. Empieza por tu hoja de vida.",
   path: "/",
+  absoluteTitle: true,
 });
 
-const tasks = [
-  "Crear un anuncio",
-  "Diseñar una promoción",
-  "Preparar un afiche",
-  "Crear publicaciones",
-  "Responder a clientes",
-  "Responder un reclamo",
-  "Preparar una cotización",
-  "Calcular un precio",
-  "Analizar ventas",
-  "Punto de equilibrio",
-  "Documentar procesos",
-  "Organizar tareas",
+const PASOS = [
+  { icono: PencilLine, titulo: "Llena tus datos", texto: "Un formulario sencillo te pide solo lo necesario para la tarea. Tus datos se quedan en tu navegador." },
+  { icono: ClipboardCopy, titulo: "Copia tu prompt", texto: "Mientras escribes, el prompt se arma solo con tus datos. Cuando termines, lo copias con un clic." },
+  { icono: FileDown, titulo: "Pégalo en tu IA y descarga", texto: "Lo pegas en ChatGPT, Gemini o Claude. En el caso de la hoja de vida, además, conviertes la respuesta en un archivo Word." },
 ];
 
-const steps = [
-  {
-    icon: ClipboardList,
-    title: "Elige la tarea",
-    text: "Cada herramienta resuelve una tarea concreta de un negocio pequeño: un anuncio, una cotización, un precio, una respuesta a un cliente.",
-  },
-  {
-    icon: SlidersHorizontal,
-    title: "Llena los datos",
-    text: "Un formulario corto pide solo lo necesario. Los datos de tu negocio se guardan solo en tu navegador y se reutilizan en las demás herramientas.",
-  },
-  {
-    icon: Copy,
-    title: "Copia el prompt",
-    text: "La página arma el prompt con tus datos y, si hay números, los cálculos ya hechos. Lo pegas en el asistente de IA que uses.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Revisa y aplica",
-    text: "Una lista de revisión te dice qué comprobar (precios, fechas, condiciones) antes de usar el resultado.",
-  },
+const PREGUNTAS = [
+  { pregunta: "¿Es realmente gratis?", respuesta: "Sí. Los prompts y las herramientas del sitio son gratis, no piden registro ni tarjeta. Para usar el prompt necesitas un asistente de IA (ChatGPT, Gemini, Claude u otro); muchos tienen un plan gratuito, aunque sus límites cambian y los define cada empresa." },
+  { pregunta: "¿Necesito crear una cuenta en este sitio?", respuesta: "No. No hay cuentas ni inicio de sesión. Lo que escribes en los formularios se guarda solo en tu navegador, en tu equipo, para que no lo pierdas si recargas la página." },
+  { pregunta: "¿Con qué asistente de IA funcionan los prompts?", respuesta: "Los prompts son texto y se pueden pegar en cualquier asistente de chat. Están escritos para ser claros y completos, pero cada modelo responde a su manera: la calidad y el formato exacto de la respuesta pueden variar, por eso conviene revisar siempre el resultado." },
+  { pregunta: "¿Puedo confiar en lo que la IA me devuelve?", respuesta: "Como una primera versión, sí; como versión final, no. Cada prompt le pide a la IA que no invente datos, pero puede equivocarse. Revisa cifras, fechas y nombres antes de usar el resultado." },
 ];
 
-const cautions = [
-  {
-    title: "Puede equivocarse",
-    text: "Cada herramienta indica qué debes revisar antes de usar un resultado: precios, fechas, condiciones y datos de tus clientes.",
-  },
-  {
-    title: "Los cálculos los hace la página",
-    text: "Con precios, márgenes o ventas, las cuentas las hace la página con fórmulas comprobadas; la IA no las recalcula y la decisión final es tuya.",
-  },
-  {
-    title: "Los ejemplos son ficticios",
-    text: "Mostramos el método con negocios inventados y siempre lo indicamos. No publicamos resultados ni testimonios que no existan.",
-  },
-];
-
-const plural = (count: number) => (count === 1 ? "1 herramienta" : `${count} herramientas`);
-
-export default async function HomePage() {
-  const herramientas = await listarVisibles();
-  const destacadas = herramientas.slice(0, 6);
-  const stack = herramientas.slice(0, 3);
+export default function HomePage() {
+  const items = itemsBuscables();
 
   return (
     <>
-      {/* ── Hero: mensaje directo a un lado, fichas apiladas al otro ─────────────── */}
-      <section className="relative isolate overflow-hidden">
-        <div aria-hidden className="bg-lines absolute inset-x-0 top-0 -z-10 h-[34rem] opacity-70" />
-        <AuroraRibbon className="-right-[10%] top-[8%] -z-10 hidden h-[27rem] w-[60%] lg:block" />
-        <AuroraRibbon soft className="-left-[18%] bottom-[-6rem] -z-10 h-[20rem] w-[55%] !opacity-25" />
+      <JsonLd data={[faqJsonLd(PREGUNTAS.map((p) => ({ q: p.pregunta, a: p.respuesta })))]} />
 
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 pb-16 pt-14 sm:px-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-10 lg:px-8 lg:pb-28 lg:pt-24">
-          <div>
-            <Reveal>
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-brand">IA práctica para tu negocio</p>
-            </Reveal>
-            <Reveal delay={80}>
-              <h1 className="text-display mt-5 max-w-3xl text-balance">Elige la tarea, llena unos datos y copia el prompt</h1>
-            </Reveal>
-            <Reveal delay={160}>
-              <p className="mt-7 max-w-xl text-balance text-lg leading-relaxed text-muted-foreground sm:text-xl">
-                Herramientas para anuncios, precios, clientes y ventas de tu negocio. La página arma el prompt con tus datos; tú lo pegas en la IA que uses y revisas el resultado.
-              </p>
-            </Reveal>
-            <Reveal delay={240}>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="/herramientas" className={buttonVariants({ size: "lg", className: "h-12 gap-2 rounded-full px-6 text-base" })}>
-                  Ver las herramientas <ArrowRight className="size-4" aria-hidden />
-                </Link>
-                <Link href="/como-probamos" className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 rounded-full bg-background/70 px-6 text-base backdrop-blur" })}>
-                  Cómo probamos
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-
-          <div aria-hidden className="relative mx-auto hidden h-[27rem] w-full max-w-md sm:block lg:max-w-none">
-            <FloatingIllustration
-              file="home-hero.png"
-              width={1200}
-              height={1500}
-              speed={0.06}
-              sizes="(min-width: 1024px) 30rem, 60vw"
-              className="absolute -right-6 top-1/2 z-0 w-[66%] -translate-y-1/2"
-              purpose="Asistente de IA con fichas de trabajo flotando alrededor de una cinta de degradado."
-            />
-            {stack.map((h, index) => (
-              <Reveal
-                key={h.meta.slug}
-                delay={200 + index * 120}
-                className={cn(
-                  "absolute w-[64%]",
-                  index === 0 && "left-0 top-0 z-10 -rotate-3",
-                  index === 1 && "left-[16%] top-[9rem] z-[11] rotate-2",
-                  index === 2 && "bottom-0 left-2 z-[12] -rotate-1"
-                )}
-              >
-                <Link
-                  href={rutaHerramienta(h.meta)}
-                  tabIndex={-1}
-                  className="glass-panel group block rounded-2xl border border-white/40 p-5 shadow-soft-lg transition-transform duration-300 hover:-translate-y-1 dark:border-white/10"
-                >
-                  <span className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.16em] text-brand">{categories.find((c) => c.slug === h.meta.area)?.name}</span>
-                  <span className="mt-2 block text-balance text-[1.02rem] font-semibold leading-snug tracking-tight">{h.meta.titulo}</span>
-                  <span className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{h.meta.tiempo}</span>
-                    <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Marquesina de tareas ─────────────────────────────────────────────────── */}
-      <section aria-label="Ejemplos de tareas" className="border-y bg-paper-2 py-5">
-        <Marquee
-          items={tasks}
-          label="Ejemplos de tareas que resuelven las herramientas"
-          duration={70}
-          itemClassName="rounded-full border bg-background px-4 py-1.5 text-sm text-muted-foreground"
-        />
-      </section>
-
-      {/* ── Áreas: filas editoriales con numeral gigante ─────────────────────────── */}
-      <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-16 lg:px-8 lg:py-28">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <Reveal>
-            <h2 className="text-display-md text-balance">Empieza por la tarea que tienes hoy</h2>
-            <p className="mt-5 max-w-sm text-muted-foreground">Las herramientas se agrupan por el área del negocio a la que pertenece cada tarea.</p>
-          </Reveal>
-        </div>
-
-        <ul className="border-t">
-          {categories.map((category, index) => {
-            const cantidad = herramientas.filter((h) => h.meta.area === category.slug).length;
-            return (
-              <li key={category.slug} className="border-b">
-                <Reveal delay={index * 60}>
-                  <Link
-                    href={`/${category.slug}`}
-                    className="guide-focus group relative grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-5 py-7 transition-colors hover:bg-muted/40 sm:gap-x-8 sm:px-3 sm:py-9"
-                  >
-                    <BigIndex value={index + 1} className="text-5xl text-brand transition-colors duration-300 group-hover:text-brand sm:text-7xl" />
-                    <span className="min-w-0">
-                      <span className="block font-mono text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-brand">
-                        {category.name}
-                        {cantidad > 0 && <span className="ml-3 font-normal normal-case tracking-normal text-muted-foreground">{plural(cantidad)}</span>}
-                      </span>
-                      <span className="mt-2 block text-balance text-xl font-semibold leading-snug tracking-tight transition-colors group-hover:text-brand sm:text-2xl">{category.title}</span>
-                      <span className="mt-2 line-clamp-2 block max-w-xl text-sm leading-relaxed text-muted-foreground">{category.problems[0]}</span>
-                      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand">
-                        Ver el área <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" aria-hidden />
-                      </span>
-                    </span>
-                    <SiteImage
-                      file={`area-${category.slug}.png`}
-                      alt=""
-                      width={480}
-                      height={480}
-                      sizes="(min-width: 640px) 10rem, 6rem"
-                      className="h-auto w-24 object-contain transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-3 sm:w-40"
-                      purpose={`Objeto 3D del área ${category.name}.`}
-                    />
-                  </Link>
-                </Reveal>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      {/* ── Método: franja de tinta con línea de tiempo ──────────────────────────── */}
-      <section className="dark relative isolate overflow-hidden bg-ink text-foreground">
-        <div aria-hidden className="bg-lines-dark absolute inset-0 -z-10" />
-        <AuroraRibbon soft className="-right-[15%] -top-24 -z-10 h-[24rem] w-[80%]" />
-        <FloatingIllustration
-          file="home-metodo.png"
-          width={1600}
-          height={1000}
-          speed={0.05}
-          sizes="30rem"
-          className="absolute right-4 top-10 z-0 hidden w-[28rem] lg:block xl:w-[30rem]"
-          purpose="Mesa de trabajo isométrica con cuatro estaciones."
-        />
-
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <Reveal>
-            <h2 className="text-display-md max-w-2xl text-balance">Cuatro pasos, sin lecturas largas</h2>
-            <p className="mt-5 max-w-xl text-foreground/70">Cada herramienta te lleva de una tarea concreta a un prompt listo para usar:</p>
-          </Reveal>
-
-          <ol className="relative mt-16 grid gap-x-8 lg:mt-28 gap-y-12 md:grid-cols-4">
-            {steps.map((step, index) => (
-              <li key={step.title} className={cn("relative", index % 2 === 1 && "md:mt-12")}>
-                <Reveal delay={index * 90}>
-                  <div className="relative border-t border-white/20 pt-7">
-                    <span aria-hidden className="absolute -top-[5px] left-0 size-[9px] rounded-full bg-brand shadow-[0_0_18px_var(--brand)]" />
-                    <BigIndex value={index + 1} className="text-6xl text-brand" />
-                    <span className="mt-6 flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-brand">
-                      <step.icon className="size-5" aria-hidden />
-                    </span>
-                    <p className="mt-5 text-lg font-semibold tracking-tight">
-                      <span className="sr-only">{index + 1}. </span>
-                      {step.title}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/70">{step.text}</p>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* ── Herramientas ──────────────────────────────────────────────────────────── */}
-      <section className="herramienta-scope mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <Reveal className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 className="text-display-md text-balance">Las herramientas</h2>
-            <p className="mt-4 text-muted-foreground">Tareas reales de un pequeño negocio, con el prompt ya armado.</p>
-          </div>
-          <Link href="/herramientas" className="link-draw inline-flex items-center gap-1 text-sm font-medium text-brand">
-            Ver la biblioteca <ArrowRight className="size-3.5" aria-hidden />
-          </Link>
-        </Reveal>
-
-        {destacadas.length > 0 ? (
-          <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {destacadas.map((h) => (
-              <li key={`${h.meta.area}/${h.meta.slug}`}>
-                <TarjetaHerramienta herramienta={h} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="mt-8 max-w-2xl text-muted-foreground">
-            Estamos preparando las primeras herramientas. Cada una se publica solo cuando su prompt se ha probado de verdad en una IA.
+      <section className="fondo-portada border-b">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <p className="inline-flex items-center rounded-full border bg-card px-3 py-1 text-xs font-semibold text-brand">100 % gratis · sin registro · en español</p>
+          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.08] tracking-[var(--tracking-display)] sm:text-5xl lg:text-6xl">
+            Prompts en español que se arman solos con tus datos
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            Elige una tarea, llena un formulario corto y copia el prompt listo para ChatGPT, Gemini o Claude. Empezamos por lo que más ayuda a tu carrera: una hoja de vida que los filtros ATS lean bien.
           </p>
-        )}
-      </section>
-
-      {/* ── Cierre editorial ──────────────────────────────────────────────────────── */}
-      <section className="relative isolate overflow-hidden border-t bg-paper-2">
-        <div aria-hidden className="glow-brand absolute -bottom-40 -left-32 -z-10 size-[30rem] opacity-50" />
-        <FloatingIllustration
-          file="home-criterio.png"
-          width={900}
-          height={900}
-          speed={0.04}
-          sizes="20rem"
-          className="absolute -bottom-4 left-[3%] z-0 hidden w-[19rem] lg:block"
-          purpose="Balanza con un cubo de IA y una mano abierta en equilibrio."
-        />
-
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20 lg:px-8 lg:py-28">
-          <Reveal className="lg:pt-6">
-            <h2 className="text-display-md text-balance">La IA ayuda, pero no decide por ti</h2>
-            <p className="mt-8 text-sm">
-              <Link href="/como-probamos" className="link-draw inline-flex items-center gap-1 font-medium text-brand">
-                Conoce cómo probamos cada herramienta <ArrowRight className="size-3.5" aria-hidden />
-              </Link>
-            </p>
-          </Reveal>
-
-          <ul className="border-t">
-            {cautions.map((item, index) => (
-              <li key={item.title} className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-x-4 border-b py-7 sm:grid-cols-[5rem_minmax(0,1fr)]">
-                <BigIndex value={index + 1} variant="soft" className="text-4xl text-foreground sm:text-5xl" />
-                <Reveal delay={index * 80}>
-                  <p className="text-lg font-semibold tracking-tight">{item.title}</p>
-                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link href={RUTA_CV} className="btn btn-primario">
+              Crear mi CV con IA <ArrowRight aria-hidden className="size-4" />
+            </Link>
+            <Link href="#categorias" className="btn btn-secundario">
+              Ver categorías
+            </Link>
+          </div>
+          <Buscador items={items} className="mt-8 max-w-xl lg:hidden" />
         </div>
       </section>
+
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[17rem_minmax(0,1fr)] lg:px-8">
+        <div className="hidden lg:block">
+          <SidebarCategorias items={items} />
+        </div>
+
+        <div className="min-w-0 space-y-16">
+          <section aria-labelledby="empieza">
+            <h2 id="empieza" className="text-2xl font-bold tracking-tight">
+              Empieza por aquí
+            </h2>
+            <p className="mt-2 text-muted-foreground">El primer prompt completo del sitio. Los demás se publican de uno en uno, cuando están terminados.</p>
+            <div className="mt-6 grid gap-4">
+              {prompts.map((p) => (
+                <TarjetaPrompt key={p.slug} prompt={p} destacada />
+              ))}
+            </div>
+          </section>
+
+          <section id="categorias" aria-labelledby="cats" className="scroll-mt-24">
+            <h2 id="cats" className="text-2xl font-bold tracking-tight">
+              Explora por categoría
+            </h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {categorias.map((c) => {
+                const contenido = (
+                  <>
+                    <span className="flex size-11 items-center justify-center rounded-xl bg-brand-muted text-brand">
+                      <IconoDeCategoria icono={c.icono} className="size-5" />
+                    </span>
+                    <h3 className="mt-4 text-lg font-semibold tracking-tight">{c.nombre}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.descripcion}</p>
+                    <ul className="mt-4 flex flex-wrap gap-1.5">
+                      {c.subcategorias.slice(0, 4).map((s) => (
+                        <li key={s.slug} className="rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground">
+                          {s.nombre}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-auto pt-5 text-sm font-semibold">
+                      {c.disponible ? (
+                        <span className="inline-flex items-center gap-1 text-brand">
+                          Ver prompts <ArrowRight aria-hidden className="size-4" />
+                        </span>
+                      ) : (
+                        <span className="text-muted-foreground">Próximamente</span>
+                      )}
+                    </p>
+                  </>
+                );
+                return c.disponible ? (
+                  <Link key={c.slug} href={`/${c.slug}`} className="flex flex-col rounded-2xl border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand/50 hover:shadow-md">
+                    {contenido}
+                  </Link>
+                ) : (
+                  <div key={c.slug} className="flex flex-col rounded-2xl border border-dashed bg-card/50 p-5 opacity-75">
+                    {contenido}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          <section aria-labelledby="como">
+            <h2 id="como" className="text-2xl font-bold tracking-tight">
+              Cómo funciona
+            </h2>
+            <ol className="mt-6 grid gap-4 md:grid-cols-3">
+              {PASOS.map((p, i) => (
+                <li key={p.titulo} className="rounded-2xl border bg-card p-5">
+                  <span className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">{i + 1}</span>
+                  <h3 className="mt-4 flex items-center gap-2 font-semibold">
+                    <p.icono aria-hidden className="size-4 text-brand" />
+                    {p.titulo}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.texto}</p>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section aria-labelledby="que-es" className="rounded-2xl border bg-card p-6 sm:p-8">
+            <h2 id="que-es" className="text-2xl font-bold tracking-tight">
+              Qué es un prompt y por qué importa cómo lo escribes
+            </h2>
+            <div className="prose prose-neutral mt-4 max-w-none dark:prose-invert">
+              <p>
+                Un prompt es la instrucción que le das a una inteligencia artificial como ChatGPT, Gemini o Claude. Es tu forma de decirle qué necesitas: puede ser una pregunta, una orden o un texto largo con contexto.
+              </p>
+              <p>La diferencia entre un prompt vago y uno claro se nota en el resultado. Compara:</p>
+              <ul>
+                <li>
+                  <strong>Vago:</strong> «Escríbeme un CV».
+                </li>
+                <li>
+                  <strong>Claro:</strong> «Actúa como reclutador. Con estos datos de experiencia y esta oferta de empleo, redacta una hoja de vida de una página en formato Harvard, sin inventar cifras».
+                </li>
+              </ul>
+              <p>
+                El segundo le da un rol, los datos, el formato y una regla de honestidad. Escribir eso cada vez cansa; por eso aquí lo hace el formulario por ti: tú pones tus datos y el prompt se arma solo.
+              </p>
+            </div>
+          </section>
+
+          <section aria-labelledby="faq">
+            <h2 id="faq" className="text-2xl font-bold tracking-tight">
+              Preguntas frecuentes
+            </h2>
+            <div className="mt-6 divide-y rounded-2xl border bg-card">
+              {PREGUNTAS.map((p) => (
+                <details key={p.pregunta} className="group p-5">
+                  <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">
+                    {p.pregunta}
+                    <span aria-hidden className="text-xl text-muted-foreground transition-transform group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-2 leading-relaxed text-muted-foreground">{p.respuesta}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+
+          <p className="text-xs text-muted-foreground">
+            Última actualización de esta página: <time dateTime={HOME_UPDATED_AT}>{formatDate(HOME_UPDATED_AT)}</time>.
+          </p>
+        </div>
+      </div>
     </>
   );
 }

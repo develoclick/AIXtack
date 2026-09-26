@@ -1,70 +1,54 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { primaryNav } from "@/lib/nav-config";
-import { siteName } from "@/lib/site";
-import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
+import type { NavLink } from "@/lib/nav-config";
 
-function isActive(pathname: string, href: string): boolean {
-  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
-}
+/** Menú de la cabecera en pantallas pequeñas: se cierra con Esc, al elegir un enlace o al tocar fuera. */
+export function MenuMovil({ links }: { links: NavLink[] }) {
+  const [abierto, setAbierto] = useState(false);
+  const caja = useRef<HTMLDivElement>(null);
 
-/**
- * Panel lateral del menú móvil. Se carga con `next/dynamic` solo cuando alguien pulsa «Abrir menú»
- * (ver navbar.tsx): así el diálogo y su código no pesan en la carga de ninguna página.
- */
-export default function MenuMovil({ pathname, open, onOpenChange }: { pathname: string; open: boolean; onOpenChange: (open: boolean) => void }) {
+  useEffect(() => {
+    if (!abierto) return;
+    const alTeclear = (e: KeyboardEvent) => e.key === "Escape" && setAbierto(false);
+    const alTocar = (e: PointerEvent) => {
+      if (caja.current && !caja.current.contains(e.target as Node)) setAbierto(false);
+    };
+    document.addEventListener("keydown", alTeclear);
+    document.addEventListener("pointerdown", alTocar);
+    return () => {
+      document.removeEventListener("keydown", alTeclear);
+      document.removeEventListener("pointerdown", alTocar);
+    };
+  }, [abierto]);
+
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="dark w-[88vw] max-w-[390px] border-l border-white/10 bg-ink p-0 text-foreground">
-        <SheetHeader className="border-b border-white/10 px-6 py-6">
-          <SheetTitle className="text-left">
-            <Link href="/" className="flex flex-col">
-              <span className="text-[17px] font-bold tracking-tight">{siteName}</span>
-              <span className="mt-1 font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground">IA práctica</span>
-            </Link>
-          </SheetTitle>
-        </SheetHeader>
-
-        <div className="flex flex-col px-4 py-6">
-          <p className="mb-3 px-3 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">Explorar</p>
-          <nav aria-label="Principal móvil">
-            <ul className="flex flex-col">
-              {primaryNav.map((link, index) => {
-                const active = isActive(pathname, link.href);
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      aria-current={active ? "page" : undefined}
-                      className="group flex items-center justify-between gap-4 border-b border-white/10 px-3 py-4 transition-colors hover:bg-white/5"
-                    >
-                      <span className="flex items-baseline gap-4">
-                        <span className={cn("font-mono text-[11px] tabular-nums", active ? "text-brand" : "text-muted-foreground")}>{String(index + 1).padStart(2, "0")}</span>
-                        <span className={cn("text-xl font-semibold tracking-tight", active && "text-brand")}>{link.label}</span>
-                      </span>
-                      <ArrowUpRight
-                        className={cn("size-4 transition-all duration-300", active ? "text-brand opacity-100" : "-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-70")}
-                        aria-hidden
-                      />
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-
-          <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-5">
-            <div className="flex items-center gap-2">
-              <span className="size-1.5 animate-pulse rounded-full bg-brand" aria-hidden />
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">Contenido actualizado</span>
-            </div>
-            <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">Herramientas y guías cortas prácticas para trabajar mejor con inteligencia artificial.</p>
-          </div>
-        </div>
-      </SheetContent>
-    </Sheet>
+    <div ref={caja} className="lg:hidden">
+      <button
+        type="button"
+        onClick={() => setAbierto((a) => !a)}
+        aria-expanded={abierto}
+        aria-controls="menu-movil"
+        aria-label={abierto ? "Cerrar el menú" : "Abrir el menú"}
+        className="flex size-11 items-center justify-center rounded-lg hover:bg-muted"
+      >
+        {abierto ? <X className="size-5" /> : <Menu className="size-5" />}
+      </button>
+      {abierto && (
+        <nav id="menu-movil" aria-label="Menú" className="absolute inset-x-0 top-16 border-b bg-background px-4 pb-4 pt-2 shadow-lg">
+          <ul className="mx-auto flex max-w-7xl flex-col">
+            {links.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} onClick={() => setAbierto(false)} className="flex min-h-12 items-center rounded-lg px-3 text-base font-medium hover:bg-muted">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </div>
   );
 }

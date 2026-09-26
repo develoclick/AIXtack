@@ -31,10 +31,10 @@ export function ConsentBanner() {
           .
         </p>
         <div className="flex shrink-0 gap-2">
-          <Button variant="ghost" size="sm" onClick={rejectAll}>
+          <Button variant="ghost" className="h-11 px-4 text-sm" onClick={rejectAll}>
             Rechazar
           </Button>
-          <Button size="sm" onClick={acceptAll}>
+          <Button className="h-11 px-4 text-sm" onClick={acceptAll}>
             Aceptar todo
           </Button>
         </div>

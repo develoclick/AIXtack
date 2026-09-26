@@ -1,12 +1,20 @@
 import type { MetadataRoute } from "next";
-import { entradasDelSitemap } from "@/lib/herramientas/mapa-sitio";
-import { listarPublicadas } from "@/lib/herramientas/registro";
+import { categoriasDisponibles } from "@/content/categorias";
+import { prompts, rutaDePrompt } from "@/content/prompts";
+import { HOME_UPDATED_AT, institutionalPages, siteUrl } from "@/lib/site";
 
-/**
- * Sitemap: solo URLs nuevas, indexables y que responden 200 (lib/herramientas/mapa-sitio.ts). Áreas y /herramientas entran
- * solo con al menos 1 herramienta `publicado: true`; hoy ninguna, así que solo salen la portada y las institucionales.
- * Nunca incluye borradores (noindex), /mi-negocio ni rutas retiradas. Sin `priority` ni `changeFrequency` (Google los ignora).
- */
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  return entradasDelSitemap(await listarPublicadas());
+/** Solo URLs indexables que responden 200: portada, categorías abiertas, prompts publicados y páginas institucionales. */
+export default function sitemap(): MetadataRoute.Sitemap {
+  const url = (path: string) => new URL(path, siteUrl).toString();
+  const ultima = (fechas: string[]) => fechas.slice().sort().at(-1)!;
+
+  return [
+    { url: url("/"), lastModified: HOME_UPDATED_AT },
+    ...categoriasDisponibles.map((c) => ({
+      url: url(`/${c.slug}`),
+      lastModified: ultima(prompts.filter((p) => p.categoria === c.slug).map((p) => p.actualizado)),
+    })),
+    ...prompts.map((p) => ({ url: url(rutaDePrompt(p)), lastModified: p.actualizado })),
+    ...institutionalPages.map((p) => ({ url: url(p.path), lastModified: p.updatedAt })),
+  ];
 }

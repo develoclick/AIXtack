@@ -23,8 +23,8 @@ export const authors: readonly Author[] = [
     bioCorta: "Nicolas — ingeniero de prompts en Perú. Desde hace dos años ayuda a pequeños negocios a usar la IA y automatizar tareas. Prueba cada prompt antes de publicarlo.",
     bioLarga: [
       "Soy Nicolas y trabajo desde Perú. Me dedico a la ingeniería de prompts y desde hace dos años doy consultoría y apoyo a pequeños negocios para usar la IA y automatizar tareas de su día a día.",
-      "Creé Guía Prompts IA para que emprendedores y pequeños negocios puedan aprovechar la IA sin perder tiempo ni saber de tecnología: eliges una tarea, llenas unos datos y obtienes un prompt listo para usar.",
-      "Antes de publicar un prompt, lo pruebo varias veces, comparo las respuestas, lo ajusto con distintos cambios y me quedo con la versión que da mejores resultados. Cada herramienta muestra una prueba real y lo que tuve que corregir.",
+      "Creé Guía Prompts IA para que cualquier persona pueda aprovechar la IA sin perder tiempo ni saber de tecnología: eliges una tarea, llenas unos datos y obtienes un prompt listo para usar.",
+      "Antes de publicar un prompt, lo pruebo varias veces, comparo las respuestas, lo ajusto con distintos cambios y me quedo con la versión que da mejores resultados.",
     ],
     pais: "Perú",
   },
@@ -32,7 +32,7 @@ export const authors: readonly Author[] = [
 ];
 
 /**
- * Nicolas: persona natural, con domicilio en Perú; prueba y firma las herramientas y es el responsable editorial y legal del sitio.
+ * Nicolas: persona natural, con domicilio en Perú; escribe el sitio y es el responsable editorial y legal del sitio.
  * DeveloClick: nombre del proyecto (NO una empresa registrada); es el `publisher` del JSON-LD. Todo el sitio lee los nombres de aquí.
  */
 export const AUTOR_POR_DEFECTO = "nicolas";

@@ -1,32 +1,26 @@
-import { categories } from "@/content/categorias";
+import { categoriasDisponibles } from "@/content/categorias";
 
 export interface NavLink {
   label: string;
   href: string;
 }
 
-/** Navegación principal: cabecera y menú móvil. */
+/** Navegación principal de la cabecera. */
 export const primaryNav: NavLink[] = [
-  { label: "Inicio", href: "/" },
-  { label: "Herramientas", href: "/herramientas" },
-  ...categories.map((category) => ({ label: category.name, href: `/${category.slug}` })),
+  { label: "Categorías", href: "/#categorias" },
+  ...categoriasDisponibles.map((c) => ({ label: c.nombre, href: `/${c.slug}` })),
   { label: "Sobre el sitio", href: "/sobre-nosotros" },
 ];
 
-/** Pie de página: herramientas por área, el sitio y las páginas legales. */
+/** Pie de página: categorías abiertas, el sitio y las páginas legales. */
 export const footerNav: { title: string; links: NavLink[] }[] = [
   {
-    title: "Herramientas por área",
-    links: [
-      ...categories.map((category) => ({ label: category.name, href: `/${category.slug}` })),
-      { label: "Todas las herramientas", href: "/herramientas" },
-    ],
+    title: "Prompts",
+    links: categoriasDisponibles.map((c) => ({ label: c.nombre, href: `/${c.slug}` })),
   },
   {
     title: "El sitio",
     links: [
-      { label: "Cómo probamos", href: "/como-probamos" },
-      { label: "Mi negocio", href: "/mi-negocio" },
       { label: "Sobre nosotros", href: "/sobre-nosotros" },
       { label: "Contacto", href: "/contacto" },
     ],

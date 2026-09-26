@@ -56,26 +56,26 @@ export default function PrivacyPolicyPage() {
           no volver a preguntarte en cada visita.
         </li>
         <li>
-          <strong>Los datos de tu negocio que decidas guardar en las herramientas</strong>, que permanecen solo en tu
-          navegador (ver más abajo).
+          <strong>Los datos que escribes en los formularios de las herramientas</strong> (por ejemplo, los de tu hoja de vida), que permanecen solo en tu navegador (ver más abajo).
         </li>
       </ul>
 
-      <h2>Los datos de tu negocio en las herramientas</h2>
+      <h2>Los datos que escribes en los formularios</h2>
       <p>
-        Las herramientas de este sitio te piden algunos datos de tu negocio (nombre, rubro, tono, moneda y similares) para
-        armar el prompt. Si los guardas en «Mi negocio», <strong>se almacenan solo en este navegador</strong> (en el
-        almacenamiento local de tu dispositivo): no se envían a nuestros servidores y no los vemos. Puedes borrarlos en
-        cualquier momento desde la propia página o limpiando los datos del sitio en tu navegador. Si tu navegador bloquea el
-        almacenamiento local, las herramientas siguen funcionando, pero no recordarán tus datos.
+        Las herramientas de este sitio te piden datos para armar el prompt (por ejemplo, en el generador de hoja de vida: puesto,
+        oferta laboral, datos de contacto, experiencia, educación y habilidades). Lo que escribes <strong>se guarda solo en este
+        navegador</strong> (en el almacenamiento local de tu dispositivo) para que no lo pierdas si recargas la página: no se
+        envía a nuestros servidores y no lo vemos. El archivo Word se crea en tu propio equipo. Puedes borrar tus datos en
+        cualquier momento con el botón «Borrar mis datos» o limpiando los datos del sitio en tu navegador. Si tu navegador
+        bloquea el almacenamiento local, las herramientas siguen funcionando, pero no recordarán tus datos.
       </p>
 
       <h2>Lo que pegas en una herramienta de IA</h2>
       <p>
         Las herramientas generan instrucciones (prompts) que copias y pegas en el asistente de inteligencia artificial que tú
         elijas: <strong>no recibimos ni almacenamos lo que escribas en él</strong>. Cada asistente tiene su propia política de
-        privacidad, y te recomendamos no compartir con la IA datos personales de tus clientes ni información confidencial que no
-        sea necesaria.
+        privacidad, y ten en cuenta que una hoja de vida contiene datos personales: al pegar el prompt le envías esos datos a ese servicio.
+        Te recomendamos no compartir con la IA datos de terceros ni información confidencial que no sea necesaria.
       </p>
 
       <h2>Publicidad de Google AdSense</h2>
@@ -113,7 +113,7 @@ export default function PrivacyPolicyPage() {
 
       <h2>Conservación de los datos</h2>
       <p>
-        Los datos de tu negocio guardados en las herramientas dependen de tu navegador: se conservan hasta que los borres. Al
+        Los datos que escribes en los formularios dependen de tu navegador: se conservan hasta que los borres. Al
         no existir cuentas ni formularios, no mantenemos una base de datos de contactos: los correos que nos envíes
         quedan en nuestra bandeja hasta que nos pidas eliminarlos. Los datos de analítica los conserva Google Analytics
         según su propia configuración de retención.
