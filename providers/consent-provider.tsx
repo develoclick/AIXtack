@@ -38,6 +38,14 @@ export function ConsentProvider({ children }: { children: ReactNode }) {
 
   const persist = useCallback((next: ConsentState) => {
     setState(next);
+    // Consent Mode v2: avisa a Google de la decisión (el «default» = denied lo define components/consent/consent-mode.tsx).
+    try {
+      const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+      const ads = next.ads === "granted" ? "granted" : "denied";
+      w.gtag?.("consent", "update", { ad_storage: ads, ad_user_data: ads, ad_personalization: ads, analytics_storage: next.analytics === "granted" ? "granted" : "denied" });
+    } catch {
+      // no-op
+    }
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     } catch {

@@ -8,7 +8,7 @@ export function TarjetaPrompt({ prompt, destacada = false }: { prompt: PromptMet
   return (
     <Link
       href={rutaDePrompt(prompt)}
-      className={`group flex h-full flex-col rounded-2xl border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand/50 hover:shadow-md ${destacada ? "sm:p-7" : ""}`}
+      className={`tarjeta tarjeta-enlace group flex h-full flex-col p-5 ${destacada ? "sm:p-7" : ""}`}
     >
       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">{categoria?.nombre}</p>
       <h3 className={`mt-2 font-semibold leading-snug tracking-tight ${destacada ? "text-2xl" : "text-lg"}`}>{prompt.tituloCorto}</h3>

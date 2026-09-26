@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   // 1. Obtiene la variable de entorno o usa tu Publisher ID directo como respaldo
-  const rawId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "pub-1950156439970490";
+  const rawId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "pub-1950156439970490";
 
   // 2. Limpia el prefijo "ca-pub-", "ca-" o "pub-" si viniere en la variable (o en el respaldo)
   const publisherId = rawId.replace(/^ca-pub-|^ca-|^pub-/, "");

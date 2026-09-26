@@ -61,7 +61,7 @@ test("el progreso cuenta los datos clave", () => {
 test("el lector entiende la respuesta de la IA y separa las notas", () => {
   const r = leerRespuestaIa(CV_EJEMPLO_RESPUESTA);
   assert.equal(r.valido, true);
-  assert.equal(r.documento.nombre, "Camila Rojas");
+  assert.equal(r.documento.nombre, "Camila Rojas Tello");
   assert.ok(r.documento.contacto.length >= 3);
   const titulos = r.documento.secciones.map((s) => s.titulo);
   assert.ok(titulos.includes("EXPERIENCIA PROFESIONAL") && titulos.includes("EDUCACIÓN") && titulos.includes("HABILIDADES"));

@@ -1,108 +1,115 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Sistema de diseño (inspirado en el lenguaje visual limpio y técnico de las documentaciones de pagos, sin copiar marca,
+ * ilustraciones ni textos). Todo el color sale de las variables de :root y .dark: cambiar un token cambia todo el sitio.
+ *  - Modo claro: fondo #fff, superficie #f6f9fc, borde #e3e8ee, texto #0a2540 / #425466, acento #635bff.
+ *  - Modo oscuro: fondo #0a2540 con superficies más claras. Contraste AA en todo el texto (ver qa/contraste.ts).
+ */
 @theme inline {
-  --font-sans: var(--font-metropolis), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-metropolis), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
   --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
+  --color-card-foreground: var(--foreground);
   --color-popover: var(--card);
-  --color-popover-foreground: var(--card-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-foreground);
+  --color-secondary: var(--surface);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--surface);
+  --color-muted-foreground: var(--foreground-2);
+  --color-accent: var(--surface);
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--danger);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-brand: var(--brand);
-  --color-brand-foreground: var(--brand-foreground);
-  --color-brand-muted: var(--brand-muted);
+  --color-brand: var(--accent-text);
+  --color-brand-solid: var(--accent);
+  --color-brand-foreground: var(--accent-foreground);
+  --color-brand-muted: var(--accent-soft);
   --color-guide-ink: var(--foreground);
-  --color-ink: var(--ink);
-  --color-ink-foreground: var(--ink-foreground);
+  --color-ink: var(--footer);
+  --color-ink-foreground: var(--footer-foreground);
+  --color-ink-accent: var(--footer-accent);
   --color-ok: var(--ok);
-  --color-ok-muted: var(--ok-muted);
+  --color-ok-muted: var(--ok-soft);
   --color-warn: var(--warn);
-  --color-warn-muted: var(--warn-muted);
+  --color-warn-muted: var(--warn-soft);
 
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --tracking-display: -0.03em;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --tracking-display: -0.035em;
 }
 
 :root {
-  --background: oklch(0.985 0.004 95);
-  --foreground: oklch(0.2 0.03 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.03 260);
-  --primary: oklch(0.5 0.13 165);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.955 0.012 165);
-  --secondary-foreground: oklch(0.25 0.04 165);
-  --muted: oklch(0.955 0.006 95);
-  --muted-foreground: oklch(0.45 0.02 260);
-  --accent: oklch(0.955 0.012 165);
-  --accent-foreground: oklch(0.25 0.04 165);
-  --destructive: oklch(0.52 0.2 27);
-  --border: oklch(0.9 0.008 95);
-  --input: oklch(0.86 0.01 95);
-  --ring: oklch(0.55 0.14 165);
-  --radius: 0.75rem;
-
-  --brand: oklch(0.5 0.13 165);
-  --brand-foreground: oklch(0.99 0 0);
-  --brand-muted: oklch(0.94 0.035 165);
-  --ink: oklch(0.2 0.035 260);
-  --ink-foreground: oklch(0.97 0.005 95);
-  --ok: oklch(0.45 0.13 155);
-  --ok-muted: oklch(0.95 0.04 155);
-  --warn: oklch(0.5 0.12 65);
-  --warn-muted: oklch(0.96 0.045 85);
+  --background: #ffffff;
+  --surface: #f6f9fc;
+  --card: #ffffff;
+  --border: #e3e8ee;
+  --input: #cfd7df;
+  --foreground: #0a2540;
+  --foreground-2: #425466;
+  --placeholder: #66768c;
+  --accent: #635bff;
+  --accent-foreground: #ffffff;
+  --accent-text: #4f46e5;
+  --accent-soft: #eeedff;
+  --ring: #635bff;
+  --danger: #c0262d;
+  --ok: #0b7a4b;
+  --ok-soft: #e6f6ee;
+  --warn: #8a5a00;
+  --warn-soft: #fff4dc;
+  --footer: #0a2540;
+  --footer-foreground: #e6edf5;
+  --footer-accent: #aeaaff;
+  --hero-a: rgb(99 91 255 / 0.16);
+  --hero-b: rgb(0 212 255 / 0.12);
+  --hero-c: rgb(255 128 179 / 0.1);
+  --shadow-soft: 0 1px 1px rgb(10 37 64 / 0.04), 0 2px 5px rgb(10 37 64 / 0.05);
+  --shadow-lift: 0 2px 4px rgb(10 37 64 / 0.05), 0 8px 24px rgb(10 37 64 / 0.08);
 }
 
 .dark {
-  --background: oklch(0.16 0.02 260);
-  --foreground: oklch(0.96 0.005 95);
-  --card: oklch(0.2 0.022 260);
-  --card-foreground: oklch(0.96 0.005 95);
-  --primary: oklch(0.74 0.14 165);
-  --primary-foreground: oklch(0.15 0.03 165);
-  --secondary: oklch(0.25 0.03 200);
-  --secondary-foreground: oklch(0.95 0.01 165);
-  --muted: oklch(0.24 0.02 260);
-  --muted-foreground: oklch(0.75 0.015 260);
-  --accent: oklch(0.27 0.03 200);
-  --accent-foreground: oklch(0.95 0.01 165);
-  --destructive: oklch(0.7 0.19 22);
-  --border: oklch(0.3 0.02 260);
-  --input: oklch(0.36 0.025 260);
-  --ring: oklch(0.7 0.14 165);
-
-  --brand: oklch(0.74 0.14 165);
-  --brand-foreground: oklch(0.15 0.03 165);
-  --brand-muted: oklch(0.27 0.045 165);
-  --ink: oklch(0.12 0.02 260);
-  --ink-foreground: oklch(0.96 0.005 95);
-  --ok: oklch(0.78 0.14 155);
-  --ok-muted: oklch(0.26 0.05 155);
-  --warn: oklch(0.82 0.13 80);
-  --warn-muted: oklch(0.28 0.05 80);
+  --background: #0a2540;
+  --surface: #0f2f52;
+  --card: #10305a;
+  --border: #23446b;
+  --input: #3a5a82;
+  --foreground: #e6edf5;
+  --foreground-2: #a9bbd0;
+  --placeholder: #8ea3bd;
+  --accent: #635bff;
+  --accent-foreground: #ffffff;
+  --accent-text: #aeaaff;
+  --accent-soft: #232d6b;
+  --ring: #8b85ff;
+  --danger: #ff8b8f;
+  --ok: #5fd8a0;
+  --ok-soft: #0f3f34;
+  --warn: #f5c56b;
+  --warn-soft: #4a3a12;
+  --footer: #061a30;
+  --footer-foreground: #d5e0ec;
+  --footer-accent: #aeaaff;
+  --hero-a: rgb(99 91 255 / 0.28);
+  --hero-b: rgb(0 212 255 / 0.12);
+  --hero-c: rgb(255 128 179 / 0.1);
+  --shadow-soft: 0 1px 1px rgb(0 0 0 / 0.2), 0 2px 5px rgb(0 0 0 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.2), 0 8px 24px rgb(0 0 0 / 0.28);
 }
 
 @layer base {
@@ -117,13 +124,25 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-feature-settings: "cv11", "ss03";
     text-rendering: optimizeLegibility;
   }
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: var(--font-heading);
+    letter-spacing: -0.02em;
     text-wrap: balance;
+  }
+  h1 {
+    letter-spacing: var(--tracking-display);
+  }
+  ::selection {
+    background: var(--accent);
+    color: #fff;
   }
   :focus-visible {
     outline: 2px solid var(--ring);
@@ -137,12 +156,34 @@
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
   }
 }
 
 @layer components {
+  /* Números tabulares donde aplica (contadores, fechas, cifras). */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Tarjeta: borde fino, radio de 12 px y sombras suaves en capas. */
+  .tarjeta {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+  }
+  .tarjeta-enlace {
+    transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  }
+  .tarjeta-enlace:hover {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-1px);
+  }
+
   /* Campos de formulario: 44 px de alto, texto de 16 px (evita el zoom automático en iOS). */
   .campo {
     display: block;
@@ -153,22 +194,29 @@
     background: var(--card);
     padding: 0.6rem 0.8rem;
     font-size: 1rem;
-    line-height: 1.4;
+    line-height: 1.5;
     color: var(--foreground);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   .campo::placeholder {
-    color: color-mix(in oklch, var(--muted-foreground) 75%, transparent);
+    color: var(--placeholder);
+  }
+  .campo:hover {
+    border-color: color-mix(in srgb, var(--foreground) 40%, var(--input));
   }
   .campo:focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 1px;
-    border-color: var(--ring);
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  .campo[aria-invalid="true"] {
+    border-color: var(--danger);
   }
   textarea.campo {
     resize: vertical;
   }
 
-  /* Botones propios de la herramienta (≥ 44 px de alto). */
+  /* Botones (≥ 44 px de alto): primario sólido con acento, secundario con borde y texto. */
   .btn {
     display: inline-flex;
     min-height: 2.75rem;
@@ -178,62 +226,129 @@
     border-radius: var(--radius-md);
     border: 1px solid transparent;
     padding: 0.55rem 1.1rem;
-    font-size: 0.95rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     line-height: 1.2;
     cursor: pointer;
-    transition: background-color 0.15s, border-color 0.15s, transform 0.05s;
+    transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, transform 0.08s ease;
   }
-  .btn:active {
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 45%, transparent);
+  }
+  .btn:active:not(:disabled) {
     transform: translateY(1px);
   }
-  .btn:disabled {
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
     cursor: not-allowed;
-    opacity: 0.5;
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--foreground-2);
+    box-shadow: none;
   }
   .btn-primario {
-    background: var(--primary);
-    color: var(--primary-foreground);
+    background: var(--accent);
+    color: var(--accent-foreground);
+    box-shadow: 0 1px 2px rgb(10 37 64 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.12);
   }
   .btn-primario:hover:not(:disabled) {
-    background: color-mix(in oklch, var(--primary) 88%, var(--foreground));
+    background: color-mix(in srgb, var(--accent) 88%, #000);
   }
   .btn-secundario {
     background: var(--card);
     border-color: var(--input);
     color: var(--foreground);
+    box-shadow: var(--shadow-soft);
   }
   .btn-secundario:hover:not(:disabled) {
-    background: var(--muted);
+    background: var(--surface);
+    border-color: color-mix(in srgb, var(--foreground) 35%, var(--input));
+  }
+  .btn-fantasma {
+    background: transparent;
+    color: var(--foreground);
+  }
+  .btn-fantasma:hover:not(:disabled) {
+    background: var(--surface);
   }
   .btn-texto {
     min-height: 2.75rem;
     padding: 0.55rem 0.5rem;
-    color: var(--muted-foreground);
+    color: var(--foreground-2);
     font-size: 0.9rem;
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-  .btn-texto:hover {
+  .btn-texto:hover:not(:disabled) {
     color: var(--foreground);
+  }
+  .btn-texto:disabled {
+    background: none;
+    border-color: transparent;
+    opacity: 0.6;
+  }
+
+  /* Etiquetas pequeñas (píldoras). */
+  .pildora {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--foreground-2);
   }
 }
 
-/* Fondo suave de la portada. */
+/* Cabecera de las páginas: degradado suave solo en la parte superior, sin afectar la lectura. */
 .fondo-portada {
   background:
-    radial-gradient(60rem 26rem at 85% -10%, color-mix(in oklch, var(--brand) 16%, transparent), transparent 70%),
-    radial-gradient(40rem 22rem at -5% 10%, color-mix(in oklch, oklch(0.7 0.12 250) 12%, transparent), transparent 70%);
+    radial-gradient(52rem 22rem at 88% -8rem, var(--hero-a), transparent 70%),
+    radial-gradient(38rem 18rem at 6% -6rem, var(--hero-b), transparent 70%),
+    radial-gradient(30rem 14rem at 60% -4rem, var(--hero-c), transparent 70%),
+    var(--background);
 }
 
-/* Vista de la hoja de vida: papel blanco siempre, aunque el sitio esté en modo oscuro. */
+/* Texto de las guías, debajo de la herramienta: el navegador no calcula su diseño hasta que se acerca a la pantalla (menos trabajo inicial). */
+.guia-diferida {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1200px;
+}
+
+/* Vista de la hoja de vida: una hoja A4 real (210 × 297 mm) blanca siempre, aunque el sitio esté en modo oscuro. */
 .hoja-cv {
   background: #fff;
   color: #111;
   font-family: "Times New Roman", Times, serif;
   font-size: 0.8125rem;
   line-height: 1.35;
+}
+.hoja-a4 {
+  /* Proporción de una hoja A4; si el CV es más largo, la hoja crece (nunca se recorta el contenido). */
+  aspect-ratio: 210 / 297;
+}
+
+/* Entrada suave de los datos de ejemplo (fade de 200 ms) y del aviso de cookies. */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.aparecer {
+  animation: aparecer 0.2s ease-out both;
+}
+.consent-entrada {
+  animation: aparecer 0.3s ease-out both;
 }
 
 @media print {
@@ -243,19 +358,4 @@
   [data-no-imprimir] {
     display: none !important;
   }
-}
-
-/* Entrada del aviso de cookies (solo CSS). */
-@keyframes consent-entrada {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-.consent-entrada {
-  animation: consent-entrada 0.3s ease-out both;
 }

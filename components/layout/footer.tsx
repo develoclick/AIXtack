@@ -21,7 +21,7 @@ export function Footer() {
 
           {footerNav.map((group) => (
             <nav key={group.title} aria-label={group.title}>
-              <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">{group.title}</h2>
+              <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-accent">{group.title}</h2>
               <ul className="mt-4 flex flex-col">
                 {group.links.map((link) => (
                   <li key={link.href}>

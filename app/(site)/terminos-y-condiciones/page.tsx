@@ -6,7 +6,7 @@ import { contactEmail, institutionalUpdatedAt, siteName } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "Términos y condiciones",
-  description: `Condiciones de uso del sitio web ${siteName}.`,
+  description: `Condiciones de uso de ${siteName}: qué ofrece el sitio, el uso de la IA, tu responsabilidad, propiedad intelectual y ley aplicable.`,
   path: "/terminos-y-condiciones",
 });
 

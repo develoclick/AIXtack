@@ -31,8 +31,7 @@ export default function CookiesPolicyPage() {
           Si las rechazas, el script de Google Analytics no se carga.
         </li>
         <li>
-          <strong>Cookies publicitarias (Google AdSense / DoubleClick):</strong> el sitio está preparado para mostrar
-          anuncios, aunque actualmente no muestra ninguno. Si aceptas las cookies publicitarias se carga el script de
+          <strong>Cookies publicitarias (Google AdSense / DoubleClick, incluida la cookie DART, de terceros):</strong> el sitio puede mostrar anuncios (puede que en este momento no haya ninguno activo). Si aceptas las cookies publicitarias se carga el script de
           Google AdSense; en ese caso Google y sus socios pueden utilizar cookies para mostrar anuncios relevantes y
           limitar las veces que ves un mismo anuncio. <strong>Solo se cargan si aceptas.</strong>
         </li>

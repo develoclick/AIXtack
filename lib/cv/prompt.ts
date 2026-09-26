@@ -163,7 +163,7 @@ ${bloqueDatos(d)}
 7. Redacción: voz activa, oraciones cortas, sin abreviaturas informales, sin jerga ni tono narrativo. Ortografía y puntuación impecables.
 
 ### FORMATO DE SALIDA (obligatorio, exacto)
-Responde SOLO con la hoja de vida, sin introducción, sin explicaciones y sin bloques de código. Usa exactamente esta estructura de texto (la forma, no el contenido):
+Responde SOLO con la hoja de vida y las notas, sin introducción ni explicaciones, dentro de un único bloque de código (entre \`\`\`), para que se copie tal cual. Dentro del bloque usa exactamente esta estructura de texto (la forma, no el contenido):
 
 NOMBRE: Nombre Apellido
 CONTACTO: Ciudad, País | correo | teléfono | LinkedIn
@@ -217,7 +217,7 @@ export function progresoCv(d: DatosCv): ProgresoCv {
 
 /** Texto corto para pedirle a la IA que corrija una respuesta que no respetó el formato. */
 export function promptDeCorreccionFormato(): string {
-  return `Tu respuesta no respetó el formato pedido. Devuélveme la misma hoja de vida usando EXACTAMENTE esta estructura, sin bloques de código y sin texto antes o después:
+  return `Tu respuesta no respetó el formato pedido. Devuélveme la misma hoja de vida usando EXACTAMENTE esta estructura, dentro de un único bloque de código (entre \`\`\`) y sin texto antes o después:
 
 NOMBRE: …
 CONTACTO: … | … | …
@@ -228,4 +228,11 @@ Cargo o título | Fechas
 (luego, en una línea aparte)
 ${MARCADOR_NOTAS}
 - Notas para el candidato`;
+}
+
+/** ¿Ya hay lo mínimo para armar un buen prompt? (puesto, nombre, contacto, estudio y experiencia o proyectos). La oferta es opcional. */
+export function datosMinimosListos(d: DatosCv): boolean {
+  const experiencia = d.experiencias.some((e) => conValor(e.cargo) && conValor(e.empresa) && conValor(e.logros)) || conValor(d.proyectos);
+  const estudio = d.estudios.some((e) => conValor(e.titulo) && conValor(e.institucion));
+  return conValor(d.puesto) && conValor(d.nombre) && (conValor(d.email) || conValor(d.telefono)) && estudio && experiencia;
 }

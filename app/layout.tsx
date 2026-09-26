@@ -6,20 +6,17 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { ConsentProvider } from "@/providers/consent-provider";
 import { AdsenseLoader } from "@/components/ads/adsense-loader";
 import { AnalyticsLoader } from "@/components/analytics/analytics-loader";
+import { ConsentMode } from "@/components/consent/consent-mode";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
 import { siteName, siteTagline, siteUrl } from "@/lib/site";
 
-// Metropolis (paquete @fontsource/metropolis, licencia Unlicense): se sirve desde nuestro dominio, sin pedir nada a Google.
-// Solo 3 pesos (400, 600 y 700) con font-display: swap: el 500 se ve con el 400 y el 650/800 con el 700 (el navegador toma el más cercano).
-const metropolis = localFont({
-  variable: "--font-metropolis",
+// Inter variable (paquete @fontsource-variable/inter, licencia OFL): se sirve desde nuestro dominio, sin pedir nada a Google.
+// Un solo archivo (latin, ~48 KB) cubre todos los pesos, con font-display: swap.
+const inter = localFont({
+  variable: "--font-inter",
   display: "swap",
-  src: [
-    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-600-normal.woff2", weight: "600", style: "normal" },
-    { path: "../node_modules/@fontsource/metropolis/files/metropolis-latin-700-normal.woff2", weight: "700", style: "normal" },
-  ],
+  src: [{ path: "../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2", weight: "100 900", style: "normal" }],
 });
 
 export const metadata: Metadata = {
@@ -50,8 +47,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning className={`${metropolis.variable} h-full antialiased`}>
+    <html lang="es" suppressHydrationWarning className={`${inter.variable} h-full antialiased`}>
       <head>
+        <ConsentMode />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
       </head>
 

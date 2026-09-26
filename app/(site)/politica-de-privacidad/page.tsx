@@ -80,9 +80,9 @@ export default function PrivacyPolicyPage() {
 
       <h2>Publicidad de Google AdSense</h2>
       <p>
-        El sitio está preparado para mostrar anuncios de Google AdSense. Actualmente no se muestra ninguna publicidad.
+        El sitio puede mostrar anuncios de Google AdSense (si en algún momento no hay anuncios activos, no se carga nada de Google). Los anuncios se identifican con la etiqueta «Publicidad» y nunca se colocan junto a los botones de las herramientas.
         Si aceptas las cookies publicitarias, se carga el script de Google AdSense; Google y sus proveedores de
-        tecnología publicitaria, incluido DoubleClick, pueden utilizar cookies para mostrar anuncios basados en tus
+        tecnología publicitaria, incluido DoubleClick (cuya cookie de publicidad se conoce como cookie DART), pueden utilizar cookies de terceros para mostrar anuncios basados en tus
         visitas anteriores a este y a otros sitios web. Puedes inhabilitar la publicidad personalizada en la{" "}
         <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">
           configuración de anuncios de Google
@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
       <p>
         Las cookies analíticas y publicitarias están desactivadas por defecto y solo se activan si las aceptas en el
         aviso que aparece al entrar. Puedes cambiar tu decisión en cualquier momento borrando los datos del sitio en tu
-        navegador. Consulta el detalle en la <Link href="/politica-de-cookies">política de cookies</Link>.
+        navegador. El aviso funciona con Google Consent Mode v2: hasta que decides, las señales de almacenamiento de anuncios y analítica se envían como «denegadas». Consulta el detalle en la <Link href="/politica-de-cookies">política de cookies</Link>.
       </p>
 
       <h2>Menores de edad</h2>
@@ -113,8 +113,7 @@ export default function PrivacyPolicyPage() {
 
       <h2>Conservación de los datos</h2>
       <p>
-        Los datos que escribes en los formularios dependen de tu navegador: se conservan hasta que los borres. Al
-        no existir cuentas ni formularios, no mantenemos una base de datos de contactos: los correos que nos envíes
+        Los datos que escribes en los formularios dependen de tu navegador: se conservan hasta que los borres. Al no existir cuentas, no mantenemos una base de datos de contactos: los correos que nos envíes
         quedan en nuestra bandeja hasta que nos pidas eliminarlos. Los datos de analítica los conserva Google Analytics
         según su propia configuración de retención.
       </p>

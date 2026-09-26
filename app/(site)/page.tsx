@@ -5,16 +5,17 @@ import { Buscador } from "@/components/home/buscador";
 import { SidebarCategorias } from "@/components/home/sidebar-categorias";
 import { IconoDeCategoria } from "@/components/layout/icono-categoria";
 import { TarjetaPrompt } from "@/components/prompts/tarjeta-prompt";
-import { categorias } from "@/content/categorias";
+import { articulos, rutaDeArticulo } from "@/content/articulos";
+import { categoriasDisponibles } from "@/content/categorias";
 import { prompts, RUTA_CV } from "@/content/prompts";
 import { itemsBuscables } from "@/lib/buscable";
 import { faqJsonLd } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { HOME_UPDATED_AT, siteName } from "@/lib/site";
+import { HOME_UPDATED_AT } from "@/lib/site";
 import { formatDate } from "@/lib/utils/format";
 
 export const metadata = buildMetadata({
-  title: `Prompts en español gratis para ChatGPT, Gemini y Claude — ${siteName}`,
+  title: "Prompts en español gratis para ChatGPT y Gemini",
   description: "Biblioteca gratuita de prompts en español: llena tus datos, copia el prompt listo y úsalo en ChatGPT, Gemini o Claude. Empieza por tu hoja de vida.",
   path: "/",
   absoluteTitle: true,
@@ -41,13 +42,11 @@ export default function HomePage() {
       <JsonLd data={[faqJsonLd(PREGUNTAS.map((p) => ({ q: p.pregunta, a: p.respuesta })))]} />
 
       <section className="fondo-portada border-b">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-          <p className="inline-flex items-center rounded-full border bg-card px-3 py-1 text-xs font-semibold text-brand">100 % gratis · sin registro · en español</p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.08] tracking-[var(--tracking-display)] sm:text-5xl lg:text-6xl">
-            Prompts en español que se arman solos con tus datos
-          </h1>
+        <div className="mx-auto max-w-[1140px] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <p className="pildora text-brand">100 % gratis · sin registro · en español para Latinoamérica</p>
+          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Prompts en español que se arman solos con tus datos</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Elige una tarea, llena un formulario corto y copia el prompt listo para ChatGPT, Gemini o Claude. Empezamos por lo que más ayuda a tu carrera: una hoja de vida que los filtros ATS lean bien.
+            Elige una tarea, llena un formulario corto y copia el prompt listo para ChatGPT, Gemini o Claude. Empezamos por lo que más ayuda a tu carrera: una hoja de vida en formato Harvard que los filtros ATS lean bien.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href={RUTA_CV} className="btn btn-primario">
@@ -61,17 +60,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[17rem_minmax(0,1fr)] lg:px-8">
+      <div className="mx-auto grid max-w-[1140px] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[16rem_minmax(0,1fr)] lg:px-8">
         <div className="hidden lg:block">
           <SidebarCategorias items={items} />
         </div>
 
         <div className="min-w-0 space-y-16">
           <section aria-labelledby="empieza">
-            <h2 id="empieza" className="text-2xl font-bold tracking-tight">
+            <h2 id="empieza" className="text-2xl font-bold">
               Empieza por aquí
             </h2>
-            <p className="mt-2 text-muted-foreground">El primer prompt completo del sitio. Los demás se publican de uno en uno, cuando están terminados.</p>
+            <p className="mt-2 text-muted-foreground">La primera herramienta completa del sitio. Las demás se publican de una en una, cuando están terminadas.</p>
             <div className="mt-6 grid gap-4">
               {prompts.map((p) => (
                 <TarjetaPrompt key={p.slug} prompt={p} destacada />
@@ -80,57 +79,59 @@ export default function HomePage() {
           </section>
 
           <section id="categorias" aria-labelledby="cats" className="scroll-mt-24">
-            <h2 id="cats" className="text-2xl font-bold tracking-tight">
+            <h2 id="cats" className="text-2xl font-bold">
               Explora por categoría
             </h2>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {categorias.map((c) => {
-                const contenido = (
-                  <>
-                    <span className="flex size-11 items-center justify-center rounded-xl bg-brand-muted text-brand">
-                      <IconoDeCategoria icono={c.icono} className="size-5" />
+            <div className="mt-6 grid gap-4">
+              {categoriasDisponibles.map((c) => (
+                <Link key={c.slug} href={`/${c.slug}`} className="tarjeta tarjeta-enlace flex flex-col p-5 sm:p-6">
+                  <span className="flex size-11 items-center justify-center rounded-lg bg-brand-muted text-brand">
+                    <IconoDeCategoria icono={c.icono} className="size-5" />
+                  </span>
+                  <h3 className="mt-4 text-xl font-semibold">{c.nombre}</h3>
+                  <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-muted-foreground">{c.descripcion}</p>
+                  <ul className="mt-4 flex flex-wrap gap-1.5">
+                    {articulos.filter((a) => a.categoria === c.slug).map((a) => (
+                      <li key={a.slug} className="pildora text-xs">
+                        {a.metaTitulo}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-auto pt-5 text-sm font-semibold text-brand">
+                    <span className="inline-flex items-center gap-1">
+                      Ver la categoría <ArrowRight aria-hidden className="size-4" />
                     </span>
-                    <h3 className="mt-4 text-lg font-semibold tracking-tight">{c.nombre}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.descripcion}</p>
-                    <ul className="mt-4 flex flex-wrap gap-1.5">
-                      {c.subcategorias.slice(0, 4).map((s) => (
-                        <li key={s.slug} className="rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground">
-                          {s.nombre}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-auto pt-5 text-sm font-semibold">
-                      {c.disponible ? (
-                        <span className="inline-flex items-center gap-1 text-brand">
-                          Ver prompts <ArrowRight aria-hidden className="size-4" />
-                        </span>
-                      ) : (
-                        <span className="text-muted-foreground">Próximamente</span>
-                      )}
-                    </p>
-                  </>
-                );
-                return c.disponible ? (
-                  <Link key={c.slug} href={`/${c.slug}`} className="flex flex-col rounded-2xl border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-brand/50 hover:shadow-md">
-                    {contenido}
-                  </Link>
-                ) : (
-                  <div key={c.slug} className="flex flex-col rounded-2xl border border-dashed bg-card/50 p-5 opacity-75">
-                    {contenido}
-                  </div>
-                );
-              })}
+                  </p>
+                </Link>
+              ))}
             </div>
+            <p className="mt-4 text-sm text-muted-foreground">Abrimos las categorías de una en una, cuando su primera herramienta está completa y probada.</p>
+          </section>
+
+          <section aria-labelledby="leer">
+            <h2 id="leer" className="text-2xl font-bold">
+              Para leer con calma
+            </h2>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-3">
+              {articulos.map((a) => (
+                <li key={a.slug}>
+                  <Link href={rutaDeArticulo(a)} className="tarjeta tarjeta-enlace flex h-full flex-col p-4">
+                    <span className="font-semibold leading-snug">{a.metaTitulo}</span>
+                    <span className="mt-2 text-sm text-muted-foreground">{a.resumen}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section aria-labelledby="como">
-            <h2 id="como" className="text-2xl font-bold tracking-tight">
+            <h2 id="como" className="text-2xl font-bold">
               Cómo funciona
             </h2>
             <ol className="mt-6 grid gap-4 md:grid-cols-3">
               {PASOS.map((p, i) => (
-                <li key={p.titulo} className="rounded-2xl border bg-card p-5">
-                  <span className="flex size-10 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">{i + 1}</span>
+                <li key={p.titulo} className="tarjeta p-5">
+                  <span className="flex size-9 items-center justify-center rounded-full bg-brand-solid text-sm font-bold text-white tabular">{i + 1}</span>
                   <h3 className="mt-4 flex items-center gap-2 font-semibold">
                     <p.icono aria-hidden className="size-4 text-brand" />
                     {p.titulo}
@@ -141,11 +142,11 @@ export default function HomePage() {
             </ol>
           </section>
 
-          <section aria-labelledby="que-es" className="rounded-2xl border bg-card p-6 sm:p-8">
-            <h2 id="que-es" className="text-2xl font-bold tracking-tight">
+          <section aria-labelledby="que-es" className="tarjeta p-6 sm:p-8">
+            <h2 id="que-es" className="text-2xl font-bold">
               Qué es un prompt y por qué importa cómo lo escribes
             </h2>
-            <div className="prose prose-neutral mt-4 max-w-none dark:prose-invert">
+            <div className="prose prose-neutral mt-4 max-w-none dark:prose-invert prose-a:text-brand">
               <p>
                 Un prompt es la instrucción que le das a una inteligencia artificial como ChatGPT, Gemini o Claude. Es tu forma de decirle qué necesitas: puede ser una pregunta, una orden o un texto largo con contexto.
               </p>
@@ -159,16 +160,16 @@ export default function HomePage() {
                 </li>
               </ul>
               <p>
-                El segundo le da un rol, los datos, el formato y una regla de honestidad. Escribir eso cada vez cansa; por eso aquí lo hace el formulario por ti: tú pones tus datos y el prompt se arma solo.
+                El segundo le da un rol, los datos, el formato y una regla de honestidad. Escribir eso cada vez cansa; por eso aquí lo hace el formulario por ti: tú pones tus datos y el prompt se arma solo. Puedes ver cómo funciona el método completo en la <Link href={RUTA_CV}>herramienta para crear tu CV</Link> o conocer quién hace este sitio en <Link href="/sobre-nosotros">Sobre nosotros</Link>.
               </p>
             </div>
           </section>
 
           <section aria-labelledby="faq">
-            <h2 id="faq" className="text-2xl font-bold tracking-tight">
+            <h2 id="faq" className="text-2xl font-bold">
               Preguntas frecuentes
             </h2>
-            <div className="mt-6 divide-y rounded-2xl border bg-card">
+            <div className="tarjeta mt-6 divide-y">
               {PREGUNTAS.map((p) => (
                 <details key={p.pregunta} className="group p-5">
                   <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">

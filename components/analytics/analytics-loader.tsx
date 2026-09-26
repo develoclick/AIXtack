@@ -1,7 +1,10 @@
 "use client";
 
-import { GoogleAnalytics } from "@next/third-parties/google";
+import dynamic from "next/dynamic";
 import { useConsent } from "@/hooks/use-consent";
+
+// La librería de Google Analytics se descarga solo si la persona aceptó las cookies analíticas.
+const GoogleAnalytics = dynamic(() => import("@next/third-parties/google").then((m) => m.GoogleAnalytics));
 
 const measurementId = "G-H25PR3Y1LL";
 

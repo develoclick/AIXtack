@@ -1,8 +1,8 @@
 "use client";
 
 import { useId, type ReactNode } from "react";
-import { Plus, Trash2 } from "lucide-react";
-import { borrarDatos, guardarDatos, useDatosCv } from "./almacen";
+import { Briefcase, GraduationCap, Plus, Sparkles, Target, Trash2, UserRound, type LucideIcon } from "lucide-react";
+import { guardarDatos, useDatosCv, useModoEjemplo } from "./almacen";
 import {
   estudioVacio,
   experienciaVacia,
@@ -42,13 +42,13 @@ function Campo({ etiqueta, ayuda, requerido, children, className }: CampoProps) 
   );
 }
 
-function Grupo({ numero, titulo, descripcion, children }: { numero: number; titulo: string; descripcion?: string; children: ReactNode }) {
+function Grupo({ icono: Icono, titulo, descripcion, children }: { icono: LucideIcon; titulo: string; descripcion?: string; children: ReactNode }) {
   return (
-    <fieldset className="rounded-2xl border bg-card p-5 sm:p-6">
+    <fieldset className="tarjeta min-w-0 p-5 sm:p-6">
       <legend className="sr-only">{titulo}</legend>
       <div className="mb-5 flex items-start gap-3">
-        <span aria-hidden className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-muted text-sm font-bold text-brand">
-          {numero}
+        <span aria-hidden className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-muted text-brand">
+          <Icono className="size-4" />
         </span>
         <div>
           <h3 className="text-lg font-semibold leading-tight">{titulo}</h3>
@@ -60,8 +60,9 @@ function Grupo({ numero, titulo, descripcion, children }: { numero: number; titu
   );
 }
 
-export function FormularioCv() {
+export function FormularioCv({ alBorrar }: { alBorrar: () => void }) {
   const d = useDatosCv();
+  const modoEjemplo = useModoEjemplo();
   const poner = <K extends keyof DatosCv>(clave: K, valor: DatosCv[K]) => guardarDatos({ ...d, [clave]: valor });
   const texto = (clave: keyof DatosCv) => (e: { target: { value: string } }) => poner(clave, e.target.value as never);
 
@@ -70,7 +71,7 @@ export function FormularioCv() {
 
   return (
     <form className="space-y-5" onSubmit={(e) => e.preventDefault()} aria-label="Datos para tu hoja de vida" autoComplete="off">
-      <Grupo numero={1} titulo="El puesto al que postulas" descripcion="Con esto la IA adapta las palabras clave de tu CV.">
+      <Grupo icono={Target} titulo="El puesto al que postulas" descripcion="Con esto la IA adapta las palabras clave de tu CV.">
         <Campo etiqueta="Puesto al que postulas" requerido>
           {(id) => <input id={id} className="campo" value={d.puesto} onChange={texto("puesto")} placeholder="Ej.: Analista de marketing digital" />}
         </Campo>
@@ -100,7 +101,7 @@ export function FormularioCv() {
         </div>
       </Grupo>
 
-      <Grupo numero={2} titulo="Tus datos de contacto" descripcion="Solo ciudad y país: no hace falta tu dirección exacta, edad ni foto.">
+      <Grupo icono={UserRound} titulo="Tus datos de contacto" descripcion="Solo ciudad y país: no hace falta tu dirección exacta, edad ni foto.">
         <Campo etiqueta="Nombre completo" requerido>
           {(id) => <input id={id} className="campo" value={d.nombre} onChange={texto("nombre")} autoComplete="name" placeholder="Nombre y apellidos" />}
         </Campo>
@@ -123,7 +124,7 @@ export function FormularioCv() {
         </Campo>
       </Grupo>
 
-      <Grupo numero={3} titulo="Tu experiencia laboral" descripcion="Empieza por el trabajo más reciente. Escribe lo que hiciste y lo que lograste, con números si los tienes.">
+      <Grupo icono={Briefcase} titulo="Tu experiencia laboral" descripcion="Empieza por el trabajo más reciente. Escribe lo que hiciste y lo que lograste, con números si los tienes.">
         {d.experiencias.map((e, i) => (
           <div key={e.id} className="space-y-4 rounded-xl border bg-background p-4">
             <div className="flex items-center justify-between gap-3">
@@ -156,7 +157,7 @@ export function FormularioCv() {
         <p className="text-xs text-muted-foreground">Sin experiencia laboral: deja este bloque vacío y cuenta tus prácticas, voluntariados y proyectos en el bloque 5.</p>
       </Grupo>
 
-      <Grupo numero={4} titulo="Tu educación">
+      <Grupo icono={GraduationCap} titulo="Tu educación">
         {d.estudios.map((e, i) => (
           <div key={e.id} className="space-y-4 rounded-xl border bg-background p-4">
             <div className="flex items-center justify-between gap-3">
@@ -188,7 +189,7 @@ export function FormularioCv() {
         )}
       </Grupo>
 
-      <Grupo numero={5} titulo="Habilidades y extras" descripcion="Todo es opcional, pero las habilidades ayudan mucho con los filtros ATS.">
+      <Grupo icono={Sparkles} titulo="Habilidades y extras" descripcion="Todo es opcional, pero las habilidades ayudan mucho con los filtros ATS.">
         <Campo etiqueta="Habilidades y herramientas" requerido ayuda="Una por línea o separadas por comas. Ejemplo: Excel avanzado, SQL, Google Analytics.">
           {(id, ay) => <textarea id={id} aria-describedby={ay} className="campo min-h-24" value={d.habilidades} onChange={texto("habilidades")} />}
         </Campo>
@@ -207,12 +208,12 @@ export function FormularioCv() {
       </Grupo>
 
       <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-        <p>Lo que escribes se guarda solo en tu navegador, para que no lo pierdas si recargas.</p>
+        <p>{modoEjemplo ? "Estás viendo datos de ejemplo: no se guardan en tu navegador." : "Lo que escribes se guarda solo en tu navegador, para que no lo pierdas si recargas."}</p>
         <button
           type="button"
           className="btn btn-texto"
           onClick={() => {
-            if (window.confirm("¿Borrar todos los datos del formulario? No se puede deshacer.")) borrarDatos();
+            if (modoEjemplo || window.confirm("¿Borrar todos los datos del formulario? No se puede deshacer.")) alBorrar();
           }}
         >
           Borrar mis datos

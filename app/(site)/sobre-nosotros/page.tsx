@@ -47,7 +47,7 @@ export default function AboutPage() {
 
       <h2 id="como-se-financia">Cómo se financia</h2>
       <p>
-        El acceso al sitio es gratuito y no pide registro. El sitio puede mostrar publicidad de Google AdSense (ahora mismo no muestra ninguna). No hay enlaces de afiliados ni contenido patrocinado. Puedes leer más en la <Link href="/politica-de-privacidad">política de privacidad</Link> y en los <Link href="/terminos-y-condiciones">términos y condiciones</Link>.
+        El acceso al sitio es gratuito y no pide registro. El sitio puede mostrar publicidad de Google AdSense (cuando esté activa, los anuncios se identifican con la etiqueta «Publicidad»). No hay enlaces de afiliados ni contenido patrocinado. Puedes leer más en la <Link href="/politica-de-privacidad">política de privacidad</Link> y en los <Link href="/terminos-y-condiciones">términos y condiciones</Link>.
       </p>
     </LegalPage>
   );

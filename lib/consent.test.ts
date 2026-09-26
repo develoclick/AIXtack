@@ -30,9 +30,9 @@ test("el banner propio tiene su interruptor (constante) y está encendido hoy", 
   assert.match(banner, /if \(!BANNER_PROPIO_ACTIVO\) return null/);
 });
 
-test("la fuente Metropolis carga como máximo 3 pesos con font-display: swap", () => {
+test("la fuente Inter es un único archivo variable local con font-display: swap", () => {
   const layout = fs.readFileSync(path.join(process.cwd(), "app", "layout.tsx"), "utf8");
-  assert.equal((layout.match(/metropolis-latin-\d+-normal\.woff2/g) ?? []).length, 3);
+  assert.equal((layout.match(/inter-latin-wght-normal.woff2/g) ?? []).length, 1);
   assert.match(layout, /display: "swap"/);
 });
 

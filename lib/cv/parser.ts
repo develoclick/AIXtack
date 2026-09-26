@@ -1,27 +1,21 @@
+import { claveDeTitulo, normalizarRespuestaIA, type ClaveSeccion } from "./normalizar";
 import type { CvDocumento, CvEntrada, CvSeccion } from "./tipos";
 
 export interface ResultadoLectura {
   documento: CvDocumento;
   /** Notas de la IA para la persona (todo lo que viene después del marcador «NOTAS»); no van al Word. */
   notas: string[];
-  /** Solo es válido si hay nombre y al menos una sección con contenido. */
+  /** Solo es válido si hay nombre y al menos una sección con contenido: es lo único que bloquea la descarga. */
   valido: boolean;
+  /** Qué falta de imprescindible (solo si `valido` es falso). */
   problema?: string;
+  /** Avisos que NO bloquean: secciones que no se detectaron, campos por completar, etc. */
+  advertencias: string[];
 }
 
-const MARCA_NOTAS = /^\s*(?:={2,}|-{3,}|#{1,3})\s*(?:notas|notes)\b.*$|^\s*(?:notas para (?:ti|el candidato|el usuario|la persona)|notes for (?:you|the candidate))\s*:?\s*$/i;
-const RE_NOMBRE = /^\s*(?:nombre|name)\s*:\s*(.+)$/i;
-const RE_CONTACTO = /^\s*(?:contacto|contact)\s*:\s*(.+)$/i;
-const RE_VINETA = /^\s*(?:[-*•·–—]|\d+[.)])\s+(.*)$/;
-
-function limpiarLinea(linea: string): string {
-  return linea
-    .replace(/\*\*(.+?)\*\*/g, "$1")
-    .replace(/__(.+?)__/g, "$1")
-    .replace(/(^|\s)\*(\S.*?\S|\S)\*(?=\s|$)/g, "$1$2")
-    .replace(/`/g, "")
-    .replace(/\s+$/g, "");
-}
+const RE_NOMBRE = /^NOMBRE:\s*(.*)$/;
+const RE_CONTACTO = /^CONTACTO:\s*(.*)$/;
+const RE_VINETA = /^-\s+(.*)$/;
 
 function dividir(texto: string): [string, string] {
   const partes = texto.split(/\s*\|\s*/);
@@ -33,35 +27,28 @@ function seccionNueva(titulo: string): CvSeccion {
   return { titulo, parrafos: [], entradas: [], puntos: [] };
 }
 
+const NOMBRE_DE_SECCION: Record<ClaveSeccion, string> = {
+  perfil: "PERFIL PROFESIONAL",
+  experiencia: "EXPERIENCIA PROFESIONAL",
+  educacion: "EDUCACIÓN",
+  habilidades: "HABILIDADES",
+  idiomas: "IDIOMAS",
+  certificaciones: "CERTIFICACIONES",
+  proyectos: "PROYECTOS Y ACTIVIDADES",
+};
+
 /**
- * Lee la respuesta de la IA (el formato que pide el prompt: NOMBRE:, CONTACTO:, «## Sección», «### Empresa | Ciudad»,
- * segunda línea «Cargo | Fechas» y viñetas «- …») y la convierte en un documento. Es tolerante con negritas, bloques de código
- * y viñetas «•», pero no inventa nada: lo que no reconoce se ignora o se guarda como párrafo.
+ * Lee la respuesta de la IA: primero la normaliza (quita Markdown, cercas de código, introducciones y enlaces; reconoce
+ * encabezados y viñetas aunque falten los marcadores) y luego arma el documento. Es tolerante: solo bloquea la descarga si
+ * no hay nombre o no hay ninguna sección; todo lo demás son advertencias.
  */
 export function leerRespuestaIa(texto: string): ResultadoLectura {
-  const crudas = texto.replace(/\r/g, "").split("\n");
-  const lineas: string[] = [];
-  const notas: string[] = [];
-  let enNotas = false;
-
-  for (const cruda of crudas) {
-    if (/^\s*```/.test(cruda)) continue;
-    const linea = limpiarLinea(cruda);
-    if (!enNotas && MARCA_NOTAS.test(linea)) {
-      enNotas = true;
-      continue;
-    }
-    if (enNotas) {
-      const t = linea.trim();
-      if (t) notas.push(t.replace(RE_VINETA, "$1"));
-    } else lineas.push(linea);
-  }
-
+  const { texto: limpio, notas } = normalizarRespuestaIA(texto);
   const documento: CvDocumento = { nombre: "", contacto: [], secciones: [] };
   let seccion: CvSeccion | null = null;
   let entrada: CvEntrada | null = null;
 
-  for (const linea of lineas) {
+  for (const linea of limpio.split("\n")) {
     const t = linea.trim();
     if (!t) continue;
 
@@ -80,10 +67,6 @@ export function leerRespuestaIa(texto: string): ResultadoLectura {
     if (titulo) {
       const nivel = titulo[1].length;
       const cuerpo = titulo[2].trim();
-      if (nivel === 1 && !seccion && !documento.nombre) {
-        documento.nombre = cuerpo;
-        continue;
-      }
       if (nivel <= 2) {
         seccion = seccionNueva(cuerpo.replace(/:$/, "").toUpperCase());
         documento.secciones.push(seccion);
@@ -101,9 +84,8 @@ export function leerRespuestaIa(texto: string): ResultadoLectura {
     }
 
     if (!seccion) {
-      // Antes de la primera sección: nombre y contacto sueltos.
-      if (!documento.nombre) documento.nombre = t;
-      else documento.contacto.push(...t.split(/\s*[|•·]\s*/).map((x) => x.trim()).filter(Boolean));
+      // Antes de la primera sección: contacto suelto.
+      documento.contacto.push(...t.split(/\s*[|•·]\s*/).map((x) => x.trim()).filter(Boolean));
       continue;
     }
 
@@ -113,7 +95,7 @@ export function leerRespuestaIa(texto: string): ResultadoLectura {
       continue;
     }
 
-    if (entrada && !entrada.izq2 && entrada.puntos.length === 0) {
+    if (entrada && !entrada.izq2 && !entrada.der2 && entrada.puntos.length === 0) {
       const [izq2, der2] = dividir(t);
       entrada.izq2 = izq2;
       entrada.der2 = der2;
@@ -126,8 +108,20 @@ export function leerRespuestaIa(texto: string): ResultadoLectura {
   documento.secciones = documento.secciones.filter((s) => s.parrafos.length + s.entradas.length + s.puntos.length > 0);
 
   let problema: string | undefined;
-  if (!documento.nombre) problema = "No encuentro el nombre. La primera línea debe ser «NOMBRE: …».";
-  else if (documento.secciones.length === 0) problema = "No encuentro secciones. Cada sección debe empezar con «## NOMBRE DE LA SECCIÓN».";
+  if (!documento.nombre) problema = "Falta el nombre: no encuentro la línea «NOMBRE: …» ni un nombre al inicio de la respuesta.";
+  else if (documento.secciones.length === 0) problema = "No detecté ninguna sección con contenido (por ejemplo EXPERIENCIA PROFESIONAL o EDUCACIÓN).";
 
-  return { documento, notas, valido: !problema, problema };
+  const advertencias: string[] = [];
+  if (!problema) {
+    const claves = new Set(documento.secciones.map((s) => claveDeTitulo(s.titulo)).filter((c): c is ClaveSeccion => c !== null));
+    if (documento.contacto.length === 0) advertencias.push("No detecté la línea de contacto (correo, teléfono, ciudad): el Word saldrá sin ella.");
+    for (const c of ["perfil", "educacion", "habilidades", "idiomas"] as const) {
+      if (!claves.has(c)) advertencias.push(`No detecté la sección ${NOMBRE_DE_SECCION[c]}, se omitirá.`);
+    }
+    if (!claves.has("experiencia") && !claves.has("proyectos")) advertencias.push("No detecté la sección EXPERIENCIA PROFESIONAL (ni PROYECTOS Y ACTIVIDADES), se omitirá.");
+    const pendientes = JSON.stringify(documento).match(/\[COMPLETAR[^\]]*\]/gi);
+    if (pendientes) advertencias.push(`Quedan ${pendientes.length} dato(s) por completar marcados como [COMPLETAR…]: revísalos antes de descargar.`);
+  }
+
+  return { documento, notas, valido: !problema, problema, advertencias };
 }

@@ -18,7 +18,7 @@ export function ConsentBanner() {
 
   return (
     <div role="region" aria-label="Aviso de cookies" className="consent-entrada fixed inset-x-0 bottom-0 z-50 p-4">
-      <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-2xl border bg-card/95 p-5 shadow-2xl backdrop-blur sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-2xl border bg-card p-5 shadow-2xl sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-muted-foreground">
           Usamos cookies para medir el tráfico del sitio y, más adelante, mostrar publicidad. Solo se activan si aceptas. Más información en la{" "}
           <Link href="/politica-de-cookies" className="underline underline-offset-2 hover:text-foreground">
