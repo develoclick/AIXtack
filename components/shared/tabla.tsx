@@ -1,5 +1,10 @@
-/** Tabla de datos para las guías: cabeceras con scope, desplazamiento horizontal solo dentro de la tabla y primera columna destacada. */
-export function Tabla({ columnas, filas, resumen, primeraColumnaEnNegrita = false }: { columnas: string[]; filas: string[][]; resumen: string; primeraColumnaEnNegrita?: boolean }) {
+import Link from "next/link";
+
+/**
+ * Tabla de datos para las guías: cabeceras con scope, desplazamiento horizontal solo dentro de la tabla y primera columna
+ * destacada. `hrefs` (opcional) convierte en enlace la segunda celda de cada fila.
+ */
+export function Tabla({ columnas, filas, resumen, primeraColumnaEnNegrita = false, hrefs }: { columnas: string[]; filas: string[][]; resumen: string; primeraColumnaEnNegrita?: boolean; hrefs?: (string | undefined)[] }) {
   return (
     <div className="not-prose my-6 overflow-x-auto rounded-xl border" role="region" aria-label={resumen} tabIndex={0}>
       <table className="w-full min-w-[34rem] text-left text-sm">
@@ -14,7 +19,7 @@ export function Tabla({ columnas, filas, resumen, primeraColumnaEnNegrita = fals
           </tr>
         </thead>
         <tbody className="divide-y">
-          {filas.map((fila) => (
+          {filas.map((fila, r) => (
             <tr key={fila[0]}>
               {fila.map((celda, i) =>
                 i === 0 ? (
@@ -23,7 +28,13 @@ export function Tabla({ columnas, filas, resumen, primeraColumnaEnNegrita = fals
                   </th>
                 ) : (
                   <td key={celda} className="p-3 align-top text-muted-foreground">
-                    {celda}
+                    {i === 1 && hrefs?.[r] ? (
+                      <Link href={hrefs[r]!} className="inline-flex min-h-11 items-center font-medium text-brand underline underline-offset-2">
+                        {celda}
+                      </Link>
+                    ) : (
+                      celda
+                    )}
                   </td>
                 ),
               )}

@@ -6,8 +6,14 @@ Se construye **una categoría y una herramienta a la vez**: primero se termina y
 
 ## Estado
 
-- Categoría abierta: **Carrera y empleo** (`/carrera-y-empleo`).
+- Catálogo: 6 categorías y 34 herramientas cargadas. Hoy solo está activa **Carrera y empleo** (`/carrera-y-empleo`); las otras 5 (Viajes y entretenimiento, Emprendimiento, Analítica e información, Finanzas y economía, Marketing y ventas) tienen su hub listo y se activan solas al publicar su primera herramienta. Cómo hacerlo: [`docs/COMO-AGREGAR-UNA-HERRAMIENTA.md`](docs/COMO-AGREGAR-UNA-HERRAMIENTA.md).
 - Herramienta: **Crear un CV en formato Harvard que pase filtros ATS** (`/carrera-y-empleo/crear-cv-ats-formato-harvard`): datos → prompt en vivo → respuesta de la IA → vista previa A4 → descarga en Word (.docx). Trae 4 perfiles de ejemplo.
+- Herramienta: **Optimizar tu CV con IA para una oferta** (`/carrera-y-empleo/optimizar-cv`): CV + oferta → prompt → respuesta → comparación antes/después, detector de invención, registro de cambios y descarga en Word. Trae 3 perfiles de ejemplo.
+- Herramienta: **Evaluar una oferta laboral y negociar tu salario** (`/carrera-y-empleo/calcular-salario-y-negociar-oferta`): valor anual de la oferta con fórmulas visibles (fijo × pagos + variable conservador/completo + beneficios − costo de trabajar), comparador de 2 ofertas, tus 3 cifras validadas (mínimo ≤ objetivo ≤ ancla) contrastadas con referencias que aporta la persona (con fuente y fecha; sin cifras de mercado), prompt de 8 bloques y respuestas preparadas como tarjetas copiables con verificaciones (cifras ajenas, datos de mercado, mínimo revelado). Trae 3 perfiles de ejemplo (ficticios).
+- Herramienta: **Plan de búsqueda de empleo y registro de postulaciones** (`/carrera-y-empleo/crear-plan-de-busqueda-de-empleo`): objetivo, horas por semana convertidas a minutos y hasta 5 vacantes; prompt de 8 bloques; lector del plan de 4 semanas (tabla CSV), suma de minutos por semana contra el tiempo disponible, distribución con fórmula visible, exportación a calendario (`.ics`) y CSV, plantillas copiables y verificaciones (excesos de tiempo, cifras o promesas de mercado, vacantes inventadas). Incluye un tracker en el navegador (localStorage) con embudo por etapa, canal y versión de CV, alertas de seguimiento, importación/exportación CSV y un segundo prompt de revisión quincenal relleno con las métricas. Trae 3 perfiles de ejemplo (ficticios).
+- Herramienta: **Comparar tu CV con una oferta laboral** (`/carrera-y-empleo/analizar-oferta-laboral`): CV + oferta → prompt → tabla de requisitos (CSV) que la página lee y recalcula: porcentaje orientativo con fórmula visible y pesos ajustables, semáforo de decisión con regla explícita, tabla filtrable y editable, exportación a CSV y «Llevar brechas» a Optimizar CV y Preparar entrevista. Trae 3 perfiles de ejemplo (ficticios).
+- Herramienta: **Preparar una entrevista de trabajo con IA** (`/carrera-y-empleo/preparar-entrevista-de-trabajo`): CV + oferta → prompt (modo banco de preguntas o simulación en vivo) → paneles con mapa del puesto, riesgos del CV, banco con «Practicar esta», temas a estudiar, informe de simulación y hoja de estudio (Word/imprimir). Incluye cronómetro de 2 minutos, grabadora (MediaRecorder, solo en el navegador), banco de historias STAR con exportación a Word y checklist del día previo imprimible. Trae 3 perfiles de ejemplo (ficticios).
+- Herramienta: **Presupuesto de viaje** (`/viajes-y-entretenimiento/planificar-presupuesto-de-viaje`): tabla de gastos con unidades (por viaje, noche, persona, persona y día), conocido/estimado/opcional, tres escenarios con gráfico, detector de gastos olvidados, revisión de coherencia, moneda alterna con tipo de cambio del usuario, prompt de 8 bloques, lector de la respuesta con «Añadir a mi tabla» y exportación a CSV, tabla para pegar e impresión. Trae 3 viajes de ejemplo (ficticios).
 - Artículos de apoyo: palabras clave de una oferta, verbos de acción y CV sin experiencia.
 - Auditoría de contenido: [`docs/auditoria-alto-valor.md`](docs/auditoria-alto-valor.md). Lo que debes hacer tú antes de pedir la revisión de AdSense: [`docs/checklist-adsense.md`](docs/checklist-adsense.md).
 
@@ -30,12 +36,18 @@ app/(site)/[categoria]/page.tsx        Categoría (solo las abiertas)
 app/(site)/[categoria]/[slug]/page.tsx Herramienta o artículo (los del registro)
 app/(site)/…                           Sobre nosotros, contacto, privacidad, cookies, términos
 app/globals.css                        Sistema de diseño (tokens claro/oscuro, botones, campos, tarjetas)
-content/categorias.ts                  Las 8 categorías (`disponible: true` abre una)
-content/prompts/index.ts               Registro de herramientas
-content/articulos/index.ts             Registro de artículos (el texto está en components/articulos/cuerpos.tsx)
+content/catalogo/                       CATÁLOGO CENTRAL: 6 categorías, 34 herramientas y artículos; una categoría se activa sola con su primera herramienta publicada
+content/prompts/ · content/articulos/  Vistas del catálogo (solo lo publicado); el texto de los artículos está en components/articulos/cuerpos.tsx
+components/categorias/hub-categoria.tsx Hub de categoría dirigido por datos
 content/ejemplos/cv-harvard.ts         4 perfiles de ejemplo (datos + oferta + respuesta de IA de ejemplo)
 lib/cv/                                Lógica del generador: tipos, prompt, normalizador, lector, Word
-components/prompts/cv/                 Generador: pasos, formulario, prompt, Word, ejemplos
+components/prompts/cv/                 Generador de CV: pasos, formulario, prompt, Word, ejemplos
+lib/optimizar/ · components/optimizar/ Optimizar CV: prompt de 8 bloques, lector de la respuesta, diff, detector de invención, paneles
+lib/presupuesto/ · components/presupuesto/ Presupuesto de viaje: cálculo, escenarios, gastos olvidados, prompt, lector, exportación
+lib/entrevista/ · components/entrevista/ Preparar entrevista: prompt por modo, lector, verificaciones, historias STAR, checklist, hoja de estudio, práctica
+lib/analisis/ · components/analisis/ Comparar CV con oferta: prompt, lector CSV, cálculo del porcentaje y del semáforo, verificaciones, traspaso de brechas
+lib/salario/ · components/salario/ Evaluar oferta y negociar: cálculo del valor anual, comparador, cifras, prompt, lector de respuestas preparadas, verificaciones
+lib/plan/ · components/plan/            Plan de búsqueda: prompt, lector del plan CSV, calendario .ics, registro y embudo, alertas, importación CSV, revisión quincenal
 components/ads/ · lib/ads-config.ts    AdSlot, Anuncio y configuración de AdSense (variables de entorno)
 components/consent/                    Aviso de cookies y Google Consent Mode v2
 qa/                                    QA de navegador, auditoría de contenido y capturas

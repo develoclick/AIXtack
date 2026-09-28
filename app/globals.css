@@ -53,7 +53,6 @@
   --radius-2xl: 16px;
   --tracking-display: -0.035em;
 }
-
 :root {
   --background: #ffffff;
   --surface: #f6f9fc;
@@ -63,11 +62,12 @@
   --foreground: #0a2540;
   --foreground-2: #425466;
   --placeholder: #66768c;
-  --accent: #635bff;
+  /* Ajustado al verde vibrante principal del Light Theme */
+  --accent: #00ba88;
   --accent-foreground: #ffffff;
-  --accent-text: #4f46e5;
-  --accent-soft: #eeedff;
-  --ring: #635bff;
+  --accent-text: #00ba88;
+  --accent-soft: #e2f8f2;
+  --ring: #00ba88;
   --danger: #c0262d;
   --ok: #0b7a4b;
   --ok-soft: #e6f6ee;
@@ -75,8 +75,8 @@
   --warn-soft: #fff4dc;
   --footer: #0a2540;
   --footer-foreground: #e6edf5;
-  --footer-accent: #aeaaff;
-  --hero-a: rgb(99 91 255 / 0.16);
+  --footer-accent: #00ba88;
+  --hero-a: rgb(0 186 136 / 0.16);
   --hero-b: rgb(0 212 255 / 0.12);
   --hero-c: rgb(255 128 179 / 0.1);
   --shadow-soft: 0 1px 1px rgb(10 37 64 / 0.04), 0 2px 5px rgb(10 37 64 / 0.05);
@@ -84,32 +84,34 @@
 }
 
 .dark {
-  --background: #0a2540;
-  --surface: #0f2f52;
-  --card: #10305a;
-  --border: #23446b;
-  --input: #3a5a82;
+  /* Sintonizado con el fondo oscuro profundo del Dark Theme */
+  --background: #081622;
+  --surface: #0d1f30;
+  --card: #11253a;
+  --border: #1f3852;
+  --input: #2c4a6e;
   --foreground: #e6edf5;
   --foreground-2: #a9bbd0;
   --placeholder: #8ea3bd;
-  --accent: #635bff;
+  /* Ajustado al verde esmeralda exacto que resalta en el Dark Theme */
+  --accent: #00c492;
   --accent-foreground: #ffffff;
-  --accent-text: #aeaaff;
-  --accent-soft: #232d6b;
-  --ring: #8b85ff;
+  --accent-text: #5fd8a0;
+  --accent-soft: #0a3328;
+  --ring: #00c492;
   --danger: #ff8b8f;
   --ok: #5fd8a0;
   --ok-soft: #0f3f34;
   --warn: #f5c56b;
   --warn-soft: #4a3a12;
-  --footer: #061a30;
+  --footer: #050f19;
   --footer-foreground: #d5e0ec;
-  --footer-accent: #aeaaff;
-  --hero-a: rgb(99 91 255 / 0.28);
+  --footer-accent: #00c492;
+  --hero-a: rgb(0 196 146 / 0.28);
   --hero-b: rgb(0 212 255 / 0.12);
   --hero-c: rgb(255 128 179 / 0.1);
-  --shadow-soft: 0 1px 1px rgb(0 0 0 / 0.2), 0 2px 5px rgb(0 0 0 / 0.18);
-  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.2), 0 8px 24px rgb(0 0 0 / 0.28);
+  --shadow-soft: 0 1px 1px rgb(0 0 0 / 0.3), 0 2px 5px rgb(0 0 0 / 0.25);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.4);
 }
 
 @layer base {
@@ -357,5 +359,49 @@
   nav,
   [data-no-imprimir] {
     display: none !important;
+  }
+}
+
+/* «Imprimir o guardar en PDF» del presupuesto de viaje: al imprimir solo se ve el resumen preparado para papel. */
+@media print {
+  body.imprimiendo-presupuesto * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-presupuesto #presupuesto-imprimible,
+  body.imprimiendo-presupuesto #presupuesto-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-presupuesto #presupuesto-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Imprimir» de la preparación de entrevista: solo se ve la checklist del día previo o la hoja de estudio, según lo que se pidió. */
+@media print {
+  body.imprimiendo-entrevista-checklist *,
+  body.imprimiendo-entrevista-hoja * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-entrevista-checklist #entrevista-imprimible-checklist,
+  body.imprimiendo-entrevista-checklist #entrevista-imprimible-checklist *,
+  body.imprimiendo-entrevista-hoja #entrevista-imprimible-hoja,
+  body.imprimiendo-entrevista-hoja #entrevista-imprimible-hoja * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-entrevista-checklist #entrevista-imprimible-checklist,
+  body.imprimiendo-entrevista-hoja #entrevista-imprimible-hoja {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
   }
 }

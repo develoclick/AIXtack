@@ -6,14 +6,21 @@ const PASOS = [
   { id: "paso-1", titulo: "Tus datos", ayuda: "Escribe o usa un ejemplo" },
   { id: "paso-2", titulo: "Tu prompt", ayuda: "Cópialo y pégalo en tu IA" },
   { id: "paso-3", titulo: "Tu Word", ayuda: "Pega la respuesta y descarga" },
-] as const;
+];
+
+/** Textos del tercer paso, para las herramientas cuyo resultado no es solo un Word. */
+export interface TextosPasos {
+  tres: string;
+  ayudaTres: string;
+}
 
 /** Indicador de los 3 pasos con el estado de cada uno (pendiente, activo, completo). Cada paso es un enlace a su sección. */
-export function Pasos({ estados }: { estados: [EstadoPaso, EstadoPaso, EstadoPaso] }) {
+export function Pasos({ estados, textos }: { estados: [EstadoPaso, EstadoPaso, EstadoPaso]; textos?: TextosPasos }) {
   return (
     <nav aria-label="Pasos de la herramienta">
       <ol className="grid grid-cols-3 gap-2 sm:gap-4">
-        {PASOS.map((p, i) => {
+        {PASOS.map((p0, i) => {
+          const p = i === 2 && textos ? { ...p0, titulo: textos.tres, ayuda: textos.ayudaTres } : p0;
           const estado = estados[i];
           return (
             <li key={p.id} aria-current={estado === "activo" ? "step" : undefined}>

@@ -4,12 +4,13 @@ Ejecutada con `npx tsx qa/auditoria.ts` contra la versión de producción. Aprue
 
 | URL | Tipo | Palabras | Anuncios en el código | Puntaje | Decisión | Qué falla |
 |---|---|---|---|---|---|---|
-| /carrera-y-empleo/crear-cv-ats-formato-harvard | herramienta | 4025 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /carrera-y-empleo/crear-cv-ats-formato-harvard | herramienta | 4047 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /carrera-y-empleo/optimizar-cv | herramienta | 4332 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/palabras-clave-cv-oferta-laboral | articulo | 1689 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/verbos-de-accion-para-cv | articulo | 1516 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/cv-sin-experiencia | articulo | 1391 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo | categoria | 340 | 0 | 24/24 (100 %) | **ALTO VALOR** | — |
-| / | portada | 600 | 0 | 24/24 (100 %) | **ALTO VALOR** | — |
+| / | portada | 599 | 0 | 24/24 (100 %) | **ALTO VALOR** | — |
 
 ## Qué falló en la primera pasada y qué se corrigió
 
@@ -31,6 +32,12 @@ Casillas juzgadas a mano (se marcan como cumplidas tras leer cada página): «un
 | / | 79–91 | 100 | 100 | 100 |
 | /carrera-y-empleo | 91 | 100 | 100 | 100 |
 | /carrera-y-empleo/crear-cv-ats-formato-harvard | 77 | 97 | 100 | 100 |
+| /carrera-y-empleo/optimizar-cv | 73 | 97 | 100 | 100 |
+| /carrera-y-empleo/calcular-salario-y-negociar-oferta | 79 | 97 | 100 | 100 |
+| /carrera-y-empleo/crear-plan-de-busqueda-de-empleo | 76 | 97 | 100 | 100 |
+| /carrera-y-empleo/analizar-oferta-laboral | 90 | 97 | 100 | 100 |
+| /carrera-y-empleo/preparar-entrevista-de-trabajo | 89 | 97 | 100 | 100 |
+| /viajes-y-entretenimiento/planificar-presupuesto-de-viaje | 69 | 97 | 100 | 100 |
 | /carrera-y-empleo/palabras-clave-cv-oferta-laboral | 86 | 100 | 100 | 100 |
 | /carrera-y-empleo/verbos-de-accion-para-cv | 87 | 100 | 100 | 100 |
 | /carrera-y-empleo/cv-sin-experiencia | 87 | 100 | 100 | 100 |

@@ -1,15 +1,13 @@
-import { BarChart3, Briefcase, Clapperboard, GraduationCap, PenLine, Rocket, Sprout, Stethoscope, type LucideIcon } from "lucide-react";
-import type { IconoCategoria } from "@/content/categorias";
+import { BarChart3, Briefcase, Megaphone, Plane, Rocket, Wallet, type LucideIcon } from "lucide-react";
+import type { IconoCategoria } from "@/content/catalogo";
 
 const ICONOS: Record<IconoCategoria, LucideIcon> = {
   briefcase: Briefcase,
-  pen: PenLine,
-  sprout: Sprout,
-  clapperboard: Clapperboard,
-  chart: BarChart3,
-  graduation: GraduationCap,
+  plane: Plane,
   rocket: Rocket,
-  stethoscope: Stethoscope,
+  chart: BarChart3,
+  wallet: Wallet,
+  megaphone: Megaphone,
 };
 
 export function IconoDeCategoria({ icono, className }: { icono: IconoCategoria; className?: string }) {

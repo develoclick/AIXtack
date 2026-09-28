@@ -1,6 +1,6 @@
 import type { ItemBuscable } from "@/components/home/buscador";
 import { articulos, rutaDeArticulo } from "@/content/articulos";
-import { getCategoria } from "@/content/categorias";
+import { getCategoria } from "@/content/catalogo";
 import { prompts, rutaDePrompt } from "@/content/prompts";
 
 /** Lista que alimenta el buscador (portada y categorías): las herramientas y los artículos publicados. */

@@ -4,11 +4,12 @@ import { Anuncio } from "@/components/ads/anuncio";
 import { PROSE } from "@/components/articulos/plantilla-articulo";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { Tabla } from "@/components/shared/tabla";
+import { HerramientasRelacionadas } from "@/components/prompts/herramientas-relacionadas";
 import { GeneradorCv } from "./generador-cv";
 import { VistaCv } from "./vista-cv";
 import { AUTOR_POR_DEFECTO, getAuthor } from "@/content/autores";
 import { articulos, rutaDeArticulo } from "@/content/articulos";
-import { getCategoria } from "@/content/categorias";
+import { getCategoria } from "@/content/catalogo";
 import { CV_EJEMPLO_RESPUESTA } from "@/content/prompts/cv-ejemplo";
 import type { PromptMeta } from "@/content/prompts";
 import { leerRespuestaIa } from "@/lib/cv/parser";
@@ -374,6 +375,8 @@ export function PaginaCv({ prompt }: { prompt: PromptMeta }) {
               </details>
             ))}
           </div>
+
+          <HerramientasRelacionadas categoria={prompt.categoria} slug={prompt.slug} />
 
           <section aria-labelledby="relacionados" className="mt-12">
             <h2 id="relacionados" className="text-xl font-semibold">

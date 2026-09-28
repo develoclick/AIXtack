@@ -6,7 +6,7 @@ import { PlantillaArticulo } from "@/components/articulos/plantilla-articulo";
 import { PaginaCv, PREGUNTAS_CV } from "@/components/prompts/cv/pagina-cv";
 import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
 import { articulos, getArticulo, rutaDeArticulo } from "@/content/articulos";
-import { getCategoria } from "@/content/categorias";
+import { getCategoria } from "@/content/catalogo";
 import { getPrompt, prompts, rutaDePrompt } from "@/content/prompts";
 import { articleJsonLd, breadcrumbJsonLd, faqJsonLd, howToJsonLd, webApplicationJsonLd } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -15,11 +15,12 @@ interface PageProps {
   params: Promise<{ categoria: string; slug: string }>;
 }
 
-// Solo existen las herramientas y los artículos registrados; cualquier otra combinación devuelve 404 real.
+// Solo existen las herramientas PUBLICADAS que dibuja esta ruta (tipo «cv-ats»; las de «pagina-propia» tienen su carpeta) y los
+// artículos visibles del catálogo; cualquier otra combinación (incluidas las herramientas pendientes) devuelve 404 real.
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return [...prompts.map((p) => ({ categoria: p.categoria, slug: p.slug })), ...articulos.map((a) => ({ categoria: a.categoria, slug: a.slug }))];
+  return [...prompts.filter((p) => p.tipo === "cv-ats").map((p) => ({ categoria: p.categoria, slug: p.slug })), ...articulos.map((a) => ({ categoria: a.categoria, slug: a.slug }))];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -44,6 +45,7 @@ export default async function Page({ params }: PageProps) {
   const editorial = getAuthor(EDITORIAL)!.name;
 
   const p = getPrompt(categoria, slug);
+  if (p && p.tipo !== "cv-ats") notFound();
   if (p) {
     const ruta = rutaDePrompt(p);
     return (

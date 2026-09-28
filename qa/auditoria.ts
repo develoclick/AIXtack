@@ -16,10 +16,17 @@ const salidaMd = iMd > -1 ? process.argv[iMd + 1] : null;
 type Tipo = "herramienta" | "articulo" | "categoria" | "portada";
 const PAGINAS: { ruta: string; tipo: Tipo; fuente: string; bloque?: string }[] = [
   { ruta: "/carrera-y-empleo/crear-cv-ats-formato-harvard", tipo: "herramienta", fuente: "components/prompts/cv/pagina-cv.tsx" },
+  { ruta: "/carrera-y-empleo/optimizar-cv", tipo: "herramienta", fuente: "components/optimizar/pagina-optimizar.tsx" },
+  { ruta: "/carrera-y-empleo/calcular-salario-y-negociar-oferta", tipo: "herramienta", fuente: "components/salario/pagina-salario.tsx" },
+  { ruta: "/carrera-y-empleo/crear-plan-de-busqueda-de-empleo", tipo: "herramienta", fuente: "components/plan/pagina-plan.tsx" },
+  { ruta: "/carrera-y-empleo/analizar-oferta-laboral", tipo: "herramienta", fuente: "components/analisis/pagina-analisis.tsx" },
+  { ruta: "/carrera-y-empleo/preparar-entrevista-de-trabajo", tipo: "herramienta", fuente: "components/entrevista/pagina-entrevista.tsx" },
+  { ruta: "/viajes-y-entretenimiento/planificar-presupuesto-de-viaje", tipo: "herramienta", fuente: "components/presupuesto/pagina-presupuesto.tsx" },
   { ruta: "/carrera-y-empleo/palabras-clave-cv-oferta-laboral", tipo: "articulo", fuente: "components/articulos/cuerpos.tsx", bloque: "CuerpoPalabrasClave" },
   { ruta: "/carrera-y-empleo/verbos-de-accion-para-cv", tipo: "articulo", fuente: "components/articulos/cuerpos.tsx", bloque: "CuerpoVerbosDeAccion" },
   { ruta: "/carrera-y-empleo/cv-sin-experiencia", tipo: "articulo", fuente: "components/articulos/cuerpos.tsx", bloque: "CuerpoCvSinExperiencia" },
   { ruta: "/carrera-y-empleo", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
+  { ruta: "/viajes-y-entretenimiento", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
   { ruta: "/", tipo: "portada", fuente: "app/(site)/page.tsx" },
 ];
 
@@ -123,7 +130,7 @@ async function medir(page: Page, tipo: Tipo): Promise<Medida> {
         tildes,
         promesas: prom2,
         primerosParrafo: primera.length,
-        cta: !!main.querySelector("a[href*='crear-cv-ats-formato-harvard'], a[href='/carrera-y-empleo']"),
+        cta: !!main.querySelector("a[href*='crear-cv-ats-formato-harvard'], a[href='/carrera-y-empleo'], a[href='/viajes-y-entretenimiento']"),
         lorem: /lorem ipsum|texto de relleno|próximamente/i.test(texto),
         tipos,
         titulo: document.title.length,

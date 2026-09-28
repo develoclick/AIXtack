@@ -64,14 +64,15 @@ export function articleJsonLd(input: { titulo: string; descripcion: string; path
   };
 }
 
-export function webApplicationJsonLd(input: { nombre: string; descripcion: string; path: string; autor: string }) {
+/** `categoria` es un applicationCategory de schema.org (por defecto BusinessApplication; p. ej. TravelApplication o FinanceApplication). */
+export function webApplicationJsonLd(input: { nombre: string; descripcion: string; path: string; autor: string; categoria?: string }) {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: input.nombre,
     description: input.descripcion,
     url: absolute(input.path),
-    applicationCategory: "BusinessApplication",
+    applicationCategory: input.categoria ?? "BusinessApplication",
     operatingSystem: "Cualquier navegador moderno",
     browserRequirements: "Requiere JavaScript",
     inLanguage: "es",
@@ -89,5 +90,21 @@ export function howToJsonLd(input: { nombre: string; descripcion: string; pasos:
     description: input.descripcion,
     inLanguage: "es",
     step: input.pasos.map((p, i) => ({ "@type": "HowToStep", position: i + 1, name: p.nombre, text: p.texto, url: `${absolute(input.path)}#${p.ancla}` })),
+  };
+}
+
+export function collectionPageJsonLd(input: { nombre: string; descripcion: string; path: string; items: { nombre: string; path: string }[] }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: input.nombre,
+    description: input.descripcion,
+    url: absolute(input.path),
+    inLanguage: "es",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: input.items.length,
+      itemListElement: input.items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.nombre, url: absolute(it.path) })),
+    },
   };
 }

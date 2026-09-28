@@ -6,8 +6,8 @@ import { SidebarCategorias } from "@/components/home/sidebar-categorias";
 import { IconoDeCategoria } from "@/components/layout/icono-categoria";
 import { TarjetaPrompt } from "@/components/prompts/tarjeta-prompt";
 import { articulos, rutaDeArticulo } from "@/content/articulos";
-import { categoriasDisponibles } from "@/content/categorias";
-import { prompts, RUTA_CV } from "@/content/prompts";
+import { categoriasActivas, herramientasPublicadas, rutaCategoria } from "@/content/catalogo";
+import { RUTA_CV } from "@/content/prompts";
 import { itemsBuscables } from "@/lib/buscable";
 import { faqJsonLd } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -66,46 +66,37 @@ export default function HomePage() {
         </div>
 
         <div className="min-w-0 space-y-16">
-          <section aria-labelledby="empieza">
-            <h2 id="empieza" className="text-2xl font-bold">
-              Empieza por aquí
-            </h2>
-            <p className="mt-2 text-muted-foreground">La primera herramienta completa del sitio. Las demás se publican de una en una, cuando están terminadas.</p>
-            <div className="mt-6 grid gap-4">
-              {prompts.map((p) => (
-                <TarjetaPrompt key={p.slug} prompt={p} destacada />
-              ))}
-            </div>
-          </section>
-
           <section id="categorias" aria-labelledby="cats" className="scroll-mt-24">
             <h2 id="cats" className="text-2xl font-bold">
               Explora por categoría
             </h2>
-            <div className="mt-6 grid gap-4">
-              {categoriasDisponibles.map((c) => (
-                <Link key={c.slug} href={`/${c.slug}`} className="tarjeta tarjeta-enlace flex flex-col p-5 sm:p-6">
-                  <span className="flex size-11 items-center justify-center rounded-lg bg-brand-muted text-brand">
-                    <IconoDeCategoria icono={c.icono} className="size-5" />
-                  </span>
-                  <h3 className="mt-4 text-xl font-semibold">{c.nombre}</h3>
-                  <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-muted-foreground">{c.descripcion}</p>
-                  <ul className="mt-4 flex flex-wrap gap-1.5">
-                    {articulos.filter((a) => a.categoria === c.slug).map((a) => (
-                      <li key={a.slug} className="pildora text-xs">
-                        {a.metaTitulo}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-auto pt-5 text-sm font-semibold text-brand">
-                    <span className="inline-flex items-center gap-1">
-                      Ver la categoría <ArrowRight aria-hidden className="size-4" />
+            <p className="mt-2 text-muted-foreground">Cada categoría muestra sus herramientas ya publicadas. Se abren de una en una, cuando su primera herramienta está completa.</p>
+            <div className="mt-8 space-y-12">
+              {categoriasActivas().map((c) => (
+                <div key={c.slug} aria-labelledby={`cat-${c.slug}`}>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="flex size-11 items-center justify-center rounded-lg bg-brand-muted text-brand">
+                      <IconoDeCategoria icono={c.icono} className="size-5" />
                     </span>
+                    <h3 id={`cat-${c.slug}`} className="text-xl font-semibold">
+                      {c.nombre}
+                    </h3>
+                    <Link href={rutaCategoria(c)} className="ml-auto inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-brand underline-offset-2 hover:underline">
+                      Ver la categoría <ArrowRight aria-hidden className="size-4" />
+                    </Link>
+                  </div>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                    {herramientasPublicadas(c.slug).length} {herramientasPublicadas(c.slug).length === 1 ? "herramienta publicada" : "herramientas publicadas"} y {articulos.filter((a) => a.categoria === c.slug).length}{" "}
+                    {articulos.filter((a) => a.categoria === c.slug).length === 1 ? "artículo" : "artículos"} de apoyo.
                   </p>
-                </Link>
+                  <div className={`mt-5 grid gap-4 ${herramientasPublicadas(c.slug).length > 1 ? "sm:grid-cols-2" : ""}`}>
+                    {herramientasPublicadas(c.slug).map((h) => (
+                      <TarjetaPrompt key={h.slug} herramienta={h} destacada={herramientasPublicadas(c.slug).length === 1} />
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">Abrimos las categorías de una en una, cuando su primera herramienta está completa y probada.</p>
           </section>
 
           <section aria-labelledby="leer">

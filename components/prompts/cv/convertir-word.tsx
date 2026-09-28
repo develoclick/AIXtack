@@ -10,7 +10,7 @@ import { leerRespuestaIa } from "@/lib/cv/parser";
 import { promptDeCorreccionFormato } from "@/lib/cv/prompt";
 import type { CvDocumento } from "@/lib/cv/tipos";
 
-async function descargarWord(cv: CvDocumento, nombreArchivo?: string) {
+export async function descargarWord(cv: CvDocumento, nombreArchivo?: string) {
   // La librería del Word (docx) se carga solo cuando la persona pulsa el botón.
   const [{ Packer }, { construirDocumentoDocx, nombreDeArchivo }] = await Promise.all([import("docx"), import("@/lib/cv/docx")]);
   const blob = await Packer.toBlob(await construirDocumentoDocx(cv));

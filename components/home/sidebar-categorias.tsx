@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { IconoDeCategoria } from "@/components/layout/icono-categoria";
 import { Buscador, type ItemBuscable } from "@/components/home/buscador";
-import { categoriasDisponibles } from "@/content/categorias";
+import { categoriasActivas } from "@/content/catalogo";
 
 /** Columna izquierda de la portada y de las categorías: buscador y lista de categorías (las que aún no abren, sin enlace). */
 export function SidebarCategorias({ items, actual }: { items: ItemBuscable[]; actual?: string }) {
@@ -11,7 +11,7 @@ export function SidebarCategorias({ items, actual }: { items: ItemBuscable[]; ac
       <nav aria-label="Categorías" className="mt-5">
         <h2 className="px-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Categorías</h2>
         <ul className="mt-2 flex flex-col gap-0.5">
-          {categoriasDisponibles.map((c) => (
+          {categoriasActivas().map((c) => (
             <li key={c.slug}>
               <Link
                 href={`/${c.slug}`}

@@ -7,6 +7,7 @@ import { AvisoToast, type ToastDatos } from "./aviso-toast";
 import { ConvertirWord } from "./convertir-word";
 import { FormularioCv } from "./formulario-cv";
 import { PanelPrompt } from "./panel-prompt";
+import { useRespuestaImportada } from "./importar";
 import { Pasos, type EstadoPaso } from "./pasos";
 import { EJEMPLOS_CV } from "@/content/ejemplos/cv-harvard";
 import { registrarEvento } from "@/lib/analitica";
@@ -43,7 +44,10 @@ function BotonEjemplo({ alHacer, etiquetaAria }: { alHacer: () => void; etiqueta
 export function GeneradorCv() {
   const datos = useDatosCv();
   const modoEjemplo = useModoEjemplo();
-  const [respuesta, setRespuesta] = useState("");
+  const importada = useRespuestaImportada();
+  const [respuestaLocal, setRespuesta] = useState<string | null>(null);
+  // La respuesta viene de lo que la persona pega, del ejemplo o de «Optimizar tu CV» (Convertir en CV Harvard).
+  const respuesta = respuestaLocal ?? importada;
   const [copiado, setCopiado] = useState(false);
   const [descargado, setDescargado] = useState(false);
   const [toast, setToast] = useState<ToastDatos | null>(null);
@@ -196,6 +200,12 @@ export function GeneradorCv() {
           </div>
         </div>
       </section>
+
+      {importada && respuestaLocal === null && (
+        <p role="status" data-importada className="tarjeta bg-brand-muted p-4 text-sm">
+          <strong className="font-semibold">Traje el CV optimizado desde «Optimizar tu CV».</strong> Abajo, en el paso 3, ya está pegado: revisa la vista previa y descarga tu Word con formato Harvard.
+        </p>
+      )}
 
       <ConvertirWord
         respuesta={respuesta}

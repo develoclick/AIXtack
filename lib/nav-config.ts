@@ -1,4 +1,4 @@
-import { categoriasDisponibles } from "@/content/categorias";
+import { categoriasActivas } from "@/content/catalogo";
 
 export interface NavLink {
   label: string;
@@ -8,7 +8,7 @@ export interface NavLink {
 /** Navegación principal de la cabecera. */
 export const primaryNav: NavLink[] = [
   { label: "Categorías", href: "/#categorias" },
-  ...categoriasDisponibles.map((c) => ({ label: c.nombre, href: `/${c.slug}` })),
+  ...categoriasActivas().map((c) => ({ label: c.nombre, href: `/${c.slug}` })),
   { label: "Sobre el sitio", href: "/sobre-nosotros" },
 ];
 
@@ -16,7 +16,7 @@ export const primaryNav: NavLink[] = [
 export const footerNav: { title: string; links: NavLink[] }[] = [
   {
     title: "Prompts",
-    links: categoriasDisponibles.map((c) => ({ label: c.nombre, href: `/${c.slug}` })),
+    links: categoriasActivas().map((c) => ({ label: c.nombre, href: `/${c.slug}` })),
   },
   {
     title: "El sitio",

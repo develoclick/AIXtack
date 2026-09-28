@@ -4,7 +4,7 @@ import { ArrowRight, Clock, ListTree } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { AUTOR_POR_DEFECTO, getAuthor } from "@/content/autores";
 import { articulos, rutaDeArticulo, type ArticuloMeta } from "@/content/articulos";
-import { getCategoria } from "@/content/categorias";
+import { getCategoria } from "@/content/catalogo";
 import { prompts, rutaDePrompt } from "@/content/prompts";
 import { formatDate } from "@/lib/utils/format";
 

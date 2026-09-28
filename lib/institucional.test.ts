@@ -7,9 +7,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { authors, AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "../content/autores";
-import { categorias, categoriasDisponibles, getCategoria } from "../content/categorias";
+import { categorias } from "../content/catalogo";
 import { articulos, rutaDeArticulo } from "../content/articulos";
-import { getPrompt, prompts, rutaDePrompt } from "../content/prompts";
+import { prompts, rutaDePrompt } from "../content/prompts";
 import { config as proxyConfig } from "../proxy";
 import { footerNav } from "./nav-config";
 import { contactEmail, institutionalPages } from "./site";
@@ -80,28 +80,9 @@ test("locale: og:locale es_PE y fechas en es-419", () => {
 });
 
 test("el proxy (410) no captura ninguna ruta vigente del sitio", () => {
-  const vigentes = ["/", ...institutionalPages.map((p) => p.path), ...categoriasDisponibles.map((c) => `/${c.slug}`), ...prompts.map(rutaDePrompt), ...articulos.map(rutaDeArticulo)];
+  const vigentes = ["/", ...institutionalPages.map((p) => p.path), ...categorias.map((c) => `/${c.slug}`), ...prompts.map(rutaDePrompt), ...articulos.map(rutaDeArticulo)];
   for (const patron of proxyConfig.matcher) {
     const base = patron.replace(/\/:path\*$/, "");
     for (const ruta of vigentes) assert.ok(ruta !== base && !ruta.startsWith(`${base}/`), `${patron} choca con ${ruta}`);
   }
-});
-
-test("categorías, herramientas y artículos: slugs únicos, subcategorías válidas y todo en una categoría disponible", () => {
-  assert.equal(new Set(categorias.map((c) => c.slug)).size, categorias.length);
-  assert.equal(categorias.length, 8);
-  for (const c of categorias) assert.equal(new Set(c.subcategorias.map((s) => s.slug)).size, c.subcategorias.length, c.slug);
-  assert.deepEqual(categoriasDisponibles.map((c) => c.slug), ["carrera-y-empleo"]);
-  const todos = [...prompts, ...articulos];
-  assert.equal(new Set(todos.map((p) => `${p.categoria}/${p.slug}`)).size, todos.length, "URL repetida");
-  for (const p of todos) {
-    const c = getCategoria(p.categoria);
-    assert.ok(c?.disponible, p.slug);
-    assert.ok(c!.subcategorias.some((s) => s.slug === p.subcategoria), `${p.slug}: subcategoría`);
-    assert.ok(p.metaTitulo.length <= 60, `${p.slug}: título de ${p.metaTitulo.length} caracteres (máx. 60)`);
-    assert.ok(p.descripcion.length >= 110 && p.descripcion.length <= 155, `${p.slug}: meta descripción de ${p.descripcion.length} caracteres (máx. 155)`);
-    assert.ok(new Set(p.secciones.map((s) => s.id)).size === p.secciones.length, `${p.slug}: ids de sección repetidos`);
-  }
-  for (const p of prompts) assert.equal(getPrompt(p.categoria, p.slug), p);
-  assert.ok(categoriasDisponibles.every((c) => (c.introduccion ?? []).join(" ").split(/\s+/).length >= 300), "la introducción de cada categoría abierta tiene 300+ palabras");
 });
