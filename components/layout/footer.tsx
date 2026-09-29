@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { footerNav } from "@/lib/nav-config";
 import { EDITORIAL, getAuthor } from "@/content/autores";
@@ -11,9 +12,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
-            <Link href="/" className="inline-flex min-h-11 items-center text-xl font-semibold tracking-tight">
-              {siteName}
-            </Link>
+            <Link href="/" className="flex min-h-11 items-center gap-2.5 font-semibold tracking-tight" aria-label={`${siteName}: inicio`}>
+          <Image src="/logo.png" alt="" width={32} height={32} className="size-8 rounded-lg" priority />
+        </Link>
             <p className="mt-3 text-sm leading-relaxed text-ink-foreground/70">
               {siteTagline}. Todo es gratis, sin registro y sin cuentas.
             </p>
