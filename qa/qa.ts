@@ -21,6 +21,9 @@ import { EJEMPLOS_ITINERARIO } from "../content/ejemplos/itinerario";
 import { EJEMPLOS_FECHAS } from "../content/ejemplos/fechas";
 import { EJEMPLOS_COMPARAR } from "../content/ejemplos/comparar";
 import { EJEMPLOS_DESTINOS } from "../content/ejemplos/destinos";
+import { EJEMPLOS_LOGO } from "../content/ejemplos/logo";
+import { EJEMPLOS_PLAN_NEGOCIO } from "../content/ejemplos/plan-negocio";
+import { EJEMPLOS_RENTABILIDAD } from "../content/ejemplos/rentabilidad";
 
 const base = (process.argv.find((a) => /^https?:/.test(a)) ?? "http://localhost:3100").replace(/\/$/, "");
 const iCap = process.argv.indexOf("--capturas");
@@ -37,10 +40,13 @@ const RUTA_ITIN = "/viajes-y-entretenimiento/crear-itinerario-de-viaje";
 const RUTA_FECHAS = "/viajes-y-entretenimiento/encontrar-fechas-mas-baratas-para-volar";
 const RUTA_CMP = "/viajes-y-entretenimiento/comparar-opciones-de-viaje";
 const RUTA_DEST = "/viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto";
+const RUTA_LOGO = "/emprendimiento/crear-logo-profesional-para-mi-empresa";
+const RUTA_PLANNEG = "/emprendimiento/crear-plan-de-negocio";
+const RUTA_RENTAB = "/emprendimiento/calcular-rentabilidad-de-mi-negocio";
 /** Categorías sin ninguna herramienta publicada: su URL debe responder 404 y no aparecer en ningún sitio. */
-const CERRADAS = ["/emprendimiento", "/analitica-e-informacion", "/finanzas-y-economia", "/marketing-y-ventas"];
+const CERRADAS = ["/analitica-e-informacion", "/finanzas-y-economia", "/marketing-y-ventas"];
 /** Herramientas pendientes: 404 y sin enlaces. */
-const PENDIENTES = ["/finanzas-y-economia/crear-presupuesto-personal", "/finanzas-y-economia/calcular-interes-compuesto", "/marketing-y-ventas/crear-plan-de-marketing", "/emprendimiento/crear-plan-de-negocio", "/analitica-e-informacion/limpiar-datos"];
+const PENDIENTES = ["/finanzas-y-economia/crear-presupuesto-personal", "/finanzas-y-economia/calcular-interes-compuesto", "/marketing-y-ventas/crear-plan-de-marketing", "/emprendimiento/identificar-nichos-de-mercado", "/analitica-e-informacion/limpiar-datos"];
 const ARTICULOS = ["/carrera-y-empleo/palabras-clave-cv-oferta-laboral", "/carrera-y-empleo/verbos-de-accion-para-cv", "/carrera-y-empleo/cv-sin-experiencia"];
 const VIEWPORTS = [
   { nombre: "375", width: 375, height: 800 },
@@ -125,7 +131,7 @@ async function basicas(page: Page, donde: string) {
       const r = el.getBoundingClientRect();
       if (r.width === 0 || r.height === 0) continue;
       if (el.closest("nav[aria-label='Ruta de navegación']")) continue;
-      if (el.matches("input[type=radio], input[type=checkbox]") && el.closest("label")) continue; // el control es la etiqueta completa
+      if (el.matches("input[type=radio], input[type=checkbox], input[type=file]") && el.closest("label")) continue; // el control es la etiqueta completa
       // Enlaces dentro de un texto corrido no cuentan (WCAG: excepción de enlaces en línea).
       if (el.tagName === "A" && el.parentElement && (el.parentElement.textContent ?? "").trim().length > (el.textContent ?? "").trim().length + 3 && el.parentElement.tagName !== "HEADER") continue;
       if (r.height < 43.5) salida.push(`${el.tagName.toLowerCase()} «${(el.textContent || el.getAttribute("aria-label") || "").trim().slice(0, 30)}» ${Math.round(r.height)}px`);
@@ -186,6 +192,10 @@ async function paginas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
     [RUTA_FECHAS, "fechas", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [RUTA_CMP, "comparar", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [RUTA_DEST, "destinos", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    ["/emprendimiento", "categoria-emprendimiento", ["BreadcrumbList"], false],
+    [RUTA_LOGO, "logo", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_PLANNEG, "plan-negocio", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_RENTAB, "rentabilidad", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [ARTICULOS[0], "art-palabras", ["Article", "BreadcrumbList"], true],
     [ARTICULOS[1], "art-verbos", ["Article", "BreadcrumbList"], true],
     [ARTICULOS[2], "art-sin-exp", ["Article", "BreadcrumbList"], true],
@@ -219,7 +229,7 @@ async function paginas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
 
 async function sinEnlacesACerradas(browser: Browser) {
   const { ctx, page } = await abrir(browser, VIEWPORTS[1]);
-  for (const ruta of ["/", "/carrera-y-empleo", "/viajes-y-entretenimiento", RUTA_CV, RUTA_OPT, RUTA_ANA, RUTA_ENT, RUTA_SAL, RUTA_PLAN, RUTA_PRES, RUTA_ITIN, RUTA_FECHAS, RUTA_CMP, RUTA_DEST, ARTICULOS[0], "/sobre-nosotros", "/politica-de-privacidad"]) {
+  for (const ruta of ["/", "/carrera-y-empleo", "/viajes-y-entretenimiento", "/emprendimiento", RUTA_CV, RUTA_OPT, RUTA_ANA, RUTA_ENT, RUTA_SAL, RUTA_PLAN, RUTA_PRES, RUTA_ITIN, RUTA_FECHAS, RUTA_CMP, RUTA_DEST, RUTA_LOGO, RUTA_PLANNEG, RUTA_RENTAB, ARTICULOS[0], "/sobre-nosotros", "/politica-de-privacidad"]) {
     await page.goto(base + ruta, { waitUntil: "networkidle" });
     const hrefs = await page.evaluate(() => [...document.querySelectorAll("a[href]")].map((a) => a.getAttribute("href") ?? ""));
     const malos = hrefs.filter((h) => [...CERRADAS, ...PENDIENTES].some((c) => h === c || h.startsWith(c + "/") || h.startsWith(c + "#")));
@@ -227,7 +237,7 @@ async function sinEnlacesACerradas(browser: Browser) {
   }
   await page.goto(base + "/", { waitUntil: "networkidle" });
   const menu = await page.evaluate(() => [...document.querySelectorAll("header nav a, footer nav a")].map((a) => a.getAttribute("href")));
-  rec("menú y pie", "solo enlazan a categorías activas (Carrera y empleo, Viajes y entretenimiento)", menu.includes("/carrera-y-empleo") && menu.includes("/viajes-y-entretenimiento") && CERRADAS.every((c) => !menu.includes(c)));
+  rec("menú y pie", "solo enlazan a categorías activas (Carrera y empleo, Viajes y entretenimiento, Emprendimiento)", menu.includes("/carrera-y-empleo") && menu.includes("/viajes-y-entretenimiento") && menu.includes("/emprendimiento") && CERRADAS.every((c) => !menu.includes(c)));
   await ctx.close();
 }
 
@@ -1919,6 +1929,320 @@ async function eventosDestinos(browser: Browser) {
   await ctx.close();
 }
 
+async function generadorLogo(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `logo @${v.nombre}`;
+  await page.goto(base + RUTA_LOGO, { waitUntil: "networkidle" });
+  const [, tech] = EJEMPLOS_LOGO;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const nombreEmpresa = page.getByRole("textbox", { name: /^Nombre de la empresa/ });
+  const respuesta = page.getByRole("textbox", { name: /^Respuesta de la IA/ });
+  const paso3 = page.locator("#paso-3");
+  const tab = (n: string) => paso3.getByRole("tab", { name: n, exact: true });
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tu resultado») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tu resultado") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+  rec(donde, "el aviso de que la página no genera imágenes está visible desde el inicio", await page.getByText("Esta página no genera imágenes.").isVisible());
+
+  // Ejemplo del paso 1 (Masa Madre Rímac)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo llena el nombre de la empresa y mueve los deslizadores de personalidad", (await nombreEmpresa.inputValue()) === "Masa Madre Rímac" && (await page.locator('input[data-deslizador="serioCercano"]').inputValue()) === "80");
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-logo-datos-v1"))) === null);
+  await captura(page, `logo-paso1-${v.nombre}`);
+
+  // Paso 2: el prompt
+  const p1 = await prompt();
+  rec(donde, "el prompt incluye la empresa y exige exactamente 3 conceptos y 8 variantes", p1.includes("Masa Madre Rímac") && p1.includes("exactamente 3 conceptos") && p1.includes("8 variantes"));
+  await page.getByRole("button", { name: "Copiar prompt" }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p1);
+
+  // Paso 3: respuesta de ejemplo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  const panelBrief = paso3.getByRole("tabpanel", { name: "Brief y conceptos" });
+  rec(donde, "el panel «Brief y conceptos» trae los 3 conceptos", (await panelBrief.getByText("Conceptos (3 de 3)").isVisible()) && (await panelBrief.getByText("Espiga-M").isVisible()));
+  await captura(page, `logo-resultado-${v.nombre}`);
+
+  await tab("Especificaciones").click();
+  const panelEsp = paso3.getByRole("tabpanel", { name: "Especificaciones" });
+  rec(donde, "la paleta muestra el contraste AA calculado por la página, no por la IA", (await panelEsp.getByText("AA", { exact: true }).count()) === 3);
+  rec(donde, "una tipografía sin licencia confirmada se marca «verificar licencia»", await panelEsp.getByText("verificar licencia").isVisible());
+
+  await tab("Prompts de imagen").click();
+  const panelPrompts = paso3.getByRole("tabpanel", { name: "Prompts de imagen" });
+  rec(donde, "hay un prompt en inglés y otro en español para las 8 variantes", (await panelPrompts.getByText(/^EN:/).count()) === 8 && (await panelPrompts.getByText(/^ES:/).count()) === 8);
+  await panelPrompts.getByRole("button", { name: "Copiar EN" }).first().click();
+  const promptCopiado = await page.evaluate(() => navigator.clipboard.readText());
+  rec(donde, "copiar un prompt de imagen deja su texto en inglés en el portapapeles", promptCopiado.startsWith("flat vector logo"));
+
+  // Laboratorio: sube una imagen real y genera los favicons
+  await tab("Laboratorio").click();
+  const panelLab = paso3.getByRole("tabpanel", { name: "Laboratorio" });
+  await panelLab.locator('input[type="file"]').setInputFiles(path.join(process.cwd(), "public", "logo.png"));
+  await panelLab.getByText("Vista previa").waitFor();
+  rec(donde, "al subir una imagen aparece la vista previa en fondo claro y oscuro", (await panelLab.getByText("Fondo claro").isVisible()) && (await panelLab.getByText("Fondo oscuro").isVisible()));
+  await panelLab.getByRole("button", { name: "Generar tamaños" }).click();
+  await panelLab.getByRole("button", { name: "Descargar .zip" }).waitFor({ timeout: 10000 });
+  rec(donde, "«Generar tamaños» crea los 4 favicons (16, 32, 180 y 512 px)", (await panelLab.getByText("16 px").count()) >= 1 && (await panelLab.getByText("512 px").count()) >= 1);
+  const [zip] = await Promise.all([page.waitForEvent("download"), panelLab.getByRole("button", { name: "Descargar .zip" }).click()]);
+  const rutaZip = await zip.path();
+  rec(donde, "el .zip de favicons se descarga con 4 archivos PNG", zip.suggestedFilename().endsWith("-favicons.zip") && rutaZip !== null && (await new JSZip().loadAsync(fs.readFileSync(rutaZip!))).file(/\.png$/).length === 4);
+
+  await tab("Revisión").click();
+  const panelRevision = paso3.getByRole("tabpanel", { name: "Revisión" });
+  rec(donde, "«Revisión» lista las aplicaciones y los riesgos de la respuesta", (await panelRevision.getByText("Tarjeta de presentación").count()) > 0 && (await panelRevision.getByText("espiga-M no se parezca").count()) > 0);
+
+  // Imprimir el mini manual
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#logo-imprimible").count()) === 1 && !(await page.locator("#logo-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-logo"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve el mini manual de marca (la herramienta queda oculta)", (await page.locator("#logo-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-logo"));
+
+  // Otro ejemplo (Nimbus Data)
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await page.getByText("Respuesta de ejemplo pegada").first().waitFor();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "el siguiente ejemplo llena el formulario con su propia empresa", (await nombreEmpresa.inputValue()) === tech.datos.nombreEmpresa);
+
+  // Una respuesta sin los títulos esperados
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin títulos avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosLogo(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_LOGO, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: /^Nombre de la empresa/ }).fill("Otra empresa");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await page.locator("#paso-3").getByRole("button", { name: "Imprimir o guardar manual en PDF" }).click();
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica logo", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
+async function generadorPlanNegocio(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `plan-negocio @${v.nombre}`;
+  await page.goto(base + RUTA_PLANNEG, { waitUntil: "networkidle" });
+  const [, velas] = EJEMPLOS_PLAN_NEGOCIO;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const nombreEmpresa = page.getByRole("textbox", { name: /^Nombre de la empresa/ });
+  const respuesta = page.getByRole("textbox", { name: /^Respuesta de la IA/ });
+  const respuestasFaseA = page.getByRole("textbox", { name: /^(Cuando la IA te responda|Tus respuestas a las preguntas de la Fase A)/ });
+  const paso3 = page.locator("#paso-3");
+  const tab = (n: string) => paso3.getByRole("tab", { name: n, exact: true });
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tu plan») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tu plan") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+
+  // Ejemplo del paso 1 (Lavandería Express Surquillo)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo llena el nombre de la empresa y las respuestas de la Fase A", (await nombreEmpresa.inputValue()) === "Lavandería Express Surquillo" && (await respuestasFaseA.inputValue()).length > 0);
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-plan-negocio-datos-v1"))) === null);
+  rec(donde, "el resumen en vivo calcula el punto de equilibrio del ejemplo (1500 u/mes)", await page.getByText("1500 u/mes").isVisible());
+  await captura(page, `plan-negocio-paso1-${v.nombre}`);
+
+  // Paso 2: el prompt en 2 fases
+  const p1 = await prompt();
+  rec(donde, "con las respuestas de la Fase A ya cargadas, el prompt muestra la Fase B (19 títulos)", p1.includes("Lavandería Express Surquillo") && p1.includes("## Resumen ejecutivo") && p1.includes("## Siguiente paso"));
+  await respuestasFaseA.fill("");
+  const pFaseA = await prompt();
+  rec(donde, "al borrar las respuestas, el prompt vuelve a la Fase A (diagnóstico)", pFaseA.includes("## Datos faltantes") && pFaseA.includes("## Preguntas") && !pFaseA.includes("## Resumen ejecutivo"));
+  await respuestasFaseA.fill("El local todavía no está alquilado.");
+  const pFaseB = await prompt();
+  rec(donde, "al escribir algo, el mismo botón vuelve a mostrar la Fase B", pFaseB.includes("## Resumen ejecutivo"));
+  await page.getByRole("button", { name: /^Copiar prompt/ }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === pFaseB);
+
+  // Paso 3: respuesta de ejemplo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  const panelResumen = paso3.getByRole("tabpanel", { name: "Resumen y negocio" });
+  rec(donde, "el panel «Resumen y negocio» trae el resumen ejecutivo con cifras etiquetadas", (await panelResumen.getByText("[CÁLCULO]").count()) > 0);
+  await captura(page, `plan-negocio-resultado-${v.nombre}`);
+
+  await tab("Mercado y competencia").click();
+  const panelMercado = paso3.getByRole("tabpanel", { name: "Mercado y competencia" });
+  rec(donde, "la tabla de competencia trae los 2 competidores del ejemplo", (await panelMercado.getByRole("cell", { name: "Lavandería Don Pepe" }).isVisible()) && (await panelMercado.getByRole("cell", { name: "QuickWash Surco (cadena)" }).isVisible()));
+
+  await tab("Números").click();
+  const panelNumeros = paso3.getByRole("tabpanel", { name: "Números" });
+  rec(donde, "la tabla de proyección trae los 3 escenarios", (await panelNumeros.getByRole("cell", { name: "Pesimista" }).isVisible()) && (await panelNumeros.getByRole("cell", { name: "Optimista" }).isVisible()));
+  rec(donde, "el conteo de etiquetas se muestra", await panelNumeros.getByText("Etiquetas encontradas:").isVisible());
+
+  await tab("Riesgos y siguiente paso").click();
+  const panelRiesgos = paso3.getByRole("tabpanel", { name: "Riesgos y siguiente paso" });
+  rec(donde, "«Riesgos y siguiente paso» no marca cifras inventadas en la respuesta del ejemplo", await panelRiesgos.getByText("No detecté cifras sin respaldo").isVisible());
+
+  // Imprimir el resumen
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#plan-negocio-imprimible").count()) === 1 && !(await page.locator("#plan-negocio-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-plan-negocio"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve el resumen del plan (la herramienta queda oculta)", (await page.locator("#plan-negocio-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-plan-negocio"));
+
+  // Descarga en Word
+  const [word] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Descargar el plan en Word (.docx)" }).click()]);
+  const xml = await leerDocx(word);
+  rec(donde, "el plan se descarga en Word con el nombre de la empresa y sin recalcular el punto de equilibrio", word.suggestedFilename() === "Plan-de-negocio-Lavanderia-Express-Surquillo.docx" && xml.includes("Lavandería Express Surquillo") && xml.includes("1500 kg/mes"), word.suggestedFilename());
+
+  // Exportar el proyecto (.json), antes de cambiar de ejemplo o tocar el formulario
+  const [json] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Guardar copia del proyecto (.json)" }).click()]);
+  const rutaJson = (await json.path())!;
+  const proyecto = JSON.parse(fs.readFileSync(rutaJson, "utf8")) as { herramienta: string; datos: { nombreEmpresa: string } };
+  rec(donde, "el .json exportado trae la herramienta y el nombre de la empresa", proyecto.herramienta === "crear-plan-de-negocio" && proyecto.datos.nombreEmpresa === "Lavandería Express Surquillo");
+
+  // Otro ejemplo (Velas Aromáticas Kaypacha): todavía en modo ejemplo, así que también rellena el formulario
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await page.getByText("Respuesta de ejemplo pegada").first().waitFor();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "el siguiente ejemplo llena el formulario con su propio negocio", (await nombreEmpresa.inputValue()) === velas.datos.nombreEmpresa);
+
+  // Importar el proyecto exportado (Lavandería): reemplaza el formulario, aunque estaba en modo ejemplo
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  rec(donde, "«Limpiar formulario» borra el nombre de la empresa", (await nombreEmpresa.inputValue()) === "");
+  await page.locator('input[type="file"]').setInputFiles(rutaJson);
+  await page.getByText("Proyecto importado").first().waitFor();
+  rec(donde, "importar el .json exportado devuelve el mismo nombre de empresa", (await nombreEmpresa.inputValue()) === "Lavandería Express Surquillo");
+
+  // Una respuesta sin los títulos esperados
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin títulos avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosPlanNegocio(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_PLANNEG, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: /^Nombre de la empresa/ }).fill("Otra empresa");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await page.locator("#paso-3").getByRole("button", { name: "Guardar copia del proyecto (.json)" }).click();
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica plan-negocio", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
+async function generadorRentabilidad(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `rentabilidad @${v.nombre}`;
+  await page.goto(base + RUTA_RENTAB, { waitUntil: "networkidle" });
+  const [, velas] = EJEMPLOS_RENTABILIDAD;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const respuesta = page.getByRole("textbox", { name: /^Respuesta de la IA/ });
+  const paso3 = page.locator("#paso-3");
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tu análisis») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tu análisis") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+
+  // Ejemplo del paso 1 (Pastelería)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  const primerNombre = page.getByRole("textbox", { name: "Nombre", exact: true }).first();
+  rec(donde, "el ejemplo llena el primer producto (Tortas)", (await primerNombre.inputValue()) === "Tortas");
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-rentabilidad-datos-v1"))) === null);
+  rec(donde, "el resumen en vivo calcula la utilidad operativa del ejemplo (S/ 430.00)", await page.getByText("S/ 430.00").first().isVisible());
+  await captura(page, `rentabilidad-paso1-${v.nombre}`);
+
+  // Importar productos desde un .csv
+  const rutaCsv = path.join(process.cwd(), "rentabilidad-prueba.csv");
+  fs.writeFileSync(rutaCsv, "unidades;nombre;costo;precio\n50;Producto importado;10;20\n");
+  try {
+    await page.locator('input[type="file"][accept*="csv"]').setInputFiles(rutaCsv);
+    let valorImportado = "";
+    for (let i = 0; i < 20 && valorImportado !== "Producto importado"; i++) {
+      await page.waitForTimeout(100);
+      valorImportado = await primerNombre.inputValue();
+    }
+    rec(donde, "importar un .csv reemplaza los productos del formulario", valorImportado === "Producto importado", valorImportado);
+  } finally {
+    fs.rmSync(rutaCsv, { force: true });
+  }
+
+  // Volver al ejemplo para el resto de la prueba (seguimos en modo ejemplo: recarga sin pedir confirmación)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "tras importar un .csv, volver a «Llenar con ejemplo» restaura el producto del ejemplo", (await primerNombre.inputValue()) === "Tortas");
+
+  // Paso 2: el prompt
+  const p1 = await prompt();
+  rec(donde, "el prompt incluye los productos, los cálculos ya resueltos y los 7 títulos de salida", p1.includes("Tortas") && p1.includes("Unidades totales vendidas: 1580") && p1.includes("## Resumen") && p1.includes("## Siguiente paso"));
+  await page.getByRole("button", { name: "Copiar prompt" }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p1);
+
+  // Paso 3: respuesta de ejemplo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await paso3.getByRole("heading", { name: "Rentabilidad por producto" }).waitFor();
+  rec(donde, "el análisis trae el resumen y al menos una cifra etiquetada «[HIPÓTESIS]»", (await paso3.getByText("[HIPÓTESIS]").count()) > 0);
+  rec(donde, "el tornado de sensibilidad muestra las 4 variables ordenadas por impacto (precio primero)", (await paso3.getByText("Precio de venta").count()) > 0);
+  rec(donde, "«Riesgos»/avisos: no marca cifras inventadas en la respuesta del ejemplo", await paso3.getByText("No detecté cifras sin respaldo").isVisible());
+  await captura(page, `rentabilidad-resultado-${v.nombre}`);
+
+  // Descarga del informe .csv
+  const [csv] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Descargar el informe (.csv)" }).click()]);
+  const rutaDescarga = (await csv.path())!;
+  const contenidoCsv = fs.readFileSync(rutaDescarga, "utf8");
+  rec(donde, "el informe se descarga en .csv con el detalle por producto y el resultado del período", csv.suggestedFilename() === "informe-de-rentabilidad.csv" && contenidoCsv.includes("Tortas") && contenidoCsv.includes("Utilidad operativa"));
+
+  // Imprimir el resumen
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#rentabilidad-imprimible").count()) === 1 && !(await page.locator("#rentabilidad-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-rentabilidad"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve el resumen (la herramienta queda oculta)", (await page.locator("#rentabilidad-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-rentabilidad"));
+
+  // Otro ejemplo (Taller de Costura)
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await page.getByText("Respuesta de ejemplo pegada").first().waitFor();
+  rec(donde, "el siguiente ejemplo llena el formulario con su propio negocio", (await primerNombre.inputValue()) === velas.datos.productos[0].nombre);
+
+  // Una respuesta sin los títulos esperados
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin títulos avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosRentabilidad(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_RENTAB, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: "Nombre", exact: true }).first().fill("Otro producto");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await page.locator("#paso-3").getByRole("button", { name: "Descargar el informe (.csv)" }).click();
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica rentabilidad", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
 async function main() {
   const browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
   try {
@@ -1937,6 +2261,9 @@ async function main() {
       await generadorFechas(browser, v);
       await generadorComparar(browser, v);
       await generadorDestinos(browser, v);
+      await generadorLogo(browser, v);
+      await generadorPlanNegocio(browser, v);
+      await generadorRentabilidad(browser, v);
     }
     await sinEnlacesACerradas(browser);
     await temaYAnuncios(browser);
@@ -1950,6 +2277,9 @@ async function main() {
     await eventosFechas(browser);
     await eventosComparar(browser);
     await eventosDestinos(browser);
+    await eventosLogo(browser);
+    await eventosPlanNegocio(browser);
+    await eventosRentabilidad(browser);
     await traspasoAnalisis(browser);
     await teclado(browser);
     const s = await fetch(base + "/sitemap.xml").then((r) => r.text());
@@ -1983,6 +2313,15 @@ async function main() {
     rec("sitemap", "lista la herramienta de descubrir destinos según presupuesto", s.includes(`${RUTA_DEST}</loc>`));
     const ogDest = await fetch(base + "/og/viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto");
     rec("og", "la herramienta de destinos tiene imagen Open Graph propia (PNG)", ogDest.status === 200 && (ogDest.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista el hub de Emprendimiento y la herramienta de crear un logo", s.includes("/emprendimiento</loc>") && s.includes(`${RUTA_LOGO}</loc>`));
+    const ogLogo = await fetch(base + "/og/emprendimiento/crear-logo-profesional-para-mi-empresa");
+    rec("og", "la herramienta de logo tiene imagen Open Graph propia (PNG)", ogLogo.status === 200 && (ogLogo.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de crear un plan de negocio", s.includes(`${RUTA_PLANNEG}</loc>`));
+    const ogPlanNeg = await fetch(base + "/og/emprendimiento/crear-plan-de-negocio");
+    rec("og", "la herramienta de plan de negocio tiene imagen Open Graph propia (PNG)", ogPlanNeg.status === 200 && (ogPlanNeg.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de calcular la rentabilidad de un negocio", s.includes(`${RUTA_RENTAB}</loc>`));
+    const ogRentab = await fetch(base + "/og/emprendimiento/calcular-rentabilidad-de-mi-negocio");
+    rec("og", "la herramienta de rentabilidad tiene imagen Open Graph propia (PNG)", ogRentab.status === 200 && (ogRentab.headers.get("content-type") ?? "").includes("image/png"));
     rec("og", "una herramienta pendiente no tiene imagen (404)", (await fetch(base + "/og/finanzas-y-economia/crear-presupuesto-personal")).status === 404);
     rec("sitemap", "lista portada, categoría, herramienta, artículos y páginas legales", [`/</loc>`, `/carrera-y-empleo</loc>`, `${RUTA_CV}</loc>`, ...ARTICULOS.map((a) => `${a}</loc>`), `/politica-de-privacidad</loc>`].every((t) => s.includes(t)));
     rec("sitemap", "no lista categorías cerradas ni herramientas pendientes", !s.includes("/herramientas") && [...CERRADAS, ...PENDIENTES].every((r) => !s.includes(r)));

@@ -8,7 +8,7 @@ export const siteUrl = "https://www.guiapromptsia.com";
 export const OG_POR_DEFECTO = "/og-default.webp";
 export const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
 export const siteTagline = "Prompts en español, gratis y listos para copiar";
-export const contactEmail = "contacto@guiapromptsia.com";
+export const contactEmail = "guiapromptsia@gmail.com";
 
 /**
  * Páginas institucionales. `updatedAt` es la fecha REAL de la última modificación de su contenido: hay que actualizarla al

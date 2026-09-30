@@ -6,7 +6,7 @@ Nadie puede garantizar la aprobación: AdSense decide con sus propios criterios.
 - [ ] **ID de AdSense.** En Vercel → Settings → Environment Variables agrega `NEXT_PUBLIC_ADSENSE_CLIENT_ID` (`ca-pub-…`) y vuelve a desplegar. `/ads.txt` ya usa el ID de editor que estaba en el proyecto (`pub-1950156439970490`): compruébalo en AdSense → Sitios → ads.txt.
 - [ ] **Bloques de anuncios.** Crea 3 bloques «in-article» en AdSense y pon sus IDs en `NEXT_PUBLIC_ADSENSE_SLOT_INTRO`, `NEXT_PUBLIC_ADSENSE_SLOT_MEDIO` y `NEXT_PUBLIC_ADSENSE_SLOT_FINAL`.
 - [ ] **Sobre nosotros** (`app/(site)/sobre-nosotros/page.tsx` y `content/autores.ts`): revisa que la biografía y los datos sean reales. Quité de la biografía la frase «Cada herramienta muestra una prueba real…» porque ya no era cierta.
-- [ ] **Contacto:** comprueba que `contacto@guiapromptsia.com` recibe correo y lo lees.
+- [ ] **Contacto:** comprueba que `guiapromptsia@gmail.com` recibe correo y lo lees.
 - [ ] **Política de privacidad, cookies y términos:** léelas una vez; están escritas para una persona natural en Perú (Ley N.° 29733). Si un abogado puede revisarlas, mejor.
 - [ ] **Logotipo** (`public/logo.png`): sigue siendo el de antes (verde); no coincide con el nuevo acento índigo. Cámbialo si quieres.
 

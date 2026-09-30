@@ -8,6 +8,10 @@ Ejecutada con `npx tsx qa/auditoria.ts` contra la versión de producción. Aprue
 | /carrera-y-empleo/optimizar-cv | herramienta | 4332 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /viajes-y-entretenimiento/comparar-opciones-de-viaje | herramienta | 3278 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto | herramienta | 2962 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /emprendimiento/crear-logo-profesional-para-mi-empresa | herramienta | 3310 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /emprendimiento/crear-plan-de-negocio | herramienta | 3245 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /emprendimiento/calcular-rentabilidad-de-mi-negocio | herramienta | 3621 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /emprendimiento | categoria | 312 | 0 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/palabras-clave-cv-oferta-laboral | articulo | 1689 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/verbos-de-accion-para-cv | articulo | 1516 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/cv-sin-experiencia | articulo | 1391 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
@@ -24,6 +28,8 @@ Ejecutada con `npx tsx qa/auditoria.ts` contra la versión de producción. Aprue
 | /carrera-y-empleo/cv-sin-experiencia | 96 % | Perfil de ejemplo copiado de la herramienta; sin contexto local | Perfil de ejemplo nuevo (otra carrera); prácticas preprofesionales y profesionales en Perú |
 | /carrera-y-empleo | 83 % | Solo texto; sin fecha; sin elementos de apoyo | Pasos numerados, 3 preguntas frecuentes, fecha de actualización y datos estructurados FAQ |
 | / | 88 % | Sin contexto local; primera explicación corta (medición) | «en español para Latinoamérica» en la portada; medición corregida |
+| /emprendimiento/crear-logo-profesional-para-mi-empresa | 92 % | Solo 2 enlaces internos (pedía 3); sin llamado a la acción claro (el detector estaba fijo a las 2 categorías originales) | Se agregaron 2 enlaces internos (`/contacto`, `/politica-de-privacidad`) en «Límites»; se generalizó el detector de CTA para reconocer el enlace a la categoría de cualquier página, no solo Carrera y Viajes |
+| /emprendimiento (categoría) | 92 % | El medidor de palabras y de contexto local solo lee la introducción visible, y la única mención de «Perú» vivía dentro de una respuesta de FAQ colapsada (invisible para el medidor) | Se reescribió la introducción de la categoría (2 → 4 párrafos, 312 palabras) con una mención explícita de Perú/Latinoamérica/soles/Lima/Arequipa en texto siempre visible |
 
 Casillas juzgadas a mano (se marcan como cumplidas tras leer cada página): «una persona puede cumplir su objetivo solo con la página» (§1) y «las páginas legales, 404 y de error no llevan anuncios» (§5, comprobado en `qa/qa.ts` y `lib/ads.test.ts`).
 
@@ -41,6 +47,9 @@ Casillas juzgadas a mano (se marcan como cumplidas tras leer cada página): «un
 | /viajes-y-entretenimiento/encontrar-fechas-mas-baratas-para-volar | 78 | 97 | 100 | 100 |
 | /viajes-y-entretenimiento/comparar-opciones-de-viaje | 76 | 97 | 100 | 100 |
 | /viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto | 81 | 97 | 100 | 100 |
+| /emprendimiento/crear-logo-profesional-para-mi-empresa | 75 | 97 | 100 | 100 |
+| /emprendimiento/crear-plan-de-negocio | 76 | 97 | 100 | 100 |
+| /emprendimiento/calcular-rentabilidad-de-mi-negocio | 73 | 97 | 100 | 100 |
 | /carrera-y-empleo/analizar-oferta-laboral | 90 | 97 | 100 | 100 |
 | /carrera-y-empleo/preparar-entrevista-de-trabajo | 89 | 97 | 100 | 100 |
 | /viajes-y-entretenimiento/planificar-presupuesto-de-viaje | 69 | 97 | 100 | 100 |

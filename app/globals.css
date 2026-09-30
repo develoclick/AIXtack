@@ -505,3 +505,43 @@
     color: #000;
   }
 }
+
+/* «Imprimir o guardar manual en PDF» de crear un plan de negocio: al imprimir solo se ve el resumen preparado para papel. */
+@media print {
+  body.imprimiendo-plan-negocio * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-plan-negocio #plan-negocio-imprimible,
+  body.imprimiendo-plan-negocio #plan-negocio-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-plan-negocio #plan-negocio-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Imprimir o guardar manual en PDF» de calcular la rentabilidad: al imprimir solo se ve el resumen preparado para papel. */
+@media print {
+  body.imprimiendo-rentabilidad * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-rentabilidad #rentabilidad-imprimible,
+  body.imprimiendo-rentabilidad #rentabilidad-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-rentabilidad #rentabilidad-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}

@@ -25,7 +25,7 @@ test("privacidad, cookies, términos, sobre nosotros y contacto están enlazados
   for (const p of institutionalPages) assert.ok(/^\d{4}-\d{2}-\d{2}$/.test(p.updatedAt), p.path);
 });
 
-test("un solo correo en todo el código: contacto@guiapromptsia.com", () => {
+test("un solo correo en todo el código: guiapromptsia@gmail.com", () => {
   const correos = new Set<string>();
   for (const dir of ["app", "components", "lib", "content"]) {
     for (const f of archivos(dir)) {

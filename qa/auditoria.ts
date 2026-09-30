@@ -23,6 +23,9 @@ const PAGINAS: { ruta: string; tipo: Tipo; fuente: string; bloque?: string }[] =
   { ruta: "/viajes-y-entretenimiento/encontrar-fechas-mas-baratas-para-volar", tipo: "herramienta", fuente: "components/fechas/pagina-fechas.tsx" },
   { ruta: "/viajes-y-entretenimiento/comparar-opciones-de-viaje", tipo: "herramienta", fuente: "components/comparar/pagina-comparar.tsx" },
   { ruta: "/viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto", tipo: "herramienta", fuente: "components/destinos/pagina-destinos.tsx" },
+  { ruta: "/emprendimiento/crear-logo-profesional-para-mi-empresa", tipo: "herramienta", fuente: "components/logo/pagina-logo.tsx" },
+  { ruta: "/emprendimiento/crear-plan-de-negocio", tipo: "herramienta", fuente: "components/plan-negocio/pagina-plan-negocio.tsx" },
+  { ruta: "/emprendimiento/calcular-rentabilidad-de-mi-negocio", tipo: "herramienta", fuente: "components/rentabilidad/pagina-rentabilidad.tsx" },
   { ruta: "/carrera-y-empleo/analizar-oferta-laboral", tipo: "herramienta", fuente: "components/analisis/pagina-analisis.tsx" },
   { ruta: "/carrera-y-empleo/preparar-entrevista-de-trabajo", tipo: "herramienta", fuente: "components/entrevista/pagina-entrevista.tsx" },
   { ruta: "/viajes-y-entretenimiento/planificar-presupuesto-de-viaje", tipo: "herramienta", fuente: "components/presupuesto/pagina-presupuesto.tsx" },
@@ -31,6 +34,7 @@ const PAGINAS: { ruta: string; tipo: Tipo; fuente: string; bloque?: string }[] =
   { ruta: "/carrera-y-empleo/cv-sin-experiencia", tipo: "articulo", fuente: "components/articulos/cuerpos.tsx", bloque: "CuerpoCvSinExperiencia" },
   { ruta: "/carrera-y-empleo", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
   { ruta: "/viajes-y-entretenimiento", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
+  { ruta: "/emprendimiento", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
   { ruta: "/", tipo: "portada", fuente: "app/(site)/page.tsx" },
 ];
 
@@ -70,9 +74,9 @@ interface Medida {
   hrefs: string[];
 }
 
-async function medir(page: Page, tipo: Tipo): Promise<Medida> {
+async function medir(page: Page, tipo: Tipo, categoria: string): Promise<Medida> {
   return page.evaluate(
-    ({ tipo, sinTilde, promesas }) => {
+    ({ tipo, sinTilde, promesas, categoria }) => {
       const main = document.querySelector("main")!;
       const cuerpo = (() => {
         if (tipo === "herramienta") {
@@ -134,7 +138,7 @@ async function medir(page: Page, tipo: Tipo): Promise<Medida> {
         tildes,
         promesas: prom2,
         primerosParrafo: primera.length,
-        cta: !!main.querySelector("a[href*='crear-cv-ats-formato-harvard'], a[href='/carrera-y-empleo'], a[href='/viajes-y-entretenimiento']"),
+        cta: !!main.querySelector(`a[href*='crear-cv-ats-formato-harvard'], a[href='/carrera-y-empleo'], a[href='/viajes-y-entretenimiento']${categoria ? `, a[href='/${categoria}']` : ""}`),
         lorem: /lorem ipsum|texto de relleno|próximamente/i.test(texto),
         tipos,
         titulo: document.title.length,
@@ -147,7 +151,7 @@ async function medir(page: Page, tipo: Tipo): Promise<Medida> {
         hrefs: [...new Set(enMain.map((a) => a.getAttribute("href")!).filter((h) => h.startsWith("/") && !h.startsWith("/#")))],
       };
     },
-    { tipo, sinTilde: SIN_TILDE.source, promesas: PROMESAS.source },
+    { tipo, sinTilde: SIN_TILDE.source, promesas: PROMESAS.source, categoria },
   );
 }
 
@@ -186,7 +190,7 @@ async function main() {
 
   for (const p of PAGINAS) {
     await page.goto(base + p.ruta, { waitUntil: "networkidle" });
-    const m = await medir(page, p.tipo);
+    const m = await medir(page, p.tipo, p.ruta.split("/")[1] ?? "");
     medidas.set(p.ruta, m);
     parrafosPorPagina.set(p.ruta, m.parrafosUnicos);
     m.hrefs.forEach((h) => hrefsTotales.add(h));

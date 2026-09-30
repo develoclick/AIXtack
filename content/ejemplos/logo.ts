@@ -158,7 +158,7 @@ const RESPUESTA_PANADERIA = armar({
   ],
   tipografias: [
     { nombre: "Serif cálida (recomendada)", alternativa: "Fraunces", uso: "nombre de marca", licencia: "gratuita para uso comercial (SIL Open Font License)" },
-    { nombre: "Sans neutra (apoyo)", alternativa: "Inter", uso: "textos secundarios, empaque", licencia: "gratuita para uso comercial (SIL Open Font License)" },
+    { nombre: "Sans neutra (apoyo)", alternativa: "Inter", uso: "textos secundarios, empaque", licencia: "gratuita para uso personal; verificar si aplica para uso comercial" },
   ],
   detalles: ["Proporción: símbolo y texto en relación 1:2 en la versión principal.", "Área de seguridad: deja alrededor del logo un espacio igual a la altura de la M.", "Tamaño mínimo legible: 24 px de alto para la versión con texto; 16 px para el isotipo solo."],
   variantes: ["Principal: símbolo y nombre juntos, a color, para el toldo y las bolsas grandes.", "Horizontal: símbolo a la izquierda del nombre, para el encabezado de redes.", "Monocromo: todo en marrón horno, para impresión de un solo color en bolsas de papel.", "Negativo: versión en crema, para fondos oscuros o fotografías."],
@@ -203,7 +203,7 @@ const RESPUESTA_TECH = armar({
   ],
   tipografias: [
     { nombre: "Sans geométrica (recomendada)", alternativa: "Manrope", uso: "nombre de marca y títulos", licencia: "gratuita para uso comercial (SIL Open Font License)" },
-    { nombre: "Sans de texto (apoyo)", alternativa: "Inter", uso: "textos largos en la interfaz", licencia: "gratuita para uso comercial (SIL Open Font License)" },
+    { nombre: "Sans de texto (apoyo)", alternativa: "Inter", uso: "textos largos en la interfaz", licencia: "gratuita para uso personal; verificar si aplica para uso comercial" },
   ],
   detalles: ["Proporción: símbolo y texto en relación 1:3 en la versión horizontal.", "Área de seguridad: la mitad del alto del símbolo, libre alrededor del logo.", "Tamaño mínimo legible: 20 px de alto con nombre completo; 16 px el isotipo solo."],
   variantes: ["Principal: símbolo sobre el nombre, para la pantalla de bienvenida.", "Horizontal: símbolo a la izquierda del nombre, para el encabezado de la web.", "Monocromo: en gris pizarra, para documentos impresos en blanco y negro.", "Favicon: solo el isotipo, simplificado a sus formas básicas."],
