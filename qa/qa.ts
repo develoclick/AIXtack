@@ -17,6 +17,10 @@ import { EJEMPLOS_ENTREVISTA } from "../content/ejemplos/entrevista";
 import { EJEMPLOS_PRESUPUESTO } from "../content/ejemplos/presupuesto-viaje";
 import { EJEMPLOS_SALARIO } from "../content/ejemplos/salario";
 import { EJEMPLOS_PLAN } from "../content/ejemplos/plan-busqueda";
+import { EJEMPLOS_ITINERARIO } from "../content/ejemplos/itinerario";
+import { EJEMPLOS_FECHAS } from "../content/ejemplos/fechas";
+import { EJEMPLOS_COMPARAR } from "../content/ejemplos/comparar";
+import { EJEMPLOS_DESTINOS } from "../content/ejemplos/destinos";
 
 const base = (process.argv.find((a) => /^https?:/.test(a)) ?? "http://localhost:3100").replace(/\/$/, "");
 const iCap = process.argv.indexOf("--capturas");
@@ -29,10 +33,14 @@ const RUTA_PLAN = "/carrera-y-empleo/crear-plan-de-busqueda-de-empleo";
 const RUTA_ANA = "/carrera-y-empleo/analizar-oferta-laboral";
 const RUTA_ENT = "/carrera-y-empleo/preparar-entrevista-de-trabajo";
 const RUTA_PRES = "/viajes-y-entretenimiento/planificar-presupuesto-de-viaje";
+const RUTA_ITIN = "/viajes-y-entretenimiento/crear-itinerario-de-viaje";
+const RUTA_FECHAS = "/viajes-y-entretenimiento/encontrar-fechas-mas-baratas-para-volar";
+const RUTA_CMP = "/viajes-y-entretenimiento/comparar-opciones-de-viaje";
+const RUTA_DEST = "/viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto";
 /** Categorías sin ninguna herramienta publicada: su URL debe responder 404 y no aparecer en ningún sitio. */
 const CERRADAS = ["/emprendimiento", "/analitica-e-informacion", "/finanzas-y-economia", "/marketing-y-ventas"];
 /** Herramientas pendientes: 404 y sin enlaces. */
-const PENDIENTES = ["/finanzas-y-economia/crear-presupuesto-personal", "/finanzas-y-economia/calcular-interes-compuesto", "/marketing-y-ventas/crear-plan-de-marketing", "/emprendimiento/crear-plan-de-negocio", "/viajes-y-entretenimiento/crear-itinerario-de-viaje", "/viajes-y-entretenimiento/comparar-opciones-de-viaje", "/analitica-e-informacion/limpiar-datos"];
+const PENDIENTES = ["/finanzas-y-economia/crear-presupuesto-personal", "/finanzas-y-economia/calcular-interes-compuesto", "/marketing-y-ventas/crear-plan-de-marketing", "/emprendimiento/crear-plan-de-negocio", "/analitica-e-informacion/limpiar-datos"];
 const ARTICULOS = ["/carrera-y-empleo/palabras-clave-cv-oferta-laboral", "/carrera-y-empleo/verbos-de-accion-para-cv", "/carrera-y-empleo/cv-sin-experiencia"];
 const VIEWPORTS = [
   { nombre: "375", width: 375, height: 800 },
@@ -174,6 +182,10 @@ async function paginas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
     [RUTA_ANA, "analisis", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [RUTA_ENT, "entrevista", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [RUTA_PRES, "presupuesto", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_ITIN, "itinerario", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_FECHAS, "fechas", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_CMP, "comparar", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_DEST, "destinos", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [ARTICULOS[0], "art-palabras", ["Article", "BreadcrumbList"], true],
     [ARTICULOS[1], "art-verbos", ["Article", "BreadcrumbList"], true],
     [ARTICULOS[2], "art-sin-exp", ["Article", "BreadcrumbList"], true],
@@ -207,7 +219,7 @@ async function paginas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
 
 async function sinEnlacesACerradas(browser: Browser) {
   const { ctx, page } = await abrir(browser, VIEWPORTS[1]);
-  for (const ruta of ["/", "/carrera-y-empleo", "/viajes-y-entretenimiento", RUTA_CV, RUTA_OPT, RUTA_ANA, RUTA_ENT, RUTA_SAL, RUTA_PLAN, RUTA_PRES, ARTICULOS[0], "/sobre-nosotros", "/politica-de-privacidad"]) {
+  for (const ruta of ["/", "/carrera-y-empleo", "/viajes-y-entretenimiento", RUTA_CV, RUTA_OPT, RUTA_ANA, RUTA_ENT, RUTA_SAL, RUTA_PLAN, RUTA_PRES, RUTA_ITIN, RUTA_FECHAS, RUTA_CMP, RUTA_DEST, ARTICULOS[0], "/sobre-nosotros", "/politica-de-privacidad"]) {
     await page.goto(base + ruta, { waitUntil: "networkidle" });
     const hrefs = await page.evaluate(() => [...document.querySelectorAll("a[href]")].map((a) => a.getAttribute("href") ?? ""));
     const malos = hrefs.filter((h) => [...CERRADAS, ...PENDIENTES].some((c) => h === c || h.startsWith(c + "/") || h.startsWith(c + "#")));
@@ -1490,6 +1502,423 @@ async function teclado(browser: Browser) {
   await ctx.close();
 }
 
+async function generadorItinerario(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `itinerario @${v.nombre}`;
+  await page.goto(base + RUTA_ITIN, { waitUntil: "networkidle" });
+  const [arequipa] = EJEMPLOS_ITINERARIO;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const destino = page.getByRole("textbox", { name: /^Destino/ });
+  const respuesta = page.getByRole("textbox", { name: "Respuesta de la IA" });
+  const paso3 = page.locator("#paso-3");
+  const tab = (n: string) => paso3.getByRole("tab", { name: n, exact: true });
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tu itinerario») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tu itinerario") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+  const p0 = await prompt();
+  rec(donde, "el prompt vacío tiene los 8 bloques y «(no indicado)»", ["### ROL", "### OBJETIVO", "### FUENTE", "### DATOS DEL USUARIO", "### REGLAS DE CONTENIDO", "### REGLAS DE FORMATO", "### FORMATO DE SALIDA", "### AUTOVERIFICACIÓN"].every((b) => p0.includes(b)) && p0.includes("(no indicado)"));
+  rec(donde, "el medidor dice «(recomendado: 80 %)» y arranca en 0 %; el resumen tiene un estado vacío amable", (await page.getByText("(recomendado: 80 %)").isVisible()) && (await page.getByText("Datos completados: 0 %").isVisible()) && (await page.getByText("Escribe las fechas de inicio y fin").isVisible()));
+
+  // Ejemplo del paso 1 (Arequipa)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo llena destino, fechas y 6 lugares", (await destino.inputValue()) === "Arequipa, Perú" && (await page.locator("[data-lugares] > li").count()) === 6);
+  rec(donde, "el resumen calcula 4 días con las fechas del viaje", (await page.locator("[data-dias]").first().innerText()).includes("4 días"));
+  rec(donde, "medidor al 100 % y aviso «Estás viendo datos de ejemplo»", (await page.getByText("Datos completados: 100 %").isVisible()) && (await page.locator("[data-aviso-ejemplo]").isVisible()));
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-itinerario-datos-v1"))) === null);
+  const p1 = await prompt();
+  rec(donde, "el prompt incluye las fechas calculadas, el ritmo y los lugares", p1.includes("2026-11-10 a 2026-11-13 (4 días; lo calculó la página)") && p1.includes("Ritmo: Equilibrado (máximo 3 actividades principales por día") && p1.includes("Lugar 4: Tour al Cañón del Colca") && p1.includes("dia,fecha,zona,hora_inicio,hora_fin,actividad,tipo,lugar,nota,verificado"));
+  await captura(page, `itinerario-paso1-${v.nombre}`);
+
+  // Copiar prompt
+  await page.getByRole("button", { name: "Copiar prompt" }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === (await prompt()));
+
+  // Paso 3: respuesta de ejemplo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "la respuesta de ejemplo se lee: bloques totales, y sin avisos de horarios cruzados ni de días sobrecargados", (await paso3.getByText("Bloques en el itinerario").isVisible()) && !(await paso3.getByText("se cruza en el horario").count()) && !(await paso3.getByText("actividades principales y tu ritmo permite").count()));
+  await captura(page, `itinerario-resultado-${v.nombre}`);
+
+  await tab("Itinerario por día").click();
+  const dia1 = paso3.locator("[data-dia='1']");
+  rec(donde, "el día 1 muestra sus bloques con hora, actividad y tipo", (await dia1.locator("[data-bloque]").count()) >= 5);
+  const primerBloque = await dia1.locator("[data-bloque]").first().innerText();
+  const segundoBloqueAntes = await dia1.locator("[data-bloque]").nth(1).innerText();
+  await dia1.locator("[data-bloque]").nth(1).getByRole("button", { name: /^Subir/ }).click();
+  rec(donde, "las flechas reordenan los bloques del día (sin tocar sus horarios)", (await dia1.locator("[data-bloque]").first().innerText()) === segundoBloqueAntes && (await dia1.locator("[data-bloque]").nth(1).innerText()) === primerBloque);
+  const enlaceMaps = await dia1.getByRole("link", { name: /Ver ruta en Maps/ }).getAttribute("href");
+  rec(donde, "el enlace a Maps encadena los lugares del día 1", (enlaceMaps ?? "").startsWith("https://www.google.com/maps/dir/") && (enlaceMaps ?? "").includes(encodeURIComponent("Monasterio de Santa Catalina")));
+  const enlaceWa = await dia1.getByRole("link", { name: /Compartir por WhatsApp/ }).getAttribute("href");
+  rec(donde, "el enlace de WhatsApp lleva el texto del día codificado", (enlaceWa ?? "").startsWith("https://wa.me/?text="));
+
+  await tab("Por qué y planes B").click();
+  rec(donde, "«Por qué y planes B» trae una entrada por día para ambas secciones", (await paso3.getByText(/^Día 1/).count()) >= 2);
+
+  // Exportar: calendario .ics
+  const [ics] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Calendario (.ics)" }).click()]);
+  const textoIcs = fs.readFileSync((await ics.path())!, "utf8");
+  rec(donde, "el .ics se llama itinerario-de-viaje-EJEMPLO.ics y trae un evento por bloque, con CRLF", ics.suggestedFilename() === "itinerario-de-viaje-EJEMPLO.ics" && (textoIcs.match(/BEGIN:VEVENT/g) ?? []).length === 23 && textoIcs.includes("DTSTART:20261110T110000") && textoIcs.includes("\r\n"), ics.suggestedFilename());
+
+  // Exportar: CSV
+  const [csvIt] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "CSV", exact: true }).click()]);
+  const textoCsv = fs.readFileSync((await csvIt.path())!, "utf8");
+  rec(donde, "el CSV del itinerario tiene BOM y el encabezado de la tabla", textoCsv.startsWith("﻿Día,Fecha,Zona,Inicio,Fin,Actividad,Tipo,Lugar,Nota,Verificado"));
+
+  // Copiar como tabla
+  await page.getByRole("button", { name: "Copiar tabla" }).click();
+  const tablaCopiada = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar tabla» deja filas separadas por tabuladores", tablaCopiada.includes("\t") && tablaCopiada.split("\n")[0] === "Día\tFecha\tZona\tInicio\tFin\tActividad\tTipo\tLugar\tNota\tVerificado");
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla, con la advertencia de ejemplo", (await page.locator("#itinerario-imprimible").count()) === 1 && !(await page.locator("#itinerario-imprimible").isVisible()) && ((await page.locator("#itinerario-imprimible").textContent()) ?? "").includes("EJEMPLO ILUSTRATIVO"));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-itinerario"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve el resumen (la herramienta queda oculta)", (await page.locator("#itinerario-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-itinerario"));
+
+  // Una respuesta con un horario cruzado y un lugar inventado
+  const filaMonasterio = "1,2026-11-10,Centro,15:45,17:00,Recorrer el Monasterio de Santa Catalina,imprescindible,Monasterio de Santa Catalina,Confirma el horario de cierre antes de ir,no";
+  const filaPlazaDia4 = "4,2026-11-13,Centro,10:15,11:15,Última caminata y compras finales,opcional,Plaza de Armas de Arequipa,,si";
+  const filaBarInventado = "4,2026-11-13,Centro,15:00,16:00,Bar secreto,opcional,Bar Secreto Inventado,,no";
+  const malo = arequipa.respuesta.replace(filaMonasterio, filaMonasterio.replace("15:45", "14:45")).replace(filaPlazaDia4, `${filaPlazaDia4}\n${filaBarInventado}`);
+  await respuesta.fill(malo);
+  await tab("Por verificar").click();
+  const revisionTxt = await paso3.getByRole("tabpanel").innerText();
+  rec(donde, "la revisión detecta el cruce de horario y el lugar que no escribió el usuario", revisionTxt.includes("se cruza en el horario") && revisionTxt.includes("no aportaste"));
+  await respuesta.fill("Aquí tienes tu itinerario, ¡buen viaje!");
+  rec(donde, "una respuesta sin los títulos avisa que todavía no puede armar la línea de tiempo", await page.getByText("Todavía no puedo armar la línea de tiempo").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosItinerario(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_ITIN, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: /^Destino/ }).fill("Otro destino");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  const [d] = await Promise.all([page.waitForEvent("download"), page.locator("#paso-3").getByRole("button", { name: "CSV", exact: true }).click()]);
+  void d;
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica itinerario", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
+async function generadorFechas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `fechas @${v.nombre}`;
+  await page.goto(base + RUTA_FECHAS, { waitUntil: "networkidle" });
+  const [, arequipa] = EJEMPLOS_FECHAS;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const origen = page.getByRole("textbox", { name: /^Origen/ });
+  const respuesta = page.getByRole("textbox", { name: /Precios \(respuesta de la IA/ });
+  const paso3 = page.locator("#paso-3");
+  const tab = (n: string) => paso3.getByRole("tab", { name: n, exact: true });
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tus precios») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tus precios") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+  rec(donde, "el aviso de que la página no consulta precios en tiempo real está visible desde el inicio", await page.getByText("Esta página no consulta precios en tiempo real.").isVisible());
+  rec(donde, "el resumen tiene un estado vacío amable", await page.getByText("Escribe el período (fecha inicial y final)").isVisible());
+
+  // Ejemplo del paso 1 (Lima–Cusco)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo llena origen, destino y duraciones", (await origen.inputValue()) === "Lima, Perú (LIM)" && (await page.getByRole("textbox", { name: /^Destino/ }).inputValue()) === "Cusco, Perú (CUZ)");
+  rec(donde, "el resumen calcula 72 combinaciones (25 + 24 + 23)", (await page.locator("[data-total-combinaciones]").innerText()) === "72");
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-fechas-datos-v1"))) === null);
+  await captura(page, `fechas-paso1-${v.nombre}`);
+
+  // Paso 2: método B (con IA)
+  await page.getByRole("tab", { name: "B · Con IA" }).click();
+  const p1 = await prompt();
+  rec(donde, "el prompt incluye las 72 combinaciones generadas y el aviso de no inventar precios", p1.includes("72 combinaciones") && p1.includes("2026-11-01,2026-11-06,5") && p1.includes("Nunca completes una combinación con un precio estimado"));
+  await page.getByRole("button", { name: "Copiar prompt" }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p1);
+  await page.getByRole("tab", { name: "A · Guiado" }).click();
+  rec(donde, "el método guiado explica los pasos con el buscador de vuelos, sin nombrar ninguna marca", (await page.getByText("Abre un buscador de vuelos").isVisible()) && (await page.locator("body").innerText()).includes("No recomendamos un buscador en particular"));
+
+  // Paso 3: respuesta de ejemplo (18 de 72, más barata resaltada)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "el resumen muestra 18 combinaciones con precio de 72 generadas, y la más barata resaltada", (await paso3.getByText("de 72 generadas").isVisible()) && (await paso3.getByText(/Más barata encontrada en esta búsqueda: 2026-11-11 → 2026-11-16 \(5 noches\), S\/ 1280/).isVisible()));
+  await captura(page, `fechas-resultado-${v.nombre}`);
+
+  await tab("Tabla de precios").click();
+  const filas = paso3.locator("[data-fila-precio]");
+  rec(donde, "la tabla trae 18 filas, ordenadas por precio, con la más barata primero", (await filas.count()) === 18 && (await filas.first().locator("th").innerText()) === "2026-11-11");
+  await page.getByRole("checkbox", { name: /Incluir equipaje y traslados/ }).check();
+  rec(donde, "al incluir el equipaje de bodega, la combinación del 4 de noviembre pasa a ser la más barata", (await filas.first().locator("th").innerText()) === "2026-11-04");
+  await page.getByRole("checkbox", { name: /Incluir equipaje y traslados/ }).uncheck();
+
+  await tab("Mapa de calor").click();
+  rec(donde, "el mapa de calor lista los 3 días de duración como columnas", (await paso3.getByRole("columnheader", { name: "5 noches" }).isVisible()) && (await paso3.getByRole("columnheader", { name: "7 noches" }).isVisible()));
+
+  await tab("Patrones y costos").click();
+  rec(donde, "«Patrones y costos» trae los patrones observados y los costos no incluidos", (await paso3.getByText("martes y miércoles").count()) > 0 && (await paso3.getByText("selección de asiento").count()) > 0);
+
+  await tab("Pendientes").click();
+  rec(donde, "quedan 54 combinaciones sin precio (72 − 18) y se pueden copiar", await paso3.getByText("54 de 72 combinaciones sin consultar").isVisible());
+  await paso3.getByRole("button", { name: "Copiar lista" }).click();
+  const pendientesCopiadas = await page.evaluate(() => navigator.clipboard.readText());
+  rec(donde, "la lista de pendientes copiada trae flechas entre ida y vuelta", pendientesCopiadas.includes("→"));
+
+  await tab("Por verificar").click();
+  rec(donde, "«Por verificar» lista lo que pide la IA", await paso3.getByRole("tabpanel", { name: "Por verificar" }).getByText("Cada precio de la tabla, directamente en la aerolínea").isVisible());
+
+  // Exportar CSV y copiar tabla
+  const [csvF] = await Promise.all([page.waitForEvent("download"), paso3.getByRole("button", { name: "CSV", exact: true }).click()]);
+  const textoCsv = fs.readFileSync((await csvF.path())!, "utf8");
+  rec(donde, "el CSV se llama fechas-mas-baratas-EJEMPLO.csv, con BOM y encabezado", csvF.suggestedFilename() === "fechas-mas-baratas-EJEMPLO.csv" && textoCsv.startsWith("﻿Ida,Día,Vuelta,Noches,Precio total"));
+  await paso3.getByRole("button", { name: "Copiar tabla" }).click();
+  const tablaCopiada = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar tabla» deja filas separadas por tabuladores", tablaCopiada.includes("\t") && tablaCopiada.split("\n")[0].split("\t")[0] === "Ida");
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#fechas-imprimible").count()) === 1 && !(await page.locator("#fechas-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-fechas"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve la tabla de precios (la herramienta queda oculta)", (await page.locator("#fechas-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-fechas"));
+
+  // Ejemplo sin acceso a datos en tiempo real (Lima–Arequipa)
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await page.getByText("Respuesta de ejemplo pegada").first().waitFor();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "el segundo ejemplo (sin acceso a datos en tiempo real) llena el formulario con su propio destino", (await page.getByRole("textbox", { name: /^Destino/ }).inputValue()) === arequipa.datos.destino);
+  await tab("Resumen").click();
+  rec(donde, "el aviso de «sin acceso a datos en tiempo real» se muestra en rojo", await paso3.getByText("La IA declaró que no tiene acceso a datos en tiempo real.").isVisible());
+
+  // Una respuesta sin los títulos esperados
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin los títulos avisa que todavía no puede armar la tabla", await page.getByText("Todavía no puedo armar la tabla").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosFechas(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_FECHAS, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: /^Origen/ }).fill("Otro origen");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  const [d] = await Promise.all([page.waitForEvent("download"), page.locator("#paso-3").getByRole("button", { name: "CSV", exact: true }).click()]);
+  void d;
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica fechas", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
+async function generadorComparar(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `comparar @${v.nombre}`;
+  await page.goto(base + RUTA_CMP, { waitUntil: "networkidle" });
+  const [, cusco] = EJEMPLOS_COMPARAR;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const primerNombre = page.getByRole("textbox", { name: /^Nombre de la opción/ }).first();
+  const respuesta = page.getByRole("textbox", { name: /^Respuesta de la IA/ });
+  const paso3 = page.locator("#paso-3");
+  const tab = (n: string) => paso3.getByRole("tab", { name: n, exact: true });
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tu resultado») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tu resultado") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+  rec(donde, "el formulario empieza con 2 opciones", (await page.getByRole("textbox", { name: /^Nombre de la opción/ }).count()) === 2);
+
+  // Ejemplo del paso 1 (Miraflores, 3 opciones)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo llena las 3 opciones", (await page.getByRole("textbox", { name: /^Nombre de la opción/ }).count()) === 3 && (await primerNombre.inputValue()) === "Hotel Casa Andina Miraflores");
+  rec(donde, "el resumen en vivo calcula la mejor puntuada (78/100) y la más barata (S/ 692.50)", (await page.locator("[data-mejor-puntuada]").innerText()).includes("Hotel Casa Andina Miraflores") && (await page.locator("[data-mas-barata]").innerText()).includes("Hostal Kaminu Miraflores"));
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-comparar-datos-v1"))) === null);
+  await captura(page, `comparar-paso1-${v.nombre}`);
+
+  // Paso 2: el prompt
+  const p1 = await prompt();
+  rec(donde, "el prompt incluye las opciones, los criterios y los cálculos ya hechos por la página", p1.includes("Hotel Casa Andina Miraflores") && p1.includes("Precio: 25 de 100 puntos") && p1.includes("puntuación ponderada 78/100"));
+  await page.getByRole("button", { name: "Copiar prompt" }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p1);
+
+  // Paso 3: respuesta de ejemplo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "el resumen muestra la mejor puntuada y, si difiere, la más barata", await paso3.getByText(/Mejor puntuada: Hotel Casa Andina Miraflores/).isVisible());
+  await captura(page, `comparar-resultado-${v.nombre}`);
+
+  await tab("Tabla comparativa").click();
+  const panelTabla = paso3.getByRole("tabpanel", { name: "Tabla comparativa" });
+  rec(donde, "la tabla comparativa marca las celdas de valoración", (await panelTabla.getByText("valoración").first().isVisible()) && (await panelTabla.getByText("Muy cómodo").isVisible()));
+
+  await tab("Costos y diferencias").click();
+  rec(donde, "«Costos y diferencias» trae los costos a verificar y las diferencias que importan", (await paso3.getByText("depósito de garantía").count()) > 0 && (await paso3.getByText(/S\/ 680 frente a los S\/ 1,850/).count()) > 0);
+
+  await tab("Ventajas y prioridades").click();
+  rec(donde, "«Ventajas y prioridades» lista ventajas y cómo cambian las prioridades", (await paso3.getByText("Hostal Kaminu Miraflores").count()) > 0);
+
+  await tab("Preguntas y verificación").click();
+  rec(donde, "«Preguntas y verificación» lista preguntas antes de reservar", await paso3.getByRole("tabpanel", { name: "Preguntas y verificación" }).getByText("depósito de garantía del hostal se devuelve").isVisible());
+
+  // Exportar CSV y copiar tabla
+  const [csvF] = await Promise.all([page.waitForEvent("download"), paso3.getByRole("button", { name: "CSV", exact: true }).click()]);
+  const textoCsv = fs.readFileSync((await csvF.path())!, "utf8");
+  rec(donde, "el CSV se llama comparar-opciones-EJEMPLO.csv, con BOM y la cabecera esperada", csvF.suggestedFilename() === "comparar-opciones-EJEMPLO.csv" && textoCsv.startsWith("﻿Opción,Precio,Moneda,"));
+  await paso3.getByRole("button", { name: "Copiar tabla" }).click();
+  const tablaCopiada = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar tabla» deja filas separadas por tabuladores, con el costo total ajustado", tablaCopiada.startsWith("Opción\tCosto total ajustado") && tablaCopiada.includes("\t"));
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#comparar-imprimible").count()) === 1 && !(await page.locator("#comparar-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-comparar"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve la tabla comparativa (la herramienta queda oculta)", (await page.locator("#comparar-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-comparar"));
+
+  // Otro ejemplo (Máncora)
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await page.getByText("Respuesta de ejemplo pegada").first().waitFor();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "el siguiente ejemplo llena el formulario con sus propias opciones", (await primerNombre.inputValue()) === cusco.datos.opciones[0].nombre);
+
+  // Una respuesta sin los títulos esperados
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin los títulos avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosComparar(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_CMP, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: /^Nombre de la opción/ }).first().fill("Otro nombre");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  const [d] = await Promise.all([page.waitForEvent("download"), page.locator("#paso-3").getByRole("button", { name: "CSV", exact: true }).click()]);
+  void d;
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica comparar", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
+async function generadorDestinos(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `destinos @${v.nombre}`;
+  await page.goto(base + RUTA_DEST, { waitUntil: "networkidle" });
+  const [, internacional] = EJEMPLOS_DESTINOS;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const presupuesto = page.getByRole("textbox", { name: /^Presupuesto total/ });
+  const origen = page.getByRole("textbox", { name: /^Origen/ });
+  const respuesta = page.getByRole("textbox", { name: /^Destinos \(respuesta/ });
+  const paso3 = page.locator("#paso-3");
+  const tab = (n: string) => paso3.getByRole("tab", { name: n, exact: true });
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tus destinos») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tus destinos") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+  rec(donde, "el aviso de que la página no conoce precios en tiempo real está visible desde el inicio", await page.getByText("Esta página no conoce precios de pasajes ni de alojamiento en tiempo real.").isVisible());
+
+  // Ejemplo del paso 1 (Cusco, Máncora, Arequipa)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo llena presupuesto y origen", (await presupuesto.inputValue()) === "2500" && (await origen.inputValue()) === "Lima, Perú");
+  rec(donde, "el reparto calcula el máximo para pasajes y alojamiento (S/ 1,410.00) con la fórmula visible", (await page.locator("[data-formula-reparto]").innerText()).includes("1,410.00"));
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-destinos-datos-v1"))) === null);
+  await captura(page, `destinos-paso1-${v.nombre}`);
+
+  // Paso 2: método B (con IA)
+  await page.getByRole("tab", { name: "B · Con IA" }).click();
+  const p1 = await prompt();
+  rec(donde, "el prompt incluye el reparto calculado por la página y el máximo de 8 destinos", p1.includes("1,410.00") && p1.includes("hasta 8"));
+  await page.getByRole("button", { name: "Copiar prompt" }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p1);
+  await page.getByRole("tab", { name: "A · Guiado" }).click();
+  rec(donde, "el método guiado explica los pasos con un buscador de vuelos, sin nombrar ninguna marca", (await page.getByText("Abre un buscador de vuelos").isVisible()) && (await page.locator("body").innerText()).includes("No recomendamos un buscador en particular"));
+
+  // Paso 3: respuesta de ejemplo (3 destinos, 2 viables a 5 noches)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "el resumen muestra 3 destinos leídos y 2 viables con 5 noches", (await paso3.getByText("3", { exact: true }).count()) > 0 && (await paso3.getByText("Viables con 5").isVisible()));
+  await captura(page, `destinos-resultado-${v.nombre}`);
+
+  await tab("Tabla de destinos").click();
+  const filas = paso3.locator("[data-fila-destino]");
+  rec(donde, "la tabla trae 3 filas, ordenadas por restante, con Arequipa primero", (await filas.count()) === 3 && (await filas.first().locator("th").innerText()).includes("Arequipa"));
+  rec(donde, "Máncora queda marcada «no entra», con el pasaje más barato de los tres", (await paso3.locator("[data-fila-destino]", { hasText: "Máncora" }).innerText()).includes("no entra"));
+
+  await tab("Gastos y ahorro").click();
+  rec(donde, "«Gastos y ahorro» trae los gastos que podrían encarecer y las recomendaciones", (await paso3.getByText("Boleto Turístico").count()) > 0 && (await paso3.getByText("entre semana").count()) > 0);
+
+  await tab("Por verificar").click();
+  rec(donde, "«Por verificar» lista lo que pide la IA", await paso3.getByRole("tabpanel", { name: "Por verificar" }).getByText("Confirma el precio final de cada pasaje").isVisible());
+
+  // Exportar CSV y copiar tabla
+  const [csvF] = await Promise.all([page.waitForEvent("download"), paso3.getByRole("button", { name: "CSV", exact: true }).click()]);
+  const textoCsv = fs.readFileSync((await csvF.path())!, "utf8");
+  rec(donde, "el CSV se llama destinos-EJEMPLO.csv, con BOM y la cabecera esperada", csvF.suggestedFilename() === "destinos-EJEMPLO.csv" && textoCsv.startsWith("﻿Destino,Fechas,Noches,Pasaje por persona"));
+  await paso3.getByRole("button", { name: "Copiar tabla" }).click();
+  const tablaCopiada = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar tabla» deja filas separadas por tabuladores", tablaCopiada.includes("\t") && tablaCopiada.split("\n")[0].split("\t")[0] === "Destino");
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#destinos-imprimible").count()) === 1 && !(await page.locator("#destinos-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-destinos"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve la tabla de destinos (la herramienta queda oculta)", (await page.locator("#destinos-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-destinos"));
+
+  // Otro ejemplo (viaje internacional, con una fila «sin dato»)
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await page.getByText("Respuesta de ejemplo pegada").first().waitFor();
+  await paso3.getByRole("tablist", { name: "Paneles del resultado" }).waitFor();
+  rec(donde, "el segundo ejemplo llena el formulario con su propio origen y presupuesto", (await presupuesto.inputValue()) === internacional.datos.presupuesto);
+  await tab("Tabla de destinos").click();
+  rec(donde, "la fila «sin dato» (Bogotá) se muestra sin costo total calculado", (await paso3.locator("[data-fila-destino]", { hasText: "Bogotá" }).innerText()).includes("sin dato"));
+
+  // Una respuesta sin los títulos esperados
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin títulos ni tabla avisa que todavía no puede armar la tabla", await page.getByText("Todavía no puedo armar la tabla").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosDestinos(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_DEST, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: /^Origen/ }).fill("Otro origen");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3/ }).click();
+  const [d] = await Promise.all([page.waitForEvent("download"), page.locator("#paso-3").getByRole("button", { name: "CSV", exact: true }).click()]);
+  void d;
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica destinos", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
 async function main() {
   const browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
   try {
@@ -1504,6 +1933,10 @@ async function main() {
       await generadorAnalisis(browser, v);
       await generadorSalario(browser, v);
       await generadorPlan(browser, v);
+      await generadorItinerario(browser, v);
+      await generadorFechas(browser, v);
+      await generadorComparar(browser, v);
+      await generadorDestinos(browser, v);
     }
     await sinEnlacesACerradas(browser);
     await temaYAnuncios(browser);
@@ -1513,6 +1946,10 @@ async function main() {
     await eventosAnalisis(browser);
     await eventosSalario(browser);
     await eventosPlan(browser);
+    await eventosItinerario(browser);
+    await eventosFechas(browser);
+    await eventosComparar(browser);
+    await eventosDestinos(browser);
     await traspasoAnalisis(browser);
     await teclado(browser);
     const s = await fetch(base + "/sitemap.xml").then((r) => r.text());
@@ -1534,6 +1971,18 @@ async function main() {
     rec("sitemap", "lista el hub de Viajes y la herramienta de presupuesto", s.includes("/viajes-y-entretenimiento</loc>") && s.includes(`${RUTA_PRES}</loc>`));
     const ogp = await fetch(base + "/og/viajes-y-entretenimiento/planificar-presupuesto-de-viaje");
     rec("og", "el presupuesto de viaje tiene imagen Open Graph propia (PNG)", ogp.status === 200 && (ogp.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de crear itinerario de viaje", s.includes(`${RUTA_ITIN}</loc>`));
+    const ogIt = await fetch(base + "/og/viajes-y-entretenimiento/crear-itinerario-de-viaje");
+    rec("og", "la herramienta de itinerario tiene imagen Open Graph propia (PNG)", ogIt.status === 200 && (ogIt.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de fechas más baratas para volar", s.includes(`${RUTA_FECHAS}</loc>`));
+    const ogF = await fetch(base + "/og/viajes-y-entretenimiento/encontrar-fechas-mas-baratas-para-volar");
+    rec("og", "la herramienta de fechas tiene imagen Open Graph propia (PNG)", ogF.status === 200 && (ogF.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de comparar opciones de viaje", s.includes(`${RUTA_CMP}</loc>`));
+    const ogCmp = await fetch(base + "/og/viajes-y-entretenimiento/comparar-opciones-de-viaje");
+    rec("og", "la herramienta de comparar tiene imagen Open Graph propia (PNG)", ogCmp.status === 200 && (ogCmp.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de descubrir destinos según presupuesto", s.includes(`${RUTA_DEST}</loc>`));
+    const ogDest = await fetch(base + "/og/viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto");
+    rec("og", "la herramienta de destinos tiene imagen Open Graph propia (PNG)", ogDest.status === 200 && (ogDest.headers.get("content-type") ?? "").includes("image/png"));
     rec("og", "una herramienta pendiente no tiene imagen (404)", (await fetch(base + "/og/finanzas-y-economia/crear-presupuesto-personal")).status === 404);
     rec("sitemap", "lista portada, categoría, herramienta, artículos y páginas legales", [`/</loc>`, `/carrera-y-empleo</loc>`, `${RUTA_CV}</loc>`, ...ARTICULOS.map((a) => `${a}</loc>`), `/politica-de-privacidad</loc>`].every((t) => s.includes(t)));
     rec("sitemap", "no lista categorías cerradas ni herramientas pendientes", !s.includes("/herramientas") && [...CERRADAS, ...PENDIENTES].every((r) => !s.includes(r)));

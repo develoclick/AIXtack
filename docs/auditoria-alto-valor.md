@@ -6,6 +6,8 @@ Ejecutada con `npx tsx qa/auditoria.ts` contra la versión de producción. Aprue
 |---|---|---|---|---|---|---|
 | /carrera-y-empleo/crear-cv-ats-formato-harvard | herramienta | 4047 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/optimizar-cv | herramienta | 4332 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /viajes-y-entretenimiento/comparar-opciones-de-viaje | herramienta | 3278 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto | herramienta | 2962 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/palabras-clave-cv-oferta-laboral | articulo | 1689 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/verbos-de-accion-para-cv | articulo | 1516 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/cv-sin-experiencia | articulo | 1391 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
@@ -35,6 +37,10 @@ Casillas juzgadas a mano (se marcan como cumplidas tras leer cada página): «un
 | /carrera-y-empleo/optimizar-cv | 73 | 97 | 100 | 100 |
 | /carrera-y-empleo/calcular-salario-y-negociar-oferta | 79 | 97 | 100 | 100 |
 | /carrera-y-empleo/crear-plan-de-busqueda-de-empleo | 76 | 97 | 100 | 100 |
+| /viajes-y-entretenimiento/crear-itinerario-de-viaje | 79 | 97 | 100 | 100 |
+| /viajes-y-entretenimiento/encontrar-fechas-mas-baratas-para-volar | 78 | 97 | 100 | 100 |
+| /viajes-y-entretenimiento/comparar-opciones-de-viaje | 76 | 97 | 100 | 100 |
+| /viajes-y-entretenimiento/descubrir-destinos-segun-presupuesto | 81 | 97 | 100 | 100 |
 | /carrera-y-empleo/analizar-oferta-laboral | 90 | 97 | 100 | 100 |
 | /carrera-y-empleo/preparar-entrevista-de-trabajo | 89 | 97 | 100 | 100 |
 | /viajes-y-entretenimiento/planificar-presupuesto-de-viaje | 69 | 97 | 100 | 100 |

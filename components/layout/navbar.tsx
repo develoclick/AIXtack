@@ -12,6 +12,7 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex min-h-11 items-center gap-2.5 font-semibold tracking-tight" aria-label={`${siteName}: inicio`}>
           <Image src="/logo.png" alt="" width={32} height={32} className="size-8 rounded-lg" priority />
+          <span className="text-lg">{siteName}</span>
         </Link>
 
         <nav aria-label="Principal" className="ml-6 hidden items-center gap-1 lg:flex">
@@ -23,6 +24,9 @@ export function Navbar() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1.5">
+          <Link href={RUTA_CV} className="btn btn-primario hidden sm:inline-flex">
+            Crear mi CV gratis
+          </Link>
           <ThemeToggle />
           <MenuMovil links={primaryNav} />
         </div>

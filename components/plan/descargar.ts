@@ -1,6 +1,5 @@
-/** Descarga un texto como archivo desde el navegador (sin servidor). */
-export function descargar(nombre: string, contenido: string, tipo: string) {
-  const blob = new Blob([contenido], { type: tipo });
+/** Descarga un blob (imagen, zip…) como archivo desde el navegador (sin servidor). */
+export function descargarBlob(nombre: string, blob: Blob) {
   const url = URL.createObjectURL(blob);
   const el = document.createElement("a");
   el.href = url;
@@ -9,4 +8,9 @@ export function descargar(nombre: string, contenido: string, tipo: string) {
   el.click();
   el.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/** Descarga un texto como archivo desde el navegador (sin servidor). */
+export function descargar(nombre: string, contenido: string, tipo: string) {
+  descargarBlob(nombre, new Blob([contenido], { type: tipo }));
 }

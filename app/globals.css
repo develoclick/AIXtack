@@ -405,3 +405,103 @@
     color: #000;
   }
 }
+
+/* «Imprimir o PDF» del itinerario de viaje: al imprimir solo se ve el resumen día por día preparado para papel. */
+@media print {
+  body.imprimiendo-itinerario * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-itinerario #itinerario-imprimible,
+  body.imprimiendo-itinerario #itinerario-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-itinerario #itinerario-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Imprimir o PDF» de fechas más baratas para volar: al imprimir solo se ve la tabla de precios preparada para papel. */
+@media print {
+  body.imprimiendo-fechas * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-fechas #fechas-imprimible,
+  body.imprimiendo-fechas #fechas-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-fechas #fechas-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Imprimir o PDF» de comparar opciones de viaje: al imprimir solo se ve la tabla comparativa preparada para papel. */
+@media print {
+  body.imprimiendo-comparar * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-comparar #comparar-imprimible,
+  body.imprimiendo-comparar #comparar-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-comparar #comparar-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Imprimir o PDF» de descubrir destinos según presupuesto: al imprimir solo se ve la tabla de destinos preparada para papel. */
+@media print {
+  body.imprimiendo-destinos * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-destinos #destinos-imprimible,
+  body.imprimiendo-destinos #destinos-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-destinos #destinos-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Imprimir o guardar manual en PDF» de crear un logo: al imprimir solo se ve el mini manual de marca preparado para papel. */
+@media print {
+  body.imprimiendo-logo * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-logo #logo-imprimible,
+  body.imprimiendo-logo #logo-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-logo #logo-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}

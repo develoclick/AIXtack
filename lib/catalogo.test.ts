@@ -123,7 +123,7 @@ const ACTIVAS = ["carrera-y-empleo", "viajes-y-entretenimiento"];
 
 test("con el registro actual solo están activas «Carrera y empleo» y «Viajes y entretenimiento»; las otras 4 no existen para el resto del sitio", () => {
   assert.deepEqual(catalogo.categoriasActivas().map((c) => c.slug), ACTIVAS);
-  assert.deepEqual(prompts.map((p) => p.slug), ["crear-cv-ats-formato-harvard", "optimizar-cv", "preparar-entrevista-de-trabajo", "analizar-oferta-laboral", "planificar-presupuesto-de-viaje", "calcular-salario-y-negociar-oferta", "crear-plan-de-busqueda-de-empleo"]);
+  assert.deepEqual(prompts.map((p) => p.slug), ["crear-cv-ats-formato-harvard", "optimizar-cv", "preparar-entrevista-de-trabajo", "analizar-oferta-laboral", "planificar-presupuesto-de-viaje", "crear-itinerario-de-viaje", "calcular-salario-y-negociar-oferta", "crear-plan-de-busqueda-de-empleo", "encontrar-fechas-mas-baratas-para-volar", "descubrir-destinos-segun-presupuesto", "comparar-opciones-de-viaje"]);
   for (const c of categorias.filter((x) => !ACTIVAS.includes(x.slug))) {
     assert.equal(catalogo.categoriaActiva(c.slug), false, c.slug);
     assert.equal(catalogo.getCategoriaActiva(c.slug), undefined, c.slug);
