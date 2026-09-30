@@ -545,3 +545,43 @@
     color: #000;
   }
 }
+
+/* «Imprimir o guardar manual en PDF» de identificar nichos de mercado: al imprimir solo se ve la matriz preparada para papel. */
+@media print {
+  body.imprimiendo-nichos * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-nichos #nichos-imprimible,
+  body.imprimiendo-nichos #nichos-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-nichos #nichos-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Descargar catálogo en PDF» de crear un catálogo de productos: al imprimir solo se ve el catálogo agrupado por categoría. */
+@media print {
+  body.imprimiendo-catalogo * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-catalogo #catalogo-imprimible,
+  body.imprimiendo-catalogo #catalogo-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-catalogo #catalogo-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}

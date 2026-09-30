@@ -123,7 +123,7 @@ const ACTIVAS = ["carrera-y-empleo", "viajes-y-entretenimiento", "emprendimiento
 
 test("con el registro actual solo están activas «Carrera y empleo», «Viajes y entretenimiento» y «Emprendimiento»; las otras 3 no existen para el resto del sitio", () => {
   assert.deepEqual(catalogo.categoriasActivas().map((c) => c.slug), ACTIVAS);
-  assert.deepEqual(prompts.map((p) => p.slug), ["crear-cv-ats-formato-harvard", "optimizar-cv", "preparar-entrevista-de-trabajo", "analizar-oferta-laboral", "planificar-presupuesto-de-viaje", "crear-itinerario-de-viaje", "crear-plan-de-negocio", "calcular-rentabilidad-de-mi-negocio", "calcular-salario-y-negociar-oferta", "crear-plan-de-busqueda-de-empleo", "encontrar-fechas-mas-baratas-para-volar", "descubrir-destinos-segun-presupuesto", "crear-logo-profesional-para-mi-empresa", "comparar-opciones-de-viaje"]);
+  assert.deepEqual(prompts.map((p) => p.slug), ["crear-cv-ats-formato-harvard", "optimizar-cv", "preparar-entrevista-de-trabajo", "analizar-oferta-laboral", "planificar-presupuesto-de-viaje", "crear-itinerario-de-viaje", "crear-plan-de-negocio", "calcular-rentabilidad-de-mi-negocio", "calcular-salario-y-negociar-oferta", "crear-plan-de-busqueda-de-empleo", "encontrar-fechas-mas-baratas-para-volar", "descubrir-destinos-segun-presupuesto", "crear-logo-profesional-para-mi-empresa", "identificar-nichos-de-mercado", "crear-catalogo-de-productos", "comparar-opciones-de-viaje"]);
   for (const c of categorias.filter((x) => !ACTIVAS.includes(x.slug))) {
     assert.equal(catalogo.categoriaActiva(c.slug), false, c.slug);
     assert.equal(catalogo.getCategoriaActiva(c.slug), undefined, c.slug);

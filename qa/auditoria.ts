@@ -26,6 +26,8 @@ const PAGINAS: { ruta: string; tipo: Tipo; fuente: string; bloque?: string }[] =
   { ruta: "/emprendimiento/crear-logo-profesional-para-mi-empresa", tipo: "herramienta", fuente: "components/logo/pagina-logo.tsx" },
   { ruta: "/emprendimiento/crear-plan-de-negocio", tipo: "herramienta", fuente: "components/plan-negocio/pagina-plan-negocio.tsx" },
   { ruta: "/emprendimiento/calcular-rentabilidad-de-mi-negocio", tipo: "herramienta", fuente: "components/rentabilidad/pagina-rentabilidad.tsx" },
+  { ruta: "/emprendimiento/identificar-nichos-de-mercado", tipo: "herramienta", fuente: "components/nichos/pagina-nichos.tsx" },
+  { ruta: "/emprendimiento/crear-catalogo-de-productos", tipo: "herramienta", fuente: "components/catalogo-productos/pagina-catalogo.tsx" },
   { ruta: "/carrera-y-empleo/analizar-oferta-laboral", tipo: "herramienta", fuente: "components/analisis/pagina-analisis.tsx" },
   { ruta: "/carrera-y-empleo/preparar-entrevista-de-trabajo", tipo: "herramienta", fuente: "components/entrevista/pagina-entrevista.tsx" },
   { ruta: "/viajes-y-entretenimiento/planificar-presupuesto-de-viaje", tipo: "herramienta", fuente: "components/presupuesto/pagina-presupuesto.tsx" },

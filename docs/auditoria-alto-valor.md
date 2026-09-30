@@ -11,6 +11,8 @@ Ejecutada con `npx tsx qa/auditoria.ts` contra la versión de producción. Aprue
 | /emprendimiento/crear-logo-profesional-para-mi-empresa | herramienta | 3310 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /emprendimiento/crear-plan-de-negocio | herramienta | 3245 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /emprendimiento/calcular-rentabilidad-de-mi-negocio | herramienta | 3621 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /emprendimiento/identificar-nichos-de-mercado | herramienta | 3665 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
+| /emprendimiento/crear-catalogo-de-productos | herramienta | 3728 | 3 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /emprendimiento | categoria | 312 | 0 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/palabras-clave-cv-oferta-laboral | articulo | 1689 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /carrera-y-empleo/verbos-de-accion-para-cv | articulo | 1516 | 2 | 24/24 (100 %) | **ALTO VALOR** | — |
@@ -50,6 +52,8 @@ Casillas juzgadas a mano (se marcan como cumplidas tras leer cada página): «un
 | /emprendimiento/crear-logo-profesional-para-mi-empresa | 75 | 97 | 100 | 100 |
 | /emprendimiento/crear-plan-de-negocio | 76 | 97 | 100 | 100 |
 | /emprendimiento/calcular-rentabilidad-de-mi-negocio | 73 | 97 | 100 | 100 |
+| /emprendimiento/identificar-nichos-de-mercado | 75 | 97 | 100 | 100 |
+| /emprendimiento/crear-catalogo-de-productos | 75 | 97 | 100 | 100 |
 | /carrera-y-empleo/analizar-oferta-laboral | 90 | 97 | 100 | 100 |
 | /carrera-y-empleo/preparar-entrevista-de-trabajo | 89 | 97 | 100 | 100 |
 | /viajes-y-entretenimiento/planificar-presupuesto-de-viaje | 69 | 97 | 100 | 100 |

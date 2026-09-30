@@ -24,6 +24,8 @@ import { EJEMPLOS_DESTINOS } from "../content/ejemplos/destinos";
 import { EJEMPLOS_LOGO } from "../content/ejemplos/logo";
 import { EJEMPLOS_PLAN_NEGOCIO } from "../content/ejemplos/plan-negocio";
 import { EJEMPLOS_RENTABILIDAD } from "../content/ejemplos/rentabilidad";
+import { EJEMPLOS_NICHOS } from "../content/ejemplos/nichos";
+import { EJEMPLOS_CATALOGO } from "../content/ejemplos/catalogo-productos";
 
 const base = (process.argv.find((a) => /^https?:/.test(a)) ?? "http://localhost:3100").replace(/\/$/, "");
 const iCap = process.argv.indexOf("--capturas");
@@ -43,10 +45,12 @@ const RUTA_DEST = "/viajes-y-entretenimiento/descubrir-destinos-segun-presupuest
 const RUTA_LOGO = "/emprendimiento/crear-logo-profesional-para-mi-empresa";
 const RUTA_PLANNEG = "/emprendimiento/crear-plan-de-negocio";
 const RUTA_RENTAB = "/emprendimiento/calcular-rentabilidad-de-mi-negocio";
+const RUTA_NICHOS = "/emprendimiento/identificar-nichos-de-mercado";
+const RUTA_CATALOGO = "/emprendimiento/crear-catalogo-de-productos";
 /** Categorías sin ninguna herramienta publicada: su URL debe responder 404 y no aparecer en ningún sitio. */
 const CERRADAS = ["/analitica-e-informacion", "/finanzas-y-economia", "/marketing-y-ventas"];
 /** Herramientas pendientes: 404 y sin enlaces. */
-const PENDIENTES = ["/finanzas-y-economia/crear-presupuesto-personal", "/finanzas-y-economia/calcular-interes-compuesto", "/marketing-y-ventas/crear-plan-de-marketing", "/emprendimiento/identificar-nichos-de-mercado", "/analitica-e-informacion/limpiar-datos"];
+const PENDIENTES = ["/finanzas-y-economia/crear-presupuesto-personal", "/finanzas-y-economia/calcular-interes-compuesto", "/marketing-y-ventas/crear-plan-de-marketing", "/analitica-e-informacion/limpiar-datos"];
 const ARTICULOS = ["/carrera-y-empleo/palabras-clave-cv-oferta-laboral", "/carrera-y-empleo/verbos-de-accion-para-cv", "/carrera-y-empleo/cv-sin-experiencia"];
 const VIEWPORTS = [
   { nombre: "375", width: 375, height: 800 },
@@ -196,6 +200,8 @@ async function paginas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
     [RUTA_LOGO, "logo", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [RUTA_PLANNEG, "plan-negocio", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [RUTA_RENTAB, "rentabilidad", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_NICHOS, "nichos", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_CATALOGO, "catalogo", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [ARTICULOS[0], "art-palabras", ["Article", "BreadcrumbList"], true],
     [ARTICULOS[1], "art-verbos", ["Article", "BreadcrumbList"], true],
     [ARTICULOS[2], "art-sin-exp", ["Article", "BreadcrumbList"], true],
@@ -229,7 +235,7 @@ async function paginas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
 
 async function sinEnlacesACerradas(browser: Browser) {
   const { ctx, page } = await abrir(browser, VIEWPORTS[1]);
-  for (const ruta of ["/", "/carrera-y-empleo", "/viajes-y-entretenimiento", "/emprendimiento", RUTA_CV, RUTA_OPT, RUTA_ANA, RUTA_ENT, RUTA_SAL, RUTA_PLAN, RUTA_PRES, RUTA_ITIN, RUTA_FECHAS, RUTA_CMP, RUTA_DEST, RUTA_LOGO, RUTA_PLANNEG, RUTA_RENTAB, ARTICULOS[0], "/sobre-nosotros", "/politica-de-privacidad"]) {
+  for (const ruta of ["/", "/carrera-y-empleo", "/viajes-y-entretenimiento", "/emprendimiento", RUTA_CV, RUTA_OPT, RUTA_ANA, RUTA_ENT, RUTA_SAL, RUTA_PLAN, RUTA_PRES, RUTA_ITIN, RUTA_FECHAS, RUTA_CMP, RUTA_DEST, RUTA_LOGO, RUTA_PLANNEG, RUTA_RENTAB, RUTA_NICHOS, RUTA_CATALOGO, ARTICULOS[0], "/sobre-nosotros", "/politica-de-privacidad"]) {
     await page.goto(base + ruta, { waitUntil: "networkidle" });
     const hrefs = await page.evaluate(() => [...document.querySelectorAll("a[href]")].map((a) => a.getAttribute("href") ?? ""));
     const malos = hrefs.filter((h) => [...CERRADAS, ...PENDIENTES].some((c) => h === c || h.startsWith(c + "/") || h.startsWith(c + "#")));
@@ -2243,6 +2249,197 @@ async function eventosRentabilidad(browser: Browser) {
   await ctx.close();
 }
 
+async function generadorNichos(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `nichos @${v.nombre}`;
+  await page.goto(base + RUTA_NICHOS, { waitUntil: "networkidle" });
+  const [, costura] = EJEMPLOS_NICHOS;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const respuestaNichos = page.getByRole("textbox", { name: /^Respuesta del Prompt 1/ });
+  const paso3 = page.locator("#paso-3");
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tus nichos») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tus nichos") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+
+  // Ejemplo del paso 1 (Profesora de inglés corporativo)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  const conocimientos = page.getByRole("textbox", { name: /^Conocimientos y experiencia/ });
+  rec(donde, "el ejemplo llena los conocimientos y la oferta", (await conocimientos.inputValue()).includes("8 años dando clases de inglés"));
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-nichos-datos-v1"))) === null);
+  await captura(page, `nichos-paso1-${v.nombre}`);
+
+  // Paso 2: el Prompt 1 (todavía sin nichos)
+  const p1 = await prompt();
+  rec(donde, "sin nichos pegados, el prompt es el Prompt 1 (genera nichos) e incluye el inventario", p1.includes("8 años dando clases de inglés") && p1.includes("## Nichos") && p1.includes("entre 8 y 10 nichos"));
+  await page.getByRole("button", { name: /^Copiar prompt/ }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles1 = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el Prompt 1 completo en el portapapeles", portapapeles1 === p1);
+
+  // Paso 3: respuesta de ejemplo del Prompt 1 (8 nichos)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3: nichos\)/ }).click();
+  await paso3.getByRole("heading", { name: /Matriz de evaluación \(8 nichos\)/ }).waitFor();
+  rec(donde, "la matriz muestra el nicho mejor puntuado primero, con su puntuación calculada por la página", await paso3.getByText("#1 · Inglés para entrevistas de trabajo").isVisible());
+  await captura(page, `nichos-matriz-${v.nombre}`);
+
+  // Descarga de la matriz .csv
+  const [csv] = await Promise.all([page.waitForEvent("download"), paso3.getByRole("button", { name: "Descargar la matriz (.csv)" }).click()]);
+  const contenidoCsv = fs.readFileSync((await csv.path())!, "utf8");
+  rec(donde, "la matriz se descarga en .csv con el ranking calculado por la página", csv.suggestedFilename() === "matriz-de-nichos.csv" && contenidoCsv.includes("Inglés para entrevistas de trabajo"));
+
+  // Elegir los 2 favoritos (los mejor puntuados, con pesos iguales)
+  await paso3.getByRole("button", { name: "Elegir" }).first().click();
+  await paso3.getByRole("button", { name: "Elegir" }).first().click();
+  rec(donde, "al elegir 2 favoritos aparece el aviso para copiar el Prompt 2", await paso3.getByText("Ya elegiste tus 2 favoritos.").isVisible());
+
+  // Paso 2 (otra vez): ahora debe mostrar el Prompt 2
+  const p2 = await prompt();
+  rec(donde, "con 2 favoritos elegidos, el mismo panel cambia solo al Prompt 2 (validación), con los 2 nichos embebidos", p2.includes("## Plan de validación: Nicho 1") && p2.includes("Nicho 1 elegido: Inglés para entrevistas"));
+
+  // Paso 4: respuesta de ejemplo del Prompt 2
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 4: validación\)/ }).click();
+  await paso3.getByRole("heading", { name: "Plan de validación: Nicho 1" }).waitFor();
+  rec(donde, "el plan de validación no marca ninguna cifra sin respaldo (0 avisos)", await paso3.getByText("Las hipótesis sobre tus clientes están etiquetadas como corresponde.").isVisible());
+
+  // Registro de validación: agrega una entrada y verifica el resumen
+  const nicho1Nombre = "Inglés para entrevistas de trabajo en empresas de TI, para desarrolladores peruanos con nivel intermedio";
+  await paso3.getByRole("combobox", { name: "Nicho" }).selectOption({ label: nicho1Nombre });
+  await paso3.getByRole("textbox", { name: "Resultado" }).fill("5 entrevistas hechas, 2 muy interesadas");
+  await paso3.getByRole("button", { name: "Cumplió" }).first().click();
+  await paso3.getByRole("button", { name: "Agregar al registro" }).click();
+  rec(donde, "el registro de validación guarda la entrada y actualiza el resumen (1 cumplió)", (await paso3.getByText("5 entrevistas hechas, 2 muy interesadas").isVisible()) && (await paso3.locator("text=Cumplieron").locator("xpath=following-sibling::p").first().textContent()) === "1");
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#nichos-imprimible").count()) === 1 && !(await page.locator("#nichos-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-nichos"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve la matriz (la herramienta queda oculta)", (await page.locator("#nichos-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-nichos"));
+
+  // Otro ejemplo (contador especializado en costos)
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await page.getByText("Otro ejemplo cargado").first().waitFor();
+  rec(donde, "el siguiente ejemplo llena el formulario con su propio perfil", (await conocimientos.inputValue()) === costura.datos.conocimientos);
+
+  // Una respuesta sin la sección «## Nichos»
+  await respuestaNichos.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin «## Nichos» avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuestaNichos.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosNichos(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_NICHOS, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: /^Sectores que te interesan/ }).fill("Otro sector");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3: nichos\)/ }).click();
+  await page.locator("#paso-3").getByRole("button", { name: "Descargar la matriz (.csv)" }).click();
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica nichos", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
+async function generadorCatalogo(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `catalogo @${v.nombre}`;
+  await page.goto(base + RUTA_CATALOGO, { waitUntil: "networkidle" });
+  const [, pasteleria] = EJEMPLOS_CATALOGO;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const respuesta = page.getByRole("textbox", { name: /^Respuesta de la IA/ });
+  const paso3 = page.locator("#paso-3");
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tu catálogo») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tu catálogo") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+
+  // Ejemplo del paso 1 (Casacas Lima)
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  const empresa = page.getByRole("textbox", { name: /^Nombre de la empresa/ });
+  rec(donde, "el ejemplo llena la empresa y los productos", (await empresa.inputValue()) === "Casacas Lima");
+  rec(donde, "el ejemplo NO se guarda como dato de la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-catalogo-productos-datos-v1"))) === null);
+  await captura(page, `catalogo-paso1-${v.nombre}`);
+
+  // Paso 2: el prompt incluye la empresa, los productos y los 5 títulos de salida
+  const p = await prompt();
+  rec(donde, "el prompt incluye la empresa, el CSV de productos y «## Catálogo»", p.includes("Casacas Lima") && p.includes("129.90,99.90,Casacas,CAS-001") && p.includes("## Catálogo") && p.includes("nombre_original"));
+  await page.getByRole("button", { name: /^Copiar prompt/ }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p);
+
+  // Paso 3: respuesta de ejemplo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3: resultado\)/ }).click();
+  await paso3.getByRole("heading", { name: /^Casacas/ }).waitFor();
+  rec(donde, "el catálogo agrupa los productos por categoría, en el orden de la respuesta", await paso3.getByRole("heading", { name: /^Casacas/ }).isVisible());
+  rec(donde, "cada producto trae su enlace de WhatsApp, armado con el número del formulario", (await paso3.getByRole("link", { name: /^Enlace de WhatsApp/ }).count()) > 0);
+  await captura(page, `catalogo-resultado-${v.nombre}`);
+
+  // Descarga del .csv
+  const [csv] = await Promise.all([page.waitForEvent("download"), paso3.getByRole("button", { name: "Descargar .csv" }).click()]);
+  const contenidoCsv = fs.readFileSync((await csv.path())!, "utf8");
+  rec(donde, "el catálogo se descarga en .csv con las columnas generadas", csv.suggestedFilename().endsWith("-catalogo.csv") && contenidoCsv.includes("Casaca impermeable con forro polar"));
+
+  // Fichas para redes: descarga de una ficha PNG (sin foto, con fondo de color)
+  await paso3.getByRole("tab", { name: "Fichas para redes" }).click();
+  const [png] = await Promise.all([page.waitForEvent("download"), paso3.getByRole("button", { name: "Descargar ficha PNG" }).first().click()]);
+  rec(donde, "cada producto genera una ficha PNG en el navegador (sin foto, con fondo de color)", (png.suggestedFilename() ?? "").endsWith(".png"));
+
+  // Revisión: datos faltantes y sugerencias de fotos
+  await paso3.getByRole("tab", { name: "Revisión" }).click();
+  rec(donde, "la pestaña de revisión muestra los datos faltantes y las sugerencias de fotos de la respuesta", await paso3.getByRole("tabpanel", { name: "Revisión" }).getByText("no indicaste los colores disponibles").isVisible());
+
+  // Precio que no coincide: bloquea la descarga con un mensaje claro
+  await paso3.getByRole("tab", { name: "Catálogo" }).click();
+  const original = await respuesta.inputValue();
+  await respuesta.fill(original.replace("129.90,99.90", "150.00,99.90"));
+  rec(donde, "un precio que no coincide con el formulario bloquea la descarga y explica cuál producto revisar", await paso3.getByText("Descarga bloqueada: 1 precio(s) no coinciden").isVisible());
+  rec(donde, "con la descarga bloqueada, el botón de PDF y el de .csv quedan deshabilitados", (await paso3.getByRole("button", { name: "Descargar catálogo en PDF" }).isDisabled()) && (await paso3.getByRole("button", { name: "Descargar .csv" }).isDisabled()));
+  await respuesta.fill(original);
+  rec(donde, "al corregir el precio, la descarga se desbloquea sola", !(await paso3.getByRole("button", { name: "Descargar .csv" }).isDisabled()));
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#catalogo-imprimible").count()) === 1 && !(await page.locator("#catalogo-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-catalogo"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve el catálogo por categorías (la herramienta queda oculta)", (await page.locator("#catalogo-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-catalogo"));
+
+  // Otro ejemplo (Dulce Trigo)
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await paso3.getByRole("heading", { name: /^Tortas/ }).waitFor();
+  rec(donde, `el siguiente ejemplo (${pasteleria.datos.empresa}) pega su propia respuesta, con sus propias categorías`, await paso3.getByRole("heading", { name: /^Tortas/ }).isVisible());
+
+  // Una respuesta sin la sección «## Catálogo»
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin «## Catálogo» avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosCatalogo(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_CATALOGO, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByRole("textbox", { name: /^Rubro/ }).fill("Otro rubro");
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 3: resultado\)/ }).click();
+  await page.locator("#paso-3").getByRole("button", { name: "Descargar .csv" }).click();
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "datos_propios_iniciados", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica catalogo", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
 async function main() {
   const browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
   try {
@@ -2264,6 +2461,8 @@ async function main() {
       await generadorLogo(browser, v);
       await generadorPlanNegocio(browser, v);
       await generadorRentabilidad(browser, v);
+      await generadorNichos(browser, v);
+      await generadorCatalogo(browser, v);
     }
     await sinEnlacesACerradas(browser);
     await temaYAnuncios(browser);
@@ -2280,6 +2479,8 @@ async function main() {
     await eventosLogo(browser);
     await eventosPlanNegocio(browser);
     await eventosRentabilidad(browser);
+    await eventosNichos(browser);
+    await eventosCatalogo(browser);
     await traspasoAnalisis(browser);
     await teclado(browser);
     const s = await fetch(base + "/sitemap.xml").then((r) => r.text());
@@ -2322,6 +2523,12 @@ async function main() {
     rec("sitemap", "lista la herramienta de calcular la rentabilidad de un negocio", s.includes(`${RUTA_RENTAB}</loc>`));
     const ogRentab = await fetch(base + "/og/emprendimiento/calcular-rentabilidad-de-mi-negocio");
     rec("og", "la herramienta de rentabilidad tiene imagen Open Graph propia (PNG)", ogRentab.status === 200 && (ogRentab.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de identificar nichos de mercado", s.includes(`${RUTA_NICHOS}</loc>`));
+    const ogNichos = await fetch(base + "/og/emprendimiento/identificar-nichos-de-mercado");
+    rec("og", "la herramienta de nichos tiene imagen Open Graph propia (PNG)", ogNichos.status === 200 && (ogNichos.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de crear un catálogo de productos", s.includes(`${RUTA_CATALOGO}</loc>`));
+    const ogCatalogo = await fetch(base + "/og/emprendimiento/crear-catalogo-de-productos");
+    rec("og", "la herramienta de catálogo tiene imagen Open Graph propia (PNG)", ogCatalogo.status === 200 && (ogCatalogo.headers.get("content-type") ?? "").includes("image/png"));
     rec("og", "una herramienta pendiente no tiene imagen (404)", (await fetch(base + "/og/finanzas-y-economia/crear-presupuesto-personal")).status === 404);
     rec("sitemap", "lista portada, categoría, herramienta, artículos y páginas legales", [`/</loc>`, `/carrera-y-empleo</loc>`, `${RUTA_CV}</loc>`, ...ARTICULOS.map((a) => `${a}</loc>`), `/politica-de-privacidad</loc>`].every((t) => s.includes(t)));
     rec("sitemap", "no lista categorías cerradas ni herramientas pendientes", !s.includes("/herramientas") && [...CERRADAS, ...PENDIENTES].every((r) => !s.includes(r)));
