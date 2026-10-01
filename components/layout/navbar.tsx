@@ -4,7 +4,6 @@ import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { MenuMovil } from "@/components/layout/menu-movil";
 import { primaryNav } from "@/lib/nav-config";
 import { siteName } from "@/lib/site";
-import { RUTA_CV } from "@/content/prompts";
 
 export function Navbar() {
   return (
@@ -23,7 +22,6 @@ export function Navbar() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1.5">
-          
           <ThemeToggle />
           <MenuMovil links={primaryNav} />
         </div>

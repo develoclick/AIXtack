@@ -30,7 +30,7 @@ Ejecutada con `npx tsx qa/auditoria.ts` contra la versión de producción. Aprue
 | /viajes-y-entretenimiento | categoria | 304 | 0 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /emprendimiento | categoria | 312 | 0 | 24/24 (100 %) | **ALTO VALOR** | — |
 | /analitica-e-informacion | categoria | 355 | 0 | 24/24 (100 %) | **ALTO VALOR** | — |
-| / | portada | 1937 | 0 | 23/24 (96 %) | **ALTO VALOR** | §4 más de 1.000 palabras y sin tabla de contenidos |
+| / | portada | 1930 | 0 | 23/24 (96 %) | **ALTO VALOR** | §4 más de 1.000 palabras y sin tabla de contenidos |
 
 ## Qué falló en la primera pasada y qué se corrigió
 
@@ -48,6 +48,7 @@ Ejecutada con `npx tsx qa/auditoria.ts` contra la versión de producción. Aprue
 | /analitica-e-informacion (categoría) | 96 % | La introducción visible tenía 129 palabras (2 párrafos), por debajo de las 300 que pide la sección 2 | Se amplió la introducción a 4 párrafos (355 palabras), con el mismo contexto de Perú/Latinoamérica/soles/Lima/Arequipa que las demás categorías |
 | /analitica-e-informacion/convertir-datos-en-graficos | 96 % | §2: párrafo repetido con `/analitica-e-informacion/analizar-ventas-con-excel` — ambas páginas listaban «Pendientes de publicar (sin enlace): …» con el mismo texto introductorio y, al compartir una herramienta pendiente en `relacionadas` (Analizar cualquier Excel con IA), el párrafo completo coincidía | Se cambió la frase introductoria de esta página a «Todavía en construcción, sin enlace activo por ahora: …», distinta de la de analizar-ventas |
 | /analitica-e-informacion/segmentar-clientes | 96 % | §2: sin adaptación LATAM/Perú — el ejemplo narrativo de 500 clientes y los 2 ejemplos interactivos usan distritos de Lima (Surco, Miraflores, San Isidro, Barranco) y montos en soles, pero el detector busca palabras literales («Perú», «Lima», «soles», etc.) en el texto visible, y ninguna aparecía escrita tal cual | Se agregó «Lima, Perú» y «soles (S/)» explícitamente en la introducción del ejemplo de 500 clientes |
+| / (portada, auditoría adversarial del 1 de octubre) | 96 % (sin cambio) | El hero, la meta descripción, el título por defecto y el pie de página reducían la identidad del sitio a «prompts» y, en el hero, a la herramienta de CV — inconsistente con las 19 herramientas reales en 4 categorías | Hero reescrito con cifras reales calculadas del catálogo (`{N} herramientas en {C} categorías`), meta description y `siteTagline` actualizados, columna del pie «Prompts» renombrada a «Categorías», descripción de `organizationJsonLd` alineada. El puntaje no cambió (seguía aprobando) porque el hallazgo era de coherencia editorial, no algo que el auditor automático mida |
 
 Casillas juzgadas a mano (se marcan como cumplidas tras leer cada página): «una persona puede cumplir su objetivo solo con la página» (§1) y «las páginas legales, 404 y de error no llevan anuncios» (§5, comprobado en `qa/qa.ts` y `lib/ads.test.ts`).
 
@@ -82,4 +83,4 @@ Casillas juzgadas a mano (se marcan como cumplidas tras leer cada página): «un
 | /carrera-y-empleo/cv-sin-experiencia | 87 | 100 | 100 | 100 |
 | /politica-de-privacidad | 91 | 100 | 100 | 100 |
 
-El rendimiento de las páginas largas y de la herramienta queda por debajo de 90 con la simulación móvil de Lighthouse (red 4G lenta y CPU 4× más lenta): el costo principal es la hidratación de React (≈ 0,6 s simulados) y, en la herramienta, su formulario. CLS es 0 en todas. La accesibilidad de la herramienta marca 97 por un falso positivo de contraste provocado por `content-visibility` en el texto de la guía (Lighthouse mide el color contra el pie de página); el contraste real de todos los pares de colores se comprueba en `lib/contraste.test.ts`. El rendimiento de «Convertir datos en gráficos» (59–67) y de «Segmentar clientes» (58) son los más bajos del sitio y se midieron con el servidor de build y Playwright corriendo en paralelo en esta máquina: «Style & Layout» domina el tiempo de hilo principal, consistente con el tamaño de estas guías (14 secciones, varias tablas, formularios de 3 pasos); ninguna de las dos carga JavaScript de terceros ni librerías pesadas (Chart.js, xlsx) en el arranque, solo al usarse. Queda anotado para revisar ambas con la máquina en reposo.
+No se repitió Lighthouse en esta pasada (auditoría adversarial del 1 de octubre): los cambios de hoy fueron de copy/metadatos y de la página 404, sin tocar JavaScript de las herramientas ni su peso; no hay motivo para esperar un cambio de rendimiento, pero no está remedido y se deja como pendiente en el informe final.

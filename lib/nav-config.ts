@@ -15,7 +15,7 @@ export const primaryNav: NavLink[] = [
 /** Pie de página: categorías abiertas, el sitio y las páginas legales. */
 export const footerNav: { title: string; links: NavLink[] }[] = [
   {
-    title: "Prompts",
+    title: "Categorías",
     links: categoriasActivas().map((c) => ({ label: c.nombre, href: `/${c.slug}` })),
   },
   {

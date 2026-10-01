@@ -9,7 +9,7 @@ export function organizationJsonLd() {
     name: siteName,
     url: siteUrl,
     logo: absolute("/logo.png"),
-    description: `${siteName}: ${siteTagline.toLowerCase()}. Biblioteca gratuita de prompts en español para ChatGPT, Gemini y Claude.`,
+    description: `${siteName}: ${siteTagline.toLowerCase()}, para ChatGPT, Gemini y Claude.`,
   };
 }
 

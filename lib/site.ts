@@ -7,7 +7,7 @@ export const siteUrl = "https://www.guiapromptsia.com";
 /** Imagen og:image general (1200×630): respaldo de toda página sin imagen propia. */
 export const OG_POR_DEFECTO = "/og-default.webp";
 export const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Guía Prompts IA";
-export const siteTagline = "Prompts en español, gratis y listos para copiar";
+export const siteTagline = "Herramientas y prompts en español, gratis y listos para usar";
 export const contactEmail = "guiapromptsia@gmail.com";
 
 /**

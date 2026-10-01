@@ -15,8 +15,8 @@ import { HOME_UPDATED_AT } from "@/lib/site";
 import { formatDate } from "@/lib/utils/format";
 
 export const metadata = buildMetadata({
-  title: "Prompts en español gratis para ChatGPT y Gemini",
-  description: "Biblioteca gratuita de prompts en español: llena tus datos, copia el prompt listo y úsalo en ChatGPT, Gemini o Claude. Empieza por tu hoja de vida.",
+  title: "Herramientas y prompts gratis en español para IA",
+  description: "Calculadoras gratis para tu carrera, tus viajes, tu negocio y tus datos: cada una hace el cálculo y arma el prompt listo para ChatGPT, Gemini o Claude.",
   path: "/",
   absoluteTitle: true,
 });
@@ -36,6 +36,8 @@ const PREGUNTAS = [
 
 export default function HomePage() {
   const items = itemsBuscables();
+  const totalHerramientas = herramientasPublicadas().length;
+  const totalCategorias = categoriasActivas().length;
 
   return (
     <>
@@ -44,14 +46,13 @@ export default function HomePage() {
       <section className="fondo-portada border-b">
         <div className="mx-auto max-w-[1140px] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <p className="pildora text-brand">100 % gratis · sin registro · en español para Latinoamérica</p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Prompts en español que se arman solos con tus datos</h1>
+          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Herramientas gratis que calculan por ti y arman tu prompt</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Elige una tarea, llena un formulario corto y copia el prompt listo para ChatGPT, Gemini o Claude. Empezamos por lo que más ayuda a tu carrera: una hoja de vida en formato Harvard que los filtros ATS lean bien.
+            {totalHerramientas} herramientas en {totalCategorias} categorías — tu carrera, tus viajes, tu negocio y tus datos. Cada una hace el cálculo en tu navegador y arma un prompt para tu IA: los números nunca los inventa ella.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            
-            <Link href="#categorias" className="btn btn-secundario">
-              Ver categorías
+            <Link href="#categorias" className="btn btn-primario">
+              Ver categorías <ArrowRight aria-hidden className="size-4" />
             </Link>
           </div>
           <Buscador items={items} className="mt-8 max-w-xl lg:hidden" />

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     default: `${siteName} — ${siteTagline}`,
     template: `%s · ${siteName}`,
   },
-  description: "Biblioteca gratuita de prompts en español para ChatGPT, Gemini y Claude: llena tus datos, copia el prompt listo y úsalo.",
+  description: "Herramientas y prompts gratis en español: calculadoras para tu carrera, viajes, negocio y datos, con el prompt listo para ChatGPT, Gemini o Claude.",
   applicationName: siteName,
   verification: {
     google: "B3ClaGnGqP20qsHVIDjZGAi4T6DsIOG1BmrL1Kv9NUQ",
