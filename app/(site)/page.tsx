@@ -49,9 +49,7 @@ export default function HomePage() {
             Elige una tarea, llena un formulario corto y copia el prompt listo para ChatGPT, Gemini o Claude. Empezamos por lo que más ayuda a tu carrera: una hoja de vida en formato Harvard que los filtros ATS lean bien.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href={RUTA_CV} className="btn btn-primario">
-              Crear mi CV con IA <ArrowRight aria-hidden className="size-4" />
-            </Link>
+            
             <Link href="#categorias" className="btn btn-secundario">
               Ver categorías
             </Link>

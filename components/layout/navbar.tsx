@@ -23,9 +23,7 @@ export function Navbar() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1.5">
-          <Link href={RUTA_CV} className="btn btn-primario hidden sm:inline-flex">
-            Crear mi CV gratis
-          </Link>
+          
           <ThemeToggle />
           <MenuMovil links={primaryNav} />
         </div>
