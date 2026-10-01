@@ -585,3 +585,63 @@
     color: #000;
   }
 }
+
+/* «Descargar informe en PDF» de analizar ventas en Excel: al imprimir solo se ve el informe con las métricas y los hallazgos. */
+@media print {
+  body.imprimiendo-ventas * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-ventas #ventas-imprimible,
+  body.imprimiendo-ventas #ventas-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-ventas #ventas-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Descargar informe en PDF» de convertir datos en gráficos: al imprimir solo se ve el informe con los gráficos y los hallazgos. */
+@media print {
+  body.imprimiendo-graficos * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-graficos #graficos-imprimible,
+  body.imprimiendo-graficos #graficos-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-graficos #graficos-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* «Descargar informe en PDF» de segmentar clientes: al imprimir solo se ve el informe con la tabla de segmentos. */
+@media print {
+  body.imprimiendo-segmentar * {
+    visibility: hidden !important;
+  }
+  body.imprimiendo-segmentar #segmentar-imprimible,
+  body.imprimiendo-segmentar #segmentar-imprimible * {
+    visibility: visible !important;
+  }
+  body.imprimiendo-segmentar #segmentar-imprimible {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    color: #000;
+  }
+}

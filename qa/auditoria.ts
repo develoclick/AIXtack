@@ -28,6 +28,9 @@ const PAGINAS: { ruta: string; tipo: Tipo; fuente: string; bloque?: string }[] =
   { ruta: "/emprendimiento/calcular-rentabilidad-de-mi-negocio", tipo: "herramienta", fuente: "components/rentabilidad/pagina-rentabilidad.tsx" },
   { ruta: "/emprendimiento/identificar-nichos-de-mercado", tipo: "herramienta", fuente: "components/nichos/pagina-nichos.tsx" },
   { ruta: "/emprendimiento/crear-catalogo-de-productos", tipo: "herramienta", fuente: "components/catalogo-productos/pagina-catalogo.tsx" },
+  { ruta: "/analitica-e-informacion/analizar-ventas-con-excel", tipo: "herramienta", fuente: "components/analizar-ventas/pagina-analizar-ventas.tsx" },
+  { ruta: "/analitica-e-informacion/convertir-datos-en-graficos", tipo: "herramienta", fuente: "components/convertir-graficos/pagina-convertir-graficos.tsx" },
+  { ruta: "/analitica-e-informacion/segmentar-clientes", tipo: "herramienta", fuente: "components/segmentar-clientes/pagina-segmentar-clientes.tsx" },
   { ruta: "/carrera-y-empleo/analizar-oferta-laboral", tipo: "herramienta", fuente: "components/analisis/pagina-analisis.tsx" },
   { ruta: "/carrera-y-empleo/preparar-entrevista-de-trabajo", tipo: "herramienta", fuente: "components/entrevista/pagina-entrevista.tsx" },
   { ruta: "/viajes-y-entretenimiento/planificar-presupuesto-de-viaje", tipo: "herramienta", fuente: "components/presupuesto/pagina-presupuesto.tsx" },
@@ -37,6 +40,7 @@ const PAGINAS: { ruta: string; tipo: Tipo; fuente: string; bloque?: string }[] =
   { ruta: "/carrera-y-empleo", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
   { ruta: "/viajes-y-entretenimiento", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
   { ruta: "/emprendimiento", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
+  { ruta: "/analitica-e-informacion", tipo: "categoria", fuente: "app/(site)/[categoria]/page.tsx" },
   { ruta: "/", tipo: "portada", fuente: "app/(site)/page.tsx" },
 ];
 
@@ -81,12 +85,10 @@ async function medir(page: Page, tipo: Tipo, categoria: string): Promise<Medida>
     ({ tipo, sinTilde, promesas, categoria }) => {
       const main = document.querySelector("main")!;
       const cuerpo = (() => {
-        if (tipo === "herramienta") {
-          const clon = main.cloneNode(true) as HTMLElement;
-          clon.querySelector("#herramienta")?.remove();
-          return clon;
-        }
-        return main;
+        const clon = main.cloneNode(true) as HTMLElement;
+        clon.querySelectorAll("script").forEach((s) => s.remove());
+        if (tipo === "herramienta") clon.querySelector("#herramienta")?.remove();
+        return clon;
       })();
       const texto = cuerpo.innerText;
       const textoDePalabras = tipo === "categoria" ? ((main.querySelector("#intro")?.parentElement as HTMLElement)?.innerText ?? texto) : texto;

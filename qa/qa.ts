@@ -7,6 +7,7 @@
  * hoja de vida de punta a punta (ejemplos, deshacer, texto copiado con el mouse, descarga del Word y su contenido, eventos).
  */
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import JSZip from "jszip";
 import { chromium, type Browser, type Page } from "playwright-core";
@@ -26,6 +27,9 @@ import { EJEMPLOS_PLAN_NEGOCIO } from "../content/ejemplos/plan-negocio";
 import { EJEMPLOS_RENTABILIDAD } from "../content/ejemplos/rentabilidad";
 import { EJEMPLOS_NICHOS } from "../content/ejemplos/nichos";
 import { EJEMPLOS_CATALOGO } from "../content/ejemplos/catalogo-productos";
+import { EJEMPLOS_ANALISIS_VENTAS } from "../content/ejemplos/analizar-ventas";
+import { EJEMPLOS_CONVERTIR_GRAFICOS } from "../content/ejemplos/convertir-graficos";
+import { EJEMPLOS_SEGMENTAR_CLIENTES } from "../content/ejemplos/segmentar-clientes";
 
 const base = (process.argv.find((a) => /^https?:/.test(a)) ?? "http://localhost:3100").replace(/\/$/, "");
 const iCap = process.argv.indexOf("--capturas");
@@ -47,10 +51,13 @@ const RUTA_PLANNEG = "/emprendimiento/crear-plan-de-negocio";
 const RUTA_RENTAB = "/emprendimiento/calcular-rentabilidad-de-mi-negocio";
 const RUTA_NICHOS = "/emprendimiento/identificar-nichos-de-mercado";
 const RUTA_CATALOGO = "/emprendimiento/crear-catalogo-de-productos";
+const RUTA_VENTAS = "/analitica-e-informacion/analizar-ventas-con-excel";
+const RUTA_GRAFICOS = "/analitica-e-informacion/convertir-datos-en-graficos";
+const RUTA_SEGMENTAR = "/analitica-e-informacion/segmentar-clientes";
 /** Categorías sin ninguna herramienta publicada: su URL debe responder 404 y no aparecer en ningún sitio. */
-const CERRADAS = ["/analitica-e-informacion", "/finanzas-y-economia", "/marketing-y-ventas"];
+const CERRADAS = ["/finanzas-y-economia", "/marketing-y-ventas"];
 /** Herramientas pendientes: 404 y sin enlaces. */
-const PENDIENTES = ["/finanzas-y-economia/crear-presupuesto-personal", "/finanzas-y-economia/calcular-interes-compuesto", "/marketing-y-ventas/crear-plan-de-marketing", "/analitica-e-informacion/limpiar-datos"];
+const PENDIENTES = ["/finanzas-y-economia/crear-presupuesto-personal", "/finanzas-y-economia/calcular-interes-compuesto", "/marketing-y-ventas/crear-plan-de-marketing", "/analitica-e-informacion/limpiar-datos", "/analitica-e-informacion/analizar-excel-con-ia"];
 const ARTICULOS = ["/carrera-y-empleo/palabras-clave-cv-oferta-laboral", "/carrera-y-empleo/verbos-de-accion-para-cv", "/carrera-y-empleo/cv-sin-experiencia"];
 const VIEWPORTS = [
   { nombre: "375", width: 375, height: 800 },
@@ -202,6 +209,10 @@ async function paginas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
     [RUTA_RENTAB, "rentabilidad", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [RUTA_NICHOS, "nichos", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [RUTA_CATALOGO, "catalogo", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    ["/analitica-e-informacion", "categoria-analitica", ["BreadcrumbList"], false],
+    [RUTA_VENTAS, "ventas", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_GRAFICOS, "graficos", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
+    [RUTA_SEGMENTAR, "segmentar", ["WebApplication", "HowTo", "FAQPage", "BreadcrumbList", "Article"], true],
     [ARTICULOS[0], "art-palabras", ["Article", "BreadcrumbList"], true],
     [ARTICULOS[1], "art-verbos", ["Article", "BreadcrumbList"], true],
     [ARTICULOS[2], "art-sin-exp", ["Article", "BreadcrumbList"], true],
@@ -235,7 +246,7 @@ async function paginas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
 
 async function sinEnlacesACerradas(browser: Browser) {
   const { ctx, page } = await abrir(browser, VIEWPORTS[1]);
-  for (const ruta of ["/", "/carrera-y-empleo", "/viajes-y-entretenimiento", "/emprendimiento", RUTA_CV, RUTA_OPT, RUTA_ANA, RUTA_ENT, RUTA_SAL, RUTA_PLAN, RUTA_PRES, RUTA_ITIN, RUTA_FECHAS, RUTA_CMP, RUTA_DEST, RUTA_LOGO, RUTA_PLANNEG, RUTA_RENTAB, RUTA_NICHOS, RUTA_CATALOGO, ARTICULOS[0], "/sobre-nosotros", "/politica-de-privacidad"]) {
+  for (const ruta of ["/", "/carrera-y-empleo", "/viajes-y-entretenimiento", "/emprendimiento", "/analitica-e-informacion", RUTA_CV, RUTA_OPT, RUTA_ANA, RUTA_ENT, RUTA_SAL, RUTA_PLAN, RUTA_PRES, RUTA_ITIN, RUTA_FECHAS, RUTA_CMP, RUTA_DEST, RUTA_LOGO, RUTA_PLANNEG, RUTA_RENTAB, RUTA_NICHOS, RUTA_CATALOGO, RUTA_VENTAS, RUTA_GRAFICOS, RUTA_SEGMENTAR, ARTICULOS[0], "/sobre-nosotros", "/politica-de-privacidad"]) {
     await page.goto(base + ruta, { waitUntil: "networkidle" });
     const hrefs = await page.evaluate(() => [...document.querySelectorAll("a[href]")].map((a) => a.getAttribute("href") ?? ""));
     const malos = hrefs.filter((h) => [...CERRADAS, ...PENDIENTES].some((c) => h === c || h.startsWith(c + "/") || h.startsWith(c + "#")));
@@ -243,7 +254,7 @@ async function sinEnlacesACerradas(browser: Browser) {
   }
   await page.goto(base + "/", { waitUntil: "networkidle" });
   const menu = await page.evaluate(() => [...document.querySelectorAll("header nav a, footer nav a")].map((a) => a.getAttribute("href")));
-  rec("menú y pie", "solo enlazan a categorías activas (Carrera y empleo, Viajes y entretenimiento, Emprendimiento)", menu.includes("/carrera-y-empleo") && menu.includes("/viajes-y-entretenimiento") && menu.includes("/emprendimiento") && CERRADAS.every((c) => !menu.includes(c)));
+  rec("menú y pie", "solo enlazan a categorías activas (Carrera y empleo, Viajes y entretenimiento, Emprendimiento, Analítica e información)", menu.includes("/carrera-y-empleo") && menu.includes("/viajes-y-entretenimiento") && menu.includes("/emprendimiento") && menu.includes("/analitica-e-informacion") && CERRADAS.every((c) => !menu.includes(c)));
   await ctx.close();
 }
 
@@ -2440,6 +2451,318 @@ async function eventosCatalogo(browser: Browser) {
   await ctx.close();
 }
 
+async function generadorAnalisisVentas(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `ventas @${v.nombre}`;
+  await page.goto(base + RUTA_VENTAS, { waitUntil: "networkidle" });
+  const [, bazar] = EJEMPLOS_ANALISIS_VENTAS;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const respuesta = page.getByRole("textbox", { name: /^Respuesta de la IA/ });
+  const paso3 = page.locator("#paso-3");
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tu informe») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tu informe") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+
+  // Subida real de un archivo .csv (no el atajo de ejemplo): verifica el lector de archivos de punta a punta.
+  const rutaCsv = path.join(os.tmpdir(), `gpia-qa-ventas-${Date.now()}.csv`);
+  fs.writeFileSync(rutaCsv, "fecha,producto,importe\n01/06/2026,Producto de prueba,100\n02/06/2026,Producto de prueba,50\n", "utf8");
+  await page.locator('input[type="file"]').setInputFiles(rutaCsv);
+  await page.getByText("2 fila(s) de datos").waitFor();
+  rec(donde, "subir un .csv real muestra la ficha del archivo con sus columnas detectadas", await page.getByRole("cell", { name: "producto", exact: true }).isVisible());
+  const mapeoImporte = page.getByLabel("Importe (monto vendido)");
+  rec(donde, "el mapeo de columnas se sugiere solo, por el nombre de cada columna", (await mapeoImporte.inputValue()) !== "");
+  fs.unlinkSync(rutaCsv);
+  const guardadoTrasSubir = await page.evaluate(() => window.localStorage.getItem("gpia-analizar-ventas-datos-v1"));
+  rec(donde, "el archivo real sí guarda su nombre y su mapeo como dato de la persona", guardadoTrasSubir !== null && guardadoTrasSubir.includes("ventas-"));
+  await captura(page, `ventas-archivo-${v.nombre}`);
+
+  // Ejemplo del paso 1 (Ferretería El Tornillo): como ya hay un archivo real subido, primero pide confirmar el reemplazo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  const reemplazar = page.getByRole("button", { name: "Reemplazar" });
+  rec(donde, "reemplazar un archivo ya subido por un ejemplo pide confirmación antes de perderlo", await reemplazar.isVisible());
+  await reemplazar.click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo NO sobrescribe lo que ya había guardado la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-analizar-ventas-datos-v1"))) === guardadoTrasSubir);
+  rec(donde, "el dashboard calcula las ventas al instante, en el navegador", await page.getByText("2,995.80").first().isVisible());
+  await captura(page, `ventas-paso1-${v.nombre}`);
+
+  // Paso 2: el prompt incluye la ficha, las métricas y los 8 títulos de salida, nunca una fila cruda
+  const p = await prompt();
+  rec(donde, "el prompt incluye la ficha del archivo, las métricas calculadas y «## Calidad de datos»", p.includes("ventas-ferreteria-enero-junio.csv") && p.includes("2,995.80") && p.includes("## Calidad de datos") && p.includes("## Métricas principales"));
+  rec(donde, "el prompt nunca incluye una fila cruda del archivo", !p.includes("Lima Centro,"));
+  await page.getByRole("button", { name: /^Copiar prompt/ }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p);
+
+  // Paso 3: respuesta de ejemplo (ya viene cargada junto con el archivo, por venir del mismo perfil)
+  await paso3.getByRole("heading", { name: "Calidad de datos" }).waitFor();
+  rec(donde, "la respuesta trae la tabla de métricas principales, calculada por la página", await paso3.getByRole("cell", { name: "Ventas totales", exact: true }).isVisible());
+  rec(donde, "ningún monto de la respuesta aparece como inventado (todos vienen de la ficha o de las métricas)", !(await paso3.getByText("Revisa antes de confiar en el resultado").isVisible()));
+  await captura(page, `ventas-resultado-${v.nombre}`);
+
+  // Descarga del .csv de métricas
+  const [csv] = await Promise.all([page.waitForEvent("download"), paso3.getByRole("button", { name: "Descargar métricas .csv" }).click()]);
+  const contenidoCsv = fs.readFileSync((await csv.path())!, "utf8");
+  rec(donde, "las métricas se descargan en .csv", csv.suggestedFilename().endsWith(".csv") && contenidoCsv.includes("Ventas totales"));
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#ventas-imprimible").count()) === 1 && !(await page.locator("#ventas-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-ventas"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve el informe (la herramienta queda oculta)", (await page.locator("#ventas-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-ventas"));
+
+  // Un monto inventado en la respuesta se marca como posible cifra inventada (no bloquea, solo avisa)
+  const original = await respuesta.inputValue();
+  await respuesta.fill(original.replace("S/ 2,995.80", "S/ 2,995.80 (muy por debajo del promedio del sector, S/ 9,999,999.00)"));
+  rec(donde, "un monto que no está en la ficha ni en las métricas se marca como posible cifra inventada", await paso3.getByText("Revisa antes de confiar en el resultado").isVisible());
+  await respuesta.fill(original);
+
+  // Otro ejemplo (Bazar Doña Rosa), con su propio archivo más pequeño y sus propios problemas de calidad
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await paso3.getByRole("heading", { name: "Calidad de datos" }).waitFor();
+  rec(donde, `el siguiente ejemplo (${bazar.datos.objetivo.slice(0, 20)}…) carga su propio archivo y su propia respuesta`, await page.getByText(bazar.nombreArchivo).first().isVisible());
+  rec(donde, "el nuevo ejemplo muestra sus propios problemas de calidad de datos (importe negativo, duplicado)", await page.getByText(/importe negativo/i).first().isVisible());
+
+  // Una respuesta sin la sección «## Calidad de datos»
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin los títulos esperados avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosAnalisisVentas(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_VENTAS, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  await page.locator("#paso-3").getByRole("button", { name: "Descargar métricas .csv" }).click();
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica ventas", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
+async function generadorConvertirGraficos(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `graficos @${v.nombre}`;
+  await page.goto(base + RUTA_GRAFICOS, { waitUntil: "networkidle" });
+  const [boutique] = EJEMPLOS_CONVERTIR_GRAFICOS;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const respuesta = page.locator("#respuesta-graficos");
+  const paso1 = page.locator("#paso-1");
+  const paso3 = page.locator("#paso-3");
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tus gráficos») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tus gráficos") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+
+  // Pegar una tabla (no el atajo de ejemplo): verifica el lector de tablas pegadas de punta a punta.
+  await paso1.locator("textarea").fill("fecha\ttienda\tventas\n01/01/2026\tNorte\t1000\n01/02/2026\tSur\t1500\n01/03/2026\tCentro\t800");
+  await page.getByRole("button", { name: "Usar esta tabla" }).click();
+  await page.getByText("3 fila(s) de datos").waitFor();
+  rec(donde, "pegar una tabla real muestra su ficha con el nombre «Tabla pegada» y sus columnas", await page.getByText("Tabla pegada").first().isVisible());
+  await page.getByLabel("Eje X").selectOption({ label: "tienda (texto)" });
+  await page.getByLabel("Eje Y").selectOption({ label: "ventas (numero)" });
+  rec(donde, "al elegir las columnas, el gráfico local aparece de inmediato, calculado en el navegador", await page.locator("[data-resumen]").isVisible());
+  await page.getByRole("button", { name: "Quitar" }).click();
+  rec(donde, "«Quitar» regresa al estado de pegar o subir una tabla", await page.getByRole("button", { name: "Usar esta tabla" }).isVisible());
+
+  // Subida real de un archivo .csv: verifica el lector de archivos de punta a punta.
+  const rutaCsv = path.join(os.tmpdir(), `gpia-qa-graficos-${Date.now()}.csv`);
+  fs.writeFileSync(rutaCsv, "producto,ventas\nTaladro,500\nMartillo,300\n", "utf8");
+  await page.locator('input[type="file"]').setInputFiles(rutaCsv);
+  await page.getByText("2 fila(s) de datos").waitFor();
+  fs.unlinkSync(rutaCsv);
+  const guardadoTrasSubir = await page.evaluate(() => window.localStorage.getItem("gpia-convertir-graficos-datos-v1"));
+  rec(donde, "el archivo real sí guarda su nombre como dato de la persona (nunca la tabla en sí)", guardadoTrasSubir !== null && guardadoTrasSubir.includes(rutaCsv.split(/[\\/]/).pop()!.slice(0, 10)));
+  await captura(page, `graficos-archivo-${v.nombre}`);
+
+  // Ejemplo del paso 1 (Boutique Aurora): como ya hay un archivo real subido, primero pide confirmar el reemplazo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  const reemplazar = page.getByRole("button", { name: "Reemplazar" });
+  rec(donde, "reemplazar una tabla ya subida por un ejemplo pide confirmación antes de perderla", await reemplazar.isVisible());
+  await reemplazar.click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo NO sobrescribe lo que ya había guardado la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-convertir-graficos-datos-v1"))) === guardadoTrasSubir);
+  await captura(page, `graficos-paso1-${v.nombre}`);
+
+  // Paso 2: el prompt incluye la ficha de columnas y nunca una fila cruda completa
+  const p = await prompt();
+  rec(donde, "el prompt incluye la ficha del archivo, el objetivo elegido y «### FUENTE»", p.includes(boutique.nombreOrigen) && p.includes("### FUENTE") && p.includes("tienda") && p.includes("ventas"));
+  rec(donde, "el prompt nunca incluye una fila cruda completa del archivo", !p.includes("15/01/2026,Norte,Ropa,1600,88"));
+  rec(donde, "el prompt pide entre 3 y 6 gráficos y nunca que la IA calcule los valores", p.includes("entre 3 y 6") && p.includes("Nunca calcules tú los valores de un gráfico"));
+  await page.getByRole("button", { name: /^Copiar prompt/ }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p);
+
+  // Paso 3: respuesta de ejemplo (ya viene cargada junto con la tabla, por venir del mismo perfil)
+  await paso3.getByText(/Gráficos sugeridos \(4\)/).waitFor();
+  rec(donde, "la respuesta de ejemplo dibuja los 4 gráficos sugeridos, calculados por la página", (await paso3.locator("[role=img]").count()) === 4);
+  rec(donde, "ningún monto de la respuesta aparece como inventado (todos vienen de la ficha)", !(await paso3.getByText("Revisa antes de confiar en el resultado").isVisible()));
+  rec(donde, "cada gráfico tiene su botón «Descargar PNG»", (await paso3.getByRole("button", { name: "Descargar PNG" }).count()) === 4);
+  await captura(page, `graficos-resultado-${v.nombre}`);
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#graficos-imprimible").count()) === 1 && !(await page.locator("#graficos-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-graficos"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve el informe (la herramienta queda oculta)", (await page.locator("#graficos-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-graficos"));
+
+  // Un monto inventado en «Hallazgos visibles» se marca como posible cifra inventada (no bloquea, solo avisa)
+  const original = await respuesta.inputValue();
+  const conMontoInventado = original.replace("En el gráfico de barras, la tienda Sur queda por encima de Norte y de Centro en el total del trimestre.", "En el gráfico de barras, la tienda Sur vendió S/ 50,000 más que las otras (muy por encima del promedio del sector, S/ 9,999,999.00).");
+  await respuesta.fill(conMontoInventado);
+  rec(donde, "un monto que no está en la ficha se marca como posible cifra inventada", await paso3.getByText("Revisa antes de confiar en el resultado").isVisible());
+
+  // Un pastel con una columna de más de 5 categorías reales se marca, aunque la IA no lo haya dicho
+  const conPastelSobrecargado = original.replace("pastel,categoria,ventas,,suma,Ropa concentra la mayor parte de las ventas,Con 3 categorías el pastel es legible; con más de 5 usa barras", "pastel,ventas,ventas,,suma,Ropa concentra la mayor parte de las ventas,Con 3 categorías el pastel es legible; con más de 5 usa barras");
+  await respuesta.fill(conPastelSobrecargado);
+  rec(donde, "un pastel cuya columna real tiene más de 5 categorías se avisa, aunque la IA no lo haya dicho", await paso3.getByText(/gráfico\(s\) de pastel tienen más de 5 categorías en los datos reales/).isVisible());
+  await respuesta.fill(original);
+
+  // Otro ejemplo (Encuesta de soporte técnico), con su propia tabla y su propio objetivo
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await paso3.getByText(/Gráficos sugeridos \(4\)/).waitFor();
+  const [, encuesta] = EJEMPLOS_CONVERTIR_GRAFICOS;
+  rec(donde, `el siguiente ejemplo (${encuesta.etiqueta}) carga su propia tabla y su propia respuesta`, (await prompt()).includes(encuesta.nombreOrigen));
+
+  // Una respuesta sin la sección «## Gráficos sugeridos»
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin los títulos esperados avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosConvertirGraficos(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_GRAFICOS, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  await page.locator("#paso-3").getByRole("button", { name: "Descargar informe en PDF" }).click();
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica gráficos", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
+async function generadorSegmentarClientes(browser: Browser, v: (typeof VIEWPORTS)[number]) {
+  const { ctx, page, errores } = await abrir(browser, v);
+  const donde = `segmentar @${v.nombre}`;
+  await page.goto(base + RUTA_SEGMENTAR, { waitUntil: "networkidle" });
+  const [bicicletas] = EJEMPLOS_SEGMENTAR_CLIENTES;
+  const prompt = () => page.locator("[data-prompt]").textContent().then((t) => t ?? "");
+  const respuesta = page.locator("#respuesta-segmentar");
+  const paso1 = page.locator("#paso-1");
+  const paso3 = page.locator("#paso-3");
+
+  const pasos = page.locator("nav[aria-label='Pasos de la herramienta'] li");
+  rec(donde, "el stepper muestra 3 pasos (el tercero es «Tus segmentos») y el 1 está activo", (await pasos.count()) === 3 && ((await pasos.nth(2).textContent()) ?? "").includes("Tus segmentos") && (await pasos.nth(0).getAttribute("aria-current")) === "step");
+
+  // Subida real de un archivo .csv de transacciones: verifica el lector de archivos y el mapeo sugerido, de punta a punta.
+  const rutaCsv = path.join(os.tmpdir(), `gpia-qa-segmentar-${Date.now()}.csv`);
+  fs.writeFileSync(rutaCsv, "cliente,fecha,importe\nA,01/01/2026,100\nA,02/01/2026,50\nB,01/01/2026,200\n", "utf8");
+  await paso1.locator('input[type="file"]').setInputFiles(rutaCsv);
+  await page.getByText("3 fila(s) de datos").waitFor();
+  fs.unlinkSync(rutaCsv);
+  rec(donde, "subir un .csv real sugiere solo el ID de cliente por el nombre de la columna", (await page.getByLabel("ID de cliente").inputValue()) !== "");
+  rec(donde, "detecta que el ID se repite y sugiere que es un archivo de transacciones", await page.getByText("parece un archivo de transacciones").isVisible());
+  const guardadoInicial = await page.evaluate(() => window.localStorage.getItem("gpia-segmentar-clientes-datos-v1"));
+  rec(donde, "el archivo real guarda su nombre y su mapeo como dato de la persona (nunca las filas)", guardadoInicial !== null && guardadoInicial.includes(rutaCsv.split(/[\\/]/).pop()!.slice(0, 10)));
+
+  // Sin fecha de referencia, todavía no hay segmentos
+  rec(donde, "sin fecha de referencia, la segmentación todavía no aparece", await page.getByText("Sube tu archivo y mapea al menos el ID de cliente y la fecha de referencia").isVisible());
+  await page.getByLabel("Fecha de referencia para la recencia").fill("2026-06-30");
+  await page.getByText("2 clientes identificados").waitFor();
+  rec(donde, "al completar la fecha de referencia, la página calcula los 2 clientes al instante, en el navegador", await page.getByText("2 clientes identificados").isVisible());
+  await captura(page, `segmentar-archivo-${v.nombre}`);
+  const guardadoTrasSubir = await page.evaluate(() => window.localStorage.getItem("gpia-segmentar-clientes-datos-v1"));
+
+  // Ejemplo del paso 1 (Bicicletas Andina): como ya hay un archivo real subido, primero pide confirmar el reemplazo
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  const reemplazar = page.getByRole("button", { name: "Reemplazar" });
+  rec(donde, "reemplazar un archivo ya subido por un ejemplo pide confirmación antes de perderlo", await reemplazar.isVisible());
+  await reemplazar.click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  rec(donde, "el ejemplo NO sobrescribe lo que ya había guardado la persona", (await page.evaluate(() => window.localStorage.getItem("gpia-segmentar-clientes-datos-v1"))) === guardadoTrasSubir);
+  rec(donde, "el dashboard calcula los 70 clientes y 6 segmentos al instante, en el navegador", await page.getByText("70 clientes identificados").isVisible());
+  rec(donde, "avisa qué segmentos quedan por debajo del tamaño mínimo (En riesgo y Regulares)", await page.getByText(/Por debajo del tamaño mínimo/).isVisible());
+  await captura(page, `segmentar-paso1-${v.nombre}`);
+
+  // Paso 2: el prompt incluye la ficha y la tabla de segmentos, nunca un ID de cliente ni una fila cruda
+  const p = await prompt();
+  rec(donde, "el prompt incluye la ficha, la tabla de segmentos y «### FUENTE»", p.includes(bicicletas.nombreOrigen) && p.includes("### FUENTE") && p.includes("Clientes leales"));
+  rec(donde, "el prompt nunca incluye un ID de cliente (ni «CLI-001» ni una fila cruda del archivo)", !p.includes("CLI-001") && !/CLI-\d{3}/.test(p));
+  rec(donde, "el prompt le prohíbe a la IA mencionar un dato de un cliente individual", p.includes("nunca mencionas un ID, nombre o dato de un cliente individual"));
+  await page.getByRole("button", { name: /^Copiar prompt/ }).click();
+  await page.getByText("¡Prompt copiado!").waitFor();
+  const portapapeles = (await page.evaluate(() => navigator.clipboard.readText())).split(String.fromCharCode(13)).join("");
+  rec(donde, "«Copiar prompt» deja el prompt completo en el portapapeles", portapapeles === p);
+
+  // Paso 3: respuesta de ejemplo (ya viene cargada junto con el archivo, por venir del mismo perfil)
+  await paso3.getByRole("heading", { name: "Segmentos (datos)" }).waitFor();
+  rec(donde, "la respuesta de ejemplo muestra los 6 segmentos, calculados por la página", (await paso3.getByRole("listitem").count()) > 0);
+  rec(donde, "ningún monto de la respuesta aparece como inventado (todos vienen de la tabla de segmentos)", !(await paso3.getByText("Revisa antes de confiar en el resultado").isVisible()));
+  await captura(page, `segmentar-resultado-${v.nombre}`);
+
+  // Descarga de clientes por segmento (.csv)
+  const [csv] = await Promise.all([page.waitForEvent("download"), page.getByRole("button", { name: "Descargar clientes por segmento (.csv)" }).click()]);
+  const contenidoCsv = fs.readFileSync((await csv.path())!, "utf8");
+  rec(donde, "la lista de clientes por segmento se descarga en .csv, con encabezado fijo", csv.suggestedFilename() === "clientes-por-segmento.csv" && contenidoCsv.startsWith("id_cliente,segmento,recencia_dias"));
+
+  // Imprimir
+  rec(donde, "la versión para imprimir existe, oculta en pantalla", (await page.locator("#segmentar-imprimible").count()) === 1 && !(await page.locator("#segmentar-imprimible").isVisible()));
+  await page.evaluate(() => document.body.classList.add("imprimiendo-segmentar"));
+  await page.emulateMedia({ media: "print" });
+  rec(donde, "al imprimir solo se ve el informe (la herramienta queda oculta)", (await page.locator("#segmentar-imprimible").isVisible()) && !(await page.locator("#paso-1").isVisible()));
+  await page.emulateMedia({ media: "screen" });
+  await page.evaluate(() => document.body.classList.remove("imprimiendo-segmentar"));
+
+  // Un monto inventado en «Segmentos (datos)» se marca como posible cifra inventada (no bloquea, solo avisa)
+  const original = await respuesta.inputValue();
+  const conMontoInventado = original.replace("36.25% de los ingresos", "36.25% de los ingresos y factura S/ 48,000 al mes");
+  await respuesta.fill(conMontoInventado);
+  rec(donde, "un monto que no está en la tabla de segmentos se marca como posible cifra inventada", await paso3.getByText("Revisa antes de confiar en el resultado").isVisible());
+  await respuesta.fill(original);
+
+  // Otro ejemplo (Librería El Lector), con su propio archivo y reglas personalizadas
+  await paso3.getByRole("button", { name: /^Otro ejemplo/ }).click();
+  await paso3.getByRole("heading", { name: "Segmentos (datos)" }).waitFor();
+  const [, libreria] = EJEMPLOS_SEGMENTAR_CLIENTES;
+  rec(donde, `el siguiente ejemplo (${libreria.etiqueta}) carga su propio archivo y sus propias reglas`, (await prompt()).includes(libreria.nombreOrigen) && (await page.getByText("Reglas personalizadas").count()) >= 1);
+
+  // Una respuesta sin la sección «## Segmentos (datos)»
+  await respuesta.fill("Lo siento, no puedo ayudarte con eso.");
+  rec(donde, "una respuesta sin los títulos esperados avisa que todavía no puede leerla", await page.getByText("Todavía no puedo leer esta respuesta").isVisible());
+  await respuesta.fill("");
+
+  rec(donde, "sin errores de consola", errores.length === 0, errores.slice(0, 3).join(" | "));
+  await ctx.close();
+}
+
+async function eventosSegmentarClientes(browser: Browser) {
+  const { ctx, page } = await abrir(browser, VIEWPORTS[1], { analitica: true });
+  await page.goto(base + RUTA_SEGMENTAR, { waitUntil: "networkidle" });
+  const registro = () => page.evaluate(() => ((window as unknown as { dataLayer?: ArrayLike<unknown>[] }).dataLayer ?? []).filter((e) => e[0] === "event").map((e) => String(e[1])));
+  await page.getByRole("button", { name: /Llenar con datos de ejemplo \(paso 1/ }).click();
+  await page.getByText("Formulario llenado con datos de ejemplo").first().waitFor();
+  await page.locator("#paso-3").getByRole("button", { name: "Descargar informe en PDF" }).click();
+  await page.getByRole("button", { name: "Limpiar formulario" }).click();
+  const e = await registro();
+  for (const n of ["ejemplo_rellenado", "ejemplo_descargado", "ejemplo_limpiado"]) rec("analítica segmentar", `evento ${n}`, e.includes(n), e.join(","));
+  await ctx.close();
+}
+
 async function main() {
   const browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"] });
   try {
@@ -2463,6 +2786,9 @@ async function main() {
       await generadorRentabilidad(browser, v);
       await generadorNichos(browser, v);
       await generadorCatalogo(browser, v);
+      await generadorAnalisisVentas(browser, v);
+      await generadorConvertirGraficos(browser, v);
+      await generadorSegmentarClientes(browser, v);
     }
     await sinEnlacesACerradas(browser);
     await temaYAnuncios(browser);
@@ -2481,6 +2807,9 @@ async function main() {
     await eventosRentabilidad(browser);
     await eventosNichos(browser);
     await eventosCatalogo(browser);
+    await eventosAnalisisVentas(browser);
+    await eventosConvertirGraficos(browser);
+    await eventosSegmentarClientes(browser);
     await traspasoAnalisis(browser);
     await teclado(browser);
     const s = await fetch(base + "/sitemap.xml").then((r) => r.text());
@@ -2529,6 +2858,15 @@ async function main() {
     rec("sitemap", "lista la herramienta de crear un catálogo de productos", s.includes(`${RUTA_CATALOGO}</loc>`));
     const ogCatalogo = await fetch(base + "/og/emprendimiento/crear-catalogo-de-productos");
     rec("og", "la herramienta de catálogo tiene imagen Open Graph propia (PNG)", ogCatalogo.status === 200 && (ogCatalogo.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista el hub de Analítica e información y la herramienta de analizar ventas", s.includes("/analitica-e-informacion</loc>") && s.includes(`${RUTA_VENTAS}</loc>`));
+    const ogVentas = await fetch(base + "/og/analitica-e-informacion/analizar-ventas-con-excel");
+    rec("og", "la herramienta de analizar ventas tiene imagen Open Graph propia (PNG)", ogVentas.status === 200 && (ogVentas.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de convertir datos en gráficos", s.includes(`${RUTA_GRAFICOS}</loc>`));
+    const ogGraficos = await fetch(base + "/og/analitica-e-informacion/convertir-datos-en-graficos");
+    rec("og", "la herramienta de convertir en gráficos tiene imagen Open Graph propia (PNG)", ogGraficos.status === 200 && (ogGraficos.headers.get("content-type") ?? "").includes("image/png"));
+    rec("sitemap", "lista la herramienta de segmentar clientes", s.includes(`${RUTA_SEGMENTAR}</loc>`));
+    const ogSegmentar = await fetch(base + "/og/analitica-e-informacion/segmentar-clientes");
+    rec("og", "la herramienta de segmentar clientes tiene imagen Open Graph propia (PNG)", ogSegmentar.status === 200 && (ogSegmentar.headers.get("content-type") ?? "").includes("image/png"));
     rec("og", "una herramienta pendiente no tiene imagen (404)", (await fetch(base + "/og/finanzas-y-economia/crear-presupuesto-personal")).status === 404);
     rec("sitemap", "lista portada, categoría, herramienta, artículos y páginas legales", [`/</loc>`, `/carrera-y-empleo</loc>`, `${RUTA_CV}</loc>`, ...ARTICULOS.map((a) => `${a}</loc>`), `/politica-de-privacidad</loc>`].every((t) => s.includes(t)));
     rec("sitemap", "no lista categorías cerradas ni herramientas pendientes", !s.includes("/herramientas") && [...CERRADAS, ...PENDIENTES].every((r) => !s.includes(r)));
