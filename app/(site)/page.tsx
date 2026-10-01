@@ -46,7 +46,7 @@ export default function HomePage() {
       <section className="fondo-portada border-b">
         <div className="mx-auto max-w-[1140px] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <p className="pildora text-brand">100 % gratis · sin registro · en español para Latinoamérica</p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Herramientas gratis que calculan por ti y arman tu prompt</h1>
+          <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">Herramientas gratis que hacen el trabajo difícil por ti</h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             {totalHerramientas} herramientas en {totalCategorias} categorías — tu carrera, tus viajes, tu negocio y tus datos. Cada una hace el cálculo en tu navegador y arma un prompt para tu IA: los números nunca los inventa ella.
           </p>
