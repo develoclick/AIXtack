@@ -25,7 +25,6 @@ export function SidebarCategorias({ items, actual }: { items: ItemBuscable[]; ac
           ))}
         </ul>
       </nav>
-      <p className="mt-3 px-1 text-xs leading-relaxed text-muted-foreground">Abrimos las categorías de una en una, cuando su primera herramienta está completa.</p>
     </aside>
   );
 }
