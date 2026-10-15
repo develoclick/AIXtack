@@ -27,6 +27,12 @@ export const config = {
     "/aviso-afiliados/:path*",
     "/creditos-de-imagenes/:path*",
     "/mapa-del-sitio/:path*",
+    "/ventas/:path*",
+    "/guias/:path*",
+    "/autores/:path*",
+    "/cookies/:path*",
+    "/privacidad/:path*",
+    "/politica-editorial/:path*",
     "/feed.xml",
   ],
 };
