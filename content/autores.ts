@@ -5,7 +5,7 @@
 export interface Author {
   id: string;
   name: string;
-  /** Biografía de una línea, escrita por la propia persona: se muestra bajo «Probado por…» y va al JSON-LD (`description`). */
+  /** Biografía de una línea, escrita por la propia persona: va al JSON-LD (`description`). */
   bioCorta?: string;
   /** Biografía completa, un texto por párrafo: se muestra en «Sobre nosotros». */
   bioLarga?: readonly string[];
@@ -20,11 +20,11 @@ export const authors: readonly Author[] = [
     id: "nicolas",
     name: "Nicolas",
     type: "Person",
-    bioCorta: "Nicolas — ingeniero de prompts en Perú. Desde hace dos años ayuda a pequeños negocios a usar la IA y automatizar tareas. Prueba cada prompt antes de publicarlo.",
+    bioCorta: "Nicolas — ingeniero de prompts en Perú. Desde hace dos años ayuda a pequeños negocios a usar la IA y automatizar tareas.",
     bioLarga: [
       "Soy Nicolas y trabajo desde Perú. Me dedico a la ingeniería de prompts y desde hace dos años doy consultoría y apoyo a pequeños negocios para usar la IA y automatizar tareas de su día a día.",
       "Creé Guía Prompts IA para que cualquier persona pueda aprovechar la IA sin perder tiempo ni saber de tecnología: eliges una tarea, llenas unos datos y obtienes un prompt listo para usar.",
-      "Antes de publicar un prompt, lo pruebo varias veces, comparo las respuestas, lo ajusto con distintos cambios y me quedo con la versión que da mejores resultados.",
+      "Diseño cada herramienta con una regla: la página hace los cálculos y la IA solo interpreta o redacta. Los números salen de fórmulas que se comprueban con pruebas automáticas, y el resultado de la IA siempre debe revisarse antes de usarlo.",
     ],
     pais: "Perú",
   },

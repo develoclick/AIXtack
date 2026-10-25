@@ -8,7 +8,7 @@ import { Tabla } from "@/components/shared/tabla";
 import { GeneradorSegmentarClientes } from "./generador-segmentar-clientes";
 import { AUTOR_POR_DEFECTO, getAuthor } from "@/content/autores";
 import { articulos, rutaDeArticulo } from "@/content/articulos";
-import { catalogo, getCategoria, type HerramientaPublicada } from "@/content/catalogo";
+import { getCategoria, type HerramientaPublicada } from "@/content/catalogo";
 import { EJEMPLOS_SEGMENTAR_CLIENTES } from "@/content/ejemplos/segmentar-clientes";
 import { agregarTransacciones, calcularRFM, resumenSegmentos, segmentosRFMParaResumen } from "@/lib/segmentar-clientes/motor";
 import { CLAVES_SEGMENTO_RFM } from "@/lib/segmentar-clientes/tipos";
@@ -107,7 +107,6 @@ export function PaginaSegmentarClientes({ herramienta }: { herramienta: Herramie
   const categoria = getCategoria(herramienta.categoria)!;
   const autor = getAuthor(AUTOR_POR_DEFECTO)!;
   const apoyo = articulos.filter((a) => a.categoria === herramienta.categoria);
-  const pendientes = catalogo.datos.herramientas.filter((h) => h.estado === "pendiente" && herramienta.relacionadas.includes(h.slug));
 
   // Ejemplo de la guía: sus cifras salen del mismo código que usa la herramienta, así que nunca se desalinean.
   const ej = EJEMPLOS_SEGMENTAR_CLIENTES[0];
@@ -415,12 +414,6 @@ export function PaginaSegmentarClientes({ herramienta }: { herramienta: Herramie
           </div>
 
           <HerramientasRelacionadas categoria={herramienta.categoria} slug={herramienta.slug} />
-          {pendientes.length > 0 && (
-            <p className="mt-4 flex gap-2 text-sm text-muted-foreground">
-              <ShieldCheck aria-hidden className="mt-0.5 size-4 shrink-0" />
-              <span>Todavía no publicadas, sin enlace activo: {pendientes.map((h) => h.titulo).join("; ")}.</span>
-            </p>
-          )}
 
           {apoyo.length > 0 && (
             <section aria-labelledby="articulos-relacionados" className="mt-12">

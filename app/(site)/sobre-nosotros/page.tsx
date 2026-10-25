@@ -1,21 +1,24 @@
-
 import Link from "next/link";
 import { LegalPage } from "@/components/shared/legal-page";
+import { categoriasActivas, herramientasPublicadas, rutaCategoria } from "@/content/catalogo";
 import { AUTOR_POR_DEFECTO, EDITORIAL, getAuthor } from "@/content/autores";
-import { RUTA_CV } from "@/content/prompts";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { contactEmail, institutionalUpdatedAt, siteName } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "Sobre nosotros",
-  description: `${siteName} es una biblioteca gratuita de herramientas, guías y prompts en español para aprovechar la inteligencia artificial de forma práctica.`,
+  description: `${siteName} reúne herramientas gratuitas en español que hacen los cálculos en tu navegador y arman el prompt para tu asistente de IA.`,
   path: "/sobre-nosotros",
 });
+
+const herramientas = (n: number) => `${n} ${n === 1 ? "herramienta" : "herramientas"}`;
 
 export default function AboutPage() {
   const autorDatos = getAuthor(AUTOR_POR_DEFECTO)!;
   const autor = autorDatos.name;
   const editorial = getAuthor(EDITORIAL)!.name;
+  const categorias = categoriasActivas();
+  const total = herramientasPublicadas().length;
 
   return (
     <LegalPage
@@ -26,83 +29,83 @@ export default function AboutPage() {
       <h2 id="que-es">Qué es {siteName}</h2>
       <p>
         <strong>
-          {siteName} es una biblioteca gratuita de recursos, herramientas y
-          prompts en español creada para ayudar a las personas a utilizar la
-          inteligencia artificial de forma más práctica, clara y útil.
+          {siteName} reúne {herramientas(total)} gratuitas en español que
+          hacen el cálculo en tu navegador y arman el prompt para tu
+          asistente de inteligencia artificial.
         </strong>
       </p>
       <p>
-        El sitio está orientado a distintos tipos de tareas, como productividad,
-        trabajo, estudios, creación de contenido, organización, aprendizaje,
-        negocios, tecnología y otras situaciones en las que la inteligencia
-        artificial puede servir como apoyo.
+        Cada herramienta resuelve una tarea concreta. Llenas un formulario
+        con tus datos, la página calcula lo que se puede calcular (márgenes,
+        presupuestos, comparaciones, segmentos) y te entrega un prompt ya
+        armado para pegarlo en ChatGPT, Gemini, Claude u otro asistente. La
+        IA interpreta o redacta; los números no los inventa ella.
       </p>
+      <p>Hoy hay herramientas en estas áreas:</p>
+      <ul>
+        {categorias.map((c) => (
+          <li key={c.slug}>
+            <Link href={rutaCategoria(c)}>{c.nombre}</Link>:{" "}
+            {herramientas(herramientasPublicadas(c.slug).length)}.
+          </li>
+        ))}
+      </ul>
       <p>
-        Nuestro objetivo es facilitar el uso de asistentes como ChatGPT,
-        Gemini, Claude y otras herramientas de inteligencia artificial,
-        incluso para personas que no tienen experiencia creando prompts.
-      </p>
-      <p>
-        En muchas de nuestras guías puedes completar información mediante
-        formularios o seguir instrucciones paso a paso para generar un prompt
-        adaptado a una necesidad concreta.
-      </p>
-      <p>
-        Cada recurso busca ofrecer algo más que un texto para copiar y pegar.
-        Siempre que es posible, incluimos explicaciones, ejemplos,
-        recomendaciones, advertencias, criterios de revisión y orientación
-        sobre cómo aprovechar mejor el resultado generado por la IA.
-      </p>
-      <p>
-        La biblioteca se amplía progresivamente con nuevas categorías,
-        guías y herramientas.
+        Además hay tres artículos de apoyo sobre cómo armar una hoja de vida.
+        Según la herramienta, puedes descargar el resultado en Word, CSV, ZIP o
+        PDF, y todas incluyen un ejemplo ficticio y las preguntas más comunes.
       </p>
 
-      <h2 id="como-se-hace">Cómo creamos nuestros contenidos</h2>
-      <p>
-        Cada guía de {siteName} parte de una tarea, problema o necesidad
-        concreta. Antes de publicar un recurso:
-      </p>
+      <h2 id="como-se-hace">Cómo están hechas las herramientas</h2>
       <ul>
         <li>
-          Analizamos qué información necesita la inteligencia artificial
-          para realizar la tarea.
+          Cada herramienta parte de una tarea concreta y de la información que
+          la IA necesita para hacerla bien.
         </li>
         <li>
-          Organizamos las instrucciones para que sean claras y fáciles
-          de utilizar.
+          Los cálculos los hace la página con fórmulas que se comprueban con
+          pruebas automáticas, no la IA.
         </li>
         <li>
-          Evitamos pedir a la IA que invente datos que el usuario no
-          haya proporcionado.
-        </li>
-        <li>Probamos diferentes versiones del prompt.</li>
-        <li>Revisamos y comparamos los resultados.</li>
-        <li>
-          Ajustamos las instrucciones cuando encontramos posibles mejoras.
+          Los prompts piden a la IA que no invente datos y que marque como
+          supuesto lo que no puede saber. En las herramientas con
+          cifras, la página revisa después la respuesta y avisa si aparece un
+          número que no salió de tus datos.
         </li>
         <li>
-          Añadimos recomendaciones para que el usuario pueda revisar
-          el resultado por su cuenta.
+          Lo que escribes se guarda solo en tu navegador. Nada se envía a un
+          servidor de este sitio.
+        </li>
+        <li>
+          Los nombres, negocios, situaciones y cifras de los ejemplos son
+          ficticios y se presentan así.
+        </li>
+        <li>
+          Cuando usamos fuentes externas las enlazamos con la fecha de
+          consulta. Si una página oficial no se pudo leer, la guía lo dice y no
+          cita datos de ella.
+        </li>
+        <li>
+          Las herramientas muestran su fecha de publicación y de última
+          actualización.
         </li>
       </ul>
       <p>
-        Cuando utilizamos información procedente de fuentes externas,
-        procuramos identificar y enlazar las fuentes correspondientes.
-        Los nombres, empresas, situaciones o datos inventados utilizados
-        con fines demostrativos se presentan como ejemplos ficticios.
+        Hoy las herramientas no muestran capturas de respuestas reales de
+        asistentes de IA. Si las publicamos, las identificaremos con la fecha y
+        el asistente usado. Mientras tanto, trata la respuesta de la IA como un
+        borrador que debes revisar.
       </p>
 
       <h2 id="enfoque">Nuestro enfoque</h2>
       <p>
         Creemos que un buen recurso de inteligencia artificial no debería
-        limitarse a mostrar una frase para copiar y pegar.
+        limitarse a mostrar una frase para copiar y pegar. Por eso, cada
+        herramienta ayuda a comprender:
       </p>
-      <p>Por eso, nuestras guías buscan ayudar al usuario a comprender:</p>
       <ul>
         <li>Qué información conviene proporcionar.</li>
         <li>Cómo estructurar mejor una solicitud.</li>
-        <li>Qué instrucciones puede entender mejor una IA.</li>
         <li>Cómo utilizar el prompt generado.</li>
         <li>Qué partes del resultado deben revisarse.</li>
         <li>Qué errores pueden aparecer.</li>
@@ -110,8 +113,8 @@ export default function AboutPage() {
       </ul>
       <p>
         Nuestro propósito es que la persona tenga más control sobre el
-        resultado y pueda utilizar la IA como una herramienta de apoyo,
-        no como una fuente automática e infalible de respuestas.
+        resultado y pueda utilizar la IA como una herramienta de apoyo, no
+        como una fuente automática e infalible de respuestas.
       </p>
 
       <h2 id="limitaciones">La inteligencia artificial puede equivocarse</h2>
@@ -133,54 +136,9 @@ export default function AboutPage() {
       </p>
 
       <h2 id="quien-esta-detras">Quién está detrás de {siteName}</h2>
-      <p>
-        Mi nombre es Nicolas y soy el creador de {siteName}.
-      </p>
-      <p>
-        Trabajo desde Perú desarrollando soluciones relacionadas con
-        inteligencia artificial, automatización y uso práctico de
-        herramientas digitales.
-      </p>
-      <p>
-        Durante los últimos años he trabajado ayudando a pequeños negocios
-        a incorporar herramientas digitales, inteligencia artificial y
-        automatizaciones en distintas tareas de su operación diaria.
-      </p>
-      <p>
-        Creé {siteName} para acercar estas herramientas a personas que
-        quieren aprovechar la inteligencia artificial sin necesidad de
-        tener conocimientos técnicos ni experiencia previa creando prompts.
-      </p>
-      <p>
-        Los contenidos del sitio son revisados antes de publicarse y pueden
-        actualizarse cuando encontramos errores, cambios relevantes o nuevas
-        formas de mejorar una guía.
-      </p>
-
-      <h2 id="recursos">Qué puedes encontrar en el sitio</h2>
-      <p>
-        {siteName} está organizada en distintas categorías y tipos de
-        recursos. Dependiendo de la temática, puedes encontrar:
-      </p>
-      <ul>
-        <li>Generadores de prompts.</li>
-        <li>Formularios interactivos.</li>
-        <li>Guías paso a paso.</li>
-        <li>Ejemplos prácticos.</li>
-        <li>Plantillas reutilizables.</li>
-        <li>Explicaciones sobre cómo utilizar herramientas de IA.</li>
-        <li>Recomendaciones para mejorar resultados.</li>
-        <li>Recursos relacionados con productividad y automatización.</li>
-      </ul>
-      <p>
-        Por ejemplo, puedes utilizar nuestra{" "}
-        <Link href={RUTA_CV}>
-          herramienta para crear una hoja de vida en formato Harvard
-        </Link>
-        . No todos los contenidos utilizan exactamente el mismo formato.
-        El objetivo es utilizar el tipo de recurso que resulte más útil
-        para cada tarea.
-      </p>
+      {autorDatos.bioLarga?.map((parrafo) => (
+        <p key={parrafo}>{parrafo}</p>
+      ))}
 
       <h2 id="independencia-editorial">Independencia editorial</h2>
       <p>
@@ -243,12 +201,7 @@ export default function AboutPage() {
 
       <h2 id="compromiso">Nuestro compromiso</h2>
       <p>
-        Nuestro objetivo es crear recursos útiles, comprensibles y
-        prácticos relacionados con el uso de inteligencia artificial.
-      </p>
-      <p>
-        A medida que {siteName} crece, continuaremos incorporando nuevas
-        categorías, herramientas y guías manteniendo el mismo criterio:
+        Si agregamos herramientas o guías, mantendremos el mismo criterio:
         priorizar la utilidad, la claridad y la calidad del contenido
         antes que publicar una gran cantidad de páginas sin suficiente
         valor para el usuario.

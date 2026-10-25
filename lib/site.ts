@@ -15,7 +15,7 @@ export const contactEmail = "guiapromptsia@gmail.com";
  * editar la página, porque alimenta el sitemap (`lastModified`) y la fecha visible.
  */
 export const institutionalPages = [
-  { path: "/sobre-nosotros", title: "Sobre nosotros", updatedAt: "2026-09-25" },
+  { path: "/sobre-nosotros", title: "Sobre nosotros", updatedAt: "2026-10-23" },
   { path: "/contacto", title: "Contacto", updatedAt: "2026-09-25" },
   { path: "/politica-de-privacidad", title: "Política de privacidad", updatedAt: "2026-09-25" },
   { path: "/politica-de-cookies", title: "Política de cookies", updatedAt: "2026-09-25" },

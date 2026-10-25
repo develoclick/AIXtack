@@ -107,7 +107,7 @@ test("«Carrera y empleo» conserva exactamente lo publicado: URL, título, meta
   assert.equal(c.seo.title, "Prompts para carrera y empleo · Guía Prompts IA");
   assert.equal(c.seo.description, "Herramientas y guías para preparar tu hoja de vida y tu búsqueda de empleo: formato ATS, palabras clave, verbos de acción y CV sin experiencia.");
   assert.equal(c.h1, "Prompts para carrera y empleo");
-  assert.equal(sha(c.intro), "e1dc27972d885757eb7417cce2efecc5918dcc154a55cd9dd94679a6827307fc");
+  assert.equal(sha(c.intro), "b62ec9befb339e2992f3f8f3659fcbcc69c1a63cc9fa0773e08b090d61f1f02d");
   assert.equal(sha(c.faqs.map((f) => ({ q: f.q, a: f.a }))), "f68ddfb449cb6dc225b3318d2b6fed419da0bde439fa7e79110030aa1929bf26");
   assert.equal(c.contenido.comoUsar?.pasos.length, 3);
   assert.equal(c.contenido.anuncios, false);
